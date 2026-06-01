@@ -68,9 +68,9 @@ p { margin: 0; }
 .marker {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: var(--fs-marker);
-  letter-spacing: var(--tracking-marker);
-  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--edge);
 }
 
