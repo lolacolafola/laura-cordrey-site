@@ -155,8 +155,8 @@ export default function AboutPage() {
             <span className="marker">Cross-discipline leadership</span>
             <h2 className="section-head__title">What I bring.</h2>
             <p className="about-range__lede">
-              Most consultants own one topic. I own all four. Bring the
-              whole <mark>bridge</mark> to your business.
+              Most consultants own one topic. I own four. Bring the whole
+              <mark>bridge</mark> to your business.
             </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
