@@ -124,9 +124,6 @@ export default function AboutPage() {
                 Community growth wasn&rsquo;t a job ten years ago.{' '}
                 <mark>I made it one.</mark>
               </h1>
-              <p className="about-hero__kicker">
-                From BlaBlaCar&rsquo;s UK launch to Ubisoft&rsquo;s E3 stage.
-              </p>
               <p className="about-hero__lede">
                 I&rsquo;ve built from nothing. I&rsquo;ve built from
                 millions. No matter where a brand is in their journey,
@@ -137,12 +134,6 @@ export default function AboutPage() {
                 conglomerates and startups — Ubisoft, Amazon, BlaBlaCar
                 to name a few — and now I&rsquo;m here to build it for
                 you.
-              </p>
-              <p className="about-hero__sublede">
-                I&rsquo;m an inventor. Give me a problem — a launch with no
-                budget, a community no one&rsquo;s activated, a category
-                that doesn&rsquo;t exist yet — and I&rsquo;ll find the angle
-                no one else has. It&rsquo;s what I&rsquo;m known for.
               </p>
             </div>
 
