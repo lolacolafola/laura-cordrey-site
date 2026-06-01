@@ -61,16 +61,16 @@ export default function DeltaCompanyPage() {
             <span className="marker delta__stat-label">UGC views from members</span>
           </li>
           <li>
-            <span className="delta__stat-value">85%</span>
-            <span className="marker delta__stat-label">Positive sentiment</span>
-          </li>
-          <li>
             <span className="delta__stat-value">130</span>
             <span className="marker delta__stat-label">Invited members</span>
           </li>
           <li>
             <span className="delta__stat-value">14</span>
             <span className="marker delta__stat-label">Languages</span>
+          </li>
+          <li>
+            <span className="delta__stat-value">5</span>
+            <span className="marker delta__stat-label">Community clusters</span>
           </li>
         </ul>
       </section>

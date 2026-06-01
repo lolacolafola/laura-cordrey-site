@@ -31,9 +31,9 @@ const caseStudies = [
     tags: ['Creator Programs', 'Community', 'Brand', 'Live Launch'],
     stats: [
       { value: '10M+', label: 'UGC views from program members' },
-      { value: '85%',  label: 'Positive sentiment' },
       { value: '130',  label: 'Invited members' },
       { value: '14',   label: 'Languages' },
+      { value: '5',    label: 'Community clusters' },
     ],
     challenge: 'Ubisoft’s Ghost Recon community had millions of players but no system to deepen the relationship with the studio.',
     approach: 'Built Delta Company — a first-of-its-kind creator advocacy program structured around 5 community clusters (artists, cosplayers, explorers, feedback specialists, tournament players). Designed the brand with the internal Ghost Recon Breakpoint design team and Diana Da Costa. Commissioned a dedicated website in 14 languages with custom application back-end. Produced a How-it-Works recruitment video. Unveiled live on the UbiE3 2019 stage with Takeoff agency assets. Shipped a members-only goodie box and in-game customisations.',
