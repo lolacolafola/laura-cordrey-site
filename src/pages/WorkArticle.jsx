@@ -172,24 +172,20 @@ export default function WorkArticle() {
           </div>
 
           <div className="article__spreads">
-            {cs.gallery.map((g, i) => {
-              const fig = String(i + 2).padStart(2, '0')
-              return (
-                <figure
-                  key={i}
-                  className={`article__spread${i % 2 === 1 ? ' article__spread--reverse' : ''}`}
-                >
-                  <div className="article__spread-media">
-                    <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-                    <span className="marker article__spread-fig">Fig. {fig}</span>
-                  </div>
-                  <figcaption className="article__spread-text">
-                    <span className="marker article__spread-num">Fig. {fig}</span>
-                    <p className="article__spread-caption">{g.caption}</p>
-                  </figcaption>
-                </figure>
-              )
-            })}
+            {cs.gallery.map((g, i) => (
+              <figure
+                key={i}
+                className={`article__spread${i % 2 === 1 ? ' article__spread--reverse' : ''}`}
+              >
+                <div className="article__spread-media">
+                  <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
+                </div>
+                <figcaption className="article__spread-text">
+                  <span className="article__spread-rule" aria-hidden="true" />
+                  <p className="article__spread-caption">{g.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
       )}
