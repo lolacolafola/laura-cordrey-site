@@ -77,7 +77,6 @@ export default function HomePage() {
               <div className="hero__portrait-frame" aria-hidden="true">
                 <span className="hero__portrait-placeholder">PORTRAIT&nbsp;·&nbsp;TBD</span>
               </div>
-              <figcaption className="marker">Laura Cordrey · E3, Los Angeles</figcaption>
             </figure>
           </div>
 
