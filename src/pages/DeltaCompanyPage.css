@@ -1,0 +1,256 @@
+/* ───────────────────────────────────────────────────────────
+ * DELTA COMPANY · Bespoke case study page
+ * Ports the structure of Laura's Wix Ubisoft case study, retuned to
+ * the new editorial system (Manrope, red mark, hairlines).
+ * ─────────────────────────────────────────────────────────── */
+
+.delta {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── MASTHEAD ────────────────────────────────────────────── */
+.delta__masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--hairline);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.delta__back {
+  color: var(--ink-muted);
+  transition: color var(--transition);
+}
+.delta__back:hover { color: var(--accent); }
+
+/* ─── COVER ──────────────────────────────────────────────── */
+.delta__cover {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--hairline);
+}
+.delta__case-kicker {
+  color: var(--accent);
+}
+.delta__cover-title {
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: var(--space-3) 0 var(--space-6);
+  max-width: 16ch;
+}
+.delta__cover-lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  max-width: 56ch;
+  line-height: 1.55;
+}
+
+/* ─── HERO IMAGE ─────────────────────────────────────────── */
+.delta__hero {
+  margin: 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.delta__hero img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── STATS ──────────────────────────────────────────────── */
+.delta__stats {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+.delta__stats ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.delta__stats li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  border-right: 1px solid var(--hairline);
+}
+.delta__stats li:last-child { border-right: 0; }
+.delta__stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+.delta__stat-label { color: var(--ink-muted); }
+@media (max-width: 860px) {
+  .delta__stats ul { grid-template-columns: repeat(2, 1fr); }
+  .delta__stats li:nth-child(2n) { border-right: 0; }
+  .delta__stats li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+}
+
+/* ─── SECTION ────────────────────────────────────────────── */
+.delta__section {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-7);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+.delta__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: sticky;
+  top: 100px;
+}
+.delta__section-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.delta__section-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  font-size: var(--fs-body-l);
+  color: var(--ink);
+  line-height: 1.6;
+  max-width: 64ch;
+}
+.delta__section-body p { margin: 0; }
+.delta__section-body strong { color: var(--ink); font-weight: 700; }
+
+.delta__section-body--takeaway {
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .delta__section { grid-template-columns: 1fr; gap: var(--space-3); }
+  .delta__section-head { position: static; }
+}
+
+/* ─── PLATE (image with caption) ─────────────────────────── */
+.delta__plate {
+  margin: var(--space-8) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.delta__plate img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-deep);
+}
+.delta__plate--light img {
+  background: var(--surface);
+  object-fit: contain;
+  padding: clamp(var(--space-4), 4vw, var(--space-7));
+}
+.delta__plate--full img {
+  aspect-ratio: 3 / 2;
+}
+.delta__plate figcaption {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+/* ─── VIDEO SECTION ──────────────────────────────────────── */
+.delta__video-section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid var(--hairline);
+}
+.delta__video-section .delta__section-head {
+  position: static;
+}
+.delta__video-context {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  max-width: 64ch;
+  line-height: 1.55;
+  margin: 0;
+}
+.delta__video-frame {
+  aspect-ratio: 16 / 9;
+  background: var(--bg-deep);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.delta__video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ─── GALLERY (goodies grid) ─────────────────────────────── */
+.delta__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+}
+.delta__gallery figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.delta__gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+}
+.delta__gallery figcaption {
+  color: var(--ink-muted);
+}
+@media (max-width: 720px) {
+  .delta__gallery { grid-template-columns: 1fr; }
+}
+
+/* ─── CTA ────────────────────────────────────────────────── */
+.delta__cta {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  background: var(--bg-deep);
+  border-top: 1px solid var(--hairline);
+}
+.delta__cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.delta__cta-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+.delta__cta-buttons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
