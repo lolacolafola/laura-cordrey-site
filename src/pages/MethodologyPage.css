@@ -146,18 +146,6 @@
 }
 .meth-proof__link:hover .meth-proof__logo-text { opacity: 1; }
 
-/* ─── REAL EXAMPLES (reuses .work-grid from HomePage.css) ─── */
-.meth-examples {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-  border-top: 1px solid var(--hairline);
-}
-.meth-examples__lede {
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  margin-top: var(--space-3);
-  max-width: 60ch;
-}
 .meth-proof__stat {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 4vw, 3.5rem);

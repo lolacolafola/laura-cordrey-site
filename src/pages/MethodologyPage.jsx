@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom'
-import caseStudies from '../data/caseStudies.js'
 import FlywheelDiagram from '../components/FlywheelDiagram.jsx'
-import WorkCard from '../components/WorkCard.jsx'
 import { stageIcons } from '../components/StageIcons.jsx'
-import '../pages/HomePage.css' // shared .work-card / .work-grid styles
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -54,12 +51,6 @@ const proofPoints = [
   { brand: 'US Mobile',  slug: 'us-mobile', logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Revenue in 3 hours' },
   { brand: 'Azarus',     slug: 'azarus',    logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
 ]
-
-// Featured case studies for the 'See real examples' section near the bottom.
-const featuredIds = ['ubisoft', 'us-mobile', 'blablacar', 'azarus']
-const featuredWork = featuredIds
-  .map((id) => caseStudies.find((c) => c.id === id))
-  .filter(Boolean)
 
 const fits = [
   {
@@ -225,24 +216,6 @@ export default function MethodologyPage() {
             <span>Embedded retainer</span>
             <span>·</span>
             <span className="accent">Scoped per brand on a call</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── SEE REAL EXAMPLES (case study row) ───────────────── */}
-      <section className="meth-examples">
-        <div className="container">
-          <div className="section-head">
-            <span className="marker">See it in practice</span>
-            <h2 className="section-head__title">Real examples.</h2>
-            <p className="meth-examples__lede">
-              Four brands. Four very different problems. Same five stages.
-            </p>
-          </div>
-          <div className="work-grid">
-            {featuredWork.map((cs, i) => (
-              <WorkCard key={cs.id} caseStudy={cs} index={i} />
-            ))}
           </div>
         </div>
       </section>
