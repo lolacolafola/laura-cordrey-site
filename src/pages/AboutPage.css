@@ -89,10 +89,17 @@
   .about-hero__portrait { position: static; max-width: 70%; }
 }
 
-/* ─── RANGE ───────────────────────────────────────────────── */
+/* ─── RANGE / THE BRIDGE ──────────────────────────────────── */
 .about-range {
   padding-top: var(--space-9);
   padding-bottom: var(--space-9);
+}
+.about-range__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  line-height: 1.55;
+  margin: var(--space-3) 0 0;
+  max-width: 56ch;
 }
 .about-range__list {
   list-style: none;
