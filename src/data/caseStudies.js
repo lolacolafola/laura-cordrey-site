@@ -34,13 +34,19 @@ const caseStudies = [
     takeaway:
       'Built the system that turned Ubisoft\u2019s players into their most valuable marketing channel. Then proved it was repeatable across multiple franchises.',
     media: {
-      image: 'case-studies/ubisoft-siege-champions.png',
-      imageAlt: 'R6 Siege Champions Program \u2014 Ubisoft creator program artwork, part of the system Laura designed to scale community-led growth across three franchises',
+      image: 'case-studies/ubisoft-banner.png',
+      imageAlt: 'Ubisoft brand mark \u2014 the publisher Laura built the Delta Company creator program for across 18 markets and three franchises',
+      heroBackground: 'white',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
     gallery: [
+      {
+        src: 'case-studies/ubisoft-siege-champions.png',
+        alt: 'R6 Siege Champions Program \u2014 Ubisoft creator program artwork from the program Laura designed',
+        caption: 'R6 Siege Champions Program \u2014 the creator program built to scale community-led growth across three franchises.',
+      },
       {
         src: 'case-studies/ubisoft-delta-pr-pack-real.jpg',
         alt: 'Delta Company creator pack for Tom Clancy\u2019s Ghost Recon Breakpoint \u2014 green flask, badges, key tag and merch laid out',
@@ -86,13 +92,19 @@ const caseStudies = [
     takeaway:
       '$32.25K in three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (\u201ccrazy there are only 250 of these\u201d). The CEO\u2019s \u201cwe are sold out, this is insane\u201d edit became its own marketing moment \u2014 and proved a community-first company can monetise its fans directly.',
     media: {
-      image: 'case-studies/us-mobile-vip-bundle.png',
-      imageAlt: 'US Mobile Dark Star VIP Early Access Bundle \u2014 limited-edition SIM kit + North Face fleece packshot Laura designed and launched',
+      image: 'case-studies/us-mobile.png',
+      imageAlt: 'US Mobile brand mark \u2014 the company where Laura designed the $129 VIP fan bundle and led the Dark Star and Claw Mobile launches',
+      heroBackground: 'white',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
     gallery: [
+      {
+        src: 'case-studies/us-mobile-vip-bundle.png',
+        alt: 'US Mobile Dark Star VIP Early Access Bundle \u2014 SIM kit + North Face fleece packshot',
+        caption: 'The $129 Dark Star VIP Bundle \u2014 limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in three hours.',
+      },
       {
         src: 'case-studies/us-mobile-dark-star.png',
         alt: 'US Mobile Dark Star launch teaser landing page with countdown timer',
@@ -143,13 +155,18 @@ const caseStudies = [
     takeaway:
       'Three promotions in four years. Launched a market, fixed the ops, built the creative engine.',
     media: {
-      image: 'case-studies/blablacar-but-first-coffee.jpg',
-      imageAlt: 'BlaBlaCar first-person smartphone storytelling campaign — “But. First. Coffee.” in-car still from the system Laura built and scaled across 22 markets',
+      image: 'case-studies/blablacar.jpg',
+      imageAlt: 'BlaBlaCar brand still — the carpooling platform Laura launched in the UK and grew from 0 to 1M members at €5 CAC',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
     gallery: [
+      {
+        src: 'case-studies/blablacar-but-first-coffee.jpg',
+        alt: 'BlaBlaCar first-person smartphone storytelling — “But. First. Coffee.” in-car still',
+        caption: 'The first-person smartphone storytelling system Laura built — one creative idea, remade in every market.',
+      },
       {
         src: 'case-studies/blablacar-road-trip.jpg',
         alt: 'Four friends laughing in a car — a still from BlaBlaCar’s first-person smartphone storytelling system',
