@@ -1,0 +1,66 @@
+/* Design tokens — single source of truth.
+ * Every colour, type size, and spacing value lives here.
+ * If you find yourself writing a raw value in a component, add a token. */
+
+:root {
+  /* ─── Colour ─────────────────────────────────────────────── */
+  --bg: #15110F;            /* warm near-black */
+  --bg-deep: #0E0B09;       /* deeper black for hero overlays */
+  --surface: #EFE9DC;       /* bone — inverted sections, cards */
+  --surface-dim: #1F1A17;   /* warm dark card surface */
+
+  --ink: #EFE9DC;           /* primary text on dark */
+  --ink-on-surface: #15110F;/* primary text on bone */
+  --ink-muted: #8A8078;     /* body / supporting on dark */
+  --ink-muted-on-surface: #5E564E;
+  --ink-faint: #4A4239;     /* lowest hierarchy, dividers */
+
+  --accent: #C8362B;        /* editorial red — single gesture colour */
+  --accent-deep: #8E2520;   /* hover / pressed */
+  --edge: #D4C896;          /* small marks, rules, mono labels */
+
+  --hairline: rgba(239, 233, 220, 0.10); /* thin rule on dark */
+  --hairline-strong: rgba(239, 233, 220, 0.25);
+
+  /* ─── Type ───────────────────────────────────────────────── */
+  --font-display: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Display sizes — editorial scale, big at top */
+  --fs-display-xl: clamp(3.5rem, 9vw, 8rem);     /* hero name / cover */
+  --fs-display-l: clamp(2.5rem, 6vw, 5rem);      /* section heads */
+  --fs-display-m: clamp(1.75rem, 3.5vw, 2.75rem);/* article titles */
+
+  --fs-body-l: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-marker: 0.75rem;     /* mono kicker labels */
+
+  --tracking-tight: -0.02em;
+  --tracking-marker: 0.18em; /* all-caps mono kickers */
+
+  /* ─── Space ──────────────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --max-w: 1280px;
+  --max-w-prose: 68ch;
+
+  /* ─── Misc ───────────────────────────────────────────────── */
+  --radius: 2px;            /* almost-square — editorial, not soft */
+  --transition: 220ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition: 0ms; }
+}

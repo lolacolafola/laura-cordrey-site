@@ -1,0 +1,280 @@
+/* ───────────────────────────────────────────────────────────
+ * METHODOLOGY PAGE
+ * Editorial, dark, one red gesture. No pricing tiers.
+ * ─────────────────────────────────────────────────────────── */
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.meth-hero {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--hairline);
+}
+.meth-hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: var(--space-6);
+}
+.meth-hero__title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-7);
+  text-wrap: balance;
+}
+.meth-hero__title em {
+  font-style: italic;
+  font-family: 'Archivo', serif;
+  font-weight: 900;
+}
+.meth-hero__meta {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  align-items: end;
+}
+.meth-hero__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink);
+  max-width: 44ch;
+}
+.meth-hero__sublede {
+  font-size: var(--fs-body);
+  color: var(--ink-muted);
+  max-width: 38ch;
+  border-left: 1px solid var(--accent);
+  padding-left: var(--space-4);
+  font-style: italic;
+}
+@media (max-width: 860px) {
+  .meth-hero__meta { grid-template-columns: 1fr; }
+}
+
+/* ─── DIAGRAM ─────────────────────────────────────────────── */
+.meth-diagram {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--hairline);
+}
+.meth-diagram__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+.meth-diagram__caption {
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/* ─── PROOF ───────────────────────────────────────────────── */
+.meth-proof {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+.meth-proof__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  max-width: 60ch;
+  margin-top: var(--space-3);
+}
+.meth-proof__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--hairline);
+}
+.meth-proof__cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+  border-right: 1px solid var(--hairline);
+}
+.meth-proof__cell:last-child { border-right: 0; }
+.meth-proof__brand { color: var(--edge); }
+.meth-proof__stat {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.meth-proof__label {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+}
+@media (max-width: 860px) {
+  .meth-proof__grid { grid-template-columns: repeat(2, 1fr); }
+  .meth-proof__cell:nth-child(2n) { border-right: 0; }
+}
+@media (max-width: 480px) {
+  .meth-proof__grid { grid-template-columns: 1fr; }
+  .meth-proof__cell { border-right: 0; }
+}
+
+/* ─── STAGES (editorial spreads) ──────────────────────────── */
+.meth-stages {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-deep);
+}
+.meth-stage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.meth-stage {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--hairline);
+}
+.meth-stage:first-child { border-top: 0; padding-top: 0; }
+.meth-stage__rail {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+.meth-stage__num {
+  color: var(--accent);
+  font-size: var(--fs-small);
+}
+.meth-stage__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 60ch;
+}
+.meth-stage__name {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.meth-stage__kicker {
+  font-family: 'Archivo', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: var(--fs-body-l);
+  color: var(--accent);
+}
+.meth-stage__para {
+  font-size: var(--fs-body-l);
+  color: var(--ink);
+  line-height: 1.55;
+}
+.meth-stage__para em {
+  color: var(--accent);
+  font-style: italic;
+}
+.meth-stage__tags {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+.meth-stage__tag {
+  color: var(--ink-muted);
+  position: relative;
+  padding-right: var(--space-4);
+}
+.meth-stage__tag:not(:last-child)::after {
+  content: '·';
+  position: absolute;
+  right: 0;
+  color: var(--accent);
+}
+@media (max-width: 720px) {
+  .meth-stage { grid-template-columns: 1fr; gap: var(--space-3); }
+  .meth-stage__rail { position: static; }
+}
+
+/* ─── FIT (where it works) ────────────────────────────────── */
+.meth-fit {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+}
+.meth-fit__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.meth-fit__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.meth-fit__card:last-child { border-right: 0; }
+.meth-fit__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.meth-fit__body {
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+}
+.meth-fit__rates {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+}
+@media (max-width: 860px) {
+  .meth-fit__grid { grid-template-columns: 1fr; }
+  .meth-fit__card { border-right: 0; }
+}
+
+/* ─── FINAL CTA ───────────────────────────────────────────── */
+.meth-cta {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-deep);
+}
+.meth-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.meth-cta__title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.meth-cta__title em {
+  font-style: italic;
+  font-family: 'Archivo', serif;
+  font-weight: 900;
+}
+.meth-cta__back { color: var(--ink-muted); margin-top: var(--space-3); }
+.meth-cta__link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+.meth-cta__link:hover { color: var(--accent); }

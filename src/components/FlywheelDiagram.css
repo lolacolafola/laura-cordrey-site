@@ -1,0 +1,82 @@
+/* FlywheelDiagram — SVG styling tied to the design tokens.
+ * Five nodes orbit a centre; a comet trails the orbit and lights each
+ * node as it passes. Colours pulled from the global accent. */
+
+.flywheel-diagram-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.flywheel-svg-clean {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* ─── Orbit ────────────────────────────────────────────── */
+.flywheel-orbit-base {
+  fill: none;
+  stroke: rgba(239, 233, 220, 0.18);
+  stroke-width: 1;
+}
+.flywheel-orbit-glow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 8 92; /* short bright comet, long gap */
+  filter: drop-shadow(0 0 6px rgba(200, 54, 43, 0.6))
+          drop-shadow(0 0 14px rgba(200, 54, 43, 0.35));
+}
+
+/* ─── Centre wordmark ──────────────────────────────────── */
+.flywheel-center-circle {
+  stroke: rgba(239, 233, 220, 0.12);
+  stroke-width: 1;
+}
+.flywheel-center-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-anchor: middle;
+  fill: var(--edge);
+  text-transform: uppercase;
+}
+.flywheel-center-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+
+/* ─── Stage nodes ──────────────────────────────────────── */
+.flywheel-node-group {
+  transition: filter 220ms ease-out;
+}
+.flywheel-node-card {
+  fill: rgba(14, 11, 9, 0.85);
+  stroke: var(--edge);
+  stroke-width: 1;
+}
+.flywheel-node-number {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  fill: var(--edge);
+  text-transform: uppercase;
+}
+.flywheel-node-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: -0.01em;
+  fill: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flywheel-orbit-glow { display: none; }
+  .flywheel-node-group { filter: none !important; }
+}
