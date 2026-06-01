@@ -48,6 +48,11 @@
   padding-left: var(--space-4);
   font-style: italic;
 }
+.meth-proof__lede em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--accent);
+}
 @media (max-width: 860px) {
   .meth-hero__meta { grid-template-columns: 1fr; }
 }
@@ -92,13 +97,33 @@
 .meth-proof__cell {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding: var(--space-6) var(--space-4);
   border-bottom: 1px solid var(--hairline);
   border-right: 1px solid var(--hairline);
 }
 .meth-proof__cell:last-child { border-right: 0; }
-.meth-proof__brand { color: var(--edge); }
+
+.meth-proof__logo {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  margin-bottom: var(--space-2);
+}
+.meth-proof__logo img {
+  max-height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(0.88) opacity(0.75);
+}
+.meth-proof__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
 .meth-proof__stat {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 4vw, 3.5rem);
