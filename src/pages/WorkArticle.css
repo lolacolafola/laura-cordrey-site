@@ -78,16 +78,15 @@
   max-width: 50ch;
 }
 
-/* ─── HERO IMAGE (full-bleed) ─────────────────────────────── */
+/* ─── HERO IMAGE (banner-style — tighter than the original 21:9) ── */
 .article__hero {
   margin: 0;
   background: var(--bg-deep);
-  border-bottom: 1px solid var(--hairline);
 }
 .article__hero-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 16 / 7;
   overflow: hidden;
   background: var(--bg-deep);
   border-bottom: 1px solid var(--hairline);
@@ -97,35 +96,15 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* Light variant (used for brand logos on a bone mat).
+   Padding is much tighter so the logo dominates instead of floating. */
 .article__hero--light .article__hero-frame {
   background: var(--surface);
 }
 .article__hero--light .article__hero-frame img {
   object-fit: contain;
-  padding: clamp(var(--space-7), 6vw, var(--space-10));
-}
-.article__hero-num {
-  position: absolute;
-  top: var(--space-4);
-  left: var(--gutter);
-  color: var(--surface);
-  background: rgba(14, 11, 9, 0.6);
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid rgba(239, 233, 220, 0.2);
-  border-radius: var(--radius);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.article__hero--light .article__hero-num {
-  background: rgba(21, 17, 15, 0.85);
-  border-color: transparent;
-  color: var(--surface);
-}
-.article__hero-caption {
-  display: block;
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-6);
-  color: var(--ink-muted);
+  padding: clamp(var(--space-4), 3vw, var(--space-6));
 }
 
 /* ─── GALLERY: scroll-snap carousel (styles in ArticleCarousel.css) */
