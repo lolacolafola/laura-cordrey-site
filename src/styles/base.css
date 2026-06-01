@@ -43,8 +43,8 @@ button {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 900;
-  line-height: 0.95;
+  font-weight: 400;
+  line-height: 1.02;
   letter-spacing: var(--tracking-tight);
   margin: 0;
 }
@@ -66,7 +66,8 @@ p { margin: 0; }
 }
 
 .marker {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: var(--fs-marker);
   letter-spacing: var(--tracking-marker);
   text-transform: uppercase;
