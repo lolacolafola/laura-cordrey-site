@@ -57,6 +57,41 @@ p { margin: 0; }
   color: var(--surface);
 }
 
+/* ─── Highlight (animated gradient text) ─────────────────── */
+/* Used by <mark> across the site. Ports the editorial gradient-text
+   treatment Laura liked from the previous version of the site, retuned
+   to the red palette. Shimmers slowly between accent → highlight →
+   accent so the highlighted phrase carries motion without a background
+   block. Wraps cleanly across lines (background-clip: text). */
+mark {
+  background-image: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    #FF8A6E 50%,
+    var(--accent) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 800;
+  animation: markShimmer 8s ease-in-out infinite;
+  /* For wrapping fragments — keeps the gradient continuous per line */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@keyframes markShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  mark { animation: none; }
+}
+
 /* ─── Reusable primitives ─────────────────────────────────── */
 
 .container {
