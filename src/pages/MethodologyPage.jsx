@@ -148,12 +148,12 @@ export default function MethodologyPage() {
               return (
                 <li className="meth-stage" key={s.num}>
                   <div className="meth-stage__rail">
-                    <span className="marker meth-stage__num">[{s.num}]</span>
                     {Icon && (
                       <Icon className="meth-stage__icon" aria-hidden="true" />
                     )}
                   </div>
                   <div className="meth-stage__body">
+                    <span className="marker meth-stage__num">Stage [{s.num}] of 05</span>
                     <h3 className="meth-stage__name">{s.name}.</h3>
                     <p className="meth-stage__kicker">{s.kicker}</p>
                     <p className="meth-stage__para"
