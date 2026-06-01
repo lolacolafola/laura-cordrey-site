@@ -20,7 +20,7 @@ const speaking = [
     headline: 'Live stage presentation',
     venue: 'E3 2019 · Ubisoft press conference · Los Angeles',
     detail:
-      'I went on the E3 stage to premiere Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live to <mark>millions of viewers</mark>. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
+      'I went on the E3 stage to premiere Delta&nbsp;Company — <mark>a first-of-its-kind creator advocacy program at Ubisoft</mark> — live to millions of viewers. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
   },
   {
     youtube: 'ufsGn7eXY3k',
