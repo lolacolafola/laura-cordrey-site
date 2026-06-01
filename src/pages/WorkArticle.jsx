@@ -119,40 +119,16 @@ export default function WorkArticle() {
         <p className="article__body">{cs.approach}</p>
       </section>
 
-      {/* ─── QUOTE (optional) ─────────────────────────────────── */}
-      {cs.quote && (
-        <aside className="container article__quote">
-          <blockquote>
-            <p>&ldquo;{cs.quote.text}&rdquo;</p>
-          </blockquote>
-          <footer className="marker">
-            <span>{cs.quote.name}</span>
-            <span className="article__quote-title">{cs.quote.title}</span>
-          </footer>
-        </aside>
-      )}
+      {/* ─── TAKEAWAY ─────────────────────────────────────────── */}
+      <section className="container article__section article__section--takeaway">
+        <div className="article__section-head">
+          <span className="marker">[03] · The outcome</span>
+          <h2 className="article__section-title">The takeaway.</h2>
+        </div>
+        <p className="article__body article__body--takeaway">{cs.takeaway}</p>
+      </section>
 
-      {/* ─── VIDEO (optional) ─────────────────────────────────── */}
-      {cs.media?.youtube && (
-        <figure className="container article__video">
-          <div className="article__video-frame">
-            <iframe
-              src={`https://www.youtube.com/embed/${cs.media.youtube}`}
-              title={cs.media.videoTitle || cs.company}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-          {cs.media.videoDescription && (
-            <figcaption className="marker article__video-caption">
-              Fig. 02 · {cs.media.videoDescription}
-            </figcaption>
-          )}
-        </figure>
-      )}
-
-      {/* ─── GALLERY: tight image grid, no per-image captions ──── */}
+      {/* ─── GALLERY: tight image grid, after the 3 stages ────── */}
       {cs.gallery?.length > 0 && (
         <section className="container article__gallery">
           <div className={`article__visuals article__visuals--${Math.min(cs.gallery.length, 6)}`}>
@@ -165,14 +141,20 @@ export default function WorkArticle() {
         </section>
       )}
 
-      {/* ─── TAKEAWAY ─────────────────────────────────────────── */}
-      <section className="container article__section article__section--takeaway">
-        <div className="article__section-head">
-          <span className="marker">[03] · The outcome</span>
-          <h2 className="article__section-title">The takeaway.</h2>
-        </div>
-        <p className="article__body article__body--takeaway">{cs.takeaway}</p>
-      </section>
+      {/* ─── VIDEO (optional, Claw Mobile etc.) ───────────────── */}
+      {cs.media?.youtube && (
+        <figure className="container article__video">
+          <div className="article__video-frame">
+            <iframe
+              src={`https://www.youtube.com/embed/${cs.media.youtube}`}
+              title={cs.media.videoTitle || cs.company}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </figure>
+      )}
 
       {/* ─── ADDITIONAL VIDEOS (optional) ─────────────────────── */}
       {cs.additionalVideos?.length > 0 && (
