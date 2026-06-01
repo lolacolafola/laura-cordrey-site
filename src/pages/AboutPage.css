@@ -1,0 +1,300 @@
+/* ───────────────────────────────────────────────────────────
+ * ABOUT PAGE
+ * Bio + range + speaking + career + expertise + education
+ * ─────────────────────────────────────────────────────────── */
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.about-hero {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+  border-bottom: 1px solid var(--hairline);
+}
+.about-hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: var(--space-7);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.about-hero__top-right { color: var(--accent); }
+
+.about-hero__title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-8);
+  text-wrap: balance;
+}
+
+.about-hero__meta {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+.about-hero__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink);
+  max-width: 50ch;
+  line-height: 1.55;
+}
+.about-hero__lede mark {
+  background: var(--accent);
+  color: var(--surface);
+  padding: 0.05em 0.35em;
+  border-radius: 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.about-hero__sublede {
+  font-size: var(--fs-body);
+  color: var(--ink-muted);
+  max-width: 38ch;
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-4);
+  line-height: 1.55;
+}
+@media (max-width: 860px) {
+  .about-hero__meta { grid-template-columns: 1fr; }
+}
+
+/* ─── RANGE ───────────────────────────────────────────────── */
+.about-range {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+.about-range__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.about-range__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  border-right: 1px solid var(--hairline);
+}
+.about-range__item:last-child { border-right: 0; }
+.about-range__mark {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+.about-range__word {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1;
+  color: var(--ink);
+  font-weight: 800;
+}
+.about-range__note {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+}
+@media (max-width: 860px) {
+  .about-range__list { grid-template-columns: repeat(2, 1fr); }
+  .about-range__item:nth-child(2n) { border-right: 0; }
+  .about-range__item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+}
+
+/* ─── SPEAKING ────────────────────────────────────────────── */
+.about-speaking {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-deep);
+}
+.about-speaking__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  max-width: 60ch;
+  margin-top: var(--space-3);
+}
+.about-speaking__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.about-speaking__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  min-height: 220px;
+}
+.about-speaking__headline {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.about-speaking__detail {
+  color: var(--ink-muted);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+.about-speaking__detail mark {
+  background: var(--accent);
+  color: var(--surface);
+  padding: 0.05em 0.35em;
+  border-radius: 1px;
+  font-weight: 600;
+}
+.about-speaking__detail strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.about-speaking__role { color: var(--accent); }
+
+.about-speaking__cta {
+  margin-top: var(--space-7);
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 860px) {
+  .about-speaking__list { grid-template-columns: 1fr; }
+}
+
+/* ─── CAREER ─────────────────────────────────────────────── */
+.about-career {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+.about-career__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.about-career__item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--hairline);
+}
+.about-career__item:last-child { border-bottom: 1px solid var(--hairline); }
+.about-career__range {
+  color: var(--accent);
+  padding-top: var(--space-1);
+}
+.about-career__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.about-career__company {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1;
+  font-weight: 800;
+}
+.about-career__role {
+  color: var(--ink);
+  font-weight: 600;
+  margin: 0;
+}
+.about-career__note {
+  color: var(--ink-muted);
+  margin: 0;
+  max-width: 70ch;
+}
+@media (max-width: 720px) {
+  .about-career__item { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* ─── EXPERTISE ──────────────────────────────────────────── */
+.about-expertise {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+}
+.about-expertise__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.about-expertise__chip {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  background: var(--bg-deep);
+}
+
+/* ─── DETAILS ─────────────────────────────────────────────── */
+.about-details {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+}
+.about-details__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-7);
+}
+.about-details__list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--ink-muted);
+}
+@media (max-width: 720px) {
+  .about-details__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* ─── CTA ─────────────────────────────────────────────────── */
+.about-cta {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-deep);
+}
+.about-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.about-cta__title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.about-cta__title mark {
+  background: var(--accent);
+  color: var(--surface);
+  padding: 0.05em 0.35em;
+  border-radius: 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: inherit;
+}
+.about-cta__buttons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
