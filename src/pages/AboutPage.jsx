@@ -152,9 +152,9 @@ export default function AboutPage() {
       <section className="about-range">
         <div className="container">
           <div className="section-head">
-            <span className="marker">What sets me apart</span>
+            <span className="marker">The offer</span>
             <h2 className="section-head__title">
-              I sit at the <mark>bridge.</mark>
+              Work with a <mark>cross-discipline</mark> leader.
             </h2>
             <p className="about-range__lede">
               Most consultants own one topic. I own all four. Bring the
