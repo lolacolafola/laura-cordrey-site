@@ -113,17 +113,23 @@
   padding-bottom: var(--space-8);
 }
 
-/* ─── STAND-FIRST (intro paragraph between hero and stats) ── */
+/* ─── STAND-FIRST (intro paragraph between hero and stats) ──
+ * Editorial display weight — Archivo Black at body-ish size — gives the
+ * intro distinct visual weight without italic / side-bar decoration. */
 .article__standfirst {
   padding-top: var(--space-8);
   padding-bottom: var(--space-7);
 }
 .article__standfirst p {
-  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
-  line-height: 1.55;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--ink);
-  max-width: 60ch;
+  max-width: 28ch;
   margin: 0;
+  text-wrap: balance;
 }
 
 /* ─── STATS ──────────────────────────────────────────────── */
