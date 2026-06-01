@@ -25,7 +25,7 @@ const featured = featuredIds
 const disciplines = [
   { word: 'Brand',     note: 'Story, identity, voice.' },
   { word: 'Product',   note: 'UX, gamification, user feedback.' },
-  { word: 'Community', note: 'Belonging, advocacy, scale.' },
+  { word: 'Community', note: 'Creator, loyalty, advocacy.' },
   { word: 'Growth',    note: 'Organic, influencer, UGC.' },
 ]
 
