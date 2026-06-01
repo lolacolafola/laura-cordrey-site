@@ -2,21 +2,36 @@ import { Link } from 'react-router-dom'
 
 /* WorkCard — reusable visual card for a case study.
  *
- * Used on the HomePage (selected work grid) and the MethodologyPage
- * (see-it-in-practice grid). Pass the case study object from
- * src/data/caseStudies.js and a 1-based index for the [01]–[0N] marker.
+ * Used on the HomePage (selected work grid), the /work index, and any
+ * other place we want to surface a case study as a clickable thumbnail.
+ *
+ * Image resolution cascade (most → least specific):
+ *   1. media[`${slot}Image`]   — page-specific override (workImage, etc.)
+ *   2. media.cardImage         — general card thumbnail
+ *   3. media.image             — article hero (final fallback)
+ *
+ * Pass `slot="work"` on the /work index, `slot="card"` on the homepage,
+ * or omit slot to just cascade through cardImage → image. Per-slot alt
+ * text follows the same cascade via `${slot}ImageAlt`.
  *
  * Styles live in src/pages/HomePage.css (.work-card, .work-card--light).
  */
 
-export default function WorkCard({ caseStudy }) {
+export default function WorkCard({ caseStudy, slot }) {
   const cs = caseStudy
-  // Prefer cardImage (campaign visual) for the index grid. Fall back to the
-  // article hero image. heroBackground only applies when the card is using
-  // that hero image as a fallback — campaign images don't need the light mat.
-  const cardSrc = cs.media?.cardImage || cs.media?.image
-  const cardAlt = cs.media?.cardImageAlt || cs.media?.imageAlt
-  const lightBg = !cs.media?.cardImage && cs.media?.heroBackground === 'white'
+  const m = cs.media || {}
+
+  const slotImage = slot ? m[`${slot}Image`] : null
+  const slotAlt   = slot ? m[`${slot}ImageAlt`] : null
+
+  const cardSrc = slotImage || m.cardImage || m.image
+  const cardAlt = slotAlt || m.cardImageAlt || m.imageAlt
+
+  // Light mat (heroBackground:'white') only applies when no thumbnail
+  // override is in play — i.e. when we're rendering the original article
+  // hero logo banner on the card.
+  const usingOriginalImage = !slotImage && !m.cardImage
+  const lightBg = usingOriginalImage && m.heroBackground === 'white'
 
   return (
     <Link

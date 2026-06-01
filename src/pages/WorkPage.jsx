@@ -12,8 +12,8 @@ export default function WorkPage() {
         </div>
 
         <div className="work-grid">
-          {caseStudies.map((cs, i) => (
-            <WorkCard key={cs.id} caseStudy={cs} index={i} />
+          {caseStudies.map((cs) => (
+            <WorkCard key={cs.id} caseStudy={cs} slot="work" />
           ))}
         </div>
       </div>

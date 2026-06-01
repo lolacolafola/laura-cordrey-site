@@ -2,8 +2,16 @@
 // Used by HomePage teasers, the /case-studies index, and /case-studies/:slug articles.
 //
 // Per study:
-//   media.image    — hero image path (in /public). Falls back to typographic poster if absent.
+//   media.image    — article hero image (in /public). Brand logo banner for now.
 //   media.imageAlt — descriptive alt text (include client + scene for SEO)
+//   media.heroBackground — set to 'white' for logos-on-bone treatment.
+//
+//   media.cardImage / cardImageAlt — default thumbnail used by WorkCard on any
+//     page where no slot-specific override is set.
+//   media.homeImage / homeImageAlt — homepage-grid-specific thumbnail.
+//   media.workImage / workImageAlt — /work-index-specific thumbnail.
+//     Cascade in WorkCard: slot-specific → cardImage → image.
+//
 //   media.youtube  — YouTube video ID (not full URL). Renders as click-to-play with VideoObject schema.
 //   media.videoTitle / videoDescription — for VideoObject schema
 //   year           — visible in editorial byline + freshness signal
