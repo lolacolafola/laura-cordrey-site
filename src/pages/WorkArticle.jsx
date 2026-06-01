@@ -64,18 +64,19 @@ export default function WorkArticle() {
         </div>
       </header>
 
-      {/* ─── HERO IMAGE ───────────────────────────────────────── */}
+      {/* ─── HERO IMAGE (full-bleed, magazine-cover scale) ────── */}
       {cs.media?.image && (
         <figure className={`article__hero${lightHero ? ' article__hero--light' : ''}`}>
-          <div className="article__hero-frame container">
+          <div className="article__hero-frame">
             <img
               src={BASE + cs.media.image}
               alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
             />
+            <span className="marker article__hero-num">Fig. 01</span>
           </div>
           {cs.media.imageAlt && (
             <figcaption className="container marker article__hero-caption">
-              Fig. 01 · {cs.media.imageAlt}
+              {cs.media.imageAlt}
             </figcaption>
           )}
         </figure>
@@ -108,6 +109,17 @@ export default function WorkArticle() {
         </div>
         <p className="article__body">{cs.challenge}</p>
       </section>
+
+      {/* ─── INTERSTITIAL: big stat poster between Challenge and Approach */}
+      {cs.stats?.[0] && (
+        <aside className="article__interstitial">
+          <div className="container article__interstitial-inner">
+            <span className="marker">The number</span>
+            <p className="article__interstitial-value">{cs.stats[0].value}</p>
+            <p className="article__interstitial-label">{cs.stats[0].label}.</p>
+          </div>
+        </aside>
+      )}
 
       {/* ─── APPROACH ─────────────────────────────────────────── */}
       <section className="container article__section">
@@ -149,6 +161,25 @@ export default function WorkArticle() {
             </figcaption>
           )}
         </figure>
+      )}
+
+      {/* ─── GALLERY (optional, per-case supplementary imagery) */}
+      {cs.gallery?.length > 0 && (
+        <section className="container article__gallery">
+          <span className="marker article__gallery-kicker">In the room</span>
+          <div className={`article__gallery-grid article__gallery-grid--${cs.gallery.length}`}>
+            {cs.gallery.map((g, i) => (
+              <figure key={i} className="article__gallery-cell">
+                <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
+                {g.caption && (
+                  <figcaption className="marker">
+                    Fig. {String(i + 2).padStart(2, '0')} · {g.caption}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* ─── TAKEAWAY ─────────────────────────────────────────── */}
