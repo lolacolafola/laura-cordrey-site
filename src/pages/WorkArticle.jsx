@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import caseStudies from '../data/caseStudies.js'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import WorkCard from '../components/WorkCard.jsx'
+import ArticleCarousel from '../components/ArticleCarousel.jsx'
 import './HomePage.css' // shared .work-card / .work-grid / .btn styles
 import './WorkArticle.css'
 
@@ -122,16 +123,10 @@ export default function WorkArticle() {
         <p className="article__body article__body--takeaway">{cs.takeaway}</p>
       </section>
 
-      {/* ─── GALLERY: tight image grid, after the 3 stages ────── */}
+      {/* ─── GALLERY: scroll-snap carousel ────────────────────── */}
       {cs.gallery?.length > 0 && (
         <section className="container article__gallery">
-          <div className={`article__visuals article__visuals--${Math.min(cs.gallery.length, 6)}`}>
-            {cs.gallery.map((g, i) => (
-              <figure className="article__visual" key={i}>
-                <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-              </figure>
-            ))}
-          </div>
+          <ArticleCarousel items={cs.gallery} />
         </section>
       )}
 

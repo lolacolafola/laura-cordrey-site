@@ -1,0 +1,77 @@
+/* Carousel — horizontal scroll-snap with arrow controls + counter. */
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.carousel__track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.carousel__track::-webkit-scrollbar {
+  display: none; /* Chromium / Safari */
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-deep);
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+}
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.carousel__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.carousel__nav:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--surface);
+  border-color: var(--accent);
+}
+.carousel__nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.carousel__counter {
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__track { scroll-behavior: auto; }
+}
