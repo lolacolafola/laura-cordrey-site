@@ -4,6 +4,7 @@ import './HomePage.css' // shared .btn / .section-head styles
 import './AboutPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const BASE = import.meta.env.BASE_URL
 
 const range = [
   { word: 'Brand',     note: 'Story, identity, voice.' },
@@ -12,29 +13,28 @@ const range = [
   { word: 'Growth',    note: 'Channels, CAC, repeat revenue.' },
 ]
 
-// Drop YouTube IDs into `youtube` when a clip is ready. When null, the
-// card renders as a typographic placeholder so the layout still works.
+// YouTube IDs pulled from laurajanecordrey.wixsite.com/main/key-speaking
 const speaking = [
   {
-    youtube: null, // E3 2019 Ubisoft press conference — Delta Company moment
-    headline: 'E3 2019 · Delta Company unveil',
-    venue: 'Ubisoft press conference · Los Angeles',
+    youtube: 'aSyZa3b58QA',
+    headline: 'Ubisoft E3 2019',
+    venue: 'Game launch · Live stage presentation · Los Angeles',
     detail:
-      'I went on stage at E3 2019 to unveil Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live to <mark>10M+ viewers</mark>. The program went on to drive 60M+ organic UGC views with zero ad spend across three franchises.',
+      'I went on the E3 stage to premiere Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live to <mark>millions of viewers</mark>. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
   },
   {
-    youtube: null, // Drop a representative Ubisoft press / livestream clip
-    headline: 'Ubisoft Spokesperson · 2018 — 2022',
-    venue: '20+ global press, TV and live events',
+    youtube: 'ufsGn7eXY3k',
+    headline: 'Inside Xbox',
+    venue: 'Live TV interview · Seattle',
     detail:
-      'The public face for Ghost&nbsp;Recon, R6&nbsp;Siege and Assassin’s&nbsp;Creed creator programs. Franchise launches, on-camera press interviews, and retail pitches that landed Walmart, Target and GameStop buy-in.',
+      'I travelled to Seattle for a live <strong>Inside Xbox</strong> segment to detail a new content update for Ghost&nbsp;Recon Wildlands — on-camera, live, no second takes.',
   },
   {
-    youtube: null,
-    headline: 'Available for keynotes, panels and workshops',
-    venue: 'EMEA · US · Remote',
+    youtube: 'P2NYC5cQIZA',
+    headline: 'Ghost Recon Breakpoint · World premiere',
+    venue: 'Livestream host · Global announce',
     detail:
-      'Topics I take to the stage: <strong>fan-powered growth</strong>, <strong>community as an acquisition channel</strong>, <strong>creator programs at scale</strong>, <strong>turning audiences into advocates</strong>, and <strong>brand storytelling that travels</strong>.',
+      'Part of the core team to present <strong>Ghost Recon Breakpoint</strong> in the world-premiere announce livestream. The launch moment that opened the franchise to a new generation of fans.',
   },
 ]
 
@@ -104,23 +104,32 @@ export default function AboutPage() {
             <span className="marker about-hero__top-right">Paris · New York · English / Français</span>
           </div>
 
-          <h1 className="about-hero__title">
-            I build fan-powered<br /> growth engines.
-          </h1>
+          <div className="about-hero__split">
+            <div className="about-hero__text">
+              <h1 className="about-hero__title">
+                I build fan-powered<br /> growth engines.
+              </h1>
+              <p className="about-hero__lede">
+                Twelve years across brand, product, community and growth — at
+                Ubisoft, BlaBlaCar, Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
+                The brands that grow fastest aren&rsquo;t the ones with the
+                biggest ad budgets. They&rsquo;re the ones their fans
+                {' '}<mark>can&rsquo;t stop talking about</mark>.
+              </p>
+              <p className="about-hero__sublede">
+                I help founders and brand teams build that. The strategy, the
+                programs, the operating system. Not in theory — in the room,
+                under deadline, with revenue attached.
+              </p>
+            </div>
 
-          <div className="about-hero__meta">
-            <p className="about-hero__lede">
-              Twelve years across brand, product, community and growth — at
-              Ubisoft, BlaBlaCar, Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
-              The pattern across all of them: the brands that grow fastest
-              aren&rsquo;t the ones with the biggest ad budgets. They&rsquo;re the ones
-              their fans <mark>can&rsquo;t stop talking about</mark>.
-            </p>
-            <p className="about-hero__sublede">
-              I help founders and brand teams build that. The strategy, the
-              programs, the operating system. Not in theory — in the room,
-              under deadline, with revenue attached.
-            </p>
+            <figure className="about-hero__portrait">
+              <img
+                src={BASE + 'portraits/laura-e3.jpg'}
+                alt="Laura Cordrey on the Ubisoft E3 2019 stage in Los Angeles, presenting Delta Company"
+                loading="eager"
+              />
+            </figure>
           </div>
         </div>
       </section>
@@ -151,9 +160,10 @@ export default function AboutPage() {
             <span className="marker">Keynote &amp; public speaking</span>
             <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
-              I&rsquo;ve told the story of fan-powered growth on the biggest
-              stages in entertainment — and to small executive rooms where
-              the budget actually gets unlocked.
+              I&rsquo;ve represented Ubisoft for <mark>50+ public speaking
+              opportunities</mark> — from interviews with Xbox and PlayStation,
+              to hosting community livestreams, to stepping on the E3 stage.
+              Here are a few.
             </p>
           </div>
 
