@@ -43,11 +43,13 @@ const stages = [
   },
 ]
 
+const BASE = import.meta.env.BASE_URL
+
 const proofPoints = [
-  { brand: 'Ubisoft',    stat: '$500K+', label: 'Earned media · $0 ad spend' },
-  { brand: 'BlaBlaCar',  stat: '1M',     label: 'UK members · €5 CAC' },
-  { brand: 'US Mobile',  stat: '$32K',   label: 'Revenue in 3 hours' },
-  { brand: 'Azarus',     stat: '90%',    label: 'Engagement rate' },
+  { brand: 'Ubisoft',    logo: null,                  stat: '$500K+', label: 'Earned media · $0 ad spend' },
+  { brand: 'BlaBlaCar',  logo: 'logos/blablacar.png', stat: '1M',     label: 'UK members · €5 CAC' },
+  { brand: 'US Mobile',  logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Revenue in 3 hours' },
+  { brand: 'Azarus',     logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
 ]
 
 const fits = [
@@ -116,16 +118,24 @@ export default function MethodologyPage() {
             <span className="marker">Where it came from</span>
             <h2 className="section-head__title">Built from practice, not theory.</h2>
             <p className="meth-proof__lede">
-              Every stage of the Fandom Flywheel was earned in the room — in
-              launches, fixes, sprints, and post-mortems across four industries.
-              These are the numbers it produced.
+              Most strategists work in one corner of the business. I&rsquo;ve
+              worked across all four — <em className="accent">brand, product, community
+              and&nbsp;growth</em> — often at the same company, on the same problem.
+              The Fandom Flywheel was built from that vantage. These are the
+              numbers it produced.
             </p>
           </div>
 
           <ul className="meth-proof__grid">
             {proofPoints.map((p) => (
               <li className="meth-proof__cell" key={p.brand}>
-                <span className="marker meth-proof__brand">{p.brand}</span>
+                <div className="meth-proof__logo">
+                  {p.logo ? (
+                    <img src={BASE + p.logo} alt={p.brand} loading="lazy" />
+                  ) : (
+                    <span className="meth-proof__logo-text">{p.brand}</span>
+                  )}
+                </div>
                 <span className="meth-proof__stat">{p.stat}</span>
                 <span className="meth-proof__label">{p.label}</span>
               </li>
