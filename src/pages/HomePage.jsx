@@ -139,11 +139,9 @@ export default function HomePage() {
           </div>
 
           <ol className="method__disciplines" aria-label="Disciplines I work across">
-            {disciplines.map((d, i) => (
+            {disciplines.map((d) => (
               <li className="method__discipline" key={d.word}>
-                <span className="marker method__discipline-num">
-                  [{String(i + 1).padStart(2, '0')}]
-                </span>
+                <span className="method__discipline-mark" aria-hidden="true">✦</span>
                 <span className="method__discipline-word">{d.word}</span>
                 <span className="method__discipline-note">{d.note}</span>
               </li>
