@@ -247,7 +247,26 @@ export default function DeltaCompanyPage() {
         </div>
       </section>
 
-      {/* ─── Laura on stage — the [06] going-live visual ──────── */}
+      {/* ─── E3 unveil video — small, in the going-live section ── */}
+      <section className="delta__video-section container">
+        <span className="marker">Watch the unveil</span>
+        <p className="delta__video-context">
+          The Ghost Recon community segment from UbiE3 2019. I announced
+          the key community feedback being implemented in the game, then
+          revealed Delta Company for the first time.
+        </p>
+        <div className="delta__video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/F5g7fOzxGYY"
+            title="UbiE3 2019 — Community Segment + Delta Company reveal"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* ─── Laura on stage — the [06] going-live photo ───────── */}
       <figure className="delta__plate">
         <img
           src={BASE + 'case-studies/delta/05-laura-e3-stage.jpg'}
@@ -415,25 +434,6 @@ export default function DeltaCompanyPage() {
         </figcaption>
       </figure>
 
-      {/* ─── E3 unveil video — smaller, contained, in context ─── */}
-      <section className="delta__video-section container">
-        <span className="marker">Watch the unveil</span>
-        <p className="delta__video-context">
-          The Ghost Recon community segment from UbiE3 2019. I announced
-          the key community feedback being implemented in the game, then
-          revealed Delta Company for the first time — the program that
-          would go on to shape the Ghost Experience turnaround.
-        </p>
-        <div className="delta__video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/F5g7fOzxGYY"
-            title="UbiE3 2019 — Community Segment + Delta Company reveal"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            loading="lazy"
-          />
-        </div>
-      </section>
 
       {/* ─── [10] TAKEAWAY ────────────────────────────────────── */}
       <section className="delta__section container">
