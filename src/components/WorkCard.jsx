@@ -30,7 +30,6 @@ export default function WorkCard({ caseStudy }) {
           <span className="work-card__brand">{cs.company}</span>
           <span className="marker work-card__year">{cs.year}</span>
         </div>
-        <h3 className="work-card__headline">{cs.headline}</h3>
         <p className="work-card__hook">{cs.hook}</p>
         <span className="work-card__view marker">
           Read the story <span aria-hidden="true">→</span>
