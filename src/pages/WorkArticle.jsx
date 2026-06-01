@@ -72,13 +72,7 @@ export default function WorkArticle() {
               src={BASE + cs.media.image}
               alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
             />
-            <span className="marker article__hero-num">Fig. 01</span>
           </div>
-          {cs.media.imageAlt && (
-            <figcaption className="container marker article__hero-caption">
-              {cs.media.imageAlt}
-            </figcaption>
-          )}
         </figure>
       )}
 
