@@ -50,6 +50,8 @@ export default function ArticleCarousel({ items }) {
     }
   }, [count])
 
+  const currentCaption = items[index]?.caption || ''
+
   return (
     <div className="carousel">
       <div ref={trackRef} className="carousel__track" aria-roledescription="carousel">
@@ -65,25 +67,30 @@ export default function ArticleCarousel({ items }) {
         ))}
       </div>
 
-      <div className="carousel__controls">
-        <button
-          type="button"
-          className="carousel__nav"
-          onClick={() => scrollTo(index - 1)}
-          disabled={index === 0}
-          aria-label="Previous image"
-        >
-          <span aria-hidden="true">←</span>
-        </button>
-        <button
-          type="button"
-          className="carousel__nav"
-          onClick={() => scrollTo(index + 1)}
-          disabled={index === count - 1}
-          aria-label="Next image"
-        >
-          <span aria-hidden="true">→</span>
-        </button>
+      <div className="carousel__footer">
+        <p className="carousel__caption" aria-live="polite">
+          {currentCaption || ' '}
+        </p>
+        <div className="carousel__controls">
+          <button
+            type="button"
+            className="carousel__nav"
+            onClick={() => scrollTo(index - 1)}
+            disabled={index === 0}
+            aria-label="Previous image"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+          <button
+            type="button"
+            className="carousel__nav"
+            onClick={() => scrollTo(index + 1)}
+            disabled={index === count - 1}
+            aria-label="Next image"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
       </div>
     </div>
   )
