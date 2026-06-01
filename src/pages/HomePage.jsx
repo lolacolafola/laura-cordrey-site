@@ -104,8 +104,8 @@ export default function HomePage() {
           </div>
 
           <div className="work-grid">
-            {featured.map((cs, i) => (
-              <WorkCard key={cs.id} caseStudy={cs} index={i} />
+            {featured.map((cs) => (
+              <WorkCard key={cs.id} caseStudy={cs} slot="home" />
             ))}
           </div>
 
