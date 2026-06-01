@@ -169,6 +169,12 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+
+          <div className="about-range__cta">
+            <Link to="/work" className="btn btn--ghost">
+              See it in practice <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
