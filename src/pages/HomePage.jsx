@@ -60,9 +60,9 @@ export default function HomePage() {
           <div className="hero__meta">
             <div className="hero__lede">
               <p>
-                I&rsquo;m Laura — a strategic consultant for consumer, tech and gaming brands.
-                I work across brand, product, community and growth to turn passive audiences
-                into the kind of fans that build a business.
+                I&rsquo;m Laura. A strategic consultant for consumer, tech and gaming brands.
+                I work across brand, product, community and growth, turning passive
+                audiences into loyal advocates: the fans that build the business.
               </p>
               <div className="hero__ctas">
                 <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary">

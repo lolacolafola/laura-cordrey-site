@@ -121,11 +121,9 @@ export default function AboutPage() {
           <div className="about-hero__split">
             <div className="about-hero__text">
               <h1 className="about-hero__title">
-                I&rsquo;m a storyteller.
+                I sit at the <mark>bridge</mark> of brand, product,
+                community and growth.
               </h1>
-              <p className="about-hero__subhead">
-                I build fan-powered growth engines.
-              </p>
               <p className="about-hero__lede">
                 Twelve years across brand, product, community and growth — at
                 Ubisoft, BlaBlaCar, Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
