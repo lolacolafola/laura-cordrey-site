@@ -163,30 +163,19 @@ export default function WorkArticle() {
         </figure>
       )}
 
-      {/* ─── GALLERY: alternating editorial spreads ───────────── */}
+      {/* ─── GALLERY: single column, plain captions (Osei-style) */}
       {cs.gallery?.length > 0 && (
         <section className="container article__gallery">
-          <div className="article__gallery-head">
-            <span className="marker">In the room</span>
-            <h2 className="article__gallery-title">The work, up close.</h2>
-          </div>
-
-          <div className="article__spreads">
+          <ul className="article__plates">
             {cs.gallery.map((g, i) => (
-              <figure
-                key={i}
-                className={`article__spread${i % 2 === 1 ? ' article__spread--reverse' : ''}`}
-              >
-                <div className="article__spread-media">
+              <li className="article__plate" key={i}>
+                <figure>
                   <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-                </div>
-                <figcaption className="article__spread-text">
-                  <span className="article__spread-rule" aria-hidden="true" />
-                  <p className="article__spread-caption">{g.caption}</p>
-                </figcaption>
-              </figure>
+                  {g.caption && <figcaption>{g.caption}</figcaption>}
+                </figure>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
 
