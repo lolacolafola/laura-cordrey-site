@@ -34,12 +34,29 @@ const caseStudies = [
     takeaway:
       'Built the system that turned Ubisoft\u2019s players into their most valuable marketing channel. Then proved it was repeatable across multiple franchises.',
     media: {
-      image: 'case-studies/ubisoft-banner.png',
-      imageAlt: 'Ubisoft brand logo \u2014 the publisher Laura built the Delta Company creator program for across 18 markets',
+      image: 'case-studies/ubisoft-siege-champions.png',
+      imageAlt: 'R6 Siege Champions Program \u2014 Ubisoft creator program artwork, part of the system Laura designed to scale community-led growth across three franchises',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
+    gallery: [
+      {
+        src: 'case-studies/ubisoft-delta-seasonal.png',
+        alt: 'Delta Company seasonal program structure diagram \u2014 community leader activations across a season',
+        caption: 'Delta Company \u2014 seasonal program structure mapped across community leader activations.',
+      },
+      {
+        src: 'case-studies/ubisoft-delta-always-on.png',
+        alt: 'Delta Company always-on program metrics \u2014 recruitment, activations, satisfaction, membership KPIs',
+        caption: 'Always-on program: how recruitment, activations, satisfaction and membership were measured.',
+      },
+      {
+        src: 'case-studies/ubisoft-siege-pr-pack.png',
+        alt: 'R6 Siege Champions Program PR pack \u2014 limited-edition merch sent to invited creators',
+        caption: 'Invite-only PR pack sent to the 150+ creators in Season 1 of the Champions Program.',
+      },
+    ],
   },
   {
     id: 'us-mobile',
@@ -64,13 +81,34 @@ const caseStudies = [
     takeaway:
       '$32.25K in three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (\u201ccrazy there are only 250 of these\u201d). The CEO\u2019s \u201cwe are sold out, this is insane\u201d edit became its own marketing moment \u2014 and proved a community-first company can monetise its fans directly.',
     media: {
-      image: 'case-studies/us-mobile.png',
-      imageAlt: 'US Mobile brand mark \u2014 the company where Laura designed the $129 VIP fan bundle and led the Claw Mobile launch',
-      heroBackground: 'white',
+      image: 'case-studies/us-mobile-vip-bundle.png',
+      imageAlt: 'US Mobile Dark Star VIP Early Access Bundle \u2014 limited-edition SIM kit + North Face fleece packshot Laura designed and launched',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
+    gallery: [
+      {
+        src: 'case-studies/us-mobile-dark-star.png',
+        alt: 'US Mobile Dark Star launch teaser landing page with countdown timer',
+        caption: 'Dark Star teaser \u2014 the countdown landing that drove 50K+ pre-launch visitors.',
+      },
+      {
+        src: 'case-studies/us-mobile-email-game.png',
+        alt: 'US Mobile arcade-style pre-launch email game START screen',
+        caption: 'The arcade-style pre-launch email game \u2014 80% open rate, 35% CTOR.',
+      },
+      {
+        src: 'case-studies/us-mobile-vip-landing.png',
+        alt: 'US Mobile $129 VIP Early Access Bundle landing page',
+        caption: '$129 VIP Early Access Bundle landing page \u2014 capped at 250 units, sold out in 3 hours.',
+      },
+      {
+        src: 'case-studies/us-mobile-stetson-tweet.png',
+        alt: 'Stetson Doggett unboxing the US Mobile North Face quarter-zip fleece on X',
+        caption: 'One of 450+ unprompted fan posts after launch. The bundle did the marketing.',
+      },
+    ],
   },
   {
     id: 'blablacar',
