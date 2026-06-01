@@ -75,9 +75,6 @@ export default function ArticleCarousel({ items }) {
         >
           <span aria-hidden="true">←</span>
         </button>
-        <span className="carousel__counter marker">
-          {String(index + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
-        </span>
         <button
           type="button"
           className="carousel__nav"
