@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import caseStudies from '../data/caseStudies.js'
 import LogoBanner from '../components/LogoBanner.jsx'
+import WorkCard from '../components/WorkCard.jsx'
 import './HomePage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -103,38 +104,9 @@ export default function HomePage() {
           </div>
 
           <div className="work-grid">
-            {featured.map((cs, i) => {
-              const lightBg = cs.media?.heroBackground === 'white'
-              return (
-                <Link
-                  key={cs.id}
-                  to={`/work/${cs.id}`}
-                  className={`work-card${lightBg ? ' work-card--light' : ''}`}
-                >
-                  <div className="work-card__media">
-                    <img
-                      src={import.meta.env.BASE_URL + cs.media.image}
-                      alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
-                      loading="lazy"
-                    />
-                    <span className="work-card__num marker">
-                      [{String(i + 1).padStart(2, '0')}]
-                    </span>
-                  </div>
-                  <div className="work-card__body">
-                    <div className="work-card__row">
-                      <span className="work-card__brand">{cs.company}</span>
-                      <span className="marker work-card__year">{cs.year}</span>
-                    </div>
-                    <h3 className="work-card__headline">{cs.headline}</h3>
-                    <p className="work-card__hook">{cs.hook}</p>
-                    <span className="work-card__view marker">
-                      Read the story <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Link>
-              )
-            })}
+            {featured.map((cs, i) => (
+              <WorkCard key={cs.id} caseStudy={cs} index={i} />
+            ))}
           </div>
 
           <div className="work__all">

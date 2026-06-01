@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import caseStudies from '../data/caseStudies.js'
 import FlywheelDiagram from '../components/FlywheelDiagram.jsx'
+import WorkCard from '../components/WorkCard.jsx'
 import { stageIcons } from '../components/StageIcons.jsx'
+import '../pages/HomePage.css' // shared .work-card / .work-grid styles
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -46,11 +49,17 @@ const stages = [
 const BASE = import.meta.env.BASE_URL
 
 const proofPoints = [
-  { brand: 'Ubisoft',    logo: null,                  stat: '$500K+', label: 'Earned media · $0 ad spend' },
-  { brand: 'BlaBlaCar',  logo: 'logos/blablacar.png', stat: '1M',     label: 'UK members · €5 CAC' },
-  { brand: 'US Mobile',  logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Revenue in 3 hours' },
-  { brand: 'Azarus',     logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
+  { brand: 'Ubisoft',    slug: 'ubisoft',   logo: null,                  stat: '$500K+', label: 'Earned media · $0 ad spend' },
+  { brand: 'BlaBlaCar',  slug: 'blablacar', logo: 'logos/blablacar.png', stat: '1M',     label: 'UK members · €5 CAC' },
+  { brand: 'US Mobile',  slug: 'us-mobile', logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Revenue in 3 hours' },
+  { brand: 'Azarus',     slug: 'azarus',    logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
 ]
+
+// Featured case studies for the 'See real examples' section near the bottom.
+const featuredIds = ['ubisoft', 'us-mobile', 'blablacar', 'azarus']
+const featuredWork = featuredIds
+  .map((id) => caseStudies.find((c) => c.id === id))
+  .filter(Boolean)
 
 const fits = [
   {
@@ -129,15 +138,20 @@ export default function MethodologyPage() {
           <ul className="meth-proof__grid">
             {proofPoints.map((p) => (
               <li className="meth-proof__cell" key={p.brand}>
-                <div className="meth-proof__logo">
-                  {p.logo ? (
-                    <img src={BASE + p.logo} alt={p.brand} loading="lazy" />
-                  ) : (
-                    <span className="meth-proof__logo-text">{p.brand}</span>
-                  )}
-                </div>
-                <span className="meth-proof__stat">{p.stat}</span>
-                <span className="meth-proof__label">{p.label}</span>
+                <Link to={`/work/${p.slug}`} className="meth-proof__link">
+                  <div className="meth-proof__logo">
+                    {p.logo ? (
+                      <img src={BASE + p.logo} alt={p.brand} loading="lazy" />
+                    ) : (
+                      <span className="meth-proof__logo-text">{p.brand}</span>
+                    )}
+                  </div>
+                  <span className="meth-proof__stat">{p.stat}</span>
+                  <span className="meth-proof__label">{p.label}</span>
+                  <span className="marker meth-proof__view">
+                    Read the case <span aria-hidden="true">→</span>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -211,6 +225,24 @@ export default function MethodologyPage() {
             <span>Embedded retainer</span>
             <span>·</span>
             <span className="accent">Scoped per brand on a call</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SEE REAL EXAMPLES (case study row) ───────────────── */}
+      <section className="meth-examples">
+        <div className="container">
+          <div className="section-head">
+            <span className="marker">See it in practice</span>
+            <h2 className="section-head__title">Real examples.</h2>
+            <p className="meth-examples__lede">
+              Four brands. Four very different problems. Same five stages.
+            </p>
+          </div>
+          <div className="work-grid">
+            {featuredWork.map((cs, i) => (
+              <WorkCard key={cs.id} caseStudy={cs} index={i} />
+            ))}
           </div>
         </div>
       </section>
