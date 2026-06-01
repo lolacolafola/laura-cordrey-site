@@ -110,17 +110,6 @@ export default function WorkArticle() {
         <p className="article__body">{cs.challenge}</p>
       </section>
 
-      {/* ─── INTERSTITIAL: big stat poster between Challenge and Approach */}
-      {cs.stats?.[0] && (
-        <aside className="article__interstitial">
-          <div className="container article__interstitial-inner">
-            <span className="marker">The number</span>
-            <p className="article__interstitial-value">{cs.stats[0].value}</p>
-            <p className="article__interstitial-label">{cs.stats[0].label}.</p>
-          </div>
-        </aside>
-      )}
-
       {/* ─── APPROACH ─────────────────────────────────────────── */}
       <section className="container article__section">
         <div className="article__section-head">
@@ -163,19 +152,16 @@ export default function WorkArticle() {
         </figure>
       )}
 
-      {/* ─── GALLERY: single column, plain captions (Osei-style) */}
+      {/* ─── GALLERY: tight image grid, no per-image captions ──── */}
       {cs.gallery?.length > 0 && (
         <section className="container article__gallery">
-          <ul className="article__plates">
+          <div className={`article__visuals article__visuals--${Math.min(cs.gallery.length, 6)}`}>
             {cs.gallery.map((g, i) => (
-              <li className="article__plate" key={i}>
-                <figure>
-                  <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-                  {g.caption && <figcaption>{g.caption}</figcaption>}
-                </figure>
-              </li>
+              <figure className="article__visual" key={i}>
+                <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
+              </figure>
             ))}
-          </ul>
+          </div>
         </section>
       )}
 
