@@ -20,6 +20,33 @@
 
 const caseStudies = [
   {
+    id: 'delta-company',
+    company: 'Ubisoft · Delta Company',
+    headline: 'First-of-its-kind creator program',
+    hook: 'My idea. My program. My launch — live on the E3 stage.',
+    tldr: 'I designed and launched Delta Company — a first-of-its-kind creator advocacy program at Ubisoft. Unveiled live on the E3 2019 stage. 5 community clusters, 14 languages, 130 invited members, 60M+ UGC reach.',
+    year: '2018–2020',
+    role: 'International Community Developer',
+    accent: '#4A5D3F',
+    tags: ['Creator Programs', 'Community', 'Brand', 'Live Launch'],
+    stats: [
+      { value: '1st', label: 'Of its kind at Ubisoft' },
+      { value: '14',  label: 'Languages' },
+      { value: '5',   label: 'Community clusters' },
+      { value: '130', label: 'Invited members' },
+    ],
+    challenge: 'Ubisoft’s Ghost Recon community had millions of players but no system to deepen the relationship with the studio.',
+    approach: 'Built Delta Company — a first-of-its-kind creator advocacy program structured around 5 community clusters (artists, cosplayers, explorers, feedback specialists, tournament players). Designed the brand with the internal Ghost Recon Breakpoint design team and Diana Da Costa. Commissioned a dedicated website in 14 languages with custom application back-end. Produced a How-it-Works recruitment video. Unveiled live on the UbiE3 2019 stage with Takeoff agency assets. Shipped a members-only goodie box and in-game customisations.',
+    takeaway: 'A continuous stream of considered, educated UGC at scale — the kind that money cannot buy. The program became the blueprint for Ubisoft’s subsequent creator programs across multiple franchises.',
+    media: {
+      image: 'case-studies/delta/01-delta-badge-hero.png',
+      imageAlt: 'Delta Company badge on a Ghost Recon Breakpoint backdrop — the brand mark Laura designed for the first-of-its-kind creator advocacy program at Ubisoft',
+      youtube: 'F5g7fOzxGYY',
+      videoTitle: 'UbiE3 2019 — Community segment + Delta Company reveal',
+      videoDescription: 'The full Ghost Recon community segment where Laura unveiled Delta Company live on the UbiE3 2019 stage.',
+    },
+  },
+  {
     id: 'ubisoft',
     company: 'Ubisoft',
     headline: '$500K+ in earned media value',
