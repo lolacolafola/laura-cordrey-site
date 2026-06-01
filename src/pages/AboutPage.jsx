@@ -209,9 +209,9 @@ export default function AboutPage() {
             <span className="marker">Keynote &amp; public speaking</span>
             <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
-              <mark>50+ speaking moments</mark> across twelve years. From
-              the Los Angeles E3 stages to Inside Xbox, from executive
-              rooms to live community broadcasts. Here are a few.
+              <mark>50+ speaking moments</mark> across twelve years. So
+              far. From the Los Angeles E3 stages to Inside Xbox, from
+              executive rooms to live community broadcasts. Here are a few.
             </p>
           </div>
 
