@@ -128,13 +128,15 @@ export default function AboutPage() {
                 From BlaBlaCar&rsquo;s UK launch to Ubisoft&rsquo;s E3 stage.
               </p>
               <p className="about-hero__lede">
-                I&rsquo;ve built from zero users. I&rsquo;ve built on top
-                of millions. Most brands have all the pieces — brand,
-                product, community, growth. They just{' '}
-                <mark>never connect them</mark>. I&rsquo;ve spent twelve
-                years learning those connections, for French and American
-                conglomerates and startups. Now I&rsquo;m here to build
-                it for you.
+                I&rsquo;ve built from nothing. I&rsquo;ve built from
+                millions. No matter where a brand is in their journey,
+                I spot the opportunities, make the connections, and find
+                the solutions that take brands{' '}
+                <mark>from forgettable to fan-powered</mark>. I&rsquo;ve
+                spent twelve years honing my craft at French and American
+                conglomerates and startups — Ubisoft, Amazon, BlaBlaCar
+                to name a few — and now I&rsquo;m here to build it for
+                you.
               </p>
               <p className="about-hero__sublede">
                 I&rsquo;m an inventor. Give me a problem — a launch with no
