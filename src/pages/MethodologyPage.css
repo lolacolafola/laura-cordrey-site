@@ -145,10 +145,20 @@
   position: sticky;
   top: 100px;
   align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
 }
 .meth-stage__num {
   color: var(--accent);
   font-size: var(--fs-small);
+}
+.meth-stage__icon {
+  width: 72px;
+  height: 72px;
+  color: var(--accent);
+  display: block;
 }
 .meth-stage__body {
   display: flex;
@@ -222,10 +232,14 @@
   border-bottom: 1px solid var(--hairline);
 }
 .meth-fit__card:last-child { border-right: 0; }
+.meth-fit__kicker {
+  color: var(--accent);
+}
 .meth-fit__title {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-  line-height: 1.15;
+  font-size: clamp(1.35rem, 1.9vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 .meth-fit__body {

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import FlywheelDiagram from '../components/FlywheelDiagram.jsx'
+import { stageIcons } from '../components/StageIcons.jsx'
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -9,50 +10,35 @@ const stages = [
     num: '01',
     name: 'Activation',
     kicker: 'The hook that sticks.',
-    body: [
-      'The first time a person experiences real value — fast enough that they keep going.',
-      'This is the moment most brands and products waste. Onboarding flows that explain instead of demonstrate. First sessions designed for new users in general instead of *this* user specifically. Activation is the difference between someone who installed and someone who *arrived*.',
-    ],
+    body: 'The first time someone hits real value — fast enough they keep going. Most onboarding explains. The good kind <em>demonstrates</em>. Activation is the difference between someone who installed and someone who arrived.',
     tags: ['Onboarding flows', 'Aha-moment design', 'First-session mechanics', 'Day-one retention'],
   },
   {
     num: '02',
     name: 'Habit',
     kicker: 'Loops that compound.',
-    body: [
-      'Built into the routine. Not motivated, not gamified-to-death — engineered to be the easier choice on day 30.',
-      'I look for the loops already trying to form (the actions people take twice without prompting) and design the product, the comms, and the reward structures around making those loops sharper and faster.',
-    ],
+    body: 'Built into the routine. Not motivated, not gamified-to-death — engineered to be the easier choice on day&nbsp;30. I find the loops already trying to form and sharpen them.',
     tags: ['Engagement loops', 'Triggers', 'Streaks', 'Session depth', 'Lifecycle CRM'],
   },
   {
     num: '03',
     name: 'Belonging',
     kicker: 'Moments that bond.',
-    body: [
-      'When a user goes from "I use this" to "this is my place." That shift is almost always social — and it almost always happens in a specific moment.',
-      'I build the spaces, rituals, and events those moments live inside: community programs, IRL touchpoints, shared rituals, the small social rewards that make a product feel less lonely.',
-    ],
+    body: 'When a user goes from <em>I use this</em> to <em>this is my place</em>. That shift is almost always social — and it almost always happens in a specific moment. I build the spaces, rituals and events those moments live inside.',
     tags: ['Community programs', 'Shared rituals', 'Events', 'Social identity', 'IRL touchpoints'],
   },
   {
     num: '04',
     name: 'Identity',
     kicker: 'Where UGC is born.',
-    body: [
-      'When the brand becomes part of how someone sees themselves — and how they want to be seen by others.',
-      'This is the stage where users start *making things* with you. Customisation, status, progression, co-creation. The most valuable UGC, the most loyal customers, and the highest LTV all originate here.',
-    ],
+    body: 'When the brand becomes part of how someone sees themselves — and how they want to be seen. Users start <em>making things</em> with you. The most valuable UGC, the loyalest customers and the highest LTV all originate here.',
     tags: ['Progression systems', 'Status & badges', 'Customisation', 'Co-creation', 'Creator programs'],
   },
   {
     num: '05',
     name: 'Advocacy',
     kicker: 'Fans become growth.',
-    body: [
-      'When fans recruit, refer, and create. The point at which a community is no longer just a retention asset — it&rsquo;s an acquisition channel that beats paid media on cost and quality.',
-      'I&rsquo;ve built this from scratch. At Ubisoft, 60M+ organic UGC views from a $0 paid spend. At BlaBlaCar, 1M members at €5 CAC. At US Mobile, $32K from a single product moment in 3 hours.',
-    ],
+    body: 'Fans recruit, refer and create. The community stops being a retention asset and starts being an acquisition channel that beats paid media on cost and quality. 60M+ UGC views at Ubisoft, 1M members at €5&nbsp;CAC at BlaBlaCar, $32K in three hours at US Mobile — all came from this stage.',
     tags: ['Referral programs', 'Creator programs', 'Ambassador programs', 'UGC engines', 'Earned media'],
   },
 ]
@@ -66,16 +52,19 @@ const proofPoints = [
 
 const fits = [
   {
-    title: 'For consumer brands ready to monetise their fans',
-    body: 'You have an audience that loves you. They&rsquo;re posting, tagging, repeating. You haven&rsquo;t built the system that turns that affection into repeat revenue.',
+    kicker: 'Consumer',
+    title: 'You have fans. You don&rsquo;t have a system.',
+    body: 'Your audience already loves you — they&rsquo;re posting, tagging, repeating. The flywheel turns that affection into repeat revenue.',
   },
   {
-    title: 'For tech and gaming companies with passive scale',
-    body: 'Millions of users. A fraction of them activated as community. The flywheel is how you make the rest of them matter.',
+    kicker: 'Tech &amp; gaming',
+    title: 'Millions of users. A handful of fans.',
+    body: 'Big top-of-funnel, thin active community. We activate the dormant majority and build the loop that keeps them coming back.',
   },
   {
-    title: 'For founders pre-product-market-fit who keep losing users at day 7',
-    body: 'Retention is a flywheel problem. So is acquisition cost. So is referral. I&rsquo;ll tell you which stage is leaking and what to fix first.',
+    kicker: 'Early-stage',
+    title: 'You&rsquo;re losing users by day&nbsp;7.',
+    body: 'Retention, CAC and referral are all the same problem. We diagnose which stage is leaking — and fix that one first.',
   },
 ]
 
@@ -154,26 +143,30 @@ export default function MethodologyPage() {
           </div>
 
           <ol className="meth-stage-list">
-            {stages.map((s) => (
-              <li className="meth-stage" key={s.num}>
-                <div className="meth-stage__rail">
-                  <span className="marker meth-stage__num">[{s.num}]</span>
-                </div>
-                <div className="meth-stage__body">
-                  <h3 className="meth-stage__name">{s.name}.</h3>
-                  <p className="meth-stage__kicker">{s.kicker}</p>
-                  {s.body.map((para, i) => (
-                    <p className="meth-stage__para" key={i}
-                       dangerouslySetInnerHTML={{ __html: para }} />
-                  ))}
-                  <ul className="meth-stage__tags" aria-label="What the work looks like">
-                    {s.tags.map((t) => (
-                      <li key={t} className="meth-stage__tag marker">{t}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
+            {stages.map((s) => {
+              const Icon = stageIcons[s.name]
+              return (
+                <li className="meth-stage" key={s.num}>
+                  <div className="meth-stage__rail">
+                    <span className="marker meth-stage__num">[{s.num}]</span>
+                    {Icon && (
+                      <Icon className="meth-stage__icon" aria-hidden="true" />
+                    )}
+                  </div>
+                  <div className="meth-stage__body">
+                    <h3 className="meth-stage__name">{s.name}.</h3>
+                    <p className="meth-stage__kicker">{s.kicker}</p>
+                    <p className="meth-stage__para"
+                       dangerouslySetInnerHTML={{ __html: s.body }} />
+                    <ul className="meth-stage__tags" aria-label="What the work looks like">
+                      {s.tags.map((t) => (
+                        <li key={t} className="meth-stage__tag marker">{t}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              )
+            })}
           </ol>
         </div>
       </section>
@@ -188,9 +181,13 @@ export default function MethodologyPage() {
 
           <div className="meth-fit__grid">
             {fits.map((f) => (
-              <article className="meth-fit__card" key={f.title}>
-                <h3 className="meth-fit__title">{f.title}</h3>
-                <p className="meth-fit__body">{f.body}</p>
+              <article className="meth-fit__card" key={f.kicker}>
+                <span className="marker meth-fit__kicker"
+                      dangerouslySetInnerHTML={{ __html: f.kicker }} />
+                <h3 className="meth-fit__title"
+                    dangerouslySetInnerHTML={{ __html: f.title }} />
+                <p className="meth-fit__body"
+                   dangerouslySetInnerHTML={{ __html: f.body }} />
               </article>
             ))}
           </div>
