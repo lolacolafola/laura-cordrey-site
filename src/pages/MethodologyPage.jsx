@@ -153,7 +153,6 @@ export default function MethodologyPage() {
                     )}
                   </div>
                   <div className="meth-stage__body">
-                    <span className="marker meth-stage__num">Stage [{s.num}] of 05</span>
                     <h3 className="meth-stage__name">{s.name}.</h3>
                     <p className="meth-stage__kicker">{s.kicker}</p>
                     <p className="meth-stage__para"
