@@ -61,16 +61,16 @@ export default function DeltaCompanyPage() {
             <span className="marker delta__stat-label">UGC views from members</span>
           </li>
           <li>
-            <span className="delta__stat-value">50% → 80%</span>
-            <span className="marker delta__stat-label">Sentiment swing<br />(neg → pos, post-Breakpoint)</span>
-          </li>
-          <li>
             <span className="delta__stat-value">130</span>
             <span className="marker delta__stat-label">Invited members</span>
           </li>
           <li>
             <span className="delta__stat-value">14</span>
             <span className="marker delta__stat-label">Languages</span>
+          </li>
+          <li>
+            <span className="delta__stat-value">5</span>
+            <span className="marker delta__stat-label">Community clusters</span>
           </li>
         </ul>
       </section>
@@ -404,15 +404,14 @@ export default function DeltaCompanyPage() {
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
-            When Ghost Recon Breakpoint launched badly — community
-            sentiment <mark>50% negative</mark> out of the gate — Delta
-            Company became the feedback engine that turned it around.
-            Within months, sentiment was <mark>80% positive</mark>.
+            Delta Company didn&rsquo;t just give the Studio a deeper
+            understanding of core community feedback — it took members
+            on a journey that produced educated, considered UGC at scale.
           </p>
           <p>
-            On the way, it took members on a journey that produced
-            educated, considered UGC at scale — Studio and community in
-            real partnership. The kind of content money cannot buy.
+            On my side, it unlocked a continuous stream of impactful
+            community content — Studio and community in real partnership.
+            The kind of content money cannot buy.
           </p>
         </div>
       </section>
