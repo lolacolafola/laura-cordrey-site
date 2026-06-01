@@ -12,24 +12,29 @@ const range = [
   { word: 'Growth',    note: 'Channels, CAC, repeat revenue.' },
 ]
 
+// Drop YouTube IDs into `youtube` when a clip is ready. When null, the
+// card renders as a typographic placeholder so the layout still works.
 const speaking = [
   {
-    headline: 'E3 2019 · Los Angeles',
+    youtube: null, // E3 2019 Ubisoft press conference — Delta Company moment
+    headline: 'E3 2019 · Delta Company unveil',
+    venue: 'Ubisoft press conference · Los Angeles',
     detail:
-      'Unveiled Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live on stage to <mark>10M+ viewers</mark>.',
-    role: 'Ubisoft Spokesperson',
+      'I went on stage at E3 2019 to unveil Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live to <mark>10M+ viewers</mark>. The program went on to drive 60M+ organic UGC views with zero ad spend across three franchises.',
   },
   {
+    youtube: null, // Drop a representative Ubisoft press / livestream clip
     headline: 'Ubisoft Spokesperson · 2018 — 2022',
+    venue: '20+ global press, TV and live events',
     detail:
-      '20+ global press, TV and live events. Franchise launches, retail pitches (Walmart, Target, GameStop), and the public face for Ghost Recon, R6 Siege and Assassin’s Creed creator programs.',
-    role: 'Brand spokesperson',
+      'The public face for Ghost&nbsp;Recon, R6&nbsp;Siege and Assassin’s&nbsp;Creed creator programs. Franchise launches, on-camera press interviews, and retail pitches that landed Walmart, Target and GameStop buy-in.',
   },
   {
+    youtube: null,
     headline: 'Available for keynotes, panels and workshops',
+    venue: 'EMEA · US · Remote',
     detail:
-      'Topics: <strong>fan-powered growth</strong>, <strong>community as an acquisition channel</strong>, <strong>creator programs at scale</strong>, <strong>turning audiences into advocates</strong>.',
-    role: '',
+      'Topics I take to the stage: <strong>fan-powered growth</strong>, <strong>community as an acquisition channel</strong>, <strong>creator programs at scale</strong>, <strong>turning audiences into advocates</strong>, and <strong>brand storytelling that travels</strong>.',
   },
 ]
 
@@ -139,12 +144,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── SPEAKING ─────────────────────────────────────────── */}
+      {/* ─── KEYNOTE SPEAKER ──────────────────────────────────── */}
       <section className="about-speaking">
         <div className="container">
           <div className="section-head">
             <span className="marker">Keynote &amp; public speaking</span>
-            <h2 className="section-head__title">On stage.</h2>
+            <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
               I&rsquo;ve told the story of fan-powered growth on the biggest
               stages in entertainment — and to small executive rooms where
@@ -155,14 +160,32 @@ export default function AboutPage() {
           <ul className="about-speaking__list">
             {speaking.map((s) => (
               <li className="about-speaking__item" key={s.headline}>
-                <h3 className="about-speaking__headline">{s.headline}</h3>
-                <p
-                  className="about-speaking__detail"
-                  dangerouslySetInnerHTML={{ __html: s.detail }}
-                />
-                {s.role && (
-                  <span className="marker about-speaking__role">{s.role}</span>
-                )}
+                <div className="about-speaking__video">
+                  {s.youtube ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${s.youtube}`}
+                      title={s.headline}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="about-speaking__placeholder" aria-hidden="true">
+                      <span>Clip · TBD</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="about-speaking__body">
+                  <h3 className="about-speaking__headline">{s.headline}</h3>
+                  {s.venue && (
+                    <span className="marker about-speaking__venue">{s.venue}</span>
+                  )}
+                  <p
+                    className="about-speaking__detail"
+                    dangerouslySetInnerHTML={{ __html: s.detail }}
+                  />
+                </div>
               </li>
             ))}
           </ul>
