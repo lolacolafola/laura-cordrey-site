@@ -163,21 +163,33 @@ export default function WorkArticle() {
         </figure>
       )}
 
-      {/* ─── GALLERY (optional, per-case supplementary imagery) */}
+      {/* ─── GALLERY: alternating editorial spreads ───────────── */}
       {cs.gallery?.length > 0 && (
         <section className="container article__gallery">
-          <span className="marker article__gallery-kicker">In the room</span>
-          <div className={`article__gallery-grid article__gallery-grid--${cs.gallery.length}`}>
-            {cs.gallery.map((g, i) => (
-              <figure key={i} className="article__gallery-cell">
-                <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-                {g.caption && (
-                  <figcaption className="marker">
-                    Fig. {String(i + 2).padStart(2, '0')} · {g.caption}
+          <div className="article__gallery-head">
+            <span className="marker">In the room</span>
+            <h2 className="article__gallery-title">The work, up close.</h2>
+          </div>
+
+          <div className="article__spreads">
+            {cs.gallery.map((g, i) => {
+              const fig = String(i + 2).padStart(2, '0')
+              return (
+                <figure
+                  key={i}
+                  className={`article__spread${i % 2 === 1 ? ' article__spread--reverse' : ''}`}
+                >
+                  <div className="article__spread-media">
+                    <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
+                    <span className="marker article__spread-fig">Fig. {fig}</span>
+                  </div>
+                  <figcaption className="article__spread-text">
+                    <span className="marker article__spread-num">Fig. {fig}</span>
+                    <p className="article__spread-caption">{g.caption}</p>
                   </figcaption>
-                )}
-              </figure>
-            ))}
+                </figure>
+              )
+            })}
           </div>
         </section>
       )}
