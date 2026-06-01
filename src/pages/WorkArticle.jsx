@@ -79,7 +79,7 @@ export default function WorkArticle() {
 
       {/* ─── STAND-FIRST (editorial intro paragraph) ──────────── */}
       <section className="container article__standfirst">
-        <p>{cs.tldr}</p>
+        <p dangerouslySetInnerHTML={{ __html: cs.tldr }} />
       </section>
 
       {/* ─── STATS ────────────────────────────────────────────── */}
