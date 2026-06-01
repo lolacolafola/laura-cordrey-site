@@ -16,7 +16,7 @@ const caseStudies = [
     company: 'Ubisoft',
     headline: '$500K+ in earned media value',
     hook: 'Zero ad spend. 60M+ organic views.',
-    tldr: 'How Laura helped Ubisoft generate over $500K in earned media value across 18 markets by designing a community creator program that turned players into the company\u2019s most valuable marketing channel, with $0 ad spend.',
+    tldr: 'I designed a community creator program at Ubisoft that generated over $500K in earned media value across 18 markets \u2014 turning players into the company\u2019s most valuable marketing channel, with zero ad spend.',
     year: '2018\u20132022',
     role: 'Community Strategy & Creator Programs',
     accent: '#E8A020',
@@ -28,11 +28,11 @@ const caseStudies = [
       { value: '500+', label: 'Community leaders' },
     ],
     challenge:
-      'Massive playerbases, no system to activate them as a growth channel.',
+      'Ubisoft had massive playerbases and no system to activate them as a growth channel.',
     approach:
-      'Designed Delta Company with 5 community clusters (artists, cosplayers, explorers, feedback specialists, tournament players). Launched at E3 2019 to 10M+ viewers. 10K US applications for 5\u201310 spots. Pivoted to feedback engine when Breakpoint launched badly (50% negative \u2192 80% positive sentiment). Scaled to 3 franchises. Then proved it was repeatable: built the R6 Siege Community Creator Program (150+ invite-only creators, 6M video views, 2.4M live watch hours, 393K interactions \u2014 Season 1 alone, $0 media spend).',
+      'I designed Delta Company with 5 community clusters (artists, cosplayers, explorers, feedback specialists, tournament players). Launched at E3 2019 to 10M+ viewers. 10K US applications for 5\u201310 spots. When Breakpoint launched badly I pivoted the program into a feedback engine (50% negative \u2192 80% positive sentiment). Scaled to 3 franchises. Then I proved it was repeatable: built the R6 Siege Community Creator Program (150+ invite-only creators, 6M video views, 2.4M live watch hours, 393K interactions \u2014 Season 1 alone, $0 media spend).',
     takeaway:
-      'Built the system that turned Ubisoft\u2019s players into their most valuable marketing channel. Then proved it was repeatable across multiple franchises.',
+      'I built the system that turned Ubisoft\u2019s players into their most valuable marketing channel. Then I proved it was repeatable across multiple franchises.',
     media: {
       image: 'case-studies/ubisoft-banner.png',
       imageAlt: 'Ubisoft brand mark \u2014 the publisher Laura built the Delta Company creator program for across 18 markets and three franchises',
@@ -45,22 +45,22 @@ const caseStudies = [
       {
         src: 'case-studies/ubisoft-siege-champions.png',
         alt: 'R6 Siege Champions Program \u2014 Ubisoft creator program artwork from the program Laura designed',
-        caption: 'R6 Siege Champions Program \u2014 the creator program built to scale community-led growth across three franchises.',
+        caption: 'R6 Siege Champions Program \u2014 the creator program I built to scale community-led growth across three franchises.',
       },
       {
         src: 'case-studies/ubisoft-delta-pr-pack-real.jpg',
         alt: 'Delta Company creator pack for Tom Clancy\u2019s Ghost Recon Breakpoint \u2014 green flask, badges, key tag and merch laid out',
-        caption: 'The Delta Company creator pack \u2014 limited-edition kit shipped to invited community leaders for Tom Clancy\u2019s Ghost Recon: Breakpoint.',
+        caption: 'The Delta Company creator pack I designed \u2014 limited-edition kit shipped to invited community leaders for Tom Clancy\u2019s Ghost Recon: Breakpoint.',
       },
       {
         src: 'case-studies/ubisoft-delta-seasonal.png',
         alt: 'Delta Company seasonal program structure diagram \u2014 community leader activations across a season',
-        caption: 'Delta Company \u2014 seasonal program structure mapped across community leader activations.',
+        caption: 'Delta Company \u2014 the seasonal program structure I built across community leader activations.',
       },
       {
         src: 'case-studies/ubisoft-delta-always-on.png',
         alt: 'Delta Company always-on program metrics \u2014 recruitment, activations, satisfaction, membership KPIs',
-        caption: 'Always-on program: how recruitment, activations, satisfaction and membership were measured.',
+        caption: 'The always-on program: how I measured recruitment, activations, satisfaction and membership month over month.',
       },
       {
         src: 'case-studies/ubisoft-siege-pr-pack.png',
@@ -74,7 +74,7 @@ const caseStudies = [
     company: 'US Mobile',
     headline: '$32K revenue in 3 hours',
     hook: 'From a free SIM kit to a $129 fan bundle.',
-    tldr: 'How Laura helped US Mobile generate $32K in revenue in three hours and reduce CAC by 38% by designing a $129 VIP fan bundle and launching the gamified \u201cClaw Mobile\u201d brand campaign.',
+    tldr: 'I designed a $129 VIP fan bundle and launched the gamified \u201cClaw Mobile\u201d brand campaign at US Mobile \u2014 generating $32K in revenue in three hours and reducing CAC by 38%.',
     year: '2023\u20132024',
     role: 'Fractional Growth & Community Lead',
     accent: '#4BBFB0',
@@ -88,9 +88,9 @@ const caseStudies = [
     challenge:
       '$54M ARR, 200K subs, 100% YoY growth \u2014 but the flagship SIM Kit was being given away for free. As Head of Community, I saw the chance to turn it into core-community money: package the kit as a limited-edition bundle around the Dark Star launch and prove fans would pay.',
       approach:
-      'I spotted the opportunity: the SIM kit was being given away for $0. I made the case to charge $129 for it as a limited-edition VIP Early Access Bundle around the Dark Star launch \u2014 limited-edition SIM kit, two-week early access, free 12-month QCI 8 upgrade, exclusive in-app network badge, a US Mobile \u00D7 The North Face\u00AE fleece with personalised initials, a signed letter and a 15-minute Zoom with the CEO. Built the gamified pre-launch funnel (50K+ visitor landing pages, an arcade-style email game that earned 80% open rate and 35% CTOR), then capped the run at 250 units (the CEO can only take so many Zoom calls). Also produced the Madison Avenue, New York launch event to bring the product moment to life IRL \u2014 200+ attendees including AT&T execs.',
+      'I spotted the opportunity: the SIM kit was being given away for $0. I made the case to charge $129 for it as a limited-edition VIP Early Access Bundle around the Dark Star launch \u2014 limited-edition SIM kit, two-week early access, free 12-month QCI 8 upgrade, exclusive in-app network badge, a US Mobile \u00D7 The North Face\u00AE fleece with personalised initials, a signed letter and a 15-minute Zoom with the CEO. I built the gamified pre-launch funnel (50K+ visitor landing pages, an arcade-style email game that earned 80% open rate and 35% CTOR), then capped the run at 250 units (the CEO can only take so many Zoom calls). I also produced the Madison Avenue, New York launch event to bring the product moment to life IRL \u2014 200+ attendees including AT&T execs.',
     takeaway:
-      '$32.25K in three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (\u201ccrazy there are only 250 of these\u201d). The CEO\u2019s \u201cwe are sold out, this is insane\u201d edit became its own marketing moment \u2014 and proved a community-first company can monetise its fans directly.',
+      'I closed $32.25K in three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (\u201ccrazy there are only 250 of these\u201d). The CEO\u2019s \u201cwe are sold out, this is insane\u201d edit became its own marketing moment \u2014 and proved a community-first company can monetise its fans directly.',
     media: {
       image: 'case-studies/us-mobile.png',
       imageAlt: 'US Mobile brand mark \u2014 the company where Laura designed the $129 VIP fan bundle and led the Dark Star and Claw Mobile launches',
@@ -103,17 +103,17 @@ const caseStudies = [
       {
         src: 'case-studies/us-mobile-vip-bundle.png',
         alt: 'US Mobile Dark Star VIP Early Access Bundle \u2014 SIM kit + North Face fleece packshot',
-        caption: 'The $129 Dark Star VIP Bundle \u2014 limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in three hours.',
+        caption: 'The $129 Dark Star VIP Bundle I designed \u2014 limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in three hours.',
       },
       {
         src: 'case-studies/us-mobile-dark-star.png',
         alt: 'US Mobile Dark Star launch teaser landing page with countdown timer',
-        caption: 'Dark Star teaser \u2014 the countdown landing that drove 50K+ pre-launch visitors.',
+        caption: 'The Dark Star teaser landing I shipped \u2014 the countdown that drove 50K+ pre-launch visitors.',
       },
       {
         src: 'case-studies/us-mobile-email-game.png',
         alt: 'US Mobile arcade-style pre-launch email game START screen',
-        caption: 'The arcade-style pre-launch email game \u2014 80% open rate, 35% CTOR.',
+        caption: 'The arcade-style pre-launch email game I built \u2014 80% open rate, 35% CTOR.',
       },
       {
         src: 'case-studies/us-mobile-vip-landing.png',
@@ -132,7 +132,7 @@ const caseStudies = [
     company: 'BlaBlaCar',
     headline: '0 \u2192 1M members',
     hook: '\u20AC5 CAC. 22 markets. One creative system.',
-    tldr: 'How Laura helped BlaBlaCar grow from 0 to 1M UK members at \u20AC5 CAC by building the UK community from scratch, fixing brand operations, and pioneering a first-person smartphone storytelling system that scaled across 22 markets.',
+    tldr: 'I helped grow BlaBlaCar\u2019s UK presence from 0 to 1M members at \u20AC5 CAC \u2014 by building the UK community from scratch, fixing brand operations, and pioneering a first-person smartphone storytelling system that scaled across 22 markets.',
     year: '2014\u20132017',
     role: 'UK Community Lead \u2192 Brand & Design',
     accent: '#5B9BD5',
@@ -146,14 +146,14 @@ const caseStudies = [
     challenge:
       'UK launch \u2014 no brand recognition, culture sceptical of carpooling.',
     approach:
-      'Built UK community from scratch (social, CRM, meetups). Secured Live Nation festival partnerships. Promoted to Brand & Design team \u2014 ran SWOT review, reduced design requests 90%. Promoted again \u2014 pioneered first-person smartphone narrative storytelling, built template system for 22 markets.',
+      'I built the UK community from scratch (social, CRM, meetups). Secured Live Nation festival partnerships. Got promoted to the Brand & Design team \u2014 ran a SWOT review and reduced ad-hoc design requests by 90%. Got promoted again \u2014 pioneered first-person smartphone narrative storytelling and built a template system that scaled across 22 markets.',
     quote: {
       text: 'Laura is a start-up swiss knife\u2026 with some extra fun.',
       name: 'Nicolas Brusson',
       title: 'CEO of BlaBlaCar',
     },
     takeaway:
-      'Three promotions in four years. Launched a market, fixed the ops, built the creative engine.',
+      'Three promotions in four years. I launched a market, fixed the ops, and built the creative engine.',
     media: {
       image: 'case-studies/blablacar.jpg',
       imageAlt: 'BlaBlaCar brand still — the carpooling platform Laura launched in the UK and grew from 0 to 1M members at €5 CAC',
@@ -165,7 +165,7 @@ const caseStudies = [
       {
         src: 'case-studies/blablacar-but-first-coffee.jpg',
         alt: 'BlaBlaCar first-person smartphone storytelling — “But. First. Coffee.” in-car still',
-        caption: 'The first-person smartphone storytelling system Laura built — one creative idea, remade in every market.',
+        caption: 'The first-person smartphone storytelling system I built — one creative idea, remade in every market.',
       },
       {
         src: 'case-studies/blablacar-road-trip.jpg',
@@ -185,7 +185,7 @@ const caseStudies = [
       {
         src: 'case-studies/blablacar-fail-learn-succeed.jpg',
         alt: 'BlaBlaCar brand poster — “Fail. Learn. Succeed.” in coral and teal',
-        caption: 'The brand system Laura built: confident type, BlaBlaCar coral, no stock photography.',
+        caption: 'The brand system I built: confident type, BlaBlaCar coral, no stock photography.',
       },
     ],
   },
@@ -194,7 +194,7 @@ const caseStudies = [
     company: 'Azarus',
     headline: '90% engagement rate',
     hook: 'Title-sponsored the first Streamer Awards. Crashed our own servers.',
-    tldr: 'How Laura landed Azarus title sponsorship of the inaugural Streamer Awards (now the streaming world\u2019s Oscars) and shipped a bespoke live game overlay for the broadcast \u2014 turning 500K passive viewers into active participants at a 90% live engagement rate, with 20% converting to Azarus members on the spot.',
+    tldr: 'I landed Azarus title sponsorship of the inaugural Streamer Awards (now the streaming world\u2019s Oscars) and shipped a bespoke live game overlay for the broadcast \u2014 turning 500K passive viewers into active participants at a 90% live engagement rate, with 20% converting to Azarus members on the spot.',
     year: '2021\u20132022',
     role: 'VP Community & Partnerships',
     accent: '#A47BFF',
@@ -208,9 +208,9 @@ const caseStudies = [
     challenge:
       'A Twitch overlay product with reach but no proof of mass interactivity at scale. Azarus needed a moment that would prove its core thesis \u2014 that audiences will actively play, not just watch \u2014 in front of an audience that mattered to the streaming world.',
     approach:
-      'Secured title sponsorship of the inaugural Streamer Awards (the show that has since become the streaming world\u2019s Oscars) and shipped a bespoke live game overlay built for the broadcast itself. Viewers played alongside the show in real time, with 500K tuning in at peak, 90% actively engaging with the overlay during the live stream, and 20% of them converting from passive viewers into Azarus members on the spot.',
+      'I secured title sponsorship of the inaugural Streamer Awards (the show that has since become the streaming world\u2019s Oscars) and shipped a bespoke live game overlay built for the broadcast itself. Viewers played alongside the show in real time, with 500K tuning in at peak, 90% actively engaging with the overlay during the live stream, and 20% of them converting from passive viewers into Azarus members on the spot.',
     takeaway:
-      'Mass interactivity proven on the biggest stage in streaming. So many people played at once that we crashed our own servers mid-broadcast \u2014 not the validation we planned, but maybe the most honest one. The proof point unlocked the company\u2019s next chapter: the pivot to a gamified ad platform (covered in its own file).',
+      'I proved mass interactivity on the biggest stage in streaming. So many people played at once that we crashed our own servers mid-broadcast \u2014 not the validation we planned, but maybe the most honest one. The proof point unlocked the company\u2019s next chapter: the pivot to a gamified ad platform (covered in its own file).',
     media: {
       image: 'case-studies/azarus.png',
       imageAlt: 'Azarus brand mark \u2014 the company where Laura led the product pivot and the 2022 Streamer Awards launch',
@@ -225,7 +225,7 @@ const caseStudies = [
     company: 'Azarus',
     headline: '$2 CPI on a brand-new ad format',
     hook: 'Pivoted Azarus from Twitch overlay into a gamified ad platform.',
-    tldr: 'How Laura led Azarus through a product pivot from Twitch overlay into a gamified ad platform, delivering interactive ad campaigns for Ubisoft and Logitech at a 90% engagement rate and $2 cost-per-install, growing MAU 80%, and launching the $AZA token along the way (Coinbase + Crypto.com listings).',
+    tldr: 'I led Azarus through a product pivot from Twitch overlay into a gamified ad platform — delivering interactive ad campaigns for Ubisoft and Logitech at a 90% engagement rate and $2 cost-per-install, growing MAU 80%, and launching the $AZA token along the way (Coinbase + Crypto.com listings).',
     year: '2022\u20132023',
     role: 'Head of Growth \u2192 VP Marketing',
     accent: '#7C5BFF',
@@ -237,11 +237,11 @@ const caseStudies = [
       { value: '$AZA', label: 'Token \u2014 listed on Coinbase & Crypto.com' },
     ],
     challenge:
-      'After the Streamer Awards proof point (covered in its own file), Azarus had validated the engagement thesis but still needed a sustainable revenue model. The Twitch-overlay format capped the addressable market. The team had to ship a new product surface and prove it could carry a real ad business, fast.',
+      'After the Streamer Awards proof point (covered in its own file), Azarus had validated the engagement thesis but still needed a sustainable revenue model. The Twitch-overlay format capped the addressable market. We had to ship a new product surface and prove it could carry a real ad business, fast.',
     approach:
-      'Led the pivot from Twitch overlay into a gamified ad platform: ads that audiences played, not skipped. Built the brand-side sales motion alongside the product and landed Ubisoft and Logitech as launch advertisers, shipping interactive game-ad campaigns that hit a 90% engagement rate at a $2 cost-per-install. Negotiated six-figure influencer partnerships to fuel acquisition. In parallel, led the launch of the $AZA token end-to-end \u2014 brand, white paper, comms \u2014 securing listings on Coinbase and Crypto.com, and shaping the investor narrative around the new business model.',
+      'I led the pivot from Twitch overlay into a gamified ad platform: ads that audiences played, not skipped. Built the brand-side sales motion alongside the product and landed Ubisoft and Logitech as launch advertisers, shipping interactive game-ad campaigns that hit a 90% engagement rate at a $2 cost-per-install. I negotiated six-figure influencer partnerships to fuel acquisition. In parallel, I led the launch of the $AZA token end-to-end \u2014 brand, white paper, comms \u2014 securing listings on Coinbase and Crypto.com, and shaping the investor narrative around the new business model.',
     takeaway:
-      'A new product surface, two flagship brand advertisers proving the gamified-ad model at $2 CPI and 90% engagement, +80% MAU growth, and a token launch on the two biggest exchanges. Turned an engagement thesis into a revenue model and an investable story.',
+      'A new product surface, two flagship brand advertisers proving the gamified-ad model at $2 CPI and 90% engagement, +80% MAU growth, and a token launch on the two biggest exchanges. I turned an engagement thesis into a revenue model and an investable story.',
     media: {
       // Reusing the Azarus brand mark until pivot-specific assets land
       // (e.g. Chrome extension UI, Ubisoft / Logitech ad creative stills).
@@ -258,7 +258,7 @@ const caseStudies = [
     company: 'BlaBlaCar',
     headline: 'Live Nation Official Ridesharing Partner',
     hook: 'Branded parking zones at the UK\u2019s biggest festivals.',
-    tldr: 'How Laura made BlaBlaCar the UK\u2019s first Official Ridesharing Partner of Live Nation by securing branded festival parking at Latitude, Leeds, and Reading, contributing to growing UK members from 0 to 1M.',
+    tldr: 'I made BlaBlaCar the UK\u2019s first Official Ridesharing Partner of Live Nation \u2014 securing branded festival parking at Latitude, Leeds and Reading, and contributing to growing UK members from 0 to 1M.',
     year: '2014\u20132016',
     role: 'UK Community & Partnerships',
     accent: '#F4B53A',
@@ -270,11 +270,11 @@ const caseStudies = [
       { value: '1M', label: 'UK members (contributed)' },
     ],
     challenge:
-      'UK market had zero brand recognition for BlaBlaCar. Needed high-visibility, trust-building activations to reach a sceptical audience.',
+      'The UK market had zero brand recognition for BlaBlaCar. We needed high-visibility, trust-building activations to reach a sceptical audience.',
     approach:
-      'Secured Live Nation as Official Ridesharing Partner, unprecedented for a carpooling platform. Designed and ran the on-site presence end-to-end: 300+ branded parking spots and a 20m\u00B2 community tent across Latitude, Leeds, and Reading, plus on-site activations and community meetups. Combined the festival footprint with grassroots CRM (35% open rate, 12% CTR, best in company at the time) and social community building.',
+      'I secured Live Nation as Official Ridesharing Partner \u2014 unprecedented for a carpooling platform. Designed and ran the on-site presence end-to-end: 300+ branded parking spots and a 20m\u00B2 community tent across Latitude, Leeds and Reading, plus on-site activations and community meetups. I paired the festival footprint with grassroots CRM (35% open rate, 12% CTR, best in company at the time) and social community building.',
     takeaway:
-      'Turned festivals into a trust-building channel that made carpooling feel culturally normal in the UK. The kind of work that doesn\u2019t show up in dashboards but changes how people feel about your brand.',
+      'I turned festivals into a trust-building channel that made carpooling feel culturally normal in the UK. The kind of work that doesn\u2019t show up in dashboards but changes how people feel about your brand.',
     media: {
       // Substitute BlaBlaCar campaign asset \u2014 swap for an actual festival photo when available.
       image: 'case-studies/blablacar-festivals.jpg',
@@ -289,7 +289,7 @@ const caseStudies = [
     company: 'US Mobile',
     headline: '55% made it past the hook',
     hook: 'A stunt brand campaign for US Mobile. Mint Mobile parody. A fake Hugh Jackman.',
-    tldr: 'How Laura produced \u201cClaw Mobile\u201d for US Mobile, a stunt brand campaign parodying Mint Mobile complete with a fake Hugh Jackman, spoof blog and CEO reveal landing pages. On Meta, 55% of everyone who saw the ad watched past the 15-second mark. On Reddit, it generated its own organic traction.',
+    tldr: 'I produced \u201cClaw Mobile\u201d for US Mobile \u2014 a stunt brand campaign parodying Mint Mobile complete with a fake Hugh Jackman, a spoof blog and CEO reveal landing pages. On Meta, 55% of everyone who saw the ad watched past the 15-second mark. On Reddit, it generated its own organic traction.',
     year: '2023\u20132024',
     role: 'Brand Campaign Producer',
     accent: '#FF6B5B',
@@ -303,9 +303,9 @@ const caseStudies = [
     challenge:
       'US Mobile needed a brand moment that could punch above its weight against incumbents like Mint Mobile \u2014 disruptor energy, not category playbook. The brief: make people talk, then make them switch.',
     approach:
-      'Produced \u201cClaw Mobile\u201d with Luna agency end-to-end \u2014 a Mint Mobile parody where, instead of doing a normal celebrity endorsement for US Mobile, a fake Hugh Jackman hijacks the spot to launch his own competing network: \u201cClaw Mobile.\u201d Played fully into the bit: stood up a real Claw Mobile spoof site that lived the storyline in-world, then routed visitors to a custom landing page where the actual US Mobile CEO claps back at the fake Jackman\u2019s lame attempt \u2014 the moment of brand reveal. Worked the full production arc: script development, casting, the shoot, the granular post-production craft (edit, sound, colour, VFX), all the way to final delivery. Built the surrounding creative system around the film: paid social cuts, organic teaser drops, and a press angle designed for screenshot-ability.',
+      'I produced \u201cClaw Mobile\u201d with Luna agency end-to-end \u2014 a Mint Mobile parody where, instead of doing a normal celebrity endorsement for US Mobile, a fake Hugh Jackman hijacks the spot to launch his own competing network: \u201cClaw Mobile.\u201d I played fully into the bit: stood up a real Claw Mobile spoof site that lived the storyline in-world, then routed visitors to a custom landing page where the actual US Mobile CEO claps back at the fake Jackman\u2019s lame attempt \u2014 the moment of brand reveal. I worked the full production arc: script development, casting, the shoot, the granular post-production craft (edit, sound, colour, VFX), all the way to final delivery. I built the surrounding creative system around the film: paid social cuts, organic teaser drops, and a press angle designed for screenshot-ability.',
     takeaway:
-      'On Meta, 55% of viewers stuck past the 15-second mark \u2014 meaning the joke landed and the hook worked. Plus its own organic traction on Reddit. The kind of brand moment that gets shared, screenshotted, and remembered, proving that a challenger brand can make incumbents react instead of the other way around.',
+      'On Meta, 55% of viewers stuck past the 15-second mark \u2014 the joke landed and the hook worked. Plus its own organic traction on Reddit. The kind of brand moment that gets shared, screenshotted, and remembered \u2014 proof that a challenger brand can make incumbents react instead of the other way around.',
     media: {
       // Logo kept as a fallback poster; YouTube hero takes precedence when set.
       image: 'case-studies/us-mobile.png',
