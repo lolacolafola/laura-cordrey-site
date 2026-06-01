@@ -103,7 +103,7 @@
   padding-top: var(--space-9);
   padding-bottom: var(--space-7);
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
   gap: var(--space-7);
   align-items: start;
 }
@@ -113,11 +113,15 @@
   gap: var(--space-3);
   position: sticky;
   top: 100px;
+  min-width: 0;
 }
 .delta__section-title {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1;
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  line-height: 1.05;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 .delta__section-body {
   display: flex;
