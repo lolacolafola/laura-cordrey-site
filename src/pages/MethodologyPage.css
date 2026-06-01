@@ -25,9 +25,9 @@
   text-wrap: balance;
 }
 .meth-hero__title em {
-  font-style: italic;
-  font-family: 'Archivo', serif;
-  font-weight: 900;
+  font-style: normal;
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 .meth-hero__meta {
   display: grid;
@@ -46,7 +46,7 @@
   max-width: 38ch;
   border-left: 1px solid var(--accent);
   padding-left: var(--space-4);
-  font-style: italic;
+  font-style: normal;
 }
 .meth-proof__lede em {
   font-style: normal;
@@ -219,9 +219,9 @@
   letter-spacing: -0.02em;
 }
 .meth-stage__kicker {
-  font-family: 'Archivo', serif;
-  font-style: italic;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
   font-size: var(--fs-body-l);
   color: var(--accent);
 }
@@ -232,7 +232,7 @@
 }
 .meth-stage__para em {
   color: var(--accent);
-  font-style: italic;
+  font-style: normal;
 }
 .meth-stage__tags {
   list-style: none;
@@ -327,9 +327,9 @@
   text-wrap: balance;
 }
 .meth-cta__title em {
-  font-style: italic;
-  font-family: 'Archivo', serif;
-  font-weight: 900;
+  font-style: normal;
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 .meth-cta__back { color: var(--ink-muted); margin-top: var(--space-3); }
 .meth-cta__link {
