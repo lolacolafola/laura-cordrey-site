@@ -157,9 +157,8 @@ export default function AboutPage() {
               I sit at the <mark>bridge.</mark>
             </h2>
             <p className="about-range__lede">
-              Most consultants come from one corner. I&rsquo;ve led senior
-              teams across all four for over a decade — at the same time,
-              on the same problems. That&rsquo;s the bridge.
+              Most consultants own one topic. I own all four. Bring the
+              whole <mark>bridge</mark> to your business.
             </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
