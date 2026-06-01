@@ -1,0 +1,390 @@
+import { Link } from 'react-router-dom'
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import './HomePage.css' // .btn shared styles
+import './DeltaCompanyPage.css'
+
+const BASE = import.meta.env.BASE_URL
+const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+
+/* Delta Company — bespoke case study page.
+ * Structure ports Laura's Wix Ubisoft case study page top-to-bottom:
+ * cover · overview · strategy (clusters) · brand · tools · how-it-works ·
+ * UbiE3 launch · expanding the universe (goodies + in-game) · feedback loop.
+ */
+
+export default function DeltaCompanyPage() {
+  useDocumentMeta({
+    title: 'Delta Company · Ubisoft Creator Advocacy Program · Case Study by Laura Cordrey',
+    description:
+      'How I designed and launched Delta Company — a first-of-its-kind creator advocacy program at Ubisoft. Unveiled live on the E3 2019 stage. 5 community clusters, 14 languages, 130 invited members, 60M+ UGC reach.',
+    canonical: '/work/delta-company',
+  })
+
+  return (
+    <article className="delta">
+      {/* ─── MASTHEAD ─────────────────────────────────────────── */}
+      <div className="container delta__masthead">
+        <Link to="/work" className="marker delta__back">
+          <span aria-hidden="true">←</span> All work
+        </Link>
+        <span className="marker">Ubisoft · 2018 — 2020</span>
+      </div>
+
+      {/* ─── COVER ────────────────────────────────────────────── */}
+      <header className="delta__cover">
+        <div className="container">
+          <span className="marker delta__case-kicker">Case study · Vol. 01</span>
+          <h1 className="delta__cover-title">
+            Creating <mark>Delta Company.</mark>
+          </h1>
+          <p className="delta__cover-lede">
+            A first-of-its-kind creator advocacy program at Ubisoft.
+            My idea. My program. My launch. Unveiled live on the
+            E3 stage to millions of viewers.
+          </p>
+        </div>
+      </header>
+
+      {/* ─── HERO IMAGE ───────────────────────────────────────── */}
+      <figure className="delta__hero">
+        <img
+          src={BASE + 'case-studies/delta/01-delta-badge-hero.png'}
+          alt="The Tom Clancy's Ghost Recon Delta Company badge — the brand mark Laura designed for the program"
+        />
+      </figure>
+
+      {/* ─── STATS ────────────────────────────────────────────── */}
+      <section className="container delta__stats">
+        <ul>
+          <li>
+            <span className="delta__stat-value">1st</span>
+            <span className="marker delta__stat-label">Of its kind at Ubisoft</span>
+          </li>
+          <li>
+            <span className="delta__stat-value">14</span>
+            <span className="marker delta__stat-label">Languages</span>
+          </li>
+          <li>
+            <span className="delta__stat-value">5</span>
+            <span className="marker delta__stat-label">Community clusters</span>
+          </li>
+          <li>
+            <span className="delta__stat-value">130</span>
+            <span className="marker delta__stat-label">Invited members</span>
+          </li>
+        </ul>
+      </section>
+
+      {/* ─── OVERVIEW ─────────────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[01] · An overview</span>
+          <h2 className="delta__section-title">Delta Company.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Delta Company is the first creator advocacy program of its kind
+            for both Ubisoft and the wider gaming industry — creating a
+            stronger link between gaming studios and their core community.
+            A genuine win-win: members get behind-the-scenes access to the
+            games they love; studios get a continuous stream of considered
+            community feedback and UGC.
+          </p>
+          <p>
+            Available worldwide, this was the <strong>first Ubisoft
+            program accessible in 14 languages</strong> — opening it to
+            non-English speaking candidates for the first time. By launch,
+            central and local Ubisoft teams across markets were running
+            events, workshops, playtests and early-capture sessions with
+            their 130 invited members.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── GAME ART (Ghost Recon Breakpoint) ────────────────── */}
+      <figure className="delta__plate">
+        <img
+          src={BASE + 'case-studies/delta/02-ghost-recon-keyart.jpg'}
+          alt="Tom Clancy's Ghost Recon Breakpoint key art — the game Delta Company was built around"
+        />
+        <figcaption className="container">
+          Tom Clancy&rsquo;s Ghost Recon Breakpoint — the AAA Ubisoft title
+          Delta Company was built around.
+        </figcaption>
+      </figure>
+
+      {/* ─── STRATEGY: GETTING TO DELTA ───────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[02] · The strategy</span>
+          <h2 className="delta__section-title">Getting to Delta.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            The gaming community is made up of multiple player-types with
+            very different passion drivers: artists, cosplayers, explorers,
+            feedback specialists, tournament players — the list goes on.
+          </p>
+          <p>
+            <strong>I wanted to find an efficient way to speak with each
+            of these audiences and engage them on their terms.</strong>
+          </p>
+          <p>
+            So I built Delta Company around <mark>five distinct
+            clusters</mark>, each targeting a different player and
+            community-member type. The structure didn&rsquo;t just
+            facilitate recruitment and engagement — it gave every member
+            a clear role and a strong sense of belonging within the
+            program.
+          </p>
+        </div>
+      </section>
+
+      <figure className="delta__plate delta__plate--light">
+        <img
+          src={BASE + 'case-studies/delta/03-five-clusters.png'}
+          alt="The five Delta Company detachments — Company Comms, Special Activities, Mission Intel, Team Operations, Tactical Assault"
+        />
+        <figcaption className="container">
+          The five detachments — Company Comms, Special Activities,
+          Mission Intel, Team Operations, Tactical Assault — each one
+          designed for a different community archetype.
+        </figcaption>
+      </figure>
+
+      {/* ─── BRAND ────────────────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[03] · The brand</span>
+          <h2 className="delta__section-title">The Delta brand.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            The brand was a vital part of the project. It needed to
+            compliment the game it was created for — Ghost Recon
+            Breakpoint — and stand strong as a brand in its own right.
+          </p>
+          <p>
+            I led the brief and worked with the internal Ubisoft design
+            team behind the Ghost Recon Breakpoint brand to produce key
+            art and multiple logo lockups. Final brand designed in close
+            collaboration with Diana Da Costa.
+          </p>
+        </div>
+      </section>
+
+      <figure className="delta__plate delta__plate--light">
+        <img
+          src={BASE + 'case-studies/delta/04-brand-variations.png'}
+          alt="Delta Company brand lockups — primary logo, circular badge variants and isolated mark across black and white treatments"
+        />
+        <figcaption className="container">
+          Brand lockups — primary logo, circular badge, and isolated
+          mark — in monochrome treatments to flex across game UI,
+          merch and marketing.
+        </figcaption>
+      </figure>
+
+      {/* ─── TOOLS / WEBSITE ──────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[04] · The tools</span>
+          <h2 className="delta__section-title">Keeping things organised.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Delta Company needed to be visible, easy to understand and
+            easy to manage. I worked with the internal IT team to
+            commission a dedicated website for the program — homepage,
+            FAQ and application form — all <strong>localised in 14
+            languages</strong>. A custom back-end let regional teams
+            manage their own applications.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── HOW IT WORKS (recruitment video) ─────────────────── */}
+      <section className="delta__video-section container">
+        <div className="delta__section-head">
+          <span className="marker">[05] · How it works</span>
+          <h2 className="delta__section-title">A deep-dive explanation.</h2>
+        </div>
+        <p className="delta__video-context">
+          Video is the easiest format to digest, so I produced a
+          &ldquo;How it Works&rdquo; explainer to sit on the Delta
+          Company homepage. This became the main recruitment and
+          marketing asset for the program launch.
+        </p>
+        <div className="delta__video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/qFMQEaAKtO8"
+            title="Delta Company — How it Works"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* ─── UBIE3 LAUNCH ─────────────────────────────────────── */}
+      <section className="delta__section delta__section--launch container">
+        <div className="delta__section-head">
+          <span className="marker">[06] · Going live</span>
+          <h2 className="delta__section-title">UbiE3 presentation.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            <mark>Go big or go home.</mark> That was the mindset when it
+            came to announcing Delta Company to the world. With a slot on
+            the biggest stage in gaming, the program was revealed live at
+            UbiE3 2019 — to millions of viewers.
+          </p>
+          <p>
+            I worked with branding agency <strong>Takeoff</strong> to
+            produce the E3 stage assets and the community segment of
+            the broader Ghost Recon presentation.
+          </p>
+        </div>
+      </section>
+
+      <figure className="delta__plate delta__plate--full">
+        <img
+          src={BASE + 'case-studies/delta/05-laura-e3-stage.jpg'}
+          alt="Laura Cordrey on the UbiE3 2019 stage in Los Angeles, presenting Delta Company in front of the cluster detachment badges"
+        />
+        <figcaption className="container">
+          On the UbiE3 2019 stage in Los Angeles. The five detachment
+          badges projected behind me as I unveiled Delta Company to the
+          world.
+        </figcaption>
+      </figure>
+
+      {/* ─── E3 SEGMENT VIDEO ─────────────────────────────────── */}
+      <section className="delta__video-section container">
+        <span className="marker">Watch the segment</span>
+        <p className="delta__video-context">
+          The full community segment of the Ghost Recon presentation.
+          I first announced key feedback from the community that was
+          being implemented in the game, then revealed Delta Company
+          for the first time.
+        </p>
+        <div className="delta__video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/F5g7fOzxGYY"
+            title="UbiE3 2019 — Community Segment + Delta Company reveal"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* ─── EXPANDING THE UNIVERSE: GOODIES + IN-GAME ───────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[07] · Expanding the universe</span>
+          <h2 className="delta__section-title">
+            Goodies, in-game, and exclusivity.
+          </h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Communities love goodies. I worked with internal merch teams
+            to produce a goodie box every Delta Company member received
+            on joining. Members also got <strong>in-game customisations
+            with Delta branding</strong> — exclusive to the program — for
+            their characters to wear.
+          </p>
+          <p>
+            Both initiatives were limited to members only. With a
+            Ghost Recon community of <strong>15 million players</strong>,
+            that&rsquo;s real exclusivity for the 130 members of
+            the program.
+          </p>
+        </div>
+      </section>
+
+      <div className="container">
+        <div className="delta__gallery">
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/08-goodie-box-shelf1.jpg'}
+              alt="Delta Company goodie box — first shelf with branded beanie"
+              loading="lazy"
+            />
+            <figcaption className="marker">The first shelf — branded beanie + box.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/09-goodie-box-full.jpg'}
+              alt="Delta Company goodie box — full kit with t-shirts, flask, beanie and Breakpoint art"
+              loading="lazy"
+            />
+            <figcaption className="marker">Everything in the box.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/10-character-delta-tshirt.jpg'}
+              alt="In-game character wearing a Delta Company branded t-shirt — exclusive Ghost Recon Breakpoint customisation"
+              loading="lazy"
+            />
+            <figcaption className="marker">Members&rsquo; in-game branded tee.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/07-branded-car-in-game.png'}
+              alt="In-game Delta Company branded car — exclusive vehicle customisation for members"
+              loading="lazy"
+            />
+            <figcaption className="marker">A members-only branded car.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      {/* ─── FEEDBACK LOOP ────────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[08] · The outcome</span>
+          <h2 className="delta__section-title">A feedback loop.</h2>
+        </div>
+        <div className="delta__section-body delta__section-body--takeaway">
+          <p>
+            Delta Company didn&rsquo;t just give the Studio a deeper
+            understanding of core community feedback — it took members on
+            a journey that produced{' '}
+            <mark>educated, considered UGC</mark> at scale.
+          </p>
+          <p>
+            On my side, it unlocked a continuous stream of impactful
+            community content showing Studio and community working in
+            real partnership — the kind of content that money usually
+            cannot buy.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── CTA ──────────────────────────────────────────────── */}
+      <section className="delta__cta">
+        <div className="container delta__cta-inner">
+          <span className="marker">Want a Delta Company for your brand?</span>
+          <h2 className="delta__cta-title">
+            Let&rsquo;s build one <mark>just like it.</mark>
+          </h2>
+          <div className="delta__cta-buttons">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn--primary btn--lg"
+            >
+              Book a 30-min call <span aria-hidden="true">→</span>
+            </a>
+            <Link to="/work" className="btn btn--ghost btn--lg">
+              More work
+            </Link>
+          </div>
+        </div>
+      </section>
+    </article>
+  )
+}
