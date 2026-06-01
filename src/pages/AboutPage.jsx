@@ -128,11 +128,11 @@ export default function AboutPage() {
                 From BlaBlaCar&rsquo;s UK launch to Ubisoft&rsquo;s E3 stage.
               </p>
               <p className="about-hero__lede">
-                Your fans are already doing the work: posting, advocating,
-                bringing friends. Most brands never turn that into revenue.
-                I&rsquo;ve spent twelve years building the systems that do,
-                for French and American conglomerates and startups. Now
-                I&rsquo;m here to help you figure it out too.
+                I&rsquo;ve taken brands from <mark>zero community to fifteen
+                million fans</mark>. The pattern shows up at every scale:
+                most never turn that audience into a channel. Twelve years
+                closing that gap, for French and American conglomerates and
+                startups. Now I&rsquo;m here to help you figure it out too.
               </p>
               <p className="about-hero__sublede">
                 I&rsquo;m an inventor. Give me a problem — a launch with no
