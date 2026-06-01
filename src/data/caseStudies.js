@@ -42,6 +42,11 @@ const caseStudies = [
     },
     gallery: [
       {
+        src: 'case-studies/ubisoft-delta-pr-pack-real.jpg',
+        alt: 'Delta Company creator pack for Tom Clancy\u2019s Ghost Recon Breakpoint \u2014 green flask, badges, key tag and merch laid out',
+        caption: 'The Delta Company creator pack \u2014 limited-edition kit shipped to invited community leaders for Tom Clancy\u2019s Ghost Recon: Breakpoint.',
+      },
+      {
         src: 'case-studies/ubisoft-delta-seasonal.png',
         alt: 'Delta Company seasonal program structure diagram \u2014 community leader activations across a season',
         caption: 'Delta Company \u2014 seasonal program structure mapped across community leader activations.',
@@ -54,7 +59,7 @@ const caseStudies = [
       {
         src: 'case-studies/ubisoft-siege-pr-pack.png',
         alt: 'R6 Siege Champions Program PR pack \u2014 limited-edition merch sent to invited creators',
-        caption: 'Invite-only PR pack sent to the 150+ creators in Season 1 of the Champions Program.',
+        caption: 'R6 Siege Champions Program PR pack \u2014 invite-only merch sent to the 150+ Season 1 creators.',
       },
     ],
   },
@@ -138,12 +143,34 @@ const caseStudies = [
     takeaway:
       'Three promotions in four years. Launched a market, fixed the ops, built the creative engine.',
     media: {
-      image: 'case-studies/blablacar.jpg',
-      imageAlt: 'Still from a BlaBlaCar smartphone-storytelling campaign Laura developed and scaled across 22 markets',
+      image: 'case-studies/blablacar-but-first-coffee.jpg',
+      imageAlt: 'BlaBlaCar first-person smartphone storytelling campaign — “But. First. Coffee.” in-car still from the system Laura built and scaled across 22 markets',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
     },
+    gallery: [
+      {
+        src: 'case-studies/blablacar-road-trip.jpg',
+        alt: 'Four friends laughing in a car — a still from BlaBlaCar’s first-person smartphone storytelling system',
+        caption: 'Four friends, one ride. The first-person storytelling system, captured on a smartphone, designed to be remade in every market.',
+      },
+      {
+        src: 'case-studies/blablacar-woman-and-dog.jpg',
+        alt: 'Woman with a small white dog in a BlaBlaCar carpool',
+        caption: 'The story isn’t the journey — it’s who you meet on it.',
+      },
+      {
+        src: 'case-studies/blablacar-passenger-reading.jpg',
+        alt: 'Passenger reading a book in the front seat of a BlaBlaCar ride',
+        caption: 'Quiet moments between strangers — captured raw, lived-in, on a phone.',
+      },
+      {
+        src: 'case-studies/blablacar-fail-learn-succeed.jpg',
+        alt: 'BlaBlaCar brand poster — “Fail. Learn. Succeed.” in coral and teal',
+        caption: 'The brand system Laura built: confident type, BlaBlaCar coral, no stock photography.',
+      },
+    ],
   },
   {
     id: 'azarus',
