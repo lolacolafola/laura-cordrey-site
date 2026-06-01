@@ -53,7 +53,7 @@
 .hero__title em {
   font-style: normal;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .hero__meta {
@@ -349,7 +349,7 @@
 .method__title em {
   font-style: normal;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
 }
 .method__copy {
   font-size: var(--fs-body-l);
@@ -416,5 +416,5 @@
 .final-cta__title em {
   font-style: normal;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
 }

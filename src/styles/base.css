@@ -8,6 +8,7 @@ html, body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
+  font-weight: 500;
   font-size: var(--fs-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +44,7 @@ button {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.02;
   letter-spacing: var(--tracking-tight);
   margin: 0;
@@ -67,7 +68,7 @@ p { margin: 0; }
 
 .marker {
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0;
   text-transform: none;

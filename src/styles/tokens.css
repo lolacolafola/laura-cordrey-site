@@ -23,14 +23,12 @@
   --hairline-strong: rgba(239, 233, 220, 0.25);
 
   /* ─── Type ───────────────────────────────────────────────── */
-  /* Display: rounded high-contrast editorial serif with native italic.
-     Pairs with the body sans by design (same foundry). */
-  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-  /* Body: rounded geometric sans. Variable opsz axis for crisp small + soft large. */
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-  /* No mono. Editorial labels use letter-spaced caps in the body sans,
-     not a code font. The .marker utility re-uses --font-body. */
-  --font-mono: 'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Single family — Manrope — used for everything. Rounded geometric
+     sans with substantial weights. Display uses 800, body uses 600,
+     markers use 600. No serif, no italic, no thin weights. */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Manrope', system-ui, -apple-system, sans-serif;
 
   /* Display sizes — editorial scale, big at top */
   --fs-display-xl: clamp(3.5rem, 9vw, 8rem);     /* hero name / cover */

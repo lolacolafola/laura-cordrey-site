@@ -27,7 +27,7 @@
 .meth-hero__title em {
   font-style: normal;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
 }
 .meth-hero__meta {
   display: grid;
@@ -221,7 +221,7 @@
 .meth-stage__kicker {
   font-family: var(--font-display);
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: var(--fs-body-l);
   color: var(--accent);
 }
@@ -329,7 +329,7 @@
 .meth-cta__title em {
   font-style: normal;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
 }
 .meth-cta__back { color: var(--ink-muted); margin-top: var(--space-3); }
 .meth-cta__link {
