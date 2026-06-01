@@ -8,7 +8,7 @@ const BASE = import.meta.env.BASE_URL
 
 const range = [
   { word: 'Brand',     note: 'Story, identity, voice.' },
-  { word: 'Product',   note: 'UX, gamification, habits.' },
+  { word: 'Product',   note: 'UX, gamification, user feedback.' },
   { word: 'Community', note: 'Belonging, advocacy, scale.' },
   { word: 'Growth',    note: 'Organic, influencer, UGC.' },
 ]
