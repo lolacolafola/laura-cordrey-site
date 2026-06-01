@@ -304,27 +304,27 @@ export default function DeltaCompanyPage() {
         <div className="delta__gallery delta__gallery--three">
           <figure>
             <img
-              src={BASE + 'case-studies/delta/09-goodie-box-full.jpg'}
-              alt="Delta Company goodie box — full kit with t-shirts, beanie, flask, badges and Ghost Recon Breakpoint art"
+              src={BASE + 'case-studies/ubisoft-delta-pr-pack-real.jpg'}
+              alt="Delta Company creator pack — flask, badges and key tag laid out alongside Ghost Recon Breakpoint art"
               loading="lazy"
             />
-            <figcaption className="marker">The full box.</figcaption>
+            <figcaption className="marker">Flask, badges, key tag.</figcaption>
           </figure>
           <figure>
             <img
               src={BASE + 'case-studies/delta/08-goodie-box-shelf1.jpg'}
-              alt="Delta Company goodie box — first shelf with branded beanie"
+              alt="Delta Company goodie box — first shelf reveal with branded beanie"
               loading="lazy"
             />
-            <figcaption className="marker">First shelf — beanie + box.</figcaption>
+            <figcaption className="marker">First reveal — beanie + box.</figcaption>
           </figure>
           <figure>
             <img
-              src={BASE + 'case-studies/ubisoft-delta-pr-pack-real.jpg'}
-              alt="Delta Company creator pack — flask, badges and Ghost Recon Breakpoint key art laid out"
+              src={BASE + 'case-studies/delta/09-goodie-box-full.jpg'}
+              alt="Delta Company goodie box — full kit with t-shirts, beanie, flask, badges and Ghost Recon Breakpoint art"
               loading="lazy"
             />
-            <figcaption className="marker">Flask, badges, key tag.</figcaption>
+            <figcaption className="marker">The full spread.</figcaption>
           </figure>
         </div>
       </div>
