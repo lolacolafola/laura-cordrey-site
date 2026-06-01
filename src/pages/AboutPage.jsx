@@ -138,7 +138,7 @@ export default function AboutPage() {
                 I&rsquo;m an inventor. Give me a problem — a launch with no
                 budget, a community no one&rsquo;s activated, a category
                 that doesn&rsquo;t exist yet — and I&rsquo;ll find the angle
-                no one else has. Ask anyone I&rsquo;ve worked with.
+                no one else has. It&rsquo;s what I&rsquo;m known for.
               </p>
             </div>
 
