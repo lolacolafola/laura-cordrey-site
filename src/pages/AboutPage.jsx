@@ -82,8 +82,22 @@ const expertise = [
   'Creative Direction & Production',
   'Global Campaign Delivery',
   'Event & Activation Management',
+  'Keynote & On-Stage Presenting',
+  'Voice Over & Narration',
   'Cross-Team Leadership',
   'Executive Pitches & Investor Decks',
+]
+
+// Text-only appearances beyond the 3 video clips. Add more here freely.
+const appearances = [
+  { event: 'E3 2019 · Ubisoft Press Conference', context: 'Live stage · Delta Company global unveil · 10M+ viewers', year: '2019' },
+  { event: 'Inside Xbox', context: 'Live TV interview · Ghost Recon Wildlands content drop', year: '2019' },
+  { event: 'Ghost Recon Breakpoint · World Premiere', context: 'Global announce livestream · core presentation team', year: '2019' },
+  { event: 'PlayStation Showcase appearances', context: 'On-camera segments · franchise updates', year: '2018–2021' },
+  { event: 'Walmart · Target · GameStop pitches', context: 'Retail buy-in pitches for Ubisoft franchises', year: '2018–2021' },
+  { event: 'R6 Siege Champions Program reveal', context: 'Community livestream host · 150+ creator program launch', year: '2021' },
+  { event: 'Assassin’s Creed advocacy program', context: 'Community-facing presentations · brand updates', year: '2020' },
+  { event: 'Ubisoft brand spokesperson', context: '20+ global press, TV and live events across 4 years', year: '2018–2022' },
 ]
 
 export default function AboutPage() {
@@ -107,8 +121,11 @@ export default function AboutPage() {
           <div className="about-hero__split">
             <div className="about-hero__text">
               <h1 className="about-hero__title">
-                I build fan-powered<br /> growth engines.
+                I&rsquo;m a storyteller.
               </h1>
+              <p className="about-hero__subhead">
+                I build fan-powered growth engines.
+              </p>
               <p className="about-hero__lede">
                 Twelve years across brand, product, community and growth — at
                 Ubisoft, BlaBlaCar, Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
@@ -199,6 +216,33 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
+
+          {/* Text-only list of further appearances beyond the 3 featured clips */}
+          <div className="about-speaking__appearances">
+            <span className="marker">Selected appearances</span>
+            <ol className="about-speaking__list-text">
+              {appearances.map((a) => (
+                <li key={a.event + a.year} className="about-speaking__row">
+                  <span className="about-speaking__row-year">{a.year}</span>
+                  <span className="about-speaking__row-event">{a.event}</span>
+                  <span className="about-speaking__row-context">{a.context}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Voice over capability */}
+          <div className="about-speaking__voiceover">
+            <span className="marker">Also</span>
+            <h3 className="about-speaking__voiceover-title">
+              I voice my own videos.
+            </h3>
+            <p className="about-speaking__voiceover-detail">
+              Narration, brand films, voice-over for product launches and
+              campaign cuts. Native English, fluent French — recorded studio
+              or remote.
+            </p>
+          </div>
 
           <div className="about-speaking__cta">
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost">
