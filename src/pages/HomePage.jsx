@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import caseStudies from '../data/caseStudies.js'
 import LogoBanner from '../components/LogoBanner.jsx'
 import WorkCard from '../components/WorkCard.jsx'
+import Counter from '../components/Counter.jsx'
 import './HomePage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -9,9 +10,9 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 const identities = ['Storyteller', 'Brand Strategist', 'Community Growth']
 
 const heroStats = [
-  { value: '100M+', label: 'Audiences reached' },
-  { value: '70M+',  label: 'Users engaged' },
-  { value: '60M+',  label: 'UGC views' },
+  { value: 100, suffix: 'M+', label: 'Audiences reached' },
+  { value: 70,  suffix: 'M+', label: 'Users engaged' },
+  { value: 60,  suffix: 'M+', label: 'UGC views' },
 ]
 
 // One featured card per brand. Pulls the primary case study and pairs it with
@@ -83,7 +84,9 @@ export default function HomePage() {
           <div className="hero__stats">
             {heroStats.map((s) => (
               <div className="hero__stat" key={s.label}>
-                <span className="hero__stat-value">{s.value}</span>
+                <span className="hero__stat-value">
+                  <Counter value={s.value} suffix={s.suffix} />
+                </span>
                 <span className="hero__stat-label marker">{s.label}</span>
               </div>
             ))}
