@@ -127,9 +127,10 @@ export default function AboutPage() {
               <p className="about-hero__lede">
                 The brands that grow fastest aren&rsquo;t the ones with
                 the biggest ad budgets. They&rsquo;re the ones their fans
-                {' '}<mark>can&rsquo;t stop talking about</mark>. Twelve
-                years figuring that out at Ubisoft, BlaBlaCar,
-                Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
+                {' '}<mark>can&rsquo;t stop talking about</mark>. I&rsquo;ve
+                spent twelve years driving community growth for French
+                and American conglomerates and startups. Now I&rsquo;m
+                here to help you figure it out too.
               </p>
               <p className="about-hero__sublede">
                 I help founders and brand teams build that. The strategy, the
