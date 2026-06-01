@@ -25,27 +25,38 @@ export function IconActivation(props) {
   )
 }
 
-// 02 — Habit: a repeating loop (rhythm, return)
+// 02 — Habit: a stopwatch (rhythm, return, daily ritual)
 export function IconHabit(props) {
   return (
     <svg viewBox="0 0 48 48" {...props}>
-      <path d="M10 24 A14 14 0 1 1 38 24" {...stroke} />
-      <polyline points="36,18 38,24 32,26" {...stroke} />
-      <path d="M38 24 A14 14 0 1 1 10 24" {...stroke} opacity="0.35" />
-      <polyline points="12,30 10,24 16,22" {...stroke} opacity="0.35" />
+      {/* crown */}
+      <rect x="21" y="5"  width="6" height="3"  {...stroke} />
+      <line x1="22" y1="8" x2="22" y2="11" {...stroke} />
+      <line x1="26" y1="8" x2="26" y2="11" {...stroke} />
+      {/* side button */}
+      <line x1="37" y1="11" x2="40" y2="14" {...stroke} />
+      {/* clock body */}
+      <circle cx="24" cy="28" r="14" {...stroke} />
+      {/* 12 o'clock tick */}
+      <line x1="24" y1="16" x2="24" y2="18.5" {...stroke} />
+      {/* hand pointing to ~2 o'clock */}
+      <line x1="24" y1="28" x2="32" y2="22" {...stroke} />
+      {/* centre dot */}
+      <circle cx="24" cy="28" r="1.75" {...stroke} fill="currentColor" />
     </svg>
   )
 }
 
-// 03 — Belonging: three nodes joined by a curve (community of three)
+// 03 — Belonging: a heart (love, connection, belonging)
 export function IconBelonging(props) {
   return (
     <svg viewBox="0 0 48 48" {...props}>
-      <path d="M8 30 Q24 6 40 30" {...stroke} />
-      <circle cx="8"  cy="30" r="3.5" {...stroke} fill="currentColor" />
-      <circle cx="24" cy="14" r="3.5" {...stroke} fill="currentColor" />
-      <circle cx="40" cy="30" r="3.5" {...stroke} fill="currentColor" />
-      <line x1="8" y1="38" x2="40" y2="38" {...stroke} opacity="0.4" />
+      <path
+        d="M24 40 C 4 25, 8 10, 17 10 C 21 10, 24 14, 24 17 C 24 14, 27 10, 31 10 C 40 10, 44 25, 24 40 Z"
+        {...stroke}
+        fill="currentColor"
+        fillOpacity="0.92"
+      />
     </svg>
   )
 }
