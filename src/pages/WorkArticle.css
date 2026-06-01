@@ -114,22 +114,29 @@
 }
 
 /* ─── STAND-FIRST (intro paragraph between hero and stats) ──
- * Editorial display weight — Archivo Black at body-ish size — gives the
- * intro distinct visual weight without italic / side-bar decoration. */
+ * Confident body weight with a <mark>-highlighted key phrase per case
+ * (red block on bone). Press-release / Dazed-coded editorial signature. */
 .article__standfirst {
   padding-top: var(--space-8);
   padding-bottom: var(--space-7);
 }
 .article__standfirst p {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
   color: var(--ink);
-  max-width: 28ch;
+  max-width: 52ch;
   margin: 0;
-  text-wrap: balance;
+}
+.article__standfirst mark {
+  background: var(--accent);
+  color: var(--surface);
+  padding: 0.05em 0.35em;
+  border-radius: 1px;
+  font-weight: inherit;
+  /* Keep the highlight unbroken across line wraps */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* ─── STATS ──────────────────────────────────────────────── */
