@@ -94,6 +94,12 @@
   padding-top: var(--space-9);
   padding-bottom: var(--space-9);
 }
+.about-range .section-head {
+  /* Disciplines grid below already has a top border; drop the
+     section-head's bottom border so we don't stack two hairlines. */
+  border-bottom: 0;
+  margin-bottom: var(--space-6);
+}
 .about-range__lede {
   font-size: var(--fs-body-l);
   color: var(--ink-muted);
