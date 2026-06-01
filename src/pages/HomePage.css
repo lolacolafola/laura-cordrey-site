@@ -171,17 +171,20 @@
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-marker);
-  letter-spacing: var(--tracking-marker);
-  text-transform: uppercase;
-  padding: var(--space-3) var(--space-5);
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: var(--space-4) var(--space-6);
   border-radius: var(--radius);
-  border: 1px solid var(--edge);
-  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  border: 1.5px solid var(--edge);
+  transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
   cursor: pointer;
+  line-height: 1;
 }
+.btn:hover { transform: translateY(-1px); }
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);
@@ -200,7 +203,11 @@
   color: var(--bg);
   border-color: var(--surface);
 }
-.btn--lg { padding: var(--space-4) var(--space-6); font-size: var(--fs-small); }
+.btn--lg {
+  padding: var(--space-5) var(--space-8);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
 
 /* ─── SECTION HEAD (reusable pattern) ─────────────────────── */
 .section-head {
