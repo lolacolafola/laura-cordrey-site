@@ -152,8 +152,15 @@ export default function AboutPage() {
       <section className="about-range">
         <div className="container">
           <div className="section-head">
-            <span className="marker">The range</span>
-            <h2 className="section-head__title">Where I work.</h2>
+            <span className="marker">Where I sit</span>
+            <h2 className="section-head__title">
+              I sit at the <mark>bridge.</mark>
+            </h2>
+            <p className="about-range__lede">
+              Most companies run brand, product, community and growth in
+              four separate rooms. The handoff breaks. The fans get lost.
+              I work across all four — and connect them into one engine.
+            </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
             {range.map((d) => (
