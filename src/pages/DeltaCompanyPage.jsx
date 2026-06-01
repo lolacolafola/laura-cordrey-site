@@ -279,27 +279,74 @@ export default function DeltaCompanyPage() {
         </div>
       </section>
 
-      {/* ─── EXPANDING THE UNIVERSE: GOODIES + IN-GAME ───────── */}
+      {/* ─── THE MERCH BOX ────────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[07] · Expanding the universe</span>
-          <h2 className="delta__section-title">
-            Goodies, in-game, and exclusivity.
-          </h2>
+          <span className="marker">[07] · The merch box</span>
+          <h2 className="delta__section-title">A welcome they could hold.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            Communities love goodies. I worked with internal merch teams
-            to produce a goodie box every Delta Company member received
-            on joining. Members also got <strong>in-game customisations
-            with Delta branding</strong> — exclusive to the program — for
-            their characters to wear.
+            Communities love goodies. I worked with internal merchandising
+            teams to design a custom Delta Company goodie box — sent to
+            every new member as their official welcome.
           </p>
           <p>
-            Both initiatives were limited to members only. With a
-            Ghost Recon community of <strong>15 million players</strong>,
-            that&rsquo;s real exclusivity for the 130 members of
-            the program.
+            <strong>Branded box. Beanie. Flask. Badges. T-shirts.</strong>{' '}
+            Plus Ghost Recon Breakpoint marketing materials. The kind of
+            unboxing that makes someone feel like they&rsquo;re joining
+            something — because they are.
+          </p>
+        </div>
+      </section>
+
+      <div className="container">
+        <div className="delta__gallery delta__gallery--three">
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/09-goodie-box-full.jpg'}
+              alt="Delta Company goodie box — full kit with t-shirts, beanie, flask, badges and Ghost Recon Breakpoint art"
+              loading="lazy"
+            />
+            <figcaption className="marker">The full box.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/08-goodie-box-shelf1.jpg'}
+              alt="Delta Company goodie box — first shelf with branded beanie"
+              loading="lazy"
+            />
+            <figcaption className="marker">First shelf — beanie + box.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/ubisoft-delta-pr-pack-real.jpg'}
+              alt="Delta Company creator pack — flask, badges and Ghost Recon Breakpoint key art laid out"
+              loading="lazy"
+            />
+            <figcaption className="marker">Flask, badges, key tag.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      {/* ─── IN-GAME CUSTOMISATIONS ───────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[08] · In-game</span>
+          <h2 className="delta__section-title">Exclusivity worn in-game.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Inside Ghost Recon Breakpoint, members received{' '}
+            <strong>Delta-branded customisations</strong> for their
+            characters and vehicles — exclusive to the program. T-shirts,
+            patches, branded vehicles.
+          </p>
+          <p>
+            With a Ghost Recon community of <strong>15 million
+            players</strong>, those branded items became visible
+            status symbols inside the game — worn only by the 130
+            invited members of Delta Company.
           </p>
         </div>
       </section>
@@ -308,27 +355,11 @@ export default function DeltaCompanyPage() {
         <div className="delta__gallery">
           <figure>
             <img
-              src={BASE + 'case-studies/delta/08-goodie-box-shelf1.jpg'}
-              alt="Delta Company goodie box — first shelf with branded beanie"
-              loading="lazy"
-            />
-            <figcaption className="marker">The first shelf — branded beanie + box.</figcaption>
-          </figure>
-          <figure>
-            <img
-              src={BASE + 'case-studies/delta/09-goodie-box-full.jpg'}
-              alt="Delta Company goodie box — full kit with t-shirts, flask, beanie and Breakpoint art"
-              loading="lazy"
-            />
-            <figcaption className="marker">Everything in the box.</figcaption>
-          </figure>
-          <figure>
-            <img
               src={BASE + 'case-studies/delta/10-character-delta-tshirt.jpg'}
-              alt="In-game character wearing a Delta Company branded t-shirt — exclusive Ghost Recon Breakpoint customisation"
+              alt="In-game character wearing a Delta Company branded t-shirt — exclusive Ghost Recon Breakpoint customisation for members"
               loading="lazy"
             />
-            <figcaption className="marker">Members&rsquo; in-game branded tee.</figcaption>
+            <figcaption className="marker">A members&rsquo; in-game branded tee.</figcaption>
           </figure>
           <figure>
             <img
@@ -344,7 +375,7 @@ export default function DeltaCompanyPage() {
       {/* ─── FEEDBACK LOOP ────────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[08] · The outcome</span>
+          <span className="marker">[09] · The outcome</span>
           <h2 className="delta__section-title">A feedback loop.</h2>
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
