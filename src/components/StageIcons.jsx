@@ -70,15 +70,22 @@ export function IconBelonging(props) {
   )
 }
 
-// 04 — Identity: a faceted diamond (status, self)
+// 04 — Identity: a gem-cut diamond (status, self, the thing made of you)
 export function IconIdentity(props) {
   return (
     <svg viewBox="0 0 48 48" {...props}>
-      <polygon points="24,6 40,20 24,42 8,20" {...stroke} />
-      <line x1="8"  y1="20" x2="40" y2="20" {...stroke} />
-      <line x1="24" y1="6"  x2="24" y2="42" {...stroke} opacity="0.4" />
-      <line x1="16" y1="13" x2="24" y2="20" {...stroke} opacity="0.4" />
-      <line x1="32" y1="13" x2="24" y2="20" {...stroke} opacity="0.4" />
+      {/* outer silhouette: table top, crown shoulders, pavilion point */}
+      <polygon points="18,8 30,8 38,18 24,42 10,18" {...stroke} />
+      {/* girdle — the line where crown meets pavilion */}
+      <line x1="10" y1="18" x2="38" y2="18" {...stroke} />
+      {/* crown facets (table corners → girdle) */}
+      <line x1="18" y1="8" x2="14" y2="18" {...stroke} opacity="0.55" />
+      <line x1="30" y1="8" x2="34" y2="18" {...stroke} opacity="0.55" />
+      {/* pavilion facets (girdle corners → point) */}
+      <line x1="14" y1="18" x2="24" y2="42" {...stroke} opacity="0.55" />
+      <line x1="34" y1="18" x2="24" y2="42" {...stroke} opacity="0.55" />
+      {/* centre axis (subtle, holds it together) */}
+      <line x1="24" y1="8" x2="24" y2="42" {...stroke} opacity="0.35" />
     </svg>
   )
 }
