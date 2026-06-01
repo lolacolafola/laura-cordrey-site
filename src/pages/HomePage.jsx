@@ -26,7 +26,7 @@ const disciplines = [
   { word: 'Brand',     note: 'Story, identity, voice.' },
   { word: 'Product',   note: 'Loops, mechanics, retention.' },
   { word: 'Community', note: 'Belonging, advocacy, scale.' },
-  { word: 'Growth',    note: 'Channels, CAC, repeat revenue.' },
+  { word: 'Growth',    note: 'Organic, influencer, UGC.' },
 ]
 
 export default function HomePage() {
