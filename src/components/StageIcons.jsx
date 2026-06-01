@@ -11,16 +11,25 @@ const stroke = {
   strokeLinejoin: 'round',
 }
 
-// 01 — Activation: a spark on the edge of a circle (the moment that lands)
+// 01 — Activation: a rocket (launch, lift-off, the moment that takes off)
 export function IconActivation(props) {
   return (
     <svg viewBox="0 0 48 48" {...props}>
-      <circle cx="22" cy="26" r="14" {...stroke} />
-      <circle cx="36" cy="12" r="2.5" {...stroke} fill="currentColor" />
-      <line x1="36" y1="12" x2="32" y2="16" {...stroke} />
-      <line x1="40" y1="8"  x2="36" y2="12" {...stroke} />
-      <line x1="40" y1="16" x2="36" y2="12" {...stroke} />
-      <line x1="32" y1="8"  x2="36" y2="12" {...stroke} />
+      {/* body */}
+      <path
+        d="M24 4 Q 30 12 30 22 L 30 32 L 18 32 L 18 22 Q 18 12 24 4 Z"
+        {...stroke}
+      />
+      {/* window */}
+      <circle cx="24" cy="19" r="2.5" {...stroke} fill="currentColor" />
+      {/* left fin */}
+      <path d="M18 24 L 12 34 L 18 31 Z" {...stroke} />
+      {/* right fin */}
+      <path d="M30 24 L 36 34 L 30 31 Z" {...stroke} />
+      {/* exhaust flames */}
+      <line x1="21" y1="33" x2="22" y2="40" {...stroke} />
+      <line x1="24" y1="33" x2="24" y2="43" {...stroke} />
+      <line x1="27" y1="33" x2="26" y2="40" {...stroke} />
     </svg>
   )
 }
