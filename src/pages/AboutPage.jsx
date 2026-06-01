@@ -185,10 +185,9 @@ export default function AboutPage() {
             <span className="marker">Keynote &amp; public speaking</span>
             <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
-              I&rsquo;ve represented Ubisoft for <mark>50+ public speaking
-              opportunities</mark> — from interviews with Xbox and PlayStation,
-              to hosting community livestreams, to stepping on the E3 stage.
-              Here are a few.
+              <mark>50+ speaking moments</mark> across twelve years — from
+              E3 stages to Inside Xbox, from executive rooms to live
+              community broadcasts. Here are a few.
             </p>
           </div>
 
