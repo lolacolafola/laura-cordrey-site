@@ -145,6 +145,12 @@
   .about-range__item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
 }
 
+.about-range__cta {
+  margin-top: var(--space-7);
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* ─── SPEAKING ────────────────────────────────────────────── */
 .about-speaking {
   padding-top: var(--space-9);
