@@ -408,11 +408,12 @@ export default function DeltaCompanyPage() {
             was {' '}<mark>50% negative</mark> out of the gate.
           </p>
           <p>
-            I pivoted Delta Company into a real feedback engine. Workshops,
-            playtests, early-capture sessions — Delta members and the
-            Studio working side by side. Their feedback fed directly into
-            the <strong>Ghost Experience</strong> live update — a top-to-bottom
-            re-tuning of the game shaped by what members had told us.
+            Delta Company was pivoted into a real feedback engine.
+            Workshops, playtests, early-capture sessions — Delta members
+            and the Studio working side by side. Their feedback fed
+            directly into the <strong>Ghost Experience</strong> live
+            update — a top-to-bottom re-tuning of the game shaped by
+            what members had told us.
           </p>
           <p>
             Sentiment climbed to {' '}<mark>80% positive</mark>. A
