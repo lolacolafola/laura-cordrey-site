@@ -247,28 +247,9 @@ export default function DeltaCompanyPage() {
         </div>
       </section>
 
-      <figure className="delta__plate delta__plate--full">
-        <img
-          src={BASE + 'case-studies/delta/05-laura-e3-stage.jpg'}
-          alt="Laura Cordrey on the UbiE3 2019 stage in Los Angeles, presenting Delta Company in front of the cluster detachment badges"
-        />
-        <figcaption className="container">
-          On the UbiE3 2019 stage in Los Angeles. The five detachment
-          badges projected behind me as I unveiled Delta Company to the
-          world.
-        </figcaption>
-      </figure>
-
-      {/* ─── E3 SEGMENT VIDEO ─────────────────────────────────── */}
-      <section className="delta__video-section container">
-        <span className="marker">Watch the segment</span>
-        <p className="delta__video-context">
-          The full community segment of the Ghost Recon presentation.
-          I first announced key feedback from the community that was
-          being implemented in the game, then revealed Delta Company
-          for the first time.
-        </p>
-        <div className="delta__video-frame">
+      {/* ─── E3 SEGMENT VIDEO — full-width banner moment ────── */}
+      <figure className="delta__video-banner">
+        <div className="delta__video-banner-frame">
           <iframe
             src="https://www.youtube.com/embed/F5g7fOzxGYY"
             title="UbiE3 2019 — Community Segment + Delta Company reveal"
@@ -277,7 +258,24 @@ export default function DeltaCompanyPage() {
             loading="lazy"
           />
         </div>
-      </section>
+        <figcaption className="container delta__video-banner-caption">
+          The full Ghost Recon community segment from UbiE3 2019. I
+          announced the key community feedback being implemented in
+          the game, then revealed Delta Company for the first time.
+        </figcaption>
+      </figure>
+
+      {/* ─── Laura on stage — smaller plate after the video ──── */}
+      <figure className="delta__plate">
+        <img
+          src={BASE + 'case-studies/delta/05-laura-e3-stage.jpg'}
+          alt="Laura Cordrey on the UbiE3 2019 stage in Los Angeles, presenting Delta Company in front of the cluster detachment badges"
+        />
+        <figcaption className="container">
+          On the UbiE3 stage in Los Angeles, with the five detachment
+          badges projected behind me.
+        </figcaption>
+      </figure>
 
       {/* ─── THE MERCH BOX ────────────────────────────────────── */}
       <section className="delta__section container">
