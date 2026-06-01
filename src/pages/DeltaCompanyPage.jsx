@@ -329,6 +329,24 @@ export default function DeltaCompanyPage() {
         </div>
       </div>
 
+      {/* ─── EXCLUSIVITY RATIO (interstitial banner) ──────────── */}
+      <aside className="delta__ratio">
+        <div className="container delta__ratio-inner">
+          <div className="delta__ratio-stat">
+            <span className="delta__ratio-value">130</span>
+            <span className="marker delta__ratio-label">Invited members</span>
+          </div>
+          <span className="delta__ratio-divider" aria-hidden="true">/</span>
+          <div className="delta__ratio-stat">
+            <span className="delta__ratio-value">15,000,000</span>
+            <span className="marker delta__ratio-label">Ghost Recon players</span>
+          </div>
+          <p className="delta__ratio-caption">
+            <mark>The kind of exclusivity money cannot buy.</mark>
+          </p>
+        </div>
+      </aside>
+
       {/* ─── IN-GAME CUSTOMISATIONS ───────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
@@ -339,14 +357,14 @@ export default function DeltaCompanyPage() {
           <p>
             Inside Ghost Recon Breakpoint, members received{' '}
             <strong>Delta-branded customisations</strong> for their
-            characters and vehicles — exclusive to the program. T-shirts,
-            patches, branded vehicles.
+            characters and vehicles. T-shirts, patches, branded cars —
+            all members-only.
           </p>
           <p>
-            With a Ghost Recon community of <strong>15 million
-            players</strong>, those branded items became visible
-            status symbols inside the game — worn only by the 130
-            invited members of Delta Company.
+            Walk into any Ghost Recon lobby and you might cross paths
+            with a stranger wearing one. That tiny visible signal told
+            <strong> the other 14,999,870 players</strong> the wearer
+            was inside something they couldn&rsquo;t buy their way into.
           </p>
         </div>
       </section>
