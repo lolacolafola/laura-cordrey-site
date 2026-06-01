@@ -135,9 +135,10 @@ export default function AboutPage() {
                 I&rsquo;m here to help you figure it out too.
               </p>
               <p className="about-hero__sublede">
-                Part inventor. Part creative. Part operator. I find the
-                angle no one&rsquo;s seen, design the system that cracks it,
-                and ship the work that pays for itself.
+                I&rsquo;m an inventor. Give me a problem — a launch with no
+                budget, a community no one&rsquo;s activated, a category
+                that doesn&rsquo;t exist yet — and I&rsquo;ll find the angle
+                no one else has. Ask anyone I&rsquo;ve worked with.
               </p>
             </div>
 
