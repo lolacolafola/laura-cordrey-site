@@ -376,9 +376,12 @@
 .method__discipline:last-child {
   border-bottom: 1px solid var(--hairline);
 }
-.method__discipline-num {
+.method__discipline-mark {
   grid-row: 1 / span 2;
-  color: var(--edge);
+  color: var(--accent);
+  font-size: 1.1rem;
+  align-self: center;
+  justify-self: center;
 }
 .method__discipline-word {
   font-family: var(--font-display);
