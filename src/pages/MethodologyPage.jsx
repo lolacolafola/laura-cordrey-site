@@ -88,10 +88,10 @@ export default function MethodologyPage() {
 
           <div className="meth-hero__meta">
             <p className="meth-hero__lede">
-              A five-stage system for turning passive audiences into the kind of
-              fans that build a business. Drawn from twelve years of practice
-              across brand, product, community and growth — at Ubisoft, BlaBlaCar,
-              US&nbsp;Mobile and Azarus.
+              My five-stage system for turning passive audiences into the kind of
+              fans that build a business. I&rsquo;ve drawn it from twelve years of
+              practice across brand, product, community and growth — at Ubisoft,
+              BlaBlaCar, US&nbsp;Mobile and Azarus.
             </p>
             <p className="meth-hero__sublede">
               Not a framework I read. A method I built — at scale, under deadline,
