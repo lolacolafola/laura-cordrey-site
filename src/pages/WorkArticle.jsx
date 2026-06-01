@@ -31,7 +31,6 @@ export default function WorkArticle() {
   }
 
   const lightHero = cs.media?.heroBackground === 'white'
-  const accentStyle = cs.accent ? { '--accent': cs.accent } : undefined
 
   // Related — other case studies, prefer different brands, max 3
   const related = caseStudies
@@ -40,7 +39,7 @@ export default function WorkArticle() {
     .slice(0, 3)
 
   return (
-    <article className="article" style={accentStyle}>
+    <article className="article">
       {/* ─── MASTHEAD ──────────────────────────────────────────── */}
       <div className="container article__masthead">
         <Link to="/work" className="marker article__back">
