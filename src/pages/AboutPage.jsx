@@ -128,12 +128,13 @@ export default function AboutPage() {
                 From BlaBlaCar&rsquo;s UK launch to Ubisoft&rsquo;s E3 stage.
               </p>
               <p className="about-hero__lede">
-                I build from scratch. I build on top of millions. The
-                pattern is the same at every stage: most brands{' '}
-                <mark>never turn that audience into a channel</mark>.
-                Twelve years closing that gap, for French and American
-                conglomerates and startups. Now I&rsquo;m here to help
-                you figure it out too.
+                I&rsquo;ve built from zero users. I&rsquo;ve built on top
+                of millions. Most brands have all the pieces — brand,
+                product, community, growth. They just{' '}
+                <mark>never connect them</mark>. I&rsquo;ve spent twelve
+                years learning those connections, for French and American
+                conglomerates and startups. Now I&rsquo;m here to build
+                it for you.
               </p>
               <p className="about-hero__sublede">
                 I&rsquo;m an inventor. Give me a problem — a launch with no
