@@ -125,11 +125,11 @@ export default function AboutPage() {
                 community and growth.
               </h1>
               <p className="about-hero__lede">
-                Twelve years across brand, product, community and growth — at
-                Ubisoft, BlaBlaCar, Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
-                The brands that grow fastest aren&rsquo;t the ones with the
-                biggest ad budgets. They&rsquo;re the ones their fans
-                {' '}<mark>can&rsquo;t stop talking about</mark>.
+                The brands that grow fastest aren&rsquo;t the ones with
+                the biggest ad budgets. They&rsquo;re the ones their fans
+                {' '}<mark>can&rsquo;t stop talking about</mark>. Twelve
+                years figuring that out at Ubisoft, BlaBlaCar,
+                Amazon&nbsp;Games, Azarus and US&nbsp;Mobile.
               </p>
               <p className="about-hero__sublede">
                 I help founders and brand teams build that. The strategy, the
