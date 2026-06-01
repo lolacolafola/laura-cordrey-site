@@ -157,9 +157,9 @@ export default function AboutPage() {
               I sit at the <mark>bridge.</mark>
             </h2>
             <p className="about-range__lede">
-              Most companies run brand, product, community and growth in
-              four separate rooms. The handoff breaks. The fans get lost.
-              I work across all four — and connect them into one engine.
+              Most consultants come from one corner. I&rsquo;ve led teams in
+              all four — Brand at BlaBlaCar, Product at Magic, Community
+              at Ubisoft, Growth at Azarus. That&rsquo;s the bridge.
             </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
