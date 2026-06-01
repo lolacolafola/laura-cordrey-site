@@ -121,20 +121,23 @@ export default function AboutPage() {
           <div className="about-hero__split">
             <div className="about-hero__text">
               <h1 className="about-hero__title">
-                I sit at the <mark>bridge</mark> of brand, product,
-                community and growth.
+                Community growth wasn&rsquo;t a job ten years ago.{' '}
+                <mark>I made it one.</mark>
               </h1>
+              <p className="about-hero__kicker">
+                From BlaBlaCar&rsquo;s UK launch to Ubisoft&rsquo;s E3 stage.
+              </p>
               <p className="about-hero__lede">
                 Your fans are already doing the work: posting, advocating,
-                bringing friends. Most brands <mark>never turn that into
-                revenue</mark>. I&rsquo;ve spent twelve years building the
-                systems that do, for French and American conglomerates and
-                startups. Now I&rsquo;m here to help you figure it out too.
+                bringing friends. Most brands never turn that into revenue.
+                I&rsquo;ve spent twelve years building the systems that do,
+                for French and American conglomerates and startups. Now
+                I&rsquo;m here to help you figure it out too.
               </p>
               <p className="about-hero__sublede">
-                I help founders and brand teams build that. The strategy, the
-                programs, the operating system. Not in theory — in the room,
-                under deadline, with revenue attached.
+                Part inventor. Part creative. Part operator. I find the
+                angle no one&rsquo;s seen, design the system that cracks it,
+                and ship the work that pays for itself.
               </p>
             </div>
 
