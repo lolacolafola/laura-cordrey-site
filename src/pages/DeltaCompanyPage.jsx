@@ -398,7 +398,7 @@ export default function DeltaCompanyPage() {
         </div>
       </div>
 
-      {/* ─── FEEDBACK LOOP ────────────────────────────────────── */}
+      {/* ─── FEEDBACK LOOP / RESULTS ──────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[09] · The outcome</span>
@@ -407,18 +407,30 @@ export default function DeltaCompanyPage() {
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
             Delta Company didn&rsquo;t just give the Studio a deeper
-            understanding of core community feedback — it took members on
-            a journey that produced{' '}
-            <mark>educated, considered UGC</mark> at scale.
+            understanding of core community feedback — it took members
+            on a journey that produced educated, considered UGC at scale.
           </p>
           <p>
             On my side, it unlocked a continuous stream of impactful
-            community content showing Studio and community working in
-            real partnership — the kind of content that money usually
-            cannot buy.
+            community content — Studio and community in real
+            partnership. The kind of content money usually cannot buy.
           </p>
         </div>
       </section>
+
+      {/* ─── 10M UGC RESULT BANNER ───────────────────────────── */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">The receipt</span>
+          <p className="delta__result-value">
+            <mark>10M+ UGC views</mark>
+          </p>
+          <p className="delta__result-caption">
+            From program members alone. From 130 people. The kind of
+            distribution most paid campaigns never reach.
+          </p>
+        </div>
+      </aside>
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
       <section className="delta__cta">
