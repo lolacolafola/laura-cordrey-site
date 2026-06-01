@@ -77,9 +77,8 @@ export default function WorkArticle() {
         </figure>
       )}
 
-      {/* ─── TL;DR ────────────────────────────────────────────── */}
-      <section className="container article__tldr">
-        <span className="marker">TL;DR</span>
+      {/* ─── STAND-FIRST (editorial intro paragraph) ──────────── */}
+      <section className="container article__standfirst">
         <p>{cs.tldr}</p>
       </section>
 
