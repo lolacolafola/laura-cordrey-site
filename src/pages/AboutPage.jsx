@@ -125,12 +125,11 @@ export default function AboutPage() {
                 community and growth.
               </h1>
               <p className="about-hero__lede">
-                The brands that grow fastest aren&rsquo;t the ones with
-                the biggest ad budgets. They&rsquo;re the ones their fans
-                {' '}<mark>can&rsquo;t stop talking about</mark>. I&rsquo;ve
-                spent twelve years driving community growth for French
-                and American conglomerates and startups. Now I&rsquo;m
-                here to help you figure it out too.
+                Your fans are already doing the work: posting, advocating,
+                bringing friends. Most brands <mark>never turn that into
+                revenue</mark>. I&rsquo;ve spent twelve years building the
+                systems that do, for French and American conglomerates and
+                startups. Now I&rsquo;m here to help you figure it out too.
               </p>
               <p className="about-hero__sublede">
                 I help founders and brand teams build that. The strategy, the
