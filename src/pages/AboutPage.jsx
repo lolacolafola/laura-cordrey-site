@@ -152,7 +152,7 @@ export default function AboutPage() {
       <section className="about-range">
         <div className="container">
           <div className="section-head">
-            <span className="marker">My corner</span>
+            <span className="marker">What sets me apart</span>
             <h2 className="section-head__title">
               I sit at the <mark>bridge.</mark>
             </h2>
