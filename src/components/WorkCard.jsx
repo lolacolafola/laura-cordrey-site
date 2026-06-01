@@ -11,7 +11,12 @@ import { Link } from 'react-router-dom'
 
 export default function WorkCard({ caseStudy }) {
   const cs = caseStudy
-  const lightBg = cs.media?.heroBackground === 'white'
+  // Prefer cardImage (campaign visual) for the index grid. Fall back to the
+  // article hero image. heroBackground only applies when the card is using
+  // that hero image as a fallback — campaign images don't need the light mat.
+  const cardSrc = cs.media?.cardImage || cs.media?.image
+  const cardAlt = cs.media?.cardImageAlt || cs.media?.imageAlt
+  const lightBg = !cs.media?.cardImage && cs.media?.heroBackground === 'white'
 
   return (
     <Link
@@ -20,8 +25,8 @@ export default function WorkCard({ caseStudy }) {
     >
       <div className="work-card__media">
         <img
-          src={import.meta.env.BASE_URL + cs.media.image}
-          alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
+          src={import.meta.env.BASE_URL + cardSrc}
+          alt={cardAlt || `${cs.company} — ${cs.headline}`}
           loading="lazy"
         />
       </div>
