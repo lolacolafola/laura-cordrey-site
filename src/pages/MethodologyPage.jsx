@@ -38,7 +38,7 @@ const stages = [
     num: '05',
     name: 'Advocacy',
     kicker: 'Fans become growth.',
-    body: 'Fans recruit, refer and create. The community stops being a retention asset and starts being an acquisition channel that beats paid media on cost and quality. 60M+ UGC views at Ubisoft, 1M members at €5&nbsp;CAC at BlaBlaCar, $32K in three hours at US Mobile — all came from this stage.',
+    body: 'Fans recruit, refer and create. The community stops being a retention asset and becomes an acquisition channel — one that beats paid media on cost <em>and</em> quality. I design the programs that turn the loyal into the loud.',
     tags: ['Referral programs', 'Creator programs', 'Ambassador programs', 'UGC engines', 'Earned media'],
   },
 ]
