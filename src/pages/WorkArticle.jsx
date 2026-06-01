@@ -88,7 +88,6 @@ export default function WorkArticle() {
         <ul>
           {cs.stats.map((s, i) => (
             <li key={i} className="article__stat">
-              <span className="marker article__stat-num">[{String(i + 1).padStart(2, '0')}]</span>
               <span className="article__stat-value">{s.value}</span>
               <span className="marker article__stat-label">{s.label}</span>
             </li>
