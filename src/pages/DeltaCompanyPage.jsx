@@ -61,16 +61,16 @@ export default function DeltaCompanyPage() {
             <span className="marker delta__stat-label">UGC views from members</span>
           </li>
           <li>
+            <span className="delta__stat-value">50% → 80%</span>
+            <span className="marker delta__stat-label">Sentiment swing<br />(neg → pos, via Ghost Experience)</span>
+          </li>
+          <li>
             <span className="delta__stat-value">130</span>
             <span className="marker delta__stat-label">Invited members</span>
           </li>
           <li>
             <span className="delta__stat-value">14</span>
             <span className="marker delta__stat-label">Languages</span>
-          </li>
-          <li>
-            <span className="delta__stat-value">5</span>
-            <span className="marker delta__stat-label">Community clusters</span>
           </li>
         </ul>
       </section>
@@ -396,17 +396,54 @@ export default function DeltaCompanyPage() {
         </div>
       </div>
 
-      {/* ─── FEEDBACK LOOP / RESULTS ──────────────────────────── */}
+      {/* ─── [09] GHOST EXPERIENCE — the loop, working ────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[09] · The outcome</span>
+          <span className="marker">[09] · The loop, in action</span>
+          <h2 className="delta__section-title">The Ghost Experience update.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Ghost Recon Breakpoint launched badly. Community sentiment
+            was {' '}<mark>50% negative</mark> out of the gate.
+          </p>
+          <p>
+            I pivoted Delta Company into a real feedback engine. Workshops,
+            playtests, early-capture sessions — Delta members and the
+            Studio working side by side. Their feedback fed directly into
+            the <strong>Ghost Experience</strong> live update — a top-to-bottom
+            re-tuning of the game shaped by what members had told us.
+          </p>
+          <p>
+            Sentiment climbed to {' '}<mark>80% positive</mark>. A
+            community-led save of a major AAA launch.
+          </p>
+        </div>
+      </section>
+
+      <figure className="delta__plate delta__plate--light">
+        <img
+          src={BASE + 'case-studies/delta/06-ghost-experience.png'}
+          alt="Tom Clancy's Ghost Recon Breakpoint — Ghost Experience update key art. The live update shaped by Delta Company member feedback."
+        />
+        <figcaption className="container">
+          The Ghost Experience update — the live re-tuning of Ghost Recon
+          Breakpoint that Delta member feedback directly shaped.
+        </figcaption>
+      </figure>
+
+      {/* ─── [10] TAKEAWAY ────────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[10] · The takeaway</span>
           <h2 className="delta__section-title">A feedback loop.</h2>
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
             Delta Company didn&rsquo;t just give the Studio a deeper
             understanding of core community feedback — it took members
-            on a journey that produced educated, considered UGC at scale.
+            on a journey that produced educated, considered UGC at scale,
+            and a live update that brought the community back.
           </p>
           <p>
             On my side, it unlocked a continuous stream of impactful
