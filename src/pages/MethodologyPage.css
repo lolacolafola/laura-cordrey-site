@@ -124,6 +124,40 @@
   text-transform: uppercase;
   opacity: 0.85;
 }
+
+/* Make each proof cell a clickable portal to its case study */
+.meth-proof__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--ink);
+  height: 100%;
+  transition: color var(--transition);
+}
+.meth-proof__view {
+  color: var(--ink-muted);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  transition: color var(--transition);
+}
+.meth-proof__link:hover .meth-proof__view { color: var(--accent); }
+.meth-proof__link:hover .meth-proof__logo img {
+  filter: grayscale(1) brightness(0) invert(0.98) opacity(1);
+}
+.meth-proof__link:hover .meth-proof__logo-text { opacity: 1; }
+
+/* ─── REAL EXAMPLES (reuses .work-grid from HomePage.css) ─── */
+.meth-examples {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+}
+.meth-examples__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  margin-top: var(--space-3);
+  max-width: 60ch;
+}
 .meth-proof__stat {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 4vw, 3.5rem);
