@@ -13,30 +13,54 @@ const range = [
   { word: 'Growth',    note: 'Organic, influencer, UGC.' },
 ]
 
-// YouTube IDs pulled from laurajanecordrey.wixsite.com/main/key-speaking
+// Featured 3 — one per format (stage, studio, livestream)
 const speaking = [
   {
     youtube: 'aSyZa3b58QA',
-    headline: 'Ubisoft E3 2019',
-    venue: 'Game launch · Live stage presentation · Los Angeles',
+    headline: 'Live stage presentation',
+    venue: 'E3 2019 · Ubisoft press conference · Los Angeles',
     detail:
       'I went on the E3 stage to premiere Delta&nbsp;Company — Ubisoft’s first creator advocacy program — live to <mark>millions of viewers</mark>. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
   },
   {
     youtube: 'ufsGn7eXY3k',
-    headline: 'Inside Xbox',
-    venue: 'Live TV interview · Seattle',
+    headline: 'Live studio interview',
+    venue: 'Inside Xbox · Seattle',
     detail:
       'I travelled to Seattle for a live <strong>Inside Xbox</strong> segment to detail a new content update for Ghost&nbsp;Recon Wildlands — on-camera, live, no second takes.',
   },
   {
     youtube: 'P2NYC5cQIZA',
-    headline: 'Ghost Recon Breakpoint · World premiere',
-    venue: 'Livestream host · Global announce',
+    headline: 'Livestream I produced',
+    venue: 'Ghost Recon Breakpoint · World-premiere announce',
     detail:
       'Part of the core team to present <strong>Ghost Recon Breakpoint</strong> in the world-premiere announce livestream. The launch moment that opened the franchise to a new generation of fans.',
   },
 ]
+
+// Spokesperson reel — multiple videos where Laura is the on-camera voice.
+// Drop YouTube IDs into the `youtube` field as Laura provides them.
+const spokespersonReel = [
+  { youtube: null, caption: 'Spokesperson clip · TBD' },
+  { youtube: null, caption: 'Spokesperson clip · TBD' },
+  { youtube: null, caption: 'Spokesperson clip · TBD' },
+  { youtube: null, caption: 'Spokesperson clip · TBD' },
+]
+
+// Videos Laura produced AND spoke on (both roles, same project).
+const producedSpokeOn = [
+  { youtube: null, caption: 'Produced & narrated · TBD' },
+  { youtube: null, caption: 'Produced & narrated · TBD' },
+  { youtube: null, caption: 'Produced & narrated · TBD' },
+]
+
+// Voice over example — a video Laura made for another company.
+const voiceOverExample = {
+  youtube: null,
+  title: 'Voice over example',
+  detail:
+    'A brand film I narrated for another company. Native English, fluent French — recorded studio or remote.',
+}
 
 const career = [
   {
@@ -185,9 +209,9 @@ export default function AboutPage() {
             <span className="marker">Keynote &amp; public speaking</span>
             <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
-              <mark>50+ speaking moments</mark> across twelve years — from
-              E3 stages to Inside Xbox, from executive rooms to live
-              community broadcasts. Here are a few.
+              <mark>50+ speaking moments</mark> across twelve years. From
+              the Los Angeles E3 stages to Inside Xbox, from executive
+              rooms to live community broadcasts. Here are a few.
             </p>
           </div>
 
@@ -238,17 +262,80 @@ export default function AboutPage() {
             </ol>
           </div>
 
-          {/* Voice over capability */}
+          {/* Spokesperson reel — additional on-camera clips */}
+          <div className="about-speaking__reel">
+            <span className="marker">More on camera</span>
+            <h3 className="about-speaking__reel-title">Spokesperson reel.</h3>
+            <ul className="about-speaking__reel-grid">
+              {spokespersonReel.map((v, i) => (
+                <li key={i} className="about-speaking__reel-cell">
+                  {v.youtube ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${v.youtube}`}
+                      title={v.caption}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="about-speaking__placeholder" aria-hidden="true">
+                      <span>Clip · TBD</span>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Videos Laura produced AND spoke on */}
+          <div className="about-speaking__reel">
+            <span className="marker">Behind and in front of the camera</span>
+            <h3 className="about-speaking__reel-title">Produced &amp; spoke on.</h3>
+            <ul className="about-speaking__reel-grid">
+              {producedSpokeOn.map((v, i) => (
+                <li key={i} className="about-speaking__reel-cell">
+                  {v.youtube ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${v.youtube}`}
+                      title={v.caption}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="about-speaking__placeholder" aria-hidden="true">
+                      <span>Clip · TBD</span>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Voice over example */}
           <div className="about-speaking__voiceover">
             <span className="marker">Also</span>
             <h3 className="about-speaking__voiceover-title">
-              I voice my own videos.
+              I voice videos for other brands too.
             </h3>
             <p className="about-speaking__voiceover-detail">
-              Narration, brand films, voice-over for product launches and
-              campaign cuts. Native English, fluent French — recorded studio
-              or remote.
+              {voiceOverExample.detail}
             </p>
+            <div className="about-speaking__voiceover-video">
+              {voiceOverExample.youtube ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${voiceOverExample.youtube}`}
+                  title={voiceOverExample.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              ) : (
+                <div className="about-speaking__placeholder" aria-hidden="true">
+                  <span>VO example · TBD</span>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="about-speaking__cta">
