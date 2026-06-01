@@ -9,10 +9,9 @@ import { Link } from 'react-router-dom'
  * Styles live in src/pages/HomePage.css (.work-card, .work-card--light).
  */
 
-export default function WorkCard({ caseStudy, index }) {
+export default function WorkCard({ caseStudy }) {
   const cs = caseStudy
   const lightBg = cs.media?.heroBackground === 'white'
-  const num = String(index + 1).padStart(2, '0')
 
   return (
     <Link
@@ -25,7 +24,6 @@ export default function WorkCard({ caseStudy, index }) {
           alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
           loading="lazy"
         />
-        <span className="work-card__num marker">[{num}]</span>
       </div>
       <div className="work-card__body">
         <div className="work-card__row">

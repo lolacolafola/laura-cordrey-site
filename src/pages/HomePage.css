@@ -261,25 +261,6 @@
   padding: var(--space-7);
 }
 
-.work-card__num {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  color: var(--surface);
-  background: rgba(21, 17, 15, 0.6);
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid rgba(239, 233, 220, 0.2);
-  border-radius: var(--radius);
-  font-size: var(--fs-marker);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.work-card--light .work-card__num {
-  color: var(--surface);
-  background: rgba(21, 17, 15, 0.85);
-  border-color: transparent;
-}
-
 .work-card__body {
   display: flex;
   flex-direction: column;
