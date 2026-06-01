@@ -370,14 +370,14 @@ export default function DeltaCompanyPage() {
       </section>
 
       <div className="container">
-        <div className="delta__gallery">
+        <div className="delta__gallery delta__gallery--three">
           <figure>
             <img
               src={BASE + 'case-studies/delta/10-character-delta-tshirt.jpg'}
               alt="In-game character wearing a Delta Company branded t-shirt — exclusive Ghost Recon Breakpoint customisation for members"
               loading="lazy"
             />
-            <figcaption className="marker">A members&rsquo; in-game branded tee.</figcaption>
+            <figcaption className="marker">Members&rsquo; in-game branded tee.</figcaption>
           </figure>
           <figure>
             <img
@@ -386,6 +386,14 @@ export default function DeltaCompanyPage() {
               loading="lazy"
             />
             <figcaption className="marker">A members-only branded car.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={BASE + 'case-studies/delta/11-character-delta-hat.png'}
+              alt="In-game character wearing a Delta Company branded cap and carrying a Delta-stencilled weapon — exclusive Ghost Recon Breakpoint customisations for members"
+              loading="lazy"
+            />
+            <figcaption className="marker">Delta cap + branded weapon — members only.</figcaption>
           </figure>
         </div>
       </div>
