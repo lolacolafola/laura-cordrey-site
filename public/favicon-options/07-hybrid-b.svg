@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#15110F"/>
+  <text x="26" y="44" font-family="Manrope, system-ui, sans-serif" font-size="34" font-weight="800" text-anchor="middle" fill="#EFE9DC" letter-spacing="-1">LC</text>
+  <circle cx="50" cy="42" r="5" fill="#C8362B"/>
+</svg>

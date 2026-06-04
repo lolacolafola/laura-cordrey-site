@@ -28,18 +28,25 @@
 
 /* ─── COVER ──────────────────────────────────────────────── */
 .delta__cover {
-  padding-top: var(--space-9);
+  padding-top: var(--space-7);
   padding-bottom: var(--space-8);
   border-bottom: 1px solid var(--hairline);
 }
 .delta__case-kicker {
   color: var(--accent);
 }
+.delta__case-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
 .delta__cover-title {
   font-size: clamp(2.5rem, 7vw, 6rem);
   line-height: 1;
   letter-spacing: -0.03em;
-  margin: var(--space-3) 0 var(--space-6);
+  margin: var(--space-5) 0 var(--space-6);
   max-width: 16ch;
 }
 .delta__cover-lede {
@@ -59,6 +66,13 @@
   aspect-ratio: 21 / 9;
   object-fit: cover;
   display: block;
+}
+/* For hero images that aren't 21:9-native (e.g. square brand marks).
+   Letterboxes the image against a dark background; the image's own dark
+   surround usually makes the letterboxing read as edge-to-edge. */
+.delta__hero--contain img {
+  object-fit: contain;
+  background: var(--bg-deep);
 }
 
 /* ─── STATS ──────────────────────────────────────────────── */
@@ -93,6 +107,7 @@
 }
 .delta__stat-label { color: var(--ink-muted); }
 @media (max-width: 860px) {
+  /* 4 stats → clean 2×2 grid on mobile. */
   .delta__stats ul { grid-template-columns: repeat(2, 1fr); }
   .delta__stats li:nth-child(2n) { border-right: 0; }
   .delta__stats li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
@@ -100,12 +115,20 @@
 
 /* ─── SECTION ────────────────────────────────────────────── */
 .delta__section {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-7);
+  /* Symmetric padding so every section divider has balanced space above
+     and below the hairline. Previously asymmetric (space-9 top,
+     space-7 bottom) which created inconsistent rhythm depending on
+     what preceded the section. */
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
   display: grid;
   grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
   gap: var(--space-7);
   align-items: start;
+  /* Editorial divider rule: every numbered section opens with a hairline,
+     matching the existing rule already applied to .delta__video-section.
+     Banners (stats, ratio, result) keep their own top+bottom hairlines. */
+  border-top: 1px solid var(--hairline);
 }
 .delta__section-head {
   display: flex;
@@ -135,6 +158,7 @@
 .delta__section-body p { margin: 0; }
 .delta__section-body strong { color: var(--ink); font-weight: 700; }
 
+
 .delta__section-body--takeaway {
   font-weight: 600;
 }
@@ -146,18 +170,127 @@
 
 /* ─── PLATE (image with caption) ─────────────────────────── */
 .delta__plate {
-  margin: var(--space-8) 0;
-  padding: 0;
+  /* Match container width — keeps plates in rhythm with the carousel,
+     video frames and section text instead of going full-bleed. */
+  width: 100%;
+  max-width: var(--max-w);
+  margin: var(--space-8) auto;
+  padding-inline: var(--gutter);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
-.delta__plate img {
+/* Figcaption already has `.container` in the JSX; the parent now provides
+   the gutter, so reset the caption's own padding to avoid double-gutter. */
+.delta__plate figcaption.container {
+  padding-inline: 0;
+  max-width: none;
+}
+.delta__plate img,
+.delta__plate video {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
   background: var(--bg-deep);
+}
+.delta__plate--light video {
+  background: var(--surface);
+  object-fit: contain;
+  padding: clamp(var(--space-4), 4vw, var(--space-7));
+}
+.delta__brand-carousel {
+  margin: var(--space-8) auto;
+}
+/* When a section is adjacent to a float (carousel/plate/grid), shrink the
+   float's margin on the section-facing side (so the float's caption gets a
+   small amount of breathing room above the section's hairline divider —
+   rather than sitting flush). Combined with the reduced section
+   padding-top below, the total gap stays comfortable, ~56px instead of
+   the 160px we'd get with both at their defaults. */
+.delta__brand-carousel:has(+ .delta__section),
+.delta__plate:has(+ .delta__section),
+.delta__social-grid:has(+ .delta__section) {
+  margin-bottom: var(--space-5);
+}
+.delta__section + .delta__brand-carousel,
+.delta__section + .delta__plate,
+.delta__section + .delta__social-grid {
+  margin-top: var(--space-5);
+}
+/* When a section is preceded by a float, reduce its internal padding-top.
+   The float provided its own breathing room above the section, so the
+   default space-9 (96px) becomes cavernous. Float-adjacent sections
+   only need a tight gap between the hairline divider and the kicker. */
+.delta__brand-carousel + .delta__section,
+.delta__plate + .delta__section,
+.delta__social-grid + .delta__section {
+  padding-top: var(--space-6);
+}
+/* Two square auto-loop social videos side-by-side, stacked on mobile.
+   Used for showcase / social-asset moments inside a case study. */
+.delta__social-grid {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: var(--space-8) auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+/* 4-up variant: 2x2 grid on desktop, still squares. */
+.delta__social-grid--four {
+  grid-template-columns: 1fr 1fr;
+}
+.delta__social-grid video {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #000;
+  border-radius: var(--radius);
+}
+.delta__social-credit {
+  grid-column: 1 / -1;
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .delta__social-grid { grid-template-columns: 1fr; }
+}
+/* Brand-carousel slides sit on pure black so square/portrait images that
+   letterbox don't reveal the warmer --bg-deep tone. Small inset padding
+   gives every image a deliberate frame instead of edge-to-edge. */
+.delta__brand-carousel .carousel__slide {
+  background: #000;
+  padding: clamp(var(--space-3), 2vw, var(--space-5));
+}
+/* Marker-style outbound link used inside section body copy
+   (e.g. "Play the original game →"). */
+.delta__play-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--edge);
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.delta__play-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.delta__play-note {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--ink-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  line-height: 1.5;
 }
 .delta__plate--light img {
   background: var(--surface);
@@ -169,7 +302,7 @@
 }
 .delta__plate figcaption {
   color: var(--ink-muted);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   line-height: 1.55;
 }
 
@@ -184,6 +317,20 @@
 }
 .delta__video-section .delta__section-head {
   position: static;
+}
+/* Breathing-room modifier: gives the section a noticeably bigger top gap.
+   Used for the [06] How-it-works video so it has space after the E3 photo. */
+.delta__video-section--breathe {
+  margin-top: var(--space-9);
+  padding-top: var(--space-9);
+}
+/* Continuation modifier — used when a section visually belongs to the one
+   above (e.g. the in-game half of the welcome pack, or a video that ends a
+   text section). No top divider, tighter top padding. */
+.delta__section--continuation,
+.delta__video-section--continuation {
+  border-top: 0;
+  padding-top: var(--space-5);
 }
 .delta__video-context {
   font-size: var(--fs-body-l);
@@ -209,6 +356,42 @@
   border: 0;
   display: block;
   z-index: 1;
+}
+/* Thumbnail-link variant — clickable thumbnail that opens the video on
+   YouTube. Cleaner than an inline iframe; lets the editorial flow breathe. */
+.delta__video-thumbnail {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+}
+.delta__video-thumbnail img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition), filter var(--transition);
+}
+.delta__video-thumbnail-play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--surface);
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition), color var(--transition);
+}
+.delta__video-thumbnail:hover img {
+  transform: scale(1.02);
+  filter: brightness(0.85);
+}
+.delta__video-thumbnail:hover .delta__video-thumbnail-play {
+  transform: scale(1.1);
+  color: var(--accent);
 }
 
 /* ─── GALLERY (goodies grid) ─────────────────────────────── */
@@ -275,8 +458,10 @@
 
 /* ─── RATIO BANNER (exclusivity interstitial) ───────────── */
 .delta__ratio {
-  margin: var(--space-8) 0 0;
-  padding: var(--space-9) 0;
+  /* Match .delta__result: margin: 0, padding: space-8 0. Symmetric padding
+     keeps the rhythm consistent with sections and other callouts. */
+  margin: 0;
+  padding: var(--space-8) 0;
   background:
     repeating-linear-gradient(
       45deg,
@@ -342,7 +527,10 @@
 /* ─── RESULT BANNER (the receipt) ────────────────────────── */
 .delta__result {
   margin: 0;
-  padding: var(--space-9) 0;
+  /* Padding matches .delta__section's symmetric padding so the space
+     above and below the callout's hairlines matches the rest of the
+     page rhythm (no jarring jumps at callout boundaries). */
+  padding: var(--space-8) 0;
   background: var(--bg-deep);
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);

@@ -3,11 +3,13 @@ import caseStudies from '../data/caseStudies.js'
 import LogoBanner from '../components/LogoBanner.jsx'
 import WorkCard from '../components/WorkCard.jsx'
 import Counter from '../components/Counter.jsx'
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import './HomePage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
-const identities = ['Storyteller', 'Brand Strategist', 'Community Growth']
+const identities = ['Storyteller', 'Brand Strategist', 'Community Growth', 'Vibe Coder']
 
 const heroStats = [
   { value: 100, suffix: 'M+', label: 'Audiences reached' },
@@ -17,7 +19,7 @@ const heroStats = [
 
 // One featured card per brand. Pulls the primary case study and pairs it with
 // a one-line "big stat" overlay (separate from the article hook).
-const featuredIds = ['ubisoft', 'us-mobile', 'blablacar', 'azarus']
+const featuredIds = ['ubisoft-delta-company', 'us-mobile-dark-star', 'ubisoft-siege-champions', 'blablacar-live-nation']
 const featured = featuredIds
   .map((id) => caseStudies.find((c) => c.id === id))
   .filter(Boolean)
@@ -30,14 +32,26 @@ const disciplines = [
 ]
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Laura Cordrey — Strategic consultant · Fan-Led Growth · Brand · Product · Community · Growth',
+    description:
+      'Laura Cordrey is a senior strategic consultant building fan-led growth engines for consumer, tech and gaming brands. Case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation.',
+    canonical: pageUrl(''),
+    ogType: 'website',
+    jsonLd: authorJsonLd(),
+  })
+
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
       <section className="hero">
         <div className="container hero__inner">
           <div className="hero__top">
-            <span className="marker">Vol. 01 · Paris · Since 2013</span>
-            <span className="marker hero__top-right">Available · 2026</span>
+            <span className="marker">London · Paris · New York · Since 2013</span>
+            {/* TODO: turn "EN · FR" into an actual language toggle
+                button once French translations exist. For now it reads
+                as a capability marker. */}
+            <span className="marker hero__top-right">EN · FR</span>
           </div>
 
           <div className="hero__identities" aria-hidden="true">
@@ -101,7 +115,7 @@ export default function HomePage() {
       <section className="work">
         <div className="container">
           <div className="section-head">
-            <span className="marker">Selected work · 2014 — 2026</span>
+            <span className="marker">Selected work · 2013–2026</span>
             <h2 className="section-head__title">The work.</h2>
           </div>
 
@@ -126,7 +140,7 @@ export default function HomePage() {
             <span className="marker">The methodology</span>
             <h2 className="method__title">
               Brand. Product.<br />
-              Community. <em className="accent">Growth.</em>
+              Community. <em className="accent">Growth</em>.
             </h2>
             <p className="method__copy">
               Most strategists work in one of these. A few work across two.
@@ -158,7 +172,7 @@ export default function HomePage() {
         <div className="container final-cta__inner">
           <span className="marker">Let&rsquo;s work together</span>
           <h2 className="final-cta__title">
-            If your audience matters, <em className="accent">we should talk.</em>
+            If your audience matters, <em className="accent">we should talk</em>.
           </h2>
           <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
             Book a 30-min call <span aria-hidden="true">→</span>

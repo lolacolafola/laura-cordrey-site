@@ -14,6 +14,7 @@ const BASE = import.meta.env.BASE_URL
 export default function ArticleCarousel({ items }) {
   const trackRef = useRef(null)
   const [index, setIndex] = useState(0)
+  const programmaticTarget = useRef(null)
   const count = items.length
 
   const scrollTo = (i) => {
@@ -22,6 +23,9 @@ export default function ArticleCarousel({ items }) {
     const clamped = Math.max(0, Math.min(count - 1, i))
     const slide = track.children[clamped]
     if (!slide) return
+    // Lock the index to the target while the smooth scroll runs so the
+    // scroll listener can't briefly flip the caption back to the old slide.
+    programmaticTarget.current = clamped
     track.scrollTo({
       left: slide.offsetLeft - track.offsetLeft,
       behavior: 'smooth',
@@ -40,6 +44,14 @@ export default function ArticleCarousel({ items }) {
         raf = null
         const slideWidth = track.children[0]?.offsetWidth || 1
         const next = Math.round(track.scrollLeft / slideWidth)
+        // If we're mid-programmatic-scroll, ignore intermediate readings;
+        // clear the lock once we've actually settled on the target.
+        if (programmaticTarget.current !== null) {
+          if (next === programmaticTarget.current) {
+            programmaticTarget.current = null
+          }
+          return
+        }
         setIndex((prev) => (next === prev ? prev : next))
       })
     }
@@ -55,16 +67,32 @@ export default function ArticleCarousel({ items }) {
   return (
     <div className="carousel">
       <div ref={trackRef} className="carousel__track" aria-roledescription="carousel">
-        {items.map((g, i) => (
-          <figure
-            className="carousel__slide"
-            key={i}
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${count}`}
-          >
-            <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
-          </figure>
-        ))}
+        {items.map((g, i) => {
+          // Detect video files by extension so slides can mix images and
+          // video. Videos autoplay muted/looped, same as the social grids.
+          const isVideo = /\.(mp4|webm|mov)$/i.test(g.src)
+          return (
+            <figure
+              className="carousel__slide"
+              key={i}
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${count}`}
+            >
+              {isVideo ? (
+                <video
+                  src={BASE + g.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label={g.alt || ''}
+                />
+              ) : (
+                <img src={BASE + g.src} alt={g.alt || ''} loading="lazy" />
+              )}
+            </figure>
+          )
+        })}
       </div>
 
       <div className="carousel__footer">
@@ -72,6 +100,9 @@ export default function ArticleCarousel({ items }) {
           {currentCaption || ' '}
         </p>
         <div className="carousel__controls">
+          <span className="carousel__counter" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
+          </span>
           <button
             type="button"
             className="carousel__nav"
