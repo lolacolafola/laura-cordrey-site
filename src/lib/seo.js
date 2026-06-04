@@ -83,9 +83,28 @@ export function authorJsonLd() {
 // Use to expose each principle/takeaway as a structured Q/A pair —
 // AIO engines (Google AI Overviews, Perplexity, ChatGPT) preferentially
 // pull from FAQPage schema when answering user queries.
-export function caseStudyJsonLd({ slug, title, description, image, datePublished, about, keywords, principles, faqItems }) {
+export function caseStudyJsonLd({ slug, title, description, image, datePublished, about, keywords, principles, faqItems, client, role, market, sector }) {
   const canonical = pageUrl(`work/${slug}`)
   const imageUrl = assetUrl(image)
+
+  // Prepend the client as a structured Organization so the case file is
+  // entity-linked to the brand — engines treat this as "this Article is
+  // about Organization X" rather than just topic tags.
+  const aboutList = client
+    ? [{ '@type': 'Organization', name: client }, ...(about || [])]
+    : about
+
+  // Per-case author: same Person, but with jobTitle reflecting Laura's
+  // role on this engagement so LLMs can answer "what was Laura's role at
+  // [client]?" from structured data, not prose inference.
+  const articleAuthor = role
+    ? {
+        '@type': 'Person',
+        name: AUTHOR.name,
+        url: AUTHOR.url,
+        jobTitle: client ? `${role} at ${client}` : role,
+      }
+    : { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url }
 
   const article = {
     '@type': 'Article',
@@ -93,11 +112,7 @@ export function caseStudyJsonLd({ slug, title, description, image, datePublished
     description,
     image: imageUrl ? [imageUrl] : undefined,
     datePublished,
-    author: {
-      '@type': 'Person',
-      name: AUTHOR.name,
-      url: AUTHOR.url,
-    },
+    author: articleAuthor,
     publisher: {
       '@type': 'Person',
       name: AUTHOR.name,
@@ -107,7 +122,14 @@ export function caseStudyJsonLd({ slug, title, description, image, datePublished
       '@type': 'WebPage',
       '@id': canonical,
     },
-    about,
+    about: aboutList,
+    // `audience` (not spatialCoverage) — this is the market the work reached,
+    // not a geography the article is about. For region-specific cases swap
+    // `name` for `geographicArea: { '@type': 'AdministrativeArea', name: ... }`.
+    ...(market ? { audience: { '@type': 'Audience', name: market } } : {}),
+    // `articleSection` is the standard publication-section field — the
+    // sector/category bucket engines use to classify the case file.
+    ...(sector ? { articleSection: sector } : {}),
     keywords: [...(keywords || []), ...(principles || [])].join(', '),
     inLanguage: 'en',
     // Speakable: tells voice assistants (Google Assistant, Siri) which

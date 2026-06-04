@@ -28,6 +28,7 @@ const caseStudies = [
     year: '2019–2020',
     role: 'International Community Developer',
     accent: '#4A5D3F',
+    sectors: ['Gaming'],
     tags: ['Community Programs', 'Advocacy', 'Brand', 'Live Launch'],
     stats: [
       { value: '5',    label: 'Community clusters' },
@@ -55,6 +56,7 @@ const caseStudies = [
     year: '2020\u20132021',
     role: 'Sr. Community Engagement Manager',
     accent: '#7CBCC9',
+    sectors: ['Gaming'],
     tags: ['Creator Programs', 'Community', 'AAA Gaming'],
     stats: [
       { value: '50M+', label: 'UGC views, year one' },
@@ -83,6 +85,7 @@ const caseStudies = [
     year: '2024',
     role: 'Fractional Growth & Community Lead',
     accent: '#4BBFB0',
+    sectors: ['Telco'],
     tags: ['Revenue', 'Gamification', 'PLG'],
     stats: [
       { value: '$32K', label: 'Sales in 3 hrs' },
@@ -141,6 +144,7 @@ const caseStudies = [
     year: '2021\u20132022',
     role: 'Head of Growth',
     accent: '#A47BFF',
+    sectors: ['Gaming', 'Web3'],
     tags: ['Streamer Programs', 'Live Event Sponsorship', 'Brand Activation', 'Interactive Creative'],
     stats: [
       { value: '500K', label: 'Peak concurrent viewers' },
@@ -172,6 +176,7 @@ const caseStudies = [
     year: '2022\u20132023',
     role: 'VP Marketing',
     accent: '#7C5BFF',
+    sectors: ['Gaming', 'Web3'],
     tags: ['Product Pivot', 'Gamified Ads', 'Enterprise Sales', 'Token Launch', 'Web3'],
     stats: [
       { value: '$2',   label: 'CPI on launch campaigns' },
@@ -205,6 +210,7 @@ const caseStudies = [
     year: '2013\u20132016',
     role: 'UK Community Manager',
     accent: '#F4B53A',
+    sectors: ['Mobility'],
     tags: ['Partnerships', 'Brand Activation', 'Grassroots'],
     stats: [
       { value: '3', label: 'Major festivals' },
@@ -235,6 +241,7 @@ const caseStudies = [
     year: '2024',
     role: 'Brand Campaign Producer',
     accent: '#FF6B5B',
+    sectors: ['Telco'],
     tags: ['Brand Campaign', 'Stunt Creative', 'Cultural Moment'],
     stats: [
       { value: '55%', label: 'Video view-through rate (Meta)' },

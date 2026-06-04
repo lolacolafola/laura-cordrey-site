@@ -42,7 +42,11 @@ export default function UbisoftSiegeChampionsPage() {
         '200 invite-only creators across 18 markets drove 50M+ UGC views in year one with $0 media spend. The Delta Company playbook applied to Rainbow Six Siege.',
       image: 'case-studies/ubisoft-siege-champions-program-banner.png',
       datePublished: '2021-01-15',
-      about: ['Fan-Led Growth', 'Creator Programs', 'Ubisoft', 'Rainbow Six Siege', 'Community Advocacy'],
+      client: 'Ubisoft',
+      role: 'Senior Community Engagement Manager',
+      market: 'Global',
+      sector: 'Gaming',
+      about: ['Fan-Led Growth', 'Creator Programs', 'Rainbow Six Siege', 'Community Advocacy'],
       keywords: ['fan-powered growth engine', 'creator program', 'Ubisoft', 'Rainbow Six Siege', 'community advocacy'],
       principles: [
         'Build with the existing structure, not against it',
@@ -83,7 +87,7 @@ export default function UbisoftSiegeChampionsPage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">Ubisoft · 2020–2021 · Global</span>
+            <span className="marker">Ubisoft · Global · 2020–2021</span>
           </div>
           <h1 className="delta__cover-title">
             Building <mark>Siege Champions Program</mark>.
