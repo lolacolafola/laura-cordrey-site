@@ -48,7 +48,6 @@ export default function WorkCard({ caseStudy, slot }) {
       <div className="work-card__body">
         <div className="work-card__row">
           <span className="work-card__brand">{cs.company}</span>
-          <span className="marker work-card__year">{cs.year}</span>
         </div>
         <p className="work-card__hook">{cs.hook}</p>
         <span className="work-card__view marker">

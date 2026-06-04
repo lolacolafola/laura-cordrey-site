@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import FlywheelDiagram from '../components/FlywheelDiagram.jsx'
 import { stageIcons } from '../components/StageIcons.jsx'
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl, methodologyJsonLd } from '../lib/seo.js'
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -46,9 +48,9 @@ const stages = [
 const BASE = import.meta.env.BASE_URL
 
 const proofPoints = [
-  { brand: 'Ubisoft',    slug: 'ubisoft',   logo: null,                  stat: '$500K+', label: 'Earned media · $0 ad spend' },
-  { brand: 'BlaBlaCar',  slug: 'blablacar', logo: 'logos/blablacar.png', stat: '1M',     label: 'UK members · €5 CAC' },
-  { brand: 'US Mobile',  slug: 'us-mobile', logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Revenue in 3 hours' },
+  { brand: 'Ubisoft',    slug: 'ubisoft-siege-champions', logo: null,    stat: '50M+',   label: 'UGC views · $0 spend' },
+  { brand: 'BlaBlaCar',  slug: 'blablacar-live-nation', logo: 'logos/blablacar.png', stat: '50%+',   label: 'Behaviour change at festivals' },
+  { brand: 'US Mobile',  slug: 'us-mobile-dark-star', logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Sales in 3 hours' },
   { brand: 'Azarus',     slug: 'azarus',    logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
 ]
 
@@ -71,6 +73,38 @@ const fits = [
 ]
 
 export default function MethodologyPage() {
+  useDocumentMeta({
+    title: 'The Fandom Flywheel™ · A five-stage fan-led growth methodology by Laura Cordrey',
+    description:
+      'My five-stage system for turning passive audiences into the kind of fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Drawn from thirteen years across brand, product, community and growth at Ubisoft, BlaBlaCar, US Mobile and Azarus.',
+    canonical: pageUrl('methodology'),
+    ogType: 'article',
+    jsonLd: methodologyJsonLd({
+      stages: [
+        {
+          name: 'Activation — The hook that sticks',
+          text: 'The first time someone hits real value — fast enough they keep going. Most onboarding explains. The good kind demonstrates. Activation is the difference between someone who installed and someone who arrived.',
+        },
+        {
+          name: 'Habit — Loops that compound',
+          text: 'Built into the routine. Not motivated, not gamified-to-death — engineered to be the easier choice on day 30. I find the loops already trying to form and sharpen them.',
+        },
+        {
+          name: 'Belonging — Moments that bond',
+          text: 'When a user goes from "I use this" to "this is my place". That shift is almost always social — and it almost always happens in a specific moment. I build the spaces, rituals and events those moments live inside.',
+        },
+        {
+          name: 'Identity — Where UGC is born',
+          text: 'When the brand becomes part of how someone sees themselves — and how they want to be seen. Users start making things with you. The most valuable UGC, the loyalest customers and the highest LTV all originate here.',
+        },
+        {
+          name: 'Advocacy — Fans become growth',
+          text: 'Fans recruit, refer and create. The community stops being a retention asset and becomes an acquisition channel — one that beats paid media on cost and quality. I design the programs that turn the loyal into the loud.',
+        },
+      ],
+    }),
+  })
+
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
@@ -78,7 +112,7 @@ export default function MethodologyPage() {
         <div className="container meth-hero__inner">
           <div className="meth-hero__top">
             <span className="marker">Methodology · Vol. 01</span>
-            <span className="marker">5 stages · 12 years · 4 industries</span>
+            <span className="marker">5 stages · 4 industries</span>
           </div>
 
           <h1 className="meth-hero__title">
@@ -89,7 +123,7 @@ export default function MethodologyPage() {
           <div className="meth-hero__meta">
             <p className="meth-hero__lede">
               My five-stage system for turning passive audiences into the kind of
-              fans that build a business. I&rsquo;ve drawn it from twelve years of
+              fans that build a business. I&rsquo;ve drawn it from thirteen years of
               practice across brand, product, community and growth — at Ubisoft,
               BlaBlaCar, US&nbsp;Mobile and Azarus.
             </p>
@@ -225,7 +259,7 @@ export default function MethodologyPage() {
         <div className="container meth-cta__inner">
           <span className="marker">Want this for your brand?</span>
           <h2 className="meth-cta__title">
-            Let&rsquo;s map your flywheel. <em className="accent">Stage by stage.</em>
+            Let&rsquo;s map your flywheel. <em className="accent">Stage by stage</em>.
           </h2>
           <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
             Book a 30-min call <span aria-hidden="true">→</span>

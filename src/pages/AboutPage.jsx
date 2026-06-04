@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import './HomePage.css' // shared .btn / .section-head styles
 import './AboutPage.css'
 
@@ -16,11 +17,11 @@ const range = [
 // Featured 3 — one per format (stage, studio, livestream)
 const speaking = [
   {
-    youtube: 'aSyZa3b58QA',
+    youtube: 'P2tOLL_sAYk',
     headline: 'Live stage presentation',
     venue: 'E3 2019 · Ubisoft press conference · Los Angeles',
     detail:
-      '<mark>My idea. My program. My launch.</mark> I designed Delta&nbsp;Company — a first-of-its-kind creator advocacy program at Ubisoft — and unveiled it myself live on the E3 stage to millions of viewers. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
+      'I designed Delta&nbsp;Company — a <mark>first-of-its-kind community advocacy program</mark> at Ubisoft — and unveiled it live on the E3 stage to millions of viewers. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
   },
   {
     youtube: 'ufsGn7eXY3k',
@@ -126,10 +127,42 @@ const appearances = [
 
 export default function AboutPage() {
   useDocumentMeta({
-    title: 'About Laura Cordrey · Strategic consultant · Brand · Product · Community · Growth',
+    title: 'About Laura Cordrey · Strategic consultant · Fan-Led Growth · Brand, product, community, growth',
     description:
-      "Laura Cordrey is a strategic consultant building fan-powered growth engines. Twelve years across brand, product, community and growth at Ubisoft, BlaBlaCar, Amazon Games, Azarus, US Mobile and more.",
-    canonical: '/about',
+      "Laura Cordrey is a senior strategic consultant building fan-led growth engines. Twelve years across brand, product, community and growth at Ubisoft, BlaBlaCar, Amazon Games, Azarus, US Mobile and more.",
+    canonical: pageUrl('about'),
+    ogType: 'profile',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        // Extended Person schema for the About page — fuller than the
+        // homepage version (includes previous employers as alumniOf and
+        // works as creator-of).
+        {
+          ...authorJsonLd(),
+          mainEntityOfPage: pageUrl('about'),
+          worksFor: {
+            '@type': 'Organization',
+            name: 'Laura Cordrey — Fan-Led Growth Consulting',
+            url: pageUrl(''),
+          },
+          alumniOf: [
+            { '@type': 'Organization', name: 'Ubisoft' },
+            { '@type': 'Organization', name: 'BlaBlaCar' },
+            { '@type': 'Organization', name: 'Amazon Games' },
+            { '@type': 'Organization', name: 'Azarus' },
+            { '@type': 'Organization', name: 'US Mobile' },
+          ],
+        },
+        // AboutPage entity ties this page to the Person.
+        {
+          '@type': 'AboutPage',
+          '@id': pageUrl('about'),
+          name: 'About Laura Cordrey',
+          mainEntity: { '@type': 'Person', name: 'Laura Cordrey', url: pageUrl('') },
+        },
+      ],
+    },
   })
 
   return (
@@ -146,7 +179,7 @@ export default function AboutPage() {
             <div className="about-hero__text">
               <h1 className="about-hero__title">
                 Community growth wasn&rsquo;t a job ten years ago.{' '}
-                <mark>I made it one.</mark>
+                <mark>I made it one</mark>.
               </h1>
               <p className="about-hero__lede">
                 I&rsquo;ve built from nothing. I&rsquo;ve built from
@@ -154,7 +187,7 @@ export default function AboutPage() {
                 I spot the opportunities, make the connections, and find
                 the solutions that take brands{' '}
                 <mark>from forgettable to fan-powered</mark>. I&rsquo;ve
-                spent twelve years honing my craft at French and American
+                spent thirteen years honing my craft at French and American
                 conglomerates and startups — Ubisoft, Amazon, BlaBlaCar
                 to name a few — and now I&rsquo;m here to build it for
                 you.

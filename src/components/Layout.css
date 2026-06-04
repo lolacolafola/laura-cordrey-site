@@ -86,8 +86,95 @@
   color: var(--surface);
 }
 
+/* ─── Mobile hamburger button ───────────────────────────── */
+.nav__burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: var(--space-2);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 60; /* stays above the drawer so user can tap to close */
+}
+.nav__burger-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 1px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+/* Animate to an X when open. */
+.nav__burger.is-open .nav__burger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav__burger.is-open .nav__burger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav__burger.is-open .nav__burger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ─── Mobile drawer ──────────────────────────────────────── */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 55; /* below the burger button, above page content */
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+.nav__drawer.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.nav__drawer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8);
+}
+.nav__drawer-link {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.nav__drawer-link:hover { color: var(--accent); }
+.nav__drawer-link.is-active { color: var(--accent); }
+.nav__drawer-cta {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-marker);
+  letter-spacing: var(--tracking-marker);
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--edge);
+  color: var(--ink);
+  border-radius: var(--radius);
+}
+
 @media (max-width: 720px) {
   .nav__links { display: none; }
+  .nav__cta { display: none; }       /* shown inside the drawer instead */
+  .nav__burger { display: flex; }
+}
+/* Above 720px the drawer must stay hidden no matter the open-state flag. */
+@media (min-width: 721px) {
+  .nav__drawer { display: none; }
 }
 
 /* ─── Main + footer ──────────────────────────────────────── */

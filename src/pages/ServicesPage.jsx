@@ -1,4 +1,16 @@
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl, serviceJsonLd } from '../lib/seo.js'
+
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Services · Fan-Led Growth consulting · Laura Cordrey',
+    description:
+      'Strategic consulting for consumer, tech and gaming brands. Fan-led growth strategy, community, brand, product, and creator program design. Day rates and monthly retainers. Project pricing on a call.',
+    canonical: pageUrl('services'),
+    ogType: 'website',
+    jsonLd: serviceJsonLd(),
+  })
+
   return (
     <div className="container" style={{ padding: 'var(--space-9) 0', maxWidth: '880px' }}>
       <span className="marker">Services</span>

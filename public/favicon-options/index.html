@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Favicon options — LC</title>
+<style>
+  body { background:#15110F; color:#EFE9DC; font-family:Manrope,system-ui,sans-serif; padding:48px; margin:0; }
+  h1 { font-weight:800; letter-spacing:-0.02em; margin:0 0 8px; }
+  p.lead { color:#8A8078; margin:0 0 48px; max-width:60ch; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:32px; }
+  .card { background:#1F1A17; border:1px solid rgba(239,233,220,0.10); padding:24px; border-radius:2px; }
+  .label { color:#D4C896; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; margin:0 0 16px; }
+  .name { font-weight:700; font-size:1.1rem; margin:16px 0 4px; }
+  .desc { color:#8A8078; font-size:.875rem; margin:0; line-height:1.5; }
+  .sizes { display:flex; align-items:flex-end; gap:24px; padding:24px 0; border-bottom:1px solid rgba(239,233,220,0.10); }
+  .size { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .size img { display:block; }
+  .size span { color:#8A8078; font-size:.7rem; letter-spacing:.1em; }
+  .big { width:96px; height:96px; }
+  .med { width:32px; height:32px; }
+  .sm  { width:16px; height:16px; image-rendering:pixelated; }
+</style>
+</head>
+<body>
+  <h1>Favicon options</h1>
+  <p class="lead">Each shown at 96px (presentation), 32px (browser tab on hi-dpi), and 16px (browser tab actual). The 16px is the real test — if it reads there, it works.</p>
+
+  <h2 style="font-weight:800; letter-spacing:-0.02em; margin:0 0 24px; font-size:1.25rem; color:#D4C896;">Hybrids — LC with intentional red gesture</h2>
+  <div class="grid" style="margin-bottom:64px;">
+    <div class="card">
+      <p class="label">Hybrid A · square</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="06-hybrid-a.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="06-hybrid-a.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="06-hybrid-a.svg"><span>16</span></div>
+      </div>
+      <p class="name">Red square</p>
+      <p class="desc">Replaces the dot with a small red square — geometric, intentional, can't be misread as a notification dot. Survives 16px cleanly.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Hybrid B · bigger dot</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="07-hybrid-b.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="07-hybrid-b.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="07-hybrid-b.svg"><span>16</span></div>
+      </div>
+      <p class="name">Bigger red dot</p>
+      <p class="desc">Keeps the period reference but pumps the dot up so it's clearly a designed mark, not a stray pixel. Closer to the "talk about." gesture.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Hybrid C · underline</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="08-hybrid-c.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="08-hybrid-c.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="08-hybrid-c.svg"><span>16</span></div>
+      </div>
+      <p class="name">Red underline</p>
+      <p class="desc">LC sits on a red baseline — references the active nav underline. Most editorial. Reads at any size because the rule spans the full square.</p>
+    </div>
+  </div>
+
+  <h2 style="font-weight:800; letter-spacing:-0.02em; margin:0 0 24px; font-size:1.25rem; color:#D4C896;">Original five</h2>
+  <div class="grid">
+    <div class="card">
+      <p class="label">Option 01</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="01-bold-bone.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="01-bold-bone.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="01-bold-bone.svg"><span>16</span></div>
+      </div>
+      <p class="name">Bold bone</p>
+      <p class="desc">Cream LC on warm black. Pure, confident, editorial — the safest read at 16px.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Option 02</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="02-red-dot.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="02-red-dot.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="02-red-dot.svg"><span>16</span></div>
+      </div>
+      <p class="name">LC with red period</p>
+      <p class="desc">Picks up the "talk about." period — a tiny signature that ties to the brand's red gesture. Could turn into mush at 16px.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Option 03</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="03-inverted-bone.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="03-inverted-bone.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="03-inverted-bone.svg"><span>16</span></div>
+      </div>
+      <p class="name">Inverted bone</p>
+      <p class="desc">Black on cream — pops against dark browser chrome (Safari, Chrome dark mode). Most visible at 16px.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Option 04</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="04-red-c.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="04-red-c.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="04-red-c.svg"><span>16</span></div>
+      </div>
+      <p class="name">Red C</p>
+      <p class="desc">The C in editorial red. Stronger brand connection, slightly louder. Reads as two distinct letters at 16px.</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Option 05</p>
+      <div class="sizes">
+        <div class="size"><img class="big" src="05-framed.svg"><span>96</span></div>
+        <div class="size"><img class="med" src="05-framed.svg"><span>32</span></div>
+        <div class="size"><img class="sm"  src="05-framed.svg"><span>16</span></div>
+      </div>
+      <p class="name">Framed</p>
+      <p class="desc">Echoes the gold-bordered "LC" box from the nav wordmark. Most "designed" — frame may disappear at 16px.</p>
+    </div>
+  </div>
+</body>
+</html>

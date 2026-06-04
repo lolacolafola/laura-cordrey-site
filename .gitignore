@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source videos — kept locally for reference, not deployed
+assets-source/
+
+# Local prototype scratch — not deployed
+videogame.html
+videogame_files/

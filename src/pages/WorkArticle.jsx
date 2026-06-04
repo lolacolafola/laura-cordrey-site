@@ -3,8 +3,22 @@ import caseStudies from '../data/caseStudies.js'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import WorkCard from '../components/WorkCard.jsx'
 import ArticleCarousel from '../components/ArticleCarousel.jsx'
+import { assetUrl, pageUrl, caseStudyJsonLd } from '../lib/seo.js'
 import './HomePage.css' // shared .work-card / .work-grid / .btn styles
 import './WorkArticle.css'
+
+// Year strings in caseStudies.js use en-dashes for ranges (e.g. "2021–2022")
+// or a bare year (e.g. "2024"). Schema.org datePublished needs ISO YYYY-MM-DD.
+// We pick the END year of a range (the "completed" year) and stamp Dec 31
+// as a safe default — overridden case-by-case where a more specific date
+// is known.
+function inferDatePublished(yearStr) {
+  if (!yearStr) return undefined
+  const match = String(yearStr).match(/(\d{4})(?:[–—-](\d{4}))?$/)
+  if (!match) return undefined
+  const endYear = match[2] || match[1]
+  return `${endYear}-12-31`
+}
 
 const BASE = import.meta.env.BASE_URL
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
@@ -14,9 +28,29 @@ export default function WorkArticle() {
   const cs = caseStudies.find((c) => c.id === slug)
 
   useDocumentMeta({
-    title: cs ? `${cs.company} — ${cs.headline} · Laura Cordrey` : 'Case study not found',
-    description: cs?.tldr,
-    canonical: cs ? `/work/${cs.id}` : undefined,
+    title: cs ? `${cs.company} — ${cs.headline} · Case study by Laura Cordrey` : 'Case study not found',
+    description: cs
+      ? // Strip <mark> wrappers from the tldr — schema and meta want plain text.
+        String(cs.tldr || '').replace(/<\/?mark>/g, '')
+      : undefined,
+    canonical: cs ? pageUrl(`work/${cs.id}`) : undefined,
+    ogImage: cs ? assetUrl(cs.media?.image) : undefined,
+    ogType: 'article',
+    jsonLd: cs
+      ? caseStudyJsonLd({
+          slug: cs.id,
+          title: `${cs.company} — ${cs.headline}`,
+          description: String(cs.tldr || '').replace(/<\/?mark>/g, ''),
+          image: cs.media?.image,
+          datePublished: inferDatePublished(cs.year),
+          about: [
+            'Fan-Led Growth',
+            ...(cs.tags || []),
+            cs.company?.split('·')[0]?.trim(),
+          ].filter(Boolean),
+          keywords: cs.tags || [],
+        })
+      : undefined,
   })
 
   if (!cs) {
@@ -186,7 +220,7 @@ export default function WorkArticle() {
         <div className="container article__cta-inner">
           <span className="marker">Want this for your brand?</span>
           <h2 className="article__cta-title">
-            Let&rsquo;s build something <em className="accent">just like this</em>.
+            Let&rsquo;s build one <mark>just like it</mark>.
           </h2>
           <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
             Book a 30-min call <span aria-hidden="true">→</span>
