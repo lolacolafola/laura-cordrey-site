@@ -32,14 +32,14 @@ export default function AzarusStreamersPage() {
     description:
       'Activated Azarus on streamers in four months as Head of Growth. Three motions: a coordinated LoL launch (+80% MAU), always-on creator overlay partnerships at half industry CCV cost, and title sponsorship of the inaugural Streamer Awards — 500K viewers, 90% engagement, servers crashed. Replicated on Streamer Royale two months later.',
     canonical: pageUrl('work/azarus'),
-    ogImage: assetUrl('case-studies/azarus.png'),
+    ogImage: assetUrl('case-studies/azarus-overlay-banner.jpeg'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'azarus',
       title: 'Azarus — streamer-led growth, three motions, one engine',
       description:
         'Three streamer-led growth motions at Azarus in four months: coordinated LoL launch (+80% MAU), always-on creator overlay, and title sponsorship of the inaugural Streamer Awards (500K viewers, 90% engagement, 20% conversion, servers crashed). Replicated on Streamer Royale.',
-      image: 'case-studies/azarus.png',
+      image: 'case-studies/azarus-overlay-banner.jpeg',
       datePublished: '2022-05-28',
       about: ['Fan-Led Growth', 'Streamer Programs', 'Live Event Sponsorship', 'Twitch', 'Interactive Overlays', 'Azarus'],
       keywords: ['streamer-led growth', 'Streamer Awards', 'Streamer Royale', 'QTCinderella', 'Amouranth', 'Twitch overlay', 'gamified livestream', 'creator program'],
@@ -97,15 +97,15 @@ export default function AzarusStreamersPage() {
       </header>
 
       {/* ─── HERO IMAGE ───────────────────────────────────────── */}
-      {/* PLACEHOLDER: existing Azarus brand mark until a Streamer Awards
-          or Streamer Royale broadcast still becomes available.
-          Recommended swap: a still from the Streamer Awards Twitch
-          broadcast showing the overlay live on QTCinderella's stream. */}
-      <figure className="delta__hero" style={{ background: '#0e0e0e' }}>
+      {/* Cinematic Azarus marketing banner — a Twitch viewer playing the
+          Azarus overlay live on stream (LoL community), with the AZARUS
+          logo and overlay UI visible. Uses --contain so the AZARUS logo
+          in the top-right corner doesn't get clipped by the default 21:9
+          object-fit:cover crop (image is natively 2:1). */}
+      <figure className="delta__hero delta__hero--contain">
         <img
-          src={BASE + 'case-studies/azarus.png'}
-          alt="Azarus brand mark — the Twitch overlay company where Laura led streamer-led growth and title-sponsored the inaugural Streamer Awards"
-          style={{ maxWidth: '420px', margin: '0 auto', display: 'block' }}
+          src={BASE + 'case-studies/azarus-overlay-banner.jpeg'}
+          alt="Azarus marketing banner — a viewer playing the Azarus interactive Twitch overlay on a League of Legends stream, with the AZARUS logo and the trivia overlay UI visible on the monitor"
         />
       </figure>
 
@@ -140,10 +140,13 @@ export default function AzarusStreamersPage() {
         <div className="delta__section-body">
           <p>
             Azarus was an{' '}
-            <strong>interactive Twitch overlay</strong> &mdash; a browser extension
-            that turned passive viewers into players, layering trivia,
-            polls and challenges on top of live streams. The thesis was
-            simple: audiences would rather play than scroll.
+            <strong>interactive Twitch overlay</strong> &mdash; a browser
+            extension that layered trivia, polls and challenges on top of
+            live streams. The company line, used everywhere from press
+            releases to the product page:{' '}
+            <em className="accent">
+              &ldquo;Turn passive viewers into active participants.&rdquo;
+            </em>
           </p>
           <p>
             The product worked. What it didn&rsquo;t have was{' '}
