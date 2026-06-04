@@ -42,6 +42,37 @@
   gap: var(--space-4);
   flex-wrap: wrap;
 }
+.delta__case-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+}
+.delta__case-dossier {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+}
+.delta__case-dossier > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.delta__case-dossier dt {
+  color: var(--ink-muted);
+}
+.delta__case-dossier dd {
+  margin: 0;
+  font-size: var(--fs-body);
+  color: var(--ink);
+}
+@media (max-width: 600px) {
+  .delta__case-dossier {
+    grid-template-columns: repeat(2, auto);
+  }
+}
 .delta__cover-title {
   font-size: clamp(2.5rem, 7vw, 6rem);
   line-height: 1;

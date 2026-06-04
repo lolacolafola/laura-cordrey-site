@@ -42,7 +42,11 @@ export default function UsMobilePage() {
         '$129 limited-edition VIP bundle, 250 units, sold out in 3 hours. $32K closed, 6-figure upside left on the table. Proof that fan-led growth converts to revenue.',
       image: 'case-studies/us-mobile-dark-star-banner.png',
       datePublished: '2024-08-15',
-      about: ['Fan-Led Growth', 'Premium Drops', 'US Mobile', 'Dark Star', 'Gamification', 'Community Monetisation'],
+      client: 'US Mobile',
+      role: 'Head of Community',
+      market: 'US',
+      sector: 'Telco',
+      about: ['Fan-Led Growth', 'Premium Drops', 'Dark Star', 'Gamification', 'Community Monetisation'],
       keywords: ['fandom is purchasing power', 'premium drop', 'limited edition', 'US Mobile', 'Dark Star', 'gamified pre-launch funnel'],
       principles: [
         'Don’t cap for unexpected success',
@@ -83,7 +87,7 @@ export default function UsMobilePage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">US Mobile &middot; 2024 &middot; USA</span>
+            <span className="marker">US Mobile &middot; US &middot; 2024</span>
           </div>
           <h1 className="delta__cover-title">
             Selling <mark>Dark Star</mark>.

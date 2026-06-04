@@ -36,7 +36,11 @@ export default function BlaBlaCarLiveNationPage() {
         'Live Nation’s first ever Official Ridesharing Partner. Festival activation at Latitude, Leeds and Reading drove a 50%+ behaviour change in rideshare uptake — the activation didn’t just put the brand in front of people, it changed how they behaved.',
       image: 'case-studies/blablacar-livenation-banner-yellow.png',
       datePublished: '2016-09-01',
-      about: ['Fan-Led Growth', 'Brand Activation', 'Partnerships', 'BlaBlaCar', 'Live Nation', 'Festivals'],
+      client: 'BlaBlaCar',
+      role: 'UK Community Manager',
+      market: 'UK',
+      sector: 'Mobility',
+      about: ['Fan-Led Growth', 'Brand Activation', 'Partnerships', 'Live Nation', 'Festivals'],
       keywords: ['fan-led growth on the ground', 'brand activation', 'festival sponsorship', 'BlaBlaCar', 'Live Nation', 'partnerships'],
       principles: [
         'Sponsor trust, don’t buy it',
@@ -77,7 +81,7 @@ export default function BlaBlaCarLiveNationPage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">BlaBlaCar &middot; 2013–2016 &middot; United Kingdom</span>
+            <span className="marker">BlaBlaCar &middot; UK &middot; 2013–2016</span>
           </div>
           <h1 className="delta__cover-title">
             <mark>BlaBlaCar × Live Nation</mark>: Official Ridesharing Partner.

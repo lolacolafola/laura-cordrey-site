@@ -1,10 +1,19 @@
+import { useState } from 'react'
 import caseStudies from '../data/caseStudies.js'
 import WorkCard from '../components/WorkCard.jsx'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, workIndexJsonLd } from '../lib/seo.js'
 import './HomePage.css' // shared .work-card / .work-grid / .section-head styles
 
+// Derive unique sector list from the data — order = first-seen across the
+// case-study array so editorial control stays in caseStudies.js.
+const SECTORS = Array.from(
+  new Set(caseStudies.flatMap((cs) => cs.sectors || []))
+)
+
 export default function WorkPage() {
+  const [active, setActive] = useState('All')
+
   useDocumentMeta({
     title: 'Selected work · Fan-led growth case studies · Laura Cordrey',
     description:
@@ -13,6 +22,11 @@ export default function WorkPage() {
     ogType: 'website',
     jsonLd: workIndexJsonLd({ caseStudies }),
   })
+
+  const filtered =
+    active === 'All'
+      ? caseStudies
+      : caseStudies.filter((cs) => (cs.sectors || []).includes(active))
 
   return (
     <section className="work">
@@ -26,8 +40,23 @@ export default function WorkPage() {
           </p>
         </div>
 
+        <div className="work-filters" role="tablist" aria-label="Filter case studies by sector">
+          {['All', ...SECTORS].map((s) => (
+            <button
+              key={s}
+              type="button"
+              role="tab"
+              aria-selected={active === s}
+              className={`btn btn--pill ${active === s ? 'btn--primary' : 'btn--ghost'}`}
+              onClick={() => setActive(s)}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+
         <div className="work-grid">
-          {caseStudies.map((cs) => (
+          {filtered.map((cs) => (
             <WorkCard key={cs.id} caseStudy={cs} slot="work" />
           ))}
         </div>

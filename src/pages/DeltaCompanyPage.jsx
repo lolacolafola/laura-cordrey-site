@@ -29,7 +29,11 @@ export default function DeltaCompanyPage() {
         'A fan-led growth engine designed for Ubisoft’s Ghost Recon Breakpoint community. 130 invited members across 5 clusters drove 10M+ UGC views with zero paid media. Unveiled on the UbiE3 2019 stage.',
       image: 'case-studies/delta/01-delta-badge-hero.png',
       datePublished: '2019-06-10',
-      about: ['Fan-Led Growth', 'Community Advocacy Programs', 'Ubisoft', 'Ghost Recon Breakpoint', 'Creator Programs'],
+      client: 'Ubisoft',
+      role: 'Community Developer',
+      market: 'Global',
+      sector: 'Gaming',
+      about: ['Fan-Led Growth', 'Community Advocacy Programs', 'Ghost Recon Breakpoint', 'Creator Programs'],
       keywords: ['fan-led growth', 'community advocacy program', 'Ubisoft', 'Ghost Recon Breakpoint', 'UbiE3 2019'],
       principles: [
         'Design the program as a sub-brand',
@@ -70,7 +74,7 @@ export default function DeltaCompanyPage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">Ubisoft · 2019–2020 · Global</span>
+            <span className="marker">Ubisoft · Global · 2019–2020</span>
           </div>
           <h1 className="delta__cover-title">
             Creating <mark>Delta Company</mark>.

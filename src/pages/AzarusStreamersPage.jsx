@@ -10,59 +10,67 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
 /* Azarus · Streamer-led growth — bespoke case study page.
  *
+ * Spine: PMF brief → three escalating US streamer campaigns → background
+ * credibility (always-on creator program + Facebook Gaming launch) → closer.
+ *
  * Structure: cover + 4-stat row + 8 numbered sections + CTA.
- *   [01] Where it started      overlay product, no proof at scale
- *   [02] The expansion play    coordinated streamer campaign on LoL launch → +80% MAU
- *                              (+ "Expansion proof" stat callout)
- *   [03] The always-on engine  invite-only overlay partnerships, ~half industry CCV cost
- *   [04] The big swing         title sponsorship of the inaugural Streamer Awards
- *   [05] What I shipped        65 streamers, 14 categories, embedded live-ops production
- *                              (+ ratio callout: 200 / 500K)
- *   [06] The result + crash    90% engagement, 20% conversion, servers down
- *                              (+ "The proof" stat callout)
- *   [07] Running it back       Streamer Royale on Amouranth — controlled replication
- *   [08] The takeaway          three principles + fan-powered growth close
+ *   [01] The brief                      PMF, ready to scale, first US streamer relationships
+ *   [02] Campaign 1 — LoL launch        coordinated US streamer push → +80% MAU
+ *                                       (+ "Expansion proof" callout)
+ *   [03] Campaign 2 — the big swing     title sponsorship of the inaugural Streamer Awards
+ *   [04] Campaign 2 — what I shipped    65 streamers, 14 categories, embedded live-ops
+ *                                       (+ ratio callout: 65 / 500K)
+ *   [05] Campaign 2 — result + crash    90% engagement, 20% conversion, servers down
+ *                                       (+ "The proof" callout)
+ *   [06] Campaign 3 — Streamer Royale   controlled replication on Amouranth, no crash
+ *   [07] In parallel                    always-on US creator program + Facebook Gaming launch
+ *                                       (+ FB Gaming Beta lockup plate)
+ *   [08] The takeaway                   three campaigns, one engine, US growth foundation
  *
  * Reuses the .delta__* class system. Same visual grammar as Delta /
  * Siege / Dark Star / BlaBlaCar bespoke pages.
  */
 export default function AzarusStreamersPage() {
   useDocumentMeta({
-    title: 'Azarus · Streamer-led growth · 500K viewers, 90% engagement, servers crashed · Case study by Laura Cordrey',
+    title: 'Azarus · Three streamer campaigns, one engine · 500K viewers, servers crashed · Case study by Laura Cordrey',
     description:
-      'Activated Azarus on streamers in four months as Head of Growth. Three motions: a coordinated LoL launch (+80% MAU), always-on creator overlay partnerships at half industry CCV cost, and title sponsorship of the inaugural Streamer Awards — 500K viewers, 90% engagement, servers crashed. Replicated on Streamer Royale two months later.',
+      'Scaled Azarus’s US streamer presence through three escalating campaigns: a coordinated League of Legends launch (+80% MAU), title sponsorship of the inaugural Streamer Awards (500K peak viewers, 90% engaged, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. In parallel: an always-on US creator overlay program at half industry CCV cost, and project managed launch of Azarus on Facebook Gaming with Meta.',
     canonical: pageUrl('work/azarus'),
     ogImage: assetUrl('case-studies/azarus-overlay-banner.jpeg'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'azarus',
-      title: 'Azarus — streamer-led growth, three motions, one engine',
+      title: 'Azarus — three streamer campaigns, one engine, US growth foundation',
       description:
-        'Three streamer-led growth motions at Azarus in four months: coordinated LoL launch (+80% MAU), always-on creator overlay, and title sponsorship of the inaugural Streamer Awards (500K viewers, 90% engagement, 20% conversion, servers crashed). Replicated on Streamer Royale.',
+        'Three escalating US streamer campaigns at Azarus: a coordinated League of Legends launch (+80% MAU), title sponsorship of the inaugural Streamer Awards (500K viewers, 90% engagement, 20% conversion, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. Plus an always-on US creator overlay program at half industry CCV cost and project-managed launch of Azarus on Facebook Gaming with Meta.',
       image: 'case-studies/azarus-overlay-banner.jpeg',
       datePublished: '2022-05-28',
-      about: ['Fan-Led Growth', 'Streamer Programs', 'Live Event Sponsorship', 'Twitch', 'Interactive Overlays', 'Azarus'],
-      keywords: ['streamer-led growth', 'Streamer Awards', 'Streamer Royale', 'QTCinderella', 'Amouranth', 'Twitch overlay', 'gamified livestream', 'creator program'],
+      client: 'Azarus',
+      role: 'Head of Growth',
+      market: 'US',
+      sector: 'Gaming · Web3',
+      about: ['Fan-Led Growth', 'Streamer Programs', 'Live Event Sponsorship', 'Twitch', 'Facebook Gaming', 'Interactive Overlays'],
+      keywords: ['streamer-led growth', 'Streamer Awards', 'Streamer Royale', 'QTCinderella', 'Amouranth', 'Twitch overlay', 'Facebook Gaming', 'Meta partnership', 'creator program'],
       principles: [
         'Engagement is the thesis. Conversion is the infrastructure',
-        'One playbook, three motions',
+        'Three campaigns escalate, one engine compounds',
         'Custom mechanics per format beat generic overlays',
       ],
       faqItems: [
         {
-          question: 'How do you prove mass interactivity on a Twitch overlay at scale?',
+          question: 'How do you scale a Twitch product through streamers in the US?',
           answer:
-            'You sponsor the moment that matters. Title sponsorship of the inaugural Streamer Awards (QTCinderella + Maya Higa, March 2022) put the Azarus overlay in front of 500K peak concurrent viewers. 90% engaged with the overlay during the broadcast. 20% converted into Azarus members on the spot — and the servers crashed because we’d built for the audience we expected, not the one that showed up. The honest validation.',
-        },
-        {
-          question: 'How do you grow a Twitch product through streamers without paying for media?',
-          answer:
-            'Three motions, one engine. Live event sponsorships for proof (Streamer Awards, Streamer Royale). Always-on creator overlay partnerships for retention (KingGeorge, lol_Nemesis, others at ~$1.70 per concurrent viewer vs $2.50–$3.50 industry). Coordinated streamer campaigns for platform expansion — every time we added a supported game, we paired it with an invite-only streamer push. The League of Legends launch alone drove +80% MAU growth.',
+            'Three escalating campaigns, one engine. Start with a coordinated game-launch push (League of Legends drove +80% MAU). Bet bigger on a live-event moment that matters (title sponsorship of the inaugural Streamer Awards — 500K peak viewers, 90% engaged, 20% converted on the spot, servers crashed). Then prove the playbook isn’t a one-off by replicating it in a different format (Amouranth’s Streamer Royale, two months later, no crash). The streamer relationships built across the three campaigns become the platform’s long-term US growth foundation.',
         },
         {
           question: 'What makes a live event sponsorship convert at scale?',
           answer:
             'Format-specific design. We didn’t drop a generic overlay onto the Streamer Awards broadcast — we built one for it: 14 award categories, ~65 nominee streamers, hundreds of fan-specific deep-cut trivia questions, with a team member embedded in the production room firing live questions in real time. The sponsorship became part of the show, not a banner on it.',
+        },
+        {
+          question: 'How do you run an always-on creator program at less than industry CCV cost?',
+          answer:
+            'Invite-only, monthly flat rate per streamer, deep partnerships rather than transactional sponsorships. At Azarus the always-on US creator program ran with KingGeorge (Rainbow Six Siege, ~1M followers), lol_Nemesis (League of Legends, ~600K followers) and others across Valorant and Apex, with an effective concurrent-viewer cost of ~$1.70 against an industry rate of $2.50–$3.50. Flat-rate contracting means the platform compounds, not the streamer’s billable hours.',
         },
       ],
     }),
@@ -82,16 +90,17 @@ export default function AzarusStreamersPage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">Azarus &middot; 2021&ndash;2022 &middot; Global</span>
+            <span className="marker">Azarus &middot; US &middot; 2021&ndash;2022</span>
           </div>
           <h1 className="delta__cover-title">
             Activating <mark>Azarus</mark>.
           </h1>
           <p className="delta__cover-lede">
-            Streamer-led growth at scale. Three motions in four months &mdash; a
-            coordinated game launch, always-on creator partnerships, and{' '}
-            <mark>title sponsorship of the inaugural Streamer Awards</mark>.
-            Servers crashed.
+            Three escalating streamer campaigns scaled Azarus&rsquo;s US
+            presence &mdash; a coordinated League of Legends launch,{' '}
+            <mark>title sponsorship of the inaugural Streamer Awards</mark>,
+            and a controlled replication on Amouranth&rsquo;s Streamer
+            Royale.
           </p>
         </div>
       </header>
@@ -113,82 +122,86 @@ export default function AzarusStreamersPage() {
       <section className="container delta__stats">
         <ul>
           <li>
+            <span className="delta__stat-value">+80%</span>
+            <span className="marker delta__stat-label">MAU lift &middot; LoL launch</span>
+          </li>
+          <li>
             <span className="delta__stat-value">500K</span>
-            <span className="marker delta__stat-label">Peak concurrent viewers</span>
+            <span className="marker delta__stat-label">Peak viewers &middot; Streamer Awards</span>
           </li>
           <li>
             <span className="delta__stat-value">90%</span>
-            <span className="marker delta__stat-label">Live engagement rate</span>
+            <span className="marker delta__stat-label">Engagement &middot; Streamer Awards</span>
           </li>
           <li>
             <span className="delta__stat-value">20%</span>
-            <span className="marker delta__stat-label">Viewer &rarr; member conversion</span>
-          </li>
-          <li>
-            <span className="delta__stat-value">+80%</span>
-            <span className="marker delta__stat-label">MAU growth (LoL launch)</span>
+            <span className="marker delta__stat-label">Viewer &rarr; member &middot; Streamer Awards</span>
           </li>
         </ul>
       </section>
 
-      {/* ─── [01] WHERE IT STARTED ────────────────────────────── */}
+      {/* ─── [01] THE BRIEF ───────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[01] &middot; Where it started</span>
-          <h2 className="delta__section-title">A product with reach, not proof.</h2>
+          <span className="marker">[01] &middot; The brief</span>
+          <h2 className="delta__section-title">PMF, ready to scale.</h2>
         </div>
         <div className="delta__section-body">
           <p>
             Azarus was an{' '}
             <strong>interactive Twitch overlay</strong> &mdash; a browser
-            extension that layered trivia, polls and challenges on top of
-            live streams. The company line, used everywhere from press
-            releases to the product page:{' '}
+            extension layering trivia, polls and challenges on top of
+            live streams. The tagline, everywhere from press to the
+            product page:{' '}
             <em className="accent">
               &ldquo;Turn passive viewers into active participants.&rdquo;
             </em>
           </p>
           <p>
-            The product worked. What it didn&rsquo;t have was{' '}
-            <mark>proof at scale</mark>. Streamer relationships and a
-            steady drip of installs &mdash; but nothing that made a brand or
-            a CMO sit up. To unlock the next chapter (bigger brand deals,
-            a real ad business, a token launch) we needed evidence the
-            format scaled. Not stories that it worked.
+            Product worked. Real engagement, real streamer
+            relationships, <mark>product-market fit</mark>. What it
+            needed next was <strong>scale</strong> &mdash; US streamer
+            relationships that would carry the platform forward.
           </p>
           <p>
             I came in as <strong>Head of Growth in December 2021</strong>.
-            Four months to make the case.
+            The brief: secure Azarus&rsquo;s first US streamer
+            relationships at scale and prove the format moved an
+            audience. Four months.
           </p>
         </div>
       </section>
 
-      {/* ─── [02] THE EXPANSION PLAY ──────────────────────────── */}
+      {/* ─── [02] CAMPAIGN 1 — THE LOL LAUNCH ─────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[02] &middot; The expansion play</span>
-          <h2 className="delta__section-title">A coordinated launch, every time.</h2>
+          <span className="marker">[02] &middot; Campaign 1 &mdash; the LoL launch</span>
+          <h2 className="delta__section-title">A coordinated US push for League of Legends.</h2>
         </div>
+        {/* Riot's official League of Legends key art — visual anchor
+            for the campaign. Same pattern as the Ubisoft case studies:
+            show the game in question, inside the relevant section. */}
+        <figure className="delta__plate delta__plate--full">
+          <img
+            src={BASE + 'case-studies/azarus-league-of-legends-banner.webp'}
+            alt="League of Legends official key art — champion ensemble (Lux, Jinx, Yasuo, Blitzcrank) with the LEAGUE OF LEGENDS wordmark — the game Azarus integrated for Campaign 1"
+          />
+        </figure>
         <div className="delta__section-body">
           <p>
-            The first motion was platform expansion. Every time we added
-            a new supported game to the Azarus overlay &mdash;{' '}
-            <strong>League of Legends</strong>, Valorant, Apex Legends &mdash;
-            we paired it with a coordinated streamer campaign. Invite
-            creators in that community, ship the overlay support on
-            their channels, ride the surge.
+            Azarus was shipping overlay support for{' '}
+            <strong>League of Legends</strong>. I paired the product
+            launch with a <mark>coordinated US streamer push</mark>{' '}
+            &mdash; negotiated talent through{' '}
+            <strong>AFK</strong> and <strong>BEN Agency</strong> to ship
+            overlay support on top LoL channels (Caedrel, CookieLoLxx,
+            IMLS, lol_Nemesis, Tarzaned), reaching{' '}
+            <mark>tens of millions of viewers</mark> across the cohort.
+            Live <strong>Feb 1, 2022</strong>.
           </p>
           <p>
-            The League of Legends launch campaign drove a{' '}
-            <mark>+80% MAU lift</mark> on the Azarus platform. One
-            coordinated push, one new game, an 80% jump in the active
-            member base.
-          </p>
-          <p>
-            The lesson: streamer-led expansion isn&rsquo;t a press
-            release. It&rsquo;s a logistics exercise. Get the right
-            creators live with the right product on the right week, and
-            the audience moves with them.
+            The result: a <mark>+80% MAU lift</mark> on the Azarus
+            platform from one coordinated campaign.
           </p>
         </div>
       </section>
@@ -196,81 +209,59 @@ export default function AzarusStreamersPage() {
       {/* ─── EXPANSION PROOF CALLOUT ──────────────────────────── */}
       <aside className="delta__result">
         <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">Expansion proof</span>
+          <span className="marker delta__result-kicker">Campaign 1 proof</span>
           <p className="delta__result-value">
-            <mark>+80% MAU from one coordinated push</mark>
+            <mark>+80% MAU</mark>
           </p>
           <p className="delta__result-caption">
-            League of Legends added to the supported game lineup, paired
-            with an invite-only streamer launch campaign. The platform
-            grew with the audience.
+            From one pulsepoint.
           </p>
         </div>
       </aside>
 
-      {/* ─── [03] THE ALWAYS-ON ENGINE ────────────────────────── */}
+      {/* ─── [03] CAMPAIGN 2 — THE BIG SWING ──────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[03] &middot; The always-on engine</span>
-          <h2 className="delta__section-title">Half the industry rate, twice the loyalty.</h2>
-        </div>
-        <div className="delta__section-body">
-          <p>
-            In parallel ran the steady-state motion &mdash; invite-only
-            creator overlay partnerships, live on streamers&rsquo;
-            channels during their normal streams.{' '}
-            <strong>KingGeorge</strong> (Rainbow Six Siege, ~1M
-            followers). <strong>lol_Nemesis</strong> (League of Legends,
-            ~600K followers). Others across Valorant and Apex. Audiences
-            played the overlay during regular streams; AZA credits
-            accrued; the player base compounded.
-          </p>
-          <p>
-            Cost basis:{' '}
-            <mark>~$1.70 per concurrent viewer</mark>. Industry average
-            for equivalent streamer sponsorships sat at{' '}
-            <mark>$2.50&ndash;$3.50</mark>. We acquired audience at
-            roughly half what the rest of the market paid.
-          </p>
-          <p>
-            The always-on engine wasn&rsquo;t headline-grabbing. It was
-            the base load &mdash; the bit that made the platform exist
-            between the big moments.
-          </p>
-        </div>
-      </section>
-
-      {/* ─── [04] THE BIG SWING ───────────────────────────────── */}
-      <section className="delta__section container">
-        <div className="delta__section-head">
-          <span className="marker">[04] &middot; The big swing</span>
+          <span className="marker">[03] &middot; Campaign 2 &mdash; the big swing</span>
           <h2 className="delta__section-title">The inaugural Streamer Awards.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            In <strong>March 2022</strong>, QTCinderella was launching the
-            first-ever{' '}
-            <mark>Streamer Awards</mark> on Twitch with Maya Higa &mdash;
-            an awards show built for streaming, by streamers.{' '}
+            In <strong>March 2022</strong>, QTCinderella and Maya Higa
+            were launching the first-ever <mark>Streamer Awards</mark>{' '}
+            on Twitch &mdash; an awards show built for streaming, by
+            streamers.{' '}
             <em className="accent">The streaming world&rsquo;s Oscars</em>,
             eventually.
           </p>
           <p>
-            I went after the title sponsorship. And won it.
-          </p>
-          <p>
-            A <mark>6-figure deal</mark> &mdash; the biggest brand bet
-            Azarus had made &mdash; and it gave us the audience we needed.
-            Every major streamer&rsquo;s community tuning in at the same
-            time, all on Twitch, for one night.
+            I secured the title sponsorship &mdash; a{' '}
+            <mark>6-figure deal</mark>, the biggest brand bet Azarus had
+            made &mdash; and with it, every major streamer&rsquo;s
+            community tuning in on Twitch for one night.
           </p>
         </div>
       </section>
 
-      {/* ─── [05] WHAT I SHIPPED ──────────────────────────────── */}
+      {/* ─── STREAMER AWARDS RED CARPET PLATE ─────────────────── */}
+      {/* Pre-show on the red carpet — Mizkif reading nominee cards
+          with Emiru and others. Documents the scale of the event
+          Azarus title-sponsored. */}
+      <figure className="delta__plate delta__plate--full">
+        <img
+          src={BASE + 'case-studies/azarus-streamer-awards-red-carpet.png'}
+          alt="Red carpet at the inaugural Streamer Awards — Mizkif reading nominee announcement cards with Emiru and other streamers in front of the Streamer Awards step-and-repeat backdrop"
+        />
+        <figcaption className="container">
+          Red carpet, inaugural Streamer Awards &mdash; Mizkif, Emiru
+          and others on the read-out.
+        </figcaption>
+      </figure>
+
+      {/* ─── [04] CAMPAIGN 2 — WHAT I SHIPPED ─────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[05] &middot; What I shipped</span>
+          <span className="marker">[04] &middot; Campaign 2 &mdash; what I shipped</span>
           <h2 className="delta__section-title">A bespoke overlay, operated from inside the show.</h2>
         </div>
         <div className="delta__section-body">
@@ -279,81 +270,83 @@ export default function AzarusStreamersPage() {
             built one <em className="accent">for the show</em>.
           </p>
           <p>
-            <mark>14 award categories. ~65 nominee streamers.
-            Hundreds of bespoke trivia questions</mark> &mdash;
-            fan-specific deep cuts. <em>What is aceu&rsquo;s cat&rsquo;s
-            name? Which professional team first signed TenZ? What does
-            HasanAbi refer to his community as?</em> The kind of
-            questions only a real fan could answer. The audience felt
-            seen.
+            <mark>14 award categories. ~65 nominee streamers.</mark>{' '}
+            Bespoke trivia questions for fans, pushed live with the
+            event product team.
           </p>
           <p>
-            The prize pool was{' '}
-            <mark>5M+ AZA credits (~$50,000 in value)</mark>, redeemable
-            in the Azarus Store for premium games like Horizon Forbidden
-            West and OlliOlli World, and in-game currencies for Fortnite
-            and GTA Online.
+            Prize pool: <mark>5M+ AZA credits (~$50,000 in value)</mark>,
+            redeemable in the Azarus Store for an array of games and
+            gaming products.
           </p>
           <p>
-            And on the night, a team member was{' '}
+            On the night, a team member was{' '}
             <strong>inside the production room</strong> with the
             broadcast crew, firing live questions in real time based on
-            what was actually unfolding on stage. The sponsorship
-            didn&rsquo;t sit on top of the show. It became part of it.
+            what was unfolding on stage. The sponsorship didn&rsquo;t
+            sit on top of the show. It became part of it.
           </p>
         </div>
       </section>
 
-      {/* ─── RATIO CALLOUT — exclusivity at scale ──────────────── */}
-      <aside className="delta__ratio">
-        <div className="container delta__ratio-inner">
-          <div className="delta__ratio-stat">
-            <span className="delta__ratio-value">65</span>
-            <span className="marker delta__ratio-label">Nominee streamers</span>
-          </div>
-          <span className="delta__ratio-divider" aria-hidden="true">/</span>
-          <div className="delta__ratio-stat">
-            <span className="delta__ratio-value">500,000</span>
-            <span className="marker delta__ratio-label">Peak concurrent viewers</span>
-          </div>
-          <p className="delta__ratio-caption">
-            One overlay, designed and operated live for every nominee
-            and every audience tuning in at the same time.{' '}
-            <mark>The night the sponsorship became co-production.</mark>
+      {/* ─── PRIZE POOL CALLOUT — same shape as Campaign proofs ── */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">Prize pool</span>
+          <p className="delta__result-value">
+            <mark>5M AZA</mark>
+          </p>
+          <p className="delta__result-caption">
+            How much was up for grabs during the broadcast for fans to
+            win. (~$50K in value.)
           </p>
         </div>
       </aside>
 
-      {/* ─── [06] THE RESULT AND THE CRASH ────────────────────── */}
+      {/* ─── STREAMER AWARDS PRESENTERS PLATE ─────────────────── */}
+      {/* Maya Higa and QTCinderella on stage at the inaugural Streamer
+          Awards podium — the live moment the bespoke Azarus overlay
+          ran underneath. Visual punctuation for the "sponsorship became
+          co-production" line above. */}
+      <figure className="delta__plate delta__plate--full">
+        <img
+          src={BASE + 'case-studies/azarus-streamer-awards-presenters.png'}
+          alt="Maya Higa and QTCinderella presenting on stage at the inaugural Streamer Awards podium, STREAMER backdrop behind them"
+        />
+        <figcaption className="container">
+          Maya Higa and QTCinderella on stage &mdash; the night the
+          Azarus overlay ran live under the broadcast.
+        </figcaption>
+      </figure>
+
+      {/* ─── [05] CAMPAIGN 2 — THE RESULT AND THE CRASH ────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[06] &middot; The result &mdash; and the crash</span>
+          <span className="marker">[05] &middot; Campaign 2 &mdash; the result and the crash</span>
           <h2 className="delta__section-title">Engagement is the thesis. Conversion is the infrastructure.</h2>
         </div>
         <div className="delta__section-body">
           <p>
             <mark>500K peak concurrent viewers</mark> tuned in.{' '}
-            <mark>90% of them engaged</mark> with the overlay during the
+            <mark>90% engaged</mark> with the overlay during the
             broadcast. <mark>20% converted</mark> into Azarus members on
             the spot.
           </p>
           <p>
-            And our servers crashed.
+            And the servers crashed.
           </p>
           <p>
-            The 90% engagement rate told us the thesis was right. The
-            crash told us we&rsquo;d built infrastructure for the wrong
-            demand. The 20% conversion isn&rsquo;t a weak number &mdash;
-            it&rsquo;s a function of what the crash cost us. Without
-            the cap, conversion would have been higher.{' '}
-            <em className="accent">The engagement is the proof of the
-            underlying behaviour. The conversion is the proof we&rsquo;d
+            The 90% engagement was the thesis confirmed. The crash was
+            infrastructure built for the wrong demand. The 20%
+            isn&rsquo;t a weak conversion &mdash; it&rsquo;s the ceiling
+            the crash imposed on it.{' '}
+            <em className="accent">Engagement was the proof of the
+            behaviour. Conversion was the proof we&rsquo;d
             under-built.</em>
           </p>
           <p>
-            It was the honest validation. Not the one we planned, but
-            maybe the most useful one. It told us exactly what to build
-            next.
+            The honest validation &mdash; not the one we planned, but the
+            one that told us exactly what to build next.
           </p>
         </div>
       </section>
@@ -361,7 +354,7 @@ export default function AzarusStreamersPage() {
       {/* ─── THE PROOF CALLOUT ────────────────────────────────── */}
       <aside className="delta__result">
         <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">The proof</span>
+          <span className="marker delta__result-kicker">Campaign 2 proof</span>
           <p className="delta__result-value">
             <mark>500K &middot; 90% &middot; 20% &middot; servers down</mark>
           </p>
@@ -373,91 +366,150 @@ export default function AzarusStreamersPage() {
         </div>
       </aside>
 
-      {/* ─── [07] RUNNING IT BACK — STREAMER ROYALE ────────────── */}
+      {/* ─── [06] CAMPAIGN 3 — STREAMER ROYALE ─────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[07] &middot; Running it back</span>
+          <span className="marker">[06] &middot; Campaign 3 &mdash; running it back</span>
           <h2 className="delta__section-title">Streamer Royale &mdash; same engine, no crash.</h2>
         </div>
+        {/* Streamer Royale official lineup banner — Amouranth front
+            and centre with the 16-streamer cohort, STREAMER ROYALE
+            wordmark. Same pattern as the LoL banner inside [02]:
+            show the event before the body explains it. */}
+        <figure className="delta__plate delta__plate--full">
+          <img
+            src={BASE + 'case-studies/azarus-streamer-royale-lineup.jpg'}
+            alt="Streamer Royale official lineup banner — Amouranth, JennaLynnMeowri, Mizkif and the 16-streamer cohort with the STREAMER ROYALE wordmark"
+          />
+        </figure>
         <div className="delta__section-body">
           <p>
             Two months later, <mark>May 28, 2022</mark>. Same playbook,
             different format.
           </p>
           <p>
-            Streamer Royale was a physical-challenge event on{' '}
-            <mark>Amouranth&rsquo;s</mark> Twitch channel &mdash;{' '}
+            Streamer Royale &mdash; a physical-challenge event on{' '}
+            <mark>Amouranth&rsquo;s</mark> Twitch channel.{' '}
             <strong>16 streamers</strong>, kneeboarding, obstacle
-            courses, head-to-head competition over 5h 20m.
-            JennaLynnMeowri won.
+            courses, head-to-head over 5h 20m.
           </p>
           <p>
             We built new mechanics for the format.{' '}
-            <strong>30+ live questions</strong> across four styles
-            (challenge-attentive, streamer trivia, polling, neutral). A{' '}
-            <mark>polling-to-revive mechanic</mark> &mdash; the audience
-            voted eliminated contestants back into the finale,
-            controlling the show&rsquo;s narrative. A random-player
-            selector for a signed-jersey giveaway with full legal T&amp;Cs.
-            Same live-ops discipline: team member embedded with
+            <strong>30+ live questions</strong> across four styles. A{' '}
+            <mark>polling-to-revive mechanic</mark> that let the audience
+            vote eliminated contestants back into the finale. A
+            random-player jersey giveaway with full legal T&amp;Cs. Same
+            live-ops discipline &mdash; team member embedded with
             production, firing questions on the fly.
           </p>
           <p>
             <strong>The result:</strong>{' '}
-            <mark>31,458 peak viewers</mark>, <mark>275,377 unique
-            viewers</mark>, <mark>134,191 hours watched</mark>,{' '}
-            <mark>59,900 unique Azarus users</mark> on the day. And
-            critically: <em className="accent">servers held</em>. We
-            built for the upside the second time.
+            <mark>275,377 unique viewers</mark>,{' '}
+            <mark>134,191 hours watched</mark>,{' '}
+            <mark>59,900 unique Azarus users</mark> on the day.{' '}
+            <em className="accent">Servers held.</em> We built for the
+            upside the second time.
           </p>
           <p>
             Different host, different format, different audience. Same
-            engine working under it.
+            engine.
           </p>
         </div>
       </section>
+
+      {/* ─── [07] IN PARALLEL ─────────────────────────────────── */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[07] &middot; In parallel</span>
+          <h2 className="delta__section-title">What ran alongside the campaigns.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            Two streams of work ran underneath the three campaigns.
+            Neither was headline-grabbing. Both kept the platform
+            scaling between the big moments.
+          </p>
+          <p>
+            <strong>An always-on US creator overlay program.</strong>{' '}
+            Invite-only partnerships at a{' '}
+            <mark>monthly flat rate per streamer</mark>, live on their
+            normal channels. <strong>KingGeorge</strong> (Rainbow Six
+            Siege, ~1M followers). <strong>lol_Nemesis</strong> (League
+            of Legends, ~600K followers). Others across Valorant and
+            Apex. Effective CCV: <mark>~$1.70</mark> vs{' '}
+            <mark>$2.50&ndash;$3.50</mark> industry &mdash; roughly half
+            what the market paid, because flat-rate contracting means
+            the platform compounds, not billable hours.
+          </p>
+          <p>
+            <strong>A cross-platform launch with Meta.</strong> I project
+            managed the launch of Azarus on{' '}
+            <mark>Facebook Gaming</mark> end-to-end &mdash; Meta
+            partnership rollout, Beta cohort onboarding, streamer
+            activation across <strong>Valorant</strong> and{' '}
+            <strong>Apex</strong>, launch comms across LinkedIn,
+            Facebook, Twitter and the blog. <mark>~100 streamers</mark>{' '}
+            in the Beta. Proof the playbook wasn&rsquo;t
+            Twitch-dependent.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── FB GAMING BETA LOCKUP PLATE ──────────────────────── */}
+      {/* Azarus × Facebook Gaming launch lockup — official partnership
+          artwork for the Beta rollout. Meta blue palette, brand co-mark. */}
+      <figure className="delta__plate delta__plate--full">
+        <img
+          src={BASE + 'case-studies/azarus-facebook-gaming-beta-lockup.png'}
+          alt="Azarus × Facebook Gaming Beta launch lockup — the official partnership artwork featuring the Facebook Gaming wordmark and Azarus mark on Meta blue, with 'BETA' beneath"
+        />
+        <figcaption className="container">
+          Azarus &times; Facebook Gaming &mdash; the official Beta
+          partnership lockup. I project managed the launch end-to-end:
+          Meta partnership rollout, Beta cohort, comms across LinkedIn,
+          Facebook, Twitter and the blog.
+        </figcaption>
+      </figure>
 
       {/* ─── [08] THE TAKEAWAY ────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[08] &middot; The takeaway</span>
-          <h2 className="delta__section-title">Built to activate.</h2>
+          <h2 className="delta__section-title">Three campaigns, one engine.</h2>
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
-            Streamer-led growth, proven across three motions:{' '}
-            <mark>+80% MAU</mark> from a coordinated game-launch
-            campaign. <mark>~$1.70 CCV</mark> on the always-on creator
-            overlay (half the industry rate).{' '}
-            <mark>500K viewers, 90% engagement, 20% conversion</mark> on
-            the Streamer Awards &mdash; and a controlled replication two
-            months later that didn&rsquo;t crash.
+            The brief was Azarus&rsquo;s first US streamer relationships
+            at scale. The work was three escalating campaigns &mdash; the{' '}
+            <mark>League of Legends launch (+80% MAU)</mark>, title
+            sponsorship of{' '}
+            <mark>the inaugural Streamer Awards (500K viewers, 90%
+            engaged, 20% converted, servers crashed)</mark>, and a
+            controlled replication on{' '}
+            <mark>Amouranth&rsquo;s Streamer Royale</mark>. Running
+            alongside: an always-on US creator program at half industry
+            CCV, and a project-managed launch of Azarus on Facebook
+            Gaming with ~100 streamers in the Beta.
           </p>
           <p>
-            <strong>The next chapter</strong> &mdash; turning the
-            engagement engine into a monetisable ad platform &mdash;
-            became possible because of this proof.{' '}
-            <Link to="/work/azarus-game-ads" className="marker delta__play-link">
-              See the Azarus ad platform case study <span aria-hidden="true">&rarr;</span>
-            </Link>
+            <strong>Three campaigns. One engine.</strong> The streamer
+            relationships built across these moments became
+            Azarus&rsquo;s US growth foundation.
           </p>
           <p>
-            <strong>Three key takeaways:</strong>
+            <strong>Three takeaways:</strong>
           </p>
           <p>
             <strong>1. <mark>Engagement is the thesis. Conversion is
             the infrastructure</mark>.</strong> 90% played, 20%
             converted. The gap was server capacity, not interest. Build
-            ops for the upside, not the baseline. Most engagement
-            campaigns fail because they&rsquo;re built for the audience
-            they expect, not the one that actually shows up.
+            ops for the upside.
           </p>
           <p>
-            <strong>2. <mark>One playbook, three motions</mark>.</strong>{' '}
-            Live events for proof. Always-on overlay for retention.
-            Game-launch campaigns for expansion. Streamers do all three
-            &mdash; if you build the platform behind them. Most brands
-            pick one and call it a creator strategy.
+            <strong>2. <mark>Three campaigns escalate, one engine
+            compounds</mark>.</strong> LoL proved the model. Streamer
+            Awards proved it at scale. Streamer Royale proved it was
+            repeatable. Each campaign earned the right to the next.
           </p>
           <p>
             <strong>3. <mark>Custom mechanics per format beat generic
