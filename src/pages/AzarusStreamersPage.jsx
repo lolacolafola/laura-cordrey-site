@@ -471,6 +471,27 @@ export default function AzarusStreamersPage() {
         </figcaption>
       </figure>
 
+      {/* ─── 2022 LONG-TAIL CALLOUT ───────────────────────────── */}
+      {/* The streamer foundation built across the three campaigns kept
+          compounding through 2022. Numbers from Azarus internal
+          (Twitch Developer Analytics + Twitch Tracker), full year. */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">Through 2022</span>
+          <p className="delta__result-value">
+            <mark>18.4M unique viewers</mark>
+          </p>
+          <p className="delta__result-caption">
+            Across <strong>122 active channels</strong> &mdash;{' '}
+            <strong>31.9M views</strong>,{' '}
+            <strong>5.6M unique players</strong>,{' '}
+            <strong>~200M clicks</strong>. The streamer foundation kept
+            compounding through the year, eventually formalised in a
+            partnership with Twitch.
+          </p>
+        </div>
+      </aside>
+
       {/* ─── [08] THE TAKEAWAY ────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
