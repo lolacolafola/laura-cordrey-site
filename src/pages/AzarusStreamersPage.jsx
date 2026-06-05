@@ -119,29 +119,23 @@ export default function AzarusStreamersPage() {
       </figure>
 
       {/* ─── STATS (4 max — brand rule) ───────────────────────── */}
-      {/* Platform totals — establishes the scale of Azarus up front
-          for readers unfamiliar with the company outside web3 circles.
-          Source: Azarus internal (Twitch Developer Analytics + Twitch
-          Tracker), full year 2022. Campaign-specific numbers live in
-          the proof callouts inside each campaign section. */}
       <section className="container delta__stats">
-        <p className="marker delta__stats-kicker">Azarus &middot; Platform totals &middot; 2022</p>
         <ul>
           <li>
-            <span className="delta__stat-value">18.4M</span>
-            <span className="marker delta__stat-label">Unique viewers</span>
+            <span className="delta__stat-value">+80%</span>
+            <span className="marker delta__stat-label">MAU lift &middot; LoL launch</span>
           </li>
           <li>
-            <span className="delta__stat-value">5.6M</span>
-            <span className="marker delta__stat-label">Unique players</span>
+            <span className="delta__stat-value">500K</span>
+            <span className="marker delta__stat-label">Peak viewers &middot; Streamer Awards</span>
           </li>
           <li>
-            <span className="delta__stat-value">~200M</span>
-            <span className="marker delta__stat-label">Clicks</span>
+            <span className="delta__stat-value">90%</span>
+            <span className="marker delta__stat-label">Engagement &middot; Streamer Awards</span>
           </li>
           <li>
-            <span className="delta__stat-value">122</span>
-            <span className="marker delta__stat-label">Active channels</span>
+            <span className="delta__stat-value">20%</span>
+            <span className="marker delta__stat-label">Viewer &rarr; member &middot; Streamer Awards</span>
           </li>
         </ul>
       </section>
@@ -157,8 +151,12 @@ export default function AzarusStreamersPage() {
             Azarus was an{' '}
             <strong>interactive Twitch overlay</strong> &mdash; a browser
             extension layering trivia, polls and challenges on top of
-            live streams. The tagline, everywhere from press to the
-            product page:{' '}
+            live streams. Backed by{' '}
+            <strong>Galaxy Digital, Animoca Brands and Kleiner
+            Perkins</strong>. The platform would scale to{' '}
+            <mark>18.4M unique viewers, 5.6M unique players and ~200M
+            clicks across 122 active channels</mark> by end of 2022. The
+            tagline, everywhere from press to the product page:{' '}
             <em className="accent">
               &ldquo;Turn passive viewers into active participants.&rdquo;
             </em>
