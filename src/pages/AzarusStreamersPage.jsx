@@ -153,8 +153,12 @@ export default function AzarusStreamersPage() {
             extension layering trivia, polls and challenges on top of
             live streams. Backed by{' '}
             <strong>Galaxy Digital, Animoca Brands and Kleiner
-            Perkins</strong>. The tagline, everywhere from press to the
-            product page:{' '}
+            Perkins</strong>. By November 2022 the platform had
+            delivered{' '}
+            <mark>4M+ viewers participating in Azarus Challenges and
+            $2M+ in prizes distributed</mark>, across a store of
+            35,000+ digital items. The tagline, everywhere from press
+            to the product page:{' '}
             <em className="accent">
               &ldquo;Turn passive viewers into active participants.&rdquo;
             </em>
