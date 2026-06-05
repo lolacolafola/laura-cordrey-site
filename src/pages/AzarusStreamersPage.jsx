@@ -215,7 +215,7 @@ export default function AzarusStreamersPage() {
       {/* ─── EXPANSION PROOF CALLOUT ──────────────────────────── */}
       <aside className="delta__result">
         <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">Campaign 1 proof</span>
+          <span className="marker delta__result-kicker">League of Legends</span>
           <p className="delta__result-value">
             <mark>+80% MAU</mark>
           </p>
@@ -360,7 +360,7 @@ export default function AzarusStreamersPage() {
       {/* ─── THE PROOF CALLOUT ────────────────────────────────── */}
       <aside className="delta__result">
         <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">Campaign 2 proof</span>
+          <span className="marker delta__result-kicker">Streamer Awards</span>
           <p className="delta__result-value">
             <mark>Crashed the servers</mark>
           </p>
