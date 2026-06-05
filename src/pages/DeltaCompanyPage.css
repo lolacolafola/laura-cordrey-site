@@ -111,6 +111,10 @@
   padding-top: var(--space-8);
   padding-bottom: var(--space-8);
 }
+.delta__stats-kicker {
+  color: var(--ink-muted);
+  margin: 0 0 var(--space-5);
+}
 .delta__stats ul {
   list-style: none;
   margin: 0;
