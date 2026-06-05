@@ -153,10 +153,8 @@ export default function AzarusStreamersPage() {
             extension layering trivia, polls and challenges on top of
             live streams. Backed by{' '}
             <strong>Galaxy Digital, Animoca Brands and Kleiner
-            Perkins</strong>. The platform would scale to{' '}
-            <mark>18.4M unique viewers, 5.6M unique players and ~200M
-            clicks across 122 active channels</mark> by end of 2022. The
-            tagline, everywhere from press to the product page:{' '}
+            Perkins</strong>. The tagline, everywhere from press to the
+            product page:{' '}
             <em className="accent">
               &ldquo;Turn passive viewers into active participants.&rdquo;
             </em>
