@@ -362,12 +362,14 @@ export default function AzarusStreamersPage() {
         <div className="container delta__result-inner">
           <span className="marker delta__result-kicker">Campaign 2 proof</span>
           <p className="delta__result-value">
-            <mark>500K &middot; 90% &middot; 20% &middot; servers down</mark>
+            <mark>Crashed the servers</mark>
           </p>
           <p className="delta__result-caption">
-            Mass interactivity, validated on the biggest stage in
-            streaming. And the operational ceiling exposed in the same
-            broadcast.
+            <strong>500K peak concurrent viewers</strong>,{' '}
+            <strong>90% engagement</strong>,{' '}
+            <strong>20% viewer&nbsp;&rarr;&nbsp;member conversion</strong>{' '}
+            &mdash; the biggest stage in streaming, and the operational
+            ceiling exposed in the same broadcast.
           </p>
         </div>
       </aside>
