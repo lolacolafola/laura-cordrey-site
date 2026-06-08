@@ -335,6 +335,16 @@
 .delta__plate--full img {
   aspect-ratio: 3 / 2;
 }
+/* Natural-aspect variant: no forced ratio, no frame, no crop.
+   For brand lockups and graphic assets that should display at their
+   own dimensions. Carousels keep their frame; standalone plates don't. */
+.delta__plate--natural img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  height: auto;
+}
 .delta__plate figcaption {
   color: var(--ink-muted);
   font-size: var(--fs-body);
@@ -593,6 +603,31 @@
   line-height: 1.4;
   margin: var(--space-3) 0 0;
   max-width: 42ch;
+}
+
+/* ─── PRESS QUOTE ─────────────────────────────────────────
+   Pull-quote treatment for on-record quotes from press at
+   the time of the work. Sits inside section bodies. Accent
+   left border + dark surface ground it as editorial weight. */
+.delta__press-quote {
+  margin: var(--space-5) 0;
+  padding: var(--space-5);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-deep);
+}
+.delta__press-quote p {
+  font-style: italic;
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  margin: 0;
+  color: var(--ink);
+}
+.delta__press-quote cite {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--fs-body);
+  color: var(--ink-muted);
+  font-style: normal;
 }
 
 /* ─── CTA ────────────────────────────────────────────────── */
