@@ -29,3 +29,10 @@ assets-source/
 # Local prototype scratch — not deployed
 videogame.html
 videogame_files/
+
+# Large source videos kept locally for reference but not deployed
+# (these are too big for git; YouTube embeds and short Gabriel loops
+# carry the page instead)
+public/case-studies/azarus-brawlhalla-xenrichan-2022-11-17.mp4
+public/case-studies/azarus-game-demo.mp4
+public/case-studies/azarus-halloween-beta-clutchmeister-2022-10-31.mp4

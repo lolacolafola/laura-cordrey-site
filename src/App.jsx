@@ -9,6 +9,7 @@ import UsMobilePage from './pages/UsMobilePage.jsx'
 import UbisoftSiegeChampionsPage from './pages/UbisoftSiegeChampionsPage.jsx'
 import BlaBlaCarLiveNationPage from './pages/BlaBlaCarLiveNationPage.jsx'
 import AzarusStreamersPage from './pages/AzarusStreamersPage.jsx'
+import AzarusGameAdsPage from './pages/AzarusGameAdsPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import MethodologyPage from './pages/MethodologyPage.jsx'
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/work/ubisoft-siege-champions" element={<UbisoftSiegeChampionsPage />} />
           <Route path="/work/blablacar-live-nation" element={<BlaBlaCarLiveNationPage />} />
           <Route path="/work/azarus" element={<AzarusStreamersPage />} />
+          <Route path="/work/azarus-game-ads" element={<AzarusGameAdsPage />} />
           <Route path="/work/:slug" element={<WorkArticle />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
