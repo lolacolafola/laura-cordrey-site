@@ -439,8 +439,8 @@ export default function AboutPage() {
             <span className="marker">Based in</span>
             <ul className="about-details__list">
               <li>Paris, France</li>
-              <li>New York, US (regularly)</li>
-              <li>Remote-friendly across EMEA / US timezones</li>
+              <li>New York, USA (regularly)</li>
+              <li>Remote-friendly across EMEA / USA timezones</li>
             </ul>
           </div>
         </div>

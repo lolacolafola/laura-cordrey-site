@@ -44,7 +44,7 @@ export default function UsMobilePage() {
       datePublished: '2024-08-15',
       client: 'US Mobile',
       role: 'Head of Community',
-      market: 'US',
+      market: 'USA',
       sector: 'Telco',
       about: ['Fan-Led Growth', 'Premium Drops', 'Dark Star', 'Gamification', 'Community Monetisation'],
       keywords: ['fandom is purchasing power', 'premium drop', 'limited edition', 'US Mobile', 'Dark Star', 'gamified pre-launch funnel'],
@@ -87,7 +87,7 @@ export default function UsMobilePage() {
         <div className="container">
           <div className="delta__case-meta">
             <span className="marker delta__case-kicker">Case study</span>
-            <span className="marker">US Mobile &middot; US &middot; 2024</span>
+            <span className="marker">US Mobile &middot; USA &middot; 2024</span>
           </div>
           <h1 className="delta__cover-title">
             Selling <mark>Dark Star</mark>.
