@@ -263,10 +263,12 @@ const caseStudies = [
     takeaway:
       'On Meta, 55% of viewers stuck past the 15-second mark \u2014 the joke landed and the hook worked. Plus its own organic traction on Reddit. The kind of brand moment that gets shared, screenshotted, and remembered \u2014 proof that a challenger brand can make incumbents react instead of the other way around.',
     media: {
-      // Logo kept as a fallback poster; YouTube hero takes precedence when set.
-      image: 'case-studies/us-mobile.png',
-      imageAlt: 'US Mobile brand mark \u2014 the company Laura produced the Claw Mobile stunt campaign for',
-      heroBackground: 'white',
+      // Card pulled from the Claw Mobile YouTube thumbnail
+      // (https://i.ytimg.com/vi/bsLHDOlcgcY/maxresdefault.jpg) so the
+      // hero + work card both show the fake-Hugh-Jackman stunt frame
+      // instead of the US Mobile brand mark.
+      image: 'case-studies/claw-mobile-card.jpg',
+      imageAlt: 'Claw Mobile stunt film thumbnail \u2014 a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right',
       youtube: 'bsLHDOlcgcY',
       videoTitle: 'Claw Mobile \u2014 the stunt film',
       videoDescription: 'The stunt brand film for US Mobile, parodying Mint Mobile.',

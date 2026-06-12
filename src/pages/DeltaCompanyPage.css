@@ -112,6 +112,79 @@
   object-position: center bottom;
 }
 
+/* ─── COMPARE GRID (2-up portrait shots) ────────────────── */
+/* Side-by-side proof beat used when two related screenshots tell a
+   before/after or this/that story (e.g. Claw Mobile's spoof LP next
+   to the real CEO LP). Portrait-friendly — figcaptions sit below the
+   image at standard caption size. */
+.delta__compare-grid {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+.delta__compare-cell {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.delta__compare-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  background: var(--bg-deep);
+}
+.delta__compare-cell figcaption {
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+@media (max-width: 720px) {
+  .delta__compare-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── FILMS GRID (multi-video showcase) ─────────────────── */
+/* 3-up grid of clickable YouTube thumbnails. Used when a case study
+   has multiple short films from a single campaign (e.g. Claw Mobile's
+   supporting cuts). Mirrors the article__additional-grid pattern but
+   in the bespoke delta__ namespace and using thumbnail-links instead
+   of iframes (lighter page load). */
+.delta__films-grid {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.delta__films-grid-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.delta__films-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.delta__films-cell {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.delta__films-cell figcaption {
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+@media (max-width: 860px) {
+  .delta__films-grid-inner { grid-template-columns: 1fr; }
+}
+
 /* ─── STATS ──────────────────────────────────────────────── */
 .delta__stats {
   padding-top: var(--space-8);
@@ -357,10 +430,19 @@
 .delta__plate--full img {
   aspect-ratio: 3 / 2;
 }
+/* Narrow variant: constrains the plate width so a lower-resolution
+   asset doesn't get scaled up into visible blur (e.g. a screen
+   recording that would look soft at full container width). */
+.delta__plate--narrow {
+  max-width: min(720px, 100%);
+}
 /* Natural-aspect variant: no forced ratio, no frame, no crop.
    For brand lockups and graphic assets that should display at their
-   own dimensions. Carousels keep their frame; standalone plates don't. */
-.delta__plate--natural img {
+   own dimensions. Carousels keep their frame; standalone plates don't.
+   Applies to both img and video children so screen recordings and
+   short clips can display at their native aspect without cropping. */
+.delta__plate--natural img,
+.delta__plate--natural video {
   aspect-ratio: auto;
   object-fit: contain;
   background: transparent;
