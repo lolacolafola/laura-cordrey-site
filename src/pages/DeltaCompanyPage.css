@@ -105,6 +105,12 @@
   object-fit: contain;
   background: var(--bg-deep);
 }
+/* Keeps the bottom of the image in frame when 21:9 cover would crop a
+   key element (e.g. a brand lockup that sits at the bottom of a
+   16:9-native photo). */
+.delta__hero--bottom img {
+  object-position: center bottom;
+}
 
 /* ─── STATS ──────────────────────────────────────────────── */
 .delta__stats {
@@ -146,6 +152,13 @@
   .delta__stats ul { grid-template-columns: repeat(2, 1fr); }
   .delta__stats li:nth-child(2n) { border-right: 0; }
   .delta__stats li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+}
+.delta__stats--three ul { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px) {
+  /* 3 stats → single column on mobile so brand-name labels breathe. */
+  .delta__stats--three ul { grid-template-columns: 1fr; }
+  .delta__stats--three li { border-right: 0; }
+  .delta__stats--three li + li { border-top: 1px solid var(--hairline); }
 }
 
 /* ─── SECTION ────────────────────────────────────────────── */
@@ -252,6 +265,15 @@
 .delta__section + .delta__plate,
 .delta__section + .delta__social-grid {
   margin-top: var(--space-5);
+}
+/* Two plates stacked back-to-back (e.g. social loop above + live stream
+   below in a campaign section) read as a pair. Tighten the gap so they
+   feel grouped, not as a section-level rhythm. */
+.delta__plate:has(+ .delta__plate) {
+  margin-bottom: var(--space-4);
+}
+.delta__plate + .delta__plate {
+  margin-top: var(--space-4);
 }
 /* When a section is preceded by a float, reduce its internal padding-top.
    The float provided its own breathing room above the section, so the
@@ -377,10 +399,24 @@
   border-top: 0;
   padding-top: var(--space-5);
 }
+/* Continuation sections have no section-head, so the body would fall
+   into the narrow left column of the 2-col grid. Push it into the
+   right column to match the rhythm of full sections above. */
+.delta__section--continuation > .delta__section-body {
+  grid-column: 2;
+}
+@media (max-width: 860px) {
+  .delta__section--continuation > .delta__section-body { grid-column: 1; }
+}
 .delta__video-context {
-  font-size: var(--fs-body-l);
+  /* Matches .delta__plate figcaption (size, color, line-height,
+     width). All video captions across the page read at the same
+     scale AND wrap at the same width. The 64ch cap used to live here
+     and caused inconsistent wrapping vs. plate figcaptions (which use
+     max-width: none) — Laura flagged the YouTube credit wrapping
+     while the Coca-Cola figcaption didn't. */
+  font-size: var(--fs-body);
   color: var(--ink-muted);
-  max-width: 64ch;
   line-height: 1.55;
   margin: 0;
 }

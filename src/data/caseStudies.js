@@ -42,6 +42,7 @@ const caseStudies = [
     media: {
       image: 'case-studies/delta/01-delta-badge-hero.png',
       imageAlt: 'Delta Company badge on a Ghost Recon Breakpoint backdrop — the brand mark Laura designed for the first-of-its-kind community advocacy program at Ubisoft',
+      cardImageScale: 1.15,
       youtube: 'F5g7fOzxGYY',
       videoTitle: 'UbiE3 2019 — Community segment + Delta Company reveal',
       videoDescription: 'The full Ghost Recon community segment where Laura unveiled Delta Company live on the UbiE3 2019 stage.',
@@ -168,9 +169,9 @@ const caseStudies = [
   },
   {
     id: 'azarus-game-ads',
-    company: 'Azarus · Ad platform',
+    company: 'Azarus · Game ad platform',
     headline: 'Pivoted into a gamified ad platform, sold to Animoca',
-    hook: 'Pivoted Azarus into a gamified ad platform. Ubisoft and Logitech as launch advertisers; acquired by Animoca, Oct 2023.',
+    hook: 'Pivoted Azarus into a gamified ad platform. Ubisoft and Logitech as launch advertisers; acquired by Animoca.',
     tldr: 'I pivoted Azarus from a Twitch overlay product into a gamified advertising platform — designed the gamified ad format end-to-end, ran the Alpha and Beta with streamers from the community program I’d built, locked <mark>Ubisoft and Logitech as launch advertisers at $2 CPI</mark>, and led the $AZA token launch (Coinbase + Crypto.com listings). Azarus was acquired by Animoca Brands in October 2023.',
     year: '2022\u20132023',
     role: 'VP Marketing',
@@ -190,11 +191,14 @@ const caseStudies = [
     takeaway:
       'The engagement engine became a business. Brand advertisers at premium CPI. A tradeable token aligning streamers, players, platform and treasury with growth. Hundreds of thousands of active players. Acquired by Animoca Brands in October 2023. Three principles: earn the right to pivot (no Streamer Awards proof point, no advertiser conversation); premium pricing beats discount pricing if the format earns it ($2 CPI was higher than industry \u2014 brands paid because engagement justified it); token work is brand work, not crypto work (same product-launch playbook with regulatory care added).',
     media: {
-      // Reusing the Azarus brand mark until pivot-specific assets land
-      // (Brawlhalla / Logitech campaign screens, AzaCoin launch creative).
-      image: 'case-studies/azarus.png',
-      imageAlt: 'Azarus brand mark \u2014 the company where Laura led the pivot from Twitch overlay to gamified ad platform, locked Ubisoft and Logitech as launch advertisers at $2 CPI, launched $AZA, and saw Azarus acquired by Animoca Brands',
-      heroBackground: 'white',
+      image: 'case-studies/azarus-overlay-games-banner.jpeg',
+      imageAlt: 'Azarus repositioning banner \u2014 the AZARUS wordmark with the tagline "The Overlay Games Company" on a purple gradient with floating confetti, the brand statement of the pivot Laura led',
+      heroBackground: 'transparent',
+      // Bespoke card thumbnail (960\u00d7540) supplied by Laura for the
+      // /work index. Sized so the key visual sits cleanly inside the
+      // 4:3 card crop.
+      cardImage: 'case-studies/azarus-game-ads-card.png',
+      cardImageAlt: 'Azarus game ads case study card thumbnail',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
@@ -226,6 +230,10 @@ const caseStudies = [
     media: {
       image: 'case-studies/blablacar-livenation-banner-yellow.png',
       imageAlt: 'BlaBlaCar \u00d7 Live Nation brand lockup on yellow',
+      // Bespoke card thumbnail (960\u00d7540) supplied by Laura for the
+      // /work index.
+      cardImage: 'case-studies/blablacar-live-nation-card.png',
+      cardImageAlt: 'BlaBlaCar \u00d7 Live Nation case study card thumbnail',
       youtube: null,
       videoTitle: null,
       videoDescription: null,

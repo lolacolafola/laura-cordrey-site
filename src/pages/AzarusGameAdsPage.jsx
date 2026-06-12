@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { assetUrl, pageUrl, caseStudyJsonLd } from '../lib/seo.js'
+import ArticleCarousel from '../components/ArticleCarousel.jsx'
 import './HomePage.css' // .btn shared styles
 import './DeltaCompanyPage.css' // shared case-study CSS (delta__ classes are generic)
 
@@ -10,15 +11,22 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 /* Azarus · Ad platform pivot — bespoke case study page.
  *
  * Spine: streamer proof point set up the pivot → from Twitch overlay to gamified
- * ad platform → format designed and tested with streamer community → brand
+ * ad platform → format designed and tested with the creator community → brand
  * advertisers locked at $2 CPI → token launch → acquired by Animoca Brands.
  *
+ * Voice & Scope: Laura led the product pivot, the gamified ad format, and the
+ * marketing around it. She did NOT close the Ubisoft and Logitech deals — the
+ * ex-Amazon sales team did. On $AZA: listings, comms, partner onboarding —
+ * NOT the full token build. Lede and section openers must reflect this.
+ * "Led" not "designed solo". "Drove" not "built end-to-end" on crypto. See
+ * docs/case-study-rules.md for the full ruleset.
+ *
  * Structure: cover + 4-stat row + 7 numbered sections + CTA.
- *   [01] Where it started               the overlay had a ceiling
+ *   [01] Where it started               engagement at scale, no monetization
  *   [02] The pivot                       from overlay to gamified ad platform
- *                                        (+ overlay-games banner + tech stack)
- *   [03] The format                      built end-to-end, tested with streamers first
  *                                        (+ how-to-play YouTube embed)
+ *   [03] Tested first                    proven with streamers first
+ *                                        (+ Coca-Cola mock campaign demo)
  *   [04] Campaign 1                      Ubisoft × Brawlhalla, $2 CPI
  *                                        (+ Brawlhalla autoplay loops)
  *   [05] Campaign 2                      Logitech × ElainaExe, in parallel
@@ -96,45 +104,48 @@ export default function AzarusGameAdsPage() {
             Pivoting <mark>Azarus</mark>.
           </h1>
           <p className="delta__cover-lede">
-            From Twitch overlay to gamified ad platform. I designed the
-            format, tested it with the streamer community, and locked{' '}
-            <mark>Ubisoft and Logitech</mark> at <mark>$2 CPI</mark>.
-            In parallel, transformed the in-game currency into a
-            tradeable token. Acquired by{' '}
-            <mark>Animoca Brands</mark> in October 2023.
+            The pivot from Twitch overlay to gamified ad platform for
+            sponsoring brands. I led the front-end product overhaul and
+            the GTM. Campaigns with Ubisoft and Logitech averaged{' '}
+            <mark>$2 CPI</mark>. $AZA listed on Coinbase and Crypto.com.
+            Acquired by Animoca Brands in October 2023.
           </p>
         </div>
       </header>
 
       {/* ─── HERO ─────────────────────────────────────────────── */}
       {/* The Overlay Games Company positioning banner — the brand
-          statement of the pivot. Natively wide; --contain so the
-          AZARUS wordmark + tagline stay centred without crop. */}
-      <figure className="delta__hero delta__hero--contain">
+          statement of the pivot. 16:9, fills the hero edge-to-edge. */}
+      <figure className="delta__hero">
         <img
-          src={BASE + 'case-studies/azarus-overlay-games-banner.jpeg'}
-          alt="Azarus repositioning banner — the AZARUS wordmark with the new tagline 'The Overlay Games Company' on a purple gradient with floating confetti, the brand statement of the pivot"
+          src={BASE + 'case-studies/azarus-game-ads-card.png'}
+          alt="Azarus repositioning banner — the AZARUS wordmark with the tagline 'The Overlay Games™ Company' on a dark background with purple and red gradient lighting"
         />
       </figure>
 
       {/* ─── STATS (4 max — brand rule) ───────────────────────── */}
+      {/* Four stats. Scale first (4M+ viewers, $2M+ prizes — tenure-era
+          press-release figures confirmed by Laura, see commit f0de8c8),
+          then the commercial proof ($2 CPI, $AZA). Narrative: at scale →
+          monetized. The Animoca acquisition close lives in the lede and
+          [07] rather than the stat row. */}
       <section className="container delta__stats">
         <ul>
           <li>
-            <span className="delta__stat-value">$2</span>
-            <span className="marker delta__stat-label">CPI &middot; launch campaigns</span>
+            <span className="delta__stat-value">4M+</span>
+            <span className="marker delta__stat-label">Viewers participated</span>
           </li>
           <li>
-            <span className="delta__stat-value">Ubisoft + Logitech</span>
-            <span className="marker delta__stat-label">Launch advertisers</span>
+            <span className="delta__stat-value">$2M+</span>
+            <span className="marker delta__stat-label">Prizes distributed to fans</span>
           </li>
           <li>
-            <span className="delta__stat-value">Coinbase + Crypto.com</span>
-            <span className="marker delta__stat-label">$AZA listings</span>
+            <span className="delta__stat-value">$2 CPI</span>
+            <span className="marker delta__stat-label">Launch campaigns &middot; Ubisoft + Logitech</span>
           </li>
           <li>
-            <span className="delta__stat-value">Acquired</span>
-            <span className="marker delta__stat-label">Animoca Brands &middot; Oct 2023</span>
+            <span className="delta__stat-value">$AZA</span>
+            <span className="marker delta__stat-label">Token launch &middot; Coinbase + Crypto.com listings</span>
           </li>
         </ul>
       </section>
@@ -143,33 +154,28 @@ export default function AzarusGameAdsPage() {
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[01] &middot; Where it started</span>
-          <h2 className="delta__section-title">The overlay had a ceiling.</h2>
+          <h2 className="delta__section-title">Engagement at scale. No monetization.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            After the{' '}
+            At the time, Azarus was a browser overlay on Twitch. The{' '}
             <Link to="/work/azarus" className="accent">
               Streamer Awards
-            </Link>
-            , Azarus had proof of engagement at scale. But the Twitch
-            overlay format had a ceiling. The total addressable market
-            for an overlay-only product was capped by the Twitch viewer
-            base and the friction of a browser extension.
+            </Link>{' '}
+            had proved the engagement model worked. What it hadn&rsquo;t
+            solved was monetization: for the company, for the streamers
+            running the overlay, or for the brands trying to reach them.
           </p>
           <p>
-            Three things needed to change: the product surface (something
-            brands could buy at scale), the pricing model (something
-            brands recognised), and the capital structure (something
-            that aligned the streamers, viewers and platform with
-            growth).
-          </p>
-          <p>
-            I led the pivot.
+            That was the pivot.
           </p>
         </div>
       </section>
 
       {/* ─── [02] THE PIVOT ───────────────────────────────────── */}
+      {/* Strategic move: format mechanic + Oct 2022 repositioning + team.
+          The how-to-play YouTube video closes the section. The beta
+          proof and the Coca-Cola pitch artefact live in [03] now. */}
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[02] &middot; The pivot</span>
@@ -177,84 +183,23 @@ export default function AzarusGameAdsPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            We took the engagement mechanic that had worked on the
-            Streamer Awards (live, gamified, audience playing along) and
-            reshaped it as a <mark>brand-advertising format</mark>.
-            Brands buy CPI-priced engagement, not banner space.
-            Streamers run the gamified ad live on their channel. Viewers
-            play, earn rewards, redeem in the Azarus Store.
+            I led the team that reshaped Azarus as a{' '}
+            <mark>gamified advertising format</mark>. Brands buy
+            CPI-priced engagement, not banner space.
           </p>
           <p>
             The repositioning landed in October 2022:{' '}
-            <strong>The Overlay Games&trade; Company</strong>. I
-            directed the website redesign that carried it.
-          </p>
-          <p>
-            The platform connected five parties: brands, streamers,
-            viewers, game makers and digital asset providers. Every
-            transaction routed attention to revenue, and revenue back
-            into engagement.
+            <strong>The Overlay Games&trade; Company</strong>. My team
+            delivered it: 8 people across brand, community, game design
+            and comms.
           </p>
         </div>
       </section>
 
-      {/* The overlay game technology stack diagram — five-party value
-          flow with Attention loops connecting brands, streamers,
-          viewers, game makers and digital asset providers. */}
-      <figure className="delta__plate delta__plate--natural">
-        <img
-          src={BASE + 'case-studies/azarus-overlay-tech-stack.jpeg'}
-          alt="Azarus Overlay Game Technology Stack diagram — central Azarus mark surrounded by five connected nodes (Viewers, Streamers, Game Makers, Sponsors, Digital Assets Providers) with Attention loops between them"
-        />
-        <figcaption className="container">
-          The Overlay Game Technology Stack. Every party in the loop.
-        </figcaption>
-      </figure>
-
-      {/* ─── [03] THE FORMAT ──────────────────────────────────── */}
-      <section className="delta__section container">
-        <div className="delta__section-head">
-          <span className="marker">[03] &middot; The format</span>
-          <h2 className="delta__section-title">Built end-to-end. Tested with my streamer community.</h2>
-        </div>
-        <div className="delta__section-body">
-          <p>
-            I designed the gamified ad format end-to-end. From the
-            moment a viewer joined the stream to the moment they
-            collected their reward, every step was built to convert
-            attention into engagement, then engagement into a reason to
-            come back.
-          </p>
-          <p>
-            Before any brand was approached, I ran the{' '}
-            <mark>September 2022 Alpha</mark> and the{' '}
-            <mark>October 2022 Halloween Beta</mark> live with streamers
-            from the creator community I had built. Same talent from the
-            always-on creator program covered in the{' '}
-            <Link to="/work/azarus" className="accent">
-              previous case study
-            </Link>
-            . The format had to prove out with players first.
-          </p>
-          <p>
-            The pitch artefact: a fully-rendered mock campaign using
-            Coca-Cola brand identity as visual shorthand. Not a real
-            client. A way for any advertiser to see themselves inside
-            the format before signing.
-          </p>
-        </div>
-      </section>
-
-      {/* How-to-play walkthrough video — Laura's voiceover, video
-          direction by Gabriel. Shows the gamified ad mechanic
-          end-to-end. Thumbnail-style YouTube link rather than an inline
-          iframe (cleaner editorial flow, lazy-loads on click). */}
+      {/* How-to-play walkthrough video — credit caption sits BELOW the
+          video (Laura's rule). Thumbnail-style YouTube link rather than
+          an inline iframe (cleaner editorial flow, lazy-loads on click). */}
       <section className="delta__video-section delta__video-section--continuation container">
-        <span className="marker">Watch the format</span>
-        <p className="delta__video-context">
-          The full walkthrough of the gamified ad mechanic. Voiceover by
-          me; video direction by Gabriel.
-        </p>
         <a
           href="https://www.youtube.com/watch?v=34AzFfo7C6E"
           target="_blank"
@@ -268,19 +213,85 @@ export default function AzarusGameAdsPage() {
           />
           <span className="delta__video-thumbnail-play" aria-hidden="true">▶</span>
         </a>
+        <p className="delta__video-context">
+          Explanation video storyboarded by me with my VO.
+          Post-production and animation by{' '}
+          <strong>Gabriel Virata Alves</strong>.
+        </p>
       </section>
 
-      {/* Go Live with Azarus Trivia creative — the streamer-facing
-          recruitment artefact that brought the format into channels.
-          Sits between the format section and the brand campaigns to
-          show the GTM craft that ran alongside the strategy. */}
+      {/* ─── [03] PROVEN WITH STREAMERS FIRST ─────────────────── */}
+      {/* The de-risking story: Alpha + Halloween Beta with the creator
+          community before any brand was approached, plus the Coca-Cola
+          mock campaign as the pitch artefact. Coca-Cola demo loop
+          closes the section. */}
+      <section className="delta__section container">
+        <div className="delta__section-head">
+          <span className="marker">[03] &middot; From alpha to demo</span>
+          <h2 className="delta__section-title">Proven with streamers first.</h2>
+        </div>
+        <div className="delta__section-body">
+          <p>
+            We moved forward with a trivia ad game format: a countdown
+            to bring players in and increase the prize pool; three
+            rounds of trivia about the sponsoring brand; the brand ad
+            plays; players press to collect their winnings at the end.
+            Attention held to the very last beat. That&rsquo;s the
+            value behind the CPI.
+          </p>
+        </div>
+      </section>
+
+      {/* Go Live with Azarus Trivia marketing creative — punctuates the
+          format choice before the stress-test paragraph. */}
       <figure className="delta__plate delta__plate--natural">
         <img
           src={BASE + 'case-studies/azarus-go-live-trivia.jpeg'}
           alt="Go Live with Azarus Trivia marketing creative — bold TRIVIA wordmark with a treasure chest, gold coins flying, and the Azarus logo at the bottom"
         />
         <figcaption className="container">
-          The creative I shipped to recruit streamers into the format.
+          Go Live with Azarus Trivia. Marketing creative.
+        </figcaption>
+      </figure>
+
+      <section className="delta__section delta__section--continuation container">
+        <div className="delta__section-body">
+          <p>
+            Before pitching to brands I wanted to stress-test the
+            format. We designed and tested an Alpha and Beta with the{' '}
+            <Link to="/work/azarus" className="accent">
+              always-on creator community
+            </Link>{' '}
+            we had built.
+          </p>
+          <p>
+            Their feedback helped us shape the final demo, a
+            fully-rendered mock campaign using Coca-Cola, to enable
+            potential sponsors to picture themselves in the campaign.
+            This is what the sales team used to secure our first
+            sponsoring brands.
+          </p>
+        </div>
+      </section>
+
+      {/* Coca-Cola mock campaign demo — fully-rendered pitch artefact
+          using Coca-Cola brand identity as visual shorthand (not a real
+          client). The "cola one" Laura referenced; lives in the public
+          folder as azarus-game-demo.mp4 (~205MB, autoplay-muted-loop
+          per the Brawlhalla/Logitech convention; consider a compressed
+          variant later). */}
+      <figure className="delta__plate delta__plate--full">
+        <video
+          src={BASE + 'case-studies/azarus-game-demo.mp4'}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="Azarus gamified ad mock campaign — a fully-rendered demo using Coca-Cola brand identity as visual shorthand, the pitch artefact shown to advertisers"
+        />
+        <figcaption className="container">
+          The mock campaign I shipped to pitch advertisers. Coca-Cola as
+          visual shorthand. Any brand could see themselves inside it.
         </figcaption>
       </figure>
 
@@ -288,75 +299,89 @@ export default function AzarusGameAdsPage() {
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[04] &middot; Campaign 1</span>
-          <h2 className="delta__section-title">Ubisoft &times; Brawlhalla.</h2>
+          <h2 className="delta__section-title">Azarus &times; Ubisoft.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            Ubisoft signed for Brawlhalla. Live on{' '}
-            <strong>Xenrichan</strong> on{' '}
-            <mark>November 17, 2022</mark>. <mark>$2 CPI</mark>.
-          </p>
-          <p>
-            The CPI benchmark came from our ex-Amazon sales team,
-            drawing on Amazon&rsquo;s gaming-ad data. Azarus was
-            competing on quality at a premium price, not on volume at a
-            discount.
+            The campaign was built around Ubisoft&rsquo;s new character
+            launch in Brawlhalla, with a trivia round, advertisement,
+            and winnings collection at the end. Streamed with our
+            streamers from our always-on creator program.
           </p>
         </div>
       </section>
 
-      {/* Brawlhalla launch loop — short autoplay-muted clip Gabriel
-          produced for the social announcement. Used as visual
-          punctuation for the Ubisoft launch. */}
-      <figure className="delta__plate delta__plate--full">
-        <video
-          src={BASE + 'case-studies/azarus-brawlhalla-loop-01.mp4'}
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-label="Azarus × Ubisoft Brawlhalla launch loop — looping animation of the gamified ad creative"
+      {/* Brawlhalla campaign carousel — social asset (Gabriel's launch
+          loop) first, then the livestream proof (Xenrichan on Twitch). */}
+      <div className="container delta__brand-carousel">
+        <ArticleCarousel
+          items={[
+            {
+              src: 'case-studies/azarus-brawlhalla-loop-01.mp4',
+              alt: 'Azarus × Ubisoft Brawlhalla launch loop — looping animation of the gamified ad creative',
+              caption:
+                'Azarus × Ubisoft Brawlhalla. Launch loop made by Gabriel Virata Alves.',
+            },
+            {
+              src: 'case-studies/azarus-brawlhalla-xenrichan-stream.mp4',
+              alt: 'Xenrichan streaming the Azarus × Ubisoft Brawlhalla gamified ad live on her channel',
+              caption: 'Live on Xenrichan. The campaign running in stream.',
+            },
+          ]}
         />
-        <figcaption className="container">
-          Azarus &times; Ubisoft Brawlhalla. Launch loop.
-        </figcaption>
-      </figure>
+      </div>
 
-      {/* ─── [05] CAMPAIGN 2: LOGITECH × ELAINAEXE ──────────── */}
+      {/* ─── [05] CAMPAIGN 2: LOGITECH × BLACK FRIDAY ───────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[05] &middot; Campaign 2</span>
-          <h2 className="delta__section-title">Logitech &times; ElainaExe.</h2>
+          <h2 className="delta__section-title">Azarus &times; Logitech.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            Logitech signed in parallel. Live on{' '}
-            <strong>ElainaExe</strong>. Same <mark>$2 CPI</mark>.
-          </p>
-          <p>
-            One talent agency described the rate as{' '}
-            <em>&ldquo;much higher than anything they have done in the
-            past.&rdquo;</em> Premium pricing holding under brand-side
-            procurement, not just on the deck.
+            Our next campaign landed on Black Friday with Logitech,
+            streamed by the same always-on creator program. Across both
+            campaigns, we averaged <mark>$2 CPI</mark>.
           </p>
         </div>
       </section>
 
-      {/* Logitech launch loop — short autoplay-muted clip Gabriel
-          produced for the social announcement. */}
-      <figure className="delta__plate delta__plate--full">
-        <video
-          src={BASE + 'case-studies/azarus-logitech-trivia-loop.mp4'}
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-label="Azarus × Logitech launch loop — looping animation of the gamified ad creative"
+      {/* Logitech campaign carousel — livestream proof (ElainaExe) first
+          per Laura's call, then the social asset (Gabriel's launch loop). */}
+      <div className="container delta__brand-carousel">
+        <ArticleCarousel
+          items={[
+            {
+              src: 'case-studies/azarus-logitech-elainaexe.mp4',
+              alt: 'ElainaExe streaming the Azarus × Logitech gamified ad live on her channel',
+              caption: 'Live on ElainaExe. The campaign running in stream.',
+            },
+            {
+              src: 'case-studies/azarus-logitech-logos-loop.mp4',
+              alt: 'Azarus × Logitech launch loop — looping animation of the gamified ad creative',
+              caption:
+                'Azarus × Logitech. Launch loop made by Gabriel Virata Alves.',
+            },
+          ]}
         />
-        <figcaption className="container">
-          Azarus &times; Logitech. Launch loop.
-        </figcaption>
-      </figure>
+      </div>
+
+      {/* ─── CPI RESULT CALLOUT ─────────────────────────────── */}
+      {/* Banner proof beat between the two campaigns and the token:
+          the $2 CPI averaged across both Ubisoft and Logitech runs.
+          Above industry. Same delta__result pattern as the streamer
+          page. */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">Both campaigns</span>
+          <p className="delta__result-value">
+            <mark>$2 CPI</mark>
+          </p>
+          <p className="delta__result-caption">
+            Averaged across Ubisoft and Logitech. Above industry.
+          </p>
+        </div>
+      </aside>
 
       {/* ─── [06] THE TOKEN ──────────────────────────────────── */}
       <section className="delta__section container">
@@ -366,34 +391,34 @@ export default function AzarusGameAdsPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            AZA Credits already existed inside the overlay. Players
-            earned them by playing, redeemed them in the Azarus Store.
-            The token launch made the credits <mark>tradeable</mark>,
-            and routed every advertiser dollar across streamers,
-            players, platform and a community treasury.
+            AZA Credits lived inside the overlay as an internal
+            currency. We turned them into a crypto token, routing every
+            advertiser dollar across streamers, players, platform and
+            community treasury. Alignment, not just incentives.
           </p>
           <p>
-            I led the <mark>$AZA token launch</mark> end-to-end: brand,
-            whitepaper, GTM, comms. And supported listings on{' '}
-            <mark>Coinbase</mark> and <mark>Crypto.com</mark>.
-          </p>
-          <p>
-            Token work is brand work. Same product-launch playbook as
-            any other launch. The regulatory work layered on top.
+            My contribution: branding, listings, comms and partner
+            onboarding. $AZA went live on <mark>Coinbase</mark> and{' '}
+            <mark>Crypto.com</mark>.
           </p>
         </div>
       </section>
 
-      {/* $AZA tokenomics chart — distribution donut + vesting schedule.
-          Total supply 1B, 4-year vesting. The on-record artefact of
-          the alignment thesis. */}
-      <figure className="delta__plate delta__plate--natural">
-        <img
-          src={BASE + 'case-studies/azarus-aza-tokenomics.jpeg'}
-          alt="$AZA Tokenomics chart — distribution donut showing Stream DAOs 30%, Team 16%, Liquidity Reserve 15%, Ecosystem Fund 15%, Equity Holders Reserve 14.7%, Marketing 5%, Advisors 4%, AZA Credit Holders 0.3%, plus a 4-year distribution schedule line chart"
+      {/* $AZA "now available" live loop — public-facing launch creative
+          (swapped in for the tokenomics chart, which may have shown
+          internal-only distribution numbers). */}
+      <figure className="delta__plate delta__plate--full">
+        <video
+          src={BASE + 'case-studies/azarus-azacoin-live-logos-loop.mp4'}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="$AZA token launch loop — animated creative announcing $AZA is now live, with Coinbase and Crypto.com exchange logos"
         />
         <figcaption className="container">
-          $AZA tokenomics. 1B total supply, 4-year vesting.
+          $AZA token launch loop. Made by{' '}
+          <strong>Gabriel Virata Alves</strong>.
         </figcaption>
       </figure>
 
@@ -401,41 +426,39 @@ export default function AzarusGameAdsPage() {
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[07] &middot; The takeaway</span>
-          <h2 className="delta__section-title">The engagement engine became a business.</h2>
+          <h2 className="delta__section-title">A consumer product, pivoted into a B2B brand business.</h2>
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
-            Brand advertisers at premium CPI. A tradeable token aligning
-            streamers, players, platform and treasury with growth.
-            Hundreds of thousands of active players. Acquired by{' '}
-            <mark>Animoca Brands</mark> in October 2023.
-          </p>
-          <p>
-            <strong>One engine. Three surfaces.</strong> The format I
-            built, the brand advertisers it served, and the token that
-            funded it.
+            The Ubisoft and Logitech campaigns kicked off a format
+            Azarus went on to scale, including an official Twitch
+            partnership and an acquisition by{' '}
+            <mark>Animoca Brands</mark> in October 2023. 4M+ viewers
+            participated, $2M+ in prizes distributed.{' '}
+            <strong>Game ads: proved.</strong>
           </p>
           <p>
             <strong>Three takeaways:</strong>
           </p>
           <p>
-            <strong>1. <mark>Earn the right to pivot</mark>.</strong>{' '}
-            Without the Streamer Awards proof point, no advertiser
-            conversation. The big swings unlock the next chapter; the
-            quiet work between them earns the right to take them.
+            <strong>1. <mark>Build community programs as testing
+            infrastructure</mark>.</strong> The always-on creator
+            program I had built doubled as the talent for the Alpha and
+            Halloween Beta, then ran the brand campaigns live. Same
+            investment, two returns: the testing rig and the channel.
           </p>
           <p>
-            <strong>2. <mark>Premium pricing beats discount pricing
-            if the format earns it</mark>.</strong> $2 CPI was above
-            industry. Brands paid because the engagement justified it,
-            not because the volume did.
+            <strong>2. <mark>Stress-test small before swinging
+            big</mark>.</strong> We tested the format with the creator
+            community before any brand saw it. Their feedback shaped
+            the demo. By the time the sales team pitched, the format
+            had already proven out with players.
           </p>
           <p>
-            <strong>3. <mark>Token work is brand work</mark>.</strong>{' '}
-            The same product-launch playbook ran for $AZA as for any
-            other launch. The regulatory work layered on top. Web3
-            doesn&rsquo;t need a separate playbook; it needs the same
-            one, with care added.
+            <strong>3. <mark>Brands want new ways to sell their
+            products</mark>.</strong> Ubisoft and Logitech were excited
+            to try the gamified ad format. Brand teams are ready to
+            innovate when a fresh way to reach buyers shows up.
           </p>
           <p>
             An engagement engine, sold.

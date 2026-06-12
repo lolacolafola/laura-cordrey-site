@@ -98,13 +98,13 @@ export default function BlaBlaCarLiveNationPage() {
       </header>
 
       {/* ─── HERO IMAGE ───────────────────────────────────────── */}
-      {/* Brand-lockup hero: BlaBlaCar × Live Nation on BlaBlaCar brand blue.
-          No --contain — the banner fills edge-to-edge as a full-bleed
-          title card between the dark cover and the page body. */}
-      <figure className="delta__hero">
+      {/* Lifestyle hero: four people in a convertible with the
+          BlaBlaCar × Live Nation lockup overlaid. 16:9, fills the
+          hero edge-to-edge. */}
+      <figure className="delta__hero delta__hero--bottom">
         <img
-          src={BASE + 'case-studies/blablacar-livenation-banner-yellow.png'}
-          alt="BlaBlaCar × Live Nation brand lockup on yellow: navy BlaBlaCar logo above, red Live Nation wordmark below, separated by a navy X"
+          src={BASE + 'case-studies/blablacar-live-nation-card.png'}
+          alt="BlaBlaCar × Live Nation case study banner — four friends smiling inside a convertible with the BlaBlaCar and Live Nation logos overlaid on a red plate"
         />
       </figure>
 

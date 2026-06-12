@@ -43,6 +43,10 @@ export default function WorkCard({ caseStudy, slot }) {
           src={import.meta.env.BASE_URL + cardSrc}
           alt={cardAlt || `${cs.company} — ${cs.headline}`}
           loading="lazy"
+          style={(m.cardImageFit || m.cardImageScale) ? {
+            ...(m.cardImageFit && { objectFit: m.cardImageFit }),
+            ...(m.cardImageScale && { transform: `scale(${m.cardImageScale})` }),
+          } : undefined}
         />
       </div>
       <div className="work-card__body">
