@@ -34,15 +34,15 @@ export default function AzarusStreamersPage() {
   useDocumentMeta({
     title: 'Azarus · Three streamer campaigns, one engine · 500K viewers, servers crashed · Case study by Laura Cordrey',
     description:
-      'Scaled Azarus’s US streamer presence through three escalating campaigns: a coordinated League of Legends launch (+80% MAU), title sponsorship of the inaugural Streamer Awards (500K peak viewers, 90% engaged, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. In parallel: an always-on US creator overlay program at half industry CCV cost, and project managed launch of Azarus on Facebook Gaming with Meta.',
+      'Scaled Azarus’s US streamer presence through three escalating campaigns: a coordinated League of Legends launch (+80% MAU), title sponsorship of the first Streamer Awards (500K peak viewers, 90% engaged, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. In parallel: an always-on US creator overlay program at half industry CCV cost, and project managed launch of Azarus on Facebook Gaming with Meta.',
     canonical: pageUrl('work/azarus'),
     ogImage: assetUrl('case-studies/azarus-overlay-banner.jpeg'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'azarus',
-      title: 'Azarus — three streamer campaigns, one engine, US growth foundation',
+      title: 'Azarus: three streamer campaigns, one engine, US growth foundation',
       description:
-        'Three escalating US streamer campaigns at Azarus: a coordinated League of Legends launch (+80% MAU), title sponsorship of the inaugural Streamer Awards (500K viewers, 90% engagement, 20% conversion, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. Plus an always-on US creator overlay program at half industry CCV cost and project-managed launch of Azarus on Facebook Gaming with Meta.',
+        'Three escalating US streamer campaigns at Azarus: a coordinated League of Legends launch (+80% MAU), title sponsorship of the first Streamer Awards (500K viewers, 90% engagement, 20% conversion, servers crashed), and a controlled replication on Amouranth’s Streamer Royale. Plus an always-on US creator overlay program at half industry CCV cost and project-managed launch of Azarus on Facebook Gaming with Meta.',
       image: 'case-studies/azarus-overlay-banner.jpeg',
       datePublished: '2022-05-28',
       client: 'Azarus',
@@ -60,12 +60,12 @@ export default function AzarusStreamersPage() {
         {
           question: 'How do you scale a Twitch product through streamers in the US?',
           answer:
-            'Three escalating campaigns, one engine. Start with a coordinated game-launch push (League of Legends drove +80% MAU). Bet bigger on a live-event moment that matters (title sponsorship of the inaugural Streamer Awards — 500K peak viewers, 90% engaged, 20% converted on the spot, servers crashed). Then prove the playbook isn’t a one-off by replicating it in a different format (Amouranth’s Streamer Royale, two months later, no crash). The streamer relationships built across the three campaigns become the platform’s long-term US growth foundation.',
+            'Three escalating campaigns, one engine. Start with a coordinated game-launch push (League of Legends drove +80% MAU). Bet bigger on a live-event moment that matters (title sponsorship of the first Streamer Awards: 500K peak viewers, 90% engaged, 20% converted on the spot, servers crashed). Then prove the playbook isn’t a one-off by replicating it in a different format (Amouranth’s Streamer Royale, two months later, no crash). The streamer relationships built across the three campaigns become the platform’s long-term US growth foundation.',
         },
         {
           question: 'What makes a live event sponsorship convert at scale?',
           answer:
-            'Format-specific design. We didn’t drop a generic overlay onto the Streamer Awards broadcast — we built one for it: 14 award categories, ~65 nominee streamers, hundreds of fan-specific deep-cut trivia questions, with a team member embedded in the production room firing live questions in real time. The sponsorship became part of the show, not a banner on it.',
+            'Format-specific design. We didn’t drop a generic overlay onto the Streamer Awards broadcast; we built one for it: 14 award categories, ~65 nominee streamers, hundreds of fan-specific deep-cut trivia questions, with a team member embedded in the production room firing live questions in real time. The sponsorship became part of the show, not a banner on it.',
         },
         {
           question: 'How do you run an always-on creator program at less than industry CCV cost?',
@@ -113,7 +113,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__hero delta__hero--contain">
         <img
           src={BASE + 'case-studies/azarus-streamer-awards-banner.png'}
-          alt="The Streamer Awards official banner — art-deco gold-on-navy logo with the tagline 'Recognize the best of live streaming' — the flagship event Azarus title-sponsored in March 2022"
+          alt="The Streamer Awards official banner: art-deco gold-on-navy logo with the tagline 'Recognize the best of live streaming'. The flagship event Azarus title-sponsored in March 2022."
         />
       </figure>
 
@@ -160,9 +160,9 @@ export default function AzarusStreamersPage() {
           <p>
             The product worked. Real engagement, early streamer
             relationships, proof of concept. What it didn&rsquo;t have
-            yet was <strong>scale</strong>. The platform needed{' '}
-            <mark>top US streamers running the overlay live, week after
-            week</mark>, in front of the audiences it was built for.
+            yet was <strong>scale</strong>. The platform needed top US
+            streamers running the overlay live, week after week, in
+            front of the audiences it was built for.
           </p>
           <p>
             That&rsquo;s where I came in.
@@ -176,7 +176,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/azarus-league-of-legends-banner.webp'}
-          alt="League of Legends official key art — champion ensemble (Lux, Jinx, Yasuo, Blitzcrank) with the LEAGUE OF LEGENDS wordmark — the game Azarus integrated for Campaign 1"
+          alt="League of Legends official key art: champion ensemble (Lux, Jinx, Yasuo, Blitzcrank) with the LEAGUE OF LEGENDS wordmark. The game Azarus integrated for Campaign 1."
         />
       </figure>
 
@@ -194,9 +194,8 @@ export default function AzarusStreamersPage() {
             push to increase brand awareness. I negotiated talent through{' '}
             <strong>AFK</strong> and <strong>BEN Agency</strong> to
             secure top LoL streamers (<strong>Caedrel, CookieLoLxx,
-            IMLS, lol_Nemesis, Tarzaned</strong>). Over{' '}
-            <mark>10M viewers reached</mark>, shooting our{' '}
-            <mark>MAU up by 80%</mark>.
+            IMLS, lol_Nemesis, Tarzaned</strong>). Over 10M viewers
+            reached, shooting our <mark>MAU up by 80%</mark>.
           </p>
         </div>
       </section>
@@ -223,8 +222,7 @@ export default function AzarusStreamersPage() {
         <div className="delta__section-body">
           <p>
             In <strong>March 2022</strong>, QTCinderella and Maya Higa
-            were launching the first <mark>Streamer Awards</mark> on
-            Twitch. An awards show built for streaming, by streamers.{' '}
+            were launching the first Streamer Awards on Twitch. An awards show built for streaming, by streamers.{' '}
             <em>The streaming world&rsquo;s Oscars</em>, eventually.
           </p>
           <p>
@@ -234,10 +232,9 @@ export default function AzarusStreamersPage() {
             tuning in on Twitch for one night.
           </p>
           <p>
-            Plus the prize pool to back it:{' '}
-            <mark>5M+ AZA credits (~$50,000 in value)</mark> for fans to
-            win during the broadcast, redeemable in the Azarus Store
-            across <mark>35,000+ items</mark>.
+            Plus the prize pool to back it: 5M+ AZA credits (~$50,000
+            in value) for fans to win during the broadcast, redeemable
+            in the Azarus Store across 35,000+ items.
           </p>
         </div>
       </section>
@@ -249,7 +246,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/azarus-streamer-awards-red-carpet.png'}
-          alt="Red carpet at the inaugural Streamer Awards — Mizkif reading nominee announcement cards with Emiru and other streamers in front of the Streamer Awards step-and-repeat backdrop"
+          alt="Red carpet at the first Streamer Awards: Mizkif reading nominee announcement cards with Emiru and other streamers in front of the Streamer Awards step-and-repeat backdrop"
         />
         <figcaption className="container">
           Red carpet, first Streamer Awards. Mizkif, Emiru and others
@@ -268,9 +265,9 @@ export default function AzarusStreamersPage() {
             Our overlay was built <em>for the show</em>.
           </p>
           <p>
-            <mark>14 award categories. ~65 nominee streamers.</mark>{' '}
-            Bespoke trivia questions for fans, pushed live with the
-            event product team.
+            14 award categories. ~65 nominee streamers. Bespoke trivia
+            questions for fans, pushed live with the event product
+            team.
           </p>
           <p>
             On the night, a team member was{' '}
@@ -330,7 +327,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/azarus-streamer-awards-presenters.png'}
-          alt="Maya Higa and QTCinderella presenting on stage at the inaugural Streamer Awards podium, STREAMER backdrop behind them"
+          alt="Maya Higa and QTCinderella presenting on stage at the first Streamer Awards podium, STREAMER backdrop behind them"
         />
         <figcaption className="container">
           Maya Higa and QTCinderella on stage. The night the Azarus
@@ -347,10 +344,9 @@ export default function AzarusStreamersPage() {
         <div className="delta__section-body">
           <p>
             <mark>500K peak concurrent viewers</mark> tuned in on the
-            Streamer Awards Twitch livestream.{' '}
-            <mark>90% engagement rate</mark> with the Azarus overlay
-            during the broadcast. <mark>20% of players</mark> made an
-            account on the website to redeem their winnings.
+            Streamer Awards Twitch livestream. 90% engagement rate with
+            the Azarus overlay during the broadcast. 20% of players
+            made an account on the website to redeem their winnings.
           </p>
           <p>
             But the servers crashed.
@@ -358,8 +354,8 @@ export default function AzarusStreamersPage() {
           <p>
             The campaign was such a success that we weren&rsquo;t
             prepared. With the audience so eager to redeem their
-            winnings, the <mark>20% who got through</mark> could have
-            been much higher.
+            winnings, the 20% who got through could have been much
+            higher.
           </p>
           <p>
             <strong>Demand confirmed. Support needed improving.</strong>
@@ -386,7 +382,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/azarus-streamer-royale-lineup.jpg'}
-          alt="Streamer Royale official lineup banner — Amouranth, JennaLynnMeowri, Mizkif and the 16-streamer cohort with the STREAMER ROYALE wordmark"
+          alt="Streamer Royale official lineup banner: Amouranth, JennaLynnMeowri, Mizkif and the 16-streamer cohort with the STREAMER ROYALE wordmark"
         />
       </figure>
 
@@ -398,24 +394,23 @@ export default function AzarusStreamersPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            Two months later, <mark>May 28, 2022</mark>.
+            Two months later, May 28, 2022.
           </p>
           <p>
-            Streamer Royale, a physical-challenge event on{' '}
-            <mark>Amouranth&rsquo;s</mark> Twitch channel.{' '}
+            Streamer Royale, a physical-challenge event on
+            Amouranth&rsquo;s Twitch channel.{' '}
             <strong>16 streamers</strong>, kneeboarding, obstacle
             courses, head-to-head over five hours of live competition.
           </p>
           <p>
             We built new mechanics for the format.{' '}
             <strong>30+ live questions</strong> across four styles, plus
-            a <mark>polling-to-revive mechanic</mark> that let the
-            audience vote eliminated contestants back into the finale.
+            a polling-to-revive mechanic that let the audience vote
+            eliminated contestants back into the finale.
           </p>
           <p>
-            <strong>The result:</strong> <mark>275K unique viewers</mark>.{' '}
-            <mark>134K hours watched</mark>.{' '}
-            <mark>60K unique Azarus users</mark> on the day.{' '}
+            <strong>The result:</strong> <mark>275K unique viewers</mark>.
+            134K hours watched. 60K unique Azarus users on the day.{' '}
             <em>Servers held.</em>
           </p>
           <p>
@@ -438,24 +433,21 @@ export default function AzarusStreamersPage() {
           </p>
           <p>
             <strong>An always-on US creator overlay program.</strong>{' '}
-            Invite-only partnerships at a{' '}
-            <mark>monthly flat rate per streamer</mark>, live on their
-            normal channels. <strong>KingGeorge</strong> (Rainbow Six
+            Invite-only partnerships at a monthly flat rate per
+            streamer, live on their normal channels. <strong>KingGeorge</strong> (Rainbow Six
             Siege, ~1M followers). <strong>lol_Nemesis</strong> (League
             of Legends, ~600K followers). Others across Valorant and
             Apex as we brought more supported games to the platform.
           </p>
           <p>
-            Effective viewer cost: <mark>~$1.70</mark> vs{' '}
-            <mark>$2.50&ndash;$3.50</mark> industry. Flat-rate
-            contracting means the platform compounds, not billable
-            hours.
+            Effective viewer cost: <mark>~$1.70</mark> vs $2.50&ndash;$3.50
+            industry. Flat-rate contracting means the platform
+            compounds, not billable hours.
           </p>
           <p>
             <strong>A cross-platform launch with Meta.</strong> I project
-            managed the launch of Azarus on{' '}
-            <mark>Facebook Gaming</mark> with the Meta teams.{' '}
-            <mark>~100 streamers</mark> in the Beta. Proof the playbook
+            managed the launch of Azarus on Facebook Gaming with the
+            Meta teams. ~100 streamers in the Beta. Proof the playbook
             wasn&rsquo;t Twitch-dependent.
           </p>
         </div>
@@ -467,7 +459,7 @@ export default function AzarusStreamersPage() {
       <figure className="delta__plate delta__plate--natural">
         <img
           src={BASE + 'case-studies/azarus-facebook-gaming-beta-lockup.png'}
-          alt="Azarus × Facebook Gaming Beta launch lockup — the official partnership artwork featuring the Facebook Gaming wordmark and Azarus mark on Meta blue, with 'BETA' beneath"
+          alt="Azarus × Facebook Gaming Beta launch lockup: the official partnership artwork featuring the Facebook Gaming wordmark and Azarus mark on Meta blue, with 'BETA' beneath"
         />
         <figcaption className="container">
           Azarus &times; Facebook Gaming. The official Beta partnership
@@ -491,8 +483,8 @@ export default function AzarusStreamersPage() {
             Streamer Royale (<mark>275K viewers, 60K Azarus users</mark>).
             Running alongside: an always-on US creator program at
             roughly half the industry viewer cost, and a
-            project-managed launch of Azarus on Facebook Gaming with{' '}
-            <mark>~100 streamers</mark> in the Beta.
+            project-managed launch of Azarus on Facebook Gaming with
+            ~100 streamers in the Beta.
           </p>
           <p>
             <strong>Three campaigns. One engine.</strong> The streamer

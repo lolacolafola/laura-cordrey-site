@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { assetUrl, pageUrl, caseStudyJsonLd } from '../lib/seo.js'
@@ -7,6 +8,39 @@ import './DeltaCompanyPage.css' // shared case-study CSS (delta__ classes are ge
 
 const BASE = import.meta.env.BASE_URL
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+
+/* Click-to-load YouTube embed. First paint is the thumbnail (free, fast).
+   On click we mount the YouTube iframe with autoplay so playback starts in
+   the website frame instead of opening youtube.com in a new tab. */
+function YouTubeEmbed({ videoId, title, thumbAlt }) {
+  const [playing, setPlaying] = useState(false)
+  if (playing) {
+    return (
+      <div className="delta__video-frame">
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    )
+  }
+  return (
+    <button
+      type="button"
+      onClick={() => setPlaying(true)}
+      className="delta__video-frame delta__video-thumbnail"
+      aria-label={title}
+    >
+      <img
+        src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+        alt={thumbAlt}
+      />
+      <span className="delta__video-thumbnail-play" aria-hidden="true">&#9654;</span>
+    </button>
+  )
+}
 
 /* US Mobile · Claw Mobile — bespoke case study page.
  *
@@ -48,7 +82,7 @@ export default function ClawMobilePage() {
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'claw-mobile',
-      title: 'US Mobile — a stunt brand campaign against Mint Mobile',
+      title: 'US Mobile: a stunt brand campaign against Mint Mobile',
       description:
         'A stunt brand campaign for US Mobile against Mint Mobile. I led the campaign, Luna filmed and produced. A fake Hugh Jackman hijacks the US Mobile spot to launch his own competing network (Claw Mobile), a real spoof site lives the storyline in-world, and the US Mobile CEO claps back. 55% of viewers stuck past the 15-second mark on Meta; hundreds of organic Reddit comments.',
       image: 'case-studies/claw-mobile-card.jpg',
@@ -80,12 +114,12 @@ export default function ClawMobilePage() {
         {
           question: 'Who led the campaign?',
           answer:
-            'Laura Cordrey led the campaign as Brand Campaign Lead — creative direction, strategy and oversight. Luna agency filmed and produced. The film delivered four cuts; the spoof microsite and CEO reveal landing page extended the bit beyond the spot.',
+            'Laura Cordrey led the campaign as Brand Campaign Lead: creative direction, strategy and oversight. Luna agency filmed and produced. The film delivered four cuts; the spoof microsite and CEO reveal landing page extended the bit beyond the spot.',
         },
         {
           question: 'What were the results?',
           answer:
-            '55% of viewers stuck past the 15-second mark on Meta — the hook earned the attention it needed to land the reveal. The campaign also generated hundreds of organic Reddit comments, an unpaid signal that the joke travelled.',
+            '55% of viewers stuck past the 15-second mark on Meta. The hook earned the attention it needed to land the reveal. The campaign also generated hundreds of organic Reddit comments, an unpaid signal that the joke travelled.',
         },
       ],
     }),
@@ -126,7 +160,7 @@ export default function ClawMobilePage() {
       <figure className="delta__hero">
         <img
           src={BASE + 'case-studies/claw-mobile-card.jpg'}
-          alt="Claw Mobile stunt film thumbnail — a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right"
+          alt="Claw Mobile stunt film thumbnail: a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right"
         />
       </figure>
 
@@ -170,12 +204,15 @@ export default function ClawMobilePage() {
               Dark Star
             </Link>{' '}
             added, they now ran on all three major US carrier networks.
-            The brief: hire a &lsquo;super hero&rsquo; to celebrate.
           </p>
           <p>
             Mint Mobile owned the celebrity-endorsed playbook in US
-            telco with Ryan Reynolds. We needed disruptor energy, so we
-            got our own.
+            telco with Ryan Reynolds. The brief: we wanted our own.
+          </p>
+          <p>
+            I led the campaign and worked with Luna agency to bring it
+            to life, from creative ideation, scripting and audition
+            reels through post-production and final delivery.
           </p>
         </div>
       </section>
@@ -187,7 +224,7 @@ export default function ClawMobilePage() {
       <figure className="delta__plate delta__plate--natural">
         <img
           src={BASE + 'case-studies/claw-mobile-mint-ryan-reynolds.png'}
-          alt="Mint Mobile press image — Ryan Reynolds standing in a navy bomber jacket and jeans against a mint-green background, with the Mint Mobile wordmark logo behind him"
+          alt="Mint Mobile press image: Ryan Reynolds standing in a navy bomber jacket and jeans against a mint-green background, with the Mint Mobile wordmark logo behind him"
         />
         <figcaption className="container">
           Ryan Reynolds as Mint Mobile&rsquo;s &ldquo;Owner &amp;
@@ -206,12 +243,9 @@ export default function ClawMobilePage() {
         </div>
         <div className="delta__section-body">
           <p>
-            The goal: play into Deadpool &amp; Wolverine while putting a
-            counter-Reynolds in the room. The execution broke the fourth
-            wall. The audience watches the US Mobile team second-guess
-            their decision to hire (a fake) Hugh Jackman, as he goes
-            off the rails, and hijacks the spot to launch his own
-            network: Claw Mobile.
+            The goal: ride Deadpool &amp; Wolverine, where Jackman takes
+            on Reynolds, and run the same play against Mint. The real
+            Hugh Jackman was out of budget, so we cast a fake one.
           </p>
         </div>
       </section>
@@ -223,7 +257,7 @@ export default function ClawMobilePage() {
       <figure className="delta__plate delta__plate--natural">
         <img
           src={BASE + 'case-studies/claw-mobile-deadpool-wolverine-poster.webp'}
-          alt="Deadpool & Wolverine official Marvel Studios movie poster — Wolverine in yellow with claws extended, Deadpool in red with sword and pistol, against a white background with the Marvel Studios lockup and 'DEADPOOL & WOLVERINE' title"
+          alt="Deadpool & Wolverine official Marvel Studios movie poster: Wolverine in yellow with claws extended, Deadpool in red with sword and pistol, against a white background with the Marvel Studios lockup and 'DEADPOOL & WOLVERINE' title"
         />
         <figcaption className="container">
           Deadpool &amp; Wolverine in cinemas. The cultural moment
@@ -234,11 +268,12 @@ export default function ClawMobilePage() {
       <section className="delta__section delta__section--continuation container">
         <div className="delta__section-body">
           <p>
-            The bit layers further: the fake Jackman shreds the
-            CEO&rsquo;s list of US Mobile benefits with his claws, while
-            the two debate whether Wolverine is a super hero or a
-            mutant. The misalignment is the joke; the reveal is the
-            brand.
+            The hero film: fake Jackman, alone to camera. He opens as
+            Wolverine, then pivots to pitch his own network. Ryan
+            Reynolds gets called out by name. Claw Mobile gets planted
+            as the new player in town, with &lsquo;razor-sharp
+            connectivity and ferocious data speeds&rsquo;. Sign-off:
+            don&rsquo;t settle for minty freshness, go for the claws.
           </p>
         </div>
       </section>
@@ -247,19 +282,11 @@ export default function ClawMobilePage() {
           link rather than an inline iframe so the page loads light
           (matches the Azarus how-to-play pattern). */}
       <section className="delta__video-section delta__video-section--continuation container">
-        <a
-          href="https://www.youtube.com/watch?v=bsLHDOlcgcY"
-          target="_blank"
-          rel="noreferrer"
-          className="delta__video-frame delta__video-thumbnail"
-          aria-label="Watch the Claw Mobile stunt film on YouTube"
-        >
-          <img
-            src="https://i.ytimg.com/vi/bsLHDOlcgcY/maxresdefault.jpg"
-            alt="Claw Mobile stunt film — YouTube thumbnail"
-          />
-          <span className="delta__video-thumbnail-play" aria-hidden="true">&#9654;</span>
-        </a>
+        <YouTubeEmbed
+          videoId="bsLHDOlcgcY"
+          title="Claw Mobile stunt film"
+          thumbAlt="Claw Mobile stunt film. YouTube thumbnail."
+        />
         <p className="delta__video-context">
           Claw Mobile. The stunt film. Led by me, filmed and produced
           by <strong>Luna</strong>.
@@ -278,78 +305,71 @@ export default function ClawMobilePage() {
         </div>
         <div className="delta__films-grid-inner">
           <figure className="delta__films-cell">
-            <a
-              href="https://www.youtube.com/watch?v=O9IGCpzi6P4"
-              target="_blank"
-              rel="noreferrer"
-              className="delta__video-frame delta__video-thumbnail"
-              aria-label="Watch the Claw Mobile backstage cut on YouTube"
-            >
-              <img
-                src="https://i.ytimg.com/vi/O9IGCpzi6P4/maxresdefault.jpg"
-                alt="Claw Mobile backstage cut — YouTube thumbnail"
-              />
-              <span className="delta__video-thumbnail-play" aria-hidden="true">&#9654;</span>
-            </a>
+            <YouTubeEmbed
+              videoId="O9IGCpzi6P4"
+              title="Claw Mobile backstage cut"
+              thumbAlt="Claw Mobile backstage cut. YouTube thumbnail."
+            />
             <figcaption>
-              Behind the scenes. The US Mobile team explains why the
-              stunt failed and why hiring fake celebrities is never a
-              good idea. The upside: they&rsquo;re very good at being a
-              super carrier.
+              Behind the scenes. The fake-Jackman bit falls apart on
+              set, legal panics, and the team accidentally lands the
+              real pitch: a super carrier on all three networks.
             </figcaption>
           </figure>
           <figure className="delta__films-cell">
-            <a
-              href="https://www.youtube.com/watch?v=RsimGZVWlsU"
-              target="_blank"
-              rel="noreferrer"
-              className="delta__video-frame delta__video-thumbnail"
-              aria-label="Watch the Claw Mobile features-shred cut on YouTube"
-            >
-              <img
-                src="https://i.ytimg.com/vi/RsimGZVWlsU/maxresdefault.jpg"
-                alt="Claw Mobile features-shred cut — YouTube thumbnail"
-              />
-              <span className="delta__video-thumbnail-play" aria-hidden="true">&#9654;</span>
-            </a>
+            <YouTubeEmbed
+              videoId="RsimGZVWlsU"
+              title="Claw Mobile features-shred cut"
+              thumbAlt="Claw Mobile features-shred cut. YouTube thumbnail."
+            />
             <figcaption>
-              The clawed superhero tears through the CEO&rsquo;s long
-              list of US Mobile features.
+              Ahmed starts reading US Mobile&rsquo;s long feature list.
+              Fake Jackman, tired of being underused, shreds it with
+              his claws. Sign-off: &lsquo;tell that to my two
+              Tonys&rsquo;.
             </figcaption>
           </figure>
           <figure className="delta__films-cell">
-            <a
-              href="https://www.youtube.com/watch?v=9B6Ogshm5Ho"
-              target="_blank"
-              rel="noreferrer"
-              className="delta__video-frame delta__video-thumbnail"
-              aria-label="Watch the Claw Mobile super-hero vs. mutant cut on YouTube"
-            >
-              <img
-                src="https://i.ytimg.com/vi/9B6Ogshm5Ho/maxresdefault.jpg"
-                alt="Claw Mobile super-hero vs. mutant cut — YouTube thumbnail"
-              />
-              <span className="delta__video-thumbnail-play" aria-hidden="true">&#9654;</span>
-            </a>
+            <YouTubeEmbed
+              videoId="9B6Ogshm5Ho"
+              title="Claw Mobile super-hero vs. mutant cut"
+              thumbAlt="Claw Mobile super-hero vs. mutant cut. YouTube thumbnail."
+            />
             <figcaption>
-              The CEO and the protagonist debate whether Wolverine is a
-              mutant or a super hero. The takeaway: US Mobile&rsquo;s
-              offer is &lsquo;super carrier&rsquo; level.
+              Ahmed the real CEO tries to land the pitch. Fake Jackman
+              keeps making it about Wolverine. Ahmed wins the gag:
+              Wolverine isn&rsquo;t a super hero, he&rsquo;s a mutant.
+              US Mobile is the only super carrier.
             </figcaption>
           </figure>
         </div>
       </section>
 
+      {/* ─── 55% RESULT CALLOUT ───────────────────────────────── */}
+      {/* Proof beat punctuating the films section before the
+          world-building of [04] begins. */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">Hook held</span>
+          <p className="delta__result-value">
+            <mark>55% past 15s</mark>
+          </p>
+          <p className="delta__result-caption">
+            Past the point where most paid social gets scrolled.
+          </p>
+        </div>
+      </aside>
+
       {/* ─── [04] THE WORLD ───────────────────────────────────── */}
       <section className="delta__section container">
         <div className="delta__section-head">
-          <span className="marker">[04] &middot; The world</span>
-          <h2 className="delta__section-title">We committed to the bit.</h2>
+          <span className="marker">[04] &middot; Campaign storytelling</span>
+          <h2 className="delta__section-title">Committing to the bit.</h2>
         </div>
         <div className="delta__section-body">
           <p>
-            A stunt without follow-through reads as an ad. I extended
-            the gag with a community easter egg: anyone hunting for{' '}
+            I extended the gag with a community easter egg: anyone
+            hunting for{' '}
             <mark>Claw Mobile</mark> landed on a spoof site &lsquo;built
             by the star himself&rsquo;, deliberately shoddy by design.
             From there, a custom landing page redirected back to{' '}
@@ -392,27 +412,12 @@ export default function ClawMobilePage() {
         </div>
         <div className="delta__section-body">
           <p>
-            On Meta, viewers stuck past the 15-second hook. On Reddit,
-            it ran without us.
+            On Meta, the hook held: <mark>55% past 15s</mark>. On
+            Reddit, it ran without us: hundreds of comments. Claws out
+            for Mint Mobile.
           </p>
         </div>
       </section>
-
-      {/* ─── 55% RESULT CALLOUT ───────────────────────────────── */}
-      {/* Banner proof beat sitting between [05] result framing and the
-          takeaway. Same delta__result pattern as the streamer page
-          and the Azarus game ads page. */}
-      <aside className="delta__result">
-        <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">Meta &middot; view-through</span>
-          <p className="delta__result-value">
-            <mark>55% past 15s</mark>
-          </p>
-          <p className="delta__result-caption">
-            The hook earned the attention to land the reveal.
-          </p>
-        </div>
-      </aside>
 
       {/* ─── [06] THE TAKEAWAY ────────────────────────────────── */}
       <section className="delta__section container">
@@ -422,27 +427,29 @@ export default function ClawMobilePage() {
         </div>
         <div className="delta__section-body delta__section-body--takeaway">
           <p>
-            A stunt against Mint Mobile, the spoof network behind the
-            spot, the CEO clap-back that closed the bit. <mark>55%</mark>{' '}
-            past 15s on Meta and hundreds of unpaid Reddit comments.
+            Four films, a spoof network, the CEO clap-back. All of it
+            for less than the cost of one real celebrity.
           </p>
           <p>
-            <strong>Two takeaways:</strong>
+            <strong>1. <mark>Money doesn&rsquo;t buy attention. The joke does</mark>.</strong>{' '}
+            Mint Mobile has Ryan Reynolds. We couldn&rsquo;t afford the
+            real Hugh Jackman, so we cast a fake one. The leverage was
+            the script, not the star.
           </p>
           <p>
-            <strong>1. <mark>Build the world around the joke</mark>.</strong>{' '}
-            A stunt without follow-through reads as an ad. With a spoof
-            site and a CEO clap-back, the bit became a piece of culture
-            people wanted to share.
+            <strong>2. <mark>A stunt needs a world to live in</mark>.</strong>{' '}
+            One spot gets scrolled. The spoof microsite, the CEO
+            clap-back LP, and the four cuts gave the audience a universe
+            to keep poking at. That&rsquo;s what bought the Reddit
+            thread.
           </p>
           <p>
-            <strong>2. <mark>Disruptor energy beats discount energy</mark>.</strong>{' '}
-            Mint Mobile sells on price. We sold on personality. A
-            challenger brand earns attention by being the brand in the
-            room that&rsquo;s willing to make a joke about itself.
+            <strong>3. <mark>Cultural timing is free distribution</mark>.</strong>{' '}
+            Deadpool &amp; Wolverine was in cinemas. We didn&rsquo;t
+            sponsor it, we sat in its slipstream.
           </p>
           <p>
-            A campaign that ran without us.
+            The audience kept it going.
           </p>
         </div>
       </section>

@@ -18,13 +18,13 @@ export default function DeltaCompanyPage() {
   useDocumentMeta({
     title: 'Delta Company · Ubisoft’s first community advocacy program · Case study by Laura Cordrey',
     description:
-      'Delta Company: the fan-led growth engine I designed and launched at Ubisoft. 130 invited members across 5 community clusters and 14 languages drove 10M+ UGC views — zero paid media. Unveiled live on the UbiE3 2019 stage. The blueprint Ubisoft replicated across franchises.',
+      'Delta Company: the fan-led growth engine I designed and launched at Ubisoft. 130 invited members across 5 community clusters and 14 languages drove 10M+ UGC views with zero paid media. Unveiled live on the UbiE3 2019 stage. The blueprint Ubisoft replicated across franchises.',
     canonical: pageUrl('work/ubisoft-delta-company'),
     ogImage: assetUrl('case-studies/delta/01-delta-badge-hero.png'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'ubisoft-delta-company',
-      title: 'Delta Company — Ubisoft’s first community advocacy program',
+      title: 'Delta Company: Ubisoft’s first community advocacy program',
       description:
         'A fan-led growth engine designed for Ubisoft’s Ghost Recon Breakpoint community. 130 invited members across 5 clusters drove 10M+ UGC views with zero paid media. Unveiled on the UbiE3 2019 stage.',
       image: 'case-studies/delta/01-delta-badge-hero.png',
@@ -49,7 +49,7 @@ export default function DeltaCompanyPage() {
         {
           question: 'How do you structure a community advocacy program to serve different fan types?',
           answer:
-            'Design for personas, not the average. Delta Company was built around 5 distinct community clusters — creators, artists, cosplayers, feedback specialists, tournament players — each with its own brief and benefits. Designing for the average flattens what makes each persona valuable.',
+            'Design for personas, not the average. Delta Company was built around 5 distinct community clusters: creators, artists, cosplayers, feedback specialists, tournament players, each with its own brief and benefits. Designing for the average flattens what makes each persona valuable.',
         },
         {
           question: 'What legal infrastructure does a global community advocacy program need?',
@@ -80,7 +80,7 @@ export default function DeltaCompanyPage() {
             Creating <mark>Delta Company</mark>.
           </h1>
           <p className="delta__cover-lede">
-            I created a first-of-its-kind community advocacy program at
+            I created a <mark>first-of-its-kind</mark> community advocacy program at
             Ubisoft, built as part of my community strategy for the launch
             of Tom&nbsp;Clancy&rsquo;s Ghost&nbsp;Recon Breakpoint.
             Unveiled live on the E3 stage to millions of viewers.
@@ -92,7 +92,7 @@ export default function DeltaCompanyPage() {
       <figure className="delta__hero">
         <img
           src={BASE + 'case-studies/delta/01-delta-badge-hero.png'}
-          alt="The Tom Clancy's Ghost Recon Delta Company badge — the brand mark Laura designed for the program"
+          alt="The Tom Clancy's Ghost Recon Delta Company badge: the brand mark Laura designed for the program"
         />
       </figure>
 
@@ -126,20 +126,21 @@ export default function DeltaCompanyPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            Delta Company is the first community advocacy program of its kind
-            for both Ubisoft and the wider gaming industry — creating a
-            stronger link between gaming studios and their core community.
+            Delta Company is the <mark>first community advocacy program
+            of its kind</mark> for both Ubisoft and the wider gaming
+            industry, creating a stronger link between gaming studios
+            and their core community.
             A genuine win-win: members get behind-the-scenes access to the
             games they love; studios get a continuous stream of considered
             community feedback and UGC.
           </p>
           <p>
             Available worldwide, this was the <strong>first Ubisoft
-            program accessible in 14 languages</strong> — opening it to
+            program accessible in 14 languages</strong>, opening it to
             non-English speaking candidates for the first time. By launch,
             central and local Ubisoft teams across markets were running
             events, workshops, playtests and early-capture sessions with
-            their 130 invited members.
+            their <mark>130 invited members</mark>.
           </p>
         </div>
       </section>
@@ -148,10 +149,10 @@ export default function DeltaCompanyPage() {
       <figure className="delta__plate">
         <img
           src={BASE + 'case-studies/delta/02-ghost-recon-keyart.jpg'}
-          alt="Tom Clancy's Ghost Recon Breakpoint key art — the game Delta Company was built around"
+          alt="Tom Clancy's Ghost Recon Breakpoint key art: the game Delta Company was built around"
         />
         <figcaption className="container">
-          Tom Clancy&rsquo;s Ghost Recon Breakpoint — the AAA Ubisoft title
+          Tom Clancy&rsquo;s Ghost Recon Breakpoint. The AAA Ubisoft title
           Delta Company was built around.
         </figcaption>
       </figure>
@@ -167,7 +168,7 @@ export default function DeltaCompanyPage() {
             The gaming community is made up of multiple player-types with
             very different passion drivers: creators (content &amp;
             livestreaming), artists, cosplayers, feedback specialists,
-            tournament players — the list goes on.
+            tournament players. The list goes on.
           </p>
           <p>
             <strong>I wanted to find an efficient way to speak with each
@@ -177,7 +178,7 @@ export default function DeltaCompanyPage() {
             So I built Delta Company around <mark>five distinct
             clusters</mark>, each targeting a different player and
             community-member type. The structure didn&rsquo;t just
-            facilitate recruitment and engagement — it gave every member
+            facilitate recruitment and engagement; it gave every member
             a clear role and a strong sense of belonging within the
             program, in line with the military branding of the game.
           </p>
@@ -195,10 +196,10 @@ export default function DeltaCompanyPage() {
           muted
           loop
           playsInline
-          aria-label="Delta Company cluster reveal — animation produced with Takeoff agency, used on the UbiE3 stage and in launch comms"
+          aria-label="Delta Company cluster reveal: animation produced with Takeoff agency, used on the UbiE3 stage and in launch comms"
         />
         <figcaption className="container">
-          The cluster reveal animation — produced with Takeoff agency for
+          The cluster reveal animation. Produced with Takeoff agency for
           the UbiE3 stage and the program launch comms.
         </figcaption>
       </figure>
@@ -212,8 +213,8 @@ export default function DeltaCompanyPage() {
         <div className="delta__section-body">
           <p>
             The brand was a vital part of the project. It needed to
-            compliment the game it was created for — Ghost Recon
-            Breakpoint — and stand strong as a brand in its own right.
+            compliment the game it was created for, Ghost Recon
+            Breakpoint, and stand strong as a brand in its own right.
           </p>
           <p>
             I led the brief and worked with the internal Ubisoft design
@@ -229,13 +230,13 @@ export default function DeltaCompanyPage() {
           items={[
             {
               src: 'case-studies/delta/04-brand-variations.png',
-              alt: 'Delta Company brand lockups — primary logo, circular badge variants and isolated mark across black and white treatments',
-              caption: 'Brand lockups — primary logo, circular badge, and isolated mark — in monochrome treatments to flex across game UI, merch and marketing.',
+              alt: 'Delta Company brand lockups: primary logo, circular badge variants and isolated mark across black and white treatments',
+              caption: 'Brand lockups: primary logo, circular badge, and isolated mark, in monochrome treatments to flex across game UI, merch and marketing.',
             },
             {
               src: 'case-studies/delta/03-five-clusters.png',
-              alt: 'The five Delta Company detachments — Company Comms, Special Activities, Mission Intel, Team Operations, Tactical Assault',
-              caption: 'The five detachment logos — Company Comms, Special Activities, Mission Intel, Team Operations, Tactical Assault — each designed for a different community archetype.',
+              alt: 'The five Delta Company detachments: Company Comms, Special Activities, Mission Intel, Team Operations, Tactical Assault',
+              caption: 'The five detachment logos: Company Comms, Special Activities, Mission Intel, Team Operations, Tactical Assault. Each designed for a different community archetype.',
             },
           ]}
         />
@@ -249,10 +250,10 @@ export default function DeltaCompanyPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            <mark>Go big or go home</mark>. That was the mindset when it
-            came to announcing Delta Company to the world. With a slot on
-            the biggest stage in gaming, the program was revealed live at
-            UbiE3 2019 — to millions of viewers.
+            Go big or go home. That was the mindset when it came to
+            announcing Delta Company to the world. With a slot on the
+            biggest stage in gaming, the program was revealed live at
+            UbiE3 2019, to <mark>millions of viewers</mark>.
           </p>
           <p>
             I worked with branding agency <strong>Takeoff</strong> to
@@ -278,7 +279,7 @@ export default function DeltaCompanyPage() {
       <section className="delta__video-section delta__video-section--continuation container">
         <span className="marker">Watch the unveil</span>
         <p className="delta__video-context">
-          The Ghost Recon community segment from UbiE3 2019 — Laura
+          The Ghost Recon community segment from UbiE3 2019. Laura
           announcing the key community feedback being implemented in the
           game, then revealing Delta Company live to millions of viewers.
         </p>
@@ -291,7 +292,7 @@ export default function DeltaCompanyPage() {
         >
           <img
             src="https://i.ytimg.com/vi/P2tOLL_sAYk/maxresdefault.jpg"
-            alt="Ghost Recon Breakpoint E3 2019 Conference Presentation — official Ubisoft YouTube upload thumbnail"
+            alt="Ghost Recon Breakpoint E3 2019 Conference Presentation. Official Ubisoft YouTube upload thumbnail."
           />
           <span className="delta__video-thumbnail-play" aria-hidden="true">▶</span>
         </a>
@@ -312,7 +313,7 @@ export default function DeltaCompanyPage() {
         <div className="delta__video-frame">
           <iframe
             src="https://www.youtube.com/embed/qFMQEaAKtO8"
-            title="Delta Company — How it Works"
+            title="Delta Company: How it Works"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -330,8 +331,8 @@ export default function DeltaCompanyPage() {
           <p>
             Delta Company needed to be visible, easy to understand and
             easy to manage. I worked with the internal IT team to
-            commission a dedicated website for the program — homepage,
-            FAQ and application form — all <strong>localised in 14
+            commission a dedicated website for the program: homepage,
+            FAQ and application form, all <strong>localised in 14
             languages</strong>. A custom back-end let regional teams
             manage their own applications.
           </p>
@@ -383,7 +384,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/ubisoft-delta-pr-pack-real.jpg'}
-              alt="Delta Company welcome pack — green flask, badges and key tag laid out alongside Ghost Recon Breakpoint art"
+              alt="Delta Company welcome pack: green flask, badges and key tag laid out alongside Ghost Recon Breakpoint art"
               loading="lazy"
             />
             <figcaption className="marker">Flask, badges, key tag.</figcaption>
@@ -391,7 +392,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/delta/06-merch-beanie.png'}
-              alt="Delta Company welcome pack — branded beanie and flask inside the open box with Ghost Recon Breakpoint art"
+              alt="Delta Company welcome pack: branded beanie and flask inside the open box with Ghost Recon Breakpoint art"
               loading="lazy"
             />
             <figcaption className="marker">Beanie + flask + badges.</figcaption>
@@ -399,7 +400,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/delta/07-merch-spread.png'}
-              alt="Delta Company welcome pack — full spread with two branded t-shirts, beanie, branded box and flask kit"
+              alt="Delta Company welcome pack: full spread with two branded t-shirts, beanie, branded box and flask kit"
               loading="lazy"
             />
             <figcaption className="marker">The full spread.</figcaption>
@@ -414,7 +415,7 @@ export default function DeltaCompanyPage() {
           <p>
             Inside Ghost Recon Breakpoint, members received{' '}
             <strong>Delta-branded customisations</strong> for their
-            characters and vehicles. T-shirts, patches, branded cars —
+            characters and vehicles. T-shirts, patches, branded cars,
             all members-only.
           </p>
         </div>
@@ -425,7 +426,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/delta/08-ingame-tshirt.jpg'}
-              alt="In-game character wearing a Delta Company branded t-shirt — exclusive Ghost Recon Breakpoint customisation for members"
+              alt="In-game character wearing a Delta Company branded t-shirt: exclusive Ghost Recon Breakpoint customisation for members"
               loading="lazy"
             />
             <figcaption className="marker">Members&rsquo; in-game branded tee.</figcaption>
@@ -433,7 +434,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/delta/09-ingame-car.jpg'}
-              alt="In-game Delta Company branded car driving through Ghost Recon Breakpoint terrain — members-only vehicle customisation"
+              alt="In-game Delta Company branded car driving through Ghost Recon Breakpoint terrain: members-only vehicle customisation"
               loading="lazy"
             />
             <figcaption className="marker">A members-only branded car.</figcaption>
@@ -441,7 +442,7 @@ export default function DeltaCompanyPage() {
           <figure>
             <img
               src={BASE + 'case-studies/delta/10-ingame-cap-weapon.png'}
-              alt="In-game character wearing a Delta Company branded cap and carrying a Delta-stencilled weapon — exclusive Ghost Recon Breakpoint customisations for members"
+              alt="In-game character wearing a Delta Company branded cap and carrying a Delta-stencilled weapon: exclusive Ghost Recon Breakpoint customisations for members"
               loading="lazy"
             />
             <figcaption className="marker">Delta cap + branded weapon.</figcaption>
@@ -454,7 +455,7 @@ export default function DeltaCompanyPage() {
         <div className="delta__section-head" aria-hidden="true" />
         <div className="delta__section-body">
           <p>
-            The welcome pack was adored by fans — streaming in their
+            The welcome pack was adored by fans, streaming in their
             physical Delta t-shirts while their in-game characters wore
             the exact same one. <mark>True metaverse</mark>.
           </p>
@@ -496,7 +497,7 @@ export default function DeltaCompanyPage() {
           <p>
             Delta Company was the answer Ubisoft already had in the
             room. By design, the program selected for the deepest,
-            most-knowledgeable players — and each member had{' '}
+            most-knowledgeable players, and each member had{' '}
             <strong>their own influence over their own community</strong>.
             They weren&rsquo;t generic playtesters. They were the
             people other players already listened to.
@@ -504,7 +505,7 @@ export default function DeltaCompanyPage() {
           <p>
             The program was pivoted into a feedback engine. Workshops,
             playtests and early-capture sessions ran between Delta
-            members and the Studio — and the feedback fed directly into
+            members and the Studio, and the feedback fed directly into
             the <strong>Ghost Experience</strong> live update, a
             top-to-bottom re-tuning of the game shaped by what members
             had told us. Then those same members carried the story
@@ -522,13 +523,13 @@ export default function DeltaCompanyPage() {
         <span className="marker">A community journey</span>
         <p className="delta__video-context">
           A behind-the-scenes documentary <strong>I produced</strong> on
-          the Ghost Experience update — the live re-tuning of Ghost Recon
+          the Ghost Experience update: the live re-tuning of Ghost Recon
           Breakpoint, directly shaped by Delta Company member feedback.
         </p>
         <div className="delta__video-frame">
           <iframe
             src="https://www.youtube.com/embed/F5g7fOzxGYY"
-            title="A Community Journey to the Ghost Experience — Tom Clancy's Ghost Recon Breakpoint"
+            title="A Community Journey to the Ghost Experience: Tom Clancy's Ghost Recon Breakpoint"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -552,7 +553,7 @@ export default function DeltaCompanyPage() {
             participate at every one.
           </p>
           <p>
-            Birmingham, Sydney, Paris — and onwards. Members met the
+            Birmingham, Sydney, Paris, and onwards. Members met the
             Studio in person, met each other, and carried the story back
             to their communities with the kind of texture only physical
             events can produce. <mark>Digital advocates became in-person
@@ -564,10 +565,10 @@ export default function DeltaCompanyPage() {
       <figure className="delta__plate">
         <img
           src={BASE + 'case-studies/delta/13-ubisoft-experience-poster.avif'}
-          alt="Official Ubisoft Experience 2019 poster — neon &lsquo;Experience&rsquo; sign on a graffiti wall, with the three host cities Sydney, Paris and Birmingham listed below"
+          alt="Official Ubisoft Experience 2019 poster: neon &lsquo;Experience&rsquo; sign on a graffiti wall, with the three host cities Sydney, Paris and Birmingham listed below"
         />
         <figcaption className="container">
-          The official Ubisoft Experience 2019 poster — Sydney, Paris
+          The official Ubisoft Experience 2019 poster. Sydney, Paris
           and Birmingham, the events Delta members were flown to.
         </figcaption>
       </figure>
@@ -578,7 +579,7 @@ export default function DeltaCompanyPage() {
           alt="Laura Cordrey on stage at the Paris 2019 Ubisoft Experience with two Delta Company members, in front of the Delta Company logo"
         />
         <figcaption className="container">
-          On stage at the Paris 2019 Ubisoft Experience — where Delta
+          On stage at the Paris 2019 Ubisoft Experience, where Delta
           members joined us to talk about their experience.
         </figcaption>
       </figure>
@@ -633,33 +634,33 @@ export default function DeltaCompanyPage() {
           items={[
             {
               src: 'case-studies/delta/fans/image0.jpg',
-              alt: 'Delta Company members gathered at the Ghost Recon Breakpoint booth — ten community members posing together in branded gear',
-              caption: 'Delta members in the wild — the program in person, at the booth.',
+              alt: 'Delta Company members gathered at the Ghost Recon Breakpoint booth: ten community members posing together in branded gear',
+              caption: 'Delta members in the wild. The program in person, at the booth.',
             },
             {
               src: 'case-studies/delta/fans/EIeDXghX0AEY945.jpg',
-              alt: 'Hooded, masked Ghost Recon cosplayer with rifle — high-art photograph by Mademoiselle Bellec',
-              caption: 'Cosplay as photography — shot by member Mademoiselle Bellec.',
+              alt: 'Hooded, masked Ghost Recon cosplayer with rifle: high-art photograph by Mademoiselle Bellec',
+              caption: 'Cosplay as photography. Shot by member Mademoiselle Bellec.',
             },
             {
               src: 'case-studies/delta/fans/EJBtWpTXYAAmlI3.jpg',
-              alt: 'Brother vs Brother — a fan-made digital art composition depicting Ghost Recon Breakpoint protagonists facing off',
-              caption: 'Fan art — "Brother vs Brother", made by a member.',
+              alt: 'Brother vs Brother: a fan-made digital art composition depicting Ghost Recon Breakpoint protagonists facing off',
+              caption: 'Fan art. "Brother vs Brother", made by a member.',
             },
             {
               src: 'case-studies/delta/fans/EJfvV_AU8AIAsfF.jpg',
-              alt: 'Fan-made YouTube video thumbnail — "Beginners Guide to Base Jumping" by NGN, a Delta Company creator',
-              caption: 'Fan video — "Beginners Guide to Base Jumping" by member channel NGN.',
+              alt: 'Fan-made YouTube video thumbnail: "Beginners Guide to Base Jumping" by NGN, a Delta Company creator',
+              caption: 'Fan video. "Beginners Guide to Base Jumping" by member channel NGN.',
             },
             {
               src: 'case-studies/delta/fans/EHeMce6XkAAJuLI.jpg',
-              alt: 'Ghost Recon cosplayer carrying a wounded teammate over their shoulder — dramatic action photograph',
-              caption: 'A cosplay action shot — staged by members for the community.',
+              alt: 'Ghost Recon cosplayer carrying a wounded teammate over their shoulder: dramatic action photograph',
+              caption: 'A cosplay action shot. Staged by members for the community.',
             },
             {
               src: 'case-studies/delta/fans/EDe8lJCWkAAY0Eh.jpg',
               alt: 'Five Delta Company members in branded t-shirts and caps posing together, one holding a replica weapon',
-              caption: 'Delta members in branded kit — a community within a community.',
+              caption: 'Delta members in branded kit. A community within a community.',
             },
           ]}
         />

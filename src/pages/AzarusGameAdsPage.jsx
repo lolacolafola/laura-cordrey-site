@@ -48,7 +48,7 @@ export default function AzarusGameAdsPage() {
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'azarus-game-ads',
-      title: 'Azarus — pivoting from Twitch overlay to gamified ad platform, sold to Animoca',
+      title: 'Azarus: pivoting from Twitch overlay to gamified ad platform, sold to Animoca',
       description:
         'I pivoted Azarus from a Twitch overlay product into a gamified ad platform. Designed the gamified ad format end-to-end, ran the Alpha and Halloween Beta with streamers from the community program I had built, locked Ubisoft and Logitech as launch advertisers at $2 CPI, and led the $AZA token launch (Coinbase and Crypto.com listings). Azarus was acquired by Animoca Brands in October 2023.',
       image: 'case-studies/azarus-overlay-games-banner.jpeg',
@@ -119,7 +119,7 @@ export default function AzarusGameAdsPage() {
       <figure className="delta__hero">
         <img
           src={BASE + 'case-studies/azarus-game-ads-card.png'}
-          alt="Azarus repositioning banner — the AZARUS wordmark with the tagline 'The Overlay Games™ Company' on a dark background with purple and red gradient lighting"
+          alt="Azarus repositioning banner: the AZARUS wordmark with the tagline 'The Overlay Games™ Company' on a dark background with purple and red gradient lighting"
         />
       </figure>
 
@@ -209,7 +209,7 @@ export default function AzarusGameAdsPage() {
         >
           <img
             src="https://i.ytimg.com/vi/34AzFfo7C6E/maxresdefault.jpg"
-            alt="Azarus gamified ad format walkthrough — YouTube thumbnail"
+            alt="Azarus gamified ad format walkthrough. YouTube thumbnail."
           />
           <span className="delta__video-thumbnail-play" aria-hidden="true">▶</span>
         </a>
@@ -247,7 +247,7 @@ export default function AzarusGameAdsPage() {
       <figure className="delta__plate delta__plate--natural">
         <img
           src={BASE + 'case-studies/azarus-go-live-trivia.jpeg'}
-          alt="Go Live with Azarus Trivia marketing creative — bold TRIVIA wordmark with a treasure chest, gold coins flying, and the Azarus logo at the bottom"
+          alt="Go Live with Azarus Trivia marketing creative: bold TRIVIA wordmark with a treasure chest, gold coins flying, and the Azarus logo at the bottom"
         />
         <figcaption className="container">
           Go Live with Azarus Trivia. Marketing creative.
@@ -287,7 +287,7 @@ export default function AzarusGameAdsPage() {
           loop
           muted
           playsInline
-          aria-label="Azarus gamified ad mock campaign — a fully-rendered demo using Coca-Cola brand identity as visual shorthand, the pitch artefact shown to advertisers"
+          aria-label="Azarus gamified ad mock campaign: a fully-rendered demo using Coca-Cola brand identity as visual shorthand, the pitch artefact shown to advertisers"
         />
         <figcaption className="container">
           The mock campaign I shipped to pitch advertisers. Coca-Cola as
@@ -318,7 +318,7 @@ export default function AzarusGameAdsPage() {
           items={[
             {
               src: 'case-studies/azarus-brawlhalla-loop-01.mp4',
-              alt: 'Azarus × Ubisoft Brawlhalla launch loop — looping animation of the gamified ad creative',
+              alt: 'Azarus × Ubisoft Brawlhalla launch loop. Looping animation of the gamified ad creative.',
               caption:
                 'Azarus × Ubisoft Brawlhalla. Launch loop made by Gabriel Virata Alves.',
             },
@@ -358,7 +358,7 @@ export default function AzarusGameAdsPage() {
             },
             {
               src: 'case-studies/azarus-logitech-logos-loop.mp4',
-              alt: 'Azarus × Logitech launch loop — looping animation of the gamified ad creative',
+              alt: 'Azarus × Logitech launch loop. Looping animation of the gamified ad creative.',
               caption:
                 'Azarus × Logitech. Launch loop made by Gabriel Virata Alves.',
             },
@@ -414,7 +414,7 @@ export default function AzarusGameAdsPage() {
           loop
           muted
           playsInline
-          aria-label="$AZA token launch loop — animated creative announcing $AZA is now live, with Coinbase and Crypto.com exchange logos"
+          aria-label="$AZA token launch loop: animated creative announcing $AZA is now live, with Coinbase and Crypto.com exchange logos"
         />
         <figcaption className="container">
           $AZA token launch loop. Made by{' '}

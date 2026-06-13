@@ -31,13 +31,13 @@ export default function UbisoftSiegeChampionsPage() {
   useDocumentMeta({
     title: 'Ubisoft Siege Champions Program · A fan-powered growth engine, at scale · Case study by Laura Cordrey',
     description:
-      'Siege Champions: I took the Delta Company playbook and scaled it through Rainbow Six Siege. 200 invite-only creators across 18 markets reached 50M+ eyeballs in year one — zero media spend. Fan-led growth, engineered to compound across seasonal drops.',
+      'Siege Champions: I took the Delta Company playbook and scaled it through Rainbow Six Siege. 200 invite-only creators across 18 markets reached 50M+ eyeballs in year one, zero media spend. Fan-led growth, engineered to compound across seasonal drops.',
     canonical: pageUrl('work/ubisoft-siege-champions'),
     ogImage: assetUrl('case-studies/ubisoft-siege-champions-program-banner.png'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'ubisoft-siege-champions',
-      title: 'Siege Champions Program — a fan-powered growth engine at scale',
+      title: 'Siege Champions Program: a fan-powered growth engine at scale',
       description:
         '200 invite-only creators across 18 markets drove 50M+ UGC views in year one with $0 media spend. The Delta Company playbook applied to Rainbow Six Siege.',
       image: 'case-studies/ubisoft-siege-champions-program-banner.png',
@@ -67,7 +67,7 @@ export default function UbisoftSiegeChampionsPage() {
         {
           question: 'Can a fan-led growth program scale across different game IPs?',
           answer:
-            'Yes. The same playbook that built Delta Company also built Siege Champions and Assassin’s Creed Mentors Guild. The model travels — a fan-powered growth engine that drives reach, engagement and advocacy paid media cannot manufacture.',
+            'Yes. The same playbook that built Delta Company also built Siege Champions and Assassin’s Creed Mentors Guild. The model travels: a fan-powered growth engine that drives reach, engagement and advocacy paid media cannot manufacture.',
         },
       ],
     }),
@@ -108,7 +108,7 @@ export default function UbisoftSiegeChampionsPage() {
       <figure className="delta__hero">
         <img
           src={BASE + 'case-studies/ubisoft-siege-champions-program-banner.png'}
-          alt="Siege Champions Program — official key art with two operators in program skins, the SIEGE CHAMPIONS PROGRAM logo, and a vivid coloured-spray backdrop"
+          alt="Siege Champions Program: official key art with two operators in program skins, the SIEGE CHAMPIONS PROGRAM logo, and a vivid coloured-spray backdrop"
         />
       </figure>
 
@@ -168,10 +168,10 @@ export default function UbisoftSiegeChampionsPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/rainbow-six-siege-key-art.jpg'}
-          alt="Tom Clancy's Rainbow Six Siege key art — two operators in tactical gear against a fiery battle scene"
+          alt="Tom Clancy's Rainbow Six Siege key art: two operators in tactical gear against a fiery battle scene"
         />
         <figcaption className="container">
-          Tom Clancy&rsquo;s Rainbow Six Siege — the AAA title the program
+          Tom Clancy&rsquo;s Rainbow Six Siege. The AAA title the program
           was built around.
         </figcaption>
       </figure>
@@ -193,7 +193,7 @@ export default function UbisoftSiegeChampionsPage() {
           <p>
             Streamers, YouTubers and video-makers had become the loudest
             voices in the community. The opportunity was to formalise that
-            into a structured program — and treat creators as media
+            into a structured program, and treat creators as media
             partners, not influencers to pay.
           </p>
         </div>
@@ -240,7 +240,7 @@ export default function UbisoftSiegeChampionsPage() {
           muted
           loop
           playsInline
-          aria-label="Rainbow Six Siege Siege Champions Program social asset — exclusive Rook character skin reveal, dark cinematic version"
+          aria-label="Rainbow Six Siege Siege Champions Program social asset: exclusive Rook character skin reveal, dark cinematic version"
         />
         <video
           src={BASE + 'case-studies/ubisoft-siege-champions-social-smg.mp4'}
@@ -248,7 +248,7 @@ export default function UbisoftSiegeChampionsPage() {
           muted
           loop
           playsInline
-          aria-label="Rainbow Six Siege Siege Champions Program social asset — exclusive SMG weapon skin reveal"
+          aria-label="Rainbow Six Siege Siege Champions Program social asset: exclusive SMG weapon skin reveal"
         />
         <video
           src={BASE + 'case-studies/ubisoft-siege-champions-social-charm-members.mp4'}
@@ -256,7 +256,7 @@ export default function UbisoftSiegeChampionsPage() {
           muted
           loop
           playsInline
-          aria-label="Rainbow Six Siege Siege Champions Program social asset — exclusive members-only charm reveal"
+          aria-label="Rainbow Six Siege Siege Champions Program social asset: exclusive members-only charm reveal"
         />
         <video
           src={BASE + 'case-studies/ubisoft-siege-champions-commspirit-dark.mp4'}
@@ -264,10 +264,10 @@ export default function UbisoftSiegeChampionsPage() {
           muted
           loop
           playsInline
-          aria-label="Rainbow Six Siege Siege Champions Program social asset — Community Spirit Twitch Drop giveaway charm reveal, dark cinematic version"
+          aria-label="Rainbow Six Siege Siege Champions Program social asset: Community Spirit Twitch Drop giveaway charm reveal, dark cinematic version"
         />
         <p className="delta__social-credit">
-          The four exclusive in-game items made for program members —
+          The four exclusive in-game items made for program members:
           Rook skin, SMG, members charm, giveaway charm. Video assets
           created by <strong>Gabriel Virata Alves</strong>.
         </p>
@@ -400,7 +400,7 @@ export default function UbisoftSiegeChampionsPage() {
             },
             {
               src: 'case-studies/ubisoft-siege-champions-fan-art-absoluteaj.png',
-              alt: 'YouTube video thumbnail by AbsoluteAJ titled &lsquo;I AM A SIEGE CHAMPION — Rainbow Six Champions Program&rsquo;, featuring the official Siege Champions key art',
+              alt: 'YouTube video thumbnail by AbsoluteAJ titled &lsquo;I AM A SIEGE CHAMPION. Rainbow Six Champions Program&rsquo;, featuring the official Siege Champions key art',
               caption:
                 'Video by AbsoluteAJ. “I AM A SIEGE CHAMPION.” Member of the Siege Champions Program.',
             },
@@ -433,11 +433,15 @@ export default function UbisoftSiegeChampionsPage() {
             exclusive skins and charms are some of the rarest items in
             Siege.
           </p>
-          <p>
-            A top r/Rainbow6 post calls the bundle{' '}
-            <em>&ldquo;The Rarest Skin Bundle in Siege — even rarer than
-            the Board Game skins.&rdquo;</em>
-          </p>
+          <blockquote className="delta__press-quote">
+            <p>
+              &ldquo;The Rarest Skin Bundle in Siege. Even rarer than
+              the Board Game skins.&rdquo;
+            </p>
+            <cite>
+              u/GridlockAssMyFav, r/Rainbow6.
+            </cite>
+          </blockquote>
         </div>
       </section>
 
@@ -446,7 +450,7 @@ export default function UbisoftSiegeChampionsPage() {
           items={[
             {
               src: 'case-studies/ubisoft-siege-champions-reddit-post-full.png',
-              alt: 'Full r/Rainbow6 post by u/GridlockAssMyFav titled &lsquo;Siege Champions Program — The Rarest Skin Bundle in Siege (Even Rarer Than the Board Game Skins)&rsquo;',
+              alt: 'Full r/Rainbow6 post by u/GridlockAssMyFav titled &lsquo;Siege Champions Program: The Rarest Skin Bundle in Siege (Even Rarer Than the Board Game Skins)&rsquo;',
               caption:
                 'r/Rainbow6 community thread, two years after the program shipped.',
             },
@@ -458,19 +462,19 @@ export default function UbisoftSiegeChampionsPage() {
             },
             {
               src: 'case-studies/ubisoft-siege-champions-ingame-headgear.webp',
-              alt: 'In-game inventory preview of the Siege Champions Program Rook headgear — Y6S1, Epic rarity',
+              alt: 'In-game inventory preview of the Siege Champions Program Rook headgear: Y6S1, Epic rarity',
               caption:
                 'The members-only Rook headgear, as it appears in-game. Siege Champions Program · Y6S1 · Epic.',
             },
             {
               src: 'case-studies/ubisoft-siege-champions-ingame-uniform.webp',
-              alt: 'In-game inventory preview of the Siege Champions Program uniform — Y6S1, Epic rarity, with the SIEGE chest insignia',
+              alt: 'In-game inventory preview of the Siege Champions Program uniform: Y6S1, Epic rarity, with the SIEGE chest insignia',
               caption:
                 'The members-only uniform, as it appears in-game. SIEGE chest insignia. Y6S1 · Epic.',
             },
             {
               src: 'case-studies/ubisoft-siege-champions-ingame-mp5.webp',
-              alt: 'In-game inventory preview of the Siege Champions Program MP5 weapon skin — Y6S1, Epic rarity',
+              alt: 'In-game inventory preview of the Siege Champions Program MP5 weapon skin: Y6S1, Epic rarity',
               caption:
                 'The members-only MP5 weapon skin, as it appears in-game. Siege Champions Program · Y6S1 · Epic.',
             },

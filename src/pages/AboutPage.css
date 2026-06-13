@@ -173,6 +173,37 @@
   gap: var(--space-8);
 }
 
+/* 3-up gallery layout for the featured speaking clips. Stacks at
+   narrow widths so each card still has room for the video. */
+.about-speaking__list--grid {
+  margin-top: var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+.about-speaking__list--grid .about-speaking__headline {
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.2;
+}
+.about-speaking__list--grid .about-speaking__detail {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+.about-speaking__list--grid .about-speaking__body {
+  max-width: none;
+  gap: var(--space-2);
+}
+.about-speaking__format {
+  color: var(--accent);
+  align-self: flex-start;
+}
+@media (max-width: 900px) {
+  .about-speaking__list--grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
 /* Each item: video on top, headline + description underneath */
 .about-speaking__item {
   display: flex;

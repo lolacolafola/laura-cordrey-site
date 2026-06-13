@@ -12,6 +12,7 @@ import AzarusStreamersPage from './pages/AzarusStreamersPage.jsx'
 import AzarusGameAdsPage from './pages/AzarusGameAdsPage.jsx'
 import ClawMobilePage from './pages/ClawMobilePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
+import SpeakingPage from './pages/SpeakingPage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import MethodologyPage from './pages/MethodologyPage.jsx'
 
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/work/claw-mobile" element={<ClawMobilePage />} />
           <Route path="/work/:slug" element={<WorkArticle />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/speaking" element={<SpeakingPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/methodology" element={<MethodologyPage />} />
         </Routes>

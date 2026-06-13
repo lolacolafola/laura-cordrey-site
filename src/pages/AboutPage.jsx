@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
+import { featuredSpeaking } from '../data/speaking.js'
 import './HomePage.css' // shared .btn / .section-head styles
 import './AboutPage.css'
 
@@ -13,55 +14,6 @@ const range = [
   { word: 'Community', note: 'Creator, loyalty, advocacy.' },
   { word: 'Growth',    note: 'Organic, influencer, UGC.' },
 ]
-
-// Featured 3 — one per format (stage, studio, livestream)
-const speaking = [
-  {
-    youtube: 'P2tOLL_sAYk',
-    headline: 'Live stage presentation',
-    venue: 'E3 2019 · Ubisoft press conference · Los Angeles',
-    detail:
-      'I designed Delta&nbsp;Company — a <mark>first-of-its-kind community advocacy program</mark> at Ubisoft — and unveiled it live on the E3 stage to millions of viewers. Go-big-or-go-home launch strategy, executed on the biggest stage in gaming.',
-  },
-  {
-    youtube: 'ufsGn7eXY3k',
-    headline: 'Live studio interview',
-    venue: 'Inside Xbox · Seattle',
-    detail:
-      'I travelled to Seattle for a live <strong>Inside Xbox</strong> segment to detail a new content update for Ghost&nbsp;Recon Wildlands — on-camera, live, no second takes.',
-  },
-  {
-    youtube: 'P2NYC5cQIZA',
-    headline: 'Livestream I produced',
-    venue: 'Ghost Recon Breakpoint · World-premiere announce',
-    detail:
-      'Part of the core team to present <strong>Ghost Recon Breakpoint</strong> in the world-premiere announce livestream. The launch moment that opened the franchise to a new generation of fans.',
-  },
-]
-
-// Spokesperson reel — multiple videos where Laura is the on-camera voice.
-// Drop YouTube IDs into the `youtube` field as Laura provides them.
-const spokespersonReel = [
-  { youtube: null, caption: 'Spokesperson clip · TBD' },
-  { youtube: null, caption: 'Spokesperson clip · TBD' },
-  { youtube: null, caption: 'Spokesperson clip · TBD' },
-  { youtube: null, caption: 'Spokesperson clip · TBD' },
-]
-
-// Videos Laura produced AND spoke on (both roles, same project).
-const producedSpokeOn = [
-  { youtube: null, caption: 'Produced & narrated · TBD' },
-  { youtube: null, caption: 'Produced & narrated · TBD' },
-  { youtube: null, caption: 'Produced & narrated · TBD' },
-]
-
-// Voice over example — a video Laura made for another company.
-const voiceOverExample = {
-  youtube: null,
-  title: 'Voice over example',
-  detail:
-    'A brand film I narrated for another company. Native English, fluent French — recorded studio or remote.',
-}
 
 const career = [
   {
@@ -111,18 +63,6 @@ const expertise = [
   'Voice Over & Narration',
   'Cross-Team Leadership',
   'Executive Pitches & Investor Decks',
-]
-
-// Text-only appearances beyond the 3 video clips. Add more here freely.
-const appearances = [
-  { event: 'E3 2019 · Ubisoft Press Conference', context: 'Live stage · Delta Company global unveil · 10M+ viewers', year: '2019' },
-  { event: 'Inside Xbox', context: 'Live TV interview · Ghost Recon Wildlands content drop', year: '2019' },
-  { event: 'Ghost Recon Breakpoint · World Premiere', context: 'Global announce livestream · core presentation team', year: '2019' },
-  { event: 'PlayStation Showcase appearances', context: 'On-camera segments · franchise updates', year: '2018–2021' },
-  { event: 'Walmart · Target · GameStop pitches', context: 'Retail buy-in pitches for Ubisoft franchises', year: '2018–2021' },
-  { event: 'R6 Siege Champions Program reveal', context: 'Community livestream host · 150+ creator program launch', year: '2021' },
-  { event: 'Assassin’s Creed advocacy program', context: 'Community-facing presentations · brand updates', year: '2020' },
-  { event: 'Ubisoft brand spokesperson', context: '20+ global press, TV and live events across 4 years', year: '2018–2022' },
 ]
 
 export default function AboutPage() {
@@ -248,9 +188,13 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <ul className="about-speaking__list">
-            {speaking.map((s) => (
+          {/* Teaser gallery: one card per format (Stage / Studio /
+              Livestream). Tight on About — the full reel lives at
+              /speaking. */}
+          <ul className="about-speaking__list about-speaking__list--grid">
+            {featuredSpeaking.map((s) => (
               <li className="about-speaking__item" key={s.headline}>
+                <span className="marker about-speaking__format">{s.format}</span>
                 <div className="about-speaking__video">
                   {s.youtube ? (
                     <iframe
@@ -281,100 +225,10 @@ export default function AboutPage() {
             ))}
           </ul>
 
-          {/* Text-only list of further appearances beyond the 3 featured clips */}
-          <div className="about-speaking__appearances">
-            <span className="marker">Selected appearances</span>
-            <ol className="about-speaking__list-text">
-              {appearances.map((a) => (
-                <li key={a.event + a.year} className="about-speaking__row">
-                  <span className="about-speaking__row-year">{a.year}</span>
-                  <span className="about-speaking__row-event">{a.event}</span>
-                  <span className="about-speaking__row-context">{a.context}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* Spokesperson reel — additional on-camera clips */}
-          <div className="about-speaking__reel">
-            <span className="marker">More on camera</span>
-            <h3 className="about-speaking__reel-title">Spokesperson reel.</h3>
-            <ul className="about-speaking__reel-grid">
-              {spokespersonReel.map((v, i) => (
-                <li key={i} className="about-speaking__reel-cell">
-                  {v.youtube ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${v.youtube}`}
-                      title={v.caption}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="about-speaking__placeholder" aria-hidden="true">
-                      <span>Clip · TBD</span>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Videos Laura produced AND spoke on */}
-          <div className="about-speaking__reel">
-            <span className="marker">Behind and in front of the camera</span>
-            <h3 className="about-speaking__reel-title">Produced &amp; spoke on.</h3>
-            <ul className="about-speaking__reel-grid">
-              {producedSpokeOn.map((v, i) => (
-                <li key={i} className="about-speaking__reel-cell">
-                  {v.youtube ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${v.youtube}`}
-                      title={v.caption}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="about-speaking__placeholder" aria-hidden="true">
-                      <span>Clip · TBD</span>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Voice over example */}
-          <div className="about-speaking__voiceover">
-            <span className="marker">Also</span>
-            <h3 className="about-speaking__voiceover-title">
-              I voice videos for other brands too.
-            </h3>
-            <p className="about-speaking__voiceover-detail">
-              {voiceOverExample.detail}
-            </p>
-            <div className="about-speaking__voiceover-video">
-              {voiceOverExample.youtube ? (
-                <iframe
-                  src={`https://www.youtube.com/embed/${voiceOverExample.youtube}`}
-                  title={voiceOverExample.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              ) : (
-                <div className="about-speaking__placeholder" aria-hidden="true">
-                  <span>VO example · TBD</span>
-                </div>
-              )}
-            </div>
-          </div>
-
           <div className="about-speaking__cta">
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost">
-              Book me to speak <span aria-hidden="true">→</span>
-            </a>
+            <Link to="/speaking" className="btn btn--ghost">
+              See the full speaker reel <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>

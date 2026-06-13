@@ -31,13 +31,13 @@ export default function UsMobilePage() {
   useDocumentMeta({
     title: 'US Mobile Dark Star · Fandom is purchasing power · $32K in 3 hours · Case study by Laura Cordrey',
     description:
-      'I designed a $129 limited-edition VIP fan bundle around US Mobile’s Dark Star launch. Sold out in 3 hours — $32K in revenue, 6-figure upside on the table. Proof that superfans will pay to be early, rare, and relevant. Fandom is purchasing power.',
+      'I designed a $129 limited-edition VIP fan bundle around US Mobile’s Dark Star launch. Sold out in 3 hours. $32K in revenue, 6-figure upside on the table. Proof that superfans will pay to be early, rare, and relevant. Fandom is purchasing power.',
     canonical: pageUrl('work/us-mobile-dark-star'),
     ogImage: assetUrl('case-studies/us-mobile-dark-star-banner.png'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'us-mobile-dark-star',
-      title: 'US Mobile Dark Star — fandom is purchasing power',
+      title: 'US Mobile Dark Star: fandom is purchasing power',
       description:
         '$129 limited-edition VIP bundle, 250 units, sold out in 3 hours. $32K closed, 6-figure upside left on the table. Proof that fan-led growth converts to revenue.',
       image: 'case-studies/us-mobile-dark-star-banner.png',
@@ -62,12 +62,12 @@ export default function UsMobilePage() {
         {
           question: 'Will a community’s most engaged users pay premium prices for limited drops?',
           answer:
-            'Yes. Your superfans are your top spenders. 250 units of a $129 SIM kit that had previously been free sold out in 3 hours. Your most engaged users will pay to be early, rare, and relevant — they want a piece of the moment, not just the product.',
+            'Yes. Your superfans are your top spenders. 250 units of a $129 SIM kit that had previously been free sold out in 3 hours. Your most engaged users will pay to be early, rare, and relevant. They want a piece of the moment, not just the product.',
         },
         {
           question: 'How do you build a premium drop funnel that converts?',
           answer:
-            'Gamify the portal to entry. When something is scarce, make access just a little harder. For US Mobile Dark Star: a game to get the access code, an email pre-launch, a countdown page, then the scarcity reveal. Those mechanics drove the interest — the drop itself just collected the demand.',
+            'Gamify the portal to entry. When something is scarce, make access just a little harder. For US Mobile Dark Star: a game to get the access code, an email pre-launch, a countdown page, then the scarcity reveal. Those mechanics drove the interest; the drop itself just collected the demand.',
         },
       ],
     }),
@@ -95,7 +95,7 @@ export default function UsMobilePage() {
           <p className="delta__cover-lede">
             A controlled test of US Mobile&rsquo;s core community purchasing
             power. I designed a $129 limited-edition fan bundle, built the
-            gamified pre-launch funnel, and sold out in three hours.
+            gamified pre-launch funnel, and <mark>sold out in three hours</mark>.
           </p>
         </div>
       </header>
@@ -107,7 +107,7 @@ export default function UsMobilePage() {
       <figure className="delta__hero">
         <img
           src={BASE + 'case-studies/us-mobile-dark-star-banner.png'}
-          alt="Dark Star — US Mobile&rsquo;s premium plan banner, a moody black sphere on a starfield with the Dark Star wordmark, cinematic widescreen treatment"
+          alt="Dark Star: US Mobile&rsquo;s premium plan banner, a moody black sphere on a starfield with the Dark Star wordmark, cinematic widescreen treatment"
           style={{ objectPosition: '50% 55%' }}
         />
       </figure>
@@ -202,13 +202,13 @@ export default function UsMobilePage() {
           items={[
             {
               src: 'case-studies/us-mobile-vip-bundle.png',
-              alt: 'US Mobile Dark Star VIP Early Access Bundle product photograph — Dark Star branded SIM kit packaging, the SIM card with Dark Star artwork, and an exclusive Dark Star × The North Face® quarter-zip fleece, with a Limited Quantities badge',
+              alt: 'US Mobile Dark Star VIP Early Access Bundle product photograph: Dark Star branded SIM kit packaging, the SIM card with Dark Star artwork, and an exclusive Dark Star × The North Face® quarter-zip fleece, with a Limited Quantities badge',
               caption:
                 'The $129 Dark Star VIP Bundle. Limited-edition SIM kit. Exclusive Dark Star × The North Face® fleece.',
             },
             {
               src: 'case-studies/us-mobile-darkstar-ceo-letter.png',
-              alt: 'Signed letter from US Mobile CEO Ahmed Khattak inside the Dark Star VIP Bundle — personally addressed thank-you, hand-numbered 002 of 250',
+              alt: 'Signed letter from US Mobile CEO Ahmed Khattak inside the Dark Star VIP Bundle: personally addressed thank-you, hand-numbered 002 of 250',
               caption:
                 'A personally signed letter from CEO Ahmed Khattak inside every bundle. Hand-numbered 002 of 250.',
             },
@@ -256,19 +256,19 @@ export default function UsMobilePage() {
           items={[
             {
               src: 'case-studies/us-mobile-darkstar-email.png',
-              alt: 'Dark Star pre-launch email from Team at US Mobile — "Have what it takes to join the Dark Side?" with a pixel-art START button and a Let’s go! CTA',
+              alt: 'Dark Star pre-launch email from Team at US Mobile: "Have what it takes to join the Dark Side?" with a pixel-art START button and a Let’s go! CTA',
               caption:
                 'The pre-launch email that kicked off the funnel. 80% open rate, 35% CTOR.',
             },
             {
               src: 'case-studies/us-mobile-darkstar-game.png',
-              alt: 'Dark Star arcade-style game — pixel-art spaceship navigating a starfield with a dark planet, Level 1 onscreen',
+              alt: 'Dark Star arcade-style game: pixel-art spaceship navigating a starfield with a dark planet, Level 1 onscreen',
               caption:
                 'The arcade-style game built into the funnel. Beating it returned a unique code.',
             },
             {
               src: 'case-studies/us-mobile-darkstar-code-page.png',
-              alt: 'Dark Star code-entry page — minimalist black UI with a Get Unlock Code form and a sign-up input',
+              alt: 'Dark Star code-entry page: minimalist black UI with a Get Unlock Code form and a sign-up input',
               caption:
                 'The code page. Only people who beat the game could unlock the VIP bundle landing.',
             },
@@ -280,7 +280,7 @@ export default function UsMobilePage() {
             },
             {
               src: 'case-studies/us-mobile-vip-landing.png',
-              alt: 'US Mobile $129 VIP Early Access Bundle landing page — the unlocked purchase moment',
+              alt: 'US Mobile $129 VIP Early Access Bundle landing page: the unlocked purchase moment',
               caption:
                 'The purchase frame. Unlocked by the code, this is where the $129 VIP Bundle was bought. Capped at 250 units. Sold out in three hours.',
             },
@@ -392,7 +392,7 @@ export default function UsMobilePage() {
             },
             {
               src: 'case-studies/us-mobile-stetson-tweet.png',
-              alt: 'Stetson Doggett, a leading US telco influencer and founder of BestPhonePlans.net, unboxing the US Mobile × The North Face quarter-zip fleece on X — one of 450+ unprompted fan posts after the Dark Star drop',
+              alt: 'Stetson Doggett, a leading US telco influencer and founder of BestPhonePlans.net, unboxing the US Mobile × The North Face quarter-zip fleece on X. One of 450+ unprompted fan posts after the Dark Star drop.',
               caption:
                 'Stetson Doggett, a leading US telco influencer, unboxing the fleece on X. One of 450+ unprompted fan posts after the drop.',
             },
@@ -404,7 +404,7 @@ export default function UsMobilePage() {
             },
             {
               src: 'case-studies/us-mobile-darkstar-fleece-reddit.png',
-              alt: 'r/USMobile post titled "DarkStar VIP Fleece is Awesome" by anthonysredditname — a thank-you to US Mobile staff who tracked the buyer down after a house move so the fleece could be delivered. A community reply underneath reads "Ohhh so jealous — I’d be a walking billboard for them."',
+              alt: 'r/USMobile post titled "DarkStar VIP Fleece is Awesome" by anthonysredditname: a thank-you to US Mobile staff who tracked the buyer down after a house move so the fleece could be delivered. A community reply underneath reads "Ohhh so jealous, I’d be a walking billboard for them."',
               caption:
                 '“DarkStar VIP Fleece is Awesome.” A buyer thanks US Mobile for chasing them down to deliver after a move. The reply underneath: “I’d be a walking billboard for them.”',
             },

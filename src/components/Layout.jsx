@@ -7,6 +7,7 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 const navLinks = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About' },
+  { to: '/speaking', label: 'Speaking' },
   { to: '/work', label: 'Work' },
   { to: '/methodology', label: 'Method' },
   { to: '/services', label: 'Services' },

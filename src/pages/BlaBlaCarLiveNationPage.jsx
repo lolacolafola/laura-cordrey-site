@@ -25,15 +25,15 @@ export default function BlaBlaCarLiveNationPage() {
   useDocumentMeta({
     title: 'BlaBlaCar × Live Nation · Live Nation’s first ever Official Ridesharing Partner · Fan-led growth on the ground · Case study by Laura Cordrey',
     description:
-      'I made BlaBlaCar Live Nation’s first ever Official Ridesharing Partner — branded parking and a 20m² community tent at Latitude, Leeds and Reading. 50%+ of priority-parking users said they wouldn’t have rideshared without the partnership. Driving growth, one new fan at a time.',
+      'I made BlaBlaCar Live Nation’s first ever Official Ridesharing Partner: branded parking and a 20m² community tent at Latitude, Leeds and Reading. 50%+ of priority-parking users said they wouldn’t have rideshared without the partnership. Driving growth, one new fan at a time.',
     canonical: pageUrl('work/blablacar-live-nation'),
     ogImage: assetUrl('case-studies/blablacar-livenation-banner-yellow.png'),
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'blablacar-live-nation',
-      title: 'BlaBlaCar × Live Nation — fan-led growth, on the ground',
+      title: 'BlaBlaCar × Live Nation: fan-led growth, on the ground',
       description:
-        'Live Nation’s first ever Official Ridesharing Partner. Festival activation at Latitude, Leeds and Reading drove a 50%+ behaviour change in rideshare uptake — the activation didn’t just put the brand in front of people, it changed how they behaved.',
+        'Live Nation’s first ever Official Ridesharing Partner. Festival activation at Latitude, Leeds and Reading drove a 50%+ behaviour change in rideshare uptake. The activation didn’t just put the brand in front of people, it changed how they behaved.',
       image: 'case-studies/blablacar-livenation-banner-yellow.png',
       datePublished: '2016-09-01',
       client: 'BlaBlaCar',
@@ -51,12 +51,12 @@ export default function BlaBlaCarLiveNationPage() {
         {
           question: 'How do you build brand trust for an unknown product in a new market?',
           answer:
-            'Sponsor trust, don’t buy it. Becoming Live Nation’s first ever Official Ridesharing Partner transferred their brand authority to BlaBlaCar overnight — worth more than fighting to earn that trust through paid media equivalent spend.',
+            'Sponsor trust, don’t buy it. Becoming Live Nation’s first ever Official Ridesharing Partner transferred their brand authority to BlaBlaCar overnight, worth more than fighting to earn that trust through paid media equivalent spend.',
         },
         {
           question: 'How do you turn a sponsorship deal into measurable behaviour change?',
           answer:
-            'Solve the logistics, win the brand moment. 300+ branded priority-parking spaces at Latitude, Leeds and Reading delivered a real festival-goer problem: getting in and out quickly. 50%+ of priority-parking users said they wouldn’t have rideshared without the partnership. The activation didn’t just put the brand in front of people — it changed how they behaved.',
+            'Solve the logistics, win the brand moment. 300+ branded priority-parking spaces at Latitude, Leeds and Reading delivered a real festival-goer problem: getting in and out quickly. 50%+ of priority-parking users said they wouldn’t have rideshared without the partnership. The activation didn’t just put the brand in front of people; it changed how they behaved.',
         },
         {
           question: 'How do you build community for an online product?',
@@ -104,7 +104,7 @@ export default function BlaBlaCarLiveNationPage() {
       <figure className="delta__hero delta__hero--bottom">
         <img
           src={BASE + 'case-studies/blablacar-live-nation-card.png'}
-          alt="BlaBlaCar × Live Nation case study banner — four friends smiling inside a convertible with the BlaBlaCar and Live Nation logos overlaid on a red plate"
+          alt="BlaBlaCar × Live Nation case study banner: four friends smiling inside a convertible with the BlaBlaCar and Live Nation logos overlaid on a red plate"
         />
       </figure>
 
@@ -178,7 +178,7 @@ export default function BlaBlaCarLiveNationPage() {
       <figure className="delta__plate delta__plate--full">
         <img
           src={BASE + 'case-studies/blablacar-tent.png'}
-          alt="The BlaBla Tent on-site at Latitude — branded inflatable dome with flags, deckchairs and the BlaBlaCar UK team"
+          alt="The BlaBla Tent on-site at Latitude: branded inflatable dome with flags, deckchairs and the BlaBlaCar UK team"
         />
         <figcaption className="container">
           The BlaBla Tent at Latitude. Branded inflatable dome, flags,
