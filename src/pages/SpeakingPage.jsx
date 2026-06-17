@@ -23,7 +23,7 @@ export default function SpeakingPage() {
   useDocumentMeta({
     title: 'Speaking · Laura Cordrey · Keynote, spokesperson, voice over',
     description:
-      'Laura Cordrey speaking reel: keynote presentations, live studio interviews, livestream hosting, on-camera spokesperson work and voice over. 50+ speaking moments across stage, studio and broadcast.',
+      'Laura Cordrey speaking reel: keynote presentations, live studio interviews, livestream hosting, on-camera spokesperson work and voice over. 20+ speaking moments across stage, studio and broadcast.',
     canonical: pageUrl('speaking'),
     ogType: 'profile',
   })
@@ -50,7 +50,7 @@ export default function SpeakingPage() {
           <span className="marker speaking-hero__kicker">Keynote &amp; on camera</span>
           <h1 className="speaking-hero__title">Speaking reel.</h1>
           <p className="speaking-hero__lede">
-            <mark>50+ speaking moments</mark> so far. From the Los
+            <mark>20+ speaking moments</mark> so far. From the Los
             Angeles E3 stage to Inside Xbox, from executive retailer
             meetings to live community broadcasts.
           </p>

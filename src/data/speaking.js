@@ -112,12 +112,10 @@ export const voiceOverExample = {
 
 // Text-only list of appearances beyond the videos above.
 export const appearances = [
-  { event: 'E3 2019 · Ubisoft Press Conference', context: 'Live stage · Delta Company global unveil · 10M+ viewers', year: '2019' },
-  { event: 'Inside Xbox', context: 'Live TV interview · Ghost Recon Wildlands content drop', year: '2019' },
+  { event: 'Inside Xbox', context: 'Live TV interview · Ghost Recon Wildlands content drop', year: '2018' },
+  { event: 'Walmart · Target · GameStop & more', context: 'Retail buy-in pitches ahead of Ghost Recon Breakpoint launch · Montreal', year: '2018' },
+  { event: 'E3 2019 · Ubisoft Press Conference', context: 'Live stage · Delta Company global unveil', year: '2019' },
   { event: 'Ghost Recon Breakpoint · World Premiere', context: 'Global announce livestream · core presentation team', year: '2019' },
-  { event: 'PlayStation Showcase appearances', context: 'On-camera segments · franchise updates', year: '2018–2021' },
-  { event: 'Walmart · Target · GameStop pitches', context: 'Retail buy-in pitches for Ubisoft franchises', year: '2018–2021' },
-  { event: 'R6 Siege Champions Program reveal', context: 'Community livestream host · 150+ creator program launch', year: '2021' },
-  { event: 'Assassin’s Creed advocacy program', context: 'Community-facing presentations · brand updates', year: '2020' },
-  { event: 'Ubisoft brand spokesperson', context: '20+ global press, TV and live events across 4 years', year: '2018–2022' },
+  { event: 'Sales team onboarding · San Diego', context: 'Ghost Recon Breakpoint storytelling and live demo for the sales team', year: '2019' },
+  { event: 'Ubisoft community events · Sydney, London, Santiago, Paris', context: 'On-stage community presentations alongside local fan events', year: '2019' },
 ]

@@ -48,28 +48,30 @@ const career = [
   },
 ]
 
-const expertise = [
-  'Fan-Powered Growth Strategy',
-  'Brand Positioning & Storytelling',
-  'Go-To-Market Strategy',
-  'Fan Ecosystem Design',
-  'Community & Advocacy',
-  'Loyalty Building',
-  'Influencer & Partnership Strategy',
-  'Creative Direction & Production',
-  'Global Campaign Delivery',
-  'Event & Activation Management',
-  'Keynote & On-Stage Presenting',
-  'Voice Over & Narration',
-  'Cross-Team Leadership',
-  'Executive Pitches & Investor Decks',
+const expertiseLead = [
+  'Fan-led growth strategy',
+  'Brand positioning & storytelling',
+  'Go-to-market',
+  'Fan ecosystem design',
+]
+
+const expertiseAlso = [
+  'Community & advocacy',
+  'Loyalty',
+  'Influencer & partnerships',
+  'Creative direction & production',
+  'Global campaigns',
+  'Events & activations',
+  'On-stage presenting',
+  'Voice over',
+  'Executive & investor decks',
 ]
 
 export default function AboutPage() {
   useDocumentMeta({
     title: 'About Laura Cordrey · Strategic consultant · Fan-Led Growth · Brand, product, community, growth',
     description:
-      "Laura Cordrey is a senior strategic consultant building fan-led growth engines. Twelve years across brand, product, community and growth at Ubisoft, BlaBlaCar, Amazon Games, Azarus, US Mobile and more.",
+      "Laura Cordrey acts as a founder-level CMO for fan-driven brands. Thirteen years across brand, product, community and growth at Ubisoft, BlaBlaCar, Amazon Games, Azarus, US Mobile and more.",
     canonical: pageUrl('about'),
     ogType: 'profile',
     jsonLd: {
@@ -112,7 +114,7 @@ export default function AboutPage() {
         <div className="container about-hero__inner">
           <div className="about-hero__top">
             <span className="marker">About · Vol. 01</span>
-            <span className="marker about-hero__top-right">Paris · New York · English / Français</span>
+            <span className="marker about-hero__top-right">London · Paris · New York · English &amp; French · Since 2013</span>
           </div>
 
           <div className="about-hero__split">
@@ -123,14 +125,15 @@ export default function AboutPage() {
               </h1>
               <p className="about-hero__lede">
                 I&rsquo;ve built from nothing. I&rsquo;ve built from
-                millions. No matter where a brand is in their journey,
-                I spot the opportunities, make the connections, and find
-                the solutions that take brands{' '}
-                <mark>from forgettable to fan-powered</mark>. I&rsquo;ve
-                spent thirteen years honing my craft at French and American
-                conglomerates and startups — Ubisoft, Amazon, BlaBlaCar
-                to name a few — and now I&rsquo;m here to build it for
-                you.
+                millions. Wherever a brand is on its journey, I take it{' '}
+                <mark>from forgettable to fan-powered</mark>: lower
+                acquisition cost, higher retention, earned reach you
+                would otherwise pay for. I&rsquo;ve spent thirteen years
+                honing the craft at Ubisoft, Amazon Games and BlaBlaCar.
+                Now I act as a founder-level CMO for fan-driven brands,
+                building the brand that makes people fall for you and
+                the fan-led engine that turns that love into repeatable,
+                measurable growth.
               </p>
             </div>
 
@@ -152,9 +155,9 @@ export default function AboutPage() {
             <span className="marker">Cross-discipline leadership</span>
             <h2 className="section-head__title">What I bring.</h2>
             <p className="about-range__lede">
-              Most consultants own one topic. I own four. Work with a
-              leader who can bring the whole <mark>bridge</mark> to your
-              business.
+              Most consultants own one topic. I own four. Work with{' '}
+              <mark>one person</mark> who connects brand, product,
+              community and growth, instead of four who don&rsquo;t.
             </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
@@ -175,6 +178,23 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ─── HOW I WORK NOW ───────────────────────────────────── */}
+      <section className="about-range">
+        <div className="container">
+          <div className="section-head">
+            <span className="marker">How I work now</span>
+            <h2 className="section-head__title">AI is my team.</h2>
+            <p className="about-range__lede">
+              AI is my team. Ten years is my judgment. I&rsquo;m a
+              founding team member at Magic, a next-gen fan engagement
+              platform, and I run my own practice solo: strategy,
+              positioning, brand, product, and the code to ship it.{' '}
+              <mark>The decade makes it good. AI makes it fast.</mark>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─── KEYNOTE SPEAKER ──────────────────────────────────── */}
       <section className="about-speaking">
         <div className="container">
@@ -182,7 +202,7 @@ export default function AboutPage() {
             <span className="marker">Keynote &amp; public speaking</span>
             <h2 className="section-head__title">Keynote speaker.</h2>
             <p className="about-speaking__lede">
-              <mark>50+ speaking moments</mark> so far. From the Los Angeles
+              <mark>20+ speaking moments</mark> so far. From the Los Angeles
               E3 stage to Inside Xbox, from executive retailer meetings to
               live community broadcasts. Here are a few.
             </p>
@@ -263,10 +283,13 @@ export default function AboutPage() {
             <h2 className="section-head__title">What I&rsquo;m hired for.</h2>
           </div>
           <ul className="about-expertise__list">
-            {expertise.map((x) => (
-              <li className="about-expertise__chip" key={x}>{x}</li>
+            {expertiseLead.map((x) => (
+              <li className="about-expertise__chip about-expertise__chip--lead" key={x}>{x}</li>
             ))}
           </ul>
+          <p className="about-expertise__also marker">
+            Also · {expertiseAlso.join(' · ')}
+          </p>
         </div>
       </section>
 

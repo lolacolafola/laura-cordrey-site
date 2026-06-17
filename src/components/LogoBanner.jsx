@@ -6,9 +6,9 @@ import './LogoBanner.css'
 const primary = [
   { name: 'Ubisoft',      src: null },
   { name: 'Amazon Games', src: 'logos/amazon-games-2.png' },
+  { name: 'Azarus',       src: 'logos/azarus.png' },
   { name: 'BlaBlaCar',    src: 'logos/blablacar.png' },
   { name: 'US Mobile',    src: 'logos/us-mobile.png' },
-  { name: 'Azarus',       src: 'logos/azarus.png' },
   { name: 'AllSaints',    src: 'logos/allsaints.png' },
 ]
 
@@ -21,7 +21,7 @@ export default function LogoBanner() {
     <section className="logo-banner" aria-label="Past clients">
       <div className="container">
         <div className="logo-banner__head">
-          <span className="marker">Selected clients · Across consumer, tech, gaming</span>
+          <span className="marker">Ten years of fan-led growth · consumer, tech, gaming</span>
         </div>
 
         <ul className="logo-banner__row">

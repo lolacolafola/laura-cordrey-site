@@ -126,7 +126,7 @@ export default function Layout({ children }) {
           <div className="footer__col">
             <p className="marker">Laura Cordrey · Paris · Since 2013</p>
             <p className="footer__line">
-              Strategic consultant. Brand · Product · Community · Growth.
+              Founder-level CMO for fan-driven brands. Brand · Fan-led growth.
             </p>
           </div>
           <div className="footer__col footer__col--links">

@@ -9,7 +9,7 @@ import './HomePage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
-const identities = ['Storyteller', 'Brand Strategist', 'Community Growth', 'Vibe Coder']
+const eyebrow = 'Founder-level CMO for fan-driven brands'
 
 const heroStats = [
   { value: 100, suffix: 'M+', label: 'Audiences reached' },
@@ -39,7 +39,7 @@ export default function HomePage() {
   useDocumentMeta({
     title: 'Laura Cordrey — Strategic consultant · Fan-Led Growth · Brand · Product · Community · Growth',
     description:
-      'Laura Cordrey is a senior strategic consultant building fan-led growth engines for consumer, tech and gaming brands. Case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation.',
+      'Laura Cordrey acts as a founder-level CMO for fan-driven brands. Brand plus fan-led growth, AI as the engine. Case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation.',
     canonical: pageUrl(''),
     ogType: 'website',
     jsonLd: authorJsonLd(),
@@ -51,36 +51,29 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero__inner">
           <div className="hero__top">
-            <span className="marker">London · Paris · New York · Since 2013</span>
-            {/* TODO: turn "EN · FR" into an actual language toggle
-                button once French translations exist. For now it reads
-                as a capability marker. */}
-            <span className="marker hero__top-right">EN · FR</span>
+            <span className="marker">London · Paris · New York · English &amp; French · Since 2013</span>
           </div>
 
-          <div className="hero__identities" aria-hidden="true">
-            {identities.map((word, i) => (
-              <span className="hero__identity" key={word}>
-                <span className="hero__diamond">✦</span>
-                <span>{word}</span>
-                {i === identities.length - 1 && (
-                  <span className="hero__diamond">✦</span>
-                )}
-              </span>
-            ))}
+          <div className="hero__identities">
+            <span className="hero__identity">
+              <span className="hero__diamond" aria-hidden="true">✦</span>
+              <span>{eyebrow}</span>
+              <span className="hero__diamond" aria-hidden="true">✦</span>
+            </span>
           </div>
 
           <h1 className="hero__title">
-            Build brands<br />
-            people <em className="accent">talk about</em>.
+            Fans who <em className="accent">stay</em>, <em className="accent">pay</em>,<br />
+            and <em className="accent">bring more</em>.
           </h1>
 
           <div className="hero__meta">
             <div className="hero__lede">
               <p>
-                I&rsquo;m Laura. A strategic consultant for consumer, tech and gaming brands.
-                I work across brand, product, community and growth, turning passive
-                audiences into loyal advocates: the fans that build the business.
+                I&rsquo;m Laura. I&rsquo;ll make people fall in love with you,
+                then supercharge that love into repeatable, measurable growth.
+                Think a drop that sold out in three hours, or 60M views at
+                zero ad spend. Let&rsquo;s build your fan-powered growth engine.
               </p>
               <div className="hero__ctas">
                 <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary">
@@ -99,6 +92,14 @@ export default function HomePage() {
             </figure>
           </div>
 
+        </div>
+      </section>
+
+      {/* ─── HERO PROOF: client logos, then KPI strip ─────────── */}
+      <LogoBanner />
+
+      <section className="hero-proof-stats">
+        <div className="container">
           <div className="hero__stats">
             {heroStats.map((s) => (
               <div className="hero__stat" key={s.label}>
@@ -111,9 +112,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ─── CLIENT LOGOS ─────────────────────────────────────── */}
-      <LogoBanner />
 
       {/* ─── SELECTED WORK — visual cards ─────────────────────── */}
       <section className="work">
@@ -148,7 +146,7 @@ export default function HomePage() {
             </h2>
             <p className="method__copy">
               Most strategists work in one of these. A few work across two.
-              I&rsquo;ve built systems across all four — at Ubisoft, BlaBlaCar,
+              I&rsquo;ve built systems across all four, at Ubisoft, BlaBlaCar,
               US Mobile and Azarus. The Fandom&nbsp;Flywheel&trade; is the
               method I&rsquo;ve drawn from that work: a five-stage system for
               turning audiences into fans, and fans into the engine that grows
