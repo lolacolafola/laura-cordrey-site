@@ -220,6 +220,17 @@
   font-weight: 800;
 }
 .delta__stat-label { color: var(--ink-muted); }
+
+/* Methodology note under the stats grid (used for "Est. earned media
+   value" stats, where we want to expose the CPM assumption without
+   crowding the value tile itself). */
+.delta__stats-footnote {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+  max-width: 78ch;
+  line-height: 1.55;
+}
 @media (max-width: 860px) {
   /* 4 stats → clean 2×2 grid on mobile. */
   .delta__stats ul { grid-template-columns: repeat(2, 1fr); }

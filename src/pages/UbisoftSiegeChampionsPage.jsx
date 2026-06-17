@@ -124,14 +124,19 @@ export default function UbisoftSiegeChampionsPage() {
             <span className="marker delta__stat-label">Invite-only members</span>
           </li>
           <li>
-            <span className="delta__stat-value">18</span>
-            <span className="marker delta__stat-label">Markets</span>
+            <span className="delta__stat-value">$500K+</span>
+            <span className="marker delta__stat-label">Est. earned media value</span>
           </li>
           <li>
             <span className="delta__stat-value">$0</span>
             <span className="marker delta__stat-label">Media spend</span>
           </li>
         </ul>
+        <p className="delta__stats-footnote">
+          Estimated at a conservative $10 CPM (2025 social and influencer
+          video CPMs run ~$5 to $15+, all-industry median ~$20).
+          Calculated as (50M views ÷ 1,000) &times; $10, at $0 media spend.
+        </p>
       </section>
 
       {/* ─── [01] WHERE IT STARTED ───────────────────────────── */}

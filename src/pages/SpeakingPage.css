@@ -1,0 +1,204 @@
+/* ───────────────────────────────────────────────────────────
+ * SPEAKING PAGE
+ * Full-bleed editorial hero — image-first, headline below.
+ * Body content reuses .about-speaking* classes from AboutPage.css.
+ * ─────────────────────────────────────────────────────────── */
+
+.speaking-hero {
+  position: relative;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.speaking-hero__media {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.speaking-hero__media img,
+.speaking-hero__media video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+@media (max-width: 720px) {
+  .speaking-hero__media img,
+  .speaking-hero__media video {
+    aspect-ratio: 4 / 5;
+    object-position: center 20%;
+  }
+}
+
+/* Gradient scrim — dark wash from bottom up so the title reads against
+   any frame of the video without dimming the top of the image. */
+.speaking-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.55) 30%,
+      rgba(0,0,0,0.15) 55%,
+      rgba(0,0,0,0) 80%
+    );
+  pointer-events: none;
+}
+
+/* Title block sits over the bottom of the media, container-aligned. */
+.speaking-hero__body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: var(--space-7);
+  z-index: 1;
+  color: #fff;
+}
+.speaking-hero__kicker {
+  color: var(--accent);
+}
+.speaking-hero__title {
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: var(--space-3) 0 var(--space-4);
+  max-width: 14ch;
+  color: #fff;
+}
+.speaking-hero__lede {
+  font-size: var(--fs-body-l);
+  color: rgba(255,255,255,0.85);
+  max-width: 56ch;
+  line-height: 1.5;
+  margin: 0;
+}
+.speaking-hero__lede mark {
+  /* mark styles inherited from base.css (animated gradient text) */
+}
+
+/* ─── FORMAT SECTIONS ─────────────────────────────────────
+   Each format (Stage, Studio & TV, Livestream, Produced & voiced)
+   gets its own titled block. The clips inside reuse the existing
+   .about-speaking* card system from AboutPage.css. */
+.speaking-section {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+  border-top: 1px solid var(--hairline);
+}
+.speaking-section:first-of-type {
+  border-top: 0;
+  padding-top: var(--space-8);
+}
+.speaking-section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.speaking-section__eyebrow {
+  color: var(--accent);
+}
+.speaking-section__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Editorial clip treatment — hairlines + display typography, matching
+   the .work-card pattern on Home/Work. No filled box, no rounded border.
+   The clip reads as an editorial column: top rule, oversized headline,
+   hairline divider, body copy, hairline above an anchored CTA. */
+.speaking-section .about-speaking__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-top: 1px solid var(--hairline);
+  background: none;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  transition: color var(--transition);
+}
+
+/* Video frame: keep the rounded thumbnail but make the surround feel
+   like the work-card media. */
+.speaking-section .about-speaking__video {
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+/* Body: headline larger and in display font (matches .work-card__brand
+   scale), then a hairline before the detail copy. */
+.speaking-section .about-speaking__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+/* Venue = brand chip above the display headline (matches the work
+   card pattern — mono marker sat above the big project name). */
+.speaking-section .about-speaking__venue {
+  color: var(--edge);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.speaking-section .about-speaking__headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.speaking-section .about-speaking__detail {
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+/* Single-clip section: 2-column feature layout — video left, copy right.
+   Hides the per-clip format chip since the section title already names
+   the format (avoids "Stage / Stage" stutter). */
+
+/* Single-clip section: 2-column feature layout — video left, copy right. */
+.speaking-section--single .about-speaking__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  column-gap: var(--space-6);
+  align-items: center;
+}
+@media (max-width: 860px) {
+  .speaking-section--single .about-speaking__item {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-4);
+  }
+}
+
+@media (max-width: 720px) {
+  /* Stronger, taller scrim — the 4:5 mobile crop is busier and the title
+     block takes up more vertical real estate. */
+  .speaking-hero__media::after {
+    background:
+      linear-gradient(
+        to top,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.85) 35%,
+        rgba(0,0,0,0.5) 60%,
+        rgba(0,0,0,0) 85%
+      );
+  }
+  .speaking-hero__body {
+    padding-bottom: var(--space-5);
+  }
+  .speaking-hero__title {
+    margin: var(--space-2) 0 var(--space-3);
+  }
+}

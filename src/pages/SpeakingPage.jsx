@@ -2,24 +2,23 @@ import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import {
-  featuredSpeaking,
-  spokespersonReel,
-  producedSpokeOn,
-  voiceOverExample,
+  speakingSections,
   appearances,
 } from '../data/speaking.js'
 import './HomePage.css' // shared .btn / .section-head styles
 import './AboutPage.css' // reuses .about-speaking* classes
+import './SpeakingPage.css' // local .speaking-hero* classes
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
 /* Speaking — full keynote and on-camera reel page.
  *
- * About page carries a tight teaser (3-up gallery + see-more CTA).
- * This page is the deep version: appearances log, spokesperson reel,
- * produced-and-spoke-on grid, voice-over example, booking CTA.
+ * Organised by FORMAT: Stage / Studio & TV / Livestream / Produced &
+ * voiced. Each section has 1+ clips; the first is the standout. About
+ * page reuses speaking.js's derived `featuredSpeaking` for its teaser.
  *
- * Shares the .about-speaking* class system from AboutPage.css. */
+ * Reuses .about-speaking* class system from AboutPage.css for clip
+ * card styling. */
 export default function SpeakingPage() {
   useDocumentMeta({
     title: 'Speaking · Laura Cordrey · Keynote, spokesperson, voice over',
@@ -29,56 +28,92 @@ export default function SpeakingPage() {
     ogType: 'profile',
   })
 
+  const BASE = import.meta.env.BASE_URL
+
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
+      <section className="speaking-hero">
+        <figure className="speaking-hero__media">
+          <video
+            src={BASE + 'speaking/laura-e3-stage-wide.mp4'}
+            poster={BASE + 'speaking/laura-e3-stage-wide-poster.jpg'}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Laura Cordrey on the Ubisoft E3 2019 stage in Los Angeles, presenting Delta Company to a live audience."
+          />
+        </figure>
+        <div className="container speaking-hero__body">
+          <span className="marker speaking-hero__kicker">Keynote &amp; on camera</span>
+          <h1 className="speaking-hero__title">Speaking reel.</h1>
+          <p className="speaking-hero__lede">
+            <mark>50+ speaking moments</mark> so far. From the Los
+            Angeles E3 stage to Inside Xbox, from executive retailer
+            meetings to live community broadcasts.
+          </p>
+        </div>
+      </section>
+
       <section className="about-speaking about-speaking--hero">
         <div className="container">
-          <div className="section-head">
-            <span className="marker">Keynote &amp; on camera</span>
-            <h1 className="section-head__title">Speaking reel.</h1>
-            <p className="about-speaking__lede">
-              <mark>50+ speaking moments</mark> so far. From the Los
-              Angeles E3 stage to Inside Xbox, from executive retailer
-              meetings to live community broadcasts.
-            </p>
-          </div>
 
-          {/* Featured 3 — same gallery shown as a teaser on About. */}
-          <ul className="about-speaking__list about-speaking__list--grid">
-            {featuredSpeaking.map((s) => (
-              <li className="about-speaking__item" key={s.headline}>
-                <span className="marker about-speaking__format">{s.format}</span>
-                <div className="about-speaking__video">
-                  {s.youtube ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${s.youtube}`}
-                      title={s.headline}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="about-speaking__placeholder" aria-hidden="true">
-                      <span>Clip · TBD</span>
+          {/* ─── FORMAT SECTIONS ──────────────────────────────────
+              Stage / Studio & TV / Livestream / Produced & voiced.
+              Each section title bar, then 1+ clip cards stacked. */}
+          {speakingSections.map((section) => (
+            <div
+              key={section.key}
+              className={`speaking-section speaking-section--${section.key}${
+                section.clips.length === 1 ? ' speaking-section--single' : ''
+              }`}
+            >
+              <header className="speaking-section__head">
+                <span className="marker speaking-section__eyebrow">{section.eyebrow}</span>
+                <h2 className="speaking-section__title">{section.title}.</h2>
+              </header>
+
+              <ul
+                className={`about-speaking__list ${
+                  section.clips.length > 1 ? 'about-speaking__list--grid' : ''
+                }`}
+              >
+                {section.clips.map((s) => (
+                  <li className="about-speaking__item" key={s.youtube || s.headline}>
+                    <div className="about-speaking__video">
+                      {s.youtube ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${s.youtube}`}
+                          title={s.headline}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="about-speaking__placeholder" aria-hidden="true">
+                          <span>Clip · TBD</span>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div className="about-speaking__body">
-                  <h3 className="about-speaking__headline">{s.headline}</h3>
-                  {s.venue && (
-                    <span className="marker about-speaking__venue">{s.venue}</span>
-                  )}
-                  <p
-                    className="about-speaking__detail"
-                    dangerouslySetInnerHTML={{ __html: s.detail }}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
+                    <div className="about-speaking__body">
+                      {s.venue && (
+                        <span className="marker about-speaking__venue">{s.venue}</span>
+                      )}
+                      <h3 className="about-speaking__headline">{s.headline}</h3>
+                      <p
+                        className="about-speaking__detail"
+                        dangerouslySetInnerHTML={{ __html: s.detail }}
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* Text-only list of further appearances beyond the 3 featured clips */}
+          {/* ─── APPEARANCES LOG ──────────────────────────────── */}
           <div className="about-speaking__appearances">
             <span className="marker">Selected appearances</span>
             <ol className="about-speaking__list-text">
@@ -90,82 +125,6 @@ export default function SpeakingPage() {
                 </li>
               ))}
             </ol>
-          </div>
-
-          {/* Spokesperson reel — additional on-camera clips */}
-          <div className="about-speaking__reel">
-            <span className="marker">More on camera</span>
-            <h2 className="about-speaking__reel-title">Spokesperson reel.</h2>
-            <ul className="about-speaking__reel-grid">
-              {spokespersonReel.map((v, i) => (
-                <li key={i} className="about-speaking__reel-cell">
-                  {v.youtube ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${v.youtube}`}
-                      title={v.caption}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="about-speaking__placeholder" aria-hidden="true">
-                      <span>Clip · TBD</span>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Videos Laura produced AND spoke on */}
-          <div className="about-speaking__reel">
-            <span className="marker">Behind and in front of the camera</span>
-            <h2 className="about-speaking__reel-title">Produced &amp; spoke on.</h2>
-            <ul className="about-speaking__reel-grid">
-              {producedSpokeOn.map((v, i) => (
-                <li key={i} className="about-speaking__reel-cell">
-                  {v.youtube ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${v.youtube}`}
-                      title={v.caption}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="about-speaking__placeholder" aria-hidden="true">
-                      <span>Clip · TBD</span>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Voice over example */}
-          <div className="about-speaking__voiceover">
-            <span className="marker">Also</span>
-            <h2 className="about-speaking__voiceover-title">
-              I voice videos for other brands too.
-            </h2>
-            <p className="about-speaking__voiceover-detail">
-              {voiceOverExample.detail}
-            </p>
-            <div className="about-speaking__voiceover-video">
-              {voiceOverExample.youtube ? (
-                <iframe
-                  src={`https://www.youtube.com/embed/${voiceOverExample.youtube}`}
-                  title={voiceOverExample.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              ) : (
-                <div className="about-speaking__placeholder" aria-hidden="true">
-                  <span>VO example · TBD</span>
-                </div>
-              )}
-            </div>
           </div>
 
           <div className="about-speaking__cta">

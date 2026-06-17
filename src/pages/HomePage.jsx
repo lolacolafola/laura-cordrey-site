@@ -19,7 +19,11 @@ const heroStats = [
 
 // One featured card per brand. Pulls the primary case study and pairs it with
 // a one-line "big stat" overlay (separate from the article hook).
-const featuredIds = ['ubisoft-delta-company', 'us-mobile-dark-star', 'ubisoft-siege-champions', 'blablacar-live-nation']
+// Featured on the homepage selected-work strip. Order matters — top
+// left to bottom right in the 2-col grid. To insert a new top feature
+// (e.g. the AI case study), prepend its id here and drop the last entry
+// to keep the layout clean.
+const featuredIds = ['us-mobile-dark-star', 'azarus-game-ads', 'ubisoft-siege-champions', 'ubisoft-delta-company']
 const featured = featuredIds
   .map((id) => caseStudies.find((c) => c.id === id))
   .filter(Boolean)

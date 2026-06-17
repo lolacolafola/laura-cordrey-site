@@ -16,7 +16,7 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
 export default function DeltaCompanyPage() {
   useDocumentMeta({
-    title: 'Delta Company · Ubisoft’s first community advocacy program · Case study by Laura Cordrey',
+    title: 'Delta Company · A first-of-its-kind community program at Ubisoft · Case study by Laura Cordrey',
     description:
       'Delta Company: the fan-led growth engine I designed and launched at Ubisoft. 130 invited members across 5 community clusters and 14 languages drove 10M+ UGC views with zero paid media. Unveiled live on the UbiE3 2019 stage. The blueprint Ubisoft replicated across franchises.',
     canonical: pageUrl('work/ubisoft-delta-company'),
@@ -24,7 +24,7 @@ export default function DeltaCompanyPage() {
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'ubisoft-delta-company',
-      title: 'Delta Company: Ubisoft’s first community advocacy program',
+      title: 'Delta Company: a first-of-its-kind community program at Ubisoft, pioneering for AAA titles',
       description:
         'A fan-led growth engine designed for Ubisoft’s Ghost Recon Breakpoint community. 130 invited members across 5 clusters drove 10M+ UGC views with zero paid media. Unveiled on the UbiE3 2019 stage.',
       image: 'case-studies/delta/01-delta-badge-hero.png',
@@ -80,10 +80,11 @@ export default function DeltaCompanyPage() {
             Creating <mark>Delta Company</mark>.
           </h1>
           <p className="delta__cover-lede">
-            I created a <mark>first-of-its-kind</mark> community advocacy program at
-            Ubisoft, built as part of my community strategy for the launch
-            of Tom&nbsp;Clancy&rsquo;s Ghost&nbsp;Recon Breakpoint.
-            Unveiled live on the E3 stage to millions of viewers.
+            I created a <mark>first-of-its-kind</mark> community advocacy
+            program at Ubisoft, pioneering for AAA titles. Built as part
+            of my community strategy for the launch of Tom&nbsp;Clancy&rsquo;s
+            Ghost&nbsp;Recon Breakpoint. Unveiled live on the E3 stage to
+            millions of viewers.
           </p>
         </div>
       </header>
@@ -108,14 +109,19 @@ export default function DeltaCompanyPage() {
             <span className="marker delta__stat-label">Languages</span>
           </li>
           <li>
-            <span className="delta__stat-value">130</span>
-            <span className="marker delta__stat-label">Spots available</span>
-          </li>
-          <li>
             <span className="delta__stat-value">10M+</span>
             <span className="marker delta__stat-label">UGC views from members</span>
           </li>
+          <li>
+            <span className="delta__stat-value">$100K+</span>
+            <span className="marker delta__stat-label">Est. earned media value</span>
+          </li>
         </ul>
+        <p className="delta__stats-footnote">
+          Estimated at a conservative $10 CPM (2025 social and influencer
+          video CPMs run ~$5 to $15+, all-industry median ~$20).
+          Calculated as (10M views ÷ 1,000) &times; $10, at $0 media spend.
+        </p>
       </section>
 
       {/* ─── OVERVIEW ─────────────────────────────────────────── */}
@@ -126,9 +132,9 @@ export default function DeltaCompanyPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            Delta Company is the <mark>first community advocacy program
-            of its kind</mark> for both Ubisoft and the wider gaming
-            industry, creating a stronger link between gaming studios
+            Delta Company is a <mark>first-of-its-kind community
+            advocacy program</mark> at Ubisoft, pioneering for AAA
+            titles. It creates a stronger link between gaming studios
             and their core community.
             A genuine win-win: members get behind-the-scenes access to the
             games they love; studios get a continuous stream of considered
@@ -518,6 +524,20 @@ export default function DeltaCompanyPage() {
         </div>
       </section>
 
+      {/* ─── 10M UGC RESULT BANNER ───────────────────────────── */}
+      <aside className="delta__result">
+        <div className="container delta__result-inner">
+          <span className="marker delta__result-kicker">The proof</span>
+          <p className="delta__result-value">
+            <mark>10M+ UGC views</mark>
+          </p>
+          <p className="delta__result-caption">
+            From program members alone. From 130 people. The kind of
+            distribution most paid campaigns never reach.
+          </p>
+        </div>
+      </aside>
+
       {/* Ghost Experience video — visually part of [08], no divider above. */}
       <section className="delta__video-section delta__video-section--continuation container">
         <span className="marker">A community journey</span>
@@ -665,20 +685,6 @@ export default function DeltaCompanyPage() {
           ]}
         />
       </div>
-
-      {/* ─── 10M UGC RESULT BANNER ───────────────────────────── */}
-      <aside className="delta__result">
-        <div className="container delta__result-inner">
-          <span className="marker delta__result-kicker">The proof</span>
-          <p className="delta__result-value">
-            <mark>10M+ UGC views</mark>
-          </p>
-          <p className="delta__result-caption">
-            From program members alone. From 130 people. The kind of
-            distribution most paid campaigns never reach.
-          </p>
-        </div>
-      </aside>
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
       <section className="delta__cta">

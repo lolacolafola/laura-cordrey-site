@@ -247,6 +247,17 @@
   border-color: var(--accent);
 }
 
+/* Credentials line on the /work index — sits below the lede, top
+   hairline so it reads as a distinct credential block rather than
+   continuation of the friendly intro copy. */
+.work__credentials {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+
 /* ─── WORK (visual cards) ─────────────────────────────────── */
 .work {
   padding-top: var(--space-9);
