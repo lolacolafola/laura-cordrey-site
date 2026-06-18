@@ -155,9 +155,8 @@ export default function AboutPage() {
             <span className="marker">Cross-discipline leadership</span>
             <h2 className="section-head__title">What I bring.</h2>
             <p className="about-range__lede">
-              Most consultants own one topic. I own four. Work with{' '}
-              <mark>one person</mark> who connects brand, product,
-              community and growth, instead of four who don&rsquo;t.
+              I don&rsquo;t own just one topic, I own four. The decade of
+              judgment makes me sharp. <mark>AI makes me fast.</mark>
             </p>
           </div>
           <ol className="about-range__list" aria-label="Disciplines I work across">
@@ -174,23 +173,6 @@ export default function AboutPage() {
             <Link to="/work" className="btn btn--ghost">
               See it in practice <span aria-hidden="true">→</span>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── HOW I WORK NOW ───────────────────────────────────── */}
-      <section className="about-range">
-        <div className="container">
-          <div className="section-head">
-            <span className="marker">How I work now</span>
-            <h2 className="section-head__title">AI is my team.</h2>
-            <p className="about-range__lede">
-              AI is my team. Ten years is my judgment. I&rsquo;m a
-              founding team member at Magic, a next-gen fan engagement
-              platform, and I run my own practice solo: strategy,
-              positioning, brand, product, and the code to ship it.{' '}
-              <mark>The decade makes it good. AI makes it fast.</mark>
-            </p>
           </div>
         </div>
       </section>

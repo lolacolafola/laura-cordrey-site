@@ -324,14 +324,14 @@ export default function AzarusStreamersPage() {
           Awards podium — the live moment the bespoke Azarus overlay
           ran underneath. Visual punctuation for the "sponsorship became
           co-production" line above. */}
-      <figure className="delta__plate delta__plate--full">
+      <figure className="delta__plate delta__plate--full delta__plate--contain">
         <img
           src={BASE + 'case-studies/azarus-streamer-awards-presenters.png'}
-          alt="Maya Higa and QTCinderella presenting on stage at the first Streamer Awards podium, STREAMER backdrop behind them"
+          alt="Maya Higa and QTCinderella presenting Best FPS Streamer at the first Streamer Awards with the Azarus trivia overlay live on the broadcast"
         />
         <figcaption className="container">
           Maya Higa and QTCinderella on stage. The night the Azarus
-          overlay ran live under the broadcast.
+          overlay ran live over the broadcast.
         </figcaption>
       </figure>
 

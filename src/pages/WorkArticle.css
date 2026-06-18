@@ -80,7 +80,10 @@
 
 /* ─── HERO IMAGE (banner-style — tighter than the original 21:9) ── */
 .article__hero {
-  margin: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: var(--max-w);
+  padding-inline: var(--gutter);
   background: var(--bg-deep);
 }
 .article__hero-frame {
