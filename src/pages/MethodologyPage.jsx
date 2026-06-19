@@ -1,271 +1,241 @@
 import { Link } from 'react-router-dom'
 import FlywheelDiagram from '../components/FlywheelDiagram.jsx'
-import { stageIcons } from '../components/StageIcons.jsx'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, methodologyJsonLd } from '../lib/seo.js'
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const ASSESSMENT_URL = '#assessment'
 
-const stages = [
-  {
-    num: '01',
-    name: 'Activation',
-    kicker: 'The hook that sticks.',
-    body: 'The first time someone hits real value — fast enough they keep going. Most onboarding explains. The good kind <em>demonstrates</em>. Activation is the difference between someone who installed and someone who arrived.',
-    tags: ['Onboarding flows', 'Aha-moment design', 'First-session mechanics', 'Day-one retention'],
-  },
-  {
-    num: '02',
-    name: 'Habit',
-    kicker: 'Loops that compound.',
-    body: 'Built into the routine. Not motivated, not gamified-to-death — engineered to be the easier choice on day&nbsp;30. I find the loops already trying to form and sharpen them.',
-    tags: ['Engagement loops', 'Triggers', 'Streaks', 'Session depth', 'Lifecycle CRM'],
-  },
-  {
-    num: '03',
-    name: 'Belonging',
-    kicker: 'Moments that bond.',
-    body: 'When a user goes from <em>I use this</em> to <em>this is my place</em>. That shift is almost always social — and it almost always happens in a specific moment. I build the spaces, rituals and events those moments live inside.',
-    tags: ['Community programs', 'Shared rituals', 'Events', 'Social identity', 'IRL touchpoints'],
-  },
-  {
-    num: '04',
-    name: 'Identity',
-    kicker: 'Where UGC is born.',
-    body: 'When the brand becomes part of how someone sees themselves — and how they want to be seen. Users start <em>making things</em> with you. The most valuable UGC, the loyalest customers and the highest LTV all originate here.',
-    tags: ['Progression systems', 'Status & badges', 'Customisation', 'Co-creation', 'Creator programs'],
-  },
-  {
-    num: '05',
-    name: 'Advocacy',
-    kicker: 'Fans become growth.',
-    body: 'Fans recruit, refer and create. The community stops being a retention asset and becomes an acquisition channel — one that beats paid media on cost <em>and</em> quality. I design the programs that turn the loyal into the loud.',
-    tags: ['Referral programs', 'Creator programs', 'Ambassador programs', 'UGC engines', 'Earned media'],
-  },
+const disciplines = [
+  { word: 'Brand',     note: 'Story, identity, voice. The foundation that sets what gets built.' },
+  { word: 'Product',   note: 'UX, gamification, user feedback. The experiences that earn the next visit.' },
+  { word: 'Community', note: 'Creator, loyalty, advocacy. The belonging that makes people stay.' },
+  { word: 'Growth',    note: 'Organic, influencer, UGC. The reach that turns fans into new customers.' },
 ]
 
-const BASE = import.meta.env.BASE_URL
-
-const proofPoints = [
-  { brand: 'Ubisoft',    slug: 'ubisoft-siege-champions', logo: null,    stat: '50M+',   label: 'UGC views · $0 spend' },
-  { brand: 'BlaBlaCar',  slug: 'blablacar-live-nation', logo: 'logos/blablacar.png', stat: '50%+',   label: 'Behaviour change at festivals' },
-  { brand: 'US Mobile',  slug: 'us-mobile-dark-star', logo: 'logos/us-mobile.png', stat: '$32K',   label: 'Sales in 3 hours' },
-  { brand: 'Azarus',     slug: 'azarus',    logo: 'logos/azarus.png',    stat: '90%',    label: 'Engagement rate' },
+const milestones = [
+  { name: 'Activation', body: 'a first win that makes someone glad they came.' },
+  { name: 'Habit',      body: 'a reason to come back on their own, without a discount every time.' },
+  { name: 'Belonging',  body: 'a real community, where fans are in it with each other and with you.' },
+  { name: 'Identity',   body: 'where your brand becomes part of how a fan sees themselves.' },
+  { name: 'Advocacy',   body: 'fans bringing the next wave, so your acquisition cost falls.' },
 ]
 
-const fits = [
-  {
-    kicker: 'Consumer',
-    title: 'You have fans. You don&rsquo;t have a system.',
-    body: 'Your audience already loves you — they&rsquo;re posting, tagging, repeating. The flywheel turns that affection into repeat revenue.',
-  },
-  {
-    kicker: 'Tech &amp; gaming',
-    title: 'Millions of users. A handful of fans.',
-    body: 'Big top-of-funnel, thin active community. We activate the dormant majority and build the loop that keeps them coming back.',
-  },
-  {
-    kicker: 'Early-stage',
-    title: 'You&rsquo;re losing users by day&nbsp;7.',
-    body: 'Retention, CAC and referral are all the same problem. We diagnose which stage is leaking — and fix that one first.',
-  },
+const scoreboard = [
+  { label: 'LTV:CAC', body: 'does each user you buy pay back further?' },
+  { label: 'Payback period', body: 'does each user pay back faster?' },
+  { label: 'Cohort retention', body: 'do the users you bought stay?' },
+  { label: '% organic-sourced growth', body: 'are more new users arriving without spend?' },
 ]
 
 export default function MethodologyPage() {
   useDocumentMeta({
-    title: 'The Fandom Flywheel™ · A five-stage fan-led growth methodology by Laura Cordrey',
+    title: 'The Fan Engine · A five-stage fan-led growth methodology by Laura Cordrey',
     description:
-      'My five-stage system for turning passive audiences into the kind of fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Drawn from thirteen years across brand, product, community and growth at Ubisoft, BlaBlaCar, US Mobile and Azarus.',
+      'The Fan Engine: four disciplines run as one system that turns customers into fans who stay, spend more, and bring the next wave. Brand, product, community and growth, measured against the numbers a board cares about.',
     canonical: pageUrl('methodology'),
     ogType: 'article',
     jsonLd: methodologyJsonLd({
-      stages: [
-        {
-          name: 'Activation — The hook that sticks',
-          text: 'The first time someone hits real value — fast enough they keep going. Most onboarding explains. The good kind demonstrates. Activation is the difference between someone who installed and someone who arrived.',
-        },
-        {
-          name: 'Habit — Loops that compound',
-          text: 'Built into the routine. Not motivated, not gamified-to-death — engineered to be the easier choice on day 30. I find the loops already trying to form and sharpen them.',
-        },
-        {
-          name: 'Belonging — Moments that bond',
-          text: 'When a user goes from "I use this" to "this is my place". That shift is almost always social — and it almost always happens in a specific moment. I build the spaces, rituals and events those moments live inside.',
-        },
-        {
-          name: 'Identity — Where UGC is born',
-          text: 'When the brand becomes part of how someone sees themselves — and how they want to be seen. Users start making things with you. The most valuable UGC, the loyalest customers and the highest LTV all originate here.',
-        },
-        {
-          name: 'Advocacy — Fans become growth',
-          text: 'Fans recruit, refer and create. The community stops being a retention asset and becomes an acquisition channel — one that beats paid media on cost and quality. I design the programs that turn the loyal into the loud.',
-        },
-      ],
+      stages: milestones.map((m) => ({ name: m.name, text: m.body })),
     }),
   })
 
   return (
     <>
-      {/* ─── HERO ─────────────────────────────────────────────── */}
+      {/* ─── 1. HERO ──────────────────────────────────────────── */}
       <section className="meth-hero">
         <div className="container meth-hero__inner">
           <div className="meth-hero__top">
-            <span className="marker">Methodology · Vol. 01</span>
-            <span className="marker">5 stages · 4 industries</span>
+            <span className="marker">The method</span>
           </div>
 
           <h1 className="meth-hero__title">
-            The Fandom<br />
-            <em className="accent">Flywheel</em>.™
+            The Fan<br />
+            <em className="accent">Engine</em>.
           </h1>
 
           <div className="meth-hero__meta">
             <p className="meth-hero__lede">
-              My five-stage system for turning passive audiences into the kind of
-              fans that build a business. I&rsquo;ve drawn it from thirteen years of
-              practice across brand, product, community and growth — at Ubisoft,
-              BlaBlaCar, US&nbsp;Mobile and Azarus.
-            </p>
-            <p className="meth-hero__sublede">
-              Not a framework I read. A method I built — at scale, under deadline,
-              with revenue attached.
+              The customers you pay to acquire are worth far more than they cost
+              you. The Fan Engine is the system I build to capture that value:
+              it turns customers into fans who stay, spend more, and bring the
+              next wave, so your spend compounds instead of leaking away.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ─── DIAGRAM ──────────────────────────────────────────── */}
-      <section className="meth-diagram">
-        <div className="container meth-diagram__inner">
-          <FlywheelDiagram />
-          <p className="meth-diagram__caption marker">
-            Fig. 01 · Five stages, one loop. Each stage feeds the next.
+      {/* ─── 2. THE PROBLEM ───────────────────────────────────── */}
+      <section className="meth-problem">
+        <div className="container meth-problem__inner">
+          <div className="section-head">
+            <span className="marker">The problem</span>
+            <h2 className="section-head__title">
+              The growth you <em className="accent">already paid for</em>.
+            </h2>
+          </div>
+          <p className="meth-problem__copy">
+            Most teams pour budget into acquisition and stop at the sale. But
+            the value that makes a customer profitable comes after it: whether
+            they stay, buy again, and bring others. That work is split across
+            brand, product, community and growth, so no one owns it, and almost
+            no one measures it. So the bucket leaks, and you keep paying to
+            refill it.
           </p>
         </div>
       </section>
 
-      {/* ─── WHERE IT CAME FROM (proof) ───────────────────────── */}
-      <section className="meth-proof">
-        <div className="container">
+      {/* ─── 3. THE METHOD: FOUR DISCIPLINES, ONE ENGINE ──────── */}
+      <section className="meth-method">
+        <div className="container meth-method__inner">
           <div className="section-head">
-            <span className="marker">Where it came from</span>
-            <h2 className="section-head__title">Built from practice, not theory.</h2>
-            <p className="meth-proof__lede">
-              Most strategists work in one corner of the business. I&rsquo;ve
-              worked across all four — <em className="accent">brand, product, community
-              and&nbsp;growth</em> — often at the same company, on the same problem.
-              The Fandom Flywheel was built from that vantage. These are the
-              numbers it produced.
-            </p>
+            <span className="marker">The method</span>
+            <h2 className="section-head__title">
+              Four disciplines. <em className="accent">One engine.</em>
+            </h2>
           </div>
+          <p className="meth-method__copy">
+            Almost no one else can offer this: I run all four disciplines as a
+            single engine. Most strategists own one, brand or product or
+            community or growth. I have spent ten years across all four, because
+            the leaks do not respect the org chart. A drop-off after the first
+            purchase is a product problem and a brand problem at once.{' '}
+            <mark>Owning the whole engine is what lets it compound</mark>{' '}
+            instead of stalling between handoffs.
+          </p>
 
-          <ul className="meth-proof__grid">
-            {proofPoints.map((p) => (
-              <li className="meth-proof__cell" key={p.brand}>
-                <Link to={`/work/${p.slug}`} className="meth-proof__link">
-                  <div className="meth-proof__logo">
-                    {p.logo ? (
-                      <img src={BASE + p.logo} alt={p.brand} loading="lazy" />
-                    ) : (
-                      <span className="meth-proof__logo-text">{p.brand}</span>
-                    )}
-                  </div>
-                  <span className="meth-proof__stat">{p.stat}</span>
-                  <span className="meth-proof__label">{p.label}</span>
-                  <span className="marker meth-proof__view">
-                    Read the case <span aria-hidden="true">→</span>
-                  </span>
-                </Link>
+          <ol className="meth-pillars" aria-label="The four disciplines">
+            {disciplines.map((d) => (
+              <li className="meth-pillars__item" key={d.word}>
+                <span className="meth-pillars__mark" aria-hidden="true">✦</span>
+                <h3 className="meth-pillars__word">{d.word}</h3>
+                <p className="meth-pillars__note">{d.note}</p>
               </li>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ─── FIVE STAGES (editorial spreads) ──────────────────── */}
-      <section className="meth-stages">
-        <div className="container">
-          <div className="section-head">
-            <span className="marker">The five stages</span>
-            <h2 className="section-head__title">From first session to lifelong advocate.</h2>
-          </div>
-
-          <ol className="meth-stage-list">
-            {stages.map((s) => {
-              const Icon = stageIcons[s.name]
-              return (
-                <li className="meth-stage" key={s.num}>
-                  <div className="meth-stage__rail">
-                    {Icon && (
-                      <Icon className="meth-stage__icon" aria-hidden="true" />
-                    )}
-                  </div>
-                  <div className="meth-stage__body">
-                    <h3 className="meth-stage__name">{s.name}.</h3>
-                    <p className="meth-stage__kicker">{s.kicker}</p>
-                    <p className="meth-stage__para"
-                       dangerouslySetInnerHTML={{ __html: s.body }} />
-                    <ul className="meth-stage__tags" aria-label="What the work looks like">
-                      {s.tags.map((t) => (
-                        <li key={t} className="meth-stage__tag marker">{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              )
-            })}
           </ol>
         </div>
       </section>
 
-      {/* ─── WHERE IT FITS (no pricing tiers) ─────────────────── */}
-      <section className="meth-fit">
-        <div className="container">
+      {/* ─── 4. THE JOURNEY IT BUILDS ─────────────────────────── */}
+      <section className="meth-journey">
+        <div className="container meth-journey__inner">
           <div className="section-head">
-            <span className="marker">Where it fits</span>
-            <h2 className="section-head__title">When you&rsquo;d use this.</h2>
+            <span className="marker">The journey it builds</span>
+            <h2 className="section-head__title">
+              The journey the engine builds.
+            </h2>
+            <p className="section-head__lede">
+              The engine moves a customer from a first purchase to bringing
+              others in, through five milestones. Real people do not climb them
+              in a tidy line, so treat it as a map, not a formula.
+            </p>
           </div>
 
-          <div className="meth-fit__grid">
-            {fits.map((f) => (
-              <article className="meth-fit__card" key={f.kicker}>
-                <span className="marker meth-fit__kicker"
-                      dangerouslySetInnerHTML={{ __html: f.kicker }} />
-                <h3 className="meth-fit__title"
-                    dangerouslySetInnerHTML={{ __html: f.title }} />
-                <p className="meth-fit__body"
-                   dangerouslySetInnerHTML={{ __html: f.body }} />
-              </article>
+          <div className="meth-journey__visual">
+            <FlywheelDiagram />
+            <p className="meth-journey__caption marker">
+              Fig. 01 · Five milestones, one loop. Advocacy brings in the next
+              wave.
+            </p>
+          </div>
+
+          <ol className="meth-milestones">
+            {milestones.map((m, i) => (
+              <li className="meth-milestones__item" key={m.name}>
+                <span className="meth-milestones__num marker">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="meth-milestones__name">{m.name}.</h3>
+                <p className="meth-milestones__body">{m.body}</p>
+              </li>
             ))}
+          </ol>
+
+          <p className="meth-journey__through-line">
+            <mark>You cannot buy advocacy, you earn it.</mark> Belonging and
+            identity are what make it compound for free instead of needing to
+            be paid for every time, and they are the part most teams leave
+            unbuilt.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 5. MEASURED ──────────────────────────────────────── */}
+      <section className="meth-measured">
+        <div className="container meth-measured__inner">
+          <div className="section-head">
+            <span className="marker">Measured</span>
+            <h2 className="section-head__title">
+              And <em className="accent">I can prove it</em>.
+            </h2>
+            <p className="section-head__lede">
+              Fan-led work usually goes unmeasured, and undervalued because of
+              it. I change that. Every program is tied to the engine metric it
+              moves, which ladders to a business outcome. No vanity numbers.
+            </p>
           </div>
 
-          <div className="meth-fit__rates marker">
-            <span>Engagement</span>
-            <span>·</span>
-            <span>Diagnostic</span>
-            <span>·</span>
-            <span>Sprint</span>
-            <span>·</span>
-            <span>Embedded retainer</span>
-            <span>·</span>
-            <span className="accent">Scoped per brand on a call</span>
+          <div className="meth-measured__block">
+            <span className="marker">The chain</span>
+            <p>
+              The engine metrics I own and move first, activation, engagement,
+              belonging, advocacy, pull the outcomes a board cares about:{' '}
+              <mark>CAC down, LTV up, more organic growth, earned media
+              value</mark>.
+            </p>
+          </div>
+
+          <div className="meth-measured__block">
+            <span className="marker">The honest method</span>
+            <p>
+              Earned growth resists clean last-click attribution, and I do not
+              pretend otherwise. I baseline first (no baseline, no claim), track
+              deltas by cohort instead of last clicks, use holdouts where
+              feasible, and name the limits out loud. Stating the method is
+              what makes &ldquo;measurable&rdquo; defensible.
+            </p>
+          </div>
+
+          <div className="meth-measured__block">
+            <span className="marker">The scoreboard (for paid-led teams)</span>
+            <p>
+              Lead with paid, and four numbers tell the story. Moving them
+              together is your spend compounding.
+            </p>
+            <ul className="meth-scoreboard">
+              {scoreboard.map((s) => (
+                <li className="meth-scoreboard__item" key={s.label}>
+                  <span className="meth-scoreboard__label">{s.label}</span>
+                  <span className="meth-scoreboard__body">{s.body}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ─── FINAL CTA ────────────────────────────────────────── */}
-      <section className="meth-cta">
-        <div className="container meth-cta__inner">
-          <span className="marker">Want this for your brand?</span>
-          <h2 className="meth-cta__title">
-            Let&rsquo;s map your flywheel. <em className="accent">Stage by stage</em>.
+      {/* ─── 6. CLOSE ─────────────────────────────────────────── */}
+      <section className="meth-close">
+        <div className="container meth-close__inner">
+          <span className="marker">See where your engine stands</span>
+          <h2 className="meth-close__title">
+            Five questions show you which part of your engine to{' '}
+            <em className="accent">build first</em>.
           </h2>
-          <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
-            Book a 30-min call <span aria-hidden="true">→</span>
-          </a>
-          <p className="marker meth-cta__back">
-            Or → <Link to="/work" className="meth-cta__link">see the work first</Link>
+          <p className="meth-close__line">
+            Then we size it against your real numbers.
+          </p>
+          <div className="meth-close__ctas">
+            <a href={ASSESSMENT_URL} className="btn btn--primary btn--lg">
+              Get your Fan-Led Growth Score <span aria-hidden="true">→</span>
+            </a>
+            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost btn--lg">
+              Book a call <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p className="marker meth-close__back">
+            Or <Link to="/work" className="meth-close__link">see the work first →</Link>
           </p>
         </div>
       </section>

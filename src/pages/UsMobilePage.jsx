@@ -17,7 +17,7 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
  *   [04] The pre-launch funnel email → game → code → countdown → VIP landing
  *                              (+ "Demand signal" stat callout)
  *   [05] The cap               250 units by design
- *   [06] The drop              sold out in three hours
+ *   [06] The drop              sold out in under three hours
  *                              (+ "The proof" stat callout)
  *   [07] What fans did         CEO Reddit, Stetson, network banner, fleece (+ carousel)
  *   [08] Celebrating Dark Star Madison Ave launch event (+ carousel)
@@ -29,9 +29,9 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
  */
 export default function UsMobilePage() {
   useDocumentMeta({
-    title: 'US Mobile Dark Star · Fandom is purchasing power · $32K in 3 hours · Case study by Laura Cordrey',
+    title: 'US Mobile Dark Star · Fandom is purchasing power · $32K in under three hours · Case study by Laura Cordrey',
     description:
-      'I designed a $129 limited-edition VIP fan bundle around US Mobile’s Dark Star launch. Sold out in 3 hours. $32K in revenue, 6-figure upside on the table. Proof that superfans will pay to be early, rare, and relevant. Fandom is purchasing power.',
+      'I designed a $129 limited-edition VIP fan bundle around US Mobile’s Dark Star launch. Sold out in under three hours. $32K in revenue, 6-figure upside on the table. Proof that superfans will pay to be early, rare, and relevant. Fandom is purchasing power.',
     canonical: pageUrl('work/us-mobile-dark-star'),
     ogImage: assetUrl('case-studies/us-mobile-dark-star-banner.png'),
     ogType: 'article',
@@ -39,7 +39,7 @@ export default function UsMobilePage() {
       slug: 'us-mobile-dark-star',
       title: 'US Mobile Dark Star: fandom is purchasing power',
       description:
-        '$129 limited-edition VIP bundle, 250 units, sold out in 3 hours. $32K closed, 6-figure upside left on the table. Proof that fan-led growth converts to revenue.',
+        '$129 limited-edition VIP bundle, 250 units, sold out in under three hours. $32K closed, 6-figure upside left on the table. Proof that fan-led growth converts to revenue.',
       image: 'case-studies/us-mobile-dark-star-banner.png',
       datePublished: '2024-08-15',
       client: 'US Mobile',
@@ -62,7 +62,7 @@ export default function UsMobilePage() {
         {
           question: 'Will a community’s most engaged users pay premium prices for limited drops?',
           answer:
-            'Yes. Your superfans are your top spenders. 250 units of a $129 SIM kit that had previously been free sold out in 3 hours. Your most engaged users will pay to be early, rare, and relevant. They want a piece of the moment, not just the product.',
+            'Yes. Your superfans are your top spenders. 250 units of a $129 SIM kit that had previously been free sold out in under three hours. Your most engaged users will pay to be early, rare, and relevant. They want a piece of the moment, not just the product.',
         },
         {
           question: 'How do you build a premium drop funnel that converts?',
@@ -95,7 +95,7 @@ export default function UsMobilePage() {
           <p className="delta__cover-lede">
             A controlled test of US Mobile&rsquo;s core community purchasing
             power. I designed a $129 limited-edition fan bundle, built the
-            gamified pre-launch funnel, and <mark>sold out in three hours</mark>.
+            gamified pre-launch funnel, and <mark>sold out in under three hours</mark>.
           </p>
         </div>
       </header>
@@ -117,7 +117,7 @@ export default function UsMobilePage() {
         <ul>
           <li>
             <span className="delta__stat-value">$32K</span>
-            <span className="marker delta__stat-label">Sales in 3 hrs</span>
+            <span className="marker delta__stat-label">Sales, under 3 hrs</span>
           </li>
           <li>
             <span className="delta__stat-value">250</span>
@@ -327,7 +327,7 @@ export default function UsMobilePage() {
       <section className="delta__section container">
         <div className="delta__section-head">
           <span className="marker">[06] · The drop</span>
-          <h2 className="delta__section-title">Sold out in three hours.</h2>
+          <h2 className="delta__section-title">Sold out in under three hours.</h2>
         </div>
         <div className="delta__section-body">
           <p>
@@ -343,7 +343,7 @@ export default function UsMobilePage() {
         <div className="container delta__result-inner">
           <span className="marker delta__result-kicker">The proof</span>
           <p className="delta__result-value">
-            <mark>$32K in 3 hours</mark>
+            <mark>$32K in under three hours</mark>
           </p>
           <p className="delta__result-caption">
             From a SIM kit that has always been given away free. Same
@@ -370,7 +370,7 @@ export default function UsMobilePage() {
               r/USMobile
             </a>{' '}
             drove <mark>450+ comments</mark>. His follow-up edit said it
-            cleanest: &ldquo;<em>we are sold out, this is insane</em>.&rdquo;
+            cleanest: &ldquo;we are sold out, this is insane.&rdquo;
           </p>
           <p>
             The 250 buyers didn&rsquo;t go quiet either. They unboxed the
@@ -477,7 +477,7 @@ export default function UsMobilePage() {
           </p>
           <p>
             <strong>Result:</strong> $32K made from a controlled test.
-            Sold out in three hours.
+            Sold out in under three hours.
           </p>
           <p>
             <strong>Prediction:</strong> <mark>six figures per future

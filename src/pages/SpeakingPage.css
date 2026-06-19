@@ -63,12 +63,12 @@
   color: var(--accent);
 }
 .speaking-hero__title {
-  font-size: clamp(2.25rem, 6vw, 5rem);
+  font-size: var(--fs-display-l);
   line-height: 1;
-  letter-spacing: -0.025em;
+  letter-spacing: var(--tracking-tight);
   margin: var(--space-3) 0 var(--space-4);
   max-width: 14ch;
-  color: #fff;
+  color: var(--ink);
 }
 .speaking-hero__lede {
   font-size: var(--fs-body-l);

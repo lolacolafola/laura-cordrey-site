@@ -34,9 +34,9 @@
   gap: var(--space-6);
 }
 .about-hero__title {
-  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-size: var(--fs-display-l);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-tight);
   text-wrap: balance;
   margin: 0;
 }
@@ -538,4 +538,33 @@
   display: flex;
   gap: var(--space-3);
   flex-wrap: wrap;
+}
+
+/* ─── HOW I WORK NOW (Magic) ──────────────────────────────── */
+.about-now {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.about-now__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 64rem;
+}
+.about-now__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.about-now__copy mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+.about-now__copy strong {
+  color: var(--ink);
+  font-weight: 700;
 }

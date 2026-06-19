@@ -621,8 +621,14 @@ export default function DeltaCompanyPage() {
             <strong>Not a dollar changed hands.</strong> No paid creators,
             no media spend, no sponsored posts. This was built on
             respect, support and pure brand love. Studio and community
-            meeting as equals. Earned, not paid for. A fan-powered
+            meeting as equals. Earned, not paid for. A fan-led
             growth engine, structured to scale.
+          </p>
+          <p>
+            <mark>This became the blueprint.</mark> Ubisoft scaled the same
+            advocacy model into Siege Champions (50M+ UGC views) and the
+            Assassin&rsquo;s Creed Mentors Guild. It is the origin of the
+            Fan Engine I run today.
           </p>
           <p>
             <strong>Three key takeaways:</strong>

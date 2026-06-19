@@ -1,0 +1,351 @@
+/* Services page styles.
+ * Editorial pattern: alternating dark/bone bands, generous vertical
+ * rhythm, hairline rules, no decorative chrome. Reuses .container,
+ * .marker, .btn, .section-head from the global system. */
+
+/* ─── HERO ─────────────────────────────────────────────────── */
+.services-hero {
+  padding: var(--space-10) 0 var(--space-9);
+}
+.services-hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 64rem;
+}
+.services-hero__title {
+  font-size: var(--fs-display-l);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  margin: var(--space-3) 0 var(--space-4);
+}
+.services-hero__lede {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+.services-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+/* ─── WHAT I DO ────────────────────────────────────────────── */
+.services-what {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-what__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 64rem;
+}
+.services-what__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.services-what__copy mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ─── REUSABLE CARD ────────────────────────────────────────── */
+.services-card {
+  background: var(--surface-dim);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.services-card__title {
+  font-size: var(--fs-display-m);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  margin: 0;
+}
+.services-card__outcome {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 56ch;
+}
+.services-card__label {
+  display: block;
+}
+.services-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.services-card__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink);
+}
+.services-card__list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--edge);
+  font-size: 0.75rem;
+  top: 0.35rem;
+}
+.services-card__meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin: var(--space-3) 0 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+.services-card__meta dt {
+  margin-bottom: var(--space-2);
+}
+.services-card__meta dd {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.services-card__cta {
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .services-card__meta {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* ─── DIAGNOSTIC (feature card) ────────────────────────────── */
+.services-diagnostic {
+  padding: var(--space-9) 0;
+  background: var(--surface);
+  color: var(--ink-on-surface);
+}
+.services-diagnostic .section-head__title,
+.services-diagnostic .section-head__lede {
+  color: var(--ink-on-surface);
+}
+.services-diagnostic .section-head__lede {
+  color: var(--ink-muted-on-surface);
+}
+.services-diagnostic .marker {
+  color: var(--ink-muted-on-surface);
+}
+.services-card--feature {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--bg-deep);
+}
+.services-card--feature .services-card__meta dd {
+  color: var(--ink-muted);
+}
+
+/* ─── BUILD + EMBEDDED ─────────────────────────────────────── */
+.services-deeper {
+  padding: var(--space-9) 0;
+}
+.services-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+@media (min-width: 880px) {
+  .services-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ─── SIGNATURE: SENTIMENT-TO-ROADMAP ──────────────────────── */
+.services-signature {
+  padding: var(--space-9) 0;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.services-moves {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-8);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  counter-reset: move;
+}
+@media (min-width: 720px) {
+  .services-moves {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.services-moves__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+.services-moves__num {
+  color: var(--edge);
+}
+.services-moves__name {
+  font-size: var(--fs-display-m);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  margin: 0;
+}
+.services-moves__body {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 50ch;
+}
+.services-signature__meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  max-width: 72rem;
+}
+.services-signature__meta p {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.services-signature__meta .marker {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.services-signature__meta mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ─── INTRO CALL (low-commitment door) ─────────────────────── */
+.services-intro-call {
+  padding: var(--space-9) 0;
+}
+.services-intro-call__inner {
+  display: flex;
+  justify-content: center;
+}
+.services-intro-call__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 56rem;
+  text-align: left;
+  padding: var(--space-7);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+}
+.services-intro-call__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.services-intro-call__body .btn {
+  align-self: flex-start;
+  margin-top: var(--space-3);
+}
+
+/* ─── WHY ONE PERSON ───────────────────────────────────────── */
+.services-why {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-why__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 64rem;
+}
+.services-why__copy {
+  font-size: var(--fs-display-m);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  max-width: 38ch;
+}
+.services-why__copy mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+}
+
+/* ─── PROOF ────────────────────────────────────────────────── */
+.services-proof {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-proof__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 64rem;
+}
+.services-proof__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.services-proof__copy mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+.services-proof__inner .btn {
+  align-self: flex-start;
+}
+
+/* ─── CLOSE ────────────────────────────────────────────────── */
+.services-close {
+  padding: var(--space-10) 0;
+  border-top: 1px solid var(--hairline);
+  text-align: left;
+}
+.services-close__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 64rem;
+}
+.services-close__title {
+  font-size: var(--fs-display-l);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.0;
+  margin: 0;
+}
+.services-close__line {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+.services-close__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}

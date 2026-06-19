@@ -124,10 +124,7 @@ export default function Layout({ children }) {
       <footer className="footer">
         <div className="container footer__inner">
           <div className="footer__col">
-            <p className="marker">Laura Cordrey · Paris · Since 2013</p>
-            <p className="footer__line">
-              Founder-level CMO for fan-driven brands. Brand · Fan-led growth.
-            </p>
+            <p className="marker">Laura Cordrey · Based in Paris, working globally · Since 2013</p>
           </div>
           <div className="footer__col footer__col--links">
             {navLinks.map(({ to, label }) => (

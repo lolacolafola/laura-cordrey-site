@@ -17,31 +17,37 @@ const range = [
 
 const career = [
   {
-    range: 'Jan 2024 — present',
-    company: 'Cordrey Consulting',
-    role: 'Consultant · Fan-Powered Growth',
-    note: 'Paris & New York. Magic (founding team), US Mobile, Geode, Fivegem.',
+    range: '2024 to present',
+    company: 'Magic',
+    role: 'Fractional Head of Brand & Growth',
+    note: 'Next-gen fan engagement platform. Building the product I would have killed for at Ubisoft.',
   },
   {
-    range: 'Nov 2021 — Aug 2023',
+    range: 'Jan 2024 to present',
+    company: 'Cordrey Consulting',
+    role: 'Founder · Fan-Led Growth',
+    note: 'Paris & New York. US Mobile, Geode, Fivegem.',
+  },
+  {
+    range: 'Nov 2021 to Aug 2023',
     company: 'Azarus',
     role: 'Head of Fan Growth → VP Marketing',
     note: 'Streamer Awards 2022, $AZA token launch, gamified ad platform pivot.',
   },
   {
-    range: 'Jul 2021 — Dec 2021',
+    range: 'Jul 2021 to Dec 2021',
     company: 'Amazon Games',
     role: 'Community Lead, EMEA',
-    note: 'New World launch — 1M+ CCV, 12.3M streamer hours watched.',
+    note: 'New World launch. 1M+ CCV, 12.3M streamer hours watched.',
   },
   {
-    range: 'Jan 2018 — Jul 2021',
+    range: 'Jan 2018 to Jul 2021',
     company: 'Ubisoft',
     role: 'Community Developer → Sr. Engagement Mgr.',
     note: 'Delta Company, Ghost Recon, R6 Siege Creator Program. Spokesperson at E3 2019.',
   },
   {
-    range: 'Jun 2013 — Dec 2017',
+    range: 'Jun 2013 to Dec 2017',
     company: 'BlaBlaCar',
     role: 'UK Community → Brand Content Mgr.',
     note: 'UK launch 0→1M members. Brand & creative engine across 22 markets.',
@@ -69,7 +75,7 @@ const expertiseAlso = [
 
 export default function AboutPage() {
   useDocumentMeta({
-    title: 'About Laura Cordrey · Strategic consultant · Fan-Led Growth · Brand, product, community, growth',
+    title: 'About · Laura Cordrey · Founder-level CMO for fan-driven brands',
     description:
       "Laura Cordrey acts as a founder-level CMO for fan-driven brands. Thirteen years across brand, product, community and growth at Ubisoft, BlaBlaCar, Amazon Games, Azarus, US Mobile and more.",
     canonical: pageUrl('about'),
@@ -85,7 +91,7 @@ export default function AboutPage() {
           mainEntityOfPage: pageUrl('about'),
           worksFor: {
             '@type': 'Organization',
-            name: 'Laura Cordrey — Fan-Led Growth Consulting',
+            name: 'Laura Cordrey · Fan-Led Growth Consulting',
             url: pageUrl(''),
           },
           alumniOf: [
@@ -113,8 +119,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="container about-hero__inner">
           <div className="about-hero__top">
-            <span className="marker">About · Vol. 01</span>
-            <span className="marker about-hero__top-right">London · Paris · New York · English &amp; French · Since 2013</span>
+            <span className="marker">About</span>
           </div>
 
           <div className="about-hero__split">
@@ -132,7 +137,7 @@ export default function AboutPage() {
                 honing the craft at Ubisoft, Amazon Games and BlaBlaCar.
                 Now I act as a founder-level CMO for fan-driven brands,
                 building the brand that makes people fall for you and
-                the fan-led engine that turns that love into repeatable,
+                the Fan Engine that turns that love into repeatable,
                 measurable growth.
               </p>
             </div>
@@ -145,6 +150,21 @@ export default function AboutPage() {
               />
             </figure>
           </div>
+        </div>
+      </section>
+
+      {/* ─── HOW I WORK NOW (Magic) ───────────────────────────── */}
+      <section className="about-now">
+        <div className="container about-now__inner">
+          <span className="marker">How I work now</span>
+          <p className="about-now__copy">
+            I run my practice solo: strategy, positioning, brand, product, and
+            the code to ship it. And I&rsquo;m not just advising on fan
+            engagement, <mark>I&rsquo;m building it</mark>, as Fractional Head
+            of Brand &amp; Growth at <strong>Magic</strong>, a next-gen fan
+            engagement platform. The decade makes the work good. AI makes it
+            fast.
+          </p>
         </div>
       </section>
 
@@ -281,17 +301,17 @@ export default function AboutPage() {
           <div>
             <span className="marker">Education</span>
             <ul className="about-details__list">
-              <li>BA Honours, Comparative Literature — QMUL, London</li>
-              <li>Entrepreneurship Strategy: From Ideation to Exit — HEC</li>
-              <li>UX Foundations — Design Lab</li>
-              <li>Creative Writing — Penguin</li>
+              <li>BA Honours, Comparative Literature · QMUL, London</li>
+              <li>Entrepreneurship Strategy: From Ideation to Exit · HEC</li>
+              <li>UX Foundations · Design Lab</li>
+              <li>Creative Writing · Penguin</li>
             </ul>
           </div>
           <div>
             <span className="marker">Languages</span>
             <ul className="about-details__list">
-              <li>English — native</li>
-              <li>French — fluent</li>
+              <li>English · native</li>
+              <li>French · fluent</li>
             </ul>
           </div>
           <div>

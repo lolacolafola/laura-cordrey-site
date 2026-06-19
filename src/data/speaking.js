@@ -23,14 +23,14 @@ export const speakingSections = [
   },
   {
     key: 'studio',
-    title: 'Studio & TV',
-    eyebrow: 'On camera, broadcast',
+    title: 'Studio',
+    eyebrow: 'On camera, produced',
     clips: [
       {
-        youtube: 'ufsGn7eXY3k',
-        venue: 'Xbox · Ghost Recon Wildlands · Inside Xbox',
-        headline: 'Live TV interview',
-        detail: 'On camera in Seattle for a content update. Live, no second takes.',
+        youtube: 'P2NYC5cQIZA',
+        venue: 'Ubisoft · Ghost Recon Breakpoint',
+        headline: 'World-premiere announce',
+        detail: 'On camera as part of the core team on the global announce.',
       },
       {
         youtube: 'G3WB7DDHLTE',
@@ -41,16 +41,24 @@ export const speakingSections = [
     ],
   },
   {
+    key: 'live',
+    title: 'Live',
+    eyebrow: 'On air, no second takes',
+    clips: [
+      {
+        youtube: 'ufsGn7eXY3k',
+        start: 3592,
+        venue: 'Xbox · Ghost Recon Wildlands · Inside Xbox',
+        headline: 'Live TV interview',
+        detail: 'On camera in Seattle for a content update. Live, no second takes.',
+      },
+    ],
+  },
+  {
     key: 'livestream',
     title: 'Livestream',
     eyebrow: 'I host',
     clips: [
-      {
-        youtube: 'P2NYC5cQIZA',
-        venue: 'Ubisoft · Ghost Recon Breakpoint',
-        headline: 'World-premiere announce',
-        detail: 'Part of the core team on the global announce livestream.',
-      },
       {
         youtube: 'Ga1VpVtXQsM',
         venue: 'Ubisoft · Ghost Recon Breakpoint',
@@ -66,17 +74,17 @@ export const speakingSections = [
     eyebrow: 'Both sides of the camera',
     clips: [
       {
+        youtube: 'bSeCQshpJVY',
+        venue: 'Ubisoft · Ghost Recon Wildlands',
+        headline: 'First-anniversary recap',
+        detail: 'Community-moments compilation. Produced and voiced.',
+      },
+      {
         youtube: 'XiIiqCktG2g',
         venue: 'Ubisoft · Ghost Recon Breakpoint',
         headline: 'Delta Company announcement video',
         detail:
           'Produced end-to-end: storyboard, script, frames, assets, edit. Presented on camera.',
-      },
-      {
-        youtube: 'bSeCQshpJVY',
-        venue: 'Ubisoft · Ghost Recon Wildlands',
-        headline: 'First-anniversary recap',
-        detail: 'Community-moments compilation. Produced and voiced.',
       },
       {
         youtube: 'F5g7fOzxGYY',

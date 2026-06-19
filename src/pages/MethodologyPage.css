@@ -18,9 +18,9 @@
   margin-bottom: var(--space-6);
 }
 .meth-hero__title {
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  font-size: var(--fs-display-l);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-7);
   text-wrap: balance;
 }
@@ -339,3 +339,266 @@
   text-underline-offset: 4px;
 }
 .meth-cta__link:hover { color: var(--accent); }
+
+/* ───────────────────────────────────────────────────────────
+ * Fan Engine rebuild (June 2026): 6-section spec.
+ * New sections: problem, method (4 disciplines), journey,
+ * measured, close. Reuses meth-hero from above. The old
+ * meth-stages / meth-fit / meth-cta blocks above are unused
+ * by the rebuilt page but kept until a sweep is safe.
+ * ─────────────────────────────────────────────────────────── */
+
+/* ─── 2. THE PROBLEM ──────────────────────────────────────── */
+.meth-problem {
+  padding: var(--space-9) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.meth-problem__inner {
+  max-width: 64rem;
+}
+.meth-problem__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+
+/* ─── 3. THE METHOD: FOUR DISCIPLINES ─────────────────────── */
+.meth-method {
+  padding: var(--space-9) 0;
+  background: var(--surface);
+  color: var(--ink-on-surface);
+}
+.meth-method .section-head__title,
+.meth-method .marker {
+  color: var(--ink-on-surface);
+}
+.meth-method__inner {
+  max-width: 72rem;
+}
+.meth-method__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink-on-surface);
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+.meth-method__copy mark {
+  background: transparent;
+  color: var(--ink-on-surface);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+.meth-pillars {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 720px) {
+  .meth-pillars {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+@media (min-width: 1080px) {
+  .meth-pillars {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.meth-pillars__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--ink-muted-on-surface);
+}
+.meth-pillars__mark {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+.meth-pillars__word {
+  font-size: var(--fs-display-m);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  margin: 0;
+}
+.meth-pillars__note {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-muted-on-surface);
+  max-width: 32ch;
+}
+
+/* ─── 4. THE JOURNEY IT BUILDS ────────────────────────────── */
+.meth-journey {
+  padding: var(--space-9) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.meth-journey__inner {
+  max-width: 72rem;
+}
+.meth-journey__visual {
+  margin: 0 0 var(--space-8);
+  text-align: center;
+}
+.meth-journey__caption {
+  margin-top: var(--space-4);
+  color: var(--edge);
+}
+.meth-milestones {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-7);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 720px) {
+  .meth-milestones {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+@media (min-width: 1080px) {
+  .meth-milestones {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.meth-milestones__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hairline);
+}
+.meth-milestones__num {
+  color: var(--edge);
+}
+.meth-milestones__name {
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: var(--tracking-tight);
+}
+.meth-milestones__body {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.meth-journey__through-line {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 60ch;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--accent);
+}
+.meth-journey__through-line mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ─── 5. MEASURED ─────────────────────────────────────────── */
+.meth-measured {
+  padding: var(--space-9) 0;
+  background: var(--bg-deep);
+}
+.meth-measured__inner {
+  max-width: 72rem;
+}
+.meth-measured__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--hairline);
+  max-width: 64rem;
+}
+.meth-measured__block > p {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.meth-measured__block mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+.meth-scoreboard {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-5) 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+@media (min-width: 720px) {
+  .meth-scoreboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}
+.meth-scoreboard__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--hairline);
+}
+.meth-scoreboard__label {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: var(--fs-body-l);
+}
+.meth-scoreboard__body {
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+
+/* ─── 6. CLOSE ────────────────────────────────────────────── */
+.meth-close {
+  padding: var(--space-10) 0;
+  border-top: 1px solid var(--hairline);
+}
+.meth-close__inner {
+  max-width: 64rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.meth-close__title {
+  font-size: var(--fs-display-l);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.0;
+  margin: 0;
+}
+.meth-close__line {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+.meth-close__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+.meth-close__back {
+  margin-top: var(--space-4);
+  color: var(--edge);
+}
+.meth-close__link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+.meth-close__link:hover { color: var(--accent); }

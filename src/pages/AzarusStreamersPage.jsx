@@ -153,9 +153,7 @@ export default function AzarusStreamersPage() {
             Backed by{' '}
             <strong>Galaxy Digital, Animoca Brands and Kleiner
             Perkins</strong>, the tagline was{' '}
-            <em>
-              &ldquo;Turn passive viewers into active participants.&rdquo;
-            </em>
+            &ldquo;Turn passive viewers into active participants.&rdquo;
           </p>
           <p>
             The product worked. Real engagement, early streamer
@@ -223,7 +221,7 @@ export default function AzarusStreamersPage() {
           <p>
             In <strong>March 2022</strong>, QTCinderella and Maya Higa
             were launching the first Streamer Awards on Twitch. An awards show built for streaming, by streamers.{' '}
-            <em>The streaming world&rsquo;s Oscars</em>, eventually.
+            The streaming world&rsquo;s Oscars, eventually.
           </p>
           <p>
             I secured the title sponsorship: a{' '}
@@ -262,7 +260,7 @@ export default function AzarusStreamersPage() {
         </div>
         <div className="delta__section-body">
           <p>
-            Our overlay was built <em>for the show</em>.
+            Our overlay was built <mark>for the show</mark>.
           </p>
           <p>
             14 award categories. ~65 nominee streamers. Bespoke trivia
@@ -411,7 +409,7 @@ export default function AzarusStreamersPage() {
           <p>
             <strong>The result:</strong> <mark>275K unique viewers</mark>.
             134K hours watched. 60K unique Azarus users on the day.{' '}
-            <em>Servers held.</em>
+            <strong>Servers held.</strong>
           </p>
           <p>
             Different host, different format, different audience. Same

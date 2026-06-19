@@ -391,9 +391,9 @@ export default function BlaBlaCarLiveNationPage() {
             took BlaBlaCar from <mark>0 to 1M UK members</mark>, but it
             was the moment carpooling started to feel culturally normal
             here. The festival presence stopped strangers thinking{' '}
-            <em>&ldquo;is this safe?&rdquo;</em> and started them
-            thinking <em>&ldquo;how do I get a lift to next year&rsquo;s
-            Reading?&rdquo;</em>
+            &ldquo;is this safe?&rdquo; and started them
+            thinking &ldquo;how do I get a lift to next year&rsquo;s
+            Reading?&rdquo;
           </p>
         </div>
       </section>

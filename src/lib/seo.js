@@ -21,9 +21,9 @@ export const SITE_URL = (
 
 export const AUTHOR = {
   name: 'Laura Cordrey',
-  jobTitle: 'Strategic Consultant — Brand, Product, Community, Growth',
+  jobTitle: 'Founder-level CMO for fan-driven brands. Brand, product, community, growth.',
   description:
-    'Senior strategic consultant for consumer, tech and gaming brands. Builds fan-led growth engines that turn communities into measurable revenue.',
+    'Founder-level CMO for fan-driven brands. Builds fan-led growth engines that turn communities into measurable revenue.',
   url: SITE_URL,
   sameAs: [
     // Add LinkedIn / X / etc. here once handles are confirmed.
@@ -32,7 +32,7 @@ export const AUTHOR = {
   knowsAbout: [
     'Fan-Led Growth',
     'Product-Led Growth',
-    'Fandom Flywheel',
+    'the Fan Engine',
     'Community Strategy',
     'Brand Strategy',
     'Creator Programs',
@@ -189,7 +189,7 @@ export function workIndexJsonLd({ caseStudies }) {
         '@id': pageUrl('work'),
         name: 'Work — Selected case studies by Laura Cordrey',
         description:
-          'Selected fan-led growth case studies — Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, Claw Mobile.',
+          'Selected fan-led growth case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus / Animoca, Claw Mobile.',
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
         url: pageUrl('work'),
       },
@@ -216,7 +216,7 @@ export function serviceJsonLd() {
     '@type': 'ProfessionalService',
     name: 'Laura Cordrey — Fan-Led Growth Consulting',
     description:
-      'Strategic consulting for consumer, tech and gaming brands. Brand, product, community, and growth — with a specialism in fan-led growth engines.',
+      'Strategic consulting for consumer, tech and gaming brands. Brand, product, community, and growth, with a specialism in fan-led growth engines.',
     provider: {
       '@type': 'Person',
       name: AUTHOR.name,
@@ -242,10 +242,10 @@ export function serviceJsonLd() {
   }
 }
 
-// ─── Methodology (the Fandom Flywheel) ──────────────────────────────────
+// ─── Methodology (the Fan Engine) ───────────────────────────────────────
 // HowTo + DefinedTerm bundle. HowTo lets AIO surface the 5 stages as
 // step-by-step content for "how do you build a fan-led growth program"
-// queries. DefinedTerm anchors "Fandom Flywheel" as a named methodology
+// queries. DefinedTerm anchors "the Fan Engine" as a named methodology
 // in the entity graph (Laura's IP).
 export function methodologyJsonLd({ stages }) {
   return {
@@ -253,16 +253,16 @@ export function methodologyJsonLd({ stages }) {
     '@graph': [
       {
         '@type': 'DefinedTerm',
-        '@id': `${pageUrl('methodology')}#fandom-flywheel`,
-        name: 'Fandom Flywheel',
+        '@id': `${pageUrl('methodology')}#fan-engine`,
+        name: 'the Fan Engine',
         description:
-          'A five-stage methodology for turning passive audiences into fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Built by Laura Cordrey across brand, product, community and growth work at Ubisoft, BlaBlaCar, US Mobile and Azarus.',
+          'A five-stage methodology for turning passive audiences into fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Built by Laura Cordrey across brand, product, community and growth work at Ubisoft, BlaBlaCar, US Mobile and Azarus / Animoca.',
         inDefinedTermSet: 'Fan-Led Growth methodology',
         url: pageUrl('methodology'),
       },
       {
         '@type': 'HowTo',
-        name: 'How to build a fan-led growth engine using the Fandom Flywheel',
+        name: 'How to build a fan-led growth engine using the Fan Engine',
         description:
           'Five-stage methodology by Laura Cordrey for turning passive audiences into fans that drive measurable growth.',
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },

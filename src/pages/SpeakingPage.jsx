@@ -85,7 +85,7 @@ export default function SpeakingPage() {
                     <div className="about-speaking__video">
                       {s.youtube ? (
                         <iframe
-                          src={`https://www.youtube.com/embed/${s.youtube}`}
+                          src={`https://www.youtube.com/embed/${s.youtube}${s.start ? `?start=${s.start}` : ''}`}
                           title={s.headline}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen

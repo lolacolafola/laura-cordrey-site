@@ -759,7 +759,6 @@ button.delta__video-thumbnail {
   background: var(--bg-deep);
 }
 .delta__press-quote p {
-  font-style: italic;
   font-size: var(--fs-body-l);
   line-height: 1.5;
   margin: 0;

@@ -29,7 +29,7 @@ const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
  */
 export default function UbisoftSiegeChampionsPage() {
   useDocumentMeta({
-    title: 'Ubisoft Siege Champions Program · A fan-powered growth engine, at scale · Case study by Laura Cordrey',
+    title: 'Ubisoft Siege Champions Program · A fan-led growth engine, at scale · Case study by Laura Cordrey',
     description:
       'Siege Champions: I took the Delta Company playbook and scaled it through Rainbow Six Siege. 200 invite-only creators across 18 markets reached 50M+ eyeballs in year one, zero media spend. Fan-led growth, engineered to compound across seasonal drops.',
     canonical: pageUrl('work/ubisoft-siege-champions'),
@@ -37,7 +37,7 @@ export default function UbisoftSiegeChampionsPage() {
     ogType: 'article',
     jsonLd: caseStudyJsonLd({
       slug: 'ubisoft-siege-champions',
-      title: 'Siege Champions Program: a fan-powered growth engine at scale',
+      title: 'Siege Champions Program: a fan-led growth engine at scale',
       description:
         '200 invite-only creators across 18 markets drove 50M+ UGC views in year one with $0 media spend. The Delta Company playbook applied to Rainbow Six Siege.',
       image: 'case-studies/ubisoft-siege-champions-program-banner.png',
@@ -47,7 +47,7 @@ export default function UbisoftSiegeChampionsPage() {
       market: 'Global',
       sector: 'Gaming',
       about: ['Fan-Led Growth', 'Creator Programs', 'Rainbow Six Siege', 'Community Advocacy'],
-      keywords: ['fan-powered growth engine', 'creator program', 'Ubisoft', 'Rainbow Six Siege', 'community advocacy'],
+      keywords: ['fan-led growth engine', 'creator program', 'Ubisoft', 'Rainbow Six Siege', 'community advocacy'],
       principles: [
         'Build with the existing structure, not against it',
         'Exclusivity plus early access creates coordinated pulsepoints',
@@ -67,7 +67,7 @@ export default function UbisoftSiegeChampionsPage() {
         {
           question: 'Can a fan-led growth program scale across different game IPs?',
           answer:
-            'Yes. The same playbook that built Delta Company also built Siege Champions and Assassin’s Creed Mentors Guild. The model travels: a fan-powered growth engine that drives reach, engagement and advocacy paid media cannot manufacture.',
+            'Yes. The same playbook that built Delta Company also built Siege Champions and Assassin’s Creed Mentors Guild. The model travels: a fan-led growth engine that drives reach, engagement and advocacy paid media cannot manufacture.',
         },
       ],
     }),
@@ -517,7 +517,7 @@ export default function UbisoftSiegeChampionsPage() {
             Siege Champions took the Delta Company playbook and ran it
             through one of the biggest competitive shooters on the
             planet. <mark>200 creators reaching 50 million eyeballs</mark>{' '}
-            through their own authentic tone of voice. A fan-powered
+            through their own authentic tone of voice. A fan-led
             growth engine, at scale.
           </p>
           <p>
