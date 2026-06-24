@@ -36,3 +36,13 @@ videogame_files/
 public/case-studies/azarus-brawlhalla-xenrichan-2022-11-17.mp4
 public/case-studies/azarus-game-demo.mp4
 public/case-studies/azarus-halloween-beta-clutchmeister-2022-10-31.mp4
+
+# Large local-only media in the case-studies quarantine folder (>100MB blocks the GitHub push).
+public/case-studies/_unused/UBI_TARGET_COMMUNITY_LOGO_ANIMATION_3696-2112_PRORES422HQ_AUDIO-ON.mp4
+public/case-studies/_unused/UBI_TARGET_GLOBE_ANIMATION_V3_WORLDWIDE_4K_PRORES4444XQ.mp4
+public/case-studies/_unused/azarus-game-demo short.mp4
+public/case-studies/_unused/azarus-game-demo-shorter.mp4
+public/case-studies/_unused/azarus-game-demo.mp4
+public/case-studies/_unused/azarus-halloween-beta-clutchmeister-2022-10-31.mp4
+public/case-studies/_unused/Ubi delta map low.mp4
+public/case-studies/_unused/Ubisoft delta logo low.mp4

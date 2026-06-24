@@ -45,7 +45,10 @@ export default function WorkCard({ caseStudy, slot }) {
           loading="lazy"
           style={(m.cardImageFit || m.cardImageScale) ? {
             ...(m.cardImageFit && { objectFit: m.cardImageFit }),
-            ...(m.cardImageScale && { transform: `scale(${m.cardImageScale})` }),
+            // Pass the base scale via a CSS var so the hover-zoom rule in
+            // shared.css can compose with it instead of being overridden
+            // by an inline transform.
+            ...(m.cardImageScale && { '--card-scale': m.cardImageScale }),
           } : undefined}
         />
       </div>
