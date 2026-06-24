@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
  * or omit slot to just cascade through cardImage → image. Per-slot alt
  * text follows the same cascade via `${slot}ImageAlt`.
  *
- * Styles live in src/pages/HomePage.css (.work-card, .work-card--light).
+ * Styles live in src/styles/shared.css (.work-card, .work-card--light).
  */
 
 export default function WorkCard({ caseStudy, slot }) {

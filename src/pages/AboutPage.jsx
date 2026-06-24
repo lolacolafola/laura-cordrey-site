@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import { featuredSpeaking } from '../data/speaking.js'
-import './HomePage.css' // shared .btn / .section-head styles
+import '../styles/shared.css' // shared .btn / .section-head styles
 import './AboutPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'

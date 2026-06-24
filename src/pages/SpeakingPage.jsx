@@ -5,7 +5,7 @@ import {
   speakingSections,
   appearances,
 } from '../data/speaking.js'
-import './HomePage.css' // shared .btn / .section-head styles
+import '../styles/shared.css' // shared .btn / .section-head styles
 import './AboutPage.css' // reuses .about-speaking* classes
 import './SpeakingPage.css' // local .speaking-hero* classes
 

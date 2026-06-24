@@ -3,7 +3,7 @@ import caseStudies from '../data/caseStudies.js'
 import WorkCard from '../components/WorkCard.jsx'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, workIndexJsonLd } from '../lib/seo.js'
-import './HomePage.css' // shared .work-card / .work-grid / .section-head styles
+import '../styles/shared.css' // shared .work-card / .work-grid / .section-head styles
 
 // Derive unique sector list from the data — order = first-seen across the
 // case-study array so editorial control stays in caseStudies.js.

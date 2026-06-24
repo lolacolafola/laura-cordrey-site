@@ -3,147 +3,149 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import './Layout.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 
+// Top-nav links. About/Services/Work go to their dedicated pages. AI scrolls
+// to the homepage's AI section (no /ai page exists yet — swap this to '/ai'
+// if/when that lands).
 const navLinks = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/about', label: 'About' },
-  { to: '/speaking', label: 'Speaking' },
-  { to: '/work', label: 'Work' },
-  { to: '/methodology', label: 'Method' },
-  { to: '/services', label: 'Services' },
+  { key: 'about',    label: 'About',    path: '/about',    isHash: false },
+  { key: 'services', label: 'Services', path: '/services', isHash: false },
+  { key: 'work',     label: 'Work',     path: '/work',     isHash: false },
+  { key: 'ai',       label: 'AI',       path: '/#ai',      isHash: true  },
+]
+
+const footerLinks = [
+  { label: 'Home',     to: '/' },
+  { label: 'About',    to: '/about' },
+  { label: 'Speaking', to: '/speaking' },
+  { label: 'Work',     to: '/work' },
+  { label: 'Method',   to: '/methodology' },
+  { label: 'Services', to: '/services' },
+  { label: 'AI',       to: '/#ai' },
 ]
 
 export default function Layout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const isHome = location.pathname === '/'
 
-  // Close the drawer whenever the route changes (i.e. user picked a link).
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location.pathname])
+  // Close drawer on route change.
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
-  // Close on Escape.
+  // Close drawer on Escape.
   useEffect(() => {
     if (!menuOpen) return
-    const onKey = (e) => {
-      if (e.key === 'Escape') setMenuOpen(false)
-    }
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
-  // Lock body scroll while the drawer is open.
+  // Lock scroll while drawer open.
   useEffect(() => {
     const original = document.body.style.overflow
     document.body.style.overflow = menuOpen ? 'hidden' : original
     return () => { document.body.style.overflow = original }
   }, [menuOpen])
 
+  // Transparent over hero → solid on scroll. Only matters on /, but harmless
+  // elsewhere (we force solid on non-home routes via the `is-solid` class).
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const solid = scrolled || menuOpen || !isHome
+
+  const renderNavLink = (l) => {
+    // The /ai entry is a hash link back to the homepage. NavLink's isActive
+    // would mark it active on every homepage view, which isn't what we want —
+    // use a plain anchor so it never shows the active underline.
+    if (l.isHash) {
+      return (
+        <a key={l.key} href={l.path} className="cinnav__link">{l.label}</a>
+      )
+    }
+    return (
+      <NavLink
+        key={l.key}
+        to={l.path}
+        className={({ isActive }) => `cinnav__link${isActive ? ' is-active' : ''}`}
+      >
+        {l.label}
+      </NavLink>
+    )
+  }
+
   return (
     <div className="layout">
-      <header className="nav">
-        <div className="nav__inner container">
-          <Link to="/" className="nav__wordmark">
-            <span className="nav__wordmark-name">Laura&nbsp;Cordrey</span>
-          </Link>
-          <nav className="nav__links">
-            {navLinks.map(({ to, label, end }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                className={({ isActive }) =>
-                  `nav__link${isActive ? ' is-active' : ''}`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
-          </nav>
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="nav__cta"
-          >
-            Book a call <span aria-hidden="true">→</span>
-          </a>
-          <button
-            type="button"
-            className={`nav__burger${menuOpen ? ' is-open' : ''}`}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span className="nav__burger-line" aria-hidden="true" />
-            <span className="nav__burger-line" aria-hidden="true" />
-            <span className="nav__burger-line" aria-hidden="true" />
-          </button>
-        </div>
-      </header>
+      <header className={`cinnav${solid ? ' is-solid' : ''}${menuOpen ? ' is-open' : ''}`}>
+        <div className="cinnav__inner">
+          <Link to="/" className="cinnav__brand">Laura Cordrey</Link>
 
-      {/* Mobile drawer — opens full-screen, links + CTA centered. */}
-      <div
-        id="mobile-menu"
-        className={`nav__drawer${menuOpen ? ' is-open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-hidden={!menuOpen}
-        onClick={(e) => {
-          // Close if clicking the backdrop itself (not the inner content).
-          if (e.target === e.currentTarget) setMenuOpen(false)
-        }}
-      >
-        <nav className="nav__drawer-inner">
-          {navLinks.map(({ to, label, end }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
-              className={({ isActive }) =>
-                `nav__drawer-link${isActive ? ' is-active' : ''}`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="nav__drawer-cta"
-          >
-            Book a call <span aria-hidden="true">→</span>
-          </a>
-        </nav>
-      </div>
-
-      <main className="page">{children}</main>
-
-      <footer className="footer">
-        <div className="container footer__inner">
-          <div className="footer__col">
-            <p className="marker">Laura Cordrey · Based in Paris, working globally · Since 2013</p>
-          </div>
-          <div className="footer__col footer__col--links">
-            {navLinks.map(({ to, label }) => (
-              <Link key={to} to={to} className="footer__link">
-                {label}
-              </Link>
-            ))}
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="footer__link"
-            >
-              Book a call
+          <div className="cinnav__links">
+            {navLinks.map(renderNavLink)}
+            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="cinnav__li">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+              </svg>
+            </a>
+            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="cinnav__cta">
+              Book a call <span aria-hidden="true">→</span>
             </a>
           </div>
-          <div className="footer__col footer__col--meta">
-            <p className="marker">© {new Date().getFullYear()}</p>
+
+          <button
+            type="button"
+            className="cinnav__toggle"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M5 5l14 14M19 5L5 19" /></svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+            )}
+          </button>
+        </div>
+
+        {menuOpen && (
+          <div className="cinnav__menu">
+            {navLinks.map((l) => (
+              l.isHash ? (
+                <a key={l.key} href={l.path} className="cinnav__mlink" onClick={() => setMenuOpen(false)}>{l.label}</a>
+              ) : (
+                <Link key={l.key} to={l.path} className="cinnav__mlink" onClick={() => setMenuOpen(false)}>{l.label}</Link>
+              )
+            ))}
+            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="cinnav__mcta">
+              Book a 30-min call <span aria-hidden="true">→</span>
+            </a>
           </div>
+        )}
+      </header>
+
+      <main className={`page${isHome ? '' : ' page--offset'}`}>{children}</main>
+
+      <footer className="cinfoot">
+        <div className="cinfoot__inner">
+          <div className="cinfoot__brand">
+            <span className="cinfoot__name">Laura Cordrey</span>
+            <span className="cinfoot__line">Fan-led growth for fan-driven brands.</span>
+            <span className="cinfoot__meta">Paris · Since 2013</span>
+          </div>
+          <nav className="cinfoot__nav">
+            {footerLinks.map((n) => (
+              <Link key={n.label} to={n.to} className="cinfoot__link">{n.label}</Link>
+            ))}
+          </nav>
+        </div>
+        <div className="cinfoot__copy">
+          <span>© {new Date().getFullYear()} Laura Cordrey</span>
         </div>
       </footer>
     </div>

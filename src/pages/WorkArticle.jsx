@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import WorkCard from '../components/WorkCard.jsx'
 import ArticleCarousel from '../components/ArticleCarousel.jsx'
 import { assetUrl, pageUrl, caseStudyJsonLd } from '../lib/seo.js'
-import './HomePage.css' // shared .work-card / .work-grid / .btn styles
+import '../styles/shared.css' // shared .work-card / .work-grid / .btn styles
 import './WorkArticle.css'
 
 // Year strings in caseStudies.js use en-dashes for ranges (e.g. "2021–2022")
