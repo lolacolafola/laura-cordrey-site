@@ -18,7 +18,7 @@ const stats = [
 const whyFans = [
   { title: 'Lower churn',       copy: 'Fans stay longer, so you keep more of what you paid to win.', icon: 'lock' },
   { title: 'Earned reach',      copy: 'Fans make the content that markets you, at no media cost.', icon: 'megaphone' },
-  { title: 'More referrals',    copy: 'Fans bring others in, so growth leans less on ads.', icon: 'users' },
+  { title: 'More referrals',    copy: 'Fans bring others in, so growth leans less on ad spend.', icon: 'users' },
   { title: 'Resilience',        copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
   { title: 'AI recommends you', copy: 'Your fans’ posts are what it reads. That’s AEO, the new SEO.', icon: 'sparkle' },
   { title: 'It compounds',      copy: 'Built once, the engine keeps working and starts to fund itself.', icon: 'loop' },
@@ -131,7 +131,7 @@ export default function HomePage() {
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>
           <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '50ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
-            The growth you’re paying for is already sitting in your userbase. I build the fan-led growth engine that unlocks it.
+            The growth most brands chase with ad spend is already sitting in their userbase. I build the fan-led growth engine that unlocks it.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
@@ -183,7 +183,7 @@ export default function HomePage() {
             </div>
             <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                The product is the growth engine. Fan-led growth makes your fans the growth engine. The longer they stay, the more they spend, and the more they bring in.
+                Product-led growth made the product sell itself. Fan-led growth makes your fans sell it for you. They bring the next customers in, and because they are fans, they stay longer and spend more too.
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
                 It’s the <mark>highest-return growth you already own</mark>, and the easiest to miss, because fan-led work is hard to measure. So I built a way to measure what it’s actually worth to your business.
@@ -236,7 +236,7 @@ export default function HomePage() {
               Fan-led growth only works when brand, product, community and growth connect. I’ve worked across all four at every stop, going deepest on brand and community at BlaBlaCar, product and advocacy at Ubisoft across Assassin’s Creed, Ghost Recon and Rainbow Six Siege, and growth at American and French startups since.
             </p>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 'clamp(14px,1.6vw,20px) 0 0', maxWidth: '50ch' }}>
-              I connect those four into one <mark>Fan Engine</mark>, built for your business and powered by your own fans.
+              Across the board, these pillars run as separate teams. I come in to connect them into one <mark>Fan Engine</mark>, built for your business and powered by your own fans.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
               <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
@@ -282,7 +282,7 @@ export default function HomePage() {
               Why grow with <mark>fans</mark>?
             </h2>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '50ch' }}>
-              Paid growth stops the moment you stop paying. Fan-led growth keeps working, and pays off in ways paid growth can’t.
+              Paid growth stops the moment you stop paying. Fan-led growth keeps working, and pays off in ways ad spend can’t.
             </p>
           </div>
 
