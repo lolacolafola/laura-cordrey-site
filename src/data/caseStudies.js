@@ -48,7 +48,7 @@ const caseStudies = [
       'I closed $32.25K in under three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (“crazy there are only 250 of these”). The CEO’s “we are sold out, this is insane” edit became its own marketing moment, and proved a community-first company can monetise its fans directly.',
     media: {
       // Single source of truth — doubles as article hero and card image.
-      image: 'case-studies/us-mobile-dark-star-banner.png',
+      image: 'case-studies/us-mobile/us-mobile-dark-star-banner.png',
       imageAlt: 'Dark Star — US Mobile’s premium plan banner, a moody black sphere on a starfield with the Dark Star wordmark, cinematic widescreen treatment',
       youtube: null,
       videoTitle: null,
@@ -56,27 +56,27 @@ const caseStudies = [
     },
     gallery: [
       {
-        src: 'case-studies/us-mobile-vip-bundle.png',
+        src: 'case-studies/us-mobile/us-mobile-vip-bundle.png',
         alt: 'US Mobile Dark Star VIP Early Access Bundle — SIM kit + North Face fleece packshot',
         caption: 'The $129 Dark Star VIP Bundle I designed — limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in three hours.',
       },
       {
-        src: 'case-studies/us-mobile-dark-star.png',
+        src: 'case-studies/us-mobile/us-mobile-dark-star.png',
         alt: 'US Mobile Dark Star launch teaser landing page with countdown timer',
         caption: 'The Dark Star teaser landing I shipped — the countdown that drove 50K+ pre-launch visitors.',
       },
       {
-        src: 'case-studies/us-mobile-email-game.png',
+        src: 'case-studies/us-mobile/us-mobile-email-game.png',
         alt: 'US Mobile arcade-style pre-launch email game START screen',
         caption: 'The arcade-style pre-launch email game I built — 80% open rate, 35% CTOR.',
       },
       {
-        src: 'case-studies/us-mobile-vip-landing.png',
+        src: 'case-studies/us-mobile/us-mobile-vip-landing.png',
         alt: 'US Mobile $129 VIP Early Access Bundle landing page',
         caption: '$129 VIP Early Access Bundle landing page — capped at 250 units, sold out in 3 hours.',
       },
       {
-        src: 'case-studies/us-mobile-stetson-tweet.png',
+        src: 'case-studies/us-mobile/us-mobile-stetson-tweet.png',
         alt: 'Stetson Doggett unboxing the US Mobile North Face quarter-zip fleece on X',
         caption: 'One of 450+ unprompted fan posts after launch. The bundle did the marketing.',
       },
@@ -110,7 +110,7 @@ const caseStudies = [
       // (https://i.ytimg.com/vi/bsLHDOlcgcY/maxresdefault.jpg) so the
       // hero + work card both show the fake-Hugh-Jackman stunt frame
       // instead of the US Mobile brand mark.
-      image: 'case-studies/claw-mobile-card.jpg',
+      image: 'case-studies/claw-mobile/claw-mobile-card.jpg',
       imageAlt: 'Claw Mobile stunt film thumbnail — a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right',
       youtube: 'bsLHDOlcgcY',
       videoTitle: 'Claw Mobile — the stunt film',
@@ -158,7 +158,7 @@ const caseStudies = [
     takeaway:
       'Three motions, one engine, proven at scale. 500K viewers, 90% engaged, 20% converted on the Streamer Awards — servers crashed because we’d built for the audience we expected, not the one that showed up. 4.4M total viewers reached across four months. Three principles: engagement is the thesis, conversion is the infrastructure (build ops for the upside); one playbook, three motions (live events for proof, always-on for retention, game-launch for expansion); custom mechanics per format beat generic overlays (sponsorship becomes co-production). The proof point unlocked the next chapter — the pivot to a gamified ad platform.',
     media: {
-      image: 'case-studies/azarus-streamer-awards-banner.png',
+      image: 'case-studies/azarus/azarus-streamer-awards-banner.png',
       imageAlt: 'The Streamer Awards official banner — art-deco gold-on-navy logo with the tagline “Recognize the best of live streaming” — the flagship event Azarus title-sponsored in March 2022',
       youtube: null,
       videoTitle: null,
@@ -189,13 +189,13 @@ const caseStudies = [
     takeaway:
       'The engagement engine became a business. Brand advertisers at premium CPI. A tradeable token aligning streamers, players, platform and treasury with growth. Hundreds of thousands of active players. Acquired by Animoca Brands in October 2023. Three principles: earn the right to pivot (no Streamer Awards proof point, no advertiser conversation); premium pricing beats discount pricing if the format earns it ($2 CPI was higher than industry — brands paid because engagement justified it); token work is brand work, not crypto work (same product-launch playbook with regulatory care added).',
     media: {
-      image: 'case-studies/azarus-overlay-games-banner.jpeg',
+      image: 'case-studies/azarus/azarus-overlay-games-banner.jpeg',
       imageAlt: 'Azarus repositioning banner — the AZARUS wordmark with the tagline "The Overlay Games Company" on a purple gradient with floating confetti, the brand statement of the pivot Laura led',
       heroBackground: 'transparent',
       // Bespoke card thumbnail (960×540) supplied by Laura for the
       // /work index. Sized so the key visual sits cleanly inside the
       // 4:3 card crop.
-      cardImage: 'case-studies/azarus-game-ads-card.png',
+      cardImage: 'case-studies/azarus/azarus-game-ads-card.png',
       cardImageAlt: 'Azarus game ads case study card thumbnail',
       youtube: null,
       videoTitle: null,
@@ -224,7 +224,7 @@ const caseStudies = [
       // Official program banner: wordmark on dark cinematic backdrop.
       // Official Siege Champions Program key art (two operators in
       // program skins with the program logo + vivid spray backdrop).
-      image: 'case-studies/ubisoft-siege-champions-program-banner.png',
+      image: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png',
       imageAlt: 'Siege Champions Program — official key art with two operators in program skins, the SIEGE CHAMPIONS PROGRAM logo, and a vivid coloured-spray backdrop',
       youtube: null,
       videoTitle: null,
@@ -252,7 +252,7 @@ const caseStudies = [
     approach: 'Built Delta Company: a first-of-its-kind community advocacy program at Ubisoft, pioneering for AAA titles, structured around 5 community clusters (creators, artists, cosplayers, feedback specialists, tournament players). Designed the brand with the internal Ghost Recon Breakpoint design team and Diana Da Costa. Commissioned a dedicated website in 14 languages with custom application back-end. Produced a How-it-Works recruitment video. Unveiled live on the UbiE3 2019 stage with Takeoff agency assets. Shipped a members-only goodie box and in-game customisations.',
     takeaway: '10M+ UGC views from program members alone — from just 130 people. A continuous stream of considered, educated content showing Studio and community in real partnership. The kind of distribution money cannot buy. The program became the blueprint for Ubisoft’s subsequent community programs across multiple franchises.',
     media: {
-      image: 'case-studies/delta/01-delta-badge-hero.png',
+      image: 'case-studies/ubisoft-delta/01-delta-badge-hero.png',
       imageAlt: 'Delta Company badge on a Ghost Recon Breakpoint backdrop. The brand mark Laura designed for a first-of-its-kind community advocacy program at Ubisoft, pioneering for AAA titles.',
       cardImageScale: 1.15,
       youtube: 'F5g7fOzxGYY',
@@ -284,11 +284,11 @@ const caseStudies = [
     takeaway:
       'I turned festivals into a trust-building channel that made carpooling feel culturally normal in the UK. The kind of work that doesn’t show up in dashboards but changes how people feel about your brand.',
     media: {
-      image: 'case-studies/blablacar-livenation-banner-yellow.png',
+      image: 'case-studies/blablacar/blablacar-livenation-banner-yellow.png',
       imageAlt: 'BlaBlaCar × Live Nation brand lockup on yellow',
       // Bespoke card thumbnail (960×540) supplied by Laura for the
       // /work index.
-      cardImage: 'case-studies/blablacar-live-nation-card.png',
+      cardImage: 'case-studies/blablacar/blablacar-live-nation-card.png',
       cardImageAlt: 'BlaBlaCar × Live Nation case study card thumbnail',
       youtube: null,
       videoTitle: null,

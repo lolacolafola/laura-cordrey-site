@@ -9,10 +9,10 @@ const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
 const stats = [
-  { value: 'Sold out', unit: 'drop', label: 'in under 3 hrs, a FOMO fan drop generating $32K', client: 'US Mobile', img: 'case-studies/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star fan drop' },
-  { value: '0 → 1M', unit: 'users', label: 'in a new market, scaled from newcomer to advocate', client: 'BlaBlaCar', img: 'case-studies/hp-kpi-blablacar.jpg', alt: 'BlaBlaCar festival community' },
-  { value: '60M+', unit: 'reach', label: 'via fan-program member UGC, $0 spend', client: 'Ubisoft', img: 'case-studies/hp-kpi-ubi.jpg', alt: 'Ubisoft Siege Champions creator program' },
-  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/hp-kpi-azarus.png', alt: 'Azarus game ad platform' },
+  { value: 'Sold out', unit: 'drop', label: 'in under 3 hrs, a FOMO fan drop generating $32K', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star fan drop' },
+  { value: '0 → 1M', unit: 'users', label: 'in a new market, scaled from newcomer to advocate', client: 'BlaBlaCar', img: 'case-studies/homepage/hp-kpi-blablacar.jpg', alt: 'BlaBlaCar festival community' },
+  { value: '60M+', unit: 'reach', label: 'via fan-program member UGC, $0 spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft Siege Champions creator program' },
+  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.png', alt: 'Azarus game ad platform' },
 ]
 
 const whyFans = [
@@ -32,9 +32,9 @@ const aiPoints = [
 ]
 
 const work = [
-  { idx: '01', company: 'US Mobile', year: '2024', title: 'Dark Star', result: '$32K in under three hours.', line: 'A free SIM kit turned into a $129 fan bundle that sold out instantly.', img: 'case-studies/us-mobile-dark-star-banner.png', alt: 'US Mobile Dark Star', href: '/work/us-mobile-dark-star' },
-  { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/work/azarus-game-ads' },
-  { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege-champions-hero.jpg', alt: 'Ubisoft Siege Champions', href: '/work/ubisoft-siege-champions' },
+  { idx: '01', company: 'US Mobile', year: '2024', title: 'Dark Star', result: '$32K in under three hours.', line: 'A free SIM kit turned into a $129 fan bundle that sold out instantly.', img: 'case-studies/us-mobile/us-mobile-dark-star-banner.png', alt: 'US Mobile Dark Star', href: '/work/us-mobile-dark-star' },
+  { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/work/azarus-game-ads' },
+  { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege/ubisoft-siege-champions-hero.jpg', alt: 'Ubisoft Siege Champions', href: '/work/ubisoft-siege-champions' },
 ]
 
 // Small inline-svg helpers — stroke-based, matching the design.
