@@ -150,5 +150,15 @@
 @media (max-width: 560px) {
   .cin .grid-4 { grid-template-columns: 1fr !important; }
   .cin .grid-3 { grid-template-columns: 1fr !important; }
-  .cin .grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Logo strip: 3 on top, 2 centered underneath (no orphan). */
+  .cin .hero-trust .grid-5 {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(18px, 5vw, 28px);
+  }
+  .cin .hero-trust .grid-5 > li {
+    flex: 0 0 calc(33.333% - clamp(18px, 5vw, 28px));
+    max-width: 30%;
+  }
 }
