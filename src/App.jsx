@@ -15,6 +15,8 @@ import AboutPage from './pages/AboutPage.jsx'
 import SpeakingPage from './pages/SpeakingPage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import MethodologyPage from './pages/MethodologyPage.jsx'
+import FanValueModelPage from './pages/FanValueModelPage.jsx'
+import FanAuditPage from './pages/FanAuditPage.jsx'
 
 export default function App() {
   return (
@@ -38,6 +40,8 @@ export default function App() {
           <Route path="/speaking" element={<SpeakingPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/methodology" element={<MethodologyPage />} />
+          <Route path="/fan-led-growth-value-model" element={<FanValueModelPage />} />
+          <Route path="/fan-led-growth-audit" element={<FanAuditPage />} />
         </Routes>
       </Layout>
     </>
