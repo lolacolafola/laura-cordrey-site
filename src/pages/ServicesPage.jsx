@@ -236,7 +236,7 @@ export default function ServicesPage() {
             <p>
               <span className="marker">Proof</span>
               Across the Ghost Recon lifecycle I sustained{' '}
-              <mark>75 to 85% positive sentiment for a 15M-player community</mark>,
+              <mark>an average of 85% positive sentiment for a 15M-player community</mark>,
               and at Assassin&rsquo;s Creed and Siege scale held{' '}
               <mark>83% positive sentiment with 90% engagement across 18
               subsidiaries</mark>.
