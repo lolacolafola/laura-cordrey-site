@@ -5,28 +5,41 @@ import './ServicesPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
-// Problem router — the buyer finds themselves in the symptom, then lands
-// on the right offer. Copy source: content/copy/copy-services-v2.md.
-const fits = [
+// The services menu — four visible offers, each with a "For you if"
+// symptom line so buyers find themselves in one glance.
+// Copy source: content/copy/copy-services-v3.md.
+const offers = [
   {
-    symptom: 'Growth leans on paid, and every new customer costs more than the last.',
-    offer: 'The Fan Engine',
+    name: 'The Fan Engine',
+    tag: 'The system',
+    line: 'My complete fan-led growth system, plugged into your business and measured end to end.',
+    fit: 'Growth leans on paid, you have real fans, and no system that turns them into growth you can measure.',
     anchor: '#fan-engine',
+    link: 'See the Engine',
   },
   {
-    symptom: 'You have real fans, but no system that turns them into growth you can measure.',
-    offer: 'The Fan Engine',
-    anchor: '#fan-engine',
+    name: 'Consulting',
+    tag: 'Advisory',
+    line: 'Senior direction on brand and fan-led growth. I set the strategy and keep it on track; your team ships.',
+    fit: 'You have the hands to build, and want senior direction so they build the right things.',
+    anchor: '#consulting',
+    link: 'See Consulting',
   },
   {
-    symptom: 'Reviews have turned, the community is frustrated, and every update lands worse than the last.',
-    offer: 'Sentiment SOS',
+    name: 'Fan Moments',
+    tag: 'Project',
+    line: 'One moment, built to land: a launch, a drop, a creator or advocacy program.',
+    fit: 'You have a big moment coming and it has to land. No second take.',
+    anchor: '#fan-moments',
+    link: 'See Fan Moments',
+  },
+  {
+    name: 'Sentiment SOS',
+    tag: 'Project · Urgent',
+    line: 'The rescue. What your community is saying, turned into a build-ready recovery roadmap.',
+    fit: 'Reviews have turned, the community is frustrated, and every update lands worse than the last.',
     anchor: '#sentiment-sos',
-  },
-  {
-    symptom: 'You’re pre-launch and want to build for fans from day one, not bolt it on later.',
-    offer: 'The Fan Engine · Start',
-    anchor: '#fan-engine',
+    link: 'See Sentiment SOS',
   },
 ]
 
@@ -53,6 +66,18 @@ const engineIncludes = [
   <>Where it makes sense, <strong>I help build it</strong>: positioning and brand systems, advocacy and creator programs, lifecycle design, launch go-to-market.</>,
 ]
 
+const consultingIncludes = [
+  <>The <strong>strategy and the roadmap</strong>: what to build, in what order, tied to your numbers.</>,
+  <><strong>Senior judgment on the work in flight</strong>: reviews, prioritization, course corrections.</>,
+  <>Your <strong>team upskilled</strong> to run fan-led growth without me.</>,
+]
+
+const momentsIncludes = [
+  <>The moment <strong>designed end to end</strong>: concept, story, mechanics, rollout.</>,
+  <>The <strong>advocacy built in</strong>, so the moment travels on your fans, not just your media budget.</>,
+  <><strong>Measurement wired in</strong>, so you know what the moment was worth.</>,
+]
+
 const sentimentMoves = [
   { name: 'Listen.', body: 'Read the sentiment across reviews, social and community, good and bad, and find the real patterns.' },
   { name: 'Fix.', body: 'Translate it into a prioritized, build-ready product roadmap, tied to your goals and what your team can actually ship. Not a report. A roadmap.' },
@@ -64,7 +89,7 @@ export default function ServicesPage() {
   useDocumentMeta({
     title: 'Services · Laura Cordrey · Fan-led growth for fan-driven brands',
     description:
-      'Fan-led growth for fan-driven brands. Start with your free Fan Score, then build the Fan Engine: brand, product, community, growth and measurement run as one system. In a sentiment hole? Sentiment SOS.',
+      'Four ways to work with me: the Fan Engine system, senior consulting, a Fan Moment built to land, or Sentiment SOS when the community has turned. Start with your free Fan Score.',
     canonical: pageUrl('services'),
     ogType: 'website',
     jsonLd: serviceJsonLd(),
@@ -81,9 +106,10 @@ export default function ServicesPage() {
             or the one part holding you back.
           </h1>
           <p className="services-hero__lede">
-            Fan-led growth for fan-driven brands. I find the growth waiting in
-            the fans you already have, hand you the plan that fits your
-            business, and where it makes sense, I help build it.
+            Fan-led growth for fan-driven brands. Four ways to work with me,
+            from one focused project to the whole system. Each one starts
+            from your numbers and ends with a plan that fits your business.
+            Where it makes sense, I help build it.
           </p>
           <div className="services-hero__ctas">
             <Link to="/fan-led-growth-audit" className="btn btn--primary btn--lg">
@@ -96,20 +122,28 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── WHICH ONE IS YOU (problem router) ────────────────── */}
+      {/* ─── THE SERVICES (menu) ──────────────────────────────── */}
       <section className="services-fit">
         <div className="container services-fit__inner">
           <div className="section-head">
-            <span className="marker">Which one is you?</span>
-            <h2 className="section-head__title">Start from the problem.</h2>
+            <span className="marker">The services</span>
+            <h2 className="section-head__title">Four ways in. Find yourself in one.</h2>
           </div>
           <ul className="services-fit__grid">
-            {fits.map((f) => (
-              <li key={f.symptom}>
-                <a href={f.anchor} className="services-fit__card">
-                  <p className="services-fit__symptom">&ldquo;{f.symptom}&rdquo;</p>
+            {offers.map((o) => (
+              <li key={o.name}>
+                <a href={o.anchor} className="services-fit__card">
+                  <div className="services-fit__head">
+                    <h3 className="services-fit__name">{o.name}.</h3>
+                    <span className="services-fit__tag marker">{o.tag}</span>
+                  </div>
+                  <p className="services-fit__line">{o.line}</p>
+                  <p className="services-fit__symptom">
+                    <span className="marker services-fit__fitlabel">For you if</span>
+                    &ldquo;{o.fit}&rdquo;
+                  </p>
                   <span className="services-fit__offer marker">
-                    {f.offer} <span aria-hidden="true">→</span>
+                    {o.link} <span aria-hidden="true">↓</span>
                   </span>
                 </a>
               </li>
@@ -122,7 +156,7 @@ export default function ServicesPage() {
       <section className="services-engine" id="fan-engine">
         <div className="container services-engine__inner">
           <div className="section-head">
-            <span className="marker">Plug in the whole system</span>
+            <span className="marker">01 · The system</span>
             <h2 className="section-head__title">
               The Fan <em className="accent">Engine</em>.
             </h2>
@@ -177,23 +211,120 @@ export default function ServicesPage() {
               <div>
                 <dt className="marker">Shape</dt>
                 <dd>
-                  Starts with the two-to-three-week Fan Score diagnostic, fixed
-                  fee. Then a fixed-scope sprint, or ongoing with me embedded
-                  as your fractional brand and growth lead. I keep the
-                  embedded roster deliberately small. Pricing on request.
+                  Starts with the two-to-three-week Fan Score diagnostic,
+                  fixed fee. Then fixed-scope sprints on what the score says
+                  matters most. Pricing on request.
                 </dd>
               </div>
               <div>
                 <dt className="marker">Best for</dt>
                 <dd>
-                  Teams with a hit and a fanbase, or the makings of one, and
-                  no senior brand or growth leader yet.
+                  Teams with a hit and a fanbase, or the makings of one,
+                  ready to grow with the fans they already have.
                 </dd>
               </div>
             </dl>
             <div className="services-card__cta">
               <Link to="/fan-led-growth-audit" className="btn btn--primary">
                 Start with your free Fan Score <span aria-hidden="true">→</span>
+              </Link>
+              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost">
+                Book a call about the Engine <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CONSULTING ───────────────────────────────────────── */}
+      <section className="services-offer" id="consulting">
+        <div className="container services-offer__inner">
+          <div className="section-head">
+            <span className="marker">02 · Advisory</span>
+            <h2 className="section-head__title">
+              <em className="accent">Consulting</em>.
+            </h2>
+            <p className="section-head__lede">
+              You do not need me to run the function. You need the senior
+              read: what to build, in what order, and how to prove it is
+              working. I set the direction and keep it on track. Your team
+              ships.
+            </p>
+          </div>
+
+          <div className="services-card">
+            <span className="marker services-card__label">What you get</span>
+            <ul className="services-card__list">
+              {consultingIncludes.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            <dl className="services-card__meta">
+              <div>
+                <dt className="marker">Shape</dt>
+                <dd>
+                  A one-off strategy sprint, or ongoing advisory on a rhythm
+                  that fits your team. Pricing on request.
+                </dd>
+              </div>
+              <div>
+                <dt className="marker">Best for</dt>
+                <dd>
+                  Teams with the hands to build, missing the senior brand
+                  and growth direction.
+                </dd>
+              </div>
+            </dl>
+            <div className="services-card__cta">
+              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary">
+                Talk about consulting <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAN MOMENTS ──────────────────────────────────────── */}
+      <section className="services-offer services-offer--alt" id="fan-moments">
+        <div className="container services-offer__inner">
+          <div className="section-head">
+            <span className="marker">03 · Project</span>
+            <h2 className="section-head__title">
+              Fan <em className="accent">Moments</em>.
+            </h2>
+            <p className="section-head__lede">
+              Your biggest brand moment, delivered with a cool head: the
+              launch, the drop, the anniversary, the program reveal. I have
+              unveiled a fan program live on the E3 stage, turned a free SIM
+              kit into a sold-out $32K drop in under three hours, and built
+              the creator and advocacy programs behind 60M+ UGC views at zero
+              media spend. Hand me the moment everyone will be watching.
+            </p>
+          </div>
+
+          <div className="services-card">
+            <span className="marker services-card__label">What you get</span>
+            <ul className="services-card__list">
+              {momentsIncludes.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            <dl className="services-card__meta">
+              <div>
+                <dt className="marker">Shape</dt>
+                <dd>Fixed-scope project, priced per moment. Pricing on request.</dd>
+              </div>
+              <div>
+                <dt className="marker">Best for</dt>
+                <dd>A launch, drop or reveal on the calendar that has to land.</dd>
+              </div>
+            </dl>
+            <div className="services-card__cta">
+              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary">
+                Talk about your moment <span aria-hidden="true">→</span>
+              </a>
+              <Link to="/work" className="btn btn--ghost">
+                See moments I&rsquo;ve built <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -204,7 +335,7 @@ export default function ServicesPage() {
       <section className="services-signature" id="sentiment-sos">
         <div className="container services-signature__inner">
           <div className="section-head">
-            <span className="marker">When it can&rsquo;t wait</span>
+            <span className="marker">04 · Project · When it can&rsquo;t wait</span>
             <h2 className="section-head__title">
               Sentiment <em className="accent">SOS</em>.
             </h2>
@@ -251,6 +382,15 @@ export default function ServicesPage() {
               <span className="marker">Best for</span>
               A brand in a sentiment hole that needs a way out, fast.
             </p>
+          </div>
+
+          <div className="services-signature__cta">
+            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
+              It&rsquo;s urgent. Book now <span aria-hidden="true">→</span>
+            </a>
+            <span className="services-signature__ctanote">
+              Skip the quiz. If your community is turning, we talk this week.
+            </span>
           </div>
         </div>
       </section>
