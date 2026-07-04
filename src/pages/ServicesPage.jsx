@@ -36,7 +36,7 @@ const offers = [
   {
     name: 'Sentiment SOS',
     tag: 'Project · Urgent',
-    line: 'The rescue. What your community is saying, turned into a build-ready recovery roadmap.',
+    line: 'The rescue. What your community is saying, turned into a product and communications roadmap that fixes what is driving it.',
     fit: 'Reviews have turned, the community is frustrated, and every update lands worse than the last.',
     anchor: '#sentiment-sos',
     link: 'See Sentiment SOS',
@@ -343,8 +343,15 @@ export default function ServicesPage() {
               Your reviews turned. The subreddit is angry. Support is swamped,
               churn is creeping up, and every update lands worse than the
               last. You know the answers are in what your community is saying.
-              There is just too much of it, and none of it sorted. That is
-              what this is for. A recovery, in four moves.
+              There is just too much of it, and none of it sorted.
+            </p>
+            <p className="section-head__lede">
+              This is the job I did on a AAA live-service game with 15
+              million players. I take the raw sentiment, get inside your
+              product, your roadmap and your business objectives, and turn it
+              into <mark>one usable roadmap: the product fixes and the
+              communications that address what is actually driving the
+              negative sentiment</mark>. A recovery, in four moves.
             </p>
           </div>
 
@@ -361,8 +368,8 @@ export default function ServicesPage() {
           <div className="services-signature__meta">
             <p>
               <span className="marker">What you get</span>
-              The roadmap, the recovery plan, and the system that keeps it
-              fixed.
+              One roadmap across product and communications, prioritized
+              against your objectives, plus the system that keeps it fixed.
             </p>
             <p>
               <span className="marker">Proof</span>
