@@ -5,7 +5,6 @@ import { pageUrl, methodologyJsonLd } from '../lib/seo.js'
 import './MethodologyPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
-const ASSESSMENT_URL = '#assessment'
 
 const disciplines = [
   { word: 'Brand',     note: 'Story, identity, voice. The foundation that sets what gets built.' },
@@ -227,9 +226,9 @@ export default function MethodologyPage() {
             Then we size it against your real numbers.
           </p>
           <div className="meth-close__ctas">
-            <a href={ASSESSMENT_URL} className="btn btn--primary btn--lg">
-              Get your Fan-Led Growth Score <span aria-hidden="true">→</span>
-            </a>
+            <Link to="/fan-led-growth-audit" className="btn btn--primary btn--lg">
+              Get your Fan Score <span aria-hidden="true">→</span>
+            </Link>
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost btn--lg">
               Book a call <span aria-hidden="true">→</span>
             </a>

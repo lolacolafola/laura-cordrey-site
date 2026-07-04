@@ -21,7 +21,7 @@ const whyFans = [
   { title: 'More referrals',    copy: 'Fans bring others in, so growth leans less on ad spend.', icon: 'users' },
   { title: 'Resilience',        copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
   { title: 'AI recommends you', copy: 'Your fans’ posts are what it reads. That’s AEO, the new SEO.', icon: 'sparkle' },
-  { title: 'It compounds',      copy: 'Built once, the engine keeps working and starts to fund itself.', icon: 'loop' },
+  { title: 'It compounds',      copy: 'Built once, the engine keeps working and starts to fuel itself.', icon: 'loop' },
 ]
 
 const aiPoints = [
@@ -135,9 +135,9 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
-              <a href="/quiz" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-                Score your fan growth <span className="ar" aria-hidden>→</span>
-              </a>
+              <Link to="/fan-led-growth-audit" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+                Get your Fan Score <span className="ar" aria-hidden>→</span>
+              </Link>
               <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
                 Book a 30-min call <span className="ar" aria-hidden>→</span>
               </a>
@@ -309,9 +309,9 @@ export default function HomePage() {
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
-              <a href="/quiz" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              <Link to="/fan-led-growth-value-model" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
                 Estimate yours <span className="ar" aria-hidden>→</span>
-              </a>
+              </Link>
               <span style={{ fontSize: '.95rem', color: '#6B6157', fontWeight: 600 }}>
                 or <a href={CALENDLY_URL} target="_blank" rel="noreferrer" style={{ color: '#C8362B', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(200,54,43,.4)' }}>book a call</a>
               </span>
@@ -367,9 +367,6 @@ export default function HomePage() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
               <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
                 Book a 30-min call <span className="ar" aria-hidden>→</span>
-              </a>
-              <a href="/ai" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '16px 28px', borderRadius: 3, textDecoration: 'none' }}>
-                Fan-led growth for AI <span className="ar" aria-hidden>→</span>
               </a>
             </div>
           </div>
@@ -483,9 +480,9 @@ export default function HomePage() {
             Take the 2-minute score, or book a call for a straight read on where you stand.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
-            <a href="/quiz" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
-              Score your fan growth <span className="ar" aria-hidden>→</span>
-            </a>
+            <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
+              Get your Fan Score <span className="ar" aria-hidden>→</span>
+            </Link>
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
               Book a 30-min call <span className="ar" aria-hidden>→</span>
             </a>

@@ -12,17 +12,20 @@ const navLinks = [
   { key: 'about',    label: 'About',    path: '/about',    isHash: false },
   { key: 'services', label: 'Services', path: '/services', isHash: false },
   { key: 'work',     label: 'Work',     path: '/work',     isHash: false },
+  { key: 'speaking', label: 'Speaking', path: '/speaking', isHash: false },
   { key: 'ai',       label: 'AI',       path: '/#ai',      isHash: true  },
 ]
 
 const footerLinks = [
-  { label: 'Home',     to: '/' },
-  { label: 'About',    to: '/about' },
-  { label: 'Speaking', to: '/speaking' },
-  { label: 'Work',     to: '/work' },
-  { label: 'Method',   to: '/methodology' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI',       to: '/#ai' },
+  { label: 'Home',      to: '/' },
+  { label: 'About',     to: '/about' },
+  { label: 'Speaking',  to: '/speaking' },
+  { label: 'Work',      to: '/work' },
+  { label: 'Method',    to: '/methodology' },
+  { label: 'Services',  to: '/services' },
+  { label: 'Fan Score', to: '/fan-led-growth-audit' },
+  { label: 'Fan Value', to: '/fan-led-growth-value-model' },
+  { label: 'AI',        to: '/#ai' },
 ]
 
 export default function Layout({ children }) {

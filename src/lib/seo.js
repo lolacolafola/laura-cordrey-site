@@ -16,14 +16,14 @@
 // Override via VITE_SITE_URL once the custom domain is live; defaults to
 // the GitHub Pages production URL.
 export const SITE_URL = (
-  import.meta.env?.VITE_SITE_URL || 'https://lauracordrey.github.io/laura-cordrey-site'
+  import.meta.env?.VITE_SITE_URL || 'https://lolacolafola.github.io/laura-cordrey-site'
 ).replace(/\/$/, '')
 
 export const AUTHOR = {
   name: 'Laura Cordrey',
-  jobTitle: 'Founder-level CMO for fan-driven brands. Brand, product, community, growth.',
+  jobTitle: 'Fan-led growth for fan-driven brands. Brand, product, community, growth.',
   description:
-    'Founder-level CMO for fan-driven brands. Builds fan-led growth engines that turn communities into measurable revenue.',
+    'Builds fan-led growth for fan-driven brands: the Fan Engine that turns communities into measurable revenue.',
   url: SITE_URL,
   sameAs: [
     // Add LinkedIn / X / etc. here once handles are confirmed.

@@ -145,10 +145,121 @@
   .about-range__item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
 }
 
+.about-range__close {
+  margin-top: var(--space-6);
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  line-height: 1.6;
+  max-width: 64ch;
+}
 .about-range__cta {
   margin-top: var(--space-7);
   display: flex;
   justify-content: flex-start;
+}
+
+/* ─── PROSE SPOTLIGHTS (gap / storyteller / worlds / sentiment /
+ *     big moment) — narrative identity blocks. Alternating surface
+ *     so the stacked blocks don't read as one wall of text. ─────── */
+.about-prose {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  border-top: 1px solid var(--hairline);
+}
+.about-prose--alt { background: var(--bg-deep); }
+.about-prose__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 66rem;
+}
+.about-prose__title {
+  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: var(--ink);
+  margin: var(--space-1) 0 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.about-prose__copy {
+  font-size: var(--fs-body-l);
+  line-height: 1.62;
+  color: var(--ink-muted);
+  max-width: 64ch;
+  margin: 0;
+}
+.about-prose__copy mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ─── SELECTED EXPERIENCE (dark logo band) ────────────────────── */
+.about-experience {
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  border-top: 1px solid var(--hairline);
+  background: #2d2723;
+  color: #efe9dc;
+}
+.about-experience__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.about-experience__marker { color: #d4c896; }
+.about-experience__title {
+  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #efe9dc;
+  margin: var(--space-1) 0 0;
+}
+.about-experience__logos {
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: var(--space-6) var(--space-6);
+  width: 100%;
+  max-width: 860px;
+}
+.about-experience__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.about-experience__logos img {
+  max-height: 46px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.92;
+}
+.about-experience__note {
+  margin-top: var(--space-7);
+  font-size: var(--fs-body);
+  color: rgba(239, 233, 220, 0.72);
+}
+.about-experience__note a {
+  color: #efe9dc;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .about-experience__logos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6) var(--space-5);
+  }
+  /* 3 + 2: center the trailing two on their own row */
+  .about-experience__cell:nth-child(4) { grid-column: 1 / 2; }
 }
 
 /* ─── SPEAKING ────────────────────────────────────────────── */
@@ -533,6 +644,13 @@
 .about-cta__title mark {
   /* mark styles inherited from base.css (animated gradient text) */
   font-weight: inherit;
+}
+.about-cta__lede {
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted);
+  line-height: 1.55;
+  max-width: 48ch;
+  margin: 0;
 }
 .about-cta__buttons {
   display: flex;

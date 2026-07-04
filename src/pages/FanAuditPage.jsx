@@ -175,7 +175,7 @@ function loadHtml2Canvas() {
 
 export default function FanAuditPage() {
   useDocumentMeta({
-    title: 'The Fan-Led Growth Audit · Laura Cordrey',
+    title: 'The Fan Score · How fan-powered is your growth? · Laura Cordrey',
     description:
       'A short diagnostic that tells you how fan-powered your growth is today, and the one move that would grow it. Two minutes.',
     canonical: pageUrl('/fan-led-growth-audit'),
@@ -207,7 +207,7 @@ export default function FanAuditPage() {
 function IntroScreen({ onStart }) {
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan-Led Growth Audit</div>
+      <div className="fa-fig"><Sparkle />The Fan Score</div>
       <h1 className="fa-h1">How fan-powered is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-powered growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
@@ -368,7 +368,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
   const tText = tColor
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan-Led Growth Audit</div>
+      <div className="fa-fig"><Sparkle />The Fan Score</div>
       <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
       <p className="fa-numlabel">
         of your growth is fan-powered. The other {scored.rented}% is untapped fan potential.
@@ -428,7 +428,7 @@ function LiveResult({ scored, lead, restart }) {
       if (!h2c) throw new Error('no h2c')
       const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2 })
       const a = document.createElement('a')
-      a.download = 'fan-led-growth-audit.png'
+      a.download = 'fan-score.png'
       a.href = canvas.toDataURL('image/png')
       a.click()
     } catch {
@@ -437,7 +437,7 @@ function LiveResult({ scored, lead, restart }) {
   }
 
   const emailCopy = () => {
-    const subj = 'My Fan-Led Growth Audit'
+    const subj = 'My Fan Score'
     const body = `My result: ${owned}% of my growth is fan-powered (${tier}).\nBiggest opportunity: ${startPillar}.\n\nCheck yours: ${location.href}`
     location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
@@ -448,7 +448,7 @@ function LiveResult({ scored, lead, restart }) {
 
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan-Led Growth Audit</div>
+      <div className="fa-fig"><Sparkle />The Fan Score</div>
       <div className="fa-tier">Your result · {tier}</div>
       <div className="fa-bignum" style={{ color: tColor }}>{owned}%</div>
       <p className="fa-numlabel">of your growth is fan-powered</p>
@@ -484,7 +484,7 @@ function LiveResult({ scored, lead, restart }) {
       <div className="fa-cardwrap">
         <div className="fa-cardcap">Share your result</div>
         <div className="fa-card" ref={cardRef}>
-          <div className="fa-ce"><Sparkle />The Fan-Led Growth Audit</div>
+          <div className="fa-ce"><Sparkle />The Fan Score</div>
           <div className="fa-ct">{tier} · {TIER_COPY[tier]}</div>
           <div className="fa-cbig" style={{ color: cardBigColor }}>{owned}%</div>
           <div className="fa-csub">of my growth is fan-powered</div>
@@ -578,7 +578,7 @@ function PreFlow({ screen, setScreen }) {
   if (screen === 'preIntro') {
     return (
       <section className="fa-rel">
-        <div className="fa-fig"><Sparkle />The Fan-Led Growth Audit · Pre-launch edition</div>
+        <div className="fa-fig"><Sparkle />The Fan Score · Pre-launch edition</div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
         <p className="fa-lede">With no users yet, a "% fan-powered" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
         <p className="fa-introget">No numbers needed. A minute or two.</p>
@@ -702,7 +702,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
   const emailCopy = () => {
     const openLabels = Object.keys(lvls).filter((k) => lvls[k] < 3).map((k) => LABEL_OF[k]).join(', ') || 'none'
     const fixFirst = effective === 3 ? 'nothing' : LABEL_OF[binding]
-    const subj = 'My Fan-Led Growth Audit · pre-launch'
+    const subj = 'My Fan Score · pre-launch'
     const body = `Verdict: ${verdict}.\nFix first: ${fixFirst}.\nStill open: ${openLabels}.\n\nCheck yours: ${location.href}`
     location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
@@ -710,7 +710,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
   return (
     <section className="fa-rel">
       <div className="fa-darkwrap">
-        <div className="fa-fig"><Sparkle />The Fan-Led Growth Audit · Pre-launch edition</div>
+        <div className="fa-fig"><Sparkle />The Fan Score · Pre-launch edition</div>
         <div className="fa-verdictlbl">Your verdict</div>
         <div className="fa-verdict" style={{ color: vColor }}>{verdict}</div>
         <p className="fa-reframe">{reframeText}</p>
@@ -770,7 +770,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
       <div className="fa-cardwrap">
         <div className="fa-cardcap">Share your result</div>
         <div className="fa-card" ref={cardRef}>
-          <div className="fa-ce"><Sparkle />Fan-Led Growth · Pre-launch readiness</div>
+          <div className="fa-ce"><Sparkle />The Fan Score · Pre-launch readiness</div>
           <div className="fa-cbigw" style={{ color: cardVerdictColor }}>{verdict}</div>
           <div className="fa-csub">where I'm at before launch</div>
           <div className="fa-cbars">

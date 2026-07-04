@@ -132,6 +132,150 @@
   }
 }
 
+/* ─── WHICH ONE IS YOU (problem router) ────────────────────── */
+.services-fit {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-fit__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.services-fit__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 720px) {
+  .services-fit__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.services-fit__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-6);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  background: var(--surface-dim);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.services-fit__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.services-fit__symptom {
+  font-size: var(--fs-body-l);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 44ch;
+}
+.services-fit__offer {
+  color: var(--accent);
+}
+
+/* ─── THE FAN ENGINE (feature band) ────────────────────────── */
+.services-engine {
+  padding: var(--space-9) 0;
+  background: var(--surface);
+  color: var(--ink-on-surface);
+}
+.services-engine .section-head__title,
+.services-engine .section-head__lede {
+  color: var(--ink-on-surface);
+}
+.services-engine .section-head__lede {
+  color: var(--ink-muted-on-surface);
+}
+.services-engine .marker {
+  color: var(--ink-muted-on-surface);
+}
+.services-engine .services-card--feature .marker {
+  color: var(--ink-muted);
+}
+.services-engine__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+.services-engine .services-moves {
+  margin: 0;
+}
+.services-moves--five {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .services-moves--five {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1080px) {
+  .services-moves--five {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .services-moves--five .services-moves__name {
+    font-size: var(--fs-body-l);
+    font-weight: 800;
+  }
+}
+.services-modes__label {
+  display: block;
+  margin-bottom: var(--space-4);
+}
+.services-trio {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 880px) {
+  .services-trio {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.services-card--mode {
+  padding: var(--space-6);
+  gap: var(--space-3);
+}
+
+/* ─── OBJECTION ────────────────────────────────────────────── */
+.services-objection {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-objection__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 64rem;
+}
+.services-objection__q {
+  font-size: var(--fs-display-m);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.1;
+  margin: 0;
+}
+.services-objection__a {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.services-objection__a mark {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
 /* ─── DIAGNOSTIC (feature card) ────────────────────────────── */
 .services-diagnostic {
   padding: var(--space-9) 0;
