@@ -211,7 +211,7 @@ function IntroScreen({ onStart }) {
       <h1 className="fa-h1">How fan-powered is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-powered growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
-      <button className="fa-btn" onClick={onStart}>Start the audit →</button>
+      <button className="fa-btn" onClick={onStart}>Get my Fan Score →</button>
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">

@@ -142,7 +142,7 @@ export default function HomePage() {
                 Book a 30-min call <span className="ar" aria-hidden>→</span>
               </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free 30-minute intro · or take the 2-minute diagnostic first.</span>
+            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free 30-minute intro · or take the 2-minute Fan Score first.</span>
           </div>
 
           {/* In-hero proof strip — clients sit with the promise, not below it. */}

@@ -94,7 +94,7 @@ function Chart({ rev, uplift, fmtK }) {
 
 export default function FanValueModelPage() {
   useDocumentMeta({
-    title: 'What your fans are worth · Laura Cordrey',
+    title: 'Fan Value · What your fans are worth · Laura Cordrey',
     description:
       'A quick estimate of what fan-led growth is worth to your brand each year, built from published benchmarks. Conservative, and it shows its work.',
     canonical: pageUrl('/fan-led-growth-value-model'),
