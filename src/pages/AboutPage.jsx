@@ -97,12 +97,6 @@ export default function AboutPage() {
                 feedback lands in real time. That is{' '}
                 <mark>founder-level experience</mark>, not a job title.
               </p>
-              <p className="about-hero__lede">
-                I could keep doing this inside one company. I&rsquo;ve
-                chosen not to. There is growth waiting in the fans a brand
-                already has, and a new way to market that captures it. That
-                gap is why this practice exists.
-              </p>
             </div>
 
             <figure className="about-hero__portrait">
@@ -199,9 +193,9 @@ export default function AboutPage() {
             Hand me your biggest brand moment, the launch, the drop, the
             thing everyone will be watching, and I&rsquo;ll deliver it{' '}
             <mark>with a cool head</mark>. I&rsquo;ve unveiled my own fan
-            program live on the E3 stage to millions of viewers, and run
-            live events with 500,000 watching at once, owning every part
-            of them. Go big or go home.
+            program live on the E3 stage, with millions watching worldwide,
+            and run live events with 500,000 watching at once, owning every
+            part of them. Go big or go home.
           </p>
         </div>
       </section>
@@ -242,9 +236,8 @@ export default function AboutPage() {
           </ol>
 
           <p className="about-range__close">
-            I&rsquo;ve built in all four. That is what lets me connect them
-            into one system, built for your business and powered by your own
-            fans, and put a number on the whole thing.
+            I&rsquo;ve built in all four. That is what lets me wire them
+            into one engine and put a number on the whole thing.
           </p>
 
           <div className="about-range__cta">
@@ -331,7 +324,8 @@ export default function AboutPage() {
             ))}
           </ul>
           <p className="about-experience__note">
-            These were roles, not just clients. Full history on{' '}
+            These were roles, not just clients. One of them, Azarus, went on
+            to be <strong>acquired by Animoca</strong>. Full history on{' '}
             <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>.
             Case studies on <Link to="/work">Work</Link>.
           </p>
