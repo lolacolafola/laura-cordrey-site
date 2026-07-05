@@ -60,10 +60,10 @@ export default function ServicesPage() {
             end to end.
           </p>
           <p className="svc__body">
-            It starts with a two-to-three-week diagnostic on your real data:
-            your Fan Score, your Fan Value in your own numbers, and a 90-day
-            plan you can run with or without me. Then we build what the
-            score says matters most.
+            It starts with a diagnostic on your real data: your Fan Score,
+            your Fan Value in your own numbers, and a prioritized plan built
+            around your business, that you can run with or without me. Then
+            we build what matters most.
           </p>
           <p className="svc__proof">
             The playbook behind <mark>60M+ UGC views at zero media spend</mark>{' '}
@@ -71,8 +71,8 @@ export default function ServicesPage() {
             hours</mark> at US Mobile.
           </p>
           <p className="svc__meta marker">
-            Diagnostic: 2–3 weeks, fixed fee · then fixed-scope sprints ·
-            pricing on request
+            Fixed-fee diagnostic first · then fixed-scope sprints, scoped to
+            your brand · pricing on request
           </p>
           <div className="svc__ctas">
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary">
