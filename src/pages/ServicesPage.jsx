@@ -93,14 +93,15 @@ export default function ServicesPage() {
             Sentiment <em className="accent">SOS</em>.
           </h2>
           <p className="svc__body">
-            Reviews turned? Community angry, support swamped, every update
-            landing worse than the last? I did this job for a AAA
-            live-service game with 15 million players, holding{' '}
-            <mark>an average of 85% positive sentiment</mark>. I take the raw
-            sentiment, get inside your product, your roadmap and your
-            business objectives, and hand you one usable recovery roadmap:
-            the product fixes and the communications that address what is
-            driving it.
+            Reviews turned? Community frustrated, every update landing worse
+            than the last? I turn what your community is saying into{' '}
+            <mark>one recovery roadmap</mark>: the product fixes and the
+            communications that address what is actually driving it. Not a
+            listening report. A plan your team can ship, built on the system
+            I ran for a 15-million-player live-service community.
+          </p>
+          <p className="svc__meta marker">
+            Moves: positive sentiment · review scores · churn · support load
           </p>
           <p className="svc__meta marker">
             Bounded and fast · project-priced · pricing on request
@@ -125,11 +126,13 @@ export default function ServicesPage() {
           </h2>
           <p className="svc__body">
             A launch, a drop, a reveal on the calendar that has to land? I
-            have unveiled a fan program <mark>live on the E3 stage</mark> and
-            turned a free SIM kit into a sold-out $32K drop. I design the
-            moment end to end, build the advocacy in so it travels on your
-            fans, and wire in the measurement that tells you what it was
-            worth.
+            design the moment end to end and build the advocacy in, so it{' '}
+            <mark>travels on your fans instead of your media budget</mark>,
+            and leaves you with more fans than you started with. Measurement
+            is wired in, so you know what the moment was worth.
+          </p>
+          <p className="svc__meta marker">
+            Moves: launch revenue · sell-through · earned reach · new fans
           </p>
           <p className="svc__meta marker">
             Fixed-scope project, priced per moment · pricing on request
@@ -154,9 +157,13 @@ export default function ServicesPage() {
           </h2>
           <p className="svc__body">
             Have the team to build, but want senior direction so they build
-            the right things? I set the strategy, review the work in flight,
-            and upskill your team to run fan-led growth without me.{' '}
-            <mark>Your team ships, with my judgment behind it</mark>.
+            the right things? I set the fan-led growth strategy, review the
+            work in flight, and upskill your team to run it without me.{' '}
+            <mark>Your team ships, measured against the numbers a board
+            cares about</mark>.
+          </p>
+          <p className="svc__meta marker">
+            Moves: LTV:CAC · cohort retention · % organic-sourced growth
           </p>
           <p className="svc__meta marker">
             Strategy sprint or ongoing advisory · pricing on request
