@@ -27,12 +27,12 @@ export default function ServicesPage() {
         <div className="container services-hero__inner">
           <span className="marker">Work with me</span>
           <h1 className="services-hero__title">
-            Build the <em className="accent">whole engine</em>,<br />
-            or the one part holding you back.
+            Four ways to grow with the{' '}
+            <em className="accent">fans you already have</em>.
           </h1>
           <p className="services-hero__lede">
-            I turn the fans you already have into growth you can measure.
-            Four ways in.
+            Build the whole engine, or just the one part holding you back.
+            Every way in ends in growth you can measure.
           </p>
           <div className="services-hero__ctas">
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
