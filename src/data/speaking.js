@@ -104,10 +104,12 @@ export const speakingSections = [
   },
 ]
 
-// Derived: first clip from Stage / Studio / Livestream — used by
-// AboutPage as the 3-up teaser gallery.
+// Derived: first clip from Stage / Studio / Live — used by AboutPage as
+// the 3-up teaser gallery. Live (Inside Xbox) sits in the trio instead of
+// Livestream: Laura wants the on-air TV moment surfaced on About, not the
+// community stream. Everything is still linkable from /speaking.
 export const featuredSpeaking = speakingSections
-  .filter((s) => ['stage', 'studio', 'livestream'].includes(s.key))
+  .filter((s) => ['stage', 'studio', 'live'].includes(s.key))
   .map((s) => ({ ...s.clips[0], format: s.title }))
 
 // Voice over example — a video Laura made for another company.

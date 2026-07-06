@@ -220,4 +220,20 @@ html { scroll-behavior: smooth; }
   padding: 0 clamp(20px, 5vw, 64px) clamp(32px, 4vw, 48px);
   font-size: 0.78rem;
   color: #5E564E;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.cinfoot__sep {
+  color: #4A4239;
+}
+.cinfoot__contact {
+  color: rgba(239, 233, 220, 0.6);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cinfoot__contact:hover {
+  color: #D4C896;
 }

@@ -1,268 +1,814 @@
 /* ───────────────────────────────────────────────────────────
  * ABOUT PAGE
- * Bio + range + speaking + career + expertise + education
+ * Editorial layout: hero + intro, "gap" argument, three story
+ * beats (storytelling, community, big moments), how-I-work-now,
+ * four disciplines, speaking teaser, selected experience, close.
+ * Alternating band grounds (dark → deep → dark → grey → oxblood
+ * → dark → bone → dark → deep → oxblood finale). Design ref:
+ * design_handoff_final_pass/about/.
+ *
+ * NOTE: The .about-speaking* block near the bottom is shared with
+ * SpeakingPage.jsx (which imports this file). Do NOT remove those
+ * classes when tidying — they power the full speaking reel.
  * ─────────────────────────────────────────────────────────── */
 
-/* ─── HERO ────────────────────────────────────────────────── */
+/* ─── BAND SYSTEM ─────────────────────────────────────────── */
+.about-band {
+  padding: clamp(72px, 9vw, 128px) 0;
+  border-top: 1px solid var(--hairline);
+  position: relative;
+}
+.about-band--deep {
+  background: var(--bg-deep);
+  border-top: 0;
+}
+.about-band--grey {
+  background: #2D2723;
+  border-top: 0;
+}
+.about-band--ox {
+  background: #A12A1E;
+  color: #FBF3E4;
+  border-top: 0;
+}
+.about-band--bone {
+  background: var(--surface);
+  color: var(--ink-on-surface);
+  border-top: 0;
+}
+
+/* ─── HALO + SPARKLES (decoration) ────────────────────────── */
+.about-halo {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.about-halo--tr {
+  top: -25%;
+  right: -15%;
+  background: radial-gradient(circle, rgba(200, 54, 43, 0.16), transparent 65%);
+}
+.about-halo--bl {
+  bottom: -30%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(21, 17, 15, 0.25), transparent 65%);
+}
+.about-sparkles {
+  position: absolute;
+  top: 5rem;
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.about-sparkle {
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1;
+}
+.about-sparkles--gold .about-sparkle { color: #E7D9AD; }
+
+/* ─── HERO ────────────────────────────────────────────────────
+ * Inside-page hero, matching Services + Methodology: small eyebrow
+ * with a hairline under it, display-l title (not xl), tight
+ * vertical rhythm. Portrait retained on the right at desktop.
+ * ───────────────────────────────────────────────────────────── */
 .about-hero {
   padding-top: var(--space-7);
   padding-bottom: var(--space-9);
   border-bottom: 1px solid var(--hairline);
+  position: relative;
 }
 .about-hero__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--hairline);
   margin-bottom: var(--space-7);
-  gap: var(--space-4);
-  flex-wrap: wrap;
 }
-.about-hero__top-right { color: var(--accent); }
-
-/* Two-column hero — text on the left, portrait on the right */
-.about-hero__split {
+.about-hero__grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
-  gap: var(--space-8);
-  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
 }
-.about-hero__text {
+.about-hero__col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 .about-hero__title {
   font-size: var(--fs-display-l);
+  font-weight: 800;
   line-height: 1.05;
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
   margin: 0;
 }
-/* mark styles inherited from base.css (animated gradient text) */
-.about-hero__kicker {
-  font-size: var(--fs-body);
-  color: var(--accent);
-  font-weight: 700;
-  margin: 0;
-}
-.about-hero__lede {
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  max-width: 50ch;
-  line-height: 1.55;
-  margin: 0;
-}
-.about-hero__lede mark {
-  /* mark styles inherited from base.css (animated gradient text) */
-}
-.about-hero__sublede {
-  font-size: var(--fs-body);
-  color: var(--ink-muted);
-  max-width: 42ch;
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-4);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.about-hero__portrait {
-  margin: 0;
-  position: sticky;
-  top: 100px;
-  aspect-ratio: 4 / 5;
+.about-hero {
+  position: relative;
   overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid var(--hairline-strong);
-  background: var(--bg-deep);
+}
+.about-hero > .container { position: relative; z-index: 1; }
+/* Fix 3: soft red radial halo behind the portrait column — one restrained
+ * focal device so the top of the page isn't dead-flat. Sits at hero level
+ * so it bleeds around the portrait, ~16% opacity, feathered out. */
+.about-hero__halo {
+  position: absolute;
+  top: -10%;
+  right: -8%;
+  width: 46vw;
+  height: 46vw;
+  max-width: 620px;
+  max-height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 54, 43, 0.18), transparent 62%);
+  pointer-events: none;
+  z-index: 0;
 }
 .about-hero__portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 18%;
   display: block;
 }
-
-@media (max-width: 860px) {
-  .about-hero__split { grid-template-columns: 1fr; }
-  .about-hero__portrait { position: static; max-width: 70%; }
-}
-
-/* ─── RANGE / THE BRIDGE ──────────────────────────────────── */
-.about-range {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-}
-.about-range .section-head {
-  /* Disciplines grid below already has a top border; drop the
-     section-head's bottom border so we don't stack two hairlines. */
-  border-bottom: 0;
-  margin-bottom: var(--space-6);
-}
-.about-range__lede {
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  line-height: 1.55;
-  margin: var(--space-3) 0 0;
-  max-width: 56ch;
-}
-.about-range__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-.about-range__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-4);
-  border-right: 1px solid var(--hairline);
-}
-.about-range__item:last-child { border-right: 0; }
-.about-range__mark {
-  color: var(--accent);
-  font-size: 1.1rem;
-}
-.about-range__word {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  line-height: 1;
-  color: var(--ink);
-  font-weight: 800;
-}
-.about-range__note {
-  color: var(--ink-muted);
-  font-size: var(--fs-small);
-}
-@media (max-width: 860px) {
-  .about-range__list { grid-template-columns: repeat(2, 1fr); }
-  .about-range__item:nth-child(2n) { border-right: 0; }
-  .about-range__item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
-}
-
-.about-range__close {
-  margin-top: var(--space-6);
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  line-height: 1.6;
-  max-width: 64ch;
-}
-.about-range__cta {
+.about-intro {
   margin-top: var(--space-7);
-  display: flex;
-  justify-content: flex-start;
+  max-width: 52rem;
+  position: relative;
 }
-
-/* ─── PROSE SPOTLIGHTS (gap / storyteller / worlds / sentiment /
- *     big moment) — narrative identity blocks. Alternating surface
- *     so the stacked blocks don't read as one wall of text. ─────── */
-.about-prose {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
-  border-top: 1px solid var(--hairline);
-}
-.about-prose--alt { background: var(--bg-deep); }
-.about-prose__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 66rem;
-}
-.about-prose__title {
-  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+.about-intro__lede {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.5;
   color: var(--ink);
-  margin: var(--space-1) 0 0;
-  max-width: 22ch;
-  text-wrap: balance;
-}
-.about-prose__copy {
-  font-size: var(--fs-body-l);
-  line-height: 1.62;
-  color: var(--ink-muted);
-  max-width: 64ch;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   margin: 0;
 }
-.about-prose__copy mark {
+.about-intro__lede mark {
   background: transparent;
+  color: var(--accent);
+  font-weight: 800;
+}
+.about-intro__sub {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--space-5) 0 0;
+  max-width: 44rem;
+}
+.about-intro__sub strong {
   color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
+  font-weight: 800;
 }
 
-/* ─── SELECTED EXPERIENCE (dark logo band) ────────────────────── */
-.about-experience {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
+/* ─── IN-HERO PROOF STRIP ─────────────────────────────────── */
+.about-proof {
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: var(--space-7);
   border-top: 1px solid var(--hairline);
-  background: #2d2723;
-  color: #efe9dc;
-}
-.about-experience__inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 22px);
+  text-align: center;
 }
-.about-experience__marker { color: #d4c896; }
-.about-experience__title {
-  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  color: #efe9dc;
-  margin: var(--space-1) 0 0;
+.about-proof__rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--edge);
 }
-.about-experience__logos {
+.about-proof__kick {
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+.about-proof__logos {
   list-style: none;
-  margin: var(--space-7) 0 0;
   padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 920px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: center;
   justify-items: center;
-  gap: var(--space-6) var(--space-6);
-  width: 100%;
-  max-width: 860px;
+  gap: clamp(18px, 2vw, 32px) clamp(24px, 3vw, 48px);
 }
-.about-experience__cell {
+.about-proof__cell {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 72px;
 }
-.about-experience__logos img {
-  max-height: 46px;
+.about-proof__cell img {
+  max-height: 56px;
   width: auto;
   object-fit: contain;
-  opacity: 0.92;
+  transition: transform var(--transition);
 }
-.about-experience__note {
-  margin-top: var(--space-7);
-  font-size: var(--fs-body);
-  color: rgba(239, 233, 220, 0.72);
+.about-proof__cell:hover img {
+  transform: scale(1.03);
 }
-.about-experience__note a {
-  color: #efe9dc;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.about-proof__note {
+  margin-top: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
 }
-@media (max-width: 720px) {
-  .about-experience__logos {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6) var(--space-5);
-  }
-  /* 3 + 2: center the trailing two on their own row */
-  .about-experience__cell:nth-child(4) { grid-column: 1 / 2; }
+.about-proof__note a {
+  color: var(--edge);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 200, 150, 0.32);
+  padding-bottom: 1px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.about-proof__note a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
 }
 
-/* ─── SPEAKING ────────────────────────────────────────────── */
+/* ─── MANIFESTO (§2 chapter opener) ───────────────────────── */
+.about-manifesto .about-manifesto__inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  text-align: center;
+}
+.about-manifesto__kick {
+  color: var(--edge);
+  align-self: center;
+}
+.about-manifesto__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0;
+}
+.about-manifesto__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  text-align: left;
+}
+.about-manifesto__body p {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: 0;
+}
+.about-manifesto__body p strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+/* Fix 1: on the bone ground, the manifesto reads dark on light —
+ * override token colors and use the red mark treatment. */
+.about-band--bone.about-manifesto .about-manifesto__kick { color: var(--accent); }
+.about-band--bone.about-manifesto .about-manifesto__title { color: var(--ink-on-surface); }
+.about-band--bone.about-manifesto .about-manifesto__body p { color: var(--ink-muted-on-surface); }
+.about-band--bone.about-manifesto .about-manifesto__body p strong { color: var(--ink-on-surface); }
+
+/* ─── EDITORIAL SPLIT (gap + 3 story beats) ───────────────── */
+.about-eng {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.about-eng__left {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+.about-eng__kick {
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+.about-eng__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin: 0;
+}
+.about-eng__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  /* Push the first paragraph down so it aligns with the H2 in the sticky
+   * left column, not the kicker. The 0.75rem accounts for the kicker's
+   * line-height + gap. Reset to 0 in the 900px collapse. */
+  padding-top: calc(0.75rem + var(--space-5));
+}
+.about-eng__right p {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 40rem;
+  margin: 0;
+}
+.about-eng__right p strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+/* Oxblood story-03 overrides — kicker cream, body cream, forced-cream mark */
+.about-band--ox .about-eng__kick { color: #E7D9AD; }
+.about-band--ox .about-eng__right p { color: rgba(251, 243, 228, 0.88); }
+.about-band--ox .about-eng__right p strong { color: #FBF3E4; }
+.about-eng__mark--cream {
+  color: #FBF3E4 !important;
+}
+
+/* ─── PULLS (stat row inside a story's right column) ──────── */
+.about-pulls {
+  display: flex;
+  gap: clamp(2rem, 5vw, 4rem);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-5);
+  margin-top: var(--space-3);
+}
+.about-pull b {
+  display: block;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+}
+.about-pull span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  max-width: 16rem;
+}
+.about-band--ox .about-pulls { border-top-color: rgba(251, 243, 228, 0.25); }
+.about-band--ox .about-pull b { color: #FBF3E4; }
+.about-band--ox .about-pull span { color: rgba(251, 243, 228, 0.8); }
+
+/* ─── §4 IMAGE-LEFT SPLIT (community, true mirror) ──────────
+ * Fix 4: art plate anchors the LEFT column (4:5), editorial (kicker,
+ * red-marked title, prose, side-by-side pulls) sits RIGHT in the wider
+ * column. Same 5fr/7fr rhythm as .about-eng, but with image-first order. */
+.about-imgsplit {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.about-imgsplit__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.about-imgsplit__content .about-eng__kick {
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+.about-imgsplit__content .about-eng__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin: 0;
+}
+.about-imgsplit__content p {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 40rem;
+  margin: 0;
+}
+.about-imgsplit__content p strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+.about-imgsplit__content .about-pulls {
+  display: flex;
+  gap: var(--space-5);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-5);
+  margin-top: var(--space-3);
+}
+.about-imgsplit__content .about-pull {
+  flex: 1;
+  min-width: 0;
+}
+.about-imgsplit__content .about-pull span { max-width: 13rem; }
+
+/* ─── ART PLATES (inline SVG imagery, animate on view) ─────
+ * Two formats: wide 21:9 (worlds, closes §3 full-width) and portrait
+ * 4:5 (watchtower, anchors §4 left column). Animation classes toggle
+ * only after IntersectionObserver adds `.artplay`; static under
+ * prefers-reduced-motion.  */
+.about-artplate-wrap { margin-top: var(--space-8); }
+.about-artplate {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #15110F;
+}
+.about-artplate--wide { aspect-ratio: 21 / 9; }
+.about-artplate--tower { aspect-ratio: 4 / 5; background: #1B1512; }
+.about-artplate__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.about-artplate__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-6);
+  background: linear-gradient(transparent, rgba(14, 11, 9, 0.9));
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+.about-artplate--tower .about-artplate__cap { padding: var(--space-5); }
+.about-artplate__cap b {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+.about-artplate--tower .about-artplate__cap b { font-size: 1rem; }
+.about-artplate__cap span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+
+/* Wide plate (§3 "worlds") — worlds animation set */
+.about-artplate.artplay .a-contour path {
+  stroke-dasharray: 1100;
+  stroke-dashoffset: 1100;
+  animation: aboutDraw 3s cubic-bezier(.16,.84,.44,1) forwards;
+}
+.about-artplate.artplay .a-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aboutSunPulse 6s ease-in-out infinite;
+}
+.about-artplate.artplay .a-stars circle { animation: aboutTwinkle 3s ease-in-out infinite; }
+.about-artplate.artplay .a-stars circle:nth-child(2n) { animation-duration: 4s; animation-delay: .6s; }
+.about-artplate.artplay .a-stars circle:nth-child(3n) { animation-duration: 2.4s; animation-delay: 1.1s; }
+.about-artplate.artplay .a-ember circle { animation: aboutEmber 6s ease-in-out infinite; }
+.about-artplate.artplay .a-ember circle:nth-child(2n) { animation-duration: 8s; animation-delay: 1.2s; }
+.about-artplate.artplay .a-ember circle:nth-child(3n) { animation-duration: 7s; animation-delay: 2.2s; }
+.about-artplate .a-shoot,
+.about-artplate .a-shoot2 { opacity: 0; }
+.about-artplate.artplay .a-shoot { animation: aboutShoot 9s linear 2s infinite; }
+.about-artplate.artplay .a-shoot2 { animation: aboutShoot 12s linear 6.5s infinite; }
+
+/* Watchtower plate (§4) — rings, sweep, red blip */
+.about-artplate.artplay .a-rings circle {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: aboutDraw 2.4s cubic-bezier(.16,.84,.44,1) forwards;
+}
+.about-artplate .a-sweep {
+  transform-box: view-box;
+  transform-origin: 240px 310px;
+}
+.about-artplate.artplay .a-sweep { animation: aboutOrbit 7s linear infinite; }
+.about-artplate .a-node { opacity: 0; }
+.about-artplate.artplay .a-node { animation: aboutFade 1s ease-out .9s forwards; }
+.about-artplate .a-red { opacity: 0; }
+.about-artplate.artplay .a-red { animation: aboutFade .6s ease-out 1.5s forwards; }
+.about-artplate.artplay .a-red circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aboutRedPulse 2.6s ease-in-out 2.1s infinite;
+}
+.about-artplate .a-blipring { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.about-artplate.artplay .a-blipring { animation: aboutBlip 2.4s ease-out 1s infinite; }
+
+@keyframes aboutDraw { to { stroke-dashoffset: 0; } }
+@keyframes aboutFade { to { opacity: 1; } }
+@keyframes aboutTwinkle { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+@keyframes aboutSunPulse { 0%, 100% { opacity: .82; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+@keyframes aboutRedPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
+@keyframes aboutOrbit { to { transform: rotate(360deg); } }
+@keyframes aboutBlip {
+  0% { transform: scale(.4); opacity: .9; }
+  80% { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes aboutEmber {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: .85; }
+  60% { opacity: .45; }
+  100% { transform: translateY(-48px); opacity: 0; }
+}
+@keyframes aboutShoot {
+  0% { transform: translate(0, 0); opacity: 0; }
+  2% { opacity: 1; }
+  14% { transform: translate(-300px, 130px); opacity: 0; }
+  100% { transform: translate(-300px, 130px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-artplate *,
+  .about-artplate.artplay * {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ─── HOW I WORK NOW · magic quote block ──────────────────── */
+.about-magic {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-6);
+  max-width: 46rem;
+}
+.about-magic p {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+.about-magic p mark {
+  background: transparent;
+  color: var(--accent);
+  font-weight: 800;
+}
+.about-magic__tail {
+  color: var(--ink-muted);
+  margin-top: 1.25rem !important;
+}
+
+/* ─── FOUR DISCIPLINES (bone, 4-col hairline grid) ────────── */
+.about-disc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hairline-dark);
+}
+.about-disc__item {
+  background: var(--surface);
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.about-disc__icon {
+  display: inline-flex;
+  color: var(--accent);
+}
+.about-disc__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.about-disc__title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ink-on-surface);
+  margin: 0;
+}
+.about-disc__note {
+  font-size: 0.9rem;
+  color: var(--ink-muted-on-surface);
+  line-height: 1.55;
+  margin: 0;
+}
+.about-disc__close {
+  margin-top: var(--space-6);
+  font-size: var(--fs-body-l);
+  color: var(--ink-muted-on-surface);
+  max-width: 44rem;
+  line-height: 1.55;
+}
+.about-disc__close strong {
+  color: var(--ink-on-surface);
+  font-weight: 800;
+}
+/* Bone-band section-head marker is red, not gold — matches Services v5. */
+.about-band--bone .marker { color: var(--accent); }
+.about-band--bone .section-head__title { color: var(--ink-on-surface); }
+
+/* ─── SPEAKING TEASER (3-col talk cards) ─────────────────── */
+.about-talks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+.about-talk {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.about-talk:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.about-talk__thumb {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #171310;
+}
+.about-talk__thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
+}
+.about-talk:hover .about-talk__thumb img {
+  transform: scale(1.03);
+}
+.about-talk__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.about-talk__play::after {
+  content: "";
+  border-style: solid;
+  border-width: 8px 0 8px 13px;
+  border-color: transparent transparent transparent var(--surface);
+  margin-left: 3px;
+}
+.about-talk__cap {
+  padding: var(--space-5);
+  display: block;
+}
+.about-talk__venue {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+.about-talk__title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-top: 0.35rem;
+  color: var(--ink);
+}
+.about-talks__foot {
+  margin-top: var(--space-7);
+}
+
+/* ─── TEXT LINKS (gold on dark; cream on oxblood) ─────────── */
+.about-txtlink {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--edge);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 200, 150, 0.32);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.about-txtlink:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+.about-txtlink--cream {
+  color: #E7D9AD;
+  border-bottom-color: rgba(231, 217, 173, 0.4);
+}
+.about-txtlink--cream:hover {
+  color: #FBF3E4;
+  border-bottom-color: #FBF3E4;
+}
+
+/* ─── FINALE (oxblood centered) ───────────────────────────── */
+.about-close {
+  padding: clamp(88px, 11vw, 150px) 0;
+  text-align: center;
+  overflow: hidden;
+}
+.about-close__inner {
+  position: relative;
+}
+.about-close__kick {
+  color: #E7D9AD;
+  display: inline-block;
+}
+.about-close__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #FBF3E4;
+  max-width: 20ch;
+  margin: var(--space-4) auto 0;
+  text-wrap: balance;
+}
+.about-close__line {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: rgba(251, 243, 228, 0.88);
+  max-width: 38rem;
+  margin: 1.5rem auto 2.5rem;
+}
+.about-close__ctas {
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* Cream primary button (inverted red-on-cream) on oxblood ground. */
+.about-close__primary {
+  background: #FBF3E4;
+  border-color: #FBF3E4;
+  color: #A12A1E;
+}
+.about-close__primary:hover {
+  background: #E7D9AD;
+  border-color: #E7D9AD;
+  color: var(--bg);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-hero__grid { grid-template-columns: 1fr; }
+  .about-hero__portrait { max-width: 20rem; }
+  .about-eng { grid-template-columns: 1fr; }
+  .about-eng__left { position: static; }
+  .about-eng__right { padding-top: 0; }
+  .about-imgsplit { grid-template-columns: 1fr; }
+  .about-imgsplit__content .about-pulls { flex-wrap: wrap; }
+  .about-disc { grid-template-columns: repeat(2, 1fr); }
+  .about-talks { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .about-disc { grid-template-columns: 1fr; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * SPEAKING PAGE STYLES (imported by SpeakingPage.jsx)
+ * These classes power the full keynote & on-camera reel on
+ * /speaking. DO NOT REMOVE — Speaking imports this file.
+ * ───────────────────────────────────────────────────────────── */
+
 .about-speaking {
   padding-top: var(--space-9);
   padding-bottom: var(--space-9);
@@ -315,7 +861,6 @@
   }
 }
 
-/* Each item: video on top, headline + description underneath */
 .about-speaking__item {
   display: flex;
   flex-direction: column;
@@ -337,7 +882,6 @@
   display: block;
 }
 
-/* Placeholder while no YouTube ID is wired in */
 .about-speaking__placeholder {
   width: 100%;
   height: 100%;
@@ -429,7 +973,6 @@
   }
 }
 
-/* ─── REEL (small grid of short videos) ─────────────────── */
 .about-speaking__reel {
   margin-top: var(--space-9);
   display: flex;
@@ -514,175 +1057,20 @@
   display: flex;
   justify-content: flex-start;
 }
-
-/* ─── CAREER ─────────────────────────────────────────────── */
-.about-career {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-}
-.about-career__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.about-career__item {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  border-top: 1px solid var(--hairline);
-}
-.about-career__item:last-child { border-bottom: 1px solid var(--hairline); }
-.about-career__range {
-  color: var(--accent);
-  padding-top: var(--space-1);
-}
-.about-career__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.about-career__company {
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1;
-  font-weight: 800;
-}
-.about-career__role {
-  color: var(--ink);
-  font-weight: 600;
-  margin: 0;
-}
-.about-career__note {
-  color: var(--ink-muted);
-  margin: 0;
-  max-width: 70ch;
-}
-@media (max-width: 720px) {
-  .about-career__item { grid-template-columns: 1fr; gap: var(--space-3); }
-}
-
-/* ─── EXPERTISE ──────────────────────────────────────────── */
-.about-expertise {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-  border-top: 1px solid var(--hairline);
-}
-.about-expertise__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-.about-expertise__chip {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--hairline-strong);
-  border-radius: 999px;
-  background: var(--bg-deep);
-}
-.about-expertise__chip--lead {
-  font-size: 1rem;
-  padding: var(--space-3) var(--space-5);
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
-.about-expertise__also {
+.about-speaking__inquiry {
   margin-top: var(--space-5);
-  color: var(--ink-muted, var(--ink));
-  opacity: 0.75;
-}
-
-/* ─── DETAILS ─────────────────────────────────────────────── */
-.about-details {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-  border-top: 1px solid var(--hairline);
-}
-.about-details__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-7);
-}
-.about-details__list {
-  list-style: none;
-  margin: var(--space-3) 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  font-size: var(--fs-body);
   color: var(--ink-muted);
 }
-@media (max-width: 720px) {
-  .about-details__grid { grid-template-columns: 1fr; gap: var(--space-6); }
-}
-
-/* ─── CTA ─────────────────────────────────────────────────── */
-.about-cta {
-  padding-top: var(--space-9);
-  padding-bottom: var(--space-9);
-  border-top: 1px solid var(--hairline);
-  background: var(--bg-deep);
-}
-.about-cta__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-5);
-}
-.about-cta__title {
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  max-width: 22ch;
-  text-wrap: balance;
-}
-.about-cta__title mark {
-  /* mark styles inherited from base.css (animated gradient text) */
-  font-weight: inherit;
-}
-.about-cta__lede {
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  line-height: 1.55;
-  max-width: 48ch;
-  margin: 0;
-}
-.about-cta__buttons {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
-/* ─── HOW I WORK NOW (Magic) ──────────────────────────────── */
-.about-now {
-  padding: var(--space-8) 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-.about-now__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 64rem;
-}
-.about-now__copy {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.about-now__copy mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-}
-.about-now__copy strong {
+.about-speaking__inquiry a {
   color: var(--ink);
   font-weight: 700;
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: color var(--transition), border-color var(--transition);
+}
+.about-speaking__inquiry a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }

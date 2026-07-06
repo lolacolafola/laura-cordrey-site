@@ -4,16 +4,14 @@ import './Layout.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
+const HELLO_EMAIL = 'hello@lauracordrey.com'
 
-// Top-nav links. About/Services/Work go to their dedicated pages. AI scrolls
-// to the homepage's AI section (no /ai page exists yet — swap this to '/ai'
-// if/when that lands).
 const navLinks = [
   { key: 'about',    label: 'About',    path: '/about',    isHash: false },
   { key: 'services', label: 'Services', path: '/services', isHash: false },
   { key: 'work',     label: 'Work',     path: '/work',     isHash: false },
   { key: 'speaking', label: 'Speaking', path: '/speaking', isHash: false },
-  { key: 'ai',       label: 'AI',       path: '/#ai',      isHash: true  },
+  { key: 'ai',       label: 'AI',       path: '/ai',       isHash: false },
 ]
 
 const footerLinks = [
@@ -25,7 +23,7 @@ const footerLinks = [
   { label: 'Services',  to: '/services' },
   { label: 'Fan Score', to: '/fan-led-growth-audit' },
   { label: 'Fan Value', to: '/fan-led-growth-value-model' },
-  { label: 'AI',        to: '/#ai' },
+  { label: 'AI',        to: '/ai' },
 ]
 
 export default function Layout({ children }) {
@@ -149,6 +147,14 @@ export default function Layout({ children }) {
         </div>
         <div className="cinfoot__copy">
           <span>© {new Date().getFullYear()} Laura Cordrey</span>
+          <span className="cinfoot__sep" aria-hidden="true">·</span>
+          <a href={`mailto:${HELLO_EMAIL}`} className="cinfoot__contact">
+            Say hello <span aria-hidden="true">→</span> {HELLO_EMAIL}
+          </a>
+          <span className="cinfoot__sep" aria-hidden="true">·</span>
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="cinfoot__contact">
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </footer>
     </div>
