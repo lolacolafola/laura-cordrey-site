@@ -95,7 +95,7 @@ export default function Layout({ children }) {
               </svg>
             </a>
             <Link to={CONTACT_URL} className="cinnav__cta">
-              Book a call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -124,7 +124,7 @@ export default function Layout({ children }) {
               )
             ))}
             <Link to={CONTACT_URL} className="cinnav__mcta">
-              Book a 30-min call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </Link>
           </div>
         )}

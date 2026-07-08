@@ -635,7 +635,7 @@ export default function AboutPage() {
           </p>
           <div className="about-close__ctas">
             <a href={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
-              Book a 30-min call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </a>
             <Link to="/work" className="about-txtlink about-txtlink--cream">
               See the case studies <span aria-hidden="true">→</span>

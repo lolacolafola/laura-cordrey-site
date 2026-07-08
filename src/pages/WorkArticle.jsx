@@ -223,7 +223,7 @@ export default function WorkArticle() {
             Let&rsquo;s build one <mark>just like it</mark>.
           </h2>
           <a href={CONTACT_URL} className="btn btn--primary btn--lg">
-            Book a 30-min call <span aria-hidden="true">→</span>
+            Get in touch <span aria-hidden="true">→</span>
           </a>
         </div>
       </section>

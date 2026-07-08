@@ -537,7 +537,7 @@ export default function FanValueModelPage() {
             A ballpark to start. My full Fan Engine audit sizes it on your real numbers.
           </div>
           <a href={CONTACT_URL} className="fvm-btn">
-            Book a call <span className="fvm-btn__arrow" aria-hidden="true">→</span>
+            Get in touch <span className="fvm-btn__arrow" aria-hidden="true">→</span>
           </a>
           <p className="fvm-seclink">
             <Link to="/fan-led-growth-audit">Or see how fan-powered you are today →</Link>

@@ -507,7 +507,7 @@ function Block({ b }) {
             <span className="cscin__kicker">{b.kicker || 'Want this for your brand?'}</span>
             <h2 className="cscin__cta-title" {...html(b.title || "Let’s build one <mark>just like it</mark>.")} />
             <a className="cscin__cta-btn" href={b.href || CONTACT_URL}>
-              {b.label || 'Book a 30-min call'} <span aria-hidden="true">→</span>
+              {b.label || 'Get in touch'} <span aria-hidden="true">→</span>
             </a>
           </Reveal>
         </section>

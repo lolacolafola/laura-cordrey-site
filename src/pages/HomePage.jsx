@@ -370,10 +370,10 @@ export default function HomePage() {
                 Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
               </Link>
               <a href={CONTACT_URL} className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
-                Book a 30-min call <span className="ar" aria-hidden>→</span>
+                Get in touch <span className="ar" aria-hidden>→</span>
               </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free 30-minute intro · or take the 2-minute Fan Score first.</span>
+            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free intro · or take the 2-minute Fan Score first.</span>
           </div>
 
           {/* Edit 5: hero proof strip — hairline top only (no bottom rule so
@@ -474,7 +474,7 @@ export default function HomePage() {
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
               <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-                Book a 30-min call <span className="ar" aria-hidden>→</span>
+                Get in touch <span className="ar" aria-hidden>→</span>
               </a>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me <span className="ar" aria-hidden>→</span>
@@ -568,7 +568,7 @@ export default function HomePage() {
                   Estimate yours <span className="ar" aria-hidden>→</span>
                 </Link>
                 <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
-                  or <a href={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>book a call</a>
+                  or <a href={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>get in touch</a>
                 </span>
               </div>
             </div>
@@ -660,7 +660,7 @@ export default function HomePage() {
 
           <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
             <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-              Book a 30-min call <span className="ar" aria-hidden>→</span>
+              Get in touch <span className="ar" aria-hidden>→</span>
             </a>
             <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
               See all the ways to work <span className="ar" aria-hidden>→</span>
@@ -697,14 +697,14 @@ export default function HomePage() {
             What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
           </h2>
           <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '42ch', margin: 0 }}>
-            Take the 2-minute score, or book a call for a straight read on where you stand.
+            Take the 2-minute score, or get in touch for a straight read on where you stand.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
             <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
               Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
             </Link>
             <a href={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
-              Book a 30-min call <span className="ar" aria-hidden>→</span>
+              Get in touch <span className="ar" aria-hidden>→</span>
             </a>
           </div>
           {/* Just-keeping-tabs LinkedIn line — the dead email-capture form

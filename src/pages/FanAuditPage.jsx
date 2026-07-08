@@ -476,7 +476,7 @@ function LiveResult({ scored, lead, restart }) {
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
       <p className="fa-ctalead">Want it done with you, baselined on your real numbers?</p>
       <div className="fa-cta">
-        <a className="fa-btn" href={CONTACT_URL}>Book a call →</a>
+        <a className="fa-btn" href={CONTACT_URL}>Get in touch →</a>
         <button className="fa-back" onClick={restart}>Retake the audit</button>
       </div>
       <p className="fa-seclink"><Link to="/fan-led-growth-value-model">Or see what the gap is worth →</Link></p>
@@ -762,7 +762,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
         <p className="fa-ctalead">Want the reality check on your real plan, not a self-assessment?</p>
         <div className="fa-cta">
-          <a className="fa-btn" href={CONTACT_URL}>Book a call →</a>
+          <a className="fa-btn" href={CONTACT_URL}>Get in touch →</a>
           <button className="fa-back" onClick={restart}>Retake the audit</button>
         </div>
       </div>

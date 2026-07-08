@@ -40,7 +40,7 @@ export default function ServicesPage() {
           </p>
           <div className="svc-hero__ctas">
             <a href={CONTACT_URL} className="btn btn--primary btn--lg">
-              Book a 30-min call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </a>
             <Link to="/fan-led-growth-audit" className="btn btn--ghost btn--lg">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
@@ -97,7 +97,7 @@ export default function ServicesPage() {
             <span className="svc-eng__kick">01 · The flagship</span>
             <h2 className="svc-eng__title">The Fan Engine.</h2>
             <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Book a call about the Engine <span aria-hidden="true">→</span>
+              Get in touch about the Engine <span aria-hidden="true">→</span>
             </a>
             <Link to="/methodology" className="svc-txtlink">
               How the Engine works <span aria-hidden="true">→</span>
@@ -396,7 +396,7 @@ export default function ServicesPage() {
           </p>
           <div className="svc-finale__ctas">
             <a href={CONTACT_URL} className="btn btn--primary btn--lg">
-              Book a 30-min call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </a>
             <Link to="/fan-led-growth-audit" className="btn btn--lg svc-finale__ghost">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>

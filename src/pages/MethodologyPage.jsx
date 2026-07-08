@@ -230,7 +230,7 @@ export default function MethodologyPage() {
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>
             <a href={CONTACT_URL} className="btn btn--ghost btn--lg">
-              Book a call <span aria-hidden="true">→</span>
+              Get in touch <span aria-hidden="true">→</span>
             </a>
           </div>
           <p className="marker meth-close__back">
