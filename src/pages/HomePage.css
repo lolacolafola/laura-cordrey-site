@@ -16,11 +16,19 @@
 .cin .lgocell:hover { transform: scale(1.06); }
 
 /* ─── Testimonial card ──────────────────────────────────── */
+/* Espresso card on the dark ground: keeps the "comes forward" scale on
+ * hover; the gold top rule brightens rather than switching to dark. */
 .cin .quotecard {
-  transition: transform .3s cubic-bezier(.16,.84,.44,1), border-color .25s ease;
+  transition: transform .3s cubic-bezier(.16,.84,.44,1),
+              border-top-color .25s ease,
+              box-shadow .3s ease;
   transform-origin: center;
 }
-.cin .quotecard:hover { border-top-color: #15110F; transform: scale(1.025); }
+.cin .quotecard:hover {
+  transform: scale(1.025);
+  border-top-color: rgba(212, 200, 150, 0.9);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+}
 
 /* ─── Buttons ───────────────────────────────────────────── */
 .cin a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }

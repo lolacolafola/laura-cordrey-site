@@ -1,642 +1,464 @@
-/* Services page styles.
- * Editorial pattern: alternating dark/bone bands, generous vertical
- * rhythm, hairline rules, no decorative chrome. Reuses .container,
- * .marker, .btn, .section-head from the global system. */
+/* Services page — editorial "Work with me".
+ * Pattern: alternating band grounds (dark → deep → oxblood → grey → bone
+ * → dark → oxblood finale), each offer laid out as a 5fr/7fr grid with a
+ * sticky left column and a scrolling right column carrying the body, the
+ * "you get" line, an inset proof card, and a credit meta line. Copy is
+ * FINAL v5. Design reference: design_handoff_final_pass/services/. */
 
-/* ─── HERO ─────────────────────────────────────────────────── */
-.services-hero {
-  padding: var(--space-10) 0 var(--space-9);
+/* ─── BAND SYSTEM ─────────────────────────────────────────── */
+.svc-band {
+  padding: clamp(72px, 9vw, 128px) 0;
+  border-top: 1px solid var(--hairline);
+  position: relative;
 }
-.services-hero__inner {
+.svc-band--deep {
+  background: var(--bg-deep);
+  padding: var(--space-8) 0;
+}
+.svc-band--ox {
+  background: #A12A1E;
+  color: #FBF3E4;
+  border-top: 0;
+}
+.svc-band--grey {
+  background: #2D2723;
+  border-top: 0;
+}
+.svc-band--bone {
+  background: var(--surface);
+  color: var(--ink-on-surface);
+  border-top: 0;
+}
+
+/* Anchor targets slide clear of the fixed nav. */
+.svc-band[id] { scroll-margin-top: 96px; }
+
+/* ─── HALO (finale decoration) ────────────────────────────── */
+.svc-halo {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.svc-halo--bl {
+  bottom: -30%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(21, 17, 15, 0.25), transparent 65%);
+}
+.svc-sparkles {
+  position: absolute;
+  top: 1.4rem;
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.svc-sparkle {
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1;
+}
+.svc-sparkles--gold .svc-sparkle {
+  color: #E7D9AD;
+}
+
+/* ─── HERO ────────────────────────────────────────────────────
+ * Inside-page hero, matching About/Methodology: small eyebrow
+ * with a hairline under it, display-l title (not xl), tight
+ * vertical rhythm. No decorative sparkles or halo — this hero
+ * lives inside the site, not on the cover.
+ * ───────────────────────────────────────────────────────────── */
+.svc-hero {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+  border-bottom: 1px solid var(--hairline);
+}
+.svc-hero__inner {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  max-width: 64rem;
 }
-.services-hero__title {
-  font-size: var(--fs-display-l);
-  line-height: 0.95;
-  letter-spacing: var(--tracking-tight);
-  margin: var(--space-3) 0 var(--space-4);
-}
-.services-hero__lede {
-  font-size: var(--fs-body-l);
-  line-height: 1.5;
-  color: var(--ink-muted);
-  max-width: 56ch;
-}
-.services-hero__ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  margin-top: var(--space-5);
-}
-
-/* ─── v4 OFFER BLOCKS ──────────────────────────────────────── */
-.svc {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-  scroll-margin-top: 96px;
-}
-.svc--alt {
-  background: var(--bg-deep);
-}
-.svc--flagship {
-  background: var(--surface);
-  color: var(--ink-on-surface);
-}
-.svc--flagship .svc__title,
-.svc--flagship .svc__body,
-.svc--flagship .svc__proof {
-  color: var(--ink-on-surface);
-}
-.svc--flagship .marker {
-  color: var(--ink-muted-on-surface);
-}
-.svc--flagship mark {
-  background: transparent;
-  color: var(--ink-on-surface);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-  font-weight: 800;
-}
-.svc__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 64rem;
-}
-.svc__title {
-  font-size: var(--fs-display-m);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.05;
-  margin: 0;
-}
-.svc__body {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  max-width: 58ch;
-  margin: 0;
-}
-.svc__proof {
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  max-width: 58ch;
-  margin: 0;
-}
-.svc__meta {
-  margin: var(--space-2) 0 0;
-}
-.svc__ctas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4);
-  margin-top: var(--space-3);
-}
-.svc__more {
-  font-weight: 700;
-  color: var(--accent);
-  text-decoration: none;
-}
-.svc__more:hover {
-  text-decoration: underline;
-}
-.svc__note {
-  font-size: var(--fs-body);
-  color: var(--ink-muted);
-}
-.services-close__notsure {
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted);
-  max-width: 56ch;
-  margin: 0 0 var(--space-6);
+.svc-hero__top {
   padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--hairline);
+  margin-bottom: var(--space-3);
 }
-.services-close__notsure a {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* ─── WHAT I DO ────────────────────────────────────────────── */
-.services-what {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-what__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 64rem;
-}
-.services-what__copy {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.services-what__copy mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-}
-
-/* ─── REUSABLE CARD ────────────────────────────────────────── */
-.services-card {
-  background: var(--surface-dim);
-  border: 1px solid var(--hairline-strong);
-  border-radius: var(--radius);
-  padding: var(--space-7);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-.services-card__title {
-  font-size: var(--fs-display-m);
-  letter-spacing: var(--tracking-tight);
+.svc-hero__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
   line-height: 1.05;
-  margin: 0;
-}
-.services-card__outcome {
-  font-size: var(--fs-body-l);
-  line-height: 1.5;
-  color: var(--ink);
-  max-width: 56ch;
-}
-.services-card__label {
-  display: block;
-}
-.services-card__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.services-card__list li {
-  position: relative;
-  padding-left: var(--space-5);
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  color: var(--ink);
-}
-.services-card__list li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--edge);
-  font-size: 0.75rem;
-  top: 0.35rem;
-}
-.services-card__meta {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin: var(--space-3) 0 0;
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--hairline);
-}
-.services-card__meta dt {
-  margin-bottom: var(--space-2);
-}
-.services-card__meta dd {
-  margin: 0;
-  font-size: var(--fs-body);
-  line-height: 1.5;
-  color: var(--ink-muted);
-}
-.services-card__cta {
-  margin-top: var(--space-3);
-}
-
-@media (min-width: 720px) {
-  .services-card__meta {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
-  }
-}
-
-/* ─── WHICH ONE IS YOU (problem router) ────────────────────── */
-.services-fit {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-fit__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-.services-fit__grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-}
-@media (min-width: 720px) {
-  .services-fit__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.services-fit__card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  height: 100%;
-  padding: var(--space-6);
-  border: 1px solid var(--hairline-strong);
-  border-radius: var(--radius);
-  background: var(--surface-dim);
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.services-fit__card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-.services-fit__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.services-fit__name {
-  font-size: var(--fs-display-m);
   letter-spacing: var(--tracking-tight);
-  line-height: 1.05;
+  text-wrap: balance;
   margin: 0;
 }
-.services-fit__tag {
-  color: var(--accent);
-  white-space: nowrap;
-}
-.services-fit__line {
-  font-size: var(--fs-body);
-  line-height: 1.5;
-  color: var(--ink-muted);
-  margin: 0;
-  max-width: 48ch;
-}
-.services-fit__symptom {
+.svc-hero__lede {
   font-size: var(--fs-body-l);
-  line-height: 1.45;
-  margin: 0;
-  max-width: 44ch;
-}
-.services-fit__fitlabel {
-  display: block;
-  margin-bottom: var(--space-2);
-}
-.services-fit__offer {
-  color: var(--accent);
-  margin-top: auto;
-}
-
-/* ─── THE FAN ENGINE (feature band) ────────────────────────── */
-.services-engine {
-  padding: var(--space-9) 0;
-  background: var(--surface);
-  color: var(--ink-on-surface);
-}
-.services-engine .section-head__title,
-.services-engine .section-head__lede {
-  color: var(--ink-on-surface);
-}
-.services-engine .section-head__lede {
-  color: var(--ink-muted-on-surface);
-}
-.services-engine .marker {
-  color: var(--ink-muted-on-surface);
-}
-.services-engine .services-card--feature .marker {
-  color: var(--ink-muted);
-}
-.services-engine__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-}
-.services-engine .services-moves {
-  margin: 0;
-}
-.services-moves--five {
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) {
-  .services-moves--five {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (min-width: 1080px) {
-  .services-moves--five {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .services-moves--five .services-moves__name {
-    font-size: var(--fs-body-l);
-    font-weight: 800;
-  }
-}
-.services-modes__label {
-  display: block;
-  margin-bottom: var(--space-4);
-}
-.services-trio {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-}
-@media (min-width: 880px) {
-  .services-trio {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-.services-card--mode {
-  padding: var(--space-6);
-  gap: var(--space-3);
-}
-
-/* ─── OFFER SECTIONS (Consulting / Fan Moments) ────────────── */
-.services-offer {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-offer--alt {
-  background: var(--bg-deep);
-}
-.services-offer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  max-width: 72rem;
-}
-.services-card__cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-}
-
-/* ─── SOS CTA ──────────────────────────────────────────────── */
-.services-signature__cta {
-  margin-top: var(--space-7);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-.services-signature__ctanote {
-  font-size: var(--fs-body);
-  color: var(--ink-muted);
-}
-
-/* ─── OBJECTION ────────────────────────────────────────────── */
-.services-objection {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-objection__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 64rem;
-}
-.services-objection__q {
-  font-size: var(--fs-display-m);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.1;
-  margin: 0;
-}
-.services-objection__a {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.services-objection__a mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-}
-
-/* ─── DIAGNOSTIC (feature card) ────────────────────────────── */
-.services-diagnostic {
-  padding: var(--space-9) 0;
-  background: var(--surface);
-  color: var(--ink-on-surface);
-}
-.services-diagnostic .section-head__title,
-.services-diagnostic .section-head__lede {
-  color: var(--ink-on-surface);
-}
-.services-diagnostic .section-head__lede {
-  color: var(--ink-muted-on-surface);
-}
-.services-diagnostic .marker {
-  color: var(--ink-muted-on-surface);
-}
-.services-card--feature {
-  background: var(--bg);
-  color: var(--ink);
-  border-color: var(--bg-deep);
-}
-.services-card--feature .services-card__meta dd {
-  color: var(--ink-muted);
-}
-
-/* ─── BUILD + EMBEDDED ─────────────────────────────────────── */
-.services-deeper {
-  padding: var(--space-9) 0;
-}
-.services-pair {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-@media (min-width: 880px) {
-  .services-pair {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ─── SIGNATURE: SENTIMENT-TO-ROADMAP ──────────────────────── */
-.services-signature {
-  padding: var(--space-9) 0;
-  background: var(--bg-deep);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-.services-moves {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-8);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-  counter-reset: move;
-}
-@media (min-width: 720px) {
-  .services-moves {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.services-moves__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--hairline);
-}
-.services-moves__num {
-  color: var(--edge);
-}
-.services-moves__name {
-  font-size: var(--fs-display-m);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.05;
-  margin: 0;
-}
-.services-moves__body {
-  font-size: var(--fs-body);
   line-height: 1.55;
   color: var(--ink-muted);
   max-width: 50ch;
-}
-.services-signature__meta {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-  max-width: 72rem;
-}
-.services-signature__meta p {
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.services-signature__meta .marker {
-  display: block;
-  margin-bottom: var(--space-2);
-}
-.services-signature__meta mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-}
-
-/* ─── INTRO CALL (low-commitment door) ─────────────────────── */
-.services-intro-call {
-  padding: var(--space-9) 0;
-}
-.services-intro-call__inner {
-  display: flex;
-  justify-content: center;
-}
-.services-intro-call__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 56rem;
-  text-align: left;
-  padding: var(--space-7);
-  border: 1px solid var(--hairline-strong);
-  border-radius: var(--radius);
-}
-.services-intro-call__copy {
-  font-size: var(--fs-body-l);
-  line-height: 1.5;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.services-intro-call__body .btn {
-  align-self: flex-start;
-  margin-top: var(--space-3);
-}
-
-/* ─── WHY ONE PERSON ───────────────────────────────────────── */
-.services-why {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-why__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 64rem;
-}
-.services-why__copy {
-  font-size: var(--fs-display-m);
-  line-height: 1.2;
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink);
-  max-width: 38ch;
-}
-.services-why__copy mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 4px;
-}
-
-/* ─── PROOF ────────────────────────────────────────────────── */
-.services-proof {
-  padding: var(--space-9) 0;
-  border-top: 1px solid var(--hairline);
-}
-.services-proof__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 64rem;
-}
-.services-proof__copy {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 60ch;
-}
-.services-proof__copy mark {
-  background: transparent;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-}
-.services-proof__inner .btn {
-  align-self: flex-start;
-}
-
-/* ─── CLOSE ────────────────────────────────────────────────── */
-.services-close {
-  padding: var(--space-10) 0;
-  border-top: 1px solid var(--hairline);
-  text-align: left;
-}
-.services-close__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 64rem;
-}
-.services-close__title {
-  font-size: var(--fs-display-l);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.0;
   margin: 0;
 }
-.services-close__line {
-  font-size: var(--fs-body-l);
-  line-height: 1.5;
-  color: var(--ink-muted);
-  max-width: 56ch;
-}
-.services-close__ctas {
+.svc-hero__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
   margin-top: var(--space-3);
+}
+
+/* ─── ENGAGEMENT INDEX ───────────────────────────────────── */
+.svc-index {
+  display: flex;
+  flex-direction: column;
+}
+.svc-index__row {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto auto;
+  gap: var(--space-5);
+  align-items: baseline;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--hairline);
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+.svc-index__row:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+.svc-index__n {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.svc-index__nm {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  transition: transform var(--transition);
+}
+.svc-index__one {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  max-width: 24rem;
+  text-align: right;
+}
+.svc-index__arr {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: transform var(--transition);
+}
+.svc-index__row:hover .svc-index__nm { transform: translateX(6px); }
+.svc-index__row:hover .svc-index__arr { transform: translateX(4px); }
+
+/* ─── OFFER SECTION (editorial 2-col) ────────────────────── */
+.svc-eng {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.svc-eng__left {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.svc-eng__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.svc-eng__kick {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+.svc-eng__kick--accent {
+  color: var(--accent);
+}
+.svc-eng__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin: 0;
+}
+.svc-eng__cta {
+  margin-top: var(--space-3);
+  box-shadow: 0 10px 30px rgba(200, 54, 43, 0.35);
+}
+.svc-band--ox .svc-eng__cta {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
+}
+
+.svc-eng__body {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 38rem;
+  margin: 0;
+}
+.svc-eng__body strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.svc-youget {
+  font-size: var(--fs-body-l);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 38rem;
+  margin: 0;
+}
+.svc-youget strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ─── PROOF CARD (inset cream, cascade-safe) ──────────────── */
+.svc-proofcard {
+  background: #FCFAF3;
+  border: 1px solid rgba(21, 17, 15, 0.1);
+  border-radius: 3px;
+  padding: var(--space-5) var(--space-6);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+  max-width: 38rem;
+  margin-top: var(--space-3);
+}
+.svc-proofcard__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.svc-eng__right .svc-proofcard p {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-on-surface);
+  max-width: none;
+  margin: 0;
+}
+.svc-eng__right .svc-proofcard p strong {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+/* Cascade override — the band's ink rule on --ox and --bone otherwise wins
+ * and turns the proof-card text into cream on cream. This selector must be
+ * at least as specific as the band rule; keep the extra depth. */
+.svc-band--ox .svc-eng__right .svc-proofcard p,
+.svc-band--bone .svc-eng__right .svc-proofcard p {
+  color: var(--ink-on-surface);
+}
+.svc-band--ox .svc-eng__right .svc-proofcard p strong,
+.svc-band--bone .svc-eng__right .svc-proofcard p strong {
+  color: var(--accent-deep);
+}
+
+/* ─── CREDIT META ─────────────────────────────────────────── */
+.svc-credit {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-5);
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 38rem;
+}
+.svc-credit__fmt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ─── TEXT LINK + CTA NOTE ────────────────────────────────── */
+.svc-txtlink {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--edge);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 200, 150, 0.32);
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+.svc-txtlink:hover { color: var(--ink); }
+.svc-ctanote {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+/* ─── CONSULTING PRICE BLOCK ──────────────────────────────── */
+.svc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.svc-price__from {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
+.svc-price__amount {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.svc-price__unit {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+/* ─── BAND-SPECIFIC OVERRIDES ─────────────────────────────── */
+
+/* Oxblood (§01 flagship + finale) */
+.svc-band--ox .svc-eng__kick { color: #E7D9AD; }
+.svc-band--ox .svc-eng__body { color: rgba(251, 243, 228, 0.85); }
+.svc-band--ox .svc-eng__body strong { color: #FBF3E4; }
+.svc-band--ox .svc-youget { color: rgba(251, 243, 228, 0.85); }
+.svc-band--ox .svc-youget strong { color: #E7D9AD; }
+.svc-band--ox .svc-credit { border-top-color: rgba(251, 243, 228, 0.25); }
+.svc-band--ox .svc-credit__fmt { color: rgba(251, 243, 228, 0.55); }
+.svc-band--ox .svc-txtlink {
+  color: #E7D9AD;
+  border-bottom-color: rgba(231, 217, 173, 0.4);
+}
+.svc-band--ox .svc-txtlink:hover { color: #FBF3E4; }
+/* Primary button inverts on oxblood — cream ground, oxblood ink. */
+.svc-band--ox .btn--primary {
+  background: #FBF3E4;
+  border-color: #FBF3E4;
+  color: #A12A1E;
+}
+.svc-band--ox .btn--primary:hover {
+  background: #E7D9AD;
+  border-color: #E7D9AD;
+  color: var(--bg);
+}
+
+/* Bone (§03 Fan Moments) — inverted */
+.svc-band--bone .svc-eng__kick { color: var(--accent); }
+.svc-band--bone .svc-eng__title { color: var(--ink-on-surface); }
+.svc-band--bone .svc-eng__body { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-eng__body strong { color: var(--ink-on-surface); }
+.svc-band--bone .svc-youget { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-youget strong { color: var(--accent); }
+.svc-band--bone .svc-credit { border-top-color: var(--hairline-dark); }
+.svc-band--bone .svc-credit__fmt { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-txtlink {
+  color: var(--accent-deep);
+  border-bottom-color: rgba(21, 17, 15, 0.2);
+}
+.svc-band--bone .svc-txtlink:hover { color: var(--ink-on-surface); }
+.svc-band--bone .svc-price__from { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-price__amount { color: var(--ink-on-surface); }
+.svc-band--bone .svc-price__unit { color: var(--ink-muted-on-surface); }
+
+/* Grey (§02 SOS) — kicker turns red for urgency */
+.svc-band--grey .svc-ctanote { color: rgba(239, 233, 220, 0.7); }
+
+/* ─── FINALE (oxblood centered) ───────────────────────────── */
+.svc-finale {
+  padding: clamp(88px, 11vw, 150px) 0;
+  text-align: center;
+  overflow: hidden;
+}
+.svc-finale__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+.svc-finale__reassure {
+  font-size: var(--fs-body-l);
+  color: rgba(251, 243, 228, 0.85);
+  max-width: 36rem;
+  margin: 0 0 var(--space-6);
+}
+.svc-finale__title {
+  font-size: var(--fs-display-l);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #FBF3E4;
+  max-width: 22ch;
+  text-wrap: balance;
+  margin: 0;
+}
+.svc-finale__line {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: rgba(251, 243, 228, 0.85);
+  max-width: 38rem;
+  margin: 1.5rem 0 var(--space-6);
+}
+.svc-finale__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+}
+/* Cream-outlined ghost buttons for the two secondary CTAs, so they read
+ * against the oxblood ground without going full inverted like the primary. */
+.svc-finale__ghost {
+  background: transparent;
+  color: #FBF3E4;
+  border-color: rgba(251, 243, 228, 0.5);
+}
+.svc-finale__ghost:hover {
+  background: rgba(251, 243, 228, 0.1);
+  color: #FBF3E4;
+  border-color: #FBF3E4;
+}
+.svc-finale__note {
+  margin-top: var(--space-6);
+  font-size: 0.95rem;
+  color: rgba(251, 243, 228, 0.65);
+}
+.svc-finale__note a {
+  color: #E7D9AD;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(231, 217, 173, 0.4);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.svc-finale__note a:hover {
+  color: #FBF3E4;
+  border-color: #FBF3E4;
+}
+
+/* ─── HOW I WORK — 3-step sequence responsive ─────────────
+ * Grid stacks vertically ≤900px; the horizontal gold connector
+ * only makes sense side-by-side, so it hides on stack. */
+@media (max-width: 900px) {
+  .svc-how__steps { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .svc-how__rule { display: none; }
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .svc-eng { grid-template-columns: 1fr; }
+  .svc-eng__left { position: static; }
+  .svc-index__row { grid-template-columns: 3rem 1fr auto; }
+  .svc-index__one { display: none; }
 }

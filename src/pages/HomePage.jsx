@@ -490,19 +490,32 @@ export default function HomePage() {
         </div>
 
         <div data-rev style={{ ...INNER, padding: '0 clamp(20px,5vw,64px) clamp(40px,5vw,64px)' }}>
-          <figure className="quotecard" style={{ margin: '0 auto', maxWidth: 680, textAlign: 'center', background: '#D4C896', border: '1px solid rgba(21,17,15,.1)', borderTop: '3px solid #C8362B', borderRadius: 3, padding: 'clamp(30px,3.4vw,46px)' }}>
-            <blockquote style={{ margin: 0, padding: 0 }}>
-              <p style={{ fontWeight: 700, fontSize: 'clamp(1.15rem,2vw,1.6rem)', lineHeight: 1.36, letterSpacing: '-.015em', color: '#15110F', margin: 0 }}>
-                “Laura is a <mark>start-up swiss knife</mark>... with some extra fun!”
-              </p>
-            </blockquote>
-            <figcaption style={{ marginTop: 'clamp(20px,2.4vw,28px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
-              <img src={BASE + 'portraits/nicolas-brusson.png'} alt="Nicolas Brusson" loading="lazy" style={{ width: 58, height: 58, borderRadius: '50%', objectFit: 'cover', flex: 'none', border: '1px solid rgba(21,17,15,.2)' }} />
-              <span style={{ display: 'flex', flexDirection: 'column', gap: 3, textAlign: 'left' }}>
-                <span style={{ fontSize: 'clamp(1.1rem,1.5vw,1.32rem)', fontWeight: 800, letterSpacing: '-.01em', color: '#15110F' }}>Nicolas Brusson</span>
-                <span style={{ fontSize: '.9rem', fontWeight: 600, color: '#6B5A2E' }}>Co-founder &amp; CEO, BlaBlaCar</span>
-              </span>
-            </figcaption>
+          {/* Espresso-card testimonial per the 7 Jul quote-card handoff.
+            * Replaces the earlier gold-ground / red-top-bar treatment that
+            * fought the brand system. Dark #1F1A17 surface with a gold rule,
+            * a soft red halo top-right, gold quote glyph, red mark on the
+            * flagship phrase. */}
+          <figure className="quotecard" style={{ position: 'relative', overflow: 'hidden', margin: '0 auto', maxWidth: 620, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(212,200,150,.5)', borderRadius: 4, padding: '52px 48px 44px' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 90% at 88% -10%, rgba(200,54,43,.16), transparent 60%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 18 }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="#D4C896" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
+                  <path d="M17 7c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L17 7zm18 0c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L35 7z" />
+                </svg>
+                <blockquote style={{ margin: 0, padding: 0 }}>
+                  <p style={{ fontWeight: 600, fontSize: 20, lineHeight: 1.4, letterSpacing: '-.01em', color: 'rgba(239,233,220,.86)', margin: 0, textWrap: 'pretty' }}>
+                    Laura is a <mark style={{ background: 'transparent', color: '#E0574B', fontWeight: 700 }}>start-up swiss knife</mark> &hellip; with some extra fun!
+                  </p>
+                </blockquote>
+              </div>
+              <figcaption style={{ marginTop: 30, paddingTop: 24, borderTop: '1px solid rgba(239,233,220,.12)', display: 'flex', alignItems: 'center', gap: 18 }}>
+                <img src={BASE + 'portraits/nicolas-brusson.png'} alt="Nicolas Brusson" loading="lazy" style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', flex: 'none', boxShadow: '0 0 0 1px rgba(212,200,150,.4)' }} />
+                <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.015em', color: '#EFE9DC', lineHeight: 1.1 }}>Nicolas Brusson</span>
+                  <span style={{ fontSize: 16, fontWeight: 600, color: 'rgba(239,233,220,.78)', lineHeight: 1.3 }}>Co-founder &amp; CEO, BlaBlaCar</span>
+                </span>
+              </figcaption>
+            </div>
           </figure>
         </div>
       </section>
