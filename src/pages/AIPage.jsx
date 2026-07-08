@@ -1,76 +1,126 @@
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
+import './AIPage.css'
 
 const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
 
-/* /ai — Fan-led growth for AI. This page carries the full AI section that
- * used to live on the homepage: intro headline, the four discipline cards
- * (Distribution, Sentiment, Advocacy, Operations), and the oxblood
- * "who wants to build it with me" call-to-arms. The homepage keeps a
- * two-column teaser that links here. */
+/* /ai — point-of-view / thought-piece landing.
+ *
+ * Editorial essay in a narrow reading column (680px), then a wide four-moves
+ * card band (1160px), then a narrow closing block with a soft text-link CTA.
+ * The alternation between narrow prose and wide card band is the design.
+ *
+ * Copy is final (7 Jul handoff). Voice: first person, plain, confident.
+ * No em dashes. No KPI banner (client-rejected: numbers stated in prose,
+ * not surfaced as stats). */
 
-const aiPoints = [
-  { idx: '01 · Distribution', title: 'Recommended by the models',  copy: 'When someone asks an AI what to use, you want to be the answer. Models learn from what real users write online, so fan advocacy is now distribution.' },
-  { idx: '02 · Sentiment',    title: 'Sentiment you can move',     copy: 'Improve how your brand is talked about in comments, threads and communities. That is the same signal both buyers and models read about you.' },
-  { idx: '03 · Advocacy',     title: 'Advocacy that writes',       copy: 'Build programs that get fans writing about you in reviews, posts and articles, not only making videos. Text is what AI reads.' },
-  { idx: '04 · Operations',   title: 'Run it like a live service', copy: 'Manage your AI community the way I ran games with millions of players: real-time, close to the product, ready before sentiment turns.' },
+const fourMoves = [
+  {
+    n: '01',
+    cat: 'Distribution',
+    title: 'Recommended by the models',
+    body: 'When someone asks an AI what to use, you want to be the answer. Models learn from what real users write online, so fan advocacy is now distribution.',
+  },
+  {
+    n: '02',
+    cat: 'Sentiment',
+    title: 'Sentiment you can move',
+    body: 'Improve how your brand is talked about in comments, threads and communities. A bad release does not clear when you ship the next one, it carries, so you want to be moving it on purpose. It is the same signal both buyers and models read about you.',
+  },
+  {
+    n: '03',
+    cat: 'Advocacy',
+    title: 'Advocacy that writes',
+    body: 'Build programs that get fans writing about you in reviews, posts and articles, not only making videos. Text is what AI reads.',
+  },
+  {
+    n: '04',
+    cat: 'Operations',
+    title: 'Run it like a live service',
+    body: 'Manage your AI community the way I ran games with millions of players: real-time, close to the product, ready before sentiment turns.',
+  },
 ]
-
-const SECTION_PAD = 'clamp(72px, 9vw, 128px) clamp(20px, 5vw, 64px)'
-const INNER = { maxWidth: 1280, margin: '0 auto', width: '100%' }
 
 export default function AIPage() {
   useDocumentMeta({
     title: 'Fan-led growth for AI · Laura Cordrey',
     description:
-      'AI communities behave like live-service game communities: passionate, loud, one model update from turning. I build the same fan-led growth engine for the people around your model. Distribution, sentiment, advocacy and operations for AI products.',
+      'A point of view on running an AI company like a AAA live-service game. Fan-led growth as distribution, sentiment, advocacy and operations for the crowd around your model.',
     canonical: pageUrl('ai'),
-    ogType: 'website',
+    ogType: 'article',
   })
 
   return (
-    <section style={{ position: 'relative', background: '#0E0B09', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '-26%', right: '-8%', width: '48vw', height: '48vw', maxWidth: 620, maxHeight: 620, background: 'radial-gradient(circle,rgba(200,54,43,.18) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'relative', ...INNER, padding: SECTION_PAD }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 'clamp(20px,2.6vw,30px)', maxWidth: '56ch' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: '.74rem', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, border: '1px solid rgba(200,54,43,.4)', borderRadius: 999, padding: '8px 16px' }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C8362B' }} />
-            New · Fan-led growth for AI
-          </span>
-          <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5vw,4rem)', lineHeight: 1.02, letterSpacing: '-.03em', margin: 0 }}>
-            AI communities behave like the live-service game communities I ran at Ubisoft: passionate, loud, <mark>one model update from turning</mark>.
+    <div className="ai-page">
+      {/* ─── OPENING · essay (narrow reading column, red halo) ─── */}
+      <section className="ai-open">
+        <div aria-hidden="true" className="ai-open__halo" />
+        <div className="ai-col">
+          <span className="ai-eyebrow">A point of view · Fan-led growth for AI</span>
+          <h1 className="ai-headline">
+            How to run an AI company like a AAA{' '}
+            <mark>live-service game.</mark>
           </h1>
-          <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0, maxWidth: '48ch' }}>
-            The same engine that keeps fans of a game works for the people around your model. And right now it pays off in places that matter more than ever.
+          <p className="ai-p">
+            Every few weeks, an AI company ships. A new model, a new capability, a visible public drop. Within the hour, the internet has decided how it feels, in comments, threads, reviews and posts. Some of it is delight. Some of it is a pile-on.
+          </p>
+          <p className="ai-p">
+            I&rsquo;ve seen this movie before. At Ubisoft I ran the community for Ghost Recon, a 15-million-player live game, and held it at 85% positive sentiment through the launches and the rough patches. For its next release I built the game&rsquo;s first global fan advocacy program, Delta Company, and unveiled it live on the E3 stage.
+          </p>
+          <p className="ai-p">
+            AI products now work the same way. What grows a game community grows the crowd around a model, and it just doesn&rsquo;t have a name in AI yet.
+          </p>
+          <p className="ai-p ai-lead">
+            Here&rsquo;s where it pays off, and what it looks like in practice.
           </p>
         </div>
+      </section>
 
-        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 'clamp(16px,2vw,24px)', marginTop: 'clamp(40px,5vw,68px)' }}>
-          {aiPoints.map((p) => (
-            <div key={p.idx} className="aic" style={{ display: 'flex', flexDirection: 'column', gap: 12, background: '#241D19', border: '1px solid rgba(239,233,220,.14)', borderRadius: 3, padding: 'clamp(26px,3vw,40px)' }}>
-              <span style={{ fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>{p.idx}</span>
-              <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.8rem)', letterSpacing: '-.02em', margin: 0 }}>{p.title}</h2>
-              <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.8)', margin: 0 }}>{p.copy}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 'clamp(36px,4.5vw,60px)', background: 'linear-gradient(150deg,#A12A1E,#6E1B13)', border: '1px solid rgba(251,244,230,.22)', borderRadius: 3, padding: 'clamp(32px,4.2vw,56px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,40px)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: '48ch' }}>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.6rem,3vw,2.6rem)', lineHeight: 1.05, letterSpacing: '-.025em', margin: 0, color: '#FBF4E6' }}>
-              This is new ground. <mark style={{ color: '#F2D79A' }}>Who wants to build it with me?</mark>
+      {/* ─── FOUR MOVES · wide card band (1160px container) ─── */}
+      <section className="ai-cards">
+        <div className="ai-wrap">
+          <header className="ai-cards__head">
+            <span className="ai-eyebrow">The four moves</span>
+            <h2 className="ai-cards__title">
+              Where fan-led growth pays off for AI
             </h2>
-            <p style={{ fontSize: 'clamp(1.04rem,1.4vw,1.24rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-              No one has run fan-led growth for AI products at scale yet. I have run it for live-service games with millions of players, the closest thing there is. If you are shipping a model and want to get ahead of this, let&rsquo;s try it together.
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
-              Book a 30-min call <span aria-hidden>→</span>
-            </a>
-          </div>
+          </header>
+          <ol className="ai-cards__grid" aria-label="The four moves">
+            {fourMoves.map((m) => (
+              <li key={m.n} className="ai-card">
+                <span className="ai-card__num">
+                  <span className="ai-card__num-i">{m.n}</span>
+                  <b> · {m.cat}</b>
+                </span>
+                <h3 className="ai-card__ttl">{m.title}</h3>
+                <p className="ai-card__body">{m.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ─── CLOSE · essay + soft text-link CTA ─── */}
+      <section className="ai-close">
+        <div className="ai-col">
+          <p className="ai-p">
+            None of this is a support function. It&rsquo;s growth. The AI companies that treat the crowd around their model as an engine, not a cost, will pull ahead in a way the others can&rsquo;t buy back.
+          </p>
+          <p className="ai-p">
+            No one has built this for AI products at scale yet. I&rsquo;ve built the closest thing there is, I&rsquo;m AI-native, and I saw it coming early. I&rsquo;d rather build the first real version with a team shipping models than write about it from the outside: I&rsquo;d set up the system, and bring the people to run it.
+          </p>
+          <span aria-hidden="true" className="ai-rule" />
+          <p className="ai-p ai-lead">
+            This is new ground. <mark>Who wants to build it with me?</mark>
+          </p>
+          <p className="ai-cta-line">
+            If that&rsquo;s you,{' '}
+            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="ai-cta-link">
+              let&rsquo;s talk.
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
   )
 }

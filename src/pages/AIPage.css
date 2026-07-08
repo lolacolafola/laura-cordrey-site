@@ -1,0 +1,229 @@
+/* /ai — POV / thought-piece essay page.
+ *
+ * Ground rules from the 7 Jul handoff:
+ * · Warm near-black ground #15110F
+ * · Reading column 680px (.ai-col) for essay prose
+ * · Wide container 1160px (.ai-wrap) for the four-moves band
+ * · Rhythm is narrow → wide → narrow, deliberate — keep it
+ * · Card hover: lift + gold border + red top-accent bar
+ * · No stats banner (client-rejected: numbers stated in prose only)
+ */
+
+.ai-page {
+  background: #15110F;
+  color: #EFE9DC;
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+/* Reading column — narrow so line length stays readable for essay prose. */
+.ai-col {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 5vw, 32px);
+}
+
+/* Wide container — for the four-moves band and any full-bleed row. */
+.ai-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 5vw, 48px);
+}
+
+/* Gold eyebrow, sitewide pattern. */
+.ai-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #D4C896;
+  margin-bottom: 18px;
+}
+
+/* ─── OPENING ─── */
+.ai-open {
+  position: relative;
+  padding-top: clamp(48px, 7vw, 88px);
+  overflow: hidden;
+}
+.ai-open__halo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 600px;
+  height: 520px;
+  background: radial-gradient(circle at 70% 26%, rgba(200, 54, 43, 0.15), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.ai-open .ai-col {
+  position: relative;
+  z-index: 1;
+}
+
+/* H1 — display scale, red mark on "live-service game." */
+.ai-headline {
+  font-size: clamp(2.4rem, 5vw, 3.85rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.ai-headline mark {
+  background: transparent;
+  color: #E0574B;
+  font-weight: 800;
+}
+
+/* Essay body paragraphs — reading-friendly line height. */
+.ai-p {
+  font-size: clamp(1.15rem, 1.55vw, 1.28rem);
+  line-height: 1.72;
+  color: #D6CEC1;
+  font-weight: 400;
+  margin: 0 0 1.5em;
+}
+
+/* Lead line — the "hand off" beat between prose stretches. */
+.ai-lead {
+  font-size: clamp(1.2rem, 1.7vw, 1.4rem);
+  color: #EFE9DC;
+  font-weight: 600;
+}
+.ai-lead mark {
+  background: transparent;
+  color: #E0574B;
+  font-weight: 800;
+}
+
+/* ─── FOUR MOVES · wide card band ─── */
+.ai-cards {
+  padding-top: clamp(40px, 5vw, 64px);
+  padding-bottom: clamp(12px, 3vw, 24px);
+}
+.ai-cards__head {
+  text-align: center;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+.ai-cards__head .ai-eyebrow {
+  margin-bottom: 12px;
+}
+.ai-cards__title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin: 0 auto;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.ai-cards__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 22px);
+}
+@media (max-width: 720px) {
+  .ai-cards__grid { grid-template-columns: 1fr; }
+}
+
+.ai-card {
+  position: relative;
+  background: #241D19;
+  border: 1px solid rgba(239, 233, 220, 0.12);
+  border-radius: 4px;
+  padding: clamp(26px, 3vw, 36px);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 0.84, 0.44, 1),
+              border-color 0.3s cubic-bezier(0.16, 0.84, 0.44, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+/* Red top-accent bar — fades in on hover, per handoff */
+.ai-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C8362B, transparent 62%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.ai-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 200, 150, 0.34);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.45);
+}
+.ai-card:hover::before {
+  opacity: 1;
+}
+
+.ai-card__num {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #E0574B; /* number */
+  margin-bottom: 18px;
+}
+.ai-card__num b {
+  color: #8A8078; /* muted "· Category" */
+  font-weight: 700;
+}
+.ai-card__ttl {
+  font-size: clamp(1.3rem, 1.9vw, 1.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  color: #EFE9DC;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.ai-card__body {
+  font-size: clamp(0.98rem, 1.15vw, 1.05rem);
+  line-height: 1.6;
+  color: #B8AEA2;
+  margin: 0;
+}
+
+/* ─── CLOSE · essay + soft text-link CTA ─── */
+.ai-close {
+  padding-top: clamp(52px, 7vw, 88px);
+  padding-bottom: clamp(80px, 9vw, 128px);
+}
+
+/* Small red rule — separates the closing prose from the invitation. */
+.ai-rule {
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: #C8362B;
+  margin: clamp(18px, 2.5vw, 28px) 0;
+}
+
+/* CTA — text link, not a button, by design. Personal invitation. */
+.ai-cta-line {
+  font-size: clamp(1.15rem, 1.55vw, 1.28rem);
+  line-height: 1.72;
+  color: #D6CEC1;
+  margin: 0;
+}
+.ai-cta-link {
+  color: #E0574B;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(224, 87, 75, 0.35);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.ai-cta-link:hover {
+  color: #D4C896;
+  text-decoration-color: rgba(212, 200, 150, 0.5);
+}
