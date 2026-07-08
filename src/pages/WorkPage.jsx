@@ -5,7 +5,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, workIndexJsonLd } from '../lib/seo.js'
 import '../styles/shared.css' // shared .work-card / .work-grid / .section-head styles
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 
 // Derive unique sector list from the data — order = first-seen across the
 // case-study array so editorial control stays in caseStudies.js.
@@ -53,7 +53,7 @@ export default function WorkPage() {
               <p style={{ fontSize: 'clamp(1.06rem,1.4vw,1.28rem)', lineHeight: 1.55, color: 'rgba(239,233,220,.82)', margin: '0 0 22px' }}>
                 Twelve years of fan-led growth across AAA gaming, mobility and telco. A $32K sellout in three hours, 60M+ organic reach at zero media spend, 0 to a million in a new market. A select few of my favorite projects below. Want your brand on here?
               </p>
-              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="work-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '.95rem', letterSpacing: '.02em', textDecoration: 'none' }}>
+              <a href={CONTACT_URL} className="work-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '.95rem', letterSpacing: '.02em', textDecoration: 'none' }}>
                 Get in touch <span className="ar" aria-hidden>→</span>
               </a>
             </div>

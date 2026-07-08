@@ -21,7 +21,7 @@ function inferDatePublished(yearStr) {
 }
 
 const BASE = import.meta.env.BASE_URL
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 
 export default function WorkArticle() {
   const { slug } = useParams()
@@ -222,7 +222,7 @@ export default function WorkArticle() {
           <h2 className="article__cta-title">
             Let&rsquo;s build one <mark>just like it</mark>.
           </h2>
-          <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
+          <a href={CONTACT_URL} className="btn btn--primary btn--lg">
             Book a 30-min call <span aria-hidden="true">→</span>
           </a>
         </div>

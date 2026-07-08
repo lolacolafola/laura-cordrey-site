@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import './HomePage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
@@ -369,7 +369,7 @@ export default function HomePage() {
               <Link to="/fan-led-growth-audit" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
                 Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
               </Link>
-              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
+              <a href={CONTACT_URL} className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
                 Book a 30-min call <span className="ar" aria-hidden>→</span>
               </a>
             </div>
@@ -473,7 +473,7 @@ export default function HomePage() {
               Across the board, these pillars run as separate teams. I come in to connect them into one <mark>Fan Engine</mark>, built for your business and powered by your own fans.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
-              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
                 Book a 30-min call <span className="ar" aria-hidden>→</span>
               </a>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
@@ -568,7 +568,7 @@ export default function HomePage() {
                   Estimate yours <span className="ar" aria-hidden>→</span>
                 </Link>
                 <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
-                  or <a href={CALENDLY_URL} target="_blank" rel="noreferrer" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>book a call</a>
+                  or <a href={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>book a call</a>
                 </span>
               </div>
             </div>
@@ -659,7 +659,7 @@ export default function HomePage() {
           </div>
 
           <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+            <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
               Book a 30-min call <span className="ar" aria-hidden>→</span>
             </a>
             <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
@@ -703,25 +703,19 @@ export default function HomePage() {
             <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
               Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
             </Link>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
+            <a href={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
               Book a 30-min call <span className="ar" aria-hidden>→</span>
             </a>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 'clamp(8px,1.4vw,16px)', width: '100%', maxWidth: 520 }}>
-            <span style={{ fontSize: '.95rem', color: 'rgba(251,244,230,.8)', fontWeight: 600 }}>Not ready to book? Leave your email and I’ll come to you.</span>
-            <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <input type="email" className="cinmail" placeholder="you@company.com" style={{ flex: 1, minWidth: 220, background: 'rgba(251,244,230,.1)', border: '1px solid rgba(251,244,230,.4)', borderRadius: 3, padding: '15px 18px', color: '#FBF4E6', fontSize: '1rem', fontFamily: 'Manrope, sans-serif', outline: 'none' }} />
-              <button type="submit" className="btnsend" style={{ flex: 'none', display: 'inline-flex', alignItems: 'center', gap: 10, background: '#15110F', color: '#FBF4E6', border: '1px solid #15110F', borderRadius: 3, padding: '15px 26px', fontWeight: 700, fontSize: '1rem', fontFamily: 'Manrope, sans-serif', cursor: 'pointer' }}>
-                Email me <span aria-hidden>→</span>
-              </button>
-            </form>
-            <span style={{ fontSize: '.92rem', color: 'rgba(251,244,230,.7)', fontWeight: 600, marginTop: 4 }}>
-              Just keeping tabs?{' '}
-              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="limov" style={{ color: '#FBF4E6', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(251,244,230,.45)' }}>
-                Connect on LinkedIn <span aria-hidden>→</span>
-              </a>
-            </span>
-          </div>
+          {/* Just-keeping-tabs LinkedIn line — the dead email-capture form
+            * that used to live here was removed once /contact took over as
+            * the real contact surface (that form did nothing on submit). */}
+          <span style={{ fontSize: '.92rem', color: 'rgba(251,244,230,.7)', fontWeight: 600, marginTop: 'clamp(8px,1.4vw,16px)' }}>
+            Just keeping tabs?{' '}
+            <a href={LINKEDIN_URL} className="limov" style={{ color: '#FBF4E6', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(251,244,230,.45)' }}>
+              Connect on LinkedIn <span aria-hidden>→</span>
+            </a>
+          </span>
         </div>
       </section>
 

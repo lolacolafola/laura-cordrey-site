@@ -1,385 +1,439 @@
-/* ───────────────────────────────────────────────────────────
- * SPEAKING PAGE
- * Full-bleed editorial hero — image-first, headline below.
- * Body content reuses .about-speaking* classes from AboutPage.css.
- * ─────────────────────────────────────────────────────────── */
+/* /speaking — Editorial index (direction 1d) per 8 Jul handoff.
+ *
+ * Five bands, each with its own ground:
+ *   1. Video hero          · #0E0B09 · full-bleed E3 clip w/ bottom scrim
+ *   2. On the stage        · #15110F · 3 large editorial rows
+ *   3. Off the stage       · #2D2723 · compact 2-column list
+ *   4. Selected appearances · #0E0B09 · left-rail vertical timeline
+ *   5. Finale              · #A12A1E · oxblood + gold glow + cream CTA
+ *
+ * Legacy .about-speaking* rules used to live here for a shared /produced
+ * page and various /about teasers; that page is gone. The .speaking-*
+ * classes below are the current source of truth for this page. */
 
-.speaking-hero {
+/* Sitewide container — the existing shared .container is used by JSX. */
+
+.sp-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sp-eyebrow--gold { color: #D4C896; }
+.sp-eyebrow--red { color: #C8362B; }
+.sp-eyebrow--brightgold { color: #F2D79A; }
+
+/* ─── 1 · VIDEO HERO ────────────────────────────────── */
+.sp-hero {
   position: relative;
-  border-bottom: 1px solid var(--hairline);
-  background: var(--bg-deep);
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  background: #0E0B09;
+  border-bottom: 1px solid rgba(239, 233, 220, 0.12);
   overflow: hidden;
 }
-
-/* Video fills the hero as a full-bleed background. */
-.speaking-hero__media {
+.sp-hero__media {
+  position: absolute;
+  inset: 0;
   margin: 0;
-  position: relative;
-  overflow: hidden;
 }
-.speaking-hero__media img,
-.speaking-hero__media video {
+.sp-hero__media video {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
   display: block;
 }
-@media (max-width: 720px) {
-  .speaking-hero__media img,
-  .speaking-hero__media video {
-    aspect-ratio: 4 / 5;
-    object-position: center 20%;
-  }
-}
-
-/* Gradient scrim — dark wash from bottom up so the title block reads
- * against any frame of the video without dimming the top of the image. */
-.speaking-hero__media::after {
+.sp-hero__media::after {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.55) 30%,
-      rgba(0, 0, 0, 0.15) 55%,
-      rgba(0, 0, 0, 0) 80%
-    );
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.55) 34%,
+    rgba(0, 0, 0, 0.12) 62%,
+    rgba(0, 0, 0, 0) 84%
+  );
   pointer-events: none;
 }
-
-/* Text stack sits over the bottom of the media, container-aligned. */
-.speaking-hero__body {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding-bottom: var(--space-7);
+.sp-hero__body {
+  position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  color: #fff;
+  margin-top: auto;
+  padding: 0 clamp(24px, 5vw, 56px) clamp(40px, 5vw, 52px);
+  color: #EFE9DC;
 }
-.speaking-hero__kicker { color: var(--edge); }
-.speaking-hero__title {
-  font-size: var(--fs-display-l);
+.sp-h1 {
+  font-size: clamp(2.6rem, 4.6vw, 4.4rem);
   line-height: 1;
-  letter-spacing: var(--tracking-tight);
-  margin: 0;
-  max-width: 14ch;
-  color: var(--ink);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #EFE9DC;
+  margin: 0 0 clamp(18px, 2.2vw, 24px);
+  max-width: 15ch;
   text-wrap: balance;
 }
-.speaking-hero__lede {
-  font-size: var(--fs-body-l);
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 56ch;
+.sp-hero__lede {
+  font-size: 1.2rem;
   line-height: 1.5;
-  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 54ch;
+  margin: 0 0 clamp(24px, 3vw, 32px);
+}
+.sp-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 @media (max-width: 720px) {
-  .speaking-hero__media::after {
-    background:
-      linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.92) 0%,
-        rgba(0, 0, 0, 0.85) 35%,
-        rgba(0, 0, 0, 0.5) 60%,
-        rgba(0, 0, 0, 0) 85%
-      );
-  }
-  .speaking-hero__body { padding-bottom: var(--space-5); }
+  .sp-hero { min-height: 560px; }
+  .sp-hero__media video { object-position: center 20%; }
 }
 
-/* ─── FORMAT SECTIONS ─────────────────────────────────────
-   Each format (Stage, Studio & TV, Livestream, Produced & voiced)
-   gets its own titled block. The clips inside reuse the existing
-   .about-speaking* card system from AboutPage.css. */
-.speaking-section {
-  padding-top: var(--space-7);
-  padding-bottom: var(--space-7);
-  border-top: 1px solid var(--hairline);
+/* ─── Shared band shell ─────────────────────────────── */
+.sp-band {
+  position: relative;
+  padding: clamp(56px, 7vw, 104px) 0;
 }
-.speaking-section:first-of-type {
-  border-top: 0;
-  padding-top: var(--space-8);
-}
-.speaking-section__head {
+.sp-band__head {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-6);
-}
-.speaking-section__eyebrow {
-  color: var(--accent);
-}
-.speaking-section__title {
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-/* Optional per-section intro paragraph (used on /produced under Range and
- * Depth to name the framing before the clip grid). */
-.speaking-section__intro {
-  margin: var(--space-2) 0 0;
-  max-width: 56ch;
-  color: var(--ink-muted);
-  font-size: var(--fs-body);
-  line-height: 1.55;
-}
-
-/* Hero CTAs — primary Book me only */
-.speaking-hero__ctas {
-  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 40px);
+  margin-bottom: clamp(32px, 4vw, 48px);
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4) var(--space-5);
-  margin-top: var(--space-5);
+}
+.sp-band__head .sp-h2 { margin: 0; }
+.sp-band__aside {
+  font-size: 0.85rem;
+  color: #8A8078;
+  font-weight: 500;
+}
+.sp-band__intro {
+  font-size: 1.02rem;
+  color: rgba(239, 233, 220, 0.72);
+  max-width: 46ch;
+  margin: 0;
+  line-height: 1.5;
 }
 
-/* On-the-stage grid — asymmetric editorial layout so the flagship
- * (Delta Company E3) gets crown-jewel weight and the two format-siblings
- * (Inside Xbox, Release-day stream) sit as a right rail. Grid:
- *   ┌──────────────┬─────────┐
- *   │              │  clip 2 │
- *   │   clip 1     ├─────────┤
- *   │              │  clip 3 │
- *   └──────────────┴─────────┘
- * Collapses to 1-col ≤900px so cards keep their aspect ratios on mobile. */
-.speaking-onstage__grid {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) !important;
-  grid-template-rows: 1fr 1fr;
-  gap: var(--space-5);
-}
-.speaking-onstage__grid > .about-speaking__item:first-child {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-/* The flagship tile's video sits at a taller aspect (~5:6) so the row
- * balances with the two stacked siblings. */
-.speaking-onstage__grid > .about-speaking__item:first-child .about-speaking__video {
-  aspect-ratio: 4 / 3;
-}
-.speaking-onstage__grid > .about-speaking__item:first-child .about-speaking__headline {
-  font-size: clamp(1.7rem, 2.6vw, 2.25rem);
-}
-/* Rail tiles keep the 16:9 aspect and a tighter card body */
-.speaking-onstage__grid > .about-speaking__item:nth-child(n + 2) .about-speaking__video {
-  aspect-ratio: 16 / 9;
-}
-@media (max-width: 900px) {
-  .speaking-onstage__grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto;
-  }
-  .speaking-onstage__grid > .about-speaking__item:first-child {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .speaking-onstage__grid > .about-speaking__item:first-child .about-speaking__video {
-    aspect-ratio: 16 / 9;
-  }
+.sp-h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #EFE9DC;
+  margin: 0;
+  text-wrap: balance;
 }
 
-/* Off-the-stage grid — 4 tiles (2×2 desktop, 1-col mobile) */
-.speaking-offstage__grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+/* Kickers + venues — shared across on-stage and off-stage bodies. */
+.sp-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E0574B;
+  margin-bottom: 10px;
 }
-@media (max-width: 900px) {
-  .speaking-offstage__grid { grid-template-columns: 1fr !important; }
+.sp-kicker--bright { font-size: 0.68rem; }
+.sp-venue {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #D4C896;
+  margin: 8px 0 0;
 }
 
-/* Poster tiles — YouTube maxres thumbnail with a site-branded play
- * button, replacing the raw YouTube iframe until the visitor clicks.
- * Cleaner than the YouTube red-play preroll and only loads the iframe
- * on demand, so the reel page doesn't pay the cost of 7 embedded
- * players on first paint. */
-.about-speaking__poster {
+/* ─── Poster / play / iframe (shared: on-stage + off-stage) ─── */
+.sp-poster {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
   padding: 0;
-  border: 0;
+  border: 1px solid rgba(239, 233, 220, 0.12);
   background: #0E0B09;
+  border-radius: 4px;
   cursor: pointer;
   overflow: hidden;
-  transition: transform var(--transition);
+  transition: border-color 0.3s ease;
 }
-.about-speaking__poster img {
+.sp-poster.is-playing {
+  cursor: default;
+}
+.sp-poster img,
+.sp-poster iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: 0;
   display: block;
-  transition: transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1),
+  object-fit: cover;
+}
+.sp-poster img {
+  transition: transform 500ms cubic-bezier(0.2, 0.6, 0.2, 1),
               filter 300ms ease;
 }
-.about-speaking__poster:hover img {
-  transform: scale(1.03);
-  filter: brightness(0.85);
+.sp-poster:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.9);
 }
-.about-speaking__play {
+.sp-poster__play {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  background: var(--accent);
+  background: #C8362B;
   color: #EFE9DC;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-  transition: transform var(--transition), background var(--transition);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
   pointer-events: none;
+  z-index: 1;
 }
-.about-speaking__poster:hover .about-speaking__play {
+.sp-poster:hover .sp-poster__play {
   transform: translate(-50%, -50%) scale(1.08);
 }
-.about-speaking__play svg {
-  margin-left: 3px; /* optical center of the triangle */
-}
+.sp-poster__play svg { margin-left: 3px; }
+/* Two poster sizes: lg for on-stage rows, sm for off-stage list */
+.sp-poster--lg { aspect-ratio: 16 / 9; }
+.sp-poster--lg .sp-poster__play { width: 58px; height: 58px; }
+.sp-poster--sm { aspect-ratio: 16 / 9; }
+.sp-poster--sm .sp-poster__play { width: 42px; height: 42px; }
 
-/* Case-study link on a clip card (e.g. Claw → /work/claw-mobile) */
-.about-speaking__caselink {
-  margin-top: var(--space-3);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--edge);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(212, 200, 150, 0.32);
-  padding-bottom: 2px;
-  align-self: flex-start;
-  transition: color var(--transition), border-color var(--transition);
-}
-.about-speaking__caselink:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-/* Close band on /speaking — "Let's talk" */
-.speaking-close {
-  margin-top: var(--space-9);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--hairline);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  align-items: flex-start;
-}
-.speaking-close__kick { color: var(--accent); }
-.speaking-close__title {
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+/* ─── 2 · ON THE STAGE ──────────────────────────────── */
+.sp-band--onstage { background: #15110F; }
+.sp-rows {
+  list-style: none;
   margin: 0;
-  max-width: 22ch;
+  padding: 0;
 }
-.speaking-close__ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-3);
-}
-
-/* Editorial clip treatment — hairlines + display typography, matching
-   the .work-card pattern on Home/Work. No filled box, no rounded border.
-   The clip reads as an editorial column: top rule, oversized headline,
-   hairline divider, body copy, hairline above an anchored CTA. */
-.speaking-section .about-speaking__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-5);
-  border-top: 1px solid var(--hairline);
-  background: none;
-  border-radius: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  transition: color var(--transition);
-}
-
-/* Video frame: keep the rounded thumbnail but make the surround feel
-   like the work-card media. */
-.speaking-section .about-speaking__video {
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: border-color var(--transition);
-}
-
-/* Body: headline larger and in display font (matches .work-card__brand
-   scale), then a hairline before the detail copy. */
-.speaking-section .about-speaking__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  flex: 1;
-}
-/* Venue = brand chip above the display headline (matches the work
-   card pattern — mono marker sat above the big project name). */
-.speaking-section .about-speaking__venue {
-  color: var(--edge);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--hairline);
-}
-.speaking-section .about-speaking__headline {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin: 0;
-}
-.speaking-section .about-speaking__detail {
-  color: var(--ink-muted);
-  margin: 0;
-}
-
-/* Single-clip section: 2-column feature layout — video left, copy right.
-   Hides the per-clip format chip since the section title already names
-   the format (avoids "Stage / Stage" stutter). */
-
-/* Single-clip section: 2-column feature layout — video left, copy right. */
-.speaking-section--single .about-speaking__item {
+.sp-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  column-gap: var(--space-6);
+  grid-template-columns: 60px minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 34px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(239, 233, 220, 0.12);
   align-items: center;
 }
+.sp-row:last-child { border-bottom: 1px solid rgba(239, 233, 220, 0.12); }
+.sp-row__idx {
+  font-size: clamp(2.4rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #C8362B;
+  line-height: 1;
+  align-self: center;
+}
+.sp-row__media { min-width: 0; }
+.sp-row__body { min-width: 0; }
+.sp-row__ttl {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #EFE9DC;
+  margin: 0;
+}
+.sp-row__detail {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: #B8AEA2;
+  margin: 14px 0 0;
+}
 @media (max-width: 860px) {
-  .speaking-section--single .about-speaking__item {
+  .sp-row {
     grid-template-columns: 1fr;
-    row-gap: var(--space-4);
+    gap: 16px;
   }
+  .sp-row__idx { font-size: 2rem; }
 }
 
-@media (max-width: 720px) {
-  /* Stronger, taller scrim — the 4:5 mobile crop is busier and the title
-     block takes up more vertical real estate. */
-  .speaking-hero__media::after {
-    background:
-      linear-gradient(
-        to top,
-        rgba(0,0,0,0.92) 0%,
-        rgba(0,0,0,0.85) 35%,
-        rgba(0,0,0,0.5) 60%,
-        rgba(0,0,0,0) 85%
-      );
-  }
-  .speaking-hero__body {
-    padding-bottom: var(--space-5);
-  }
-  .speaking-hero__title {
-    margin: var(--space-2) 0 var(--space-3);
-  }
+/* ─── 3 · OFF THE STAGE ─────────────────────────────── */
+.sp-band--offstage { background: #2D2723; }
+.sp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 36px;
+}
+.sp-list__item {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(239, 233, 220, 0.12);
+  align-items: flex-start;
+}
+.sp-list__media { min-width: 0; }
+.sp-list__body { min-width: 0; }
+.sp-list__ttl {
+  font-size: 1.16rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+  color: #EFE9DC;
+  margin: 0;
+}
+.sp-list__body .sp-venue { font-size: 0.76rem; }
+
+.sp-caselink {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #D4C896;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 200, 150, 0.4);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.sp-caselink:hover {
+  color: #C8362B;
+  border-bottom-color: #C8362B;
+}
+
+@media (max-width: 900px) {
+  .sp-list { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 560px) {
+  .sp-list__item { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* ─── 4 · SELECTED APPEARANCES (vertical timeline) ──── */
+.sp-band--timeline { background: #0E0B09; }
+.sp-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 32px;
+  position: relative;
+}
+/* Left rail — 1px gold vertical line running the length of the list */
+.sp-timeline::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 1px;
+  background: rgba(212, 200, 150, 0.25);
+}
+.sp-timeline__row {
+  position: relative;
+  padding: 20px 0 22px;
+  border-bottom: 1px solid rgba(239, 233, 220, 0.08);
+}
+.sp-timeline__row:last-child { border-bottom: 0; }
+.sp-timeline__node {
+  position: absolute;
+  left: -32px;
+  top: 26px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #0E0B09;
+  border: 2px solid #C8362B;
+}
+.sp-timeline__line {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.sp-timeline__year {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #E0574B;
+  flex: none;
+}
+.sp-timeline__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #EFE9DC;
+  letter-spacing: -0.01em;
+}
+.sp-timeline__ctx {
+  margin: 6px 0 0;
+  padding-left: 60px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #8A8078;
+}
+@media (max-width: 560px) {
+  .sp-timeline { padding-left: 26px; }
+  .sp-timeline__node { left: -26px; }
+  .sp-timeline__ctx { padding-left: 0; }
+}
+
+/* ─── 5 · FINALE (oxblood) ──────────────────────────── */
+.sp-band--finale {
+  background: #A12A1E;
+  color: #FBF3E4;
+  padding: clamp(80px, 9vw, 140px) 0;
+  text-align: center;
+  overflow: hidden;
+}
+.sp-band__glow {
+  position: absolute;
+  left: 50%;
+  bottom: -20%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse at center bottom, rgba(242, 215, 154, 0.18), transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+.sp-finale { position: relative; z-index: 1; }
+.sp-finale__title {
+  font-size: clamp(2.1rem, 3.4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  color: #FBF3E4;
+  margin: 0 auto clamp(28px, 3.4vw, 38px);
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.sp-finale__cta {
+  background: #FBF3E4;
+  border-color: #FBF3E4;
+  color: #A12A1E;
+}
+.sp-finale__cta:hover {
+  background: #F2D79A;
+  border-color: #F2D79A;
+}
+.sp-finale__mail {
+  margin: clamp(18px, 2.4vw, 26px) 0 0;
+  font-size: 0.95rem;
+  color: rgba(251, 243, 228, 0.7);
+}
+.sp-finale__mail a {
+  color: #F2D79A;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(242, 215, 154, 0.5);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.sp-finale__mail a:hover {
+  color: #FBF3E4;
+  text-decoration-color: #FBF3E4;
 }

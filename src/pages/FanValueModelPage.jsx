@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import './FanValueModelPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 
 // Line-icon set matching the handoff: 24×24 viewBox, stroke=currentColor,
 // round caps. Colored red via CSS on the parent.
@@ -536,7 +536,7 @@ export default function FanValueModelPage() {
           <div className="fvm-cta__q">
             A ballpark to start. My full Fan Engine audit sizes it on your real numbers.
           </div>
-          <a href={CALENDLY_URL} className="fvm-btn" target="_blank" rel="noopener noreferrer">
+          <a href={CONTACT_URL} className="fvm-btn">
             Book a call <span className="fvm-btn__arrow" aria-hidden="true">→</span>
           </a>
           <p className="fvm-seclink">

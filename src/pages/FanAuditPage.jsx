@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import './FanAuditPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 const HTML2CANVAS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
 
 // Inline sparkle used on every screen's eyebrow. Line-icon, 24×24 viewBox,
@@ -476,7 +476,7 @@ function LiveResult({ scored, lead, restart }) {
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
       <p className="fa-ctalead">Want it done with you, baselined on your real numbers?</p>
       <div className="fa-cta">
-        <a className="fa-btn" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book a call →</a>
+        <a className="fa-btn" href={CONTACT_URL}>Book a call →</a>
         <button className="fa-back" onClick={restart}>Retake the audit</button>
       </div>
       <p className="fa-seclink"><Link to="/fan-led-growth-value-model">Or see what the gap is worth →</Link></p>
@@ -762,7 +762,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
         <p className="fa-ctalead">Want the reality check on your real plan, not a self-assessment?</p>
         <div className="fa-cta">
-          <a className="fa-btn" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book a call →</a>
+          <a className="fa-btn" href={CONTACT_URL}>Book a call →</a>
           <button className="fa-back" onClick={restart}>Retake the audit</button>
         </div>
       </div>

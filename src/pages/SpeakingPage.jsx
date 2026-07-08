@@ -7,93 +7,82 @@ import {
   producedSections,
   appearances,
 } from '../data/speaking.js'
-import '../styles/shared.css' // shared .btn / .section-head styles
-import './AboutPage.css' // reuses .about-speaking* classes
-import './SpeakingPage.css' // local .speaking-hero* + .speaking-section* classes
+import '../styles/shared.css'
+import './SpeakingPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=speaking'
+const HELLO_EMAIL = 'hello@lauracordrey.com'
 
-/* /speaking — Laura's speaking + on/around-camera reel.
+/* /speaking — Editorial index (direction 1d) per 8 Jul handoff.
  *
- * Structure (per 7 Jul mockup):
- *   1. Hero — E3 stage video bg, big headline, book + play-with-sound CTAs
- *   2. Anchor line — "Here to book me for a speaking gig? Find a time →"
- *   3. On the stage — 3 tiles: signature stage, live broadcast, host
- *   4. Off the stage — 4 tiles: produced / voiced / on-camera work
- *   5. Selected appearances table
- *   6. Close — "Want me on your stage, or in your film?"
+ * Five bands, ordered:
+ *   1. Video hero        · #0E0B09 · full-bleed E3 clip + title anchored bottom
+ *   2. On the stage      · #15110F · three editorial rows (60px|1.15fr|1fr)
+ *   3. Off the stage     · #2D2723 · compact 2-column list, small tiles
+ *   4. Selected appearances · #0E0B09 · vertical timeline w/ left rail
+ *   5. Finale            · #A12A1E · oxblood, cream Book a chat CTA
  *
- * The /produced page was folded in here: most of Laura's produced work
- * has her ON it (VO, on-camera, hosting) so the two bodies of work aren't
- * really separate. One page, two strands.
- *
- * Reuses .about-speaking* class system from AboutPage.css for clip cards. */
+ * State: one `playingId` at a time. Clicking a poster swaps to an
+ * autoplay YouTube iframe; starting another clip resets the previous.
+ * Copy is verbatim from the handoff. */
 
-// On the stage — pull the three flagship clips from speakingSections.
-// Studio (World-premiere announce) is dropped for tightness; the E3 stage
-// unveil already carries the Delta Company story at the top of the strand.
+// On-stage clips — flagship stage / live / livestream, one each.
+// Studio's World-premiere announce stays out (Delta Company E3 above covers it).
 const ON_STAGE_KEYS = ['stage', 'live', 'livestream']
 const onStageClips = ON_STAGE_KEYS.map((k) => {
-  const section = speakingSections.find((s) => s.key === k)
-  return { ...section.clips[0], kicker: section.title }
+  const s = speakingSections.find((x) => x.key === k)
+  return { ...s.clips[0], kicker: s.title }
 })
 
-// Off the stage — every produced clip except Delta Company announce
-// (the E3 stage unveil covers Delta already, no need to repeat).
+// Off-stage clips — all produced pieces minus Delta Company announce
+// (`XiIiqCktG2g`) since the on-stage E3 unveil covers Delta already.
+// Case-study routes added where a piece has a dedicated /work case
+// study (Azarus target = /work/azarus-game-ads since the explainer is
+// for the ad platform, not the streamer-led growth work).
+const CASE_STUDY_MAP = {
+  RsimGZVWlsU: '/work/claw-mobile',
+  '34AzFfo7C6E': '/work/azarus-game-ads',
+  F5g7fOzxGYY: '/work/ubisoft-delta-company',
+}
 const offStageClips = producedSections
   .flatMap((s) => s.clips)
   .filter((c) => c.youtube !== 'XiIiqCktG2g')
-  // Claw links out to its case study on /work — surface that.
-  .map((c) => (c.youtube === 'RsimGZVWlsU' ? { ...c, caseStudy: '/work/claw-mobile' } : c))
+  .map((c) => (CASE_STUDY_MAP[c.youtube] ? { ...c, caseStudy: CASE_STUDY_MAP[c.youtube] } : c))
 
-function ClipCard({ clip, isPlaying, onPlay }) {
+/* Reusable poster / play / iframe pattern.
+ * `size` = "lg" (on-stage row tile) or "sm" (off-stage compact tile). */
+function ClipPoster({ clip, isPlaying, onPlay, size = 'lg' }) {
+  if (isPlaying) {
+    return (
+      <div className={`sp-poster sp-poster--${size} is-playing`}>
+        <iframe
+          src={`https://www.youtube.com/embed/${clip.youtube}?autoplay=1&rel=0&modestbranding=1${clip.start ? `&start=${clip.start}` : ''}`}
+          title={clip.headline}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    )
+  }
   return (
-    <li className="about-speaking__item">
-      <div className="about-speaking__video">
-        {isPlaying ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${clip.youtube}?autoplay=1${clip.start ? `&start=${clip.start}` : ''}`}
-            title={clip.headline}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        ) : (
-          <button
-            type="button"
-            className="about-speaking__poster"
-            onClick={onPlay}
-            aria-label={`Play: ${clip.headline}`}
-          >
-            <img
-              src={`https://i.ytimg.com/vi/${clip.youtube}/maxresdefault.jpg`}
-              alt=""
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-            <span className="about-speaking__play" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-          </button>
-        )}
-      </div>
-      <div className="about-speaking__body">
-        {clip.kicker && (
-          <span className="marker about-speaking__format">{clip.kicker}</span>
-        )}
-        {clip.venue && (
-          <span className="marker about-speaking__venue">{clip.venue}</span>
-        )}
-        <h3 className="about-speaking__headline">{clip.headline}</h3>
-        <p className="about-speaking__detail">{clip.detail}</p>
-        {clip.caseStudy && (
-          <Link to={clip.caseStudy} className="about-speaking__caselink">
-            Read the case study <span aria-hidden="true">→</span>
-          </Link>
-        )}
-      </div>
-    </li>
+    <button
+      type="button"
+      className={`sp-poster sp-poster--${size}`}
+      onClick={onPlay}
+      aria-label={`Play: ${clip.headline}`}
+    >
+      <img
+        src={`https://i.ytimg.com/vi/${clip.youtube}/maxresdefault.jpg`}
+        alt=""
+        loading="lazy"
+        referrerPolicy="no-referrer"
+      />
+      <span className="sp-poster__play" aria-hidden="true">
+        <svg width={size === 'lg' ? 24 : 18} height={size === 'lg' ? 24 : 18} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </span>
+    </button>
   )
 }
 
@@ -107,17 +96,16 @@ export default function SpeakingPage() {
   })
 
   const BASE = import.meta.env.BASE_URL
-  // Only one clip plays at a time — click a poster to start it, playing
-  // another auto-swaps the previous back to its poster state.
   const [playingId, setPlayingId] = useState(null)
 
   return (
     <>
-      {/* ─── HERO ─────────────────────────────────────────────
-        * Full-bleed E3 stage video with a dark scrim from the bottom
-        * so the title block reads against any frame. */}
-      <section className="speaking-hero">
-        <figure className="speaking-hero__media">
+      {/* ─── 1 · VIDEO HERO ────────────────────────────────
+        * Full-bleed E3 stage clip (autoplay-muted-loop) with a bottom-up
+        * scrim so the title block reads against any frame. Nav sits
+        * transparent from the Layout above. */}
+      <section className="sp-hero">
+        <figure className="sp-hero__media">
           <video
             src={BASE + 'speaking/laura-e3-stage-wide.mp4'}
             poster={BASE + 'speaking/laura-e3-stage-wide-poster.jpg'}
@@ -129,99 +117,147 @@ export default function SpeakingPage() {
             aria-label="Laura Cordrey on the Ubisoft E3 2019 stage in Los Angeles, presenting Delta Company to a live audience."
           />
         </figure>
-        <div className="container speaking-hero__body">
-          <span className="marker speaking-hero__kicker">
+        <div className="container sp-hero__body">
+          <span className="sp-eyebrow sp-eyebrow--gold">
             Speaking · On stage · On camera · Voice
           </span>
-          <h1 className="speaking-hero__title">The stages, the screen, the voice.</h1>
-          <p className="speaking-hero__lede">
+          <h1 className="sp-h1">The stages, the screen, the voice.</h1>
+          <p className="sp-hero__lede">
             A decade fronting fan moments for the biggest names in gaming. World-stage keynotes, live broadcast, and the pieces I wrote, produced and voiced myself.
           </p>
-          <div className="speaking-hero__ctas">
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
-              Book me to speak <span aria-hidden="true">→</span>
-            </a>
-          </div>
+          <Link to={CONTACT_URL} className="btn btn--primary btn--lg sp-hero__cta">
+            Book me to speak <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
-      <section className="about-speaking about-speaking--hero">
+      {/* ─── 2 · ON THE STAGE (editorial rows) ─────────────
+        * Three large work-rows on dark. Grid per row:
+        * [ big index numeral | 16:9 click-to-play poster | text block ]. */}
+      <section className="sp-band sp-band--onstage">
         <div className="container">
-
-          {/* ─── ON THE STAGE (3 tiles) ────────────────────── */}
-          <div className="speaking-section speaking-section--onstage">
-            <header className="speaking-section__head">
-              <span className="marker speaking-section__eyebrow">On stage &amp; on camera</span>
-              <h2 className="speaking-section__title">On the stage.</h2>
-              <p className="speaking-section__intro">Keynote · broadcast · host</p>
-            </header>
-            <ul className="about-speaking__list about-speaking__list--grid speaking-onstage__grid">
-              {onStageClips.map((clip) => (
-                <ClipCard
-                  key={clip.youtube}
-                  clip={clip}
-                  isPlaying={playingId === clip.youtube}
-                  onPlay={() => setPlayingId(clip.youtube)}
-                />
-              ))}
-            </ul>
-          </div>
-
-          {/* ─── OFF THE STAGE (produced & voiced, 4 tiles) ── */}
-          <div className="speaking-section speaking-section--offstage">
-            <header className="speaking-section__head">
-              <span className="marker speaking-section__eyebrow">Produced &amp; voiced</span>
-              <h2 className="speaking-section__title">Off the stage.</h2>
-              <p className="speaking-section__intro">
-                Not just fronting the camera. The scripts, edits and voice tracks behind the work.
-              </p>
-            </header>
-            <ul className="about-speaking__list about-speaking__list--grid speaking-offstage__grid">
-              {offStageClips.map((clip) => (
-                <ClipCard
-                  key={clip.youtube}
-                  clip={clip}
-                  isPlaying={playingId === clip.youtube}
-                  onPlay={() => setPlayingId(clip.youtube)}
-                />
-              ))}
-            </ul>
-          </div>
-
-          {/* ─── APPEARANCES LOG ──────────────────────────────
-            * Selected appearances table — the "long tail" alongside
-            * the featured tiles. Format column separates keynote
-            * from on-camera from buy-in pitches, per mockup. */}
-          <div className="about-speaking__appearances">
-            <span className="marker speaking-section__eyebrow">The full picture</span>
-            <h2 className="speaking-section__title">Selected appearances.</h2>
-            <p className="speaking-section__intro">20+ moments across stage, broadcast and community.</p>
-            <ol className="about-speaking__list-text">
-              {appearances.map((a) => (
-                <li key={a.event + a.year} className="about-speaking__row">
-                  <span className="about-speaking__row-year">{a.year}</span>
-                  <span className="about-speaking__row-event">{a.event}</span>
-                  <span className="about-speaking__row-context">{a.context}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* ─── CLOSE ───────────────────────────────────────── */}
-          <div className="speaking-close">
-            <span className="marker speaking-close__kick">The next one</span>
-            <h2 className="speaking-close__title">
-              If you&rsquo;ve got a moment coming up, put me in it.
-            </h2>
-            <div className="speaking-close__ctas">
-              <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
-                Book a chat <span aria-hidden="true">→</span>
-              </a>
+          <header className="sp-band__head">
+            <div>
+              <span className="sp-eyebrow sp-eyebrow--red">On stage &amp; on camera</span>
+              <h2 className="sp-h2">On the stage.</h2>
             </div>
-            <p className="about-speaking__inquiry">
-              Or email <a href="mailto:hello@lauracordrey.com">hello@lauracordrey.com</a>
+            <span className="sp-band__aside">Keynote · broadcast · host</span>
+          </header>
+          <ol className="sp-rows" aria-label="On the stage">
+            {onStageClips.map((clip, i) => {
+              const n = String(i + 1).padStart(2, '0')
+              return (
+                <li className="sp-row" key={clip.youtube}>
+                  <span className="sp-row__idx" aria-hidden="true">{n}</span>
+                  <div className="sp-row__media">
+                    <ClipPoster
+                      clip={clip}
+                      isPlaying={playingId === clip.youtube}
+                      onPlay={() => setPlayingId(clip.youtube)}
+                      size="lg"
+                    />
+                  </div>
+                  <div className="sp-row__body">
+                    <span className="sp-kicker">{clip.kicker}</span>
+                    <h3 className="sp-row__ttl">{clip.headline}</h3>
+                    <span className="sp-venue">{clip.venue}</span>
+                    <p className="sp-row__detail">{clip.detail}</p>
+                  </div>
+                </li>
+              )
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* ─── 3 · OFF THE STAGE (compact list) ───────────────
+        * Two-column grid of compact items on warm grey. Each item:
+        * small 16:9 tile + text block with an optional case study link. */}
+      <section className="sp-band sp-band--offstage">
+        <div className="container">
+          <header className="sp-band__head">
+            <div>
+              <span className="sp-eyebrow sp-eyebrow--gold">Produced &amp; voiced</span>
+              <h2 className="sp-h2">Off the stage.</h2>
+            </div>
+            <p className="sp-band__intro">
+              Not just fronting the camera. The scripts, edits and voice tracks behind the work.
             </p>
-          </div>
+          </header>
+          <ol className="sp-list" aria-label="Off the stage">
+            {offStageClips.map((clip) => (
+              <li className="sp-list__item" key={clip.youtube}>
+                <div className="sp-list__media">
+                  <ClipPoster
+                    clip={clip}
+                    isPlaying={playingId === clip.youtube}
+                    onPlay={() => setPlayingId(clip.youtube)}
+                    size="sm"
+                  />
+                </div>
+                <div className="sp-list__body">
+                  <span className="sp-kicker sp-kicker--bright">{clip.kicker}</span>
+                  <h3 className="sp-list__ttl">{clip.headline}</h3>
+                  <span className="sp-venue">{clip.venue}</span>
+                  {clip.caseStudy && (
+                    <Link to={clip.caseStudy} className="sp-caselink">
+                      Read the case study <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ─── 4 · SELECTED APPEARANCES (vertical timeline) ──
+        * Left-rail gold vertical line + red ring nodes, one per row.
+        * All nodes identical — no year is singled out visually. */}
+      <section className="sp-band sp-band--timeline">
+        <div className="container">
+          <header className="sp-band__head">
+            <div>
+              <span className="sp-eyebrow sp-eyebrow--gold">The full picture</span>
+              <h2 className="sp-h2">Selected appearances.</h2>
+            </div>
+            <p className="sp-band__intro">
+              20+ moments across stage, broadcast and community.
+            </p>
+          </header>
+          <ol className="sp-timeline" aria-label="Selected appearances">
+            {appearances.map((a) => (
+              <li key={a.event + a.year} className="sp-timeline__row">
+                <span className="sp-timeline__node" aria-hidden="true" />
+                <div className="sp-timeline__content">
+                  <div className="sp-timeline__line">
+                    <span className="sp-timeline__year">{a.year}</span>
+                    <span className="sp-timeline__title">{a.event}</span>
+                  </div>
+                  <p className="sp-timeline__ctx">{a.context}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ─── 5 · FINALE (oxblood) ──────────────────────────
+        * Gold radial glow from bottom, cream Book a chat button,
+        * plus a mailto: fallback. */}
+      <section className="sp-band sp-band--finale">
+        <div aria-hidden="true" className="sp-band__glow" />
+        <div className="container sp-finale">
+          <span className="sp-eyebrow sp-eyebrow--brightgold">The next one</span>
+          <h2 className="sp-finale__title">
+            If you have a moment coming up, put me in it.
+          </h2>
+          <Link to={CONTACT_URL} className="btn btn--lg sp-finale__cta">
+            Book a chat <span aria-hidden="true">→</span>
+          </Link>
+          <p className="sp-finale__mail">
+            Or email <a href={`mailto:${HELLO_EMAIL}`}>{HELLO_EMAIL}</a>
+          </p>
         </div>
       </section>
     </>

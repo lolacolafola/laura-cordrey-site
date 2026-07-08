@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, methodologyJsonLd } from '../lib/seo.js'
 import './MethodologyPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 
 const disciplines = [
   { word: 'Brand',     note: 'Story, identity, voice. The foundation that sets what gets built.' },
@@ -227,9 +227,9 @@ export default function MethodologyPage() {
           </p>
           <div className="meth-close__ctas">
             <Link to="/fan-led-growth-audit" className="btn btn--primary btn--lg">
-              Get your Fan Score <span aria-hidden="true">→</span>
+              Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--ghost btn--lg">
+            <a href={CONTACT_URL} className="btn btn--ghost btn--lg">
               Book a call <span aria-hidden="true">→</span>
             </a>
           </div>

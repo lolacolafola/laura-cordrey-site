@@ -3,7 +3,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, serviceJsonLd } from '../lib/seo.js'
 import './ServicesPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 
 /* Services — editorial "Work with me" page.
  * Structure: hero → engagement index → four offer bands (oxblood → grey → bone → dark)
@@ -39,7 +39,7 @@ export default function ServicesPage() {
             Whatever we build, you&rsquo;ll know exactly what it&rsquo;s worth.
           </p>
           <div className="svc-hero__ctas">
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg">
               Book a 30-min call <span aria-hidden="true">→</span>
             </a>
             <Link to="/fan-led-growth-audit" className="btn btn--ghost btn--lg">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
           <div className="svc-eng__left">
             <span className="svc-eng__kick">01 · The flagship</span>
             <h2 className="svc-eng__title">The Fan Engine.</h2>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg svc-eng__cta">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Book a call about the Engine <span aria-hidden="true">→</span>
             </a>
             <Link to="/methodology" className="svc-txtlink">
@@ -143,7 +143,7 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Sentiment <mark>SOS</mark>.
             </h2>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg svc-eng__cta">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               It&rsquo;s urgent. Book now <span aria-hidden="true">→</span>
             </a>
             <span className="svc-ctanote">
@@ -190,7 +190,7 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Fan <mark>Moments</mark>.
             </h2>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg svc-eng__cta">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Talk about your moment <span aria-hidden="true">→</span>
             </a>
             <Link to="/work" className="svc-txtlink">
@@ -239,7 +239,7 @@ export default function ServicesPage() {
               <span className="svc-price__amount">$500</span>
               <span className="svc-price__unit">a 2-hour session</span>
             </div>
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg svc-eng__cta">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Book a session <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -395,7 +395,7 @@ export default function ServicesPage() {
             captures it.
           </p>
           <div className="svc-finale__ctas">
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg">
               Book a 30-min call <span aria-hidden="true">→</span>
             </a>
             <Link to="/fan-led-growth-audit" className="btn btn--lg svc-finale__ghost">

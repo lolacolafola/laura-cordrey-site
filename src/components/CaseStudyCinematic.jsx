@@ -21,7 +21,7 @@ import './CaseStudyCinematic.css'
  * <mark>/<strong>. No untrusted input flows in.
  * ─────────────────────────────────────────────────────────── */
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 const html = (s) => ({ dangerouslySetInnerHTML: { __html: s || '' } })
 
 const isInternalHref = (h) => !!h && (h.charAt(0) === '/' || h.charAt(0) === '#')
@@ -30,7 +30,7 @@ function Anchor({ href, className, children }) {
   if (isInternalHref(href)) {
     return <Link to={href} className={className}>{children}</Link>
   }
-  return <a href={href} className={className} target="_blank" rel="noreferrer">{children}</a>
+  return <a href={href} className={className}>{children}</a>
 }
 
 function CinLink({ link }) {
@@ -506,7 +506,7 @@ function Block({ b }) {
           <Reveal className="cscin__cta-inner">
             <span className="cscin__kicker">{b.kicker || 'Want this for your brand?'}</span>
             <h2 className="cscin__cta-title" {...html(b.title || "Let’s build one <mark>just like it</mark>.")} />
-            <a className="cscin__cta-btn" href={b.href || CALENDLY_URL} target="_blank" rel="noreferrer">
+            <a className="cscin__cta-btn" href={b.href || CONTACT_URL}>
               {b.label || 'Book a 30-min call'} <span aria-hidden="true">→</span>
             </a>
           </Reveal>

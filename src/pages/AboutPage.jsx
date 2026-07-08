@@ -6,7 +6,7 @@ import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import '../styles/shared.css'
 import './AboutPage.css'
 
-const CALENDLY_URL = 'https://calendly.com/laura-lcordrey/30min'
+const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
@@ -198,7 +198,7 @@ export default function AboutPage() {
             </ul>
             <p className="about-proof__note">
               Full history{' '}
-              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">on LinkedIn</a>
+              <a href={LINKEDIN_URL}>on LinkedIn</a>
               , case studies <Link to="/work">on Work</Link>.
             </p>
           </div>
@@ -634,7 +634,7 @@ export default function AboutPage() {
             measurable growth in it waiting to be built.
           </p>
           <div className="about-close__ctas">
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className="btn btn--primary btn--lg about-close__primary">
+            <a href={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
               Book a 30-min call <span aria-hidden="true">→</span>
             </a>
             <Link to="/work" className="about-txtlink about-txtlink--cream">
