@@ -1140,3 +1140,124 @@
 .fa-card--compounding .fa-cleak { color: rgba(251, 243, 228, 0.85); }
 .fa-card--compounding .fa-cleak b { color: #FBEDE6; }
 .fa-card--compounding .fa-cfoot { color: rgba(251, 243, 228, 0.55); }
+
+/* ─── PRE-LAUNCH RESULT — verdict inside the reveal band ─── */
+
+/* Verdict label + word inside the band, tier-accented */
+.fa-reveal .fa-verdictlbl {
+  color: var(--fa-t-accent);
+  margin-top: 14px;
+}
+.fa-result--compounding .fa-reveal .fa-verdictlbl { color: #F6D9C9; }
+
+.fa-reveal .fa-verdict {
+  color: var(--fa-t-accent);
+  margin: 6px 0 8px;
+  max-width: 20ch;
+}
+.fa-result--compounding .fa-reveal .fa-verdict { color: #FBEDE6; }
+
+.fa-reveal .fa-reframe {
+  color: var(--fa-paper);
+  max-width: 34ch;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.fa-result--compounding .fa-reveal .fa-reframe { color: rgba(251, 243, 228, 0.82); }
+
+/* Fuel gate row — the featured horizontal card that sits above the readiness grid */
+.fa-gate-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--fa-card);
+  border: 1px solid var(--fa-hair-soft);
+  border-left: 4px solid var(--fa-t-accent-solid);
+  border-radius: 3px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--fa-shadow-soft);
+}
+.fa-gate-row__lab { flex: 1; }
+.fa-gate-row__lab em {
+  font-style: normal;
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--fa-t-accent-deep);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.fa-gate-row__lab span {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--fa-ink);
+}
+.fa-gate-row__lv {
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+}
+.fa-gate-row__lv em {
+  font-style: normal;
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--fa-faint);
+  margin-top: 4px;
+}
+@media (max-width: 520px) {
+  .fa-gate-row { flex-wrap: wrap; }
+  .fa-gate-row__lv { text-align: left; margin: 4px 0 0; }
+}
+
+/* Readiness cards — 2×2 grid, dot + name + pill */
+.fa-rcards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .fa-rcards { grid-template-columns: 1fr; } }
+.fa-rcard {
+  background: var(--fa-card);
+  border: 1px solid var(--fa-hair-soft);
+  border-radius: 3px;
+  padding: 13px 15px;
+  box-shadow: var(--fa-shadow-soft);
+}
+.fa-rcard__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--fa-ink);
+  min-height: 34px;
+}
+.fa-rcard__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.fa-rcard__dot--lv1 { background: var(--fa-stone); }
+.fa-rcard__dot--lv2 { background: var(--fa-gold); }
+.fa-rcard__dot--lv3 { background: var(--fa-gold); }
+.fa-rcard__nm { line-height: 1.3; }
+.fa-rcard__pill { margin-top: 8px; }
+
+/* Pre-launch share card level fills, mirroring the pill palette */
+.fa-cfl--lv1 { background: #8B8175; }
+.fa-cfl--lv2 { background: #C9A24B; }
+.fa-cfl--lv3 { background: #E7D9AD; }
+.fa-card--compounding .fa-cfl--lv1 { background: rgba(251, 243, 228, 0.32); }
+.fa-card--compounding .fa-cfl--lv2 { background: rgba(251, 243, 228, 0.62); }
+.fa-card--compounding .fa-cfl--lv3 { background: #FBEDE6; }
+
+/* Big verdict word on the share card, per tier */
+.fa-card--untapped .fa-cbigw { color: #E0574B; }
+.fa-card--earned .fa-cbigw { color: #E7D9AD; }
+.fa-card--compounding .fa-cbigw { color: #FBEDE6; }

@@ -677,8 +677,10 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
   if (!scored) return null
   const { lvls, fuelLv, effective, atMin, binding, verdict } = scored
 
-  const vColor = effective === 3 ? '#C8362B' : '#15110F'
-  const cardVerdictColor = effective === 1 ? '#CFC6B8' : effective === 2 ? '#D9B65C' : '#E8534A'
+  // Tier slugs share the LiveResult tier system:
+  // effective 1 → red (untapped) · 2 → gold (earned) · 3 → oxblood (compounding)
+  const tierSlug = effective === 1 ? 'untapped' : effective === 2 ? 'earned' : 'compounding'
+  const cardTierSlug = tierSlug
 
   const reframeText = effective === 3
     ? "You've got something to feed the engine, and an engine worth feeding. Now build, in the order these checks point to."
@@ -689,9 +691,6 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
     ['Nearly there', 'almost there'],
     ['Ready to build', 'feed the engine'],
   ]
-  const fills = ['#F3E8CE', '#E7C878', '#A12A1E']
-  const snc = ['#3A322B', '#3A2E10', '#FBF3E4']
-  const cpc = ['#7A6A4E', '#6E5514', '#E7C98F']
 
   const fuelSub = fuelLv === 3 ? 'ready to feed the engine' : fuelLv === 2 ? 'not locked yet' : 'no route yet'
 
@@ -747,89 +746,104 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
     location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
 
+  const hereIdx = effective - 1
+
   return (
-    <section className="fa-rel">
-      <div className="fa-darkwrap">
-        <div className="fa-fig"><Sparkle />The Fan Score · Pre-launch edition</div>
-        <div className="fa-verdictlbl">Your verdict</div>
-        <div className="fa-verdict" style={{ color: vColor }}>{verdict}</div>
-        <p className="fa-reframe">{reframeText}</p>
-        <div><span className="fa-stamp">Directional read · self-assessed</span></div>
+    <section className={`fa-rel fa-result fa-result--${tierSlug}`}>
+      <div className="fa-reveal">
+        <div className="fa-reveal__glow" aria-hidden="true" />
+        <div className="fa-reveal__inner">
+          <div className="fa-fig fa-fig--band"><Sparkle />The Fan Score · Pre-launch</div>
+          <div className="fa-verdictlbl">Your verdict</div>
+          <div className="fa-verdict">{verdict}.</div>
+          <p className="fa-reframe">{reframeText}</p>
+          <div><span className="fa-stamp fa-stamp--band">Directional read · self-assessed</span></div>
 
-        <div className="fa-strip">
-          {stages.map((s, i) => {
-            const on = i === effective - 1
-            const st = on ? { background: fills[i], borderColor: fills[i] } : undefined
-            const sn = on ? { color: snc[i] } : undefined
-            const cp = on ? { color: cpc[i] } : undefined
-            return (
-              <div key={s[0]} className={`fa-s${on ? ' fa-s--on' : ''}`} style={st}>
-                <span className="fa-sn" style={sn}>{s[0]}</span>
-                <span className="fa-cap" style={cp}>{s[1]}</span>
-              </div>
-            )
-          })}
-        </div>
-
-        <hr className="fa-rule" />
-        <div className="fa-sectlbl">Where you stand</div>
-
-        <div className={`fa-fuelbar fa-fuelbar--lv${fuelLv}`}>
-          <div className="fa-fl-lab"><em>The gate · fuel</em>Your route to first fans</div>
-          <div className="fa-fl-lv">
-            <span className={`fa-pill fa-pill--lv${fuelLv}`}>{LEVEL_WORD[fuelLv - 1]}</span>
-            <em>{fuelSub}</em>
+          <div className="fa-ladder">
+            {stages.map(([label, cap], i) => {
+              const state = i < hereIdx ? 'cleared' : i === hereIdx ? 'here' : 'next'
+              const capText = state === 'cleared' ? 'cleared' : state === 'here' ? "you're here" : cap
+              return (
+                <div key={label} className="fa-ladder__row">
+                  <div className={`fa-ladder__step fa-ladder__step--${state}`}>
+                    <b>{label}</b>
+                    <span>{capText}</span>
+                  </div>
+                  {i < stages.length - 1 && <span className="fa-ladder__arr" aria-hidden="true">→</span>}
+                </div>
+              )
+            })}
           </div>
-        </div>
-
-        <div className="fa-scards">
-          {DISCIPLINES.map((k) => {
-            const lv = lvls[k]
-            return (
-              <div className={`fa-scard${k === binding && effective < 3 ? ' fa-scard--gate' : ''}`} key={k}>
-                <div className="fa-sct"><span className={`fa-sdot fa-sdot--lv${lv}`} />{LABEL_OF[k]}</div>
-                <div className="fa-scn"><span className={`fa-pill fa-pill--lv${lv}`}>{LEVEL_WORD[lv - 1]}</span></div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="fa-leakbox">{gateBox}</div>
-        {alsoParts.length > 0 && <div className="fa-alsoline">{alsoParts}</div>}
-
-        <hr className="fa-rule" />
-        <div className="fa-sectlbl">The one move</div>
-        <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
-        <p className="fa-ctalead">Want the reality check on your real plan, not a self-assessment?</p>
-        <div className="fa-cta">
-          <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
-          <button className="fa-back" onClick={restart}>Retake the audit</button>
         </div>
       </div>
 
+      <div className="fa-sectlbl fa-sectlbl--drive">Where you stand</div>
+
+      <div className={`fa-gate-row fa-gate-row--lv${fuelLv}`}>
+        <div className="fa-gate-row__lab">
+          <em>The gate · fuel</em>
+          <span>Your route to first fans</span>
+        </div>
+        <div className="fa-gate-row__lv">
+          <span className={`fa-pill fa-pill--lv${fuelLv}`}>{LEVEL_WORD[fuelLv - 1]}</span>
+          <em>{fuelSub}</em>
+        </div>
+      </div>
+
+      <div className="fa-rcards">
+        {DISCIPLINES.map((k) => {
+          const lv = lvls[k]
+          return (
+            <div className="fa-rcard" key={k}>
+              <div className="fa-rcard__top">
+                <span className={`fa-rcard__dot fa-rcard__dot--lv${lv}`} />
+                <span className="fa-rcard__nm">{LABEL_OF[k]}</span>
+              </div>
+              <div className="fa-rcard__pill">
+                <span className={`fa-pill fa-pill--lv${lv}`}>{LEVEL_WORD[lv - 1]}</span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="fa-leakbox">{gateBox}</div>
+      {alsoParts.length > 0 && <div className="fa-alsoline">{alsoParts}</div>}
+
+      <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">The one move</div>
+      <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
+
+      <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
+      <div className="fa-cta">
+        <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
+        <button className="fa-back" onClick={restart}>Retake the audit</button>
+      </div>
+      <p className="fa-ctatail">
+        This is the pre-launch reality check. The full engagement begins the day you go live.
+      </p>
+
       <div className="fa-cardwrap">
         <div className="fa-cardcap">Share your result</div>
-        <div className="fa-card" ref={cardRef}>
-          <div className="fa-ce"><Sparkle />The Fan Score · Pre-launch readiness</div>
-          <div className="fa-cbigw" style={{ color: cardVerdictColor }}>{verdict}</div>
+        <div className={`fa-card fa-card--${cardTierSlug}`} ref={cardRef}>
+          <div className="fa-card__glow" aria-hidden="true" />
+          <div className="fa-ce"><Sparkle />The Fan Score · Pre-launch</div>
+          <div className="fa-cbigw">{verdict}.</div>
           <div className="fa-csub">where I'm at before launch</div>
           <div className="fa-cbars">
             {['Fuel', ...DISCIPLINES].map((k) => {
               const lv = lvls[k]
-              const pct = Math.round(((lv - 1) / 2) * 100)
-              const w = Math.max(pct, 8)
-              const col = lv === 1 ? '#8B8175' : lv === 2 ? '#D9B65C' : '#E7D9AD'
+              const w = Math.max(Math.round(((lv - 1) / 2) * 100), 8)
               return (
                 <div className="fa-cbar" key={k}>
                   <span className="fa-cl">{k === 'Fuel' ? 'Fuel · route to fans' : LABEL_OF[k]}</span>
-                  <span className="fa-ctr"><span className="fa-cfl" style={{ width: w + '%', background: col }} /></span>
+                  <span className="fa-ctr"><span className={`fa-cfl fa-cfl--lv${lv}`} style={{ width: w + '%' }} /></span>
                   <span className="fa-cpct">{LEVEL_WORD[lv - 1]}</span>
                 </div>
               )
             })}
           </div>
           <div className="fa-cleak">{cLeak}</div>
-          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>Laura Cordrey · The Fan Engine</span></div>
+          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>The Fan Engine</span></div>
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
