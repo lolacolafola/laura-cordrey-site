@@ -1261,3 +1261,72 @@
 .fa-card--untapped .fa-cbigw { color: #E0574B; }
 .fa-card--earned .fa-cbigw { color: #E7D9AD; }
 .fa-card--compounding .fa-cbigw { color: #FBEDE6; }
+
+/* ─── Reveal transition (play-once between quiz and result) ─── */
+.fa-fig--center { justify-content: center; margin: 0 auto 20px; display: flex; }
+
+.fa-reveal-fs {
+  position: relative;
+  margin: 0 -60px;
+  padding: 64px 60px 68px;
+  background: #15110F;
+  color: var(--fa-paper);
+  overflow: hidden;
+  text-align: center;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 680px) {
+  .fa-reveal-fs { margin: 0 -26px; padding: 52px 26px 56px; }
+}
+.fa-reveal-fs__glow {
+  position: absolute;
+  inset: -40px -60px auto auto;
+  width: 360px;
+  height: 280px;
+  background: radial-gradient(circle at 72% 24%, rgba(224, 87, 75, 0.22), transparent 62%);
+  pointer-events: none;
+}
+.fa-reveal-fs__inner { position: relative; z-index: 1; width: 100%; max-width: 420px; }
+.fa-reveal-fs__stage {
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fa-reveal-fs__phrase {
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--fa-paper);
+  animation: faRevealFadeUp 0.4s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+@keyframes faRevealFadeUp {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: none; }
+}
+.fa-reveal-fs__sub {
+  font-size: 13px;
+  color: #8A8078;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.fa-reveal-fs__bar {
+  margin: 22px auto 0;
+  max-width: 280px;
+  height: 5px;
+  background: rgba(239, 233, 220, 0.14);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fa-reveal-fs__bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #C8362B, #E0574B);
+  box-shadow: 0 0 14px rgba(224, 87, 75, 0.5);
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.16, 0.84, 0.44, 1);
+}

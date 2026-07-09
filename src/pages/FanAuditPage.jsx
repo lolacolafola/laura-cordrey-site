@@ -192,10 +192,10 @@ export default function FanAuditPage() {
       <div className="fa-sheet">
         {screen === 'intro' && <IntroScreen onStart={() => setScreen('gate')} />}
         {screen === 'gate' && <GateScreen onLive={() => setScreen('liveQuiz')} onPre={() => setScreen('preIntro')} onBack={() => setScreen('intro')} />}
-        {(screen === 'liveQuiz' || screen === 'liveEmail' || screen === 'liveResult') && (
+        {(screen === 'liveQuiz' || screen === 'liveEmail' || screen === 'liveReveal' || screen === 'liveResult') && (
           <LiveFlow screen={screen} setScreen={setScreen} />
         )}
-        {(screen === 'preIntro' || screen === 'preQuiz' || screen === 'preResult') && (
+        {(screen === 'preIntro' || screen === 'preQuiz' || screen === 'preReveal' || screen === 'preResult') && (
           <PreFlow screen={screen} setScreen={setScreen} />
         )}
       </div>
@@ -242,6 +242,41 @@ function GateScreen({ onLive, onPre, onBack }) {
   )
 }
 
+// ─── Reveal transition — cycles a phrase + filling bar, then routes to result.
+// Shared between the live and pre-launch flows.
+const REVEAL_STEPS = [
+  { text: 'Starting the fan engine…', pct: 22 },
+  { text: 'Vroom, vroom…', pct: 60 },
+  { text: 'Ready for blast off!', pct: 100 },
+]
+function RevealTransition({ onDone }) {
+  const [step, setStep] = useState(0)
+  useEffect(() => {
+    if (step >= REVEAL_STEPS.length - 1) {
+      const t = setTimeout(onDone, 1800)
+      return () => clearTimeout(t)
+    }
+    const t = setTimeout(() => setStep(step + 1), 1000)
+    return () => clearTimeout(t)
+  }, [step, onDone])
+  const cur = REVEAL_STEPS[step]
+  return (
+    <section className="fa-rel fa-reveal-fs">
+      <div className="fa-reveal-fs__glow" aria-hidden="true" />
+      <div className="fa-reveal-fs__inner">
+        <div className="fa-fig fa-fig--band fa-fig--center"><Sparkle />The Fan Score</div>
+        <div className="fa-reveal-fs__stage">
+          <div key={step} className="fa-reveal-fs__phrase">{cur.text}</div>
+          <div className="fa-reveal-fs__sub">Reading what you told us</div>
+          <div className="fa-reveal-fs__bar">
+            <i style={{ width: cur.pct + '%' }} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Live edition — quiz, email gate, result ─────────────────────────────────
 
 function LiveFlow({ screen, setScreen }) {
@@ -279,7 +314,7 @@ function LiveFlow({ screen, setScreen }) {
       score: scored ? `${scored.owned}% fan-powered · ${scored.tier}` : 'incomplete',
       _subject: `[fan-score] ${lead.email.trim()} · ${scored ? scored.owned + '% · ' + scored.tier : ''}`,
     })
-    setScreen('liveResult')
+    setScreen('liveReveal')
   }
 
   if (screen === 'liveQuiz') {
@@ -295,6 +330,9 @@ function LiveFlow({ screen, setScreen }) {
         onSubmit={submitEmail}
       />
     )
+  }
+  if (screen === 'liveReveal') {
+    return <RevealTransition onDone={() => setScreen('liveResult')} />
   }
   return <LiveResult scored={scored} lead={lead} restart={restart} />
 }
@@ -589,7 +627,7 @@ function PreFlow({ screen, setScreen }) {
     const next = ans.slice(); next[cur] = i; setAns(next)
     setTimeout(() => {
       if (cur < C.length - 1) setCur(cur + 1)
-      else setScreen('preResult')
+      else setScreen('preReveal')
     }, 180)
   }
 
@@ -653,6 +691,9 @@ function PreFlow({ screen, setScreen }) {
         <button className="fa-back" onClick={back}>← Back</button>
       </section>
     )
+  }
+  if (screen === 'preReveal') {
+    return <RevealTransition onDone={() => setScreen('preResult')} />
   }
   return <PreResult scored={scored} lead={lead} setLead={setLead} err={err} sent={sent} submitEmail={submitEmail} restart={restart} />
 }
