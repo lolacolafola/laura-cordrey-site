@@ -28,7 +28,7 @@ export default function WorkArticle() {
   const cs = caseStudies.find((c) => c.id === slug)
 
   useDocumentMeta({
-    title: cs ? `${cs.company} — ${cs.headline} · Case study by Laura Cordrey` : 'Case study not found',
+    title: cs ? `${cs.company} · ${cs.headline} · Case study by Laura Cordrey` : 'Case study not found',
     description: cs
       ? // Strip <mark> wrappers from the tldr — schema and meta want plain text.
         String(cs.tldr || '').replace(/<\/?mark>/g, '')
@@ -39,7 +39,7 @@ export default function WorkArticle() {
     jsonLd: cs
       ? caseStudyJsonLd({
           slug: cs.id,
-          title: `${cs.company} — ${cs.headline}`,
+          title: `${cs.company} · ${cs.headline}`,
           description: String(cs.tldr || '').replace(/<\/?mark>/g, ''),
           image: cs.media?.image,
           datePublished: inferDatePublished(cs.year),
@@ -105,7 +105,7 @@ export default function WorkArticle() {
           <div className="article__hero-frame">
             <img
               src={BASE + cs.media.image}
-              alt={cs.media.imageAlt || `${cs.company} — ${cs.headline}`}
+              alt={cs.media.imageAlt || `${cs.company} · ${cs.headline}`}
             />
           </div>
         </figure>
@@ -222,9 +222,9 @@ export default function WorkArticle() {
           <h2 className="article__cta-title">
             Let&rsquo;s build one <mark>just like it</mark>.
           </h2>
-          <a href={CONTACT_URL} className="btn btn--primary btn--lg">
+          <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
             Get in touch <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
       </section>
     </article>

@@ -16,7 +16,7 @@ export default function ServicesPage() {
   useDocumentMeta({
     title: 'Work with me · Laura Cordrey · Fan-led growth for fan-driven brands',
     description:
-      'How to work with me: the Fan Engine (my flagship fan-led growth system), Sentiment SOS when your community turns, Fan Moments for launches and drops, and 1:1 strategy sessions from $500. Begin with a call or your free Fan Score.',
+      'How to work with me: the Fan Engine (my flagship fan-led growth system), Sentiment SOS when your community turns, Fan Moments for launches and drops, and 1:1 strategy sessions from $750. Begin with a call or your free Fan Score.',
     canonical: pageUrl('services'),
     ogType: 'website',
     jsonLd: serviceJsonLd(),
@@ -39,9 +39,9 @@ export default function ServicesPage() {
             Whatever we build, you&rsquo;ll know exactly what it&rsquo;s worth.
           </p>
           <div className="svc-hero__ctas">
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Get in touch <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link to="/fan-led-growth-audit" className="btn btn--ghost btn--lg">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>
@@ -74,9 +74,15 @@ export default function ServicesPage() {
             <a href="#consulting" className="svc-index__row">
               <span className="svc-index__n">04</span>
               <span className="svc-index__nm">Consulting</span>
-              <span className="svc-index__one">Advisory. A 2-hour 1:1 session, from $500.</span>
+              <span className="svc-index__one">Advisory. A 2-hour 1:1 session, from $750.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
+            <Link to="/ai" className="svc-index__row svc-index__row--ai">
+              <span className="svc-index__n">AI</span>
+              <span className="svc-index__nm">For AI companies</span>
+              <span className="svc-index__one">Same jobs, your language. Founding-partner terms.</span>
+              <span className="svc-index__arr" aria-hidden="true">→</span>
+            </Link>
           </nav>
           {/* Pointer: plants the "plug-and-play + team if you need one"
             * reassurance before the reader dives into the offers, and
@@ -96,9 +102,9 @@ export default function ServicesPage() {
           <div className="svc-eng__left">
             <span className="svc-eng__kick">01 · The flagship</span>
             <h2 className="svc-eng__title">The Fan Engine.</h2>
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Get in touch about the Engine <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link to="/methodology" className="svc-txtlink">
               How the Engine works <span aria-hidden="true">→</span>
             </Link>
@@ -143,9 +149,9 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Sentiment <mark>SOS</mark>.
             </h2>
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               It&rsquo;s urgent. Book now <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <span className="svc-ctanote">
               In a crisis right now? We can start this week.
             </span>
@@ -190,9 +196,9 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Fan <mark>Moments</mark>.
             </h2>
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Talk about your moment <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link to="/work" className="svc-txtlink">
               See moments I&rsquo;ve built <span aria-hidden="true">→</span>
             </Link>
@@ -236,12 +242,12 @@ export default function ServicesPage() {
             </h2>
             <div className="svc-price">
               <span className="svc-price__from">From</span>
-              <span className="svc-price__amount">$500</span>
+              <span className="svc-price__amount">$750</span>
               <span className="svc-price__unit">a 2-hour session</span>
             </div>
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Book a session <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
           <div className="svc-eng__right">
             <p className="svc-eng__body">
@@ -268,10 +274,33 @@ export default function ServicesPage() {
             </div>
             <div className="svc-credit">
               <span className="svc-credit__fmt">
-                From $500 a 2-hour session · Or ongoing advisory
+                From $750 a 2-hour session · Or ongoing advisory
               </span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── FOR AI COMPANIES (slim pointer band) ──────────────
+        * AI is an audience, not a fifth offer: this points AI buyers to
+        * /ai, where the same jobs are sold in their language on
+        * founding-partner terms. Keep in sync with the /ai offer stack. */}
+      <section className="svc-band svc-band--deep">
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(20px,3vw,40px)' }}>
+          <div style={{ maxWidth: '52ch', display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
+              For AI companies
+            </span>
+            <h2 style={{ fontSize: 'clamp(1.4rem,2.4vw,1.9rem)', lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: 800, color: '#EFE9DC', margin: 0, textWrap: 'balance' }}>
+              Shipping models with a crowd around them? There&rsquo;s a page in your language.
+            </h2>
+            <p style={{ fontSize: '1rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
+              The same engagements, framed for AI products, with a founding-partner offer while I build the first AI case studies.
+            </p>
+          </div>
+          <Link to="/ai" className="btn btn--ghost btn--lg" style={{ flex: 'none' }}>
+            Fan-led growth for AI <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
@@ -299,7 +328,7 @@ export default function ServicesPage() {
 
           <ol
             className="svc-how__steps"
-            aria-label="How I work — three steps"
+            aria-label="How I work: three steps"
             style={{
               position: 'relative',
               listStyle: 'none',
@@ -394,9 +423,9 @@ export default function ServicesPage() {
             captures it.
           </p>
           <div className="svc-finale__ctas">
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Get in touch <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link to="/fan-led-growth-audit" className="btn btn--lg svc-finale__ghost">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>

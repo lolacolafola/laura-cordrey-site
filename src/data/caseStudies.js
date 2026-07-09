@@ -36,20 +36,20 @@ const caseStudies = [
     tags: ['Revenue', 'Gamification', 'PLG'],
     stats: [
       { value: '$32K', label: 'Sales, under 3 hrs' },
-      { value: '250', label: 'VIP bundles — sold out' },
+      { value: '250', label: 'VIP bundles, sold out' },
       { value: '80%', label: 'Pre-launch email open rate' },
       { value: '35%', label: 'Pre-launch email CTOR' },
     ],
     challenge:
       '$54M ARR, 200K subs, 100% YoY growth, but the flagship SIM Kit was being given away for free. As Head of Community, I saw the chance to turn it into core-community money: package the kit as a limited-edition bundle around the Dark Star launch and prove fans would pay.',
       approach:
-      'I spotted the opportunity: the SIM kit was being given away for $0. I made the case to charge $129 for it as a limited-edition VIP Early Access Bundle around the Dark Star launch: limited-edition SIM kit, two-week early access, free 12-month QCI 8 upgrade, exclusive in-app network badge, a US Mobile × The North Face® fleece with personalised initials, a signed letter and a 15-minute Zoom with the CEO. I built the gamified pre-launch funnel (50K+ visitor landing pages, an arcade-style email game that earned 80% open rate and 35% CTOR), then capped the run at 250 units (the CEO can only take so many Zoom calls). I also produced the Madison Avenue, New York launch event to bring the product moment to life IRL — 200+ attendees including AT&T execs.',
+      'I spotted the opportunity: the SIM kit was being given away for $0. I made the case to charge $129 for it as a limited-edition VIP Early Access Bundle around the Dark Star launch: limited-edition SIM kit, two-week early access, free 12-month QCI 8 upgrade, exclusive in-app network badge, a US Mobile × The North Face® fleece with personalised initials, a signed letter and a 15-minute Zoom with the CEO. I built the gamified pre-launch funnel (50K+ visitor landing pages, an arcade-style email game that earned 80% open rate and 35% CTOR), then capped the run at 250 units (the CEO can only take so many Zoom calls). I also produced the Madison Avenue, New York launch event to bring the product moment to life IRL: 200+ attendees including AT&T execs.',
     takeaway:
       'I closed $32.25K in under three hours, sold out, 450+ Reddit comments and unprompted fan posts on X (“crazy there are only 250 of these”). The CEO’s “we are sold out, this is insane” edit became its own marketing moment, and proved a community-first company can monetise its fans directly.',
     media: {
       // Single source of truth — doubles as article hero and card image.
       image: 'case-studies/us-mobile/us-mobile-dark-star-banner.png',
-      imageAlt: 'Dark Star — US Mobile’s premium plan banner, a moody black sphere on a starfield with the Dark Star wordmark, cinematic widescreen treatment',
+      imageAlt: 'Dark Star: US Mobile’s premium plan banner, a moody black sphere on a starfield with the Dark Star wordmark, cinematic widescreen treatment',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
@@ -57,23 +57,23 @@ const caseStudies = [
     gallery: [
       {
         src: 'case-studies/us-mobile/us-mobile-vip-bundle.png',
-        alt: 'US Mobile Dark Star VIP Early Access Bundle — SIM kit + North Face fleece packshot',
-        caption: 'The $129 Dark Star VIP Bundle I designed — limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in three hours.',
+        alt: 'US Mobile Dark Star VIP Early Access Bundle: SIM kit + North Face fleece packshot',
+        caption: 'The $129 Dark Star VIP Bundle I designed: limited-edition SIM kit, exclusive Dark Star fleece, $32K sold in under three hours.',
       },
       {
         src: 'case-studies/us-mobile/us-mobile-dark-star.png',
         alt: 'US Mobile Dark Star launch teaser landing page with countdown timer',
-        caption: 'The Dark Star teaser landing I shipped — the countdown that drove 50K+ pre-launch visitors.',
+        caption: 'The Dark Star teaser landing I shipped: the countdown that drove 50K+ pre-launch visitors.',
       },
       {
         src: 'case-studies/us-mobile/us-mobile-email-game.png',
         alt: 'US Mobile arcade-style pre-launch email game START screen',
-        caption: 'The arcade-style pre-launch email game I built — 80% open rate, 35% CTOR.',
+        caption: 'The arcade-style pre-launch email game I built: 80% open rate, 35% CTOR.',
       },
       {
         src: 'case-studies/us-mobile/us-mobile-vip-landing.png',
         alt: 'US Mobile $129 VIP Early Access Bundle landing page',
-        caption: '$129 VIP Early Access Bundle landing page — capped at 250 units, sold out in 3 hours.',
+        caption: '$129 VIP Early Access Bundle landing page: capped at 250 units, sold out in under three hours.',
       },
       {
         src: 'case-studies/us-mobile/us-mobile-stetson-tweet.png',
@@ -100,36 +100,36 @@ const caseStudies = [
       { value: '1', label: 'Fake Hugh Jackman' },
     ],
     challenge:
-      'US Mobile needed a brand moment that could punch above its weight against incumbents like Mint Mobile — disruptor energy, not category playbook. The brief: make people talk, then make them switch.',
+      'US Mobile needed a brand moment that could punch above its weight against incumbents like Mint Mobile: disruptor energy, not category playbook. The brief: make people talk, then make them switch.',
     approach:
-      'I produced “Claw Mobile” with Luna agency end-to-end — a Mint Mobile parody where, instead of doing a normal celebrity endorsement for US Mobile, a fake Hugh Jackman hijacks the spot to launch his own competing network: “Claw Mobile.” I played fully into the bit: stood up a real Claw Mobile spoof site that lived the storyline in-world, then routed visitors to a custom landing page where the actual US Mobile CEO claps back at the fake Jackman’s lame attempt — the moment of brand reveal. I worked the full production arc: script development, casting, the shoot, the granular post-production craft (edit, sound, colour, VFX), all the way to final delivery. I built the surrounding creative system around the film: paid social cuts, organic teaser drops, and a press angle designed for screenshot-ability.',
+      'I produced “Claw Mobile” with Luna agency end-to-end: a Mint Mobile parody where, instead of doing a normal celebrity endorsement for US Mobile, a fake Hugh Jackman hijacks the spot to launch his own competing network: “Claw Mobile.” I played fully into the bit: stood up a real Claw Mobile spoof site that lived the storyline in-world, then routed visitors to a custom landing page where the actual US Mobile CEO claps back at the fake Jackman’s lame attempt, the moment of brand reveal. I worked the full production arc: script development, casting, the shoot, the granular post-production craft (edit, sound, colour, VFX), all the way to final delivery. I built the surrounding creative system around the film: paid social cuts, organic teaser drops, and a press angle designed for screenshot-ability.',
     takeaway:
-      'On Meta, 55% of viewers stuck past the 15-second mark — the joke landed and the hook worked. Plus its own organic traction on Reddit. The kind of brand moment that gets shared, screenshotted, and remembered — proof that a challenger brand can make incumbents react instead of the other way around.',
+      'On Meta, 55% of viewers stuck past the 15-second mark: the joke landed and the hook worked. Plus its own organic traction on Reddit. The kind of brand moment that gets shared, screenshotted, and remembered. Proof that a challenger brand can make incumbents react instead of the other way around.',
     media: {
       // Card pulled from the Claw Mobile YouTube thumbnail
       // (https://i.ytimg.com/vi/bsLHDOlcgcY/maxresdefault.jpg) so the
       // hero + work card both show the fake-Hugh-Jackman stunt frame
       // instead of the US Mobile brand mark.
       image: 'case-studies/claw-mobile/claw-mobile-card.jpg',
-      imageAlt: 'Claw Mobile stunt film thumbnail — a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right',
+      imageAlt: 'Claw Mobile stunt film thumbnail: a fake Hugh Jackman with cardboard Wolverine claws and a wide-eyed expression in front of the Claw Mobile logo, with security tackling another version of the character on the right',
       youtube: 'bsLHDOlcgcY',
-      videoTitle: 'Claw Mobile — the stunt film',
+      videoTitle: 'Claw Mobile · the stunt film',
       videoDescription: 'The stunt brand film for US Mobile, parodying Mint Mobile.',
     },
     additionalVideos: [
       {
         id: 'O9IGCpzi6P4',
-        title: 'Claw Mobile — backstage',
+        title: 'Claw Mobile · backstage',
         caption: 'Backstage: the team regretting their decisions.',
       },
       {
         id: 'RsimGZVWlsU',
-        title: 'Claw Mobile — supporting cut',
+        title: 'Claw Mobile · supporting cut',
         caption: 'Supporting asset.',
       },
       {
         id: '9B6Ogshm5Ho',
-        title: 'Claw Mobile — supporting cut',
+        title: 'Claw Mobile · supporting cut',
         caption: 'Supporting asset.',
       },
     ],
@@ -152,14 +152,14 @@ const caseStudies = [
       { value: '+80%', label: 'MAU growth (LoL launch)' },
     ],
     challenge:
-      'A Twitch overlay product with reach but no proof of mass interactivity at scale. Azarus needed evidence that the format scaled — not stories that it worked — to unlock bigger brand deals, the gamified ad pivot, and a token launch. I had four months as Head of Growth to make the case.',
+      'A Twitch overlay product with reach but no proof of mass interactivity at scale. Azarus needed evidence that the format scaled, not stories that it worked, to unlock bigger brand deals, the gamified ad pivot, and a token launch. I had four months as Head of Growth to make the case.',
     approach:
-      'I activated Azarus on streamers through three motions running in parallel. First, the expansion play: every new supported game (League of Legends, Valorant, Apex Legends) shipped with a coordinated streamer campaign — the LoL push alone drove +80% MAU growth. Second, the always-on engine: invite-only creator overlay partnerships across Rainbow Six Siege, LoL, Valorant and Apex (KingGeorge, lol_Nemesis, others) at ~$1.70 cost-per-viewer versus a $2.50–$3.50 industry rate. Third, the big swing: I landed title sponsorship of the inaugural Streamer Awards (QTCinderella + Maya Higa, March 2022) and shipped a bespoke trivia overlay built for the broadcast — 14 categories, ~65 nominee streamers, hundreds of fan-specific deep-cut questions, with a team member embedded in the production room firing live questions in real time. Two months later I ran the playbook again on Amouranth’s channel for the Streamer Royale: different format, same engine, servers held.',
+      'I activated Azarus on streamers through three motions running in parallel. First, the expansion play: every new supported game (League of Legends, Valorant, Apex Legends) shipped with a coordinated streamer campaign: the LoL push alone drove +80% MAU growth. Second, the always-on engine: invite-only creator overlay partnerships across Rainbow Six Siege, LoL, Valorant and Apex (KingGeorge, lol_Nemesis, others) at ~$1.70 cost-per-viewer versus a $2.50–$3.50 industry rate. Third, the big swing: I landed title sponsorship of the inaugural Streamer Awards (QTCinderella + Maya Higa, March 2022) and shipped a bespoke trivia overlay built for the broadcast: 14 categories, ~65 nominee streamers, hundreds of fan-specific deep-cut questions, with a team member embedded in the production room firing live questions in real time. Two months later I ran the playbook again on Amouranth’s channel for the Streamer Royale: different format, same engine, servers held.',
     takeaway:
-      'Three motions, one engine, proven at scale. 500K viewers, 90% engaged, 20% converted on the Streamer Awards — servers crashed because we’d built for the audience we expected, not the one that showed up. 4.4M total viewers reached across four months. Three principles: engagement is the thesis, conversion is the infrastructure (build ops for the upside); one playbook, three motions (live events for proof, always-on for retention, game-launch for expansion); custom mechanics per format beat generic overlays (sponsorship becomes co-production). The proof point unlocked the next chapter — the pivot to a gamified ad platform.',
+      'Three motions, one engine, proven at scale. 500K viewers, 90% engaged, 20% converted on the Streamer Awards. Servers crashed because we’d built for the audience we expected, not the one that showed up. 4.4M total viewers reached across four months. Three principles: engagement is the thesis, conversion is the infrastructure (build ops for the upside); one playbook, three motions (live events for proof, always-on for retention, game-launch for expansion); custom mechanics per format beat generic overlays (sponsorship becomes co-production). The proof point unlocked the next chapter: the pivot to a gamified ad platform.',
     media: {
       image: 'case-studies/azarus/azarus-streamer-awards-banner.png',
-      imageAlt: 'The Streamer Awards official banner — art-deco gold-on-navy logo with the tagline “Recognize the best of live streaming” — the flagship event Azarus title-sponsored in March 2022',
+      imageAlt: 'The Streamer Awards official banner: art-deco gold-on-navy logo with the tagline “Recognize the best of live streaming”, the flagship event Azarus title-sponsored in March 2022',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
@@ -183,14 +183,14 @@ const caseStudies = [
       { value: 'Acq.', label: 'Acquired by Animoca Brands · Oct 2023' },
     ],
     challenge:
-      'The Streamer Awards proved the engagement thesis at scale — but the Twitch-overlay format capped the addressable market. To grow into a business investors would back and brands would fund, Azarus needed a different surface, a different pricing model, and capital aligned with the people who made the platform work.',
+      'The Streamer Awards proved the engagement thesis at scale. But the Twitch-overlay format capped the addressable market. To grow into a business investors would back and brands would fund, Azarus needed a different surface, a different pricing model, and capital aligned with the people who made the platform work.',
     approach:
-      'Funding-and-alignment first: we structured the $AZA token around a four-way value split — brands purchased AZA to run campaigns, allocated across streamers (creators), players (audience), Azarus (platform), and a community treasury (long-term incentives and governance). Turning every advertiser dollar into shared upside. Product next: I took ownership of game design and built the gamified ad format end-to-end — Livestream entry → Players Joining → Countdown → Question → Result → Star Award → AZA Tally → Brand Video → AzaCoin Collect → Audience Credits. We tested it through the September 2022 Azarus Alpha with streamers from the creator community I’d built, then the Halloween Beta in October 2022. The pitch artefact: a fully-rendered mock campaign using Coca-Cola’s brand identity as recognisable visual shorthand — not a real client, a proof of concept that let any advertiser see themselves in the format. It opened the door to the launch advertisers: Ubisoft signed for Brawlhalla (live on streamer Xenrichan, Nov 2022), Logitech signed in parallel (live on ElainaExe). Both hit $2 CPI — pricing benchmarked by our ex-Amazon sales team from Amazon’s gaming-ad data, and described by one talent agency as "much higher than anything they have done in the past." Azarus was competing on quality at a premium price point, not on cost. In parallel I led the $AZA token launch end-to-end — brand, whitepaper, GTM, comms — and supported listings on Coinbase and Crypto.com. I also directed a full website redesign repositioning Azarus from "Twitch overlay" to "gamified engagement / Web3 platform", and supported the CEO on investor relations.',
+      'Funding-and-alignment first: we structured the $AZA token around a four-way value split: brands purchased AZA to run campaigns, allocated across streamers (creators), players (audience), Azarus (platform), and a community treasury (long-term incentives and governance). Turning every advertiser dollar into shared upside. Product next: I took ownership of game design and built the gamified ad format end-to-end: Livestream entry → Players Joining → Countdown → Question → Result → Star Award → AZA Tally → Brand Video → AzaCoin Collect → Audience Credits. We tested it through the September 2022 Azarus Alpha with streamers from the creator community I’d built, then the Halloween Beta in October 2022. The pitch artefact: a fully-rendered mock campaign using Coca-Cola’s brand identity as recognisable visual shorthand: not a real client, a proof of concept that let any advertiser see themselves in the format. It opened the door to the launch advertisers: Ubisoft signed for Brawlhalla (live on streamer Xenrichan, Nov 2022), Logitech signed in parallel (live on ElainaExe). Both hit $2 CPI, pricing benchmarked by our ex-Amazon sales team from Amazon’s gaming-ad data, and described by one talent agency as "much higher than anything they have done in the past." Azarus was competing on quality at a premium price point, not on cost. In parallel I led the $AZA token launch end-to-end (brand, whitepaper, GTM, comms) and supported listings on Coinbase and Crypto.com. I also directed a full website redesign repositioning Azarus from "Twitch overlay" to "gamified engagement / Web3 platform", and supported the CEO on investor relations.',
     takeaway:
-      'The engagement engine became a business. Brand advertisers at premium CPI. A tradeable token aligning streamers, players, platform and treasury with growth. Hundreds of thousands of active players. Acquired by Animoca Brands in October 2023. Three principles: earn the right to pivot (no Streamer Awards proof point, no advertiser conversation); premium pricing beats discount pricing if the format earns it ($2 CPI was higher than industry — brands paid because engagement justified it); token work is brand work, not crypto work (same product-launch playbook with regulatory care added).',
+      'The engagement engine became a business. Brand advertisers at premium CPI. A tradeable token aligning streamers, players, platform and treasury with growth. Hundreds of thousands of active players. Acquired by Animoca Brands in October 2023. Three principles: earn the right to pivot (no Streamer Awards proof point, no advertiser conversation); premium pricing beats discount pricing if the format earns it ($2 CPI was higher than industry: brands paid because engagement justified it); token work is brand work, not crypto work (same product-launch playbook with regulatory care added).',
     media: {
       image: 'case-studies/azarus/azarus-overlay-games-banner.jpeg',
-      imageAlt: 'Azarus repositioning banner — the AZARUS wordmark with the tagline "The Overlay Games Company" on a purple gradient with floating confetti, the brand statement of the pivot Laura led',
+      imageAlt: 'Azarus repositioning banner: the AZARUS wordmark with the tagline "The Overlay Games Company" on a purple gradient with floating confetti, the brand statement of the pivot Laura led',
       heroBackground: 'transparent',
       // Bespoke card thumbnail (960×540) supplied by Laura for the
       // /work index. Sized so the key visual sits cleanly inside the
@@ -225,7 +225,7 @@ const caseStudies = [
       // Official Siege Champions Program key art (two operators in
       // program skins with the program logo + vivid spray backdrop).
       image: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png',
-      imageAlt: 'Siege Champions Program — official key art with two operators in program skins, the SIEGE CHAMPIONS PROGRAM logo, and a vivid coloured-spray backdrop',
+      imageAlt: 'Siege Champions Program: official key art with two operators in program skins, the SIEGE CHAMPIONS PROGRAM logo, and a vivid coloured-spray backdrop',
       youtube: null,
       videoTitle: null,
       videoDescription: null,
@@ -250,13 +250,13 @@ const caseStudies = [
     ],
     challenge: 'Ubisoft’s Ghost Recon community had millions of players but no system to deepen the relationship with the studio.',
     approach: 'Built Delta Company: a first-of-its-kind community advocacy program at Ubisoft, pioneering for AAA titles, structured around 5 community clusters (creators, artists, cosplayers, feedback specialists, tournament players). Designed the brand with the internal Ghost Recon Breakpoint design team and Diana Da Costa. Commissioned a dedicated website in 14 languages with custom application back-end. Produced a How-it-Works recruitment video. Unveiled live on the UbiE3 2019 stage with Takeoff agency assets. Shipped a members-only goodie box and in-game customisations.',
-    takeaway: '10M+ UGC views from program members alone — from just 130 people. A continuous stream of considered, educated content showing Studio and community in real partnership. The kind of distribution money cannot buy. The program became the blueprint for Ubisoft’s subsequent community programs across multiple franchises.',
+    takeaway: '10M+ UGC views from program members alone, from just 130 people. A continuous stream of considered, educated content showing Studio and community in real partnership. The kind of distribution money cannot buy. The program became the blueprint for Ubisoft’s subsequent community programs across multiple franchises.',
     media: {
       image: 'case-studies/ubisoft-delta/01-delta-badge-hero.png',
       imageAlt: 'Delta Company badge on a Ghost Recon Breakpoint backdrop. The brand mark Laura designed for a first-of-its-kind community advocacy program at Ubisoft, pioneering for AAA titles.',
       cardImageScale: 1.15,
       youtube: 'F5g7fOzxGYY',
-      videoTitle: 'UbiE3 2019 — Community segment + Delta Company reveal',
+      videoTitle: 'UbiE3 2019 · Community segment + Delta Company reveal',
       videoDescription: 'The full Ghost Recon community segment where Laura unveiled Delta Company live on the UbiE3 2019 stage.',
     },
   },
@@ -280,7 +280,7 @@ const caseStudies = [
     challenge:
       'The UK market had zero brand recognition for BlaBlaCar. We needed high-visibility, trust-building activations to reach a sceptical audience.',
     approach:
-      'I secured Live Nation as Official Ridesharing Partner — unprecedented for a carpooling platform. Designed and ran the on-site presence end-to-end: 300+ branded parking spots and a 20m² community tent across Latitude, Leeds and Reading, plus on-site activations and community meetups. I paired the festival footprint with grassroots CRM (35% open rate, 12% CTR, best in company at the time) and social community building.',
+      'I secured Live Nation as Official Ridesharing Partner, unprecedented for a carpooling platform. Designed and ran the on-site presence end-to-end: 300+ branded parking spots and a 20m² community tent across Latitude, Leeds and Reading, plus on-site activations and community meetups. I paired the festival footprint with grassroots CRM (35% open rate, 12% CTR, best in company at the time) and social community building.',
     takeaway:
       'I turned festivals into a trust-building channel that made carpooling feel culturally normal in the UK. The kind of work that doesn’t show up in dashboards but changes how people feel about your brand.',
     media: {

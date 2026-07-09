@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
+import { postLead } from '../lib/forms.js'
 import './FanAuditPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -270,6 +271,14 @@ function LiveFlow({ screen, setScreen }) {
     e.preventDefault()
     if (!isEmail(lead.email.trim())) { setErr('Please enter a valid email.'); return }
     setErr('')
+    postLead({
+      form: 'fan-score',
+      edition: 'live',
+      name: lead.name.trim(),
+      email: lead.email.trim(),
+      score: scored ? `${scored.owned}% fan-powered · ${scored.tier}` : 'incomplete',
+      _subject: `[fan-score] ${lead.email.trim()} · ${scored ? scored.owned + '% · ' + scored.tier : ''}`,
+    })
     setScreen('liveResult')
   }
 
@@ -476,7 +485,7 @@ function LiveResult({ scored, lead, restart }) {
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
       <p className="fa-ctalead">Want it done with you, baselined on your real numbers?</p>
       <div className="fa-cta">
-        <a className="fa-btn" href={CONTACT_URL}>Get in touch →</a>
+        <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
         <button className="fa-back" onClick={restart}>Retake the audit</button>
       </div>
       <p className="fa-seclink"><Link to="/fan-led-growth-value-model">Or see what the gap is worth →</Link></p>
@@ -572,7 +581,16 @@ function PreFlow({ screen, setScreen }) {
   const submitEmail = (e) => {
     e.preventDefault()
     if (!isEmail(lead.email.trim())) { setErr('Please enter a valid email.'); return }
-    setErr(''); setSent(true)
+    setErr('')
+    postLead({
+      form: 'fan-score',
+      edition: 'pre-launch',
+      name: lead.name.trim(),
+      email: lead.email.trim(),
+      score: scored ? scored.verdict : 'incomplete',
+      _subject: `[fan-score · pre-launch] ${lead.email.trim()} · ${scored ? scored.verdict : ''}`,
+    })
+    setSent(true)
   }
 
   if (screen === 'preIntro') {
@@ -762,7 +780,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
         <p className="fa-ctalead">Want the reality check on your real plan, not a self-assessment?</p>
         <div className="fa-cta">
-          <a className="fa-btn" href={CONTACT_URL}>Get in touch →</a>
+          <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
           <button className="fa-back" onClick={restart}>Retake the audit</button>
         </div>
       </div>

@@ -499,3 +499,48 @@
     animation: none !important;
   }
 }
+
+/* ─── 5b · HOW WE'D WORK TOGETHER (offer stack) ────── */
+.ai-band--offers {
+  background: #15110F;
+  padding-top: clamp(64px, 7vw, 104px);
+  padding-bottom: clamp(40px, 5vw, 72px);
+}
+.ai-offers__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .ai-offers__list { grid-template-columns: 1fr; }
+}
+
+/* ─── 5c · FOUNDING-PARTNER OFFER ──────────────────── */
+.ai-band--founding {
+  background: #15110F;
+  padding-top: 0;
+  padding-bottom: clamp(64px, 7vw, 104px);
+}
+.ai-founding__card {
+  position: relative;
+  background: linear-gradient(155deg, #241A16, #15110F);
+  border: 1px solid rgba(212, 200, 150, 0.4);
+  border-top: 2px solid rgba(212, 200, 150, 0.75);
+  border-radius: 4px;
+  padding: clamp(36px, 4.5vw, 60px);
+  max-width: 860px;
+  margin: 0 auto;
+}
+.ai-founding__card .ai-eyebrow { display: block; margin-bottom: 14px; }
+.ai-founding__title { margin: 0 0 20px; }
+.ai-founding__body {
+  font-size: 1.06rem;
+  line-height: 1.65;
+  color: #B8AEA2;
+  margin: 0 0 18px;
+  max-width: 62ch;
+}
+.ai-founding__cta { margin-top: 10px; }

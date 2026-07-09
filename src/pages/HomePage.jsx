@@ -369,9 +369,9 @@ export default function HomePage() {
               <Link to="/fan-led-growth-audit" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
                 Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
               </Link>
-              <a href={CONTACT_URL} className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
+              <Link to={CONTACT_URL} className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
                 Get in touch <span className="ar" aria-hidden>→</span>
-              </a>
+              </Link>
             </div>
             <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free intro · or take the 2-minute Fan Score first.</span>
           </div>
@@ -473,9 +473,9 @@ export default function HomePage() {
               Across the board, these pillars run as separate teams. I come in to connect them into one <mark>Fan Engine</mark>, built for your business and powered by your own fans.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
-              <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
                 Get in touch <span className="ar" aria-hidden>→</span>
-              </a>
+              </Link>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me <span className="ar" aria-hidden>→</span>
               </Link>
@@ -554,7 +554,7 @@ export default function HomePage() {
             <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,48px)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '46ch' }}>
                 <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-                  Fan value estimate
+                  Fan Value estimate
                 </span>
                 <p style={{ fontSize: 'clamp(1.12rem,1.6vw,1.5rem)', lineHeight: 1.3, fontWeight: 700, color: '#EFE9DC', margin: 0 }}>
                   The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', fontWeight: 800, whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M brand.
@@ -568,7 +568,7 @@ export default function HomePage() {
                   Estimate yours <span className="ar" aria-hidden>→</span>
                 </Link>
                 <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
-                  or <a href={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>get in touch</a>
+                  or <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>get in touch</Link>
                 </span>
               </div>
             </div>
@@ -636,7 +636,7 @@ export default function HomePage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
                   <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Consulting</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth direction, one to one. A focused strategy session, or an ongoing sounding board. From $500.</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth direction, one to one. A focused strategy session, or an ongoing sounding board. From $750.</span>
                 </div>
               </div>
             </div>
@@ -659,9 +659,9 @@ export default function HomePage() {
           </div>
 
           <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
-            <a href={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
               Get in touch <span className="ar" aria-hidden>→</span>
-            </a>
+            </Link>
             <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
               See all the ways to work <span className="ar" aria-hidden>→</span>
             </Link>
@@ -703,9 +703,9 @@ export default function HomePage() {
             <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
               Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
             </Link>
-            <a href={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
+            <Link to={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
               Get in touch <span className="ar" aria-hidden>→</span>
-            </a>
+            </Link>
           </div>
           {/* Just-keeping-tabs LinkedIn line — the dead email-capture form
             * that used to live here was removed once /contact took over as

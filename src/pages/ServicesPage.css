@@ -462,3 +462,7 @@
   .svc-index__row { grid-template-columns: 3rem 1fr auto; }
   .svc-index__one { display: none; }
 }
+
+/* Fifth index row: For AI companies (audience pointer, not an offer). */
+.svc-index__row--ai .svc-index__n { color: #D4C896; }
+.svc-index__row--ai .svc-index__nm { color: #EFE9DC; }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import './AIPage.css'
@@ -162,9 +163,9 @@ export default function AIPage() {
             <p className="ai-lead-p">
               Every few weeks an AI company ships, and within the hour the internet has decided how it feels. I ran that exact problem for 15-million-player live games. It has a playbook, it just does not have a name in AI yet.
             </p>
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg ai-hero__cta">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg ai-hero__cta">
               Let&rsquo;s build it together <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
           <div className="ai-hero__plate">
             <RadarPlate />
@@ -289,6 +290,66 @@ export default function AIPage() {
         </div>
       </section>
 
+      {/* ─── 5b · HOW WE'D WORK TOGETHER (espresso) ────────
+        * The offer stack: AI is an audience, not a new offer. Three ways
+        * in, same jobs as the services page. Keep in sync with /services. */}
+      <section className="ai-band ai-band--offers">
+        <div className="ai-container">
+          <div className="ai-moves__head">
+            <span className="ai-eyebrow ai-eyebrow--gold">How we&rsquo;d work together</span>
+            <h2 className="ai-h2 ai-moves__title">
+              Three ways in, in the order <mark>most AI companies start.</mark>
+            </h2>
+          </div>
+          <ol className="ai-offers__list">
+            <li className="ai-card">
+              <span className="ai-card__num">01</span>
+              <h3 className="ai-card__ttl">AI Sentiment SOS</h3>
+              <p className="ai-card__body">
+                When your community turns on a release, a price change or a deprecation, I read what they are actually saying, find the signal, and hand you a build-ready plan across product, comms and community. The fastest way to stop the bleed, and the work I have done longest.
+              </p>
+            </li>
+            <li className="ai-card">
+              <span className="ai-card__num">02</span>
+              <h3 className="ai-card__ttl">The Fan-Led Growth Engine, for AI</h3>
+              <p className="ai-card__body">
+                Once the fire is out, I build the thing that stops it recurring: the developer and power-user community, the advocacy and ambassador programs, the sentiment defence, all instrumented to adoption and retention. Offered as a founding-partner pilot, below.
+              </p>
+            </li>
+            <li className="ai-card">
+              <span className="ai-card__num">03</span>
+              <h3 className="ai-card__ttl">Fan Moments</h3>
+              <p className="ai-card__body">
+                A model release or a developer-conference moment your community actually feels, tied to a number. Proven by a sold-out $32K fan drop at US Mobile.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* ─── 5c · FOUNDING-PARTNER OFFER (espresso, gold card) ─
+        * The honest pitch: gaming proof, no AI track record claimed,
+        * pioneer terms in exchange for building the case study together. */}
+      <section className="ai-band ai-band--founding">
+        <div className="ai-container">
+          <div className="ai-founding__card">
+            <span className="ai-eyebrow ai-eyebrow--gold">The founding-partner offer</span>
+            <h2 className="ai-h2 ai-founding__title">
+              I&rsquo;m taking on a small number of <mark>founding AI partners.</mark>
+            </h2>
+            <p className="ai-founding__body">
+              I have run this playbook at the largest scale in gaming. I have not yet run it inside an AI company, and I am not going to pretend otherwise. So I am taking on a few founding partners at pioneer terms: you get senior, hands-on fan-led growth you could not hire fast enough, and we build the case study together.
+            </p>
+            <p className="ai-founding__body">
+              If you are an AI company between Series A and C, with a passionate user base and no senior community or advocacy leader yet, this is built for you.
+            </p>
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg ai-founding__cta">
+              Talk about a founding-partner pilot <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ─── 6 · FINALE (oxblood #A12A1E) ──────────────────
         * Gold radial glow from the bottom, bright-gold eyebrow +
         * marked H2, cream primary button, email fallback. */}
@@ -299,9 +360,9 @@ export default function AIPage() {
           <h2 className="ai-finale__title">
             Who wants to build it <mark>with me?</mark>
           </h2>
-          <a href={CONTACT_URL} className="btn btn--lg ai-finale__cta">
+          <Link to={CONTACT_URL} className="btn btn--lg ai-finale__cta">
             Let&rsquo;s talk <span aria-hidden="true">→</span>
-          </a>
+          </Link>
           <p className="ai-finale__mail">
             Or email <a href={`mailto:${HELLO_EMAIL}`}>{HELLO_EMAIL}</a>
           </p>

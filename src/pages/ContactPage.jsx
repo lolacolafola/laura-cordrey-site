@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { FORM_ENDPOINT } from '../lib/forms.js'
 import { pageUrl } from '../lib/seo.js'
 import './ContactPage.css'
 
@@ -60,6 +61,7 @@ export default function ContactPage() {
   const [intent, setIntent] = useState(initialIntent)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(null)
+  const [sending, setSending] = useState(false)
   const formRef = useRef(null)
   const sourcePage = typeof document !== 'undefined' ? document.referrer || 'direct' : 'direct'
 
@@ -122,18 +124,25 @@ export default function ContactPage() {
     delete payload.company_url
     payload.intent = intent
     payload.source_page = sourcePage
+    payload._subject = `[${intent}] ${name} · lauracordrey.com contact form`
 
-    // TODO(laura): wire the submit endpoint. Options:
-    //   · Formspree / Basin / Formspark (fastest, ~5min)
-    //   · A serverless function (Vercel/Netlify/Cloudflare) + Resend/Postmark
-    //   · An existing endpoint on your own server
-    // Honour the honeypot server-side too; route by payload.intent to
-    // separate speaking vs growth inbound.
-    // eslint-disable-next-line no-console
-    console.log('[contact] submit', payload)
-
-    setSubmitted(true)
+    setSending(true)
     setError(null)
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`submit failed: ${res.status}`)
+        setSubmitted(true)
+      })
+      .catch(() => {
+        setError(
+          `Something went wrong sending this. Please email me directly at ${HELLO_EMAIL}, or try again in a minute.`,
+        )
+      })
+      .finally(() => setSending(false))
   }
 
   const reset = () => {
@@ -333,8 +342,8 @@ export default function ContactPage() {
                   )}
 
                   <div className="contact-submit">
-                    <button type="submit" className="btn btn--primary btn--lg contact-submit__btn">
-                      {submitLabel} <span aria-hidden="true">→</span>
+                    <button type="submit" className="btn btn--primary btn--lg contact-submit__btn" disabled={sending}>
+                      {sending ? 'Sending…' : submitLabel} <span aria-hidden="true">→</span>
                     </button>
                     <p className="contact-submit__note">
                       Goes straight to my inbox. I read every one and reply within two working days.

@@ -634,9 +634,9 @@ export default function AboutPage() {
             measurable growth in it waiting to be built.
           </p>
           <div className="about-close__ctas">
-            <a href={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
               Get in touch <span aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link to="/work" className="about-txtlink about-txtlink--cream">
               See the case studies <span aria-hidden="true">→</span>
             </Link>

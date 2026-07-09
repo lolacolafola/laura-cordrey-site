@@ -26,8 +26,7 @@ export const AUTHOR = {
     'Builds fan-led growth for fan-driven brands: the Fan Engine that turns communities into measurable revenue.',
   url: SITE_URL,
   sameAs: [
-    // Add LinkedIn / X / etc. here once handles are confirmed.
-    // 'https://www.linkedin.com/in/lauracordrey/',
+    'https://www.linkedin.com/in/lauracordrey/',
   ],
   knowsAbout: [
     'Fan-Led Growth',
@@ -187,7 +186,7 @@ export function workIndexJsonLd({ caseStudies }) {
       {
         '@type': 'CollectionPage',
         '@id': pageUrl('work'),
-        name: 'Work — Selected case studies by Laura Cordrey',
+        name: 'Work · Selected case studies by Laura Cordrey',
         description:
           'Selected fan-led growth case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus / Animoca, Claw Mobile.',
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
@@ -198,7 +197,7 @@ export function workIndexJsonLd({ caseStudies }) {
         itemListElement: caseStudies.map((cs, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          name: `${cs.company} — ${cs.headline}`,
+          name: `${cs.company} · ${cs.headline}`,
           url: pageUrl(`work/${cs.id}`),
         })),
       },
@@ -214,7 +213,7 @@ export function serviceJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Laura Cordrey — Fan-Led Growth Consulting',
+    name: 'Laura Cordrey · Fan-Led Growth Consulting',
     description:
       'Strategic consulting for consumer, tech and gaming brands. Brand, product, community, and growth, with a specialism in fan-led growth engines.',
     provider: {

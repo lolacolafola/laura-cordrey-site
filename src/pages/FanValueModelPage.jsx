@@ -94,7 +94,7 @@ function Chart({ rev, uplift, fmtK }) {
 
 export default function FanValueModelPage() {
   useDocumentMeta({
-    title: 'Fan Value · What your fans are worth · Laura Cordrey',
+    title: 'The Fan Value Model · What your fans are worth · Laura Cordrey',
     description:
       'A quick estimate of what fan-led growth is worth to your brand each year, built from published benchmarks. Conservative, and it shows its work.',
     canonical: pageUrl('/fan-led-growth-value-model'),
@@ -199,7 +199,7 @@ export default function FanValueModelPage() {
         <div className="fvm-topbar">
           <span className="fvm-eyebrow-brand">
             <Sparkle />
-            <span>Fan-led growth</span>
+            <span>The Fan Value Model</span>
           </span>
           <label className="fvm-cur">
             Your currency
@@ -536,9 +536,9 @@ export default function FanValueModelPage() {
           <div className="fvm-cta__q">
             A ballpark to start. My full Fan Engine audit sizes it on your real numbers.
           </div>
-          <a href={CONTACT_URL} className="fvm-btn">
+          <Link to={CONTACT_URL} className="fvm-btn">
             Get in touch <span className="fvm-btn__arrow" aria-hidden="true">→</span>
-          </a>
+          </Link>
           <p className="fvm-seclink">
             <Link to="/fan-led-growth-audit">Or see how fan-powered you are today →</Link>
           </p>
