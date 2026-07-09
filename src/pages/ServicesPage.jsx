@@ -263,8 +263,7 @@ export default function ServicesPage() {
               <span className="svc-proofcard__label">In the room before</span>
               <p>
                 The same judgment behind fan programs at{' '}
-                <strong>Ubisoft and US Mobile</strong>, and a platform acquired
-                by Animoca.
+                <strong>Ubisoft</strong>, and a platform acquired by Animoca.
               </p>
             </div>
             <div className="svc-credit">

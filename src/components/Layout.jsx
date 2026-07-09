@@ -19,11 +19,11 @@ const footerLinks = [
   { label: 'About',     to: '/about' },
   { label: 'Speaking',  to: '/speaking' },
   { label: 'Work',      to: '/work' },
-  { label: 'Method',    to: '/methodology' },
   { label: 'Services',  to: '/services' },
   { label: 'Fan Score', to: '/fan-led-growth-audit' },
   { label: 'Fan Value', to: '/fan-led-growth-value-model' },
   { label: 'AI',        to: '/ai' },
+  { label: 'Contact',   to: '/contact' },
 ]
 
 export default function Layout({ children }) {
