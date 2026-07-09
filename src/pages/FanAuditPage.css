@@ -770,3 +770,373 @@
   margin-top: 22px;
   text-align: center;
 }
+
+/* ─── LIVE RESULT — dark reveal band + tier system ─────── */
+
+/* Per-tier accent tokens. Every tier-varying color reads from these. */
+.fa-result--untapped {
+  --fa-t-accent: #E0574B;
+  --fa-t-accent-solid: #C8362B;
+  --fa-t-accent-deep: #8E2520;
+  --fa-t-accent-halo: rgba(224, 87, 75, 0.35);
+  --fa-t-accent-tint: rgba(200, 54, 43, 0.12);
+}
+.fa-result--earned {
+  --fa-t-accent: #E7D9AD;
+  --fa-t-accent-solid: #C9A24B;
+  --fa-t-accent-deep: #8A6D1E;
+  --fa-t-accent-halo: rgba(212, 200, 150, 0.30);
+  --fa-t-accent-tint: rgba(201, 162, 75, 0.16);
+}
+.fa-result--compounding {
+  --fa-t-accent: #FBEDE6;
+  --fa-t-accent-solid: #A12A1E;
+  --fa-t-accent-deep: #8E2520;
+  --fa-t-accent-halo: rgba(240, 104, 93, 0.45);
+  --fa-t-accent-tint: rgba(161, 42, 30, 0.14);
+}
+
+/* Dark reveal band, bleeds to the sheet edges (matches .fvm-reveal on the calc) */
+.fa-reveal {
+  position: relative;
+  margin: 0 -60px 32px;
+  padding: 38px 60px 36px;
+  background: #15110F;
+  color: var(--fa-paper);
+  overflow: hidden;
+}
+@media (max-width: 680px) {
+  .fa-reveal { margin: 0 -26px 28px; padding: 30px 26px 30px; }
+}
+.fa-reveal__glow {
+  position: absolute;
+  inset: -60px -80px auto auto;
+  width: 440px;
+  height: 340px;
+  background: radial-gradient(circle at 72% 24%, var(--fa-t-accent-halo), transparent 62%);
+  pointer-events: none;
+}
+.fa-reveal__inner { position: relative; z-index: 1; }
+
+/* Compounding tier flips the band ground to oxblood */
+.fa-result--compounding .fa-reveal {
+  background: linear-gradient(160deg, #8E2520, #A12A1E);
+  color: #FBF3E4;
+}
+.fa-result--compounding .fa-reveal__glow {
+  background: radial-gradient(circle at 72% 24%, rgba(255, 220, 205, 0.4), transparent 60%);
+}
+
+/* Eyebrow inside the band = gold */
+.fa-fig--band { color: #D4C896; margin-bottom: 4px; }
+
+/* Tier label — tier accent, larger tracking */
+.fa-reveal .fa-tier {
+  color: var(--fa-t-accent);
+  margin-top: 14px;
+}
+.fa-result--compounding .fa-reveal .fa-tier { color: #F6D9C9; }
+
+/* Number block: bignum + halo + right-hand side label */
+.fa-numblock {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 6px 0 2px;
+}
+.fa-bignum__halo {
+  position: absolute;
+  left: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 74%;
+  height: 150%;
+  background: radial-gradient(closest-side, var(--fa-t-accent-halo), transparent 72%);
+  pointer-events: none;
+}
+.fa-reveal .fa-bignum {
+  position: relative;
+  color: var(--fa-t-accent);
+  margin: 0;
+  font-size: 84px;
+}
+@media (max-width: 680px) { .fa-reveal .fa-bignum { font-size: 58px; } }
+.fa-numside {
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  color: #B8AEA2;
+  padding-bottom: 10px;
+  line-height: 1.35;
+}
+.fa-numside span { color: #8A8078; font-weight: 600; }
+.fa-result--compounding .fa-numside { color: rgba(251, 243, 228, 0.72); }
+.fa-result--compounding .fa-numside span { color: rgba(251, 243, 228, 0.55); }
+
+/* Fan-vs-rented split bar for the band. Fan segment glows in tier accent. */
+.fa-splitbar--band {
+  height: 22px;
+  border-radius: 4px;
+  border: 0;
+  background: rgba(239, 233, 220, 0.12);
+  margin: 14px 0 8px;
+  overflow: hidden;
+}
+.fa-splitbar__fan {
+  background: linear-gradient(90deg, var(--fa-t-accent-solid), var(--fa-t-accent));
+  box-shadow: 0 0 16px var(--fa-t-accent-halo);
+  height: 100%;
+}
+.fa-result--compounding .fa-splitbar--band {
+  background: rgba(251, 243, 228, 0.18);
+}
+.fa-result--compounding .fa-splitbar__fan {
+  background: linear-gradient(90deg, #F2C14E, #FBEDE6);
+  box-shadow: 0 0 18px rgba(251, 237, 230, 0.5);
+}
+.fa-splitlegend--band { color: #B8AEA2; font-size: 12.5px; }
+.fa-splitlegend--band .fa-splitlegend__fan { color: var(--fa-t-accent); }
+.fa-splitlegend--band .fa-splitlegend__rented { color: #8A8078; }
+.fa-result--compounding .fa-splitlegend--band .fa-splitlegend__fan { color: #FBEDE6; }
+.fa-result--compounding .fa-splitlegend--band .fa-splitlegend__rented { color: rgba(251, 243, 228, 0.6); }
+
+/* Headline + why line inside the band */
+.fa-reveal .fa-rhead {
+  color: var(--fa-paper);
+  margin: 20px 0 6px;
+  max-width: 24ch;
+}
+.fa-result--compounding .fa-reveal .fa-rhead { color: #FBF3E4; }
+.fa-why {
+  font-size: 15px;
+  color: #B8AEA2;
+  font-weight: 600;
+  max-width: 44ch;
+  margin: 0;
+  line-height: 1.5;
+}
+.fa-result--compounding .fa-why { color: rgba(251, 243, 228, 0.78); }
+.fa-stamp--band {
+  border-color: rgba(239, 233, 220, 0.24);
+  color: rgba(239, 233, 220, 0.72);
+  margin-top: 14px;
+}
+
+/* Ladder (tier strip inside the band) */
+.fa-ladder {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 24px 0 0;
+  flex-wrap: nowrap;
+}
+.fa-ladder__row {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+.fa-ladder__step {
+  flex: 1;
+  text-align: center;
+  padding: 12px 6px;
+  border-radius: 4px;
+  border: 1.5px solid transparent;
+  min-width: 0;
+}
+.fa-ladder__step b {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.fa-ladder__step span {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.fa-ladder__arr {
+  padding: 0 8px;
+  font-weight: 800;
+  color: #8A8078;
+  flex: 0 0 auto;
+}
+
+/* Cleared: subdued fill; Here: current-tier accent with glow; Next: dashed border */
+.fa-ladder__step--cleared {
+  background: rgba(239, 233, 220, 0.12);
+}
+.fa-ladder__step--cleared b { color: var(--fa-paper); }
+.fa-ladder__step--cleared span { color: #B8AEA2; font-weight: 600; }
+.fa-ladder__step--next {
+  border-color: rgba(239, 233, 220, 0.18);
+  border-style: dashed;
+}
+.fa-ladder__step--next b { color: #8A8078; }
+.fa-ladder__step--next span { color: #8A8078; font-weight: 600; }
+
+/* Here — tier-specific styles */
+.fa-result--untapped .fa-ladder__step--here {
+  background: linear-gradient(90deg, #C8362B, #E0574B);
+  box-shadow: 0 0 16px rgba(224, 87, 75, 0.4);
+}
+.fa-result--untapped .fa-ladder__step--here b { color: #FBF3E4; }
+.fa-result--untapped .fa-ladder__step--here span { color: #F6D9C9; }
+.fa-result--untapped .fa-ladder__arr { color: #E0574B; }
+
+.fa-result--earned .fa-ladder__step--here {
+  background: linear-gradient(90deg, #C9A24B, #E7D9AD);
+  box-shadow: 0 0 16px rgba(212, 200, 150, 0.4);
+}
+.fa-result--earned .fa-ladder__step--here b { color: #241B0E; }
+.fa-result--earned .fa-ladder__step--here span { color: #5A4A18; }
+.fa-result--earned .fa-ladder__arr { color: #D4C896; }
+
+.fa-result--compounding .fa-ladder__step--cleared {
+  background: rgba(251, 243, 228, 0.16);
+}
+.fa-result--compounding .fa-ladder__step--cleared b { color: #FBF3E4; }
+.fa-result--compounding .fa-ladder__step--cleared span { color: rgba(251, 243, 228, 0.6); font-weight: 600; }
+.fa-result--compounding .fa-ladder__step--here {
+  background: #FBF3E4;
+}
+.fa-result--compounding .fa-ladder__step--here b { color: #8E2520; }
+.fa-result--compounding .fa-ladder__step--here span { color: #A5453B; }
+.fa-result--compounding .fa-ladder__arr { color: #F2D9A8; }
+
+/* Ladder wraps to a two-row layout on narrow screens */
+@media (max-width: 520px) {
+  .fa-ladder { flex-wrap: wrap; gap: 8px; }
+  .fa-ladder__row { flex: 1 1 100%; }
+  .fa-ladder__arr { display: none; }
+}
+
+/* Section labels: drive + next spacing */
+.fa-sectlbl--drive { margin-top: 6px; }
+.fa-sectlbl--spaced { margin-top: 24px; }
+.fa-sectlbl--next { margin-top: 22px; }
+
+/* Discipline cards — 2×2 grid, tinted track, tier-accent fill */
+.fa-dcards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 6px 0 0;
+}
+@media (max-width: 520px) { .fa-dcards { grid-template-columns: 1fr; } }
+.fa-dcard {
+  background: var(--fa-card);
+  border: 1px solid var(--fa-hair-soft);
+  border-radius: 3px;
+  padding: 13px 15px;
+  box-shadow: var(--fa-shadow-soft);
+}
+.fa-dcard__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.fa-dcard__nm {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--fa-ink);
+}
+.fa-dcard__pc {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--fa-t-accent-deep);
+  font-variant-numeric: tabular-nums;
+}
+.fa-dcard__track {
+  height: 9px;
+  border-radius: 5px;
+  background: var(--fa-t-accent-tint);
+  overflow: hidden;
+  margin: 9px 0 6px;
+}
+.fa-dcard__track i {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background: var(--fa-t-accent-solid);
+}
+.fa-dcard__lvl {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fa-faint);
+}
+
+/* Leak box: tier-accent left border; body uses tier-accent-deep for the bold lead-in */
+.fa-leakbox {
+  border-left-color: var(--fa-t-accent-solid);
+  margin-top: 18px;
+}
+.fa-leakbox b { color: var(--fa-t-accent-deep); }
+
+/* Move box stays gold-bordered + gold-ink prefix on every tier */
+.fa-movebox {
+  border-left-color: var(--fa-gold);
+  margin-bottom: 20px;
+}
+.fa-movebox b { color: var(--fa-gold-ink); }
+
+/* CTA tail (line under the calc-button) */
+.fa-ctatail {
+  margin: 14px 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fa-muted);
+  font-weight: 600;
+  max-width: 44ch;
+}
+.fa-ctatail a {
+  font-weight: 800;
+  color: var(--fa-accent-deep);
+  border-bottom: 1px solid var(--fa-hair);
+  text-decoration: none;
+}
+.fa-ctatail a:hover { color: var(--fa-accent); }
+
+/* Share card themed per tier (dark for untapped/earned, oxblood for compounding) */
+.fa-card__glow {
+  position: absolute;
+  inset: -50px -60px auto auto;
+  width: 320px;
+  height: 240px;
+  pointer-events: none;
+}
+.fa-card--untapped { background: #15110F; }
+.fa-card--untapped .fa-card__glow {
+  background: radial-gradient(circle at 74% 22%, rgba(224, 87, 75, 0.22), transparent 62%);
+}
+.fa-card--untapped .fa-cbig { color: #E0574B; }
+.fa-card--untapped .fa-cbar .fa-cfl { background: #C8362B; }
+
+.fa-card--earned { background: #15110F; }
+.fa-card--earned .fa-card__glow {
+  background: radial-gradient(circle at 74% 22%, rgba(212, 200, 150, 0.18), transparent 62%);
+}
+.fa-card--earned .fa-cbig { color: #E7D9AD; }
+.fa-card--earned .fa-cbar .fa-cfl { background: #C9A24B; }
+
+.fa-card--compounding {
+  background: linear-gradient(160deg, #8E2520, #A12A1E);
+  color: #FBF3E4;
+}
+.fa-card--compounding .fa-card__glow {
+  background: radial-gradient(circle at 74% 22%, rgba(255, 220, 205, 0.34), transparent 60%);
+}
+.fa-card--compounding .fa-cbig { color: #FBEDE6; }
+.fa-card--compounding .fa-ce { color: #F2D9A8; }
+.fa-card--compounding .fa-ct { color: #FBEDE6; }
+.fa-card--compounding .fa-csub { color: rgba(251, 243, 228, 0.8); }
+.fa-card--compounding .fa-cbar .fa-cl,
+.fa-card--compounding .fa-cbar .fa-cpct { color: rgba(251, 243, 228, 0.85); }
+.fa-card--compounding .fa-cbar .fa-ctr { background: rgba(251, 243, 228, 0.18); }
+.fa-card--compounding .fa-cbar .fa-cfl { background: #FBEDE6; }
+.fa-card--compounding .fa-cleak { color: rgba(251, 243, 228, 0.85); }
+.fa-card--compounding .fa-cleak b { color: #FBEDE6; }
+.fa-card--compounding .fa-cfoot { color: rgba(251, 243, 228, 0.55); }

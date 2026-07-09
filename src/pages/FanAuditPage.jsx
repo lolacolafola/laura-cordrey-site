@@ -417,11 +417,13 @@ function LiveResult({ scored, lead, restart }) {
   if (!scored) return null
 
   const { owned, rented, tier, gate, disciplines, tied, startPillar, whyLine } = scored
-  const tColor = tier === 'Untapped' ? '#5E564E' : tier === 'Earned' ? '#8A6D1E' : '#C8362B'
-  const cardBigColor = tier === 'Untapped' ? '#CFC6B8' : tier === 'Earned' ? '#D9B65C' : '#E8534A'
+  const tierSlug = tier.toLowerCase() // 'untapped' | 'earned' | 'compounding'
 
   const leakHtml = tied.length === 1
-    ? { main: <><b>Your biggest opportunity: {startPillar}.</b> {LEAK_COPY[startPillar]}</>, card: <>Biggest opportunity: <b>{startPillar}</b></> }
+    ? {
+        main: <><b>{tier === 'Compounding' ? 'Widen the lead' : 'Your biggest opportunity'}: {startPillar}.</b> {LEAK_COPY[startPillar]}</>,
+        card: <>{tier === 'Compounding' ? 'Widen the lead' : 'Biggest opportunity'}: <b>{startPillar}</b></>,
+      }
     : (() => {
         const pctMin = Math.round(((scored.lowVal - 1) / 2) * 100)
         return {
@@ -456,58 +458,83 @@ function LiveResult({ scored, lead, restart }) {
     : 'A directional read from a self-assessment, not a measured figure. The full engagement baselines every line with real data. Benchmarks: top fans spend 66 to 80% more, stay 2 to 3 times longer, and refer around 4 times more (Bain, Nielsen, HBR, Wharton).'
 
   return (
-    <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan Score</div>
-      <div className="fa-tier">Your result · {tier}</div>
-      <div className="fa-bignum" style={{ color: tColor }}>{owned}%</div>
-      <p className="fa-numlabel">of your growth is fan-powered</p>
-      <h2 className="fa-rhead">{R_HEAD[tier]}</h2>
-      <p className="fa-rentpost">{whyLine}</p>
-      {gate === 1 && <div><span className="fa-stamp">Unverified · self-assessed</span></div>}
+    <section className={`fa-rel fa-result fa-result--${tierSlug}`}>
+      {/* Dark reveal band (bleeds to sheet edges) */}
+      <div className="fa-reveal">
+        <div className="fa-reveal__glow" aria-hidden="true" />
+        <div className="fa-reveal__inner">
+          <div className="fa-fig fa-fig--band"><Sparkle />The Fan Score</div>
+          <div className="fa-tier">Your result · {tier}</div>
+          <div className="fa-numblock">
+            <div className="fa-bignum__halo" aria-hidden="true" />
+            <div className="fa-bignum">{owned}%</div>
+            <div className="fa-numside">fan-powered<br /><span>{rented}% still untapped</span></div>
+          </div>
+          <div className="fa-splitbar fa-splitbar--band">
+            <i className="fa-splitbar__fan" style={{ width: owned + '%' }} />
+          </div>
+          <div className="fa-splitlegend fa-splitlegend--band">
+            <span className="fa-splitlegend__fan">{owned}% fan-powered</span>
+            <span className="fa-splitlegend__rented">{rented}% untapped</span>
+          </div>
+          <h2 className="fa-rhead">{R_HEAD[tier]}</h2>
+          <p className="fa-why">{whyLine}</p>
+          {gate === 1 && <div><span className="fa-stamp fa-stamp--band">Unverified · self-assessed</span></div>}
+          <TierStrip tier={tier} />
+        </div>
+      </div>
 
-      <TierStrip tier={tier} />
-
-      <hr className="fa-rule" />
-      <div className="fa-sectlbl">What's driving it</div>
-      <p className="fa-hmdesc">Each discipline on the same scale, quiet where it's untapped, gold as it starts to earn, and solid where it compounds on its own.</p>
-      <div className="fa-scards">
+      {/* Light body: what's driving it, leak, move, CTA */}
+      <div className="fa-sectlbl fa-sectlbl--drive">What's driving it</div>
+      <p className="fa-hmdesc">Each discipline on the same scale. The tinted track is the room still to build; the fill is fan-powered growth you already have.</p>
+      <div className="fa-dcards">
         {disciplines.map((d) => (
-          <div className="fa-scard" key={d.key}>
-            <div className="fa-sct"><span className={`fa-sdot fa-sdot--lv${d.lc}`} />{d.key}</div>
-            <div className={`fa-scn fa-lv${d.lc}t`}>{d.truePct}% <em>{d.lw}</em></div>
+          <div className="fa-dcard" key={d.key}>
+            <div className="fa-dcard__top">
+              <span className="fa-dcard__nm">{d.key}</span>
+              <span className="fa-dcard__pc">{d.truePct}%</span>
+            </div>
+            <div className="fa-dcard__track">
+              <i style={{ width: d.wpct + '%' }} />
+            </div>
+            <div className="fa-dcard__lvl">{d.lw}</div>
           </div>
         ))}
       </div>
       <div className="fa-leakbox">{leakHtml.main}</div>
 
-      <hr className="fa-rule" />
-      <div className="fa-sectlbl">Your move</div>
+      <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">Your move</div>
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
-      <p className="fa-ctalead">Want it done with you, baselined on your real numbers?</p>
+
+      <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
-        <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
-        <button className="fa-back" onClick={restart}>Retake the audit</button>
+        <Link className="fa-btn" to={`/fan-led-growth-value-model?score=${owned}`}>
+          See what closing this is worth →
+        </Link>
       </div>
-      <p className="fa-seclink"><Link to="/fan-led-growth-value-model">Or see what the gap is worth →</Link></p>
+      <p className="fa-ctatail">
+        Then, once you have seen the number, <Link to={CONTACT_URL}>get in touch</Link> to build it. That is the Fan Engine.
+      </p>
 
       <div className="fa-cardwrap">
         <div className="fa-cardcap">Share your result</div>
-        <div className="fa-card" ref={cardRef}>
+        <div className={`fa-card fa-card--${tierSlug}`} ref={cardRef}>
+          <div className="fa-card__glow" aria-hidden="true" />
           <div className="fa-ce"><Sparkle />The Fan Score</div>
           <div className="fa-ct">{tier} · {TIER_COPY[tier]}</div>
-          <div className="fa-cbig" style={{ color: cardBigColor }}>{owned}%</div>
+          <div className="fa-cbig">{owned}%</div>
           <div className="fa-csub">of my growth is fan-powered</div>
           <div className="fa-cbars">
             {disciplines.map((d) => (
               <div className="fa-cbar" key={d.key}>
                 <span className="fa-cl">{d.key}</span>
-                <span className="fa-ctr"><span className="fa-cfl" style={{ width: d.wpct + '%', background: d.lc === 1 ? '#8B8175' : d.lc === 2 ? '#D9B65C' : '#E7D9AD' }} /></span>
+                <span className="fa-ctr"><span className="fa-cfl" style={{ width: d.wpct + '%' }} /></span>
                 <span className="fa-cpct">{d.truePct}%</span>
               </div>
             ))}
           </div>
           <div className="fa-cleak">{leakHtml.card}</div>
-          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>Laura Cordrey · The Fan Engine</span></div>
+          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>The Fan Engine</span></div>
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
@@ -524,25 +551,20 @@ function LiveResult({ scored, lead, restart }) {
 
 function TierStrip({ tier }) {
   const idx = { Untapped: 0, Earned: 1, Compounding: 2 }[tier]
-  const fills = ['#F3E8CE', '#E7C878', '#A12A1E']
-  const snc = ['#3A322B', '#3A2E10', '#FBF3E4']
-  const cpc = ['#7A6A4E', '#6E5514', '#E7C98F']
-  const stages = [
-    ['Untapped', 'not built yet'],
-    ['Earned', 'it comes free'],
-    ['Compounding', 'it multiplies'],
-  ]
+  const stages = ['Untapped', 'Earned', 'Compounding']
+  const captions = ['not built yet', 'it comes free', 'it multiplies']
   return (
-    <div className="fa-strip">
-      {stages.map((s, i) => {
-        const on = i === idx
-        const st = on ? { background: fills[i], borderColor: fills[i] } : undefined
-        const sn = on ? { color: snc[i] } : undefined
-        const cp = on ? { color: cpc[i] } : undefined
+    <div className="fa-ladder">
+      {stages.map((label, i) => {
+        const state = i < idx ? 'cleared' : i === idx ? 'here' : 'next'
+        const cap = state === 'cleared' ? 'cleared' : state === 'here' ? "you're here" : captions[i]
         return (
-          <div key={s[0]} className={`fa-s${on ? ' fa-s--on' : ''}`} style={st}>
-            <span className="fa-sn" style={sn}>{s[0]}</span>
-            <span className="fa-cap" style={cp}>{s[1]}</span>
+          <div key={label} className="fa-ladder__row">
+            <div className={`fa-ladder__step fa-ladder__step--${state}`}>
+              <b>{label}</b>
+              <span>{cap}</span>
+            </div>
+            {i < stages.length - 1 && <span className="fa-ladder__arr" aria-hidden="true">→</span>}
           </div>
         )
       })}
