@@ -1,24 +1,15 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import './FanValueModelPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
+const AUDIT_URL = '/fan-led-growth-audit'
 
-// Line-icon set matching the handoff: 24×24 viewBox, stroke=currentColor,
-// round caps. Colored red via CSS on the parent.
 const Sparkle = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" />
-  </svg>
-)
-const Rocket = ({ size = 17 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+    <path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" />
   </svg>
 )
 const Chevron = ({ size = 12 }) => (
@@ -26,9 +17,14 @@ const Chevron = ({ size = 12 }) => (
     <path d="M9 6l6 6-6 6" />
   </svg>
 )
+const Arrow = ({ size = 13 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+)
 
 // Chart. 24-month projection. Paid = linear, Fan = gentle exponential.
-// Land the fan endpoint only ~20–25% above paid at month 24 — do not steepen.
+// Dark palette to sit inside the reveal band.
 function Chart({ rev, uplift, fmtK }) {
   const N = 24
   const paidAnnual = 0.06
@@ -40,8 +36,8 @@ function Chart({ rev, uplift, fmtK }) {
     paid.push(R * (1 + paidAnnual * (m / 12)))
     fan.push(R * Math.pow(1 + fanAnnual, m / 12))
   }
-  const W = 700, H = 270
-  const pad = { l: 64, r: 46, t: 14, b: 28 }
+  const W = 700, H = 280
+  const pad = { l: 64, r: 46, t: 14, b: 34 }
   const all = fan.concat(paid)
   const max = Math.max(...all) * 1.06
   const min = Math.min(...all) * 0.94
@@ -60,8 +56,8 @@ function Chart({ rev, uplift, fmtK }) {
     const gy = Y(gv)
     gridlines.push(
       <g key={`g${t}`}>
-        <line x1={pad.l} y1={gy} x2={W - pad.r} y2={gy} stroke="rgba(21,17,15,.08)" />
-        <text x={pad.l - 8} y={gy + 4} textAnchor="end" fontSize="10.5" fill="#6B6157" fontFamily="Manrope">{fmtK(gv)}</text>
+        <line x1={pad.l} y1={gy} x2={W - pad.r} y2={gy} stroke="rgba(239,233,220,.10)" />
+        <text x={pad.l - 8} y={gy + 4} textAnchor="end" fontSize="10.5" fill="#8A8078" fontFamily="Manrope">{fmtK(gv)}</text>
       </g>,
     )
   }
@@ -70,10 +66,10 @@ function Chart({ rev, uplift, fmtK }) {
     <text
       key={`x${mm}`}
       x={X(mm)}
-      y={H - 8}
+      y={H - 10}
       textAnchor={mm === 24 ? 'end' : mm === 0 ? 'start' : 'middle'}
       fontSize="10.5"
-      fill="#6B6157"
+      fill="#8A8078"
       fontFamily="Manrope"
     >
       {mm === 0 ? 'now' : `month ${mm}`}
@@ -81,18 +77,33 @@ function Chart({ rev, uplift, fmtK }) {
   ))
 
   return (
-    <svg viewBox="0 0 700 270" preserveAspectRatio="xMidYMid meet" className="fvm-chart__svg" role="img" aria-label="Paid only versus fan-led growth over 24 months">
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="fvm-chart__svg" role="img" aria-label="Paid only versus fan-led growth over 24 months">
       {gridlines}
       {xTicks}
-      <path d={areaD} fill="#D4C896" opacity="0.28" />
+      <path d={areaD} fill="rgba(224,87,75,.14)" />
       <path d={line(paid)} fill="none" stroke="#B8AE9C" strokeWidth="2.5" />
-      <path d={line(fan)} fill="none" stroke="#C8362B" strokeWidth="3" strokeLinecap="round" />
-      <circle cx={X(N)} cy={Y(fan[N])} r="4.5" fill="#C8362B" />
+      <path d={line(fan)} fill="none" stroke="#E0574B" strokeWidth="3" strokeLinecap="round" />
+      <circle cx={X(N)} cy={Y(fan[N])} r="4.5" fill="#E0574B" />
+      <circle cx={X(N)} cy={Y(paid[N])} r="4" fill="#B8AE9C" />
     </svg>
   )
 }
 
+// Verdict copy keyed to Fan Score buckets (audit tiers: Untapped / Earned / Compounding).
+function readinessVerdict(score) {
+  if (score >= 70) return { lead: 'Mostly.', body: 'You capture most of it already. The gain left is in making it compound.', tone: 'oxblood' }
+  if (score >= 40) return { lead: 'In part.', body: 'You capture some of it already, but a good share is still on the table.', tone: 'gold' }
+  return { lead: 'Not yet.', body: 'You are not set up to capture it, so most of it stays on the table.', tone: 'red' }
+}
+
 export default function FanValueModelPage() {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const rawScore = params.get('score')
+  const parsedScore = rawScore != null ? Math.max(0, Math.min(100, parseInt(rawScore, 10))) : null
+  const arrivedFromAudit = Number.isFinite(parsedScore)
+  const auditScore = arrivedFromAudit ? parsedScore : null
+
   useDocumentMeta({
     title: 'The Fan Value Model · What your fans are worth · Laura Cordrey',
     description:
@@ -106,13 +117,13 @@ export default function FanValueModelPage() {
   const [rev, setRev] = useState(5000000)
   const [acq, setAcq] = useState(800000)
   const [r0, setR0] = useState(30)
-  const [bring0, setBring0] = useState('') // blank allowed
+  const [bring0, setBring0] = useState('')
   const [liftPts, setLiftPts] = useState(6)
   const [spendPct, setSpendPct] = useState(10)
   const [fanN, setFanN] = useState(14)
   const [assumOpen, setAssumOpen] = useState(false)
-  const [arpu, setArpu] = useState('') // blank allowed
-  const [cac, setCac] = useState('')   // blank allowed
+  const [arpu, setArpu] = useState('')
+  const [cac, setCac] = useState('')
   const [emvOn, setEmvOn] = useState(false)
   const [views, setViews] = useState(10000000)
   const [cpm, setCpm] = useState(10)
@@ -173,11 +184,22 @@ export default function FanValueModelPage() {
     const fanEnd = revN * Math.pow(1 + 0.06 + uplift, 2)
     const paidEnd = revN * (1 + 0.06 * 2)
 
+    // NEW: split value into "new revenue" (stay + spend, added to top line) vs
+    // "ad budget saved" (bring + emv, value you would otherwise have paid for).
+    const newRevenue = stay + spend
+    const adSaved = saved + emv
+    const monthly = total / 12
+    const pct = (part) => (total > 0 ? (part / total) * 100 : 0)
+
     return {
       fmt, fmtK,
       revN, acqN, r0N, bring0N, bizSub,
       appliedLift, bringLift,
       stay, spend, saved, emv, total,
+      newRevenue, adSaved, monthly,
+      stayPct: pct(stay),
+      spendPct: pct(spend),
+      bringPct: pct(saved + emv),
       showLtv, ra0Str, raNStr, ltv0Str, ltvNStr, cac0Str, cacNStr,
       uplift, fanEnd, paidEnd,
       bringPhrase:
@@ -192,10 +214,20 @@ export default function FanValueModelPage() {
     ? 'The share of customers you keep each year.'
     : 'The share of your customers who buy again.'
 
+  const verdict = arrivedFromAudit ? readinessVerdict(auditScore) : null
+
   return (
     <div className="fvm-page">
       <div className="fvm-card">
-        {/* Top bar: brand eyebrow + currency picker */}
+        {/* Arrival chip: from audit vs cold. Only the "from audit" chip sits up
+            here; cold arrival gets its prompt in the readiness module below. */}
+        {arrivedFromAudit && (
+          <div className="fvm-arrival" role="note">
+            <Arrow />
+            <span>Picking up from your Fan Score audit · <b>{auditScore}%</b></span>
+          </div>
+        )}
+
         <div className="fvm-topbar">
           <span className="fvm-eyebrow-brand">
             <Sparkle />
@@ -215,8 +247,7 @@ export default function FanValueModelPage() {
           </label>
         </div>
 
-        {/* Hero */}
-        <h1 className="fvm-h1">What your fans<br />are worth.</h1>
+        <h1 className="fvm-h1">What is the fan gap<br />worth to you?</h1>
         <p className="fvm-hook">
           You know product-led growth. This is <mark>fan-led growth</mark>.
         </p>
@@ -302,8 +333,8 @@ export default function FanValueModelPage() {
 
           <div className="fvm-row">
             <label className="fvm-row__label">
-              From programs &amp; advocacy today
-              <span className="fvm-row__sub">Optional: referrals, reviews, word of mouth you can already see. Leave blank if none.</span>
+              Growth from referrals &amp; word of mouth
+              <span className="fvm-row__sub">Optional. The share you already get from advocacy today. Leave blank if none.</span>
             </label>
             <span className="fvm-row__val">
               <input
@@ -314,52 +345,109 @@ export default function FanValueModelPage() {
                 min="0"
                 max="100"
                 className="fvm-input fvm-input--pct"
-                aria-label="From programs and advocacy today"
+                aria-label="From referrals and word of mouth today"
               />
               <i className="fvm-row__pfx">%</i>
             </span>
           </div>
         </div>
 
-        <hr className="fvm-rule" />
+        {/* ─── Dark reveal band (bleeds to card edges) ─────────── */}
+        <div className="fvm-reveal">
+          <div className="fvm-reveal__glow" aria-hidden="true" />
+          <div className="fvm-reveal__inner">
+            <div className="fvm-eyebrow-band">
+              <Sparkle />
+              <span>The gap, in money</span>
+            </div>
+            <div className="fvm-reveal__context">
+              For a <b>{derived.fmtK(derived.revN)}</b> brand, fan-led growth could be worth about
+            </div>
+            <div className="fvm-reveal__tag">Estimate · conservative benchmarks</div>
+            <div className="fvm-bignum">
+              <div className="fvm-bignum__halo" aria-hidden="true" />
+              <div className="fvm-bignum__val">
+                {derived.fmtK(derived.total)}<span className="fvm-bignum__unit">/ yr</span>
+              </div>
+            </div>
+            <p className="fvm-reveal__sub">
+              a year, as your fans stay, spend more, and bring the next wave. Your revenue and spend, lifted by conservative benchmarks.
+            </p>
 
-        {/* Result */}
-        <div>
-          <div className="fvm-eyebrow-engine">
-            <Rocket />
-            <span>The Fan Engine</span>
-          </div>
-          <div className="fvm-result__context">
-            For a <b>{derived.fmt(derived.revN)}</b> brand, fan-led growth could be worth about
-          </div>
-          <div className="fvm-result__tag">Estimate · conservative benchmarks</div>
-          <div className="fvm-bignum">
-            <div className="fvm-bignum__halo" aria-hidden="true" />
-            <div className="fvm-bignum__val">{derived.fmt(derived.total)}</div>
-          </div>
-          <div className="fvm-result__sub">
-            a year, as your fans stay, spend more, and bring the next wave.
-          </div>
-          <div className="fvm-pills">
-            <span className="fvm-pill">Stay</span>
-            <span className="fvm-pill">Spend</span>
-            <span className="fvm-pill">Bring</span>
-          </div>
+            {/* Split: new revenue vs ad budget saved */}
+            <div className="fvm-split">
+              <div className="fvm-split__col">
+                <div className="fvm-split__num">{derived.fmtK(derived.newRevenue)}</div>
+                <div className="fvm-split__lbl">new revenue</div>
+              </div>
+              <div className="fvm-split__col fvm-split__col--r">
+                <div className="fvm-split__num fvm-split__num--gold">{derived.fmtK(derived.adSaved)}</div>
+                <div className="fvm-split__lbl fvm-split__lbl--muted">in ad budget saved</div>
+              </div>
+            </div>
 
-          <p className="fvm-breakdown">
-            <b>Stay:</b> {derived.fmt(derived.stay)} kept from customers who buy again (a +{derived.appliedLift} point retention lift).<sup>1</sup>{' '}
-            <b>Spend:</b> {derived.fmt(derived.spend)} from fans spending more, a blended +{spendPct}% across your repeat customers.<sup>2</sup>{' '}
-            <b>Bring:</b> {derived.fmt(derived.saved)} in acquisition-equivalent value from programs and organic advocacy, the customers fans bring that you would otherwise pay to acquire ({derived.bringPhrase}).<sup>3</sup>
-            {emvOn && (
-              <>{' '}<b>Earned media:</b> {derived.fmt(derived.emv)} you did not buy.</>
-            )}
-          </p>
-          <div className="fvm-breakdown__cap">
-            Superscripts estimated from published benchmarks, shown in "How I worked this out" below.
+            {/* Composition bar */}
+            <div className="fvm-comp" aria-hidden="true">
+              <div className="fvm-comp__seg fvm-comp__seg--stay" style={{ width: `${derived.stayPct}%` }} />
+              <div className="fvm-comp__seg fvm-comp__seg--spend" style={{ width: `${derived.spendPct}%` }} />
+              <div className="fvm-comp__gap" />
+              <div className="fvm-comp__seg fvm-comp__seg--bring" style={{ width: `${derived.bringPct}%` }} />
+            </div>
+            <div className="fvm-comp__legend">
+              <span className="fvm-comp__item">
+                <i className="fvm-comp__dot fvm-comp__dot--stay" />
+                <span className="fvm-comp__stack">
+                  <b>Stay {derived.fmtK(derived.stay)}</b>
+                  <em>they stay longer</em>
+                </span>
+              </span>
+              <span className="fvm-comp__item">
+                <i className="fvm-comp__dot fvm-comp__dot--spend" />
+                <span className="fvm-comp__stack">
+                  <b>Spend {derived.fmtK(derived.spend)}</b>
+                  <em>they spend more</em>
+                </span>
+              </span>
+              <span className="fvm-comp__item">
+                <i className="fvm-comp__dot fvm-comp__dot--bring" />
+                <span className="fvm-comp__stack">
+                  <b className="fvm-comp__muted">Bring {derived.fmtK(derived.adSaved)}</b>
+                  <em>they refer others</em>
+                </span>
+              </span>
+            </div>
+            <div className="fvm-comp__cap">
+              New revenue is cash your fans add by staying and spending. Ad budget saved is the paid acquisition their referrals replace &mdash; real value, not extra invoiced revenue.
+            </div>
+
+            {/* Chart on dark */}
+            <div className="fvm-chart">
+              <div className="fvm-chart__eyebrow">Paid only vs fan-led</div>
+              <div className="fvm-chart__title">Same spend. Different shape.</div>
+              <div className="fvm-chart__desc">
+                Both lines start at your {derived.fmtK(derived.revN)}. Paid grows in a straight line: each month you buy roughly the same customers. Fan-led curves up, because the ones you keep bring the next, so it compounds.
+              </div>
+              <div className="fvm-chart__legend">
+                <span><i className="fvm-swatch fvm-swatch--paid" />Paid only</span>
+                <span><i className="fvm-swatch fvm-swatch--fan" />Fan-led</span>
+              </div>
+              <Chart rev={derived.revN} uplift={derived.uplift} fmtK={derived.fmtK} />
+              <div className="fvm-chart__gap">
+                By month 24, fan-led tracks to about <b>{derived.fmtK(derived.fanEnd)}</b> a year against{' '}
+                <b>{derived.fmtK(derived.paidEnd)}</b> on paid alone. Illustrative.
+              </div>
+            </div>
           </div>
         </div>
 
-        <hr className="fvm-rule fvm-rule--tight" />
+        {/* Bottom light section: pills, method, readiness, CTA */}
+        <div className="fvm-pills">
+          <span className="fvm-pill">≈ {derived.fmtK(derived.monthly)} / month</span>
+          <span className="fvm-pill">Stay + Spend + Bring{emvOn ? ' + EMV' : ''}</span>
+        </div>
+        <p className="fvm-breakdown">
+          Every lever is capped and conservative. Open the workings if you want the benchmark behind each one.
+        </p>
 
         {/* Assumptions accordion */}
         <div className="fvm-accord">
@@ -407,7 +495,6 @@ export default function FanValueModelPage() {
                 Wharton: referral and ambassador programs reach 20 to 35%; Nielsen: word of mouth around 14%. AI-driven referral is emerging and not yet counted.
               </div>
 
-              {/* Advanced sub-block */}
               <div className="fvm-adv">
                 <div className="fvm-adv__intro">
                   See it as LTV:CAC (optional). Add your unit economics and I show the ratio move, using your real numbers.
@@ -512,36 +599,40 @@ export default function FanValueModelPage() {
           )}
         </div>
 
-        {/* Chart */}
-        <div className="fvm-chart">
-          <div className="fvm-chart__eyebrow">Paid only vs fan-led</div>
-          <div className="fvm-chart__title">Same spend. Different shape.</div>
-          <div className="fvm-chart__desc">
-            Paid grows in a straight line: each month you buy roughly the same customers.
-            Fan-led curves upward, because the ones you keep bring the next, so it compounds.
+        {/* Readiness module: the bridge from prize to action. */}
+        <div className={`fvm-ready${verdict ? ` fvm-ready--${verdict.tone}` : ''}`}>
+          <div className="fvm-ready__eyebrow">
+            Can you capture that {derived.fmtK(derived.total)} today?
           </div>
-          <div className="fvm-chart__legend">
-            <span><i className="fvm-swatch fvm-swatch--paid" />Paid only</span>
-            <span><i className="fvm-swatch fvm-swatch--fan" />Fan-led</span>
-          </div>
-          <Chart rev={derived.revN} uplift={derived.uplift} fmtK={derived.fmtK} />
-          <div className="fvm-chart__gap">
-            By month 24, fan-led tracks to about <b>{derived.fmtK(derived.fanEnd)}</b> a year against{' '}
-            <b>{derived.fmtK(derived.paidEnd)}</b> on paid alone. Illustrative.
-          </div>
+          {arrivedFromAudit ? (
+            <div className="fvm-ready__row">
+              <div className="fvm-ready__badge">
+                <div className="fvm-ready__num">{auditScore}%</div>
+                <div className="fvm-ready__lbl">Fan Score</div>
+              </div>
+              <p className="fvm-ready__verdict">
+                <b>{verdict.lead}</b> {verdict.body}
+              </p>
+            </div>
+          ) : (
+            <div className="fvm-ready__cold">
+              <p>Your Fan Score tells you in 2 minutes &mdash; which disciplines are ready, and which are leaving it on the table.</p>
+              <Link to={AUDIT_URL} className="fvm-btn fvm-btn--sm">
+                Take the Fan Score <span className="fvm-btn__arrow" aria-hidden="true">→</span>
+              </Link>
+            </div>
+          )}
         </div>
 
-        {/* CTA */}
+        {/* Final CTA */}
         <div className="fvm-cta">
-          <div className="fvm-cta__q">
-            A ballpark to start. My full Fan Engine audit sizes it on your real numbers.
-          </div>
+          <p className="fvm-cta__eyebrow">The Fan Engine</p>
+          <p className="fvm-cta__q">
+            My flagship system is how you build the engine that captures this. Book a call to baseline it on your real numbers.
+          </p>
           <Link to={CONTACT_URL} className="fvm-btn">
             Get in touch <span className="fvm-btn__arrow" aria-hidden="true">→</span>
           </Link>
-          <p className="fvm-seclink">
-            <Link to="/fan-led-growth-audit">Or see how fan-powered you are today →</Link>
-          </p>
         </div>
 
         {/* Footnotes */}
