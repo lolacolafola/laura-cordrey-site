@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: 'Who do you work with?',
-    a: 'Consumer and consumer-tech brands with a real user base: gaming, entertainment, telco, subscription products, and AI companies with passionate communities. The work is remote-first and I run engagements with US and European teams.',
+    a: 'Consumer and consumer-tech brands with a real user base: gaming, entertainment, telco, subscription products, and AI companies with passionate communities. The work is remote-first and I run engagements with US and European teams. I work CET or PT hours and adapt to yours where it helps.',
   },
   {
     q: 'Who is this NOT for?',
@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: 'What does it cost?',
-    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while those slots last.',
+    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while limited spots last.',
   },
   {
     q: 'What happens in the first month of the Fan Engine?',
