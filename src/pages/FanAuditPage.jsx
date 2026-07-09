@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
-import { pageUrl } from '../lib/seo.js'
+import { pageUrl, SITE_URL } from '../lib/seo.js'
 import { postLead } from '../lib/forms.js'
 import './FanAuditPage.css'
 
@@ -507,7 +507,7 @@ function LiveResult({ scored, lead, restart }) {
             ))}
           </div>
           <div className="fa-cleak">{leakHtml.card}</div>
-          <div className="fa-cfoot"><span>Check yours · lauracordrey.com</span><span>Laura Cordrey · The Fan Engine</span></div>
+          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>Laura Cordrey · The Fan Engine</span></div>
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
@@ -807,7 +807,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
             })}
           </div>
           <div className="fa-cleak">{cLeak}</div>
-          <div className="fa-cfoot"><span>Check yours · lauracordrey.com</span><span>Laura Cordrey · The Fan Engine</span></div>
+          <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>Laura Cordrey · The Fan Engine</span></div>
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>

@@ -42,6 +42,18 @@ const CheckIcon = () => (
   </svg>
 )
 
+const VALID_NEEDS = {
+  'ai-pilot': 'Fan-led growth for AI: a founding-partner pilot',
+  'sos': 'Sentiment SOS: my community is turning',
+  'engine': 'The Fan Engine: I want the whole system',
+}
+
+function useInitialNeed() {
+  const { search } = useLocation()
+  const q = new URLSearchParams(search).get('need')
+  return (q && VALID_NEEDS[q]) || ''
+}
+
 function useInitialIntent() {
   const { search } = useLocation()
   const q = new URLSearchParams(search).get('intent')
@@ -58,6 +70,7 @@ export default function ContactPage() {
   })
 
   const initialIntent = useInitialIntent()
+  const initialNeed = useInitialNeed()
   const [intent, setIntent] = useState(initialIntent)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(null)
@@ -244,12 +257,13 @@ export default function ContactPage() {
                         <label htmlFor="contact-need">
                           What is closest to what you need? <span className="contact-field__hint">(we refine on a call)</span>
                         </label>
-                        <select id="contact-need" name="consulting_need" className="contact-select">
+                        <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
                           <option>A 2-hour session: one problem, worked live</option>
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Moments: I have a big moment coming</option>
                           <option>The Fan Engine: I want the whole system</option>
+                          <option value="Fan-led growth for AI: a founding-partner pilot">Fan-led growth for AI: a founding-partner pilot</option>
                           <option>Not sure yet, help me scope it</option>
                         </select>
                       </div>

@@ -19,6 +19,7 @@ import FanValueModelPage from './pages/FanValueModelPage.jsx'
 import FanAuditPage from './pages/FanAuditPage.jsx'
 import AIPage from './pages/AIPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import FaqPage from './pages/FaqPage.jsx'
 
 export default function App() {
   return (
@@ -45,7 +46,8 @@ export default function App() {
           <Route path="/fan-led-growth-value-model" element={<FanValueModelPage />} />
           <Route path="/fan-led-growth-audit" element={<FanAuditPage />} />
           <Route path="/ai" element={<AIPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Layout>
     </>

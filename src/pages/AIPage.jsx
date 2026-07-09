@@ -3,7 +3,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import './AIPage.css'
 
-const CONTACT_URL = '/contact?intent=consulting'
+const CONTACT_URL = '/contact?intent=consulting&need=ai-pilot'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
 /* /ai — point-of-view / thought-piece landing.
@@ -72,7 +72,7 @@ const aiNative = [
   {
     icon: <CodeIcon />,
     title: 'This whole site',
-    body: 'I designed and built lauracordrey.com end to end, myself. What you are reading is the proof.',
+    body: 'I designed and built this site end to end, myself. What you are reading is the proof.',
   },
   {
     icon: <SparkleIcon />,

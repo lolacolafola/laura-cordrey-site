@@ -22,6 +22,8 @@ const footerLinks = [
   { label: 'Services',  to: '/services' },
   { label: 'Fan Score', to: '/fan-led-growth-audit' },
   { label: 'Fan Value', to: '/fan-led-growth-value-model' },
+  { label: 'Method',    to: '/methodology' },
+  { label: 'FAQ',       to: '/faq' },
   { label: 'AI',        to: '/ai' },
   { label: 'Contact',   to: '/contact' },
 ]
