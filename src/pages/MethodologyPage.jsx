@@ -340,6 +340,23 @@ export default function MethodologyPage() {
             </p>
           </div>
 
+          {/* Proof strip: the receipts behind "I can prove it". Numbers are
+           * verbatim from the case studies; each links to its story. */}
+          <div className="meth-proofstrip">
+            <Link to="/work/ubisoft-siege-champions" className="meth-proof">
+              <span className="meth-proof__n">50M+</span>
+              <span className="meth-proof__l">UGC views at $0 media spend · Ubisoft</span>
+            </Link>
+            <Link to="/work/us-mobile-dark-star" className="meth-proof">
+              <span className="meth-proof__n">$32K</span>
+              <span className="meth-proof__l">in under three hours, sold out · US Mobile</span>
+            </Link>
+            <Link to="/work/azarus-game-ads" className="meth-proof">
+              <span className="meth-proof__n">+80%</span>
+              <span className="meth-proof__l">MAU from one streamer campaign · Azarus</span>
+            </Link>
+          </div>
+
           <div className="meth-measured__blocks">
             <div className="meth-measured__block">
               <span className="meth-eyebrow meth-eyebrow--gold">The honest method</span>

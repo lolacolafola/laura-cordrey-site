@@ -92,3 +92,30 @@ mark {
 }
 
 .accent { color: var(--accent); }
+
+/* ─── Print + reduced-motion safety net ─────────────────────────────
+ * Scroll-reveal animations start elements invisible until they enter
+ * the viewport. Printers, PDF exports and non-scrolling renderers never
+ * trigger them, which printed whole pages blank. Force everything
+ * visible and static in print, and skip entrance animation for users
+ * who prefer reduced motion. Screen behaviour is unchanged. */
+@media print {
+  *, *::before, *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    clip-path: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-rev], [data-reveal], .reveal, .is-hidden-until-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

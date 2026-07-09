@@ -6,25 +6,29 @@ const CONTACT_URL = '/contact'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
+// Order = buyer journey: proof first, then the offer, then the free way in,
+// then the frontier bet, then the person. About earns its click last.
 const navLinks = [
-  { key: 'about',    label: 'About',    path: '/about',    isHash: false },
-  { key: 'services', label: 'Services', path: '/services', isHash: false },
-  { key: 'work',     label: 'Work',     path: '/work',     isHash: false },
-  { key: 'speaking', label: 'Speaking', path: '/speaking', isHash: false },
-  { key: 'ai',       label: 'AI',       path: '/ai',       isHash: false },
+  { key: 'work',     label: 'Work',      path: '/work',                 isHash: false },
+  { key: 'services', label: 'Services',  path: '/services',             isHash: false },
+  { key: 'score',    label: 'Fan Score', path: '/fan-led-growth-audit', isHash: false },
+  { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
+  { key: 'speaking', label: 'Speaking',  path: '/speaking',             isHash: false },
+  { key: 'about',    label: 'About',     path: '/about',                isHash: false },
 ]
 
+// Same journey as the header, plus the IP pages the header keeps tucked away.
 const footerLinks = [
   { label: 'Home',      to: '/' },
-  { label: 'About',     to: '/about' },
-  { label: 'Speaking',  to: '/speaking' },
   { label: 'Work',      to: '/work' },
   { label: 'Services',  to: '/services' },
+  { label: 'Method',    to: '/methodology' },
   { label: 'Fan Score', to: '/fan-led-growth-audit' },
   { label: 'Fan Value', to: '/fan-led-growth-value-model' },
-  { label: 'Method',    to: '/methodology' },
-  { label: 'FAQ',       to: '/faq' },
   { label: 'AI',        to: '/ai' },
+  { label: 'Speaking',  to: '/speaking' },
+  { label: 'About',     to: '/about' },
+  { label: 'FAQ',       to: '/faq' },
   { label: 'Contact',   to: '/contact' },
 ]
 
