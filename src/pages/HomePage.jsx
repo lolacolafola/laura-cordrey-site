@@ -457,7 +457,7 @@ export default function HomePage() {
               See every case study <span className="ar" aria-hidden>→</span>
             </Link>
             <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
-              These numbers roll up several projects per brand — the full write-ups live on the Work page.
+              These numbers roll up several projects per brand — the full write-ups live on the Case studies page.
             </span>
           </div>
         </div>

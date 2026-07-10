@@ -199,7 +199,7 @@ export default function AboutPage() {
             <p className="about-proof__note">
               Full history{' '}
               <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">on LinkedIn</a>
-              , case studies <Link to="/work">on Work</Link>.
+              , see the <Link to="/work">case studies</Link>.
             </p>
           </div>
         </div>

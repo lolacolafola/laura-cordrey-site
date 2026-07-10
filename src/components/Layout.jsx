@@ -9,7 +9,7 @@ const HELLO_EMAIL = 'hello@lauracordrey.com'
 // Order = buyer journey: proof first, then the offer, then the free way in,
 // then the frontier bet, then the person. About earns its click last.
 const navLinks = [
-  { key: 'work',     label: 'Work',      path: '/work',                 isHash: false },
+  { key: 'work',     label: 'Case studies', path: '/work',              isHash: false },
   { key: 'services', label: 'Services',  path: '/services',             isHash: false },
   { key: 'score',    label: 'Fan Score', path: '/fan-led-growth-audit', isHash: false },
   { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
@@ -20,7 +20,7 @@ const navLinks = [
 // Same journey as the header, plus the IP pages the header keeps tucked away.
 const footerLinks = [
   { label: 'Home',      to: '/' },
-  { label: 'Work',      to: '/work' },
+  { label: 'Case studies', to: '/work' },
   { label: 'Services',  to: '/services' },
   { label: 'Method',    to: '/methodology' },
   { label: 'Fan Score', to: '/fan-led-growth-audit' },
