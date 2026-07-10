@@ -15,13 +15,13 @@ const S = (s) => BASE + 'speaking/' + s
 
 // Slug ↔ id mapping. Keep in sync with App.jsx routes.
 const ROUTE = {
-  'us-mobile': '/work/us-mobile-dark-star',
-  'claw': '/work/claw-mobile',
-  'azarus-streamers': '/work/azarus',
-  'azarus-ads': '/work/azarus-game-ads',
-  'siege': '/work/ubisoft-siege-champions',
-  'delta': '/work/ubisoft-delta-company',
-  'blablacar': '/work/blablacar-live-nation',
+  'us-mobile': '/case-studies/us-mobile-dark-star',
+  'claw': '/case-studies/claw-mobile',
+  'azarus-streamers': '/case-studies/azarus',
+  'azarus-ads': '/case-studies/azarus-game-ads',
+  'siege': '/case-studies/ubisoft-siege-champions',
+  'delta': '/case-studies/ubisoft-delta-company',
+  'blablacar': '/case-studies/blablacar-live-nation',
 }
 
 // Rewrite prototype-style "#study-foo" anchors to real /work routes.
@@ -299,7 +299,7 @@ const orderedStudies = [
       ] },
       { type: 'section', kicker: '[01] · The blueprint', title: 'The blueprint came first.',
         body: ['I launched Delta Company first: a community advocacy program for Ghost Recon Breakpoint. The first of its kind at Ubisoft, and for any major AAA title. That became the blueprint I rolled out to Rainbow Six Siege, with tweaks to improve the model along the way.'],
-        link: { href: '/work/ubisoft-delta-company', text: 'See the Delta Company case study' } },
+        link: { href: '/case-studies/ubisoft-delta-company', text: 'See the Delta Company case study' } },
       { type: 'band', contain: true, src: P('ubisoft-siege/rainbow-six-siege-key-art.jpg'),
         caption: 'Tom Clancy’s Rainbow Six Siege. The AAA title the program was built around.' },
       { type: 'section', kicker: '[02] · The opportunity', title: 'A creator-led community at scale.',

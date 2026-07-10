@@ -561,7 +561,7 @@ export default function CaseStudyCinematic({ study, slug }) {
     >
       {/* Slim top bar — back link + per-study eyebrow */}
       <div className="cscin__topbar">
-        <Link to="/work" className="cscin__topbar-back">
+        <Link to="/case-studies" className="cscin__topbar-back">
           <span className="cscin__topbar-arrow" aria-hidden="true">←</span>
           <span>All work</span>
         </Link>
@@ -596,7 +596,7 @@ export default function CaseStudyCinematic({ study, slug }) {
             <span className="cscin__footer-name">{prev.name}</span>
           </Link>
         )}
-        <Link to="/work" className="cscin__footer-home">
+        <Link to="/case-studies" className="cscin__footer-home">
           <span className="cscin__footer-kicker">All case studies</span>
           <span className="cscin__footer-home-glyph" aria-hidden="true">▦</span>
         </Link>

@@ -18,10 +18,10 @@ export default function WorkPage() {
   const [active, setActive] = useState('All')
 
   useDocumentMeta({
-    title: 'Selected work · Fan-led growth case studies · Laura Cordrey',
+    title: 'Case Studies · Fan-led growth work by Laura Cordrey',
     description:
       'Selected case studies from thirteen years of fan-led growth work: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, and Claw Mobile.',
-    canonical: pageUrl('work'),
+    canonical: pageUrl('case-studies'),
     ogType: 'website',
     jsonLd: workIndexJsonLd({ caseStudies }),
   })

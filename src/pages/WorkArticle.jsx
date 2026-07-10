@@ -33,7 +33,7 @@ export default function WorkArticle() {
       ? // Strip <mark> wrappers from the tldr — schema and meta want plain text.
         String(cs.tldr || '').replace(/<\/?mark>/g, '')
       : undefined,
-    canonical: cs ? pageUrl(`work/${cs.id}`) : undefined,
+    canonical: cs ? pageUrl(`case-studies/${cs.id}`) : undefined,
     ogImage: cs ? assetUrl(cs.media?.image) : undefined,
     ogType: 'article',
     jsonLd: cs
@@ -60,7 +60,7 @@ export default function WorkArticle() {
         <h1 style={{ fontSize: 'var(--fs-display-l)', margin: 'var(--space-3) 0' }}>
           This case study doesn&rsquo;t exist.
         </h1>
-        <Link to="/work" className="marker">← All work</Link>
+        <Link to="/case-studies" className="marker">← All Case Studies</Link>
       </div>
     )
   }
@@ -77,8 +77,8 @@ export default function WorkArticle() {
     <article className="article">
       {/* ─── MASTHEAD ──────────────────────────────────────────── */}
       <div className="container article__masthead">
-        <Link to="/work" className="marker article__back">
-          <span aria-hidden="true">←</span> All work
+        <Link to="/case-studies" className="marker article__back">
+          <span aria-hidden="true">←</span> All Case Studies
         </Link>
         <span className="marker article__masthead-meta">
           {cs.year} · {cs.role}

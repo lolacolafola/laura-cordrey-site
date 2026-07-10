@@ -199,7 +199,7 @@ export default function ServicesPage() {
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Talk about your moment <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/work" className="svc-txtlink">
+            <Link to="/case-studies" className="svc-txtlink">
               See moments I&rsquo;ve built <span aria-hidden="true">→</span>
             </Link>
           </div>

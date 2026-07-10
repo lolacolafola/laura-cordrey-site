@@ -38,11 +38,11 @@ const aiPoints = [
 // Featured work — five stories, rotated in the auto-carousel. Images come
 // from the same case-study assets used on /work.
 const work = [
-  { idx: '01', company: 'US Mobile', year: '2024', title: 'Dark Star', result: '$32K in under three hours.', line: 'A free SIM kit turned into a $129 fan bundle that sold out instantly.', img: 'case-studies/us-mobile/us-mobile-dark-star-banner.png', alt: 'US Mobile Dark Star', href: '/work/us-mobile-dark-star' },
-  { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/work/azarus-game-ads' },
-  { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png', alt: 'Ubisoft Siege Champions', href: '/work/ubisoft-siege-champions' },
-  { idx: '04', company: 'Ubisoft',   year: '2019–2020', title: 'Delta Company', result: '10M+ UGC views, unveiled at E3.', line: 'A first-of-its-kind AAA community advocacy program, 130 members, 14 languages.', img: 'case-studies/ubisoft-delta/01-delta-badge-hero.png', alt: 'Ubisoft Delta Company', href: '/work/ubisoft-delta-company' },
-  { idx: '05', company: 'BlaBlaCar', year: '2013–2016', title: 'Live Nation', result: 'First Official Ridesharing Partner.', line: '300+ branded parking spots and a festival community tent across Latitude, Leeds and Reading.', img: 'case-studies/blablacar/blablacar-live-nation-card.png', alt: 'BlaBlaCar × Live Nation', href: '/work/blablacar-live-nation' },
+  { idx: '01', company: 'US Mobile', year: '2024', title: 'Dark Star', result: '$32K in under three hours.', line: 'A free SIM kit turned into a $129 fan bundle that sold out instantly.', img: 'case-studies/us-mobile/us-mobile-dark-star-banner.png', alt: 'US Mobile Dark Star', href: '/case-studies/us-mobile-dark-star' },
+  { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/case-studies/azarus-game-ads' },
+  { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png', alt: 'Ubisoft Siege Champions', href: '/case-studies/ubisoft-siege-champions' },
+  { idx: '04', company: 'Ubisoft',   year: '2019–2020', title: 'Delta Company', result: '10M+ UGC views, unveiled at E3.', line: 'A first-of-its-kind AAA community advocacy program, 130 members, 14 languages.', img: 'case-studies/ubisoft-delta/01-delta-badge-hero.png', alt: 'Ubisoft Delta Company', href: '/case-studies/ubisoft-delta-company' },
+  { idx: '05', company: 'BlaBlaCar', year: '2013–2016', title: 'Live Nation', result: 'First Official Ridesharing Partner.', line: '300+ branded parking spots and a festival community tent across Latitude, Leeds and Reading.', img: 'case-studies/blablacar/blablacar-live-nation-card.png', alt: 'BlaBlaCar × Live Nation', href: '/case-studies/blablacar-live-nation' },
 ]
 
 // Small inline-svg helpers — stroke-based, matching the design.
@@ -438,7 +438,7 @@ export default function HomePage() {
           </div>
           <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(14px,1.6vw,22px)' }}>
             {stats.map((s) => (
-              <Link to="/work" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+              <Link to="/case-studies" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
                   <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </figure>
@@ -453,11 +453,11 @@ export default function HomePage() {
             ))}
           </div>
           <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
-            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 800, fontSize: '.95rem', letterSpacing: '.02em', padding: '14px 22px', borderRadius: 3, textDecoration: 'none', transition: 'background .2s cubic-bezier(.16,.84,.44,1)' }}>
+            <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 800, fontSize: '.95rem', letterSpacing: '.02em', padding: '14px 22px', borderRadius: 3, textDecoration: 'none', transition: 'background .2s cubic-bezier(.16,.84,.44,1)' }}>
               See every case study <span className="ar" aria-hidden>→</span>
             </Link>
             <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
-              These numbers roll up several projects per brand — the full write-ups live on the Case studies page.
+              These numbers roll up several projects per brand — the full write-ups live on the Case Studies page.
             </span>
           </div>
         </div>
@@ -683,7 +683,7 @@ export default function HomePage() {
               <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0, maxWidth: '34ch' }}>
                 Drops, programs and launches across gaming, tech, consumer and entertainment.
               </p>
-              <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.32)', paddingBottom: 3, marginTop: 'clamp(8px,1vw,16px)', alignSelf: 'flex-start' }}>
+              <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.32)', paddingBottom: 3, marginTop: 'clamp(8px,1vw,16px)', alignSelf: 'flex-start' }}>
                 See all the work <span aria-hidden>→</span>
               </Link>
             </div>

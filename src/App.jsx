@@ -1,5 +1,12 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
+
+// Passes the :slug through to the new /case-studies/:slug route. Renders null;
+// the Navigate fires on mount so visitors see the destination page.
+function WorkRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={`/case-studies/${slug}`} replace />
+}
 import ScrollToTop from './components/ScrollToTop.jsx'
 import HomePage from './pages/HomePage.jsx'
 import WorkPage from './pages/WorkPage.jsx'
@@ -28,17 +35,21 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/work" element={<WorkPage />} />
+          <Route path="/case-studies" element={<WorkPage />} />
           {/* Bespoke deep-dive case studies — explicit routes take precedence
-              over the generic /work/:slug template. */}
-          <Route path="/work/ubisoft-delta-company" element={<DeltaCompanyPage />} />
-          <Route path="/work/us-mobile-dark-star" element={<UsMobilePage />} />
-          <Route path="/work/ubisoft-siege-champions" element={<UbisoftSiegeChampionsPage />} />
-          <Route path="/work/blablacar-live-nation" element={<BlaBlaCarLiveNationPage />} />
-          <Route path="/work/azarus" element={<AzarusStreamersPage />} />
-          <Route path="/work/azarus-game-ads" element={<AzarusGameAdsPage />} />
-          <Route path="/work/claw-mobile" element={<ClawMobilePage />} />
-          <Route path="/work/:slug" element={<WorkArticle />} />
+              over the generic /case-studies/:slug template. */}
+          <Route path="/case-studies/ubisoft-delta-company" element={<DeltaCompanyPage />} />
+          <Route path="/case-studies/us-mobile-dark-star" element={<UsMobilePage />} />
+          <Route path="/case-studies/ubisoft-siege-champions" element={<UbisoftSiegeChampionsPage />} />
+          <Route path="/case-studies/blablacar-live-nation" element={<BlaBlaCarLiveNationPage />} />
+          <Route path="/case-studies/azarus" element={<AzarusStreamersPage />} />
+          <Route path="/case-studies/azarus-game-ads" element={<AzarusGameAdsPage />} />
+          <Route path="/case-studies/claw-mobile" element={<ClawMobilePage />} />
+          <Route path="/case-studies/:slug" element={<WorkArticle />} />
+          {/* Client-side redirect: old /work* URLs kept working after the
+              rename to /case-studies. Preserves external links + old share URLs. */}
+          <Route path="/work" element={<Navigate to="/case-studies" replace />} />
+          <Route path="/work/:slug" element={<WorkRedirect />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/speaking" element={<SpeakingPage />} />
           <Route path="/services" element={<ServicesPage />} />

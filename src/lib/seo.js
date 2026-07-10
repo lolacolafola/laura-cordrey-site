@@ -83,7 +83,7 @@ export function authorJsonLd() {
 // AIO engines (Google AI Overviews, Perplexity, ChatGPT) preferentially
 // pull from FAQPage schema when answering user queries.
 export function caseStudyJsonLd({ slug, title, description, image, datePublished, about, keywords, principles, faqItems, client, role, market, sector }) {
-  const canonical = pageUrl(`work/${slug}`)
+  const canonical = pageUrl(`case-studies/${slug}`)
   const imageUrl = assetUrl(image)
 
   // Prepend the client as a structured Organization so the case file is
@@ -149,7 +149,7 @@ export function caseStudyJsonLd({ slug, title, description, image, datePublished
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: pageUrl('') },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: pageUrl('work') },
+      { '@type': 'ListItem', position: 2, name: 'Case Studies', item: pageUrl('case-studies') },
       { '@type': 'ListItem', position: 3, name: title, item: canonical },
     ],
   })
@@ -185,12 +185,12 @@ export function workIndexJsonLd({ caseStudies }) {
     '@graph': [
       {
         '@type': 'CollectionPage',
-        '@id': pageUrl('work'),
-        name: 'Work · Selected case studies by Laura Cordrey',
+        '@id': pageUrl('case-studies'),
+        name: 'Case Studies · Selected work by Laura Cordrey',
         description:
           'Selected fan-led growth case studies: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus / Animoca, Claw Mobile.',
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
-        url: pageUrl('work'),
+        url: pageUrl('case-studies'),
       },
       {
         '@type': 'ItemList',
@@ -198,7 +198,7 @@ export function workIndexJsonLd({ caseStudies }) {
           '@type': 'ListItem',
           position: i + 1,
           name: `${cs.company} · ${cs.headline}`,
-          url: pageUrl(`work/${cs.id}`),
+          url: pageUrl(`case-studies/${cs.id}`),
         })),
       },
     ],
