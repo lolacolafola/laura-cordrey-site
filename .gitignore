@@ -46,3 +46,6 @@ public/case-studies/_unused/azarus-game-demo.mp4
 public/case-studies/_unused/azarus-halloween-beta-clutchmeister-2022-10-31.mp4
 public/case-studies/_unused/Ubi delta map low.mp4
 public/case-studies/_unused/Ubisoft delta logo low.mp4
+
+# local tooling config stays local
+.claude/
