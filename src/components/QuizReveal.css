@@ -54,7 +54,11 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #EFE9DC;
-  animation: qrFadeUp 0.4s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  /* opacity: 1 is the base — the animation only slides the phrase up.
+   * If the animation is dropped for any reason (browser bug, race, jank),
+   * the phrase stays visible instead of getting stuck at opacity 0. */
+  opacity: 1;
+  animation: qrSlideUp 0.4s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 .qr-sub {
   font-size: 13px;
@@ -80,9 +84,9 @@
   transition: width 0.8s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
-@keyframes qrFadeUp {
-  from { opacity: 0; transform: translateY(9px); }
-  to { opacity: 1; transform: none; }
+@keyframes qrSlideUp {
+  from { transform: translateY(9px); }
+  to { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
