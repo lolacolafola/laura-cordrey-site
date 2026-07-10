@@ -1130,3 +1130,9 @@
   color: var(--surface);
   border-color: var(--ink-on-surface);
 }
+
+/* Work hero lockup: collapse to one column on small screens (the inline
+ * grid can't respond to viewport; this override wins via !important). */
+@media (max-width: 760px) {
+  .work-lockup { grid-template-columns: 1fr !important; }
+}

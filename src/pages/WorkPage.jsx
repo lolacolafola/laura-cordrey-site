@@ -43,10 +43,10 @@ export default function WorkPage() {
         <div aria-hidden="true" style={{ position: 'absolute', top: '-24%', right: '-8%', width: '60vw', height: '60vw', maxWidth: 760, maxHeight: 760, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(56px,7vw,104px) clamp(24px,5vw,64px) clamp(40px,5vw,64px)' }}>
           <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(22px,3vw,34px)' }}>
-            Work · Selected · 2013–2026
+            Case Studies · 2013–2026
           </span>
 
-          <div className="work-lockup" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,72px)', alignItems: 'end' }}>
+          <div className="work-lockup" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
             <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.8rem,6.4vw,5.6rem)', lineHeight: 0.94, letterSpacing: '-.04em', margin: 0, maxWidth: '13ch' }}>
               <mark style={{ background: 'transparent', color: '#C8362B', fontWeight: 800 }}>Receipts</mark>, not a résumé.
             </h1>
