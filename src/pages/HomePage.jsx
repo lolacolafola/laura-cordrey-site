@@ -11,10 +11,12 @@ const BASE = import.meta.env.BASE_URL
 // Receipts stat bar — three cards. US Mobile lives in the featured work carousel below,
 // so it's not repeated here (numbers = at a glance, carousel = stories). Ubisoft is
 // program-wide 60M+ reach, resolves the old 60M-vs-50M mismatch with the Siege card.
+// Cards route to /work rather than a single case study — several of the numbers
+// are program-wide totals that don't map 1:1 to any one project on that brand.
 const stats = [
-  { value: '0 → 1M', unit: 'users', label: 'in a new market, scaled from newcomer to advocate', client: 'BlaBlaCar', img: 'case-studies/homepage/hp-kpi-blablacar.jpg', alt: 'BlaBlaCar festival community', href: '/work/blablacar-live-nation' },
-  { value: '60M+', unit: 'reach', label: 'via fan-program member UGC, $0 spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft Siege Champions creator program', href: '/work/ubisoft-siege-champions' },
-  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.png', alt: 'Azarus game ad platform', href: '/work/azarus-game-ads' },
+  { value: '0 → 1M', unit: 'users', label: 'in a new market, scaled from newcomer to advocate', client: 'BlaBlaCar', img: 'case-studies/homepage/hp-kpi-blablacar.jpg', alt: 'BlaBlaCar festival community' },
+  { value: '60M+', unit: 'reach', label: 'via fan-program member UGC, $0 spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft Siege Champions creator program' },
+  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.png', alt: 'Azarus game ad platform' },
 ]
 
 const whyFans = [
@@ -436,7 +438,7 @@ export default function HomePage() {
           </div>
           <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(14px,1.6vw,22px)' }}>
             {stats.map((s) => (
-              <Link to={s.href} key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+              <Link to="/work" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
                   <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </figure>
@@ -450,10 +452,13 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-          <div data-rev style={{ marginTop: 'clamp(40px,5.5vw,72px)' }}>
-            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#C8362B', fontWeight: 700, fontSize: '.82rem', letterSpacing: '.04em', textDecoration: 'none' }}>
-              See the work <span className="ar" aria-hidden>→</span>
+          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
+            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 800, fontSize: '.95rem', letterSpacing: '.02em', padding: '14px 22px', borderRadius: 3, textDecoration: 'none', transition: 'background .2s cubic-bezier(.16,.84,.44,1)' }}>
+              See every case study <span className="ar" aria-hidden>→</span>
             </Link>
+            <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
+              These numbers roll up several projects per brand — the full write-ups live on the work page.
+            </span>
           </div>
         </div>
       </section>
