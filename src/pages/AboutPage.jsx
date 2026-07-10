@@ -198,7 +198,7 @@ export default function AboutPage() {
             </ul>
             <p className="about-proof__note">
               Full history{' '}
-              <a href={LINKEDIN_URL}>on LinkedIn</a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">on LinkedIn</a>
               , case studies <Link to="/work">on Work</Link>.
             </p>
           </div>
