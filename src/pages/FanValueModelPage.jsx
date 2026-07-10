@@ -423,6 +423,17 @@ export default function FanValueModelPage() {
                 </span>
               </span>
             </div>
+            <p className="fvm-comp__split">
+              New revenue: Stay + Spend = <b>{derived.fmtK(derived.newRevenue)}</b>
+              <span className="fvm-comp__splitdot" aria-hidden="true"> · </span>
+              Ad budget saved: Bring = <b>{derived.fmtK(derived.saved)}</b>
+              {emvOn && derived.emv > 0 && (
+                <>
+                  <span className="fvm-comp__splitdot" aria-hidden="true"> · </span>
+                  Earned media: <b>{derived.fmtK(derived.emv)}</b>
+                </>
+              )}
+            </p>
             <div className="fvm-comp__cap">
               New revenue is cash your fans add by staying and spending. Ad budget saved is the paid acquisition their referrals replace &mdash; real value, not extra invoiced revenue.
             </div>

@@ -822,6 +822,14 @@
   max-width: 58ch;
   line-height: 1.55;
 }
+.fvm-comp__split {
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(239, 233, 220, 0.62);
+}
+.fvm-comp__split b { color: #EFE9DC; font-weight: 800; }
+.fvm-comp__splitdot { color: rgba(239, 233, 220, 0.35); }
 
 /* Chart-in-dark overrides */
 .fvm-reveal .fvm-chart { margin-top: 32px; }
