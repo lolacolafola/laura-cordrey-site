@@ -158,6 +158,13 @@ export default function AboutPage() {
                 <mark>the brand they fall for</mark>, and the Fan Engine that
                 turns that love into growth you can measure.
               </p>
+              <p className="about-intro__sub">
+                Lower acquisition cost, higher retention, the reach you&rsquo;d
+                otherwise pay for. I&rsquo;ve built from nothing and I&rsquo;ve
+                built from millions: thirteen years of it, most of it in gaming,
+                entertainment and live service, where fans are loudest and
+                feedback lands in real time.
+              </p>
             </div>
             <figure className="about-hero__portrait">
               <img
@@ -166,15 +173,6 @@ export default function AboutPage() {
                 loading="eager"
               />
             </figure>
-          </div>
-          <div className="about-intro">
-            <p className="about-intro__sub">
-              Lower acquisition cost, higher retention, the reach you&rsquo;d
-              otherwise pay for. I&rsquo;ve built from nothing and I&rsquo;ve
-              built from millions: thirteen years of it, most of it in gaming,
-              entertainment and live service, where fans are loudest and
-              feedback lands in real time.
-            </p>
           </div>
 
           {/* In-hero proof strip — clients sit alongside the promise, not
