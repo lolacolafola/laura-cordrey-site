@@ -452,13 +452,10 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
+          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)' }}>
             <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 800, fontSize: '.95rem', letterSpacing: '.02em', padding: '14px 22px', borderRadius: 3, textDecoration: 'none', transition: 'background .2s cubic-bezier(.16,.84,.44,1)' }}>
               See every case study <span className="ar" aria-hidden>→</span>
             </Link>
-            <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
-              These numbers roll up several projects per brand — the full write-ups live on the work page.
-            </span>
           </div>
         </div>
       </section>
