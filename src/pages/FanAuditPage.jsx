@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, SITE_URL } from '../lib/seo.js'
 import { postLead } from '../lib/forms.js'
+import QuizReveal from '../components/QuizReveal.jsx'
 import './FanAuditPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -242,41 +243,6 @@ function GateScreen({ onLive, onPre, onBack }) {
   )
 }
 
-// ─── Reveal transition — cycles a phrase + filling bar, then routes to result.
-// Shared between the live and pre-launch flows.
-const REVEAL_STEPS = [
-  { text: 'Starting the fan engine…', pct: 22 },
-  { text: 'Vroom, vroom…', pct: 60 },
-  { text: 'Ready for blast off!', pct: 100 },
-]
-function RevealTransition({ onDone }) {
-  const [step, setStep] = useState(0)
-  useEffect(() => {
-    if (step >= REVEAL_STEPS.length - 1) {
-      const t = setTimeout(onDone, 1800)
-      return () => clearTimeout(t)
-    }
-    const t = setTimeout(() => setStep(step + 1), 1000)
-    return () => clearTimeout(t)
-  }, [step, onDone])
-  const cur = REVEAL_STEPS[step]
-  return (
-    <section className="fa-rel fa-reveal-fs">
-      <div className="fa-reveal-fs__glow" aria-hidden="true" />
-      <div className="fa-reveal-fs__inner">
-        <div className="fa-fig fa-fig--band fa-fig--center"><Sparkle />The Fan Score</div>
-        <div className="fa-reveal-fs__stage">
-          <div key={step} className="fa-reveal-fs__phrase">{cur.text}</div>
-          <div className="fa-reveal-fs__sub">Reading what you told us</div>
-          <div className="fa-reveal-fs__bar">
-            <i style={{ width: cur.pct + '%' }} />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── Live edition — quiz, email gate, result ─────────────────────────────────
 
 function LiveFlow({ screen, setScreen }) {
@@ -291,7 +257,7 @@ function LiveFlow({ screen, setScreen }) {
     const next = ans.slice(); next[cur] = i; setAns(next)
     setTimeout(() => {
       if (cur < LQ.length - 1) setCur(cur + 1)
-      else setScreen('liveEmail')
+      else setScreen('liveReveal')
     }, 180)
   }
 
@@ -314,11 +280,14 @@ function LiveFlow({ screen, setScreen }) {
       score: scored ? `${scored.owned}% fan-powered · ${scored.tier}` : 'incomplete',
       _subject: `[fan-score] ${lead.email.trim()} · ${scored ? scored.owned + '% · ' + scored.tier : ''}`,
     })
-    setScreen('liveReveal')
+    setScreen('liveResult')
   }
 
   if (screen === 'liveQuiz') {
     return <LiveQuiz cur={cur} ans={ans} onSelect={selectAnswer} onBack={back} />
+  }
+  if (screen === 'liveReveal') {
+    return <QuizReveal onDone={() => setScreen('liveEmail')} />
   }
   if (screen === 'liveEmail') {
     return (
@@ -330,9 +299,6 @@ function LiveFlow({ screen, setScreen }) {
         onSubmit={submitEmail}
       />
     )
-  }
-  if (screen === 'liveReveal') {
-    return <RevealTransition onDone={() => setScreen('liveResult')} />
   }
   return <LiveResult scored={scored} lead={lead} restart={restart} />
 }

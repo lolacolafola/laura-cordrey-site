@@ -20,7 +20,7 @@ export default function WorkPage() {
   useDocumentMeta({
     title: 'Selected work · Fan-led growth case studies · Laura Cordrey',
     description:
-      'Selected case studies from twelve years of fan-led growth work: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, and Claw Mobile.',
+      'Selected case studies from thirteen years of fan-led growth work: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, and Claw Mobile.',
     canonical: pageUrl('work'),
     ogType: 'website',
     jsonLd: workIndexJsonLd({ caseStudies }),
@@ -52,7 +52,7 @@ export default function WorkPage() {
             </h1>
             <div style={{ paddingBottom: 8, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
               <p style={{ fontSize: 'clamp(1.06rem,1.4vw,1.28rem)', lineHeight: 1.55, color: 'rgba(239,233,220,.82)', margin: '0 0 22px' }}>
-                Twelve years of fan-led growth across AAA gaming, mobility and telco. A $32K sellout in under three hours, 60M+ organic reach at zero media spend, 0 to a million in a new market. A select few of my favorite projects below. Want your brand on here?
+                Thirteen years of fan-led growth across AAA gaming, mobility and telco. A $32K sellout in under three hours, 60M+ organic reach at zero media spend, 0 to a million in a new market. A select few of my favorite projects below. Want your brand on here?
               </p>
               <Link to={CONTACT_URL} className="work-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '.95rem', letterSpacing: '.02em', textDecoration: 'none' }}>
                 Get in touch <span className="ar" aria-hidden>→</span>

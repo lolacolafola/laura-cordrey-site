@@ -219,12 +219,19 @@ export default function FanValueModelPage() {
   return (
     <div className="fvm-page">
       <div className="fvm-card">
-        {/* Arrival chip: from audit vs cold. Only the "from audit" chip sits up
-            here; cold arrival gets its prompt in the readiness module below. */}
-        {arrivedFromAudit && (
+        {/* From-audit path shows a chip; cold arrival shows a full-width bar in
+            the same slot prompting the visitor to take the quiz first. */}
+        {arrivedFromAudit ? (
           <div className="fvm-arrival" role="note">
             <Arrow />
-            <span>Picking up from your Fan Score audit · <b>{auditScore}%</b></span>
+            <span>From your audit · Fan Score <b>{auditScore}%</b></span>
+          </div>
+        ) : (
+          <div className="fvm-coldbar">
+            <span className="fvm-coldbar__txt">New here? Get your Fan Score in 2 minutes</span>
+            <Link className="fvm-coldbar__link" to={AUDIT_URL}>
+              Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
+            </Link>
           </div>
         )}
 
@@ -599,12 +606,13 @@ export default function FanValueModelPage() {
           )}
         </div>
 
-        {/* Readiness module: the bridge from prize to action. */}
-        <div className={`fvm-ready${verdict ? ` fvm-ready--${verdict.tone}` : ''}`}>
-          <div className="fvm-ready__eyebrow">
-            Can you capture that {derived.fmtK(derived.total)} today?
-          </div>
-          {arrivedFromAudit ? (
+        {/* Readiness module: only fires on the from-audit path — cold arrival
+            already got its "take the quiz" prompt at the top of the page. */}
+        {arrivedFromAudit && (
+          <div className={`fvm-ready fvm-ready--${verdict.tone}`}>
+            <div className="fvm-ready__eyebrow">
+              Can you capture that {derived.fmtK(derived.total)} today?
+            </div>
             <div className="fvm-ready__row">
               <div className="fvm-ready__badge">
                 <div className="fvm-ready__num">{auditScore}%</div>
@@ -614,15 +622,8 @@ export default function FanValueModelPage() {
                 <b>{verdict.lead}</b> {verdict.body}
               </p>
             </div>
-          ) : (
-            <div className="fvm-ready__cold">
-              <p>Your Fan Score tells you in 2 minutes &mdash; which disciplines are ready, and which are leaving it on the table.</p>
-              <Link to={AUDIT_URL} className="fvm-btn fvm-btn--sm">
-                Take the Fan Score <span className="fvm-btn__arrow" aria-hidden="true">→</span>
-              </Link>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Final CTA */}
         <div className="fvm-cta">

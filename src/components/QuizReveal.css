@@ -1,0 +1,91 @@
+/* Quiz-reveal transition. A dark espresso beat between the last answer and
+ * the next screen. Bleeds to the audit sheet edges via negative margins that
+ * cancel the sheet's inner padding. */
+
+.qr-panel {
+  background: #15110F;
+  color: #EFE9DC;
+  margin: -54px -60px -48px;
+  padding: 64px 52px;
+  min-height: 520px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 680px) {
+  .qr-panel { margin: -36px -26px; padding: 48px 26px; min-height: 440px; }
+}
+
+.qr-glow {
+  position: absolute;
+  inset: -40px -60px auto auto;
+  width: 360px;
+  height: 280px;
+  background: radial-gradient(circle at 72% 24%, rgba(224, 87, 75, 0.22), transparent 62%);
+  pointer-events: none;
+}
+.qr-in { position: relative; }
+
+.qr-fig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4C896;
+  margin-bottom: 20px;
+}
+
+.qr-stage {
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.qr-phrase {
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #EFE9DC;
+  animation: qrFadeUp 0.4s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+.qr-sub {
+  font-size: 13px;
+  color: #8A8078;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.qr-bar {
+  width: 100%;
+  max-width: 280px;
+  margin: 22px auto 0;
+  height: 5px;
+  background: rgba(239, 233, 220, 0.14);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.qr-bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #C8362B, #E0574B);
+  box-shadow: 0 0 14px rgba(224, 87, 75, 0.5);
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+@keyframes qrFadeUp {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-phrase { animation: none; }
+  .qr-bar i { transition: none; }
+}

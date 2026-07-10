@@ -182,7 +182,7 @@ export default function AboutPage() {
           <div className="about-proof">
             <span className="about-proof__rule" aria-hidden="true" />
             <span className="about-proof__kick">
-              A decade building fan-led growth
+              Thirteen years building fan-led growth
             </span>
             <ul className="about-proof__logos" aria-label="Brands where Laura has run fan-led growth">
               {experience.map((l) => (
