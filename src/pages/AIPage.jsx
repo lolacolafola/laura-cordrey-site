@@ -302,26 +302,32 @@ export default function AIPage() {
             </h2>
           </div>
           <ol className="ai-offers__list">
-            <li className="ai-card">
+            <li>
+              <Link to="/services#sentiment-sos" className="ai-card ai-card--link">
               <span className="ai-card__num">01</span>
               <h3 className="ai-card__ttl">AI Sentiment SOS</h3>
               <p className="ai-card__body">
                 When your community turns on a release, a price change or a deprecation, I read what they are actually saying, find the signal, and hand you a build-ready plan across product, comms and community. The fastest way to stop the bleed, and the work I have done longest.
               </p>
+              </Link>
             </li>
-            <li className="ai-card">
+            <li>
+              <a href="#founding" className="ai-card ai-card--link">
               <span className="ai-card__num">02</span>
               <h3 className="ai-card__ttl">The Fan-Led Growth Engine, for AI</h3>
               <p className="ai-card__body">
                 Once the fire is out, I build the thing that stops it recurring: the developer and power-user community, the advocacy and ambassador programs, the sentiment defence, all instrumented to adoption and retention. Offered as a founding-partner pilot, below.
               </p>
+              </a>
             </li>
-            <li className="ai-card">
+            <li>
+              <Link to="/services#fan-moments" className="ai-card ai-card--link">
               <span className="ai-card__num">03</span>
               <h3 className="ai-card__ttl">Fan Moments</h3>
               <p className="ai-card__body">
                 A model release or a developer-conference moment your community actually feels, tied to a number. Proven by a sold-out $32K fan drop at US Mobile.
               </p>
+              </Link>
             </li>
           </ol>
         </div>
@@ -330,7 +336,7 @@ export default function AIPage() {
       {/* ─── 5c · FOUNDING-PARTNER OFFER (espresso, gold card) ─
         * The honest pitch: gaming proof, no AI track record claimed,
         * pioneer terms in exchange for building the case study together. */}
-      <section className="ai-band ai-band--founding">
+      <section id="founding" className="ai-band ai-band--founding">
         <div className="ai-container">
           <div className="ai-founding__card">
             <span className="ai-eyebrow ai-eyebrow--gold">The founding-partner offer</span>

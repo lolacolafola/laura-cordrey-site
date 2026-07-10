@@ -307,11 +307,14 @@
   height: 2px;
   background: linear-gradient(90deg, #C8362B, transparent 62%);
 }
-.ai-card:hover {
+/* Lift only when the card is actually a link; informational cards stay
+ * static so nothing looks clickable that isn't. */
+a.ai-card--link:hover {
   transform: translateY(-4px);
   border-color: rgba(212, 200, 150, 0.36);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.45);
 }
+a.ai-card--link { text-decoration: none; display: block; }
 
 .ai-card__num {
   display: block;
@@ -372,10 +375,7 @@
   gap: 12px;
   transition: transform 0.3s cubic-bezier(0.16, 0.84, 0.44, 1), border-color 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
-.ai-icard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(212, 200, 150, 0.32);
-}
+/* .ai-icard is informational, not a link: no hover lift. */
 .ai-icard__icon {
   display: inline-flex;
   color: #C8362B;

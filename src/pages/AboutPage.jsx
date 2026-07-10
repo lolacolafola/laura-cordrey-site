@@ -153,6 +153,11 @@ export default function AboutPage() {
                 Fan-led growth wasn&rsquo;t a job ten years ago.{' '}
                 <mark>I made it one</mark>.
               </h1>
+              <p className="about-intro__lede">
+                I build fan-led growth for fan-driven brands:{' '}
+                <mark>the brand they fall for</mark>, and the Fan Engine that
+                turns that love into growth you can measure.
+              </p>
             </div>
             <figure className="about-hero__portrait">
               <img
@@ -163,11 +168,6 @@ export default function AboutPage() {
             </figure>
           </div>
           <div className="about-intro">
-            <p className="about-intro__lede">
-              I build fan-led growth for fan-driven brands:{' '}
-              <mark>the brand they fall for</mark>, and the Fan Engine that
-              turns that love into growth you can measure.
-            </p>
             <p className="about-intro__sub">
               Lower acquisition cost, higher retention, the reach you&rsquo;d
               otherwise pay for. I&rsquo;ve built from nothing and I&rsquo;ve
