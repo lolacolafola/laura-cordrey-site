@@ -3,13 +3,15 @@ import './QuizReveal.css'
 
 // Quiz-reveal transition, shared by both Fan Score editions (live + pre-launch).
 // Plays once between the last answer and the next screen. Shows no score or
-// verdict; that is the next page's job. Phrases and pacing live in one config
-// array so the copy can be tuned in one place.
+// verdict; that is the next page's job.
 const REV_PHRASES = [
   { text: 'Starting the fan engine…', pct: 22, hold: 1000 },
   { text: 'Vroom, vroom…', pct: 60, hold: 1000 },
   { text: 'Ready for blast off!', pct: 100, hold: 1800 },
 ]
+// Hard ceiling: no matter what happens with the tick chain, onDone MUST fire
+// within this window. Prevents users getting stranded on a stuck reveal.
+const FAILSAFE_MS = 5000
 
 const Sparkle = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -20,13 +22,14 @@ const Sparkle = ({ size = 13 }) => (
 export default function QuizReveal({ onDone }) {
   const [step, setStep] = useState(0)
   const doneRef = useRef(onDone)
+  const firedRef = useRef(false)
   useEffect(() => { doneRef.current = onDone }, [onDone])
 
+  const finish = () => {
+    if (!firedRef.current) { firedRef.current = true; doneRef.current() }
+  }
+
   useEffect(() => {
-    let fired = false
-    const finish = () => {
-      if (!fired) { fired = true; doneRef.current() }
-    }
     if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       finish()
       return undefined
@@ -45,7 +48,9 @@ export default function QuizReveal({ onDone }) {
       }, REV_PHRASES[i].hold)
     }
     tick()
-    return () => clearTimeout(t)
+    // Failsafe: no matter what happens above, force-advance after FAILSAFE_MS.
+    const failsafe = setTimeout(finish, FAILSAFE_MS)
+    return () => { clearTimeout(t); clearTimeout(failsafe) }
   }, [])
 
   const cur = REV_PHRASES[step]
@@ -59,6 +64,11 @@ export default function QuizReveal({ onDone }) {
           <div className="qr-sub">Reading what you told us</div>
           <div className="qr-bar"><i style={{ width: cur.pct + '%' }} /></div>
         </div>
+        {/* Escape hatch — user always has something to click. Visible after a
+            beat so it doesn't compete with the reveal on the happy path. */}
+        <button type="button" className="qr-skip" onClick={finish}>
+          Show my result <span aria-hidden="true">→</span>
+        </button>
       </div>
     </div>
   )

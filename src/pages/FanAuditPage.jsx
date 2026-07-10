@@ -659,7 +659,7 @@ function PreFlow({ screen, setScreen }) {
     )
   }
   if (screen === 'preReveal') {
-    return <RevealTransition onDone={() => setScreen('preResult')} />
+    return <QuizReveal onDone={() => setScreen('preResult')} />
   }
   return <PreResult scored={scored} lead={lead} setLead={setLead} err={err} sent={sent} submitEmail={submitEmail} restart={restart} />
 }
