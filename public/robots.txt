@@ -79,4 +79,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://lolacolafola.github.io/laura-cordrey-site/sitemap.xml
+Sitemap: https://lauracordrey.com/sitemap.xml

@@ -4,8 +4,8 @@ import mdx from '@mdx-js/rollup'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
-// GitHub Pages base path. Override with VITE_BASE='/' once a custom domain is wired up.
-const BASE = process.env.VITE_BASE ?? '/laura-cordrey-site/'
+// Netlify + custom domain serve from '/'. Override with VITE_BASE for other hosts.
+const BASE = process.env.VITE_BASE ?? '/'
 
 export default defineConfig({
   base: BASE,

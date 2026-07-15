@@ -13,10 +13,9 @@
 
 // ─── Constants ──────────────────────────────────────────────────────────
 // SITE_URL is the canonical origin without trailing slash.
-// Override via VITE_SITE_URL once the custom domain is live; defaults to
-// the GitHub Pages production URL.
+// Override via VITE_SITE_URL if ever needed; defaults to the custom domain.
 export const SITE_URL = (
-  import.meta.env?.VITE_SITE_URL || 'https://lolacolafola.github.io/laura-cordrey-site'
+  import.meta.env?.VITE_SITE_URL || 'https://lauracordrey.com'
 ).replace(/\/$/, '')
 
 export const AUTHOR = {
@@ -46,7 +45,6 @@ export const AUTHOR = {
 export function assetUrl(relPath) {
   if (!relPath) return undefined
   if (/^https?:\/\//i.test(relPath)) return relPath
-  // GitHub Pages base path is /laura-cordrey-site/ in production.
   const base = (import.meta.env?.BASE_URL || '/').replace(/\/$/, '')
   const clean = String(relPath).replace(/^\//, '')
   return `${SITE_URL}${base}/${clean}`
