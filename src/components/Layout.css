@@ -54,6 +54,7 @@
 
 .cinnav__link {
   position: relative;
+  white-space: nowrap; /* labels like "Case Studies" must never wrap mid-nav */
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.03em;
@@ -87,6 +88,7 @@
 .cinnav__cta {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap; /* keep "Get in touch" on one line */
   gap: 8px;
   background: #C8362B;
   color: #EFE9DC;
@@ -151,7 +153,9 @@
   text-decoration: none;
 }
 
-@media (max-width: 820px) {
+/* 1024px, not 820px: the full link row (6 links + CTA) needs ~1000px.
+   Below that, the tablet/mid range uses the hamburger menu. */
+@media (max-width: 1024px) {
   .cinnav__links { display: none; }
   .cinnav__toggle { display: inline-flex; }
   .cinnav.is-open .cinnav__menu { display: flex; }

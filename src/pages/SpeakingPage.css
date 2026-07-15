@@ -315,6 +315,13 @@
   .sp-list__item { grid-template-columns: 1fr; gap: 14px; }
 }
 
+
+/* When a compact tile is playing, give the video the full item width so
+   YouTube's controls (incl. fullscreen) are big enough to use. */
+.sp-list__item:has(.sp-poster--sm.is-playing) {
+  grid-template-columns: 1fr;
+}
+
 /* ─── 4 · SELECTED APPEARANCES (vertical timeline) ──── */
 .sp-band--timeline { background: #0E0B09; }
 .sp-timeline {

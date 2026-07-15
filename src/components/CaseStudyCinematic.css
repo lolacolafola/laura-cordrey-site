@@ -296,6 +296,8 @@
 @media (max-width: 860px) {
   .cscin__stats-inner { grid-template-columns: repeat(2, 1fr); }
   .cscin__stat:nth-child(3) { border-left: 0; }
+  /* Horizontal rule between KPI rows once the grid wraps to 2x2 */
+  .cscin__stat:nth-child(n+3) { border-top: 1px solid var(--hair); }
 }
 @media (max-width: 520px) {
   .cscin__stats-inner { grid-template-columns: 1fr; }

@@ -172,6 +172,7 @@ export default function AboutPage() {
                 alt="Laura Cordrey speaking on stage at Ubisoft XP 2019"
                 loading="eager"
               />
+              <figcaption className="about-hero__cap">Ubisoft XP 2019</figcaption>
             </figure>
           </div>
 
