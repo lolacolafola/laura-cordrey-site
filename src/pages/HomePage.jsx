@@ -134,17 +134,25 @@ function WorkCarousel({ items }) {
     if (e.pointerType === 'mouse' && e.button !== 0) return
     const track = trackRef.current
     if (!track) return
-    dragRef.current = { startX: e.clientX, delta: 0, dragging: true, moved: false }
+    dragRef.current = { startX: e.clientX, delta: 0, dragging: true, moved: false, pointerId: e.pointerId, captured: false }
     track.style.transition = 'none'
     setPaused(true)
-    try { e.currentTarget.setPointerCapture(e.pointerId) } catch (_) { /* older browsers */ }
+    // NOTE: do NOT setPointerCapture here — capturing on pointerdown makes the
+    // browser retarget the eventual click to the viewport instead of the card
+    // Link, which silently killed navigation on the work cards. Capture is
+    // taken lazily in onPointerMove once a real drag starts.
   }
   const onPointerMove = (e) => {
     const d = dragRef.current
     if (!d.dragging) return
     const delta = e.clientX - d.startX
     d.delta = delta
-    if (Math.abs(delta) > 4) d.moved = true
+    if (Math.abs(delta) > 4 && !d.moved) {
+      d.moved = true
+      // Real drag confirmed: now capture so the drag keeps tracking outside
+      // the viewport. Taking capture only here keeps plain clicks intact.
+      try { e.currentTarget.setPointerCapture(d.pointerId); d.captured = true } catch (_) { /* older browsers */ }
+    }
     applyTransform(index, delta)
   }
   const onPointerUp = (e) => {
@@ -161,7 +169,26 @@ function WorkCarousel({ items }) {
     if (nextIndex === index) applyTransform(index)
     else setIndex(nextIndex)
     setPaused(false)
-    try { e.currentTarget.releasePointerCapture(e.pointerId) } catch (_) { /* ignore */ }
+    if (d.captured) {
+      try { e.currentTarget.releasePointerCapture(d.pointerId) } catch (_) { /* ignore */ }
+      d.captured = false
+    }
+  }
+  // Browser gesture (e.g. back-swipe) or OS interruption takes over the pointer.
+  // Snap back to the current slide and drop the drag without treating it as a click.
+  const onPointerCancel = (e) => {
+    const d = dragRef.current
+    const track = trackRef.current
+    if (!d.dragging || !track) return
+    d.dragging = false
+    d.moved = false
+    track.style.transition = ''
+    applyTransform(index)
+    setPaused(false)
+    if (d.captured) {
+      try { e.currentTarget.releasePointerCapture(d.pointerId) } catch (_) { /* ignore */ }
+      d.captured = false
+    }
   }
   // Swallow the Link click if the pointerdown-to-up movement was a drag.
   const onClickCapture = (e) => {
@@ -187,7 +214,7 @@ function WorkCarousel({ items }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerCancel={onPointerCancel}
         onClickCapture={onClickCapture}
       >
         <div className="wcarousel__track" ref={trackRef}>
