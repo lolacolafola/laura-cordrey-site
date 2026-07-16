@@ -22,6 +22,7 @@ export const speakingSections = [
     clips: [
       {
         youtube: 'P2tOLL_sAYk',
+        start: 335, // Laura's segment starts at 5:35 in the full E3 video
         venue: 'Ubisoft · Ghost Recon Breakpoint · E3 2019',
         headline: 'Live stage unveil',
         detail:
