@@ -819,6 +819,10 @@
   .about-eng__left { position: static; }
   .about-eng__right { padding-top: 0; }
   .about-imgsplit { grid-template-columns: 1fr; }
+  /* Single-column: the 4:5 radar plate would otherwise fill the viewport
+     edge-to-edge and read as a full screen of decoration. Cap and centre it,
+     same treatment as the hero portrait above. */
+  .about-imgsplit .about-artplate--tower { max-width: 22rem; margin-inline: auto; width: 100%; }
   .about-imgsplit__content .about-pulls { flex-wrap: wrap; }
   .about-disc { grid-template-columns: repeat(2, 1fr); }
   .about-talks { grid-template-columns: 1fr; }

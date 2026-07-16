@@ -406,6 +406,12 @@
 }
 .wcarrow:focus-visible { outline: 2px solid #D4C896; outline-offset: 3px; }
 
+/* Grid items default to min-width:auto, so the carousel column refuses to
+   shrink below its track's intrinsic width and stretches the whole page
+   sideways on phones (461px of horizontal scroll at 375px). min-width:0
+   lets the column shrink; the track clips inside as intended. */
+.worksplit > * { min-width: 0; }
+
 @media (max-width: 900px) {
   .worksplit { grid-template-columns: 1fr !important; }
   .ccard { flex: 0 0 86%; }
