@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
-import { FORM_ENDPOINT } from '../lib/forms.js'
+import { FORM_ENDPOINT, encodeNetlifyForm } from '../lib/forms.js'
 import { pageUrl } from '../lib/seo.js'
 import './ContactPage.css'
 
@@ -141,10 +141,12 @@ export default function ContactPage() {
 
     setSending(true)
     setError(null)
+    // Netlify Forms: urlencoded POST to '/' with form-name; the "contact"
+    // form + fields are registered by the hidden static form in index.html.
     fetch(FORM_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeNetlifyForm('contact', payload),
     })
       .then((res) => {
         if (!res.ok) throw new Error(`submit failed: ${res.status}`)
@@ -220,11 +222,18 @@ export default function ContactPage() {
             </button>
 
             <form ref={formRef} onSubmit={onSubmit} autoComplete="on" className="contact-form">
-              {/* Honeypot — off-screen, invisible to humans, catches bots. */}
+              {/* Honeypots — off-screen, invisible to humans, catch bots.
+                  company_url is checked client-side (drop before send);
+                  bot-field is Netlify's server-side honeypot (submissions
+                  with it filled are discarded by Netlify). */}
               <div aria-hidden="true" className="contact-form__honeypot">
                 <label>
                   Leave this field empty
                   <input type="text" name="company_url" tabIndex={-1} autoComplete="off" />
+                </label>
+                <label>
+                  Also leave this empty
+                  <input type="text" name="bot-field" tabIndex={-1} autoComplete="off" />
                 </label>
               </div>
 

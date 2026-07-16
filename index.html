@@ -34,6 +34,39 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Netlify Forms registration. These hidden static forms exist only so
+         Netlify's deploy bot registers the form names + fields; the real UI
+         is React (ContactPage, Fan Score). Field names here MUST match what
+         the JS submits — unregistered fields are silently dropped. -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="organisation" />
+      <textarea name="message"></textarea>
+      <input type="text" name="intent" />
+      <input type="text" name="source_page" />
+      <input type="text" name="language" />
+      <!-- consulting branch -->
+      <input type="text" name="consulting_need" />
+      <input type="text" name="consulting_timeline" />
+      <!-- speaking branch -->
+      <input type="text" name="event_date" />
+      <input type="text" name="event_format" />
+      <input type="text" name="event_location" />
+      <input type="text" name="event_budget" />
+      <input type="text" name="_subject" />
+      <input type="text" name="bot-field" />
+    </form>
+    <form name="fan-score" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="edition" />
+      <input type="text" name="score" />
+      <input type="text" name="_subject" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
