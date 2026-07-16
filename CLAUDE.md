@@ -18,3 +18,12 @@ must be written to a file in this repo, **not left only in the chat reply.**
 ## Ground rules (inherited)
 - Never make anything up. Only defensible, factual claims.
 - Flag any claim that needs confirmation before it goes live.
+
+## Design rules
+- **Hover honesty.** Cursor response is a promise: if an element lifts, scales,
+  glows or otherwise reacts on hover, clicking it must do something. `:hover`
+  motion lives only on `<a>` and `<button>`. Informational cards, logos and
+  quotes stay static under the cursor.
+- Ambient animation (scroll reveals, autonomous loops like the radar sweep) is
+  fine anywhere — it promises nothing. Keep it off under
+  `prefers-reduced-motion`.

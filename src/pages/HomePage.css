@@ -12,23 +12,9 @@
 .cin [data-rev].cin-hide { opacity: 0; transform: translateY(40px); }
 
 /* ─── Logo shelf ────────────────────────────────────────── */
-.cin .lgocell { transition: transform .3s cubic-bezier(.16,.84,.44,1); }
-.cin .lgocell:hover { transform: scale(1.06); }
-
-/* ─── Testimonial card ──────────────────────────────────── */
-/* Espresso card on the dark ground: keeps the "comes forward" scale on
- * hover; the gold top rule brightens rather than switching to dark. */
-.cin .quotecard {
-  transition: transform .3s cubic-bezier(.16,.84,.44,1),
-              border-top-color .25s ease,
-              box-shadow .3s ease;
-  transform-origin: center;
-}
-.cin .quotecard:hover {
-  transform: scale(1.025);
-  border-top-color: rgba(212, 200, 150, 0.9);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
-}
+/* Hover honesty: logo cells and the quote card are informational, not
+ * links, so they get no cursor response. Only elements that navigate or
+ * act on click may move on hover (see CLAUDE.md, Design rules). */
 
 /* ─── Buttons ───────────────────────────────────────────── */
 .cin a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }
@@ -53,33 +39,34 @@
 .cin a.btnp:hover .ar, .cin a.btng:hover .ar, .cin a.btnsoft:hover .ar, .cin a.btnsoftd:hover .ar, .cin a.tlink:hover .ar { transform: translateX(4px); }
 .cin a.tlink:hover { color: #D4C896 !important; }
 
-/* ─── KPI / why-fans / ways-to-work cards: "come forward" ── */
-.cin .pot, .cin .aic, .cin .wtw, .cin .wtwd, .cin .statc {
+/* ─── KPI / ways-to-work link cards: "come forward" ─────── */
+/* Only the cards that are real <Link>s lift on hover (wtw/wtwd → services,
+ * statc → case studies). The why-fans .pot cards are plain divs and stay
+ * static — hover honesty. (.aic was dead CSS, removed.) */
+.cin .wtw, .cin .wtwd, .cin .statc {
   transition: transform .3s cubic-bezier(.16,.84,.44,1),
               box-shadow .3s ease,
               border-color .25s ease !important;
 }
-.cin .pot:hover, .cin .wtw:hover, .cin .statc:hover {
+.cin .wtw:hover, .cin .statc:hover {
   transform: scale(1.03);
   box-shadow: 0 16px 38px rgba(21,17,15,.18);
   border-color: rgba(200,54,43,.32) !important;
   position: relative;
   z-index: 1;
 }
-.cin .aic:hover, .cin .wtwd:hover {
+.cin .wtwd:hover {
   transform: scale(1.03);
   box-shadow: 0 18px 44px rgba(0,0,0,.55);
   border-color: rgba(200,54,43,.32) !important;
   position: relative;
   z-index: 1;
 }
-.cin .pot:hover .pico { color: #C8362B !important; }
 .cin .statc:nth-of-type(2) { transition-delay: .08s; }
 .cin .statc:nth-of-type(3) { transition-delay: .16s; }
 .cin .statc:nth-of-type(4) { transition-delay: .24s; }
-.cin .aic:nth-of-type(2) { transition-delay: .07s; }
-.cin .aic:nth-of-type(3) { transition-delay: .14s; }
-.cin .aic:nth-of-type(4) { transition-delay: .21s; }
+/* .pot cards keep their delay for the staggered scroll-reveal (ambient
+ * animation is fine); they just no longer respond to the cursor. */
 .cin .pot:nth-of-type(2) { transition-delay: .1s; }
 .cin .pot:nth-of-type(3) { transition-delay: .2s; }
 
