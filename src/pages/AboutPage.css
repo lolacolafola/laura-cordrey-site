@@ -129,7 +129,14 @@
   pointer-events: none;
   z-index: 0;
 }
-.about-hero__portrait { position: relative; }
+.about-hero__portrait {
+  position: relative;
+  /* Match the AI page cred photo frame: soft gold hairline, subtle rounding,
+     clip the caption gradient inside. */
+  border: 1px solid rgba(212, 200, 150, 0.28);
+  border-radius: 4px;
+  overflow: hidden;
+}
 /* Caption overlay matching the AI page portrait (ai-cred__cap) */
 .about-hero__cap {
   position: absolute;
@@ -805,7 +812,9 @@
 /* ─── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .about-hero__grid { grid-template-columns: 1fr; }
-  .about-hero__portrait { max-width: 20rem; }
+  /* Once the hero collapses to one column the portrait sits alone in a wide
+     row — centre it so it doesn't dangle to the left. */
+  .about-hero__portrait { max-width: 20rem; margin-inline: auto; }
   .about-eng { grid-template-columns: 1fr; }
   .about-eng__left { position: static; }
   .about-eng__right { padding-top: 0; }
