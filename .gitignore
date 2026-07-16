@@ -49,3 +49,4 @@ public/case-studies/_unused/Ubisoft delta logo low.mp4
 
 # local tooling config stays local
 .claude/
+_image-backup-*/
