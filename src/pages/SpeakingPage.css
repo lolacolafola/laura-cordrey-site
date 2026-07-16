@@ -316,10 +316,13 @@
 }
 
 
-/* When a compact tile is playing, give the video the full item width so
-   YouTube's controls (incl. fullscreen) are big enough to use. */
-.sp-list__item:has(.sp-poster--sm.is-playing) {
+/* When a compact tile is playing, break it out to the full width of the
+   two-column list so YouTube's controls (incl. fullscreen) are big enough
+   to use. Class is set from React state rather than :has() so it works in
+   browsers without :has() support (Safari < 15.4). */
+.sp-list__item--playing {
   grid-template-columns: 1fr;
+  grid-column: 1 / -1;
 }
 
 /* ─── 4 · SELECTED APPEARANCES (vertical timeline) ──── */

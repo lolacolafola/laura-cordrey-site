@@ -58,7 +58,7 @@ function ClipPoster({ clip, isPlaying, onPlay, size = 'lg' }) {
         <iframe
           src={`https://www.youtube.com/embed/${clip.youtube}?autoplay=1&rel=0&modestbranding=1${clip.start ? `&start=${clip.start}` : ''}`}
           title={clip.headline}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
       </div>
@@ -186,7 +186,10 @@ export default function SpeakingPage() {
           </header>
           <ol className="sp-list" aria-label="Off the stage">
             {offStageClips.map((clip) => (
-              <li className="sp-list__item" key={clip.youtube}>
+              <li
+                className={`sp-list__item${playingId === clip.youtube ? ' sp-list__item--playing' : ''}`}
+                key={clip.youtube}
+              >
                 <div className="sp-list__media">
                   <ClipPoster
                     clip={clip}
