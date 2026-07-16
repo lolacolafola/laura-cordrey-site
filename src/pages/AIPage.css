@@ -314,7 +314,9 @@ a.ai-card--link:hover {
   border-color: rgba(212, 200, 150, 0.36);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.45);
 }
-a.ai-card--link { text-decoration: none; display: block; }
+/* height:100% so a link-card stretches to fill its grid cell — equalises
+   the three "How we'd work together" cards despite uneven body copy. */
+a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizing: border-box; }
 
 .ai-card__num {
   display: block;
