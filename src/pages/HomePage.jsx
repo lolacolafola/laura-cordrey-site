@@ -139,7 +139,7 @@ export default function HomePage() {
                 See how it works <span className="ar" aria-hidden>→</span>
               </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free intro call. No pitch, just a straight read.</span>
+            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>I read every message myself and follow up within two working days.</span>
           </div>
 
           {/* Edit 5: hero proof strip — hairline top only (no bottom rule so
@@ -169,7 +169,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── WHAT IT IS ─── */}
-      <section id="what-it-is" style={{ background: '#2D2723', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
+      <section id="what-it-is" style={{ background: '#15110F', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,80px)', alignItems: 'start' }}>
             <div data-rev>
@@ -186,7 +186,7 @@ export default function HomePage() {
                 When people love what you make, they stick around, spend more, and bring their friends. That is <mark>word of mouth</mark>, and nothing sells harder.
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. I build it into <mark>one engine</mark>, and I show you what it’s worth.
+                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. That is <mark>fan-led growth</mark>. I build it into one engine, and I show you what it’s worth.
               </p>
             </div>
           </div>
@@ -338,11 +338,11 @@ export default function HomePage() {
       </section>
 
       {/* ─── PROOF ─── */}
-      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section style={{ background: '#2D2723', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ marginBottom: 'clamp(32px,4vw,52px)', maxWidth: '40ch' }}>
             <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 14 }}>Best wins</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Proof it pays.</h2>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#EFE9DC' }}>Proof it pays.</h2>
           </div>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,22px)' }}>
             {stats.map((s) => (
@@ -364,7 +364,7 @@ export default function HomePage() {
             <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
               See my deep-dive case studies <span aria-hidden>→</span>
             </Link>
-            <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
+            <span style={{ fontSize: '.78rem', color: 'rgba(239,233,220,.62)', fontWeight: 600 }}>
               These numbers roll up several projects per brand, the full write-ups live on the Case Studies page.
             </span>
           </div>
@@ -440,7 +440,7 @@ export default function HomePage() {
             What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
           </h2>
           <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '42ch', margin: 0 }}>
-            Take the 2-minute Fan Score to see where you stand, or book a free intro call for a straight read.
+            Take the 2-minute Fan Score to see where you stand, or tell me what&rsquo;s going on and I&rsquo;ll be in touch.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
             <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>

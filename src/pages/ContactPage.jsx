@@ -268,7 +268,8 @@ export default function ContactPage() {
                         </label>
                         <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
-                          <option>A 2-hour session: one problem, worked live</option>
+                          <option>A session or workshop: one problem, worked live</option>
+                          <option>Fractional or advisory: ongoing senior support</option>
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Moments: I have a big moment coming</option>
                           <option>The Fan Engine: I want the whole system</option>

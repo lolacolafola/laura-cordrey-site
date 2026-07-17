@@ -348,8 +348,8 @@ export default function ServicesPage() {
         </div>
         <div className="container svc-finale__inner">
           <p className="svc-finale__reassure">
-            Not sure which fits? That&rsquo;s what the free intro call is for.
-            No pitch, a straight read.
+            Not sure which fits? Tell me what&rsquo;s going on and we&rsquo;ll
+            find the right one together.
           </p>
           <h2 className="svc-finale__title">What&rsquo;s your fanbase worth?</h2>
           <p className="svc-finale__line">
