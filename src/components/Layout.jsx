@@ -9,7 +9,8 @@ const HELLO_EMAIL = 'hello@lauracordrey.com'
 // Order = buyer journey: proof first, then the offer, then the free way in,
 // then the frontier bet, then the person. About earns its click last.
 const navLinks = [
-  { key: 'work',     label: 'Case Studies', path: '/case-studies',      isHash: false },
+  { key: 'home',     label: 'Home',      path: '/',                     isHash: false },
+  { key: 'work',     label: 'Work',      path: '/case-studies',         isHash: false },
   { key: 'services', label: 'Services',  path: '/services',             isHash: false },
   { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
   { key: 'speaking', label: 'Speaking',  path: '/speaking',             isHash: false },
@@ -79,6 +80,7 @@ export default function Layout({ children }) {
       <NavLink
         key={l.key}
         to={l.path}
+        end={l.path === '/'}
         className={({ isActive }) => `cinnav__link${isActive ? ' is-active' : ''}`}
       >
         {l.label}

@@ -273,7 +273,7 @@ const caseStudies = [
     tags: ['Brand', 'Storytelling', 'Content', 'Growth'],
     stats: [
       { value: '0 → 1M', label: 'UK members (team launch)' },
-      { value: '€5', label: 'CAC, organic then paid' },
+      { value: '€5', label: 'cost per acquisition' },
       { value: '22', label: 'markets, one brand' },
       { value: '90%', label: 'fewer design requests' },
     ],
