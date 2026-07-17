@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
@@ -41,16 +41,6 @@ const aiPoints = [
   { idx: '04 · Operations',   title: 'Run it like a live service', copy: 'Manage your AI community the way I ran games with millions of players: real-time, close to the product, ready before sentiment turns.' },
 ]
 
-// Featured work — five stories, rotated in the auto-carousel. Images come
-// from the same case-study assets used on /work.
-const work = [
-  { idx: '01', company: 'US Mobile', year: '2024', title: 'Dark Star', result: '$32K in under three hours.', line: 'A free SIM kit turned into a $129 fan bundle that sold out instantly.', img: 'case-studies/us-mobile/us-mobile-dark-star-banner.png', alt: 'US Mobile Dark Star', href: '/case-studies/us-mobile-dark-star' },
-  { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/case-studies/azarus-game-ads' },
-  { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png', alt: 'Ubisoft Siege Champions', href: '/case-studies/ubisoft-siege-champions' },
-  { idx: '04', company: 'Ubisoft',   year: '2019–2020', title: 'Delta Company', result: '10M+ UGC views, unveiled at E3.', line: 'A first-of-its-kind AAA community advocacy program, 130 members, 14 languages.', img: 'case-studies/ubisoft-delta/01-delta-badge-hero.png', alt: 'Ubisoft Delta Company', href: '/case-studies/ubisoft-delta-company' },
-  { idx: '05', company: 'BlaBlaCar', year: '2013–2016', title: 'Brand & Storytelling', result: 'A €5 CAC, organic-first.', line: 'Built the first-person storytelling system, rolled one brand across 22 markets, and grew acquisition to a €5 CAC.', img: 'case-studies/blablacar/blablacar-covoiturage-festival-banner.webp', alt: 'BlaBlaCar brand and storytelling', href: '/case-studies/blablacar-storytelling' },
-]
-
 // Small inline-svg helpers — stroke-based, matching the design.
 const Icon = ({ name, size = 28 }) => {
   const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
@@ -90,181 +80,6 @@ const INNER = { maxWidth: 1280, margin: '0 auto', width: '100%' }
 // steady, then flips signal-red at a dashed "MODEL UPDATE" marker.
 // Loops (~7.5s) only while on screen (IntersectionObserver toggles .play).
 // Fully static under prefers-reduced-motion.
-// ── Featured work carousel ───────────────────────────────────
-// Auto-advances every 5s. Pauses on hover/focus. Static under
-// prefers-reduced-motion. Arrows + dots are keyboard-focusable.
-// Card width ~82% so the next card peeks.
-function WorkCarousel({ items }) {
-  const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const trackRef = useRef(null)
-  const dragRef = useRef({ startX: 0, delta: 0, dragging: false, moved: false })
-  const n = items.length
-
-  const getStep = () => {
-    const track = trackRef.current
-    if (!track) return 0
-    const first = track.children[0]
-    if (!first) return 0
-    const cs = getComputedStyle(track)
-    const gap = parseFloat(cs.columnGap || cs.gap || 0) || 0
-    return first.getBoundingClientRect().width + gap
-  }
-
-  const applyTransform = (i, extra = 0) => {
-    const track = trackRef.current
-    if (!track) return
-    track.style.transform = `translateX(${-i * getStep() + extra}px)`
-  }
-
-  useEffect(() => { applyTransform(index) }, [index])
-  useEffect(() => {
-    const onResize = () => applyTransform(index)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [index])
-
-  useEffect(() => {
-    if (paused) return
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const t = setInterval(() => setIndex((i) => (i + 1) % n), 5000)
-    return () => clearInterval(t)
-  }, [paused, n])
-
-  const go = (k) => setIndex((k + n) % n)
-
-  // Pointer-drag: pointerdown starts, pointermove offsets, pointerup snaps to
-  // nearest slide (or advances if past 15% threshold). Works for mouse + touch.
-  const onPointerDown = (e) => {
-    // Ignore non-primary buttons (right-click, middle-click).
-    if (e.pointerType === 'mouse' && e.button !== 0) return
-    const track = trackRef.current
-    if (!track) return
-    dragRef.current = { startX: e.clientX, delta: 0, dragging: true, moved: false, pointerId: e.pointerId, captured: false }
-    track.style.transition = 'none'
-    setPaused(true)
-    // NOTE: do NOT setPointerCapture here — capturing on pointerdown makes the
-    // browser retarget the eventual click to the viewport instead of the card
-    // Link, which silently killed navigation on the work cards. Capture is
-    // taken lazily in onPointerMove once a real drag starts.
-  }
-  const onPointerMove = (e) => {
-    const d = dragRef.current
-    if (!d.dragging) return
-    const delta = e.clientX - d.startX
-    d.delta = delta
-    if (Math.abs(delta) > 4 && !d.moved) {
-      d.moved = true
-      // Real drag confirmed: now capture so the drag keeps tracking outside
-      // the viewport. Taking capture only here keeps plain clicks intact.
-      try { e.currentTarget.setPointerCapture(d.pointerId); d.captured = true } catch (_) { /* older browsers */ }
-    }
-    applyTransform(index, delta)
-  }
-  const onPointerUp = (e) => {
-    const d = dragRef.current
-    const track = trackRef.current
-    if (!d.dragging || !track) return
-    d.dragging = false
-    const step = getStep()
-    const threshold = step * 0.15
-    track.style.transition = ''
-    let nextIndex = index
-    if (d.delta > threshold && index > 0) nextIndex = index - 1
-    else if (d.delta < -threshold && index < n - 1) nextIndex = index + 1
-    if (nextIndex === index) applyTransform(index)
-    else setIndex(nextIndex)
-    setPaused(false)
-    if (d.captured) {
-      try { e.currentTarget.releasePointerCapture(d.pointerId) } catch (_) { /* ignore */ }
-      d.captured = false
-    }
-  }
-  // Browser gesture (e.g. back-swipe) or OS interruption takes over the pointer.
-  // Snap back to the current slide and drop the drag without treating it as a click.
-  const onPointerCancel = (e) => {
-    const d = dragRef.current
-    const track = trackRef.current
-    if (!d.dragging || !track) return
-    d.dragging = false
-    d.moved = false
-    track.style.transition = ''
-    applyTransform(index)
-    setPaused(false)
-    if (d.captured) {
-      try { e.currentTarget.releasePointerCapture(d.pointerId) } catch (_) { /* ignore */ }
-      d.captured = false
-    }
-  }
-  // Swallow the Link click if the pointerdown-to-up movement was a drag.
-  const onClickCapture = (e) => {
-    if (dragRef.current.moved) {
-      e.preventDefault()
-      e.stopPropagation()
-      dragRef.current.moved = false
-    }
-  }
-
-  return (
-    <div
-      className="wcarousel"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-      aria-roledescription="carousel"
-      aria-label="Featured work"
-    >
-      <div
-        className="wcarousel__viewport"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerCancel}
-        onClickCapture={onClickCapture}
-      >
-        <div className="wcarousel__track" ref={trackRef}>
-          {items.map((w, i) => (
-            <Link key={w.idx} to={w.href} className="ccard" aria-hidden={i !== index ? 'true' : undefined} draggable={false}>
-              <figure className="ccard__fig">
-                <img src={BASE + w.img} alt={w.alt} loading="lazy" />
-              </figure>
-              <div className="ccard__body">
-                <div className="ccard__meta">
-                  <span className="ccard__idx">{w.idx}</span>
-                  <span className="ccard__co">{w.company} · {w.year}</span>
-                </div>
-                <span className="ccard__ttl">{w.title}</span>
-                <span className="ccard__res">{w.result}</span>
-                <span className="ccard__line">{w.line}</span>
-                <span className="ccard__cta">Read the story <span aria-hidden="true">→</span></span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="wcarousel__nav">
-        <div className="wcarousel__dots">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={'wcdot' + (i === index ? ' is-on' : '')}
-              onClick={() => go(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              aria-current={i === index ? 'true' : undefined}
-            />
-          ))}
-        </div>
-        <div className="wcarousel__arrows">
-          <button type="button" className="wcarrow" onClick={() => go(index - 1)} aria-label="Previous slide"><span aria-hidden="true">←</span></button>
-          <button type="button" className="wcarrow" onClick={() => go(index + 1)} aria-label="Next slide"><span aria-hidden="true">→</span></button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 // AI sentiment "peaks" visual — sentiment mountain range with a MODEL UPDATE
 // marker where the line dips into a red trough (pulsing dot + ping ring)
 // then recovers to gold. Community nodes below: gold before the marker, red
@@ -631,28 +446,11 @@ export default function HomePage() {
           </div>
           <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
             <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
-              See the case studies <span aria-hidden>→</span>
+              See my deep-dive case studies <span aria-hidden>→</span>
             </Link>
             <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
               These numbers roll up several projects per brand, the full write-ups live on the Case Studies page.
             </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WORK ─── */}
-      <section id="work" style={{ background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)' }}>
-        <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div className="worksplit" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 'clamp(28px,5vw,64px)', alignItems: 'center' }}>
-            <div data-rev className="worklede" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.8vw,20px)' }}>
-              <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>The work behind the numbers.</h2>
-              <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0, maxWidth: '34ch' }}>
-                Drops, programs and launches across gaming, tech, consumer and entertainment.
-              </p>
-            </div>
-            <div data-rev>
-              <WorkCarousel items={work} />
-            </div>
           </div>
         </div>
       </section>

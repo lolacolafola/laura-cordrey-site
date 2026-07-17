@@ -64,7 +64,7 @@ export default function ContactPage() {
   useDocumentMeta({
     title: 'Contact · Laura Cordrey',
     description:
-      'Hire me for a growth problem, or book me for a stage. One intent-first form. I read every message and reply within two working days.',
+      'Tell me what you need: growth and brand work, or speaking. I read every message and follow up within two working days to set up a call.',
     canonical: pageUrl('contact'),
     ogType: 'website',
   })
@@ -175,7 +175,7 @@ export default function ContactPage() {
           Tell me what you <span className="contact-title__mark">need</span>.
         </h1>
         <p className="contact-lede">
-          Two ways in. Hire me for a growth problem, or book me for a stage. Pick one and I will ask only what I need to reply well.
+          Whatever brought you here, let’s talk. Tell me what’s going on and I’ll follow up to set up a call. Pick the closest fit below, and I’ll only ask what I need to reply well.
         </p>
 
         {submitted ? (
@@ -189,7 +189,7 @@ export default function ContactPage() {
           </div>
         ) : (
           <>
-            <p className="contact-picker__label">This is about</p>
+            <p className="contact-picker__label">What’s this about?</p>
             <div className="contact-picker">
               <button
                 type="button"
@@ -198,8 +198,8 @@ export default function ContactPage() {
                 aria-pressed={isConsulting}
               >
                 <span className="contact-picker__icon" aria-hidden="true"><BriefcaseIcon /></span>
-                <span className="contact-picker__ttl">Hire me</span>
-                <span className="contact-picker__sub">Growth work: a 2-hour session, or a full engagement.</span>
+                <span className="contact-picker__ttl">Growth &amp; brand</span>
+                <span className="contact-picker__sub">A session, advisory, or a full engagement.</span>
               </button>
               <button
                 type="button"
@@ -208,8 +208,8 @@ export default function ContactPage() {
                 aria-pressed={isSpeaking}
               >
                 <span className="contact-picker__icon" aria-hidden="true"><MicIcon /></span>
-                <span className="contact-picker__ttl">Book me</span>
-                <span className="contact-picker__sub">To speak: a keynote, panel, host slot, or broadcast.</span>
+                <span className="contact-picker__ttl">Speaking</span>
+                <span className="contact-picker__sub">A keynote, panel, host slot, or broadcast.</span>
               </button>
             </div>
             <button
