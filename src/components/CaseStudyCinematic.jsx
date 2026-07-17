@@ -67,13 +67,27 @@ function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = 
     <div className={`cscin__slider ${cls}`} style={width ? { width } : undefined}>
       <div className="cscin__slider-frame" style={{ aspectRatio: aspect }}>
         {items.map((it, idx) => (
-          <img
-            key={idx}
-            src={it.src}
-            alt={it.alt || ''}
-            loading="lazy"
-            style={{ opacity: idx === i ? 1 : 0, objectFit: it.fit || fit }}
-          />
+          /\.(mp4|webm)$/i.test(it.src) || it.video ? (
+            <video
+              key={idx}
+              src={it.src}
+              poster={it.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{ opacity: idx === i ? 1 : 0, objectFit: it.fit || fit }}
+            />
+          ) : (
+            <img
+              key={idx}
+              src={it.src}
+              alt={it.alt || ''}
+              loading="lazy"
+              style={{ opacity: idx === i ? 1 : 0, objectFit: it.fit || fit }}
+            />
+          )
         ))}
         {multi && (
           <>

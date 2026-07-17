@@ -597,7 +597,8 @@
   border: 1px solid var(--hair);
   border-radius: 3px;
 }
-.cscin__slider-frame img {
+.cscin__slider-frame img,
+.cscin__slider-frame video {
   position: absolute;
   inset: 0;
   width: 100%;

@@ -498,8 +498,10 @@ const orderedStudies = [
           'I led with organic storytelling to build trust and demand, then layered paid on top of an audience that already wanted us. That brought acquisition to a €5 CAC.',
         ] },
       { type: 'carousel', contain: true, items: [
+        { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg'), cap: 'Playful brand creative in the same voice. “Get there for less” — a diver in a fish tank, not a polished stock ad.' },
         { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
         { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
+        { src: P('blablacar/blablacar-dog.mp4'), poster: P('blablacar/blablacar-dog-poster.jpg'), cap: 'The stories fans actually tell: someone brought the dog along for the ride.' },
       ] },
       { type: 'video', src: P('blablacar/blablacar-storytelling-ad.mp4'), poster: P('blablacar/blablacar-storytelling-ad-poster.jpg'), aspect: '1600 / 400',
         caption: 'The system in one asset: a real carpool moment, then the route and the price. The story sells the ride.' },
