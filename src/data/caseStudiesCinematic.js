@@ -494,7 +494,7 @@ const orderedStudies = [
         caption: 'of priority-parking users said they wouldn’t have rideshared without the partnership. The activation changed how people behaved.' },
       { type: 'section', divider: true, kicker: '[03] · The move', title: 'Real moments, not perfect gram.',
         body: [
-          'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager, having led the creative content for BlaBlaCar’s 2015 global rebrand with Kyoto agency. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
+          'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
           'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them. People connected with them organically. Paid came after, on top of an audience that already wanted us, and that is what brought acquisition to a €5 CAC.',
         ] },
       { type: 'carousel', contain: true, caption: 'First-person brand content, shot the way a fan would: real carpool moments and playful creative, not a polished ad in sight. The stuff people actually connected with.', items: [
@@ -517,6 +517,7 @@ const orderedStudies = [
       { type: 'section', kicker: '[04] · The rollout', title: 'One brand, 22 markets.',
         body: [
           'I rolled one consistent brand across all 22 markets, and rebuilt the internal design process behind it: a full review and restructure that cut ad-hoc requests to the design team by 90%, while holding the KPIs. One brand, recognisable everywhere, run by a system the local teams could keep up themselves.',
+          'The capstone came in 2017, one of the last things I worked on there: BlaBlaCar’s global rebrand with Kyoto agency, where I led the creative content.',
         ] },
       { type: 'takeaway', kicker: '[05] · The takeaway', title: 'Storytelling is growth.',
         lede: 'This is where I learned that storytelling is growth, not decoration. Real, first-person content built trust, trust built demand, and demand made every paid pound go further. It is the foundation of how I work now.',
