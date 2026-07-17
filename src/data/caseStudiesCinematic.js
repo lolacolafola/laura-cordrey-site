@@ -500,7 +500,6 @@ const orderedStudies = [
       { type: 'carousel', contain: true, items: [
         { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
         { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
-        { src: P('blablacar/blablacar-photobooth-strip.png'), cap: 'The Mini photobooth output. Members made the content themselves, branded, shareable, theirs to keep.' },
       ] },
       { type: 'quote',
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
