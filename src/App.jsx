@@ -14,7 +14,7 @@ import WorkArticle from './pages/WorkArticle.jsx'
 import DeltaCompanyPage from './pages/DeltaCompanyPage.jsx'
 import UsMobilePage from './pages/UsMobilePage.jsx'
 import UbisoftSiegeChampionsPage from './pages/UbisoftSiegeChampionsPage.jsx'
-import BlaBlaCarLiveNationPage from './pages/BlaBlaCarLiveNationPage.jsx'
+import BlaBlaCarStorytellingPage from './pages/BlaBlaCarStorytellingPage.jsx'
 import AzarusStreamersPage from './pages/AzarusStreamersPage.jsx'
 import AzarusGameAdsPage from './pages/AzarusGameAdsPage.jsx'
 import ClawMobilePage from './pages/ClawMobilePage.jsx'
@@ -41,7 +41,7 @@ export default function App() {
           <Route path="/case-studies/ubisoft-delta-company" element={<DeltaCompanyPage />} />
           <Route path="/case-studies/us-mobile-dark-star" element={<UsMobilePage />} />
           <Route path="/case-studies/ubisoft-siege-champions" element={<UbisoftSiegeChampionsPage />} />
-          <Route path="/case-studies/blablacar-live-nation" element={<BlaBlaCarLiveNationPage />} />
+          <Route path="/case-studies/blablacar-storytelling" element={<BlaBlaCarStorytellingPage />} />
           <Route path="/case-studies/azarus" element={<AzarusStreamersPage />} />
           <Route path="/case-studies/azarus-game-ads" element={<AzarusGameAdsPage />} />
           <Route path="/case-studies/claw-mobile" element={<ClawMobilePage />} />

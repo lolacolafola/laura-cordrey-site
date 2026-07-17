@@ -21,7 +21,7 @@ const ROUTE = {
   'azarus-ads': '/case-studies/azarus-game-ads',
   'siege': '/case-studies/ubisoft-siege-champions',
   'delta': '/case-studies/ubisoft-delta-company',
-  'blablacar': '/case-studies/blablacar-live-nation',
+  'blablacar': '/case-studies/blablacar-storytelling',
 }
 
 // Rewrite prototype-style "#study-foo" anchors to real /work routes.
@@ -377,7 +377,7 @@ const orderedStudies = [
       meta: 'Ubisoft · Global · 2019–2020',
       eyebrow: 'Case study · Fan-led growth',
       title: 'Creating Delta Company.',
-      lede: 'A first-of-its-kind community advocacy program at Ubisoft. Unveiled live on the E3 stage to millions.',
+      lede: 'A first-of-its-kind community advocacy program at Ubisoft, unveiled live on the E3 stage to millions. I’d already kept sentiment high on the live game, Ghost Recon Wildlands, and was prepping the next, Breakpoint.',
       img: P('ubisoft-delta/05-laura-e3-stage.jpg'),
     },
     blocks: [
@@ -428,7 +428,7 @@ const orderedStudies = [
       { type: 'section', kicker: '[04] · The loop, in action', title: 'How Delta saved the game.',
         body: [
           'At launch, sentiment across the 15M-strong community sank to 50% negative. Delta was the answer Ubisoft already had in the room: the deepest, most-trusted players.',
-          'The program pivoted into a feedback engine feeding the Ghost Experience update, a top-to-bottom re-tuning shaped by members. Sentiment climbed to 80% positive.',
+          'The program pivoted into a feedback engine feeding the Ghost Experience update, a top-to-bottom re-tuning shaped by members. Sentiment climbed back to over 80% positive.',
         ],
         link: { href: 'https://www.youtube.com/watch?v=F5g7fOzxGYY', text: 'Watch a behind-the-scenes video I produced on the Ghost Experience update' } },
       { type: 'intro', divider: true, eyebrow: '[05] · Made by members', title: 'A whole universe of fan-made work.' },
@@ -530,7 +530,7 @@ const SLUG_TO_ID = {
   'azarus-game-ads': 'azarus-ads',
   'ubisoft-siege-champions': 'siege',
   'ubisoft-delta-company': 'delta',
-  'blablacar-live-nation': 'blablacar',
+  'blablacar-storytelling': 'blablacar',
 }
 
 export function getCinematicStudy(slug) {
