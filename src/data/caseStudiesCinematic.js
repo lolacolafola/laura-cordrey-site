@@ -495,19 +495,19 @@ const orderedStudies = [
       { type: 'section', divider: true, kicker: '[03] · The move', title: 'Real moments, not perfect gram.',
         body: [
           'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
-          'I led with organic storytelling to build trust and demand, then layered paid on top of an audience that already wanted us. That brought acquisition to a €5 CAC.',
+          'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them. People connected with them organically. Paid came after, on top of an audience that already wanted us, and that is what brought acquisition to a €5 CAC.',
         ] },
-      { type: 'carousel', contain: true, items: [
-        { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg'), cap: 'Playful brand creative in the same voice. “Get there for less” — a diver in a fish tank, not a polished stock ad.' },
-        { src: P('blablacar/blablacar-party.mp4'), poster: P('blablacar/blablacar-party-poster.jpg'), cap: '“Somewhere to be this weekend?” The reason people travel: friends, parties, the people at the other end.' },
-        { src: P('blablacar/blablacar-coffee-quote.jpg'), cap: '“But. First. Coffee.” The little in-car rituals, in the brand’s own voice.' },
-        { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
-        { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
-        { src: P('blablacar/blablacar-dog.mp4'), poster: P('blablacar/blablacar-dog-poster.jpg'), cap: 'The stories fans actually tell: someone brought the dog along for the ride.' },
+      { type: 'carousel', contain: true, caption: 'First-person brand content, shot the way a fan would: real carpool moments and playful creative, not a polished ad in sight. The stuff people actually connected with.', items: [
+        { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg') },
+        { src: P('blablacar/blablacar-party.mp4'), poster: P('blablacar/blablacar-party-poster.jpg') },
+        { src: P('blablacar/blablacar-coffee-quote.jpg') },
+        { src: P('blablacar/blablacar-group-selfie.jpg') },
+        { src: P('blablacar/blablacar-countdown-post.jpg') },
+        { src: P('blablacar/blablacar-dog.mp4'), poster: P('blablacar/blablacar-dog-poster.jpg') },
       ] },
-      { type: 'carousel', contain: true, aspect: '1600 / 400', items: [
-        { src: P('blablacar/blablacar-route-ad-lille.mp4'), poster: P('blablacar/blablacar-route-ad-lille-poster.jpg'), cap: 'The system in one asset: real carpoolers, the seats filling, the price dropping, then the route. The story sells the ride.' },
-        { src: P('blablacar/blablacar-storytelling-ad.mp4'), poster: P('blablacar/blablacar-storytelling-ad-poster.jpg'), cap: 'Same system, another route. One consistent brand, told the same way in every market.' },
+      { type: 'carousel', contain: true, aspect: '1600 / 400', caption: 'The same story told as a route ad: real carpoolers, the price, the trip. One consistent brand, in every market.', items: [
+        { src: P('blablacar/blablacar-route-ad-lille.mp4'), poster: P('blablacar/blablacar-route-ad-lille-poster.jpg') },
+        { src: P('blablacar/blablacar-storytelling-ad.mp4'), poster: P('blablacar/blablacar-storytelling-ad-poster.jpg') },
       ] },
       { type: 'quote',
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',

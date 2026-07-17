@@ -59,10 +59,12 @@ function useCarousel(n) {
 }
 
 /* ─── Reusable: stacked-image slider (used by carousel + splitmedia) ─── */
-function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = '' }) {
+function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = '', caption }) {
   const { i, prev, next, goTo } = useCarousel(items.length)
   const multi = items.length > 1
-  const activeCap = (items[i] && items[i].cap) || ''
+  // A block-level `caption` shows one static line for the whole carousel;
+  // otherwise fall back to the active slide's own `cap`.
+  const activeCap = caption != null ? caption : ((items[i] && items[i].cap) || '')
   const videoRefs = useRef([])
 
   // Only the visible slide plays; the others autoplay-start then get paused and
@@ -295,7 +297,7 @@ function Block({ b }) {
       return (
         <section className="cscin__carousel-section">
           <div className="cscin__carousel-inner">
-            <StackedSlider items={items} aspect={b.aspect || '16/10'} width={b.itemW || 'min(88vw,940px)'} />
+            <StackedSlider items={items} aspect={b.aspect || '16/10'} width={b.itemW || 'min(88vw,940px)'} caption={b.caption} />
           </div>
         </section>
       )
