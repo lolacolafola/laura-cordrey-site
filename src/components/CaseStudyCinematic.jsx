@@ -63,6 +63,19 @@ function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = 
   const { i, prev, next, goTo } = useCarousel(items.length)
   const multi = items.length > 1
   const activeCap = (items[i] && items[i].cap) || ''
+  const videoRefs = useRef([])
+
+  // Only the visible slide plays; the others autoplay-start then get paused and
+  // rewound. Browsers cap simultaneous video decoding, so leaving every slide
+  // playing starves them all. The active slide keeps its autoplay.
+  useEffect(() => {
+    videoRefs.current.forEach((v, idx) => {
+      if (!v) return
+      if (idx === i) { v.play().catch(() => {}) }
+      else { v.pause(); v.currentTime = 0 }
+    })
+  }, [i])
+
   return (
     <div className={`cscin__slider ${cls}`} style={width ? { width } : undefined}>
       <div className="cscin__slider-frame" style={{ aspectRatio: aspect }}>
@@ -70,6 +83,7 @@ function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = 
           /\.(mp4|webm)$/i.test(it.src) || it.video ? (
             <video
               key={idx}
+              ref={(el) => { videoRefs.current[idx] = el }}
               src={it.src}
               poster={it.poster}
               autoPlay
