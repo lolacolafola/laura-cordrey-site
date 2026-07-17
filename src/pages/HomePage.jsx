@@ -14,7 +14,7 @@ const BASE = import.meta.env.BASE_URL
 const stats = [
   { value: '$32K', unit: 'in 3 hrs', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
   { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
-  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.png', alt: 'Azarus game ad platform' },
+  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.jpg', alt: 'Azarus game ad platform' },
   { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/ubisoft-delta/02-ghost-recon-keyart.jpg', alt: 'Ghost Recon community' },
 ]
 
