@@ -511,7 +511,7 @@ const orderedStudies = [
       ] },
       { type: 'quote',
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
-        cite: 'Laura Cordrey, Global Brand Content Manager, BlaBlaCar.' },
+        cite: 'How I thought about the brand at the time.' },
       { type: 'result', kicker: 'The result', value: '€5',
         caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Organic first, paid second: trust built the demand, so every paid pound went further.' },
       { type: 'section', kicker: '[04] · The rollout', title: 'One brand, 22 markets.',
@@ -520,7 +520,7 @@ const orderedStudies = [
           'The capstone came in 2017, one of the last things I worked on there: BlaBlaCar’s global rebrand with Kyoto agency, where I led the creative content.',
         ] },
       { type: 'takeaway', kicker: '[05] · The takeaway', title: 'Storytelling is growth.',
-        lede: 'This is where I learned that storytelling is growth, not decoration. Real, first-person content built trust, trust built demand, and demand made every paid pound go further. It is the foundation of how I work now.',
+        lede: 'Honestly, this is where I got the space to be creative: to work out how to talk to people like humans, not like a brand. And it worked. People connected with it, and that connection grew the business.',
         principles: [
           { num: '01', head: 'Lead organic, layer paid.', body: 'Stories earned the trust and the demand first. Paid then amplified an audience that already wanted us, which is what took acquisition to a €5 CAC.' },
           { num: '02', head: 'First person beats polish.', body: 'Real carpool moments shot on a phone outperformed the perfect gram. People believe the person in the passenger seat, not the ad.' },
