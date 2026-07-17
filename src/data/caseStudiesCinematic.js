@@ -464,17 +464,17 @@ const orderedStudies = [
       imgAlt: 'Four people laughing and playing a ukulele in a car, BlaBlaCar first-person brand content',
     },
     blocks: [
-      { type: 'statement', text: 'BlaBlaCar was growing exponentially and the brand was fragmenting across 22 markets. Paid was the default way to grow. I led with real stories instead.' },
+      { type: 'statement', text: 'BlaBlaCar was growing fast across 22 markets, each telling its own story. I saw a way to align them behind one, told first-person by the people actually in the car.' },
       { type: 'stats', items: [
         { value: '0 → 1M', label: 'UK members, team launch' },
         { value: '€5', label: 'Cost per acquisition' },
         { value: '22', label: 'Markets, one brand' },
         { value: '90%', label: 'Fewer design requests' },
       ] },
-      { type: 'section', kicker: '[01] · The problem', title: 'Scaling fast, fragmenting faster.',
+      { type: 'section', kicker: '[01] · The opportunity', title: 'One story, 22 markets.',
         body: [
-          'BlaBlaCar was growing at an exponential rate: new markets, new teams, dozens of social accounts, and content requests piling up. The brand was fragmenting across 22 markets.',
-          'And in the UK, a whole market had to be built from scratch, with growth that cost less than throwing money at ads.',
+          'BlaBlaCar was growing at an exponential rate: new markets, new teams, dozens of social accounts, and content requests piling up. Every market was telling its own version of the brand.',
+          'That was the opening. One story, told consistently and in the fans’ own voice, would travel further than 22 of them. And in the UK, a whole market was there to be built from scratch, with growth that cost less than throwing money at ads.',
         ] },
       { type: 'section', kicker: '[02] · The UK, from zero', title: 'Making carpooling part of the culture.',
         body: [
