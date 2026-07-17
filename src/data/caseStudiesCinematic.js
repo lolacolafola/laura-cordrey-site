@@ -499,6 +499,7 @@ const orderedStudies = [
         ] },
       { type: 'carousel', contain: true, items: [
         { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg'), cap: 'Playful brand creative in the same voice. “Get there for less” — a diver in a fish tank, not a polished stock ad.' },
+        { src: P('blablacar/blablacar-party.mp4'), poster: P('blablacar/blablacar-party-poster.jpg'), cap: '“Somewhere to be this weekend?” The reason people travel: friends, parties, the people at the other end.' },
         { src: P('blablacar/blablacar-coffee-quote.jpg'), cap: '“But. First. Coffee.” The little in-car rituals, in the brand’s own voice.' },
         { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
         { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
