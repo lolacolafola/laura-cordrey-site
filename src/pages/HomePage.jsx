@@ -34,13 +34,6 @@ const situations = [
   { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.' },
 ]
 
-const aiPoints = [
-  { idx: '01 · Distribution', title: 'Recommended by the models',  copy: 'When someone asks an AI what to use, you want to be the answer. Models learn from what real users write online, so fan advocacy is now distribution.' },
-  { idx: '02 · Sentiment',    title: 'Sentiment you can move',     copy: 'Improve how your brand is talked about in comments, threads and communities. That is the same signal both buyers and models read about you.' },
-  { idx: '03 · Advocacy',     title: 'Advocacy that writes',       copy: 'Build programs that get fans writing about you in reviews, posts and articles, not only making videos. Text is what AI reads.' },
-  { idx: '04 · Operations',   title: 'Run it like a live service', copy: 'Manage your AI community the way I ran games with millions of players: real-time, close to the product, ready before sentiment turns.' },
-]
-
 // Small inline-svg helpers — stroke-based, matching the design.
 const Icon = ({ name, size = 28 }) => {
   const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
@@ -74,83 +67,6 @@ const Icon = ({ name, size = 28 }) => {
 
 const SECTION_PAD = 'clamp(72px, 9vw, 128px) clamp(20px, 5vw, 64px)'
 const INNER = { maxWidth: 1280, margin: '0 auto', width: '100%' }
-
-// ── AI sentiment visual ──────────────────────────────────────
-// Inline SVG: a community sentiment monitor that draws in gold and holds
-// steady, then flips signal-red at a dashed "MODEL UPDATE" marker.
-// Loops (~7.5s) only while on screen (IntersectionObserver toggles .play).
-// Fully static under prefers-reduced-motion.
-// AI sentiment "peaks" visual — sentiment mountain range with a MODEL UPDATE
-// marker where the line dips into a red trough (pulsing dot + ping ring)
-// then recovers to gold. Community nodes below: gold before the marker, red
-// after. Animation plays once on view (loops only for the pulses); fully
-// static under prefers-reduced-motion. See HomePage.css `.pk-*` rules.
-function AiSentimentVisual() {
-  const rootRef = useRef(null)
-  useEffect(() => {
-    const el = rootRef.current
-    if (!el) return
-    if (!('IntersectionObserver' in window)) { el.classList.add('play'); return }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => el.classList.toggle('play', e.isIntersecting))
-    }, { threshold: 0.3 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-  return (
-    <div ref={rootRef} className="aivis" data-rev>
-      <span className="aivis__cap">Community sentiment · live</span>
-      <svg viewBox="0 0 480 360" role="img" aria-label="A sentiment range with gold peaks, dipping red at a model update; the community nodes below turn red past the marker">
-        <defs>
-          <linearGradient id="pkA" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="rgba(212,200,150,.3)" />
-            <stop offset="1" stopColor="rgba(212,200,150,0)" />
-          </linearGradient>
-          <linearGradient id="pkB" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="rgba(212,200,150,.14)" />
-            <stop offset="1" stopColor="rgba(212,200,150,0)" />
-          </linearGradient>
-        </defs>
-        <g stroke="rgba(239,233,220,.08)" strokeWidth="1">
-          <line x1="0" y1="110" x2="480" y2="110" />
-          <line x1="0" y1="180" x2="480" y2="180" />
-          <line x1="0" y1="250" x2="480" y2="250" />
-        </g>
-        {/* Back range fill + drawn stroke */}
-        <path d="M0,196 L60,172 L110,190 L170,150 L230,182 L300,158 L360,180 L420,164 L480,178 V300 H0 Z" fill="url(#pkB)" />
-        <path className="pk-back" d="M0,196 L60,172 L110,190 L170,150 L230,182 L300,158 L360,180 L420,164 L480,178" fill="none" stroke="rgba(212,200,150,.3)" strokeWidth="1" />
-        {/* Front range — fills, then gold segment, red trough, gold recovery */}
-        <path d="M0,222 L50,194 L95,210 L150,138 L205,206 L260,114 L318,220 L360,252 L405,192 L480,208 V300 H0 Z" fill="url(#pkA)" />
-        <path className="pk-gold" d="M0,222 L50,194 L95,210 L150,138 L205,206 L260,114 L318,220" fill="none" stroke="#D4C896" strokeWidth="1.8" />
-        <path className="pk-red" d="M318,220 L360,252 L405,192" fill="none" stroke="#C8362B" strokeWidth="2.2" />
-        <path className="pk-gold2" d="M405,192 L480,208" fill="none" stroke="#D4C896" strokeWidth="1.8" />
-        {/* Peak dots + labels */}
-        <g className="pk-label" fill="#EFE9DC">
-          <circle cx="150" cy="138" r="3" />
-          <circle cx="260" cy="114" r="3.4" />
-        </g>
-        <text className="pk-label" x="118" y="122" fontFamily="Manrope, sans-serif" fontSize="10" fontWeight="700" letterSpacing="2" fill="#D4C896">THE LAUNCH</text>
-        <text className="pk-label" x="230" y="96" fontFamily="Manrope, sans-serif" fontSize="10" fontWeight="700" letterSpacing="2" fill="#D4C896">THE DROP</text>
-        {/* MODEL UPDATE marker */}
-        <line className="pk-mark" x1="360" y1="34" x2="360" y2="300" stroke="rgba(200,54,43,.45)" strokeWidth="1.5" strokeDasharray="4 5" />
-        <circle className="pk-mark" cx="360" cy="34" r="3" fill="#C8362B" />
-        <text className="pk-mark" x="372" y="38" fontFamily="Manrope, sans-serif" fontSize="10" fontWeight="700" letterSpacing="2" fill="#C8362B">MODEL UPDATE</text>
-        {/* Trough pulsing dot + ping ring */}
-        <g className="pk-reddot"><circle cx="360" cy="252" r="4" fill="#C8362B" /></g>
-        <circle cx="360" cy="252" r="13" fill="none" stroke="#C8362B" strokeWidth="1" className="pk-blipring" />
-        {/* Community nodes — gold before marker, red after */}
-        <g className="pk-nodes" fill="rgba(212,200,150,.55)">
-          <circle cx="24" cy="330" r="3" /><circle cx="62" cy="330" r="3" /><circle cx="100" cy="330" r="3" />
-          <circle cx="138" cy="330" r="3" /><circle cx="176" cy="330" r="3" /><circle cx="214" cy="330" r="3" />
-          <circle cx="252" cy="330" r="3" /><circle cx="290" cy="330" r="3" /><circle cx="328" cy="330" r="3" />
-        </g>
-        <g className="pk-rednodes" fill="#C8362B">
-          <circle cx="366" cy="330" r="3" /><circle cx="404" cy="330" r="3" /><circle cx="442" cy="330" r="3" />
-        </g>
-      </svg>
-    </div>
-  )
-}
 
 export default function HomePage() {
   useDocumentMeta({
