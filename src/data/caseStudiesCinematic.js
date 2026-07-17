@@ -469,7 +469,7 @@ const orderedStudies = [
         { value: '0 → 1M', label: 'UK members, team launch' },
         { value: '€5', label: 'Cost per acquisition' },
         { value: '22', label: 'Markets, one brand' },
-        { value: '90%', label: 'Fewer design requests' },
+        { value: '300+', label: 'First-person brand assets' },
       ] },
       { type: 'section', kicker: '[01] · The opportunity', title: 'One story, 22 markets.',
         body: [
@@ -479,7 +479,7 @@ const orderedStudies = [
       { type: 'band', src: P('blablacar/blablacar-logo-blue.png') },
       { type: 'section', kicker: '[02] · The UK, from zero', title: 'Making carpooling part of the culture.',
         body: [
-          'I joined in 2014 on the four-person team that launched the UK market. Carpooling with strangers was not yet a normal thing to do here, so the job was cultural before it was commercial.',
+          'I joined in 2013 on the four-person team that launched the UK market. Carpooling with strangers was not yet a normal thing to do here, so the job was cultural before it was commercial.',
           'BlaBlaCar became Live Nation’s first ever Official Ridesharing Partner, across Latitude, Leeds and Reading. I handled the on-site presence and the communications around it, end to end: a team of 20 across the three festivals, 300-space priority-parking zones, the BlaBla Tents, a photobooth built into a functioning Mini, and a live ride board that paired 150+ post-its.',
           'Aggregate footprint: 2,200+ rides offered, 530+ cars in our priority lots, 3,000+ branded backpacks in attendees’ hands.',
         ] },
