@@ -606,27 +606,41 @@
   display: block;
   transition: opacity .45s ease;
 }
+/* Nav row under the frame: prev · dots · next. Keeps the arrows off the
+   visual (they used to overlay it, which hid short/wide banners). */
+.cscin__slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: none;
+}
 .cscin__slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 46px;
-  height: 46px;
+  width: 34px;
+  height: 34px;
   border-radius: 999px;
-  border: 1px solid rgba(239, 233, 220, .5);
-  background: rgba(20, 16, 12, .86);
-  color: #fff;
-  font-size: 1.5rem;
+  border: 1px solid rgba(239, 233, 220, .4);
+  background: rgba(239, 233, 220, .06);
+  color: currentColor;
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, .45);
+  transition: background .2s ease, border-color .2s ease;
 }
-.cscin__slider-arrow--prev { left: 12px; }
-.cscin__slider-arrow--next { right: 12px; }
+.cscin__slider-arrow:hover {
+  background: rgba(239, 233, 220, .14);
+  border-color: rgba(239, 233, 220, .7);
+}
+.cscin[data-skin="light"] .cscin__slider-arrow {
+  border-color: rgba(26, 21, 18, .3);
+  background: rgba(26, 21, 18, .04);
+}
+.cscin[data-skin="light"] .cscin__slider-arrow:hover {
+  background: rgba(26, 21, 18, .12);
+  border-color: rgba(26, 21, 18, .55);
+}
 .cscin__slider-foot {
   display: flex;
   justify-content: space-between;

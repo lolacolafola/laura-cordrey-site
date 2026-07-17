@@ -103,26 +103,24 @@ function StackedSlider({ items, aspect = '16/10', width, fit = 'contain', cls = 
             />
           )
         ))}
-        {multi && (
-          <>
-            <button type="button" className="cscin__slider-arrow cscin__slider-arrow--prev" onClick={prev} aria-label="Previous">‹</button>
-            <button type="button" className="cscin__slider-arrow cscin__slider-arrow--next" onClick={next} aria-label="Next">›</button>
-          </>
-        )}
       </div>
       <div className="cscin__slider-foot">
         <figcaption className="cscin__cap">{activeCap}</figcaption>
         {multi && (
-          <div className="cscin__slider-dots">
-            {items.map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className={'cscin__slider-dot' + (idx === i ? ' is-active' : '')}
-                onClick={() => goTo(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
+          <div className="cscin__slider-nav">
+            <button type="button" className="cscin__slider-arrow cscin__slider-arrow--prev" onClick={prev} aria-label="Previous">‹</button>
+            <div className="cscin__slider-dots">
+              {items.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={'cscin__slider-dot' + (idx === i ? ' is-active' : '')}
+                  onClick={() => goTo(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+            <button type="button" className="cscin__slider-arrow cscin__slider-arrow--next" onClick={next} aria-label="Next">›</button>
           </div>
         )}
       </div>
