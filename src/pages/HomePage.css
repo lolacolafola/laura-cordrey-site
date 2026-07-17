@@ -131,7 +131,7 @@
   .cin [data-rev] { transition: none; }
 }
 
-.cin #about, .cin #services, .cin #work, .cin #ai { scroll-margin-top: 78px; }
+.cin #what-it-is, .cin #why-youre-here, .cin #about, .cin #services, .cin #work, .cin #ai { scroll-margin-top: 78px; }
 
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
