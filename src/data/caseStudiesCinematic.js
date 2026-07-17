@@ -494,7 +494,7 @@ const orderedStudies = [
         caption: 'of priority-parking users said they wouldn’t have rideshared without the partnership. The activation changed how people behaved.' },
       { type: 'section', divider: true, kicker: '[03] · The move', title: 'Real moments, not perfect gram.',
         body: [
-          'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
+          'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager, having led the creative content for BlaBlaCar’s 2015 global rebrand with Kyoto agency. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
           'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them. People connected with them organically. Paid came after, on top of an audience that already wanted us, and that is what brought acquisition to a €5 CAC.',
         ] },
       { type: 'carousel', contain: true, caption: 'First-person brand content, shot the way a fan would: real carpool moments and playful creative, not a polished ad in sight. The stuff people actually connected with.', items: [
@@ -513,17 +513,17 @@ const orderedStudies = [
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
         cite: 'Laura Cordrey, Global Brand Content Manager, BlaBlaCar.' },
       { type: 'result', kicker: 'The result', value: '€5',
-        caption: 'cost per acquisition, organic first and paid second. Trust built the demand, so every paid pound went further.' },
+        caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Organic first, paid second: trust built the demand, so every paid pound went further.' },
       { type: 'section', kicker: '[04] · The rollout', title: 'One brand, 22 markets.',
         body: [
-          'I rolled one consistent brand across all 22 markets with a content system local teams could run themselves. It cut design requests by 90% while holding the KPIs, and kept the brand recognisable in every market.',
+          'I rolled one consistent brand across all 22 markets, and rebuilt the internal design process behind it: a full review and restructure that cut ad-hoc requests to the design team by 90%, while holding the KPIs. One brand, recognisable everywhere, run by a system the local teams could keep up themselves.',
         ] },
       { type: 'takeaway', kicker: '[05] · The takeaway', title: 'Storytelling is growth.',
         lede: 'This is where I learned that storytelling is growth, not decoration. Real, first-person content built trust, trust built demand, and demand made every paid pound go further. It is the foundation of how I work now.',
         principles: [
           { num: '01', head: 'Lead organic, layer paid.', body: 'Stories earned the trust and the demand first. Paid then amplified an audience that already wanted us, which is what took acquisition to a €5 CAC.' },
           { num: '02', head: 'First person beats polish.', body: 'Real carpool moments shot on a phone outperformed the perfect gram. People believe the person in the passenger seat, not the ad.' },
-          { num: '03', head: 'One brand, run locally.', body: 'A content system let 22 markets tell the same story in their own voice, and cut design requests by 90% while holding the KPIs.' },
+          { num: '03', head: 'One brand, run locally.', body: 'A system let 22 markets tell the same story in their own voice, without a flood of ad-hoc requests back to the centre.' },
         ] },
       { type: 'cta' },
     ],
