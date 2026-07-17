@@ -460,8 +460,8 @@ const orderedStudies = [
       eyebrow: 'Case study · Brand & Storytelling',
       title: 'Storytelling as growth.',
       lede: 'Where I learned storytelling, and turned it into growth. I helped launch the UK from zero, ran the brand’s presence at the country’s biggest festivals, then built the first-person storytelling system that carried one brand across 22 markets, at a €5 CAC.',
-      img: P('blablacar/blablacar-covoiturage-festival-banner.webp'),
-      imgAlt: 'Four people laughing and playing a ukulele in a car, BlaBlaCar first-person brand content',
+      img: P('blablacar/blablacar-quote-pattern.png'),
+      imgAlt: 'A grid of BlaBlaCar quote marks in navy on green, the brand mark picked out at the centre',
     },
     blocks: [
       { type: 'statement', text: 'BlaBlaCar was growing fast across 22 markets, each telling its own story. I saw a way to align them behind one, told first-person by the people actually in the car.' },
@@ -496,6 +496,11 @@ const orderedStudies = [
           'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
           'I led with organic storytelling to build trust and demand, then layered paid on top of an audience that already wanted us. That brought acquisition to a €5 CAC.',
         ] },
+      { type: 'carousel', contain: true, items: [
+        { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
+        { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
+        { src: P('blablacar/blablacar-photobooth-strip.png'), cap: 'The Mini photobooth output. Members made the content themselves, branded, shareable, theirs to keep.' },
+      ] },
       { type: 'quote',
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
         cite: 'Laura Cordrey, Global Brand Content Manager, BlaBlaCar.' },
