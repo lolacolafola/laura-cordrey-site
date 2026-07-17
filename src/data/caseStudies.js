@@ -294,8 +294,8 @@ const caseStudies = [
     media: {
       image: 'case-studies/blablacar/blablacar-covoiturage-festival-banner.webp',
       imageAlt: 'BlaBlaCar brand and community content',
-      cardImage: 'case-studies/blablacar/blablacar-covoiturage-festival-banner.webp',
-      cardImageAlt: 'BlaBlaCar brand and storytelling case study',
+      cardImage: 'case-studies/blablacar/blablacar-app-illustration.jpg',
+      cardImageAlt: 'A hand holding a phone with the BlaBlaCar app, carpoolers and a cityscape behind',
       youtube: null,
       videoTitle: null,
       videoDescription: null,

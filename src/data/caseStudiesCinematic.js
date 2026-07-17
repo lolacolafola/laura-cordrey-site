@@ -476,6 +476,7 @@ const orderedStudies = [
           'BlaBlaCar was growing at an exponential rate: new markets, new teams, dozens of social accounts, and content requests piling up. Every market was telling its own version of the brand.',
           'That was the opening. One story, told consistently and in the fans’ own voice, would travel further than 22 of them. And in the UK, a whole market was there to be built from scratch, with growth that cost less than throwing money at ads.',
         ] },
+      { type: 'band', src: P('blablacar/blablacar-logo-blue.png') },
       { type: 'section', kicker: '[02] · The UK, from zero', title: 'Making carpooling part of the culture.',
         body: [
           'I joined in 2014 on the four-person team that launched the UK market. Carpooling with strangers was not yet a normal thing to do here, so the job was cultural before it was commercial.',
