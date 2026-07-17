@@ -278,7 +278,7 @@ function Block({ b }) {
     case 'video':
       return (
         <Reveal as="figure" className="cscin__video">
-          <div className="cscin__video-frame">
+          <div className="cscin__video-frame" style={b.aspect ? { aspectRatio: b.aspect } : undefined}>
             {b.embed
               ? <iframe src={b.embed} title={b.title || ''} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />
               : <video src={b.src} poster={b.poster} controls muted playsInline preload="metadata" />}
@@ -548,7 +548,7 @@ export default function CaseStudyCinematic({ study, slug }) {
   }, [study])
 
   if (!study) return null
-  const { hero, blocks, skin = 'dark', accent, name, studyNum } = study
+  const { hero, blocks, skin = 'dark', accent } = study
   const { prev, next } = getStudyNeighbours(slug || study.id)
 
   return (

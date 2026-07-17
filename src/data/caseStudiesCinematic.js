@@ -501,6 +501,8 @@ const orderedStudies = [
         { src: P('blablacar/blablacar-group-selfie.jpg'), cap: 'First-person, shot on a phone. Four strangers, one ride, no art direction. This is the shot a polished ad never gets.' },
         { src: P('blablacar/blablacar-countdown-post.jpg'), cap: 'Organic social in the brand voice. The product is the point, but the story is the people in the car.' },
       ] },
+      { type: 'video', src: P('blablacar/blablacar-storytelling-ad.mp4'), poster: P('blablacar/blablacar-storytelling-ad-poster.jpg'), aspect: '1600 / 400',
+        caption: 'The system in one asset: a real carpool moment, then the route and the price. The story sells the ride.' },
       { type: 'quote',
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
         cite: 'Laura Cordrey, Global Brand Content Manager, BlaBlaCar.' },
