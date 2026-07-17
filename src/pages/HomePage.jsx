@@ -15,7 +15,7 @@ const stats = [
   { value: '$32K', unit: 'in 3 hrs', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
   { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
   { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.jpg', alt: 'Azarus game ad platform' },
-  { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/ubisoft-delta/02-ghost-recon-keyart.jpg', alt: 'Ghost Recon community' },
+  { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
 ]
 
 const whyFans = [
@@ -183,10 +183,10 @@ export default function HomePage() {
             </div>
             <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                When people love what you make, they stick around, spend more, and bring their friends. That is <mark>word of mouth</mark>, and nothing sells harder.
+                When people love what you make, they stay, they spend more, they bring their friends, and they get you talked about. That is <mark>word of mouth and earned media</mark>, and nothing sells harder.
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. That is <mark>fan-led growth</mark>. I build it into one engine, and I show you what it’s worth.
+                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. That is <mark>fan-led growth</mark>. I build it into one engine you own, and I show you what it’s worth.
               </p>
             </div>
           </div>
@@ -273,7 +273,7 @@ export default function HomePage() {
           <div data-rev style={{ marginTop: 'clamp(30px,3.6vw,48px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 22px' }}>
             <span style={{ fontSize: 'clamp(1.08rem,1.5vw,1.3rem)', fontWeight: 700, color: '#EFE9DC' }}>Sound like you? That’s exactly what I build.</span>
             <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>Let’s talk <span className="ar" aria-hidden>→</span></Link>
-            <Link to="/services" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>See the ways to work <span className="ar" aria-hidden>→</span></Link>
+            <Link to="/services" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>See how we&rsquo;d work together <span className="ar" aria-hidden>→</span></Link>
           </div>
         </div>
       </section>
@@ -426,7 +426,7 @@ export default function HomePage() {
               Let’s talk <span className="ar" aria-hidden>→</span>
             </Link>
             <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
-              See all the ways to work <span className="ar" aria-hidden>→</span>
+              See all the ways to work with me <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
         </div>
