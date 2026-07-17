@@ -109,7 +109,7 @@ export default function ContactPage() {
     ? 'Send booking request'
     : 'Send message'
   const successMsg = isConsulting
-    ? 'Your enquiry is in. I read every one myself and will come back within two working days.'
+    ? 'Your enquiry is in. I read every one myself and will follow up within two working days to set up a call.'
     : isSpeaking
     ? 'Your booking request is in. I reply to speaking enquiries within two working days, usually sooner.'
     : 'Message received. I will get back to you within two working days.'

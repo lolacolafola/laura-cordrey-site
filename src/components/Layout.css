@@ -88,7 +88,7 @@
 .cinnav__cta {
   display: inline-flex;
   align-items: center;
-  white-space: nowrap; /* keep "Get in touch" on one line */
+  white-space: nowrap; /* keep "Let’s talk" on one line */
   gap: 8px;
   background: #C8362B;
   color: #EFE9DC;

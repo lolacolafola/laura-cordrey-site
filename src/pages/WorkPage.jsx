@@ -55,7 +55,7 @@ export default function WorkPage() {
                 Thirteen years of fan-led growth across AAA gaming, mobility and telco. A $32K sellout in under three hours, 60M+ organic reach at zero media spend, 0 to a million in a new market. A select few of my favorite projects below. Want your brand on here?
               </p>
               <Link to={CONTACT_URL} className="work-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '.95rem', letterSpacing: '.02em', textDecoration: 'none' }}>
-                Get in touch <span className="ar" aria-hidden>→</span>
+                Let’s talk <span className="ar" aria-hidden>→</span>
               </Link>
             </div>
           </div>

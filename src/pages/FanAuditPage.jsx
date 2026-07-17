@@ -217,7 +217,7 @@ function IntroScreen({ onStart }) {
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
-          I spent a decade turning audiences into fans at gaming giants like Ubisoft, the unicorn BlaBlaCar, and US tech startups. I built what I learned into the Fan Engine, my framework for fan-led growth. This audit is part of it.
+          I spent over a decade turning audiences into fans at gaming giants like Ubisoft, the unicorn BlaBlaCar, and US tech startups. I built what I learned into the Fan Engine, my framework for fan-led growth. This audit is part of it.
         </p>
         <div className="fa-foldsign">Laura Cordrey · The Fan Engine</div>
       </div>
@@ -515,9 +515,12 @@ function LiveResult({ scored, lead, restart }) {
         <Link className="fa-btn" to={`/fan-led-growth-value-model?score=${owned}`}>
           See what closing this is worth →
         </Link>
+        <Link className="fa-btn" to={CONTACT_URL}>
+          Let’s talk →
+        </Link>
       </div>
       <p className="fa-ctatail">
-        Then, once you have seen the number, <Link to={CONTACT_URL}>get in touch</Link> to build it. That is the Fan Engine.
+        See the number, or skip ahead and build it with me. That’s the Fan Engine.
       </p>
 
       <div className="fa-cardwrap">
@@ -822,7 +825,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
 
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
-        <Link className="fa-btn" to={CONTACT_URL}>Get in touch →</Link>
+        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk →</Link>
         <button className="fa-back" onClick={restart}>Retake the audit</button>
       </div>
       <p className="fa-ctatail">

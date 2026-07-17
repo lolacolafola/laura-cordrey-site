@@ -624,7 +624,7 @@ export default function AboutPage() {
           <span className="about-sparkle">✦</span>
         </div>
         <div className="container about-close__inner">
-          <span className="marker about-close__kick">Let&rsquo;s talk</span>
+          <span className="marker about-close__kick">Work with me</span>
           <h2 className="about-close__title">
             Want to build something fans can&rsquo;t stop talking about?
           </h2>
@@ -634,7 +634,7 @@ export default function AboutPage() {
           </p>
           <div className="about-close__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
-              Get in touch <span aria-hidden="true">→</span>
+              Let’s talk <span aria-hidden="true">→</span>
             </Link>
             <Link to="/case-studies" className="about-txtlink about-txtlink--cream">
               See the case studies <span aria-hidden="true">→</span>

@@ -223,7 +223,7 @@ export default function WorkArticle() {
             Let&rsquo;s build one <mark>just like it</mark>.
           </h2>
           <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-            Get in touch <span aria-hidden="true">→</span>
+            Let’s talk <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>

@@ -256,7 +256,7 @@ export default function FanValueModelPage() {
 
         <h1 className="fvm-h1">What is the fan gap<br />worth to you?</h1>
         <p className="fvm-hook">
-          You know product-led growth. This is <mark>fan-led growth</mark>.
+          The growth is already in your <mark>userbase</mark>. Here&rsquo;s what it&rsquo;s worth.
         </p>
         <p className="fvm-lede">
           Put in the numbers you already know. I project the three ways fans grow you:
@@ -643,7 +643,7 @@ export default function FanValueModelPage() {
             My flagship system is how you build the engine that captures this. Book a call to baseline it on your real numbers.
           </p>
           <Link to={CONTACT_URL} className="fvm-btn">
-            Get in touch <span className="fvm-btn__arrow" aria-hidden="true">→</span>
+            Let’s talk <span className="fvm-btn__arrow" aria-hidden="true">→</span>
           </Link>
         </div>
 

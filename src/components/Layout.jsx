@@ -11,7 +11,6 @@ const HELLO_EMAIL = 'hello@lauracordrey.com'
 const navLinks = [
   { key: 'work',     label: 'Case Studies', path: '/case-studies',      isHash: false },
   { key: 'services', label: 'Services',  path: '/services',             isHash: false },
-  { key: 'score',    label: 'Fan Score', path: '/fan-led-growth-audit', isHash: false },
   { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
   { key: 'speaking', label: 'Speaking',  path: '/speaking',             isHash: false },
   { key: 'about',    label: 'About',     path: '/about',                isHash: false },
@@ -101,7 +100,7 @@ export default function Layout({ children }) {
               </svg>
             </a>
             <Link to={CONTACT_URL} className="cinnav__cta">
-              Get in touch <span aria-hidden="true">→</span>
+              Let’s talk <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -130,7 +129,7 @@ export default function Layout({ children }) {
               )
             ))}
             <Link to={CONTACT_URL} className="cinnav__mcta">
-              Get in touch <span aria-hidden="true">→</span>
+              Let’s talk <span aria-hidden="true">→</span>
             </Link>
           </div>
         )}

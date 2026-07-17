@@ -112,7 +112,7 @@ export default function MethodologyPage() {
                 Take the 2-min Fan Score
               </Link>
               <Link to={CONTACT_URL} className="btn btn--ghost btn--lg">
-                Get in touch
+                Let’s talk
               </Link>
             </div>
           </div>
@@ -410,7 +410,7 @@ export default function MethodologyPage() {
               Take the 2-min Fan Score
             </Link>
             <Link to={CONTACT_URL} className="btn btn--ghost btn--lg meth-close__ghost">
-              Get in touch
+              Let’s talk
             </Link>
           </div>
           <p className="meth-close__back">

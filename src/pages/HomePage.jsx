@@ -8,24 +8,30 @@ const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
-// Receipts stat bar — three cards. US Mobile lives in the featured work carousel below,
-// so it's not repeated here (numbers = at a glance, carousel = stories). Ubisoft is
-// program-wide 60M+ reach, resolves the old 60M-vs-50M mismatch with the Siege card.
-// Cards route to /work rather than a single case study — several of the numbers
-// are program-wide totals that don't map 1:1 to any one project on that brand.
+// Best wins stat bar — four ironclad numbers across revenue, reach, growth and sentiment.
+// Ubisoft is program-wide 60M+ reach (labelled "across programs"). Cards route to
+// /case-studies. BlaBlaCar's story is told in the carousel, not as a headline number.
 const stats = [
-  { value: '0 → 1M', unit: 'users', label: 'in a new market, scaled from newcomer to advocate', client: 'BlaBlaCar', img: 'case-studies/homepage/hp-kpi-blablacar.jpg', alt: 'BlaBlaCar festival community' },
-  { value: '60M+', unit: 'reach', label: 'via fan-program member UGC, $0 spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft Siege Champions creator program' },
+  { value: '$32K', unit: 'in 3 hrs', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
+  { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
   { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.png', alt: 'Azarus game ad platform' },
+  { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/ubisoft-delta/02-ghost-recon-keyart.jpg', alt: 'Ghost Recon community' },
 ]
 
 const whyFans = [
-  { title: 'Lower churn',       copy: 'Fans stay longer, so you keep more of what you paid to win.', icon: 'lock' },
-  { title: 'Earned reach',      copy: 'Fans make the content that markets you, at no media cost.', icon: 'megaphone' },
-  { title: 'More referrals',    copy: 'Fans bring others in, so growth leans less on ad spend.', icon: 'users' },
-  { title: 'Resilience',        copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
-  { title: 'AI recommends you', copy: 'Your fans’ posts are what it reads. That’s AEO, the new SEO.', icon: 'sparkle' },
+  { title: 'They invest more',       copy: 'Fans stay longer and spend more, so you keep and grow what you paid to win.', icon: 'lock' },
+  { title: 'They spread the word',      copy: 'Fans make the content that markets you, at no media cost.', icon: 'megaphone' },
+  { title: 'They recommend you',    copy: 'Fans bring their friends in, so growth leans less on ad spend.', icon: 'users' },
+  { title: 'They defend you',        copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
+  { title: 'AI recommends you too', copy: 'When people ask AI what to pick, it answers from what your fans post. The more they love you, the more it points to you.', icon: 'sparkle' },
   { title: 'It compounds',      copy: 'Built once, the engine keeps working and starts to fuel itself.', icon: 'loop' },
+]
+
+const situations = [
+  { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop the moment you stop paying.' },
+  { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the extra growth fans bring on top.' },
+  { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.' },
+  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.' },
 ]
 
 const aiPoints = [
@@ -42,7 +48,7 @@ const work = [
   { idx: '02', company: 'Azarus',    year: '2022–2023', title: 'Game ad platform', result: 'Built, then acquired by Animoca.', line: 'A gamified ad platform at a $2 CPI, with Ubisoft and Logitech as advertisers.', img: 'case-studies/azarus/azarus-game-ads-card.png', alt: 'Azarus game ad platform', href: '/case-studies/azarus-game-ads' },
   { idx: '03', company: 'Ubisoft',   year: '2020–2021', title: 'Siege Champions', result: '50M+ UGC views at $0 media spend.', line: 'A creator advocacy program across 18 markets, where fans made the reach, not ads.', img: 'case-studies/ubisoft-siege/ubisoft-siege-champions-program-banner.png', alt: 'Ubisoft Siege Champions', href: '/case-studies/ubisoft-siege-champions' },
   { idx: '04', company: 'Ubisoft',   year: '2019–2020', title: 'Delta Company', result: '10M+ UGC views, unveiled at E3.', line: 'A first-of-its-kind AAA community advocacy program, 130 members, 14 languages.', img: 'case-studies/ubisoft-delta/01-delta-badge-hero.png', alt: 'Ubisoft Delta Company', href: '/case-studies/ubisoft-delta-company' },
-  { idx: '05', company: 'BlaBlaCar', year: '2013–2016', title: 'Live Nation', result: 'First Official Ridesharing Partner.', line: '300+ branded parking spots and a festival community tent across Latitude, Leeds and Reading.', img: 'case-studies/blablacar/blablacar-live-nation-card.png', alt: 'BlaBlaCar × Live Nation', href: '/case-studies/blablacar-live-nation' },
+  { idx: '05', company: 'BlaBlaCar', year: '2013–2016', title: 'Brand & Storytelling', result: 'A €5 CAC, organic-first.', line: 'Built the first-person storytelling system, rolled one brand across 22 markets, and grew acquisition to a €5 CAC.', img: 'case-studies/blablacar/blablacar-covoiturage-festival-banner.webp', alt: 'BlaBlaCar brand and storytelling', href: '/case-studies/blablacar-storytelling' },
 ]
 
 // Small inline-svg helpers — stroke-based, matching the design.
@@ -391,18 +397,18 @@ export default function HomePage() {
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>
           <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '50ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
-            The growth you’re buying with ads is already sitting in your userbase. I build the fan-led growth engine that unlocks it.
+            You pay ads to bring customers in. Stop paying, and growth stops. I turn the customers you already have into fans who stay, spend more, and bring the next ones in. Growth you own, not rent.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
-              <Link to="/fan-led-growth-audit" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-                Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
+              <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+                Let’s talk <span className="ar" aria-hidden>→</span>
               </Link>
-              <Link to={CONTACT_URL} className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
-                Get in touch <span className="ar" aria-hidden>→</span>
-              </Link>
+              <a href="#what-it-is" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
+                See how it works <span className="ar" aria-hidden>→</span>
+              </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free intro · or take the 2-minute Fan Score first.</span>
+            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Free intro call. No pitch, just a straight read.</span>
           </div>
 
           {/* Edit 5: hero proof strip — hairline top only (no bottom rule so
@@ -412,7 +418,7 @@ export default function HomePage() {
             * separate "client roster" chapter. */}
           <div className="hero-trust logoband" style={{ marginTop: 'clamp(44px,5vw,68px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(20px,2.6vw,30px)', textAlign: 'center', borderTop: '1px solid rgba(239,233,220,.14)', paddingTop: 'clamp(28px,4vw,44px)' }}>
             <span style={{ fontSize: '.78rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-              A decade building fan-led growth across video games &amp; tech
+              Thirteen years building fan-led growth across video games &amp; tech
             </span>
             <ul className="herologos logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 1000, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'end', justifyItems: 'center', gap: 'clamp(20px,4vw,60px)' }}>
               {[
@@ -432,7 +438,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── WHAT IT IS ─── */}
-      <section style={{ background: '#2D2723', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
+      <section id="what-it-is" style={{ background: '#2D2723', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,80px)', alignItems: 'start' }}>
             <div data-rev>
@@ -441,51 +447,102 @@ export default function HomePage() {
                 <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>What it is</span>
               </div>
               <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.1rem,4.8vw,3.9rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>
-                You know product-led growth. This is <mark>fan-led growth</mark>.
+                Fans are <mark>the growth you already own</mark>.
               </h2>
             </div>
             <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                Product-led growth made the product sell itself. Fan-led growth makes your fans sell it for you. They bring the next customers in, and because they are fans, they stay longer and spend more too.
+                When people love what you make, they stick around, spend more, and bring their friends. That is <mark>word of mouth</mark>, and nothing sells harder.
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                It’s the <mark>highest-return growth you already own</mark>, and the easiest to miss, because fan-led work is hard to measure. So I built a way to measure what it’s actually worth to your business.
+                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. I build it into <mark>one engine</mark>, and I show you what it’s worth.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── PROOF ─── */}
+      {/* ─── WHY FANS ─── */}
       <section style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ marginBottom: 'clamp(32px,4vw,52px)', maxWidth: '40ch' }}>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 14 }}>The receipts</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Fan-led work, in numbers.</h2>
+          <div data-rev>
+            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why fans</span>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, maxWidth: '22ch', color: '#15110F' }}>
+              You don’t buy fans. You <mark>earn</mark> them.
+            </h2>
+            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '50ch' }}>
+              People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can’t buy that. Earn it, and here is what your fans start doing for you.
+            </p>
           </div>
-          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(14px,1.6vw,22px)' }}>
-            {stats.map((s) => (
-              <Link to="/case-studies" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-                <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
-                  <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                </figure>
-                <div style={{ padding: 'clamp(18px,1.8vw,26px)', display: 'flex', flexDirection: 'column', gap: 9 }}>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B', display: 'block' }}>
-                    {s.value} <span style={{ fontSize: '1em', fontWeight: 800, color: '#C8362B', letterSpacing: '-.03em', whiteSpace: 'nowrap' }}>{s.unit}</span>
-                  </span>
-                  <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{s.label}</span>
-                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 4 }}>{s.client}</span>
-                </div>
-              </Link>
+
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(16px,2vw,24px)', marginTop: 'clamp(40px,5vw,68px)' }}>
+            {whyFans.map((p) => (
+              <div key={p.title} className="pot" data-rev style={{ display: 'flex', flexDirection: 'column', gap: 14, background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(24px,2.8vw,38px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+                <span className="pico" style={{ color: '#C8362B', lineHeight: 0, transition: 'color .2s ease' }}><Icon name={p.icon} size={28} /></span>
+                <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.8rem)', letterSpacing: '-.02em', margin: 0, color: '#15110F' }}>{p.title}</h3>
+                <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.6, color: '#4A423B', margin: 0 }}>{p.copy}</p>
+              </div>
             ))}
           </div>
-          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
-            <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 800, fontSize: '.95rem', letterSpacing: '.02em', padding: '14px 22px', borderRadius: 3, textDecoration: 'none', transition: 'background .2s cubic-bezier(.16,.84,.44,1)' }}>
-              See every case study <span className="ar" aria-hidden>→</span>
-            </Link>
-            <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
-              These numbers roll up several projects per brand — the full write-ups live on the Case Studies page.
-            </span>
+
+          {/* Edit 6 (treatment 2a): dark espresso CTA card. The estimate
+            * demotes from a cream-card readout that competed with the six
+            * benefit tiles into a distinct secondary tier — dark ground
+            * previews the AI section below, keeping one accent per section.
+            * The number moves inline in a body-scale sentence, not a
+            * standalone display number. */}
+          <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(28px,3.4vw,44px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.4vw,44px)' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,48px)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '46ch' }}>
+                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
+                  Fan Value estimate
+                </span>
+                <p style={{ fontSize: 'clamp(1.12rem,1.6vw,1.5rem)', lineHeight: 1.3, fontWeight: 700, color: '#EFE9DC', margin: 0 }}>
+                  The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', fontWeight: 800, whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M brand.
+                </p>
+                <p style={{ fontSize: '.92rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
+                  On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others. An example, not your numbers.
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', flex: 'none' }}>
+                <Link to="/fan-led-growth-value-model" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+                  See what your fans are worth <span className="ar" aria-hidden>→</span>
+                </Link>
+                <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
+                  or <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>let’s talk</Link>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY YOU'RE HERE ─── */}
+      <section id="why-youre-here" style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.12)' }}>
+        <div style={{ ...INNER, padding: SECTION_PAD }}>
+          <div data-rev style={{ maxWidth: '60ch' }}>
+            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why you’re here</span>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.1rem,5vw,4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>
+              However you got here, <mark>fans are the next step</mark>.
+            </h2>
+            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.4vw,26px) 0 0' }}>
+              I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too. The two are a perfect marriage, and fan-led is the half still on the table.
+            </p>
+          </div>
+          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(14px,1.8vw,22px)', marginTop: 'clamp(40px,5vw,64px)' }}>
+            {situations.map((s, i) => (
+              <div key={s.title} data-rev style={{ display: 'flex', flexDirection: 'column', gap: 10, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(200,54,43,.55)', borderRadius: 4, padding: 'clamp(24px,2.8vw,36px)' }}>
+                <span style={{ fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>{String(i + 1).padStart(2, '0')}</span>
+                <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.25rem,2vw,1.6rem)', letterSpacing: '-.02em', margin: 0, color: '#EFE9DC' }}>{s.title}</h3>
+                <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.58, color: 'rgba(239,233,220,.72)', margin: 0 }}>{s.copy}</p>
+              </div>
+            ))}
+          </div>
+          <div data-rev style={{ marginTop: 'clamp(30px,3.6vw,48px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 22px' }}>
+            <span style={{ fontSize: 'clamp(1.08rem,1.5vw,1.3rem)', fontWeight: 700, color: '#EFE9DC' }}>Sound like you? That’s exactly what I build.</span>
+            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>Let’s talk <span className="ar" aria-hidden>→</span></Link>
+            <Link to="/services" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>See the ways to work <span className="ar" aria-hidden>→</span></Link>
           </div>
         </div>
       </section>
@@ -494,20 +551,17 @@ export default function HomePage() {
       <section id="about" style={{ background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)' }}>
         <div className="grid-2" style={{ ...INNER, padding: 'clamp(72px,9vw,128px) clamp(20px,5vw,64px) clamp(40px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 'clamp(36px,7vw,100px)', alignItems: 'center' }}>
           <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Why me</span>
+            <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>About me</span>
             <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.3rem,5.2vw,4.4rem)', lineHeight: 0.98, letterSpacing: '-.03em', margin: 0 }}>
-              Brand, product, community, growth. <mark>I’ve done all four.</mark>
+              I’ve seen the whole picture. <mark>This is the part I chose to build.</mark>
             </h2>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 0, maxWidth: '50ch' }}>
-              Fan-led growth only works when brand, product, community and growth connect. I’ve worked across all four at every stop, going deepest on brand and community at BlaBlaCar, product and advocacy at Ubisoft across Assassin’s Creed, Ghost Recon and Rainbow Six Siege, and growth at American and French startups since.
+              Thirteen years across brand, growth and community at Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. Complicated tech, crowded roadmaps, budgets from shoestring to enormous. I’ve worked the whole machine.
             </p>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 'clamp(14px,1.6vw,20px) 0 0', maxWidth: '50ch' }}>
-              Across the board, these pillars run as separate teams. I come in to connect them into one <mark>Fan Engine</mark>, built for your business and powered by your own fans.
+              Which is how I know where growth really comes from, and where it leaks. The biggest opportunity most companies walk straight past is the customers they already have. So that is what I build: the system that makes them stay, spend and recommend, with brand, product, community and growth run as one <mark>Fan Engine</mark>, and the baselines to prove it.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
-              <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-                Get in touch <span className="ar" aria-hidden>→</span>
-              </Link>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me <span className="ar" aria-hidden>→</span>
               </Link>
@@ -552,151 +606,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── WHY FANS ─── */}
+      {/* ─── PROOF ─── */}
       <section style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why fans</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, maxWidth: '16ch', color: '#15110F' }}>
-              Why grow with <mark>fans</mark>?
-            </h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '50ch' }}>
-              Paid growth stops the moment you stop paying. Fan-led growth keeps working, and pays off in ways ad spend can’t.
-            </p>
+          <div data-rev style={{ marginBottom: 'clamp(32px,4vw,52px)', maxWidth: '40ch' }}>
+            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 14 }}>Best wins</span>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Proof it pays.</h2>
           </div>
-
-          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(16px,2vw,24px)', marginTop: 'clamp(40px,5vw,68px)' }}>
-            {whyFans.map((p) => (
-              <div key={p.title} className="pot" data-rev style={{ display: 'flex', flexDirection: 'column', gap: 14, background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(24px,2.8vw,38px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-                <span className="pico" style={{ color: '#C8362B', lineHeight: 0, transition: 'color .2s ease' }}><Icon name={p.icon} size={28} /></span>
-                <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.8rem)', letterSpacing: '-.02em', margin: 0, color: '#15110F' }}>{p.title}</h3>
-                <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.6, color: '#4A423B', margin: 0 }}>{p.copy}</p>
-              </div>
+          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,22px)' }}>
+            {stats.map((s) => (
+              <Link to="/case-studies" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+                <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
+                  <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </figure>
+                <div style={{ padding: 'clamp(18px,1.8vw,26px)', display: 'flex', flexDirection: 'column', gap: 9 }}>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B', display: 'block' }}>
+                    {s.value} <span style={{ fontSize: '1em', fontWeight: 800, color: '#C8362B', letterSpacing: '-.03em', whiteSpace: 'nowrap' }}>{s.unit}</span>
+                  </span>
+                  <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{s.label}</span>
+                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 4 }}>{s.client}</span>
+                </div>
+              </Link>
             ))}
           </div>
-
-          {/* Edit 6 (treatment 2a): dark espresso CTA card. The estimate
-            * demotes from a cream-card readout that competed with the six
-            * benefit tiles into a distinct secondary tier — dark ground
-            * previews the AI section below, keeping one accent per section.
-            * The number moves inline in a body-scale sentence, not a
-            * standalone display number. */}
-          <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(28px,3.4vw,44px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.4vw,44px)' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
-            <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,48px)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '46ch' }}>
-                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-                  Fan Value estimate
-                </span>
-                <p style={{ fontSize: 'clamp(1.12rem,1.6vw,1.5rem)', lineHeight: 1.3, fontWeight: 700, color: '#EFE9DC', margin: 0 }}>
-                  The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', fontWeight: 800, whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M brand.
-                </p>
-                <p style={{ fontSize: '.92rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
-                  On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others. An example, not your numbers.
-                </p>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', flex: 'none' }}>
-                <Link to="/fan-led-growth-value-model" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-                  Estimate yours <span className="ar" aria-hidden>→</span>
-                </Link>
-                <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
-                  or <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>get in touch</Link>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── AI TEASER ─── */}
-      {/* Full AI section (intro + 4 discipline cards + oxblood pitch) lives at /ai.
-       * Homepage keeps this short teaser with the sentiment visual. */}
-      <section id="ai" style={{ position: 'relative', background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-26%', right: '-8%', width: '48vw', height: '48vw', maxWidth: 620, maxHeight: 620, background: 'radial-gradient(circle,rgba(200,54,43,.18) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', ...INNER, padding: SECTION_PAD }}>
-          <div className="aisplit grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
-            <div data-rev style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 'clamp(18px,2.4vw,26px)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: '.74rem', letterSpacing: '.18em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, border: '1px solid rgba(200,54,43,.4)', borderRadius: 999, padding: '8px 16px' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C8362B' }} />
-                New · Fan-led growth for AI
-              </span>
-              <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4vw,3.2rem)', lineHeight: 1.08, letterSpacing: '-.03em', margin: 0, maxWidth: '22ch' }}>
-                AI communities behave like the live-service game communities I ran at Ubisoft: passionate, loud, <mark>one model update from turning</mark>.
-              </h2>
-              <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0, maxWidth: '44ch' }}>
-                I build the same engine for the people around your model.
-              </p>
-              <Link to="/ai" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-                See fan-led growth for AI <span className="ar" aria-hidden>→</span>
-              </Link>
-              <p style={{ fontSize: '.95rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0, maxWidth: '46ch', borderTop: '1px solid rgba(239,233,220,.12)', paddingTop: 'clamp(16px,2vw,22px)' }}>
-                When someone asks an AI for a recommendation, it answers from what people write online. The more your fans rave about you, the more it recommends you.{' '}
-                <strong style={{ color: '#D4C896', fontWeight: 800 }}>That&rsquo;s AEO, the SEO of the AI era, and fan advocacy is how you win it.</strong>
-              </p>
-            </div>
-
-            <AiSentimentVisual />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WAYS TO WORK ─── */}
-      <section id="services" style={{ background: '#EFE9DC', color: '#15110F' }}>
-        <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ maxWidth: '46ch', marginBottom: 'clamp(40px,5vw,64px)' }}>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Services</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Ways to work with me.</h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0' }}>
-              Two ways in: bring me in for a specific need, or plug in the whole system.
-            </p>
-          </div>
-
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(16px,2vw,24px)' }}>
-            <Link to="/services" className="wtw" data-rev style={{ textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Hire the expert</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning. I find what’s really driving it and hand you a build-ready fix across product, comms and community, at a pace that matches how urgent it is.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>A big moment coming: a launch, a major release, a milestone. I turn it into one your fans amplify, built for reach and sales, not just a big spend.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Consulting</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth direction, one to one. A focused strategy session, or an ongoing sounding board. From $750.</span>
-                </div>
-              </div>
+          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
+            <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
+              See the case studies <span aria-hidden>→</span>
             </Link>
-
-            <Link to="/services#fan-engine" className="wtwd" data-rev style={{ textDecoration: 'none', color: 'inherit', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)' }}>
-              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Plug in the system · my IP</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="gear" size={30} /></span>
-                <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine</span>
-                <span style={{ fontSize: '1.04rem', lineHeight: 1.6, color: 'rgba(239,233,220,.82)' }}>
-                  The fan-led-growth system that plugs into any company, startup to conglomerate. It connects the brand they fall for, what you ship, and how you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
-                </span>
-              </div>
-              <ul style={{ listStyle: 'none', margin: 'auto 0 0', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {['Brand', 'Product', 'Community', 'Growth'].map((p) => (
-                  <li key={p} style={{ fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px' }}>{p}</li>
-                ))}
-              </ul>
-            </Link>
-          </div>
-
-          <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
-            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-              Get in touch <span className="ar" aria-hidden>→</span>
-            </Link>
-            <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
-              See all the ways to work <span className="ar" aria-hidden>→</span>
-            </Link>
+            <span style={{ fontSize: '.78rem', color: '#6B6157', fontWeight: 600 }}>
+              These numbers roll up several projects per brand, the full write-ups live on the Case Studies page.
+            </span>
           </div>
         </div>
       </section>
@@ -710,13 +649,71 @@ export default function HomePage() {
               <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 0, maxWidth: '34ch' }}>
                 Drops, programs and launches across gaming, tech, consumer and entertainment.
               </p>
-              <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.32)', paddingBottom: 3, marginTop: 'clamp(8px,1vw,16px)', alignSelf: 'flex-start' }}>
-                See all the work <span aria-hidden>→</span>
-              </Link>
             </div>
             <div data-rev>
               <WorkCarousel items={work} />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WAYS TO WORK ─── */}
+      <section id="services" style={{ background: '#EFE9DC', color: '#15110F' }}>
+        <div style={{ ...INNER, padding: SECTION_PAD }}>
+          <div data-rev style={{ maxWidth: '46ch', marginBottom: 'clamp(40px,5vw,64px)' }}>
+            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Services</span>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Ways to work with me.</h2>
+            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0' }}>
+              Whatever brought you here, there are two ways in: fix one thing now, or build the engine that keeps and grows your fans.
+            </p>
+          </div>
+
+          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(16px,2vw,24px)' }}>
+            <Link to="/services" className="wtw" data-rev style={{ textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Hire the expert</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s really driving it and hand you a fix you can ship, across product, comms and community, fast.</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You’ve got a big moment coming: a launch, a release, a milestone. I turn it into one your fans carry for you, built for reach and sales, not just spend.</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fractional &amp; advisory</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership, without the full-time hire. Drop in for a strategy session, stay on as a retainer, or run it as an embedded fractional lead. As much or as little as you need.</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/services#fan-engine" className="wtwd" data-rev style={{ textDecoration: 'none', color: 'inherit', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)' }}>
+              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Build the whole engine</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="gear" size={30} /></span>
+                <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine</span>
+                <span style={{ fontSize: '1.04rem', lineHeight: 1.6, color: 'rgba(239,233,220,.82)' }}>
+                  The whole system, plugged into your company. It connects the brand they fall for, the product they stick with, and the way you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
+                </span>
+              </div>
+              <ul style={{ listStyle: 'none', margin: 'auto 0 0', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {['Brand', 'Product', 'Community', 'Growth'].map((p) => (
+                  <li key={p} style={{ fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px' }}>{p}</li>
+                ))}
+              </ul>
+            </Link>
+          </div>
+
+          <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
+            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              Let’s talk <span className="ar" aria-hidden>→</span>
+            </Link>
+            <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
+              See all the ways to work <span className="ar" aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -729,14 +726,14 @@ export default function HomePage() {
             What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
           </h2>
           <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '42ch', margin: 0 }}>
-            Take the 2-minute score, or get in touch for a straight read on where you stand.
+            Take the 2-minute Fan Score to see where you stand, or book a free intro call for a straight read.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
             <Link to="/fan-led-growth-audit" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
               Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
             </Link>
             <Link to={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
-              Get in touch <span className="ar" aria-hidden>→</span>
+              Let’s talk <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
           {/* Just-keeping-tabs LinkedIn line — the dead email-capture form

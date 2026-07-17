@@ -16,7 +16,7 @@ export default function ServicesPage() {
   useDocumentMeta({
     title: 'Work with me · Laura Cordrey · Fan-led growth for fan-driven brands',
     description:
-      'How to work with me: the Fan Engine (my flagship fan-led growth system), Sentiment SOS when your community turns, Fan Moments for launches and drops, and 1:1 strategy sessions from $750. Begin with a call or your free Fan Score.',
+      'How to work with me: the Fan Engine (my flagship fan-led growth system), Sentiment SOS when your community turns, Fan Moments for launches and drops, and fractional and advisory support. Begin with a free intro call or your Fan Score.',
     canonical: pageUrl('services'),
     ogType: 'website',
     jsonLd: serviceJsonLd(),
@@ -31,16 +31,15 @@ export default function ServicesPage() {
             <span className="marker">Work with me</span>
           </div>
           <h1 className="svc-hero__title">
-            Four ways to grow with the{' '}
-            <mark>fans you already have</mark>.
+            The whole engine, or just the{' '}
+            <mark>piece you need</mark>.
           </h1>
           <p className="svc-hero__lede">
-            Build the whole engine, or just the one piece holding growth back.
-            Whatever we build, you&rsquo;ll know exactly what it&rsquo;s worth.
+            Four ways to work together, each built to turn the fans you already have into growth, and to show you what it&rsquo;s worth.
           </p>
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-              Get in touch <span aria-hidden="true">→</span>
+              Let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
             <Link to="/fan-led-growth-audit" className="btn btn--ghost btn--lg">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
@@ -73,14 +72,14 @@ export default function ServicesPage() {
             </a>
             <a href="#consulting" className="svc-index__row">
               <span className="svc-index__n">04</span>
-              <span className="svc-index__nm">Consulting</span>
-              <span className="svc-index__one">Advisory. A 2-hour 1:1 session, from $750.</span>
+              <span className="svc-index__nm">Fractional &amp; advisory</span>
+              <span className="svc-index__one">Advisory. From a call to an embedded role.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <Link to="/ai" className="svc-index__row svc-index__row--ai">
               <span className="svc-index__n">AI</span>
               <span className="svc-index__nm">For AI companies</span>
-              <span className="svc-index__one">Same jobs, your language. Founding-partner terms.</span>
+              <span className="svc-index__one">Fan-led growth, built for AI. Founding-partner terms.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </Link>
           </nav>
@@ -103,37 +102,23 @@ export default function ServicesPage() {
             <span className="svc-eng__kick">01 · The flagship</span>
             <h2 className="svc-eng__title">The Fan Engine.</h2>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Get in touch about the Engine <span aria-hidden="true">→</span>
+              Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
             </Link>
             <Link to="/methodology" className="svc-txtlink">
               How the Engine works <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className="svc-eng__right">
-            <p className="svc-eng__body">
-              Growth leaning on paid while your fans sit idle? The Fan Engine
-              wires brand, product, community and growth into{' '}
-              <strong>one system, powered by your fans</strong> and measured
-              end to end. Your growth stops living and dying by ad spend, and
-              for the first time you can put a number on what your fanbase is
-              worth.
-            </p>
-            <p className="svc-youget">
-              <strong>You get:</strong> your Fan Score, your Fan Value in your
-              own numbers, and a six-month growth plan. Built together over
-              about a month, then sprints and support where you need them.
-            </p>
+            <p className="svc-youget"><strong>What it&rsquo;s for:</strong> Growth leaning on paid while your fans sit idle. You want one system, not four disconnected teams.</p>
+            <p className="svc-youget"><strong>What you get:</strong> First, a deep-dive review of where your growth is leaking and what your fans are really worth. Then an engine that plugs into your company across brand, product, community and growth, built to run as one and powered by the fans you already have. In your hands: your Fan Score, your Fan Value in your own numbers, and a six-month growth plan. So you stop renting growth from ads and start owning it.</p>
+            <p className="svc-youget"><strong>How long:</strong> 6 to 8 weeks to build, then ongoing sprints.</p>
+            <p className="svc-youget"><strong>What it costs:</strong> Priced per project.</p>
+            <p className="svc-youget"><strong>The payoff:</strong> For the first time, a real number on what your fanbase is worth, and growth that no longer lives or dies by ad spend.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>
-                <strong>$500K+ in earned media</strong> across three game IPs,
-                at zero media spend.
+                <strong>$500K+ in earned media</strong> across three Ubisoft game IPs, at zero media spend.
               </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">
-                Fixed-fee diagnostic first, then sprints · Priced per engagement
-              </span>
             </div>
           </div>
         </div>
@@ -150,39 +135,23 @@ export default function ServicesPage() {
               Sentiment <mark>SOS</mark>.
             </h2>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              It&rsquo;s urgent. Book now <span aria-hidden="true">→</span>
+              It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
             <span className="svc-ctanote">
               In a crisis right now? We can start this week.
             </span>
           </div>
           <div className="svc-eng__right">
-            <p className="svc-eng__body">
-              Reviews turned? Every update landing worse than the last? I turn
-              what your community is saying into{' '}
-              <strong>one recovery roadmap</strong>: the product fixes and the
-              comms that address what&rsquo;s actually driving it, not just a
-              listening report. The bleeding stops, the community comes back
-              onside, and your team walks away able to see the next crisis
-              before it hits.
-            </p>
-            <p className="svc-youget">
-              <strong>You get:</strong> one prioritized roadmap your team can
-              ship, starting with a rapid triage so you have first moves fast.
-              Delivery scoped to how urgent it is.
-            </p>
+            <p className="svc-youget"><strong>What it&rsquo;s for:</strong> Reviews have turned and every update lands worse than the last. You need it handled fast.</p>
+            <p className="svc-youget"><strong>What you get:</strong> Triage in days, so you&rsquo;re moving while it&rsquo;s still hot. Then a fix your team can ship: a product roadmap and the community comms to go with it, both aimed at what&rsquo;s really driving it. Not another report that sits in a drawer.</p>
+            <p className="svc-youget"><strong>How long:</strong> 1 to 3 weeks, scoped to how urgent it is.</p>
+            <p className="svc-youget"><strong>What it costs:</strong> Priced per project.</p>
+            <p className="svc-youget"><strong>The payoff:</strong> The bleeding stops, the community comes back onside, and your team can see the next crisis before it hits.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proven at scale</span>
               <p>
-                Built on the system I ran for a{' '}
-                <strong>15-million-player live-service community</strong>, held
-                at <strong>85% positive sentiment</strong>.
+                Built on the system I ran for a <strong>15-million-player live-service community</strong>, held at <strong>85% positive sentiment</strong>.
               </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">
-                Bounded and fast · Priced per project
-              </span>
             </div>
           </div>
         </div>
@@ -204,29 +173,16 @@ export default function ServicesPage() {
             </Link>
           </div>
           <div className="svc-eng__right">
-            <p className="svc-eng__body">
-              A launch, a drop, a reveal that has to land? I design the moment
-              end to end and build the advocacy in, so it{' '}
-              <strong>spreads through your fans, not your media budget</strong>.
-              It doesn&rsquo;t spike then vanish: it lands hard and leaves you
-              holding a proven, measured playbook you can run again.
-            </p>
-            <p className="svc-youget">
-              <strong>You get:</strong> the moment designed end to end,
-              advocacy built in, and a clean baseline of metrics that shows
-              what to scale next. Fully tailored, scheduled around your date.
-            </p>
+            <p className="svc-youget"><strong>What it&rsquo;s for:</strong> A launch, a drop, a reveal that has to land.</p>
+            <p className="svc-youget"><strong>What you get:</strong> The whole moment, designed end to end, with your fans built in to carry it. And the numbers behind it, so you see exactly what worked.</p>
+            <p className="svc-youget"><strong>How long:</strong> From 2 weeks, scheduled around your date, depending on scope.</p>
+            <p className="svc-youget"><strong>What it costs:</strong> Priced per project.</p>
+            <p className="svc-youget"><strong>The payoff:</strong> Your fans amplify the moment on top of your media budget, so your spend works harder, and you leave with a proven playbook to run again.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>
-                A fan program I unveiled <strong>live on the E3 stage</strong>,
-                10,000 applications from US fans alone.
+                A fan program I unveiled <strong>live on the E3 stage</strong>, 10,000 applications from US fans alone.
               </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">
-                Fixed-scope project · Priced per moment
-              </span>
             </div>
           </div>
         </div>
@@ -236,46 +192,25 @@ export default function ServicesPage() {
       <section className="svc-band" id="consulting">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick">04 · Advisory</span>
+            <span className="svc-eng__kick">04 · In the room</span>
             <h2 className="svc-eng__title">
-              <mark>Consulting</mark>.
+              <mark>Fractional &amp; advisory</mark>.
             </h2>
-            <div className="svc-price">
-              <span className="svc-price__from">From</span>
-              <span className="svc-price__amount">$750</span>
-              <span className="svc-price__unit">a 2-hour session</span>
-            </div>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Book a session <span aria-hidden="true">→</span>
+              Let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className="svc-eng__right">
-            <p className="svc-eng__body">
-              Sometimes you don&rsquo;t need a program, you need me in the
-              room. Work with me one to one on whatever you&rsquo;re facing:
-              a startup idea to pressure-test, a souring community, a big
-              event, a team to build and steer.{' '}
-              <strong>
-                Senior fan-led growth judgment on the decision in front of you
-              </strong>
-              , so you move faster and skip the expensive wrong turn.
-            </p>
-            <p className="svc-youget">
-              <strong>You get:</strong> a focused 1:1 session, a straight read
-              on your situation, and a plan you can act on. One session, or an
-              ongoing sounding board if you want to keep going.
-            </p>
+            <p className="svc-youget"><strong>What it&rsquo;s for:</strong> You don&rsquo;t need a program, you need me in the room, on the decision in front of you.</p>
+            <p className="svc-youget"><strong>What you get:</strong> Senior fan-led growth judgment on the decision in front of you, one to one. A straight read on where you really stand, and a clear plan you can act on this week.</p>
+            <p className="svc-youget"><strong>How long:</strong> From a single call to an ongoing role: a call, a workshop, ongoing advisory, or an embedded fractional lead.</p>
+            <p className="svc-youget"><strong>What it costs:</strong> Scoped to your time.</p>
+            <p className="svc-youget"><strong>The payoff:</strong> You move faster and skip the expensive wrong turn.</p>
             <div className="svc-proofcard">
-              <span className="svc-proofcard__label">In the room before</span>
+              <span className="svc-proofcard__label">Who you&rsquo;re working with</span>
               <p>
-                The same judgment behind fan programs at{' '}
-                <strong>Ubisoft</strong>, and a platform acquired by Animoca.
+                You get a <strong>thirteen-year operator</strong>, seasoned across Ubisoft, Amazon Games, the French unicorn BlaBlaCar, and a US startup acquired by Animoca.
               </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">
-                From $750 a 2-hour session · Or ongoing advisory
-              </span>
             </div>
           </div>
         </div>
@@ -295,7 +230,7 @@ export default function ServicesPage() {
               Shipping models with a crowd around them? There&rsquo;s a page in your language.
             </h2>
             <p style={{ fontSize: '1rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
-              The same engagements, framed for AI products, with a founding-partner offer while I build the first AI case studies.
+              The same work, in your language, on founding-partner terms while I build the first AI case studies.
             </p>
           </div>
           <Link to="/ai" className="btn btn--ghost btn--lg" style={{ flex: 'none' }}>
@@ -424,7 +359,7 @@ export default function ServicesPage() {
           </p>
           <div className="svc-finale__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-              Get in touch <span aria-hidden="true">→</span>
+              Let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
             <Link to="/fan-led-growth-audit" className="btn btn--lg svc-finale__ghost">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
