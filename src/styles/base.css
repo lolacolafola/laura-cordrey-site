@@ -5,11 +5,13 @@
 /* Trademark mark for the proprietary tool names (Fan Engine / Fan Score /
    Fan Value). Small raised superscript so it signals IP without shouting. */
 .tm {
-  font-size: 0.52em;
-  vertical-align: 0.55em;
+  /* Floor at 9px so it stays legible on small eyebrows, still scales up on
+     big headings. */
+  font-size: max(0.5em, 9px);
+  vertical-align: 0.5em;
   font-weight: 600;
   letter-spacing: 0;
-  margin-left: 0.05em;
+  margin-left: 0.06em;
 }
 
 html, body {
