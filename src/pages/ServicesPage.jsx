@@ -167,6 +167,11 @@ export default function ServicesPage() {
                 6 to 8 weeks to build, then ongoing · Priced per engagement
               </span>
             </div>
+            <div className="svc-eng__act">
+              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+                Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -178,12 +183,6 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Sentiment <mark>SOS</mark>.
             </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
-            </Link>
-            <span className="svc-ctanote">
-              In a crisis right now? We can start this week.
-            </span>
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> your community has turned on you in public, and it&rsquo;s getting worse.</p>
@@ -198,6 +197,14 @@ export default function ServicesPage() {
             <div className="svc-credit">
               <span className="svc-credit__fmt">1 to 2 weeks · Faster if it can&rsquo;t wait</span>
             </div>
+            <div className="svc-eng__act">
+              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+                It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
+              </Link>
+              <span className="svc-ctanote">
+                In a crisis right now? We can start this week.
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -209,12 +216,6 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Fan <mark>Programs</mark>.
             </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Talk about a program <span aria-hidden="true">→</span>
-            </Link>
-            <Link to="/case-studies" className="svc-txtlink">
-              See programs I&rsquo;ve built <span aria-hidden="true">→</span>
-            </Link>
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you pay for every new customer, and your users could be bringing them instead.</p>
@@ -229,6 +230,14 @@ export default function ServicesPage() {
             <div className="svc-credit">
               <span className="svc-credit__fmt">From 3 weeks · Scoped to the program</span>
             </div>
+            <div className="svc-eng__act">
+              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+                Talk about a program <span aria-hidden="true">→</span>
+              </Link>
+              <Link to="/case-studies" className="svc-txtlink">
+                See programs I&rsquo;ve built <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -240,12 +249,6 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               Fan <mark>Moments</mark>.
             </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Talk about your moment <span aria-hidden="true">→</span>
-            </Link>
-            <Link to="/case-studies" className="svc-txtlink">
-              See moments I&rsquo;ve built <span aria-hidden="true">→</span>
-            </Link>
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you want to give your best fans a moment they&rsquo;ll love.</p>
@@ -260,6 +263,14 @@ export default function ServicesPage() {
             <div className="svc-credit">
               <span className="svc-credit__fmt">From 2 weeks · Scheduled around your date</span>
             </div>
+            <div className="svc-eng__act">
+              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+                Talk about your moment <span aria-hidden="true">→</span>
+              </Link>
+              <Link to="/case-studies" className="svc-txtlink">
+                See moments I&rsquo;ve built <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -271,9 +282,6 @@ export default function ServicesPage() {
             <h2 className="svc-eng__title">
               <mark>Advisory</mark>.
             </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Book a session <span aria-hidden="true">→</span>
-            </Link>
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you have one decision to get right, or you want senior fan-led growth leadership without a full-time hire.</p>
@@ -286,6 +294,11 @@ export default function ServicesPage() {
             </div>
             <div className="svc-credit">
               <span className="svc-credit__fmt">Priced per session or an ongoing embedded role</span>
+            </div>
+            <div className="svc-eng__act">
+              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+                Book a session <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
         </div>

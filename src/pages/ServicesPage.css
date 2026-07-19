@@ -222,6 +222,18 @@
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
 }
 
+/* Action row at the foot of each offer — the CTA sits after the case is made
+   (need / get / payoff / proof), with any secondary link or note beside it.
+   The flagship keeps its top CTA too; the four shorter offers only ask here. */
+.svc-eng__act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-3);
+}
+.svc-eng__act .svc-eng__cta { margin-top: 0; }
+
 .svc-eng__body {
   font-size: var(--fs-body-l);
   line-height: 1.6;
