@@ -284,7 +284,7 @@ export default function HomePage() {
           <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>About me</span>
             <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.3rem,5.2vw,4.4rem)', lineHeight: 0.98, letterSpacing: '-.03em', margin: 0 }}>
-              I’ve seen the whole picture. <mark>This is the part I chose to build.</mark>
+              I’ve seen the whole picture. <mark>This is the part I chose to build</mark>.
             </h2>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 0, maxWidth: '50ch' }}>
               Thirteen years across brand, growth and community at Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. Complicated tech, crowded roadmaps, budgets from shoestring to enormous. I’ve worked the whole machine.
