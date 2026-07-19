@@ -213,7 +213,7 @@ function IntroScreen({ onStart }) {
       <h1 className="fa-h1">How fan-powered is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-powered growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
-      <button className="fa-btn" onClick={onStart}>Get my Fan Score →</button>
+      <button className="fa-btn" onClick={onStart}>Get my Fan Score <span aria-hidden="true">→</span></button>
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
@@ -407,7 +407,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
           value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })}
         />
         <div className="fa-fldnote">{err}</div>
-        <button className="fa-btn" type="submit">Show my full result →</button>
+        <button className="fa-btn" type="submit">Show my full result <span aria-hidden="true">→</span></button>
       </form>
       <p className="fa-trust">No spam. Your result, plus the occasional note on fan-led growth. Unsubscribe anytime.</p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
@@ -513,10 +513,10 @@ function LiveResult({ scored, lead, restart }) {
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
         <Link className="fa-btn" to={`/fan-value?score=${owned}`}>
-          See what closing this is worth →
+          See what closing this is worth <span aria-hidden="true">→</span>
         </Link>
         <Link className="fa-btn" to={CONTACT_URL}>
-          Let’s talk →
+          Let’s talk <span aria-hidden="true">→</span>
         </Link>
       </div>
       <p className="fa-ctatail">
@@ -631,7 +631,7 @@ function PreFlow({ screen, setScreen }) {
         <p className="fa-introget">No numbers needed. A minute or two.</p>
         <hr className="fa-rule" />
         <div className="fa-actionrow">
-          <button className="fa-btn" onClick={startQuiz}>Check my readiness →</button>
+          <button className="fa-btn" onClick={startQuiz}>Check my readiness <span aria-hidden="true">→</span></button>
           <button className="fa-back" onClick={() => setScreen('gate')}>← Back</button>
         </div>
       </section>
@@ -825,7 +825,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
 
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
-        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk →</Link>
+        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk <span aria-hidden="true">→</span></Link>
         <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
       </div>
       <p className="fa-ctatail">

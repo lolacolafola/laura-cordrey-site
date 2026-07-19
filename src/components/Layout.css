@@ -110,6 +110,9 @@
   border-color: #D4C896;
   color: #15110F;
 }
+/* Match the mobile CTA and the rest of the site: nudge the arrow on hover. */
+.cinnav__cta span { display: inline-block; transition: transform 0.2s ease; }
+.cinnav__cta:hover span { transform: translateX(4px); }
 /* Secondary CTA (Fan Score): outline, not a second filled-red button, so the
    filled "Let's talk" stays the single primary in the header. */
 .cinnav__cta--ghost {

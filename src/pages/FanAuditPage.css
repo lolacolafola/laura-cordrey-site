@@ -106,6 +106,9 @@
   transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 .fa-btn:hover { background: var(--fa-accent-deep); }
+/* Arrow nudge on hover, matching the rest of the site's CTAs. */
+.fa-btn span { display: inline-block; transition: transform 0.2s cubic-bezier(0.16, 0.84, 0.44, 1); }
+.fa-btn:hover span { transform: translateX(4px); }
 .fa-btn--ghost {
   background: transparent;
   color: var(--fa-accent);
