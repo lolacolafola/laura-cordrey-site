@@ -374,9 +374,9 @@ export default function HomePage() {
       {/* ─── WAYS TO WORK ─── */}
       <section id="services" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ maxWidth: '46ch', marginBottom: 'clamp(40px,5vw,64px)' }}>
+          <div data-rev style={{ maxWidth: '66ch', marginBottom: 'clamp(40px,5vw,64px)' }}>
             <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Services</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Ways to work with me.</h2>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F', maxWidth: '14ch' }}>Ways to work with me.</h2>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0' }}>
               Whatever brought you here, there are two ways in: build the whole engine that keeps and grows your fans, or fix one thing now.
             </p>
