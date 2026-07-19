@@ -91,6 +91,14 @@ export default function ContactPage() {
     setIntent(val)
     setSubmitted(false)
     setError(null)
+    // The form fields render below the picker; on mobile they're off-screen and
+    // it isn't obvious to scroll. Take the visitor down to the form to fill in.
+    requestAnimationFrame(() => {
+      const el = formRef.current
+      if (!el) return
+      const y = el.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    })
   }
 
   const isConsulting = intent === 'consulting'
@@ -275,8 +283,7 @@ export default function ContactPage() {
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Programs: I want my users bringing new customers</option>
                           <option>Fan Moments: I have a big moment coming</option>
-                          <option>A session or workshop: one problem, worked live</option>
-                          <option>Fractional or advisory: ongoing senior support</option>
+                          <option>Advisory: a session, or an ongoing embedded role</option>
                           <option value="Fan-led growth for AI: a founding-partner pilot">Fan-led growth for AI: a founding-partner pilot</option>
                           <option>Not sure yet, help me scope it</option>
                         </select>

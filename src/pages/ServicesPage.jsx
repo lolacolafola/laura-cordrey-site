@@ -115,7 +115,7 @@ export default function ServicesPage() {
         <div className="container svc-eng">
           <div className="svc-eng__left">
             <span className="svc-eng__kick">The whole system</span>
-            <h2 className="svc-eng__title">The Fan Engine.</h2>
+            <h2 className="svc-eng__title">The Fan Engine<span className="tm">™</span>.</h2>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
             </Link>
