@@ -125,8 +125,10 @@ export default function ServicesPage() {
           </div>
           <div className="svc-eng__right">
             <p className="svc-eng__body">
-              Fan-led growth built into the bones of the business, measured end
-              to end. Everything else, run as one system, not one-off projects.
+              My own framework, shaped over thirteen years turning customers into
+              fans at Ubisoft, Amazon Games and BlaBlaCar. Fan-led growth built
+              into the bones of the business, measured end to end. Everything
+              else, run as one system, not one-off projects.
             </p>
             <p className="svc-youget"><strong>Need it when:</strong> your growth runs on paid and stops the day you stop paying, and the userbase you paid a fortune to build gives you nothing back.</p>
             <span className="svc-phases__eyebrow">What you get, end to end</span>

@@ -410,7 +410,7 @@ export default function HomePage() {
                 <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="gear" size={30} /></span>
                 <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine<span className="tm">™</span></span>
                 <span style={{ fontSize: '1.04rem', lineHeight: 1.6, color: 'rgba(239,233,220,.82)' }}>
-                  The whole system, plugged into your company. It connects the brand they fall for, the product they stick with, and the way you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
+                  My own framework, shaped over thirteen years turning customers into fans. The whole system, plugged into your company. It connects the brand they fall for, the product they stick with, and the way you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
                 </span>
               </div>
               <ul style={{ listStyle: 'none', margin: 'auto 0 0', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
