@@ -145,6 +145,18 @@
 @media (max-width: 560px) {
   .cin .grid-4 { grid-template-columns: 1fr !important; }
   .cin .grid-3 { grid-template-columns: 1fr !important; }
+  /* Fan Value estimate card: the CTA is inline-flex with a flex:none parent,
+     so its label never wrapped and the card's overflow:hidden clipped the
+     button's right edge on narrow screens. Make it a full-width, wrap-safe
+     block so it can't exceed the card. */
+  .cin .fv-cta-col { width: 100%; }
+  .cin .fv-cta-btn {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
   /* Logo strip: 3 on top, 2 centered underneath (no orphan). */
   .cin .hero-trust .grid-5 {
     display: flex !important;

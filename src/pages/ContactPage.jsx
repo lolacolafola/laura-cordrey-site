@@ -42,10 +42,15 @@ const CheckIcon = () => (
   </svg>
 )
 
+// Keys the Services-page CTAs deep-link with (?need=…). Each value must match
+// a consulting_need <option> exactly so the select pre-selects on arrival.
 const VALID_NEEDS = {
-  'ai-pilot': 'Fan-led growth for AI: a founding-partner pilot',
-  'sos': 'Sentiment SOS: my community is turning',
   'engine': 'The Fan Engine: I want the whole system',
+  'sos': 'Sentiment SOS: my community is turning',
+  'programs': 'Fan Programs: I want my users bringing new customers',
+  'moments': 'Fan Moments: I have a big moment coming',
+  'advisory': 'Advisory: a session, or an ongoing embedded role',
+  'ai-pilot': 'Fan-led growth for AI: a founding-partner pilot',
 }
 
 function useInitialNeed() {
@@ -86,6 +91,20 @@ export default function ContactPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialIntent])
+
+  // Arriving from a Services CTA (?need=…) pre-selects the offer. Drop the
+  // visitor straight onto the form so mobile isn't stranded at the picker.
+  useEffect(() => {
+    if (!initialNeed) return
+    const t = setTimeout(() => {
+      const el = formRef.current
+      if (!el) return
+      const y = el.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top: y, behavior: 'auto' })
+    }, 120)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const pick = (val) => {
     setIntent(val)

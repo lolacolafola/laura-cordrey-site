@@ -5,6 +5,9 @@ import './ServicesPage.css'
 
 const BASE = import.meta.env.BASE_URL
 const CONTACT_URL = '/contact?intent=consulting'
+// Deep-link a specific offer so the contact form opens with it pre-selected.
+// Keys must match VALID_NEEDS in ContactPage.jsx.
+const contactFor = (need) => `/contact?intent=consulting&need=${need}`
 
 /* Brand logos for the proof band — same assets/order as About's proof strip. */
 const CLIENTS = [
@@ -116,7 +119,7 @@ export default function ServicesPage() {
           <div className="svc-eng__left">
             <span className="svc-eng__kick">The whole system</span>
             <h2 className="svc-eng__title">The Fan Engine<span className="tm">™</span>.</h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+            <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
               Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
             </Link>
             <Link to="/methodology" className="svc-txtlink">
@@ -168,7 +171,7 @@ export default function ServicesPage() {
               </span>
             </div>
             <div className="svc-eng__act">
-              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
                 Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -198,7 +201,7 @@ export default function ServicesPage() {
               <span className="svc-credit__fmt">1 to 2 weeks · Faster if it can&rsquo;t wait</span>
             </div>
             <div className="svc-eng__act">
-              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              <Link to={contactFor('sos')} className="btn btn--primary btn--lg svc-eng__cta">
                 It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
               </Link>
               <span className="svc-ctanote">
@@ -231,7 +234,7 @@ export default function ServicesPage() {
               <span className="svc-credit__fmt">From 3 weeks · Scoped to the program</span>
             </div>
             <div className="svc-eng__act">
-              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              <Link to={contactFor('programs')} className="btn btn--primary btn--lg svc-eng__cta">
                 Talk about a program <span aria-hidden="true">→</span>
               </Link>
               <Link to="/case-studies" className="svc-txtlink">
@@ -264,7 +267,7 @@ export default function ServicesPage() {
               <span className="svc-credit__fmt">From 2 weeks · Scheduled around your date</span>
             </div>
             <div className="svc-eng__act">
-              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              <Link to={contactFor('moments')} className="btn btn--primary btn--lg svc-eng__cta">
                 Talk about your moment <span aria-hidden="true">→</span>
               </Link>
               <Link to="/case-studies" className="svc-txtlink">
@@ -296,7 +299,7 @@ export default function ServicesPage() {
               <span className="svc-credit__fmt">Priced per session or an ongoing embedded role</span>
             </div>
             <div className="svc-eng__act">
-              <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              <Link to={contactFor('advisory')} className="btn btn--primary btn--lg svc-eng__cta">
                 Book a session <span aria-hidden="true">→</span>
               </Link>
             </div>

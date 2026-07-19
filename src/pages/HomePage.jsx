@@ -236,8 +236,8 @@ export default function HomePage() {
                   On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others. An example, not your numbers.
                 </p>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', flex: 'none' }}>
-                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              <div className="fv-cta-col" style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', flex: 'none' }}>
+                <Link to="/fan-value" className="btnp fv-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
                   See what your fans are worth <span className="ar" aria-hidden>→</span>
                 </Link>
                 <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
@@ -378,32 +378,11 @@ export default function HomePage() {
             <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Services</span>
             <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>Ways to work with me.</h2>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0' }}>
-              Whatever brought you here, there are two ways in: fix one thing now, or build the engine that keeps and grows your fans.
+              Whatever brought you here, there are two ways in: build the whole engine that keeps and grows your fans, or fix one thing now.
             </p>
           </div>
 
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(16px,2vw,24px)' }}>
-            <Link to="/services" className="wtw" data-rev style={{ textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Hire the expert</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s really driving it and hand you a fix you can ship, across product, comms and community, fast.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You’ve got a big moment coming: a launch, a release, a milestone. I turn it into one your fans carry for you, built for reach and sales, not just spend.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fractional &amp; advisory</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership, without the full-time hire. Drop in for a strategy session, stay on as a retainer, or run it as an embedded fractional lead. As much or as little as you need.</span>
-                </div>
-              </div>
-            </Link>
-
             <Link to="/services#fan-engine" className="wtwd" data-rev style={{ textDecoration: 'none', color: 'inherit', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)' }}>
               <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Build the whole engine</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -418,6 +397,32 @@ export default function HomePage() {
                   <li key={p} style={{ fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px' }}>{p}</li>
                 ))}
               </ul>
+            </Link>
+
+            <Link to="/services" className="wtw" data-rev style={{ textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Fix one thing now</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s really driving it and hand you a fix you can ship, across product, comms and community, fast.</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="megaphone" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Programs</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You pay for every new customer, and your users could be bringing them in instead. One program, creator, advocacy, loyalty or referral, built and measured.</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You’ve got a big moment coming: a launch, a release, a milestone. I turn it into one your fans carry for you, built for reach and sales, not just spend.</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
+                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Advisory</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership, without the full-time hire. Drop in for a strategy session, stay on as a retainer, or run it as an embedded fractional lead. As much or as little as you need.</span>
+                </div>
+              </div>
             </Link>
           </div>
 

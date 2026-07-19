@@ -284,3 +284,12 @@ html { scroll-behavior: smooth; }
 .cinfoot__contact:hover {
   color: #D4C896;
 }
+/* Arrow nudge on hover, matching the site's CTA convention. These are real
+   links (mailto + LinkedIn), so the motion keeps the hover-honesty promise. */
+.cinfoot__contact span[aria-hidden] {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.cinfoot__contact:hover span[aria-hidden] {
+  transform: translateX(3px);
+}
