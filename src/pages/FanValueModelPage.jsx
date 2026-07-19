@@ -240,18 +240,6 @@ export default function FanValueModelPage() {
             <Sparkle />
             <span>The Fan Value Model<span className="tm">™</span></span>
           </span>
-          <label className="fvm-cur">
-            Your currency
-            <select
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
-              className="fvm-cur__select"
-            >
-              <option value="$">$ USD</option>
-              <option value="€">€ EUR</option>
-              <option value="£">£ GBP</option>
-            </select>
-          </label>
         </div>
 
         <h1 className="fvm-h1">What is the fan gap<br />worth to you?</h1>
@@ -268,8 +256,24 @@ export default function FanValueModelPage() {
 
         {/* Inputs */}
         <div>
-          <div className="fvm-eyebrow-section">Your numbers today</div>
-          <div className="fvm-eyebrow-section__sub">Just what you already have to hand. I handle the rest.</div>
+          <div className="fvm-numhead">
+            <div>
+              <div className="fvm-eyebrow-section">Your numbers today</div>
+              <div className="fvm-eyebrow-section__sub">Just what you already have to hand. I handle the rest.</div>
+            </div>
+            <label className="fvm-cur">
+              Your currency
+              <select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                className="fvm-cur__select"
+              >
+                <option value="$">$ USD</option>
+                <option value="€">€ EUR</option>
+                <option value="£">£ GBP</option>
+              </select>
+            </label>
+          </div>
 
           <div className="fvm-biztoggle" role="tablist" aria-label="Business type">
             <button

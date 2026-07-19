@@ -290,7 +290,7 @@ export default function HomePage() {
               Thirteen years across brand, growth and community at Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. Complicated tech, crowded roadmaps, budgets from shoestring to enormous. I’ve worked the whole machine.
             </p>
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 'clamp(14px,1.6vw,20px) 0 0', maxWidth: '50ch' }}>
-              Which is how I know where growth really comes from, and where it leaks. The biggest opportunity most companies walk straight past is the customers they already have. So that is what I build: the system that makes them stay, spend and recommend, with brand, product, community and growth run as one <mark>Fan Engine</mark>, and the baselines to prove it.
+              Which is how I know where growth really comes from, and where it leaks. The biggest opportunity most companies walk straight past is the customers they already have. So that is what I build: the system that makes them stay, spend and recommend, with brand, product, community and growth run as one <mark>Fan Engine<span className="tm">™</span></mark>, and the baselines to prove it.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>

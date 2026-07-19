@@ -131,6 +131,15 @@
   color: var(--fvm-muted);
   margin: 4px 0 16px;
 }
+/* Currency now lives with the inputs (where money is entered), not floating
+   above the hero title. Heading left, currency top-right; wraps on narrow. */
+.fvm-numhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+}
 
 /* ─── Business-type toggle ───────────────────────────────── */
 .fvm-biztoggle {
