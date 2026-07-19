@@ -418,9 +418,6 @@ export default function ContactPage() {
           </>
         )}
 
-        <p className="contact-privacy">
-          Every enquiry lands in one inbox, tagged by intent so speaking and growth requests are sorted on arrival.
-        </p>
       </div>
     </div>
   )
