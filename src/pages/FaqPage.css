@@ -2,7 +2,9 @@
 .faq-page {
   background: #15110F;
   min-height: 100vh;
-  padding: clamp(96px, 14vh, 160px) 0 clamp(72px, 9vw, 120px);
+  /* Top pinned to --space-7 (48px) to match the hero top gap (~46px) on the
+     other pages; was clamp(96px, 14vh, 160px), the biggest top-gap outlier. */
+  padding: var(--space-7) 0 clamp(72px, 9vw, 120px);
 }
 .faq-container {
   max-width: 760px;

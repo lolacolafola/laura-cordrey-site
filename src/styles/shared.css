@@ -625,8 +625,13 @@
   border-color: var(--surface);
 }
 .btn--lg {
-  padding: var(--space-5) var(--space-8);
-  font-size: 1.125rem;
+  /* Matched to the homepage's hand-tuned hero buttons so CTAs are one
+     consistent size across every page, not chunkier off the homepage.
+     Was 24px/64px + 1.125rem, which read stretched on short labels.
+     Vertical padding is 22px (not the homepage's 18px) to offset the
+     .btn base line-height:1 and land at the same ~65px height. */
+  padding: 22px 34px;
+  font-size: 1.08rem;
   font-weight: 700;
 }
 /* Pill modifier — smaller padding + full radius, for filter chips and

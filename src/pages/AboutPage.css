@@ -85,9 +85,11 @@
   position: relative;
 }
 .about-hero__top {
-  padding-bottom: var(--space-6);
+  /* Compact: rule hugs the eyebrow, tight gap to the hero grid below.
+     Was space-6 pad + space-7 margin, which floated the title ~100px down. */
+  padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--hairline);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 .about-hero__grid {
   display: grid;

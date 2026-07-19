@@ -135,7 +135,9 @@
 .meth-band--hero {
   background: #15110F;
   border-bottom: 1px solid rgba(239, 233, 220, 0.12);
-  padding: clamp(52px, 9vh, 104px) 0 clamp(60px, 8vw, 104px);
+  /* Top pinned to --space-7 (48px) to match the Services/About hero top gap
+     (~46px). The old clamp(52px, 9vh, 104px) grew with viewport to ~68px. */
+  padding: var(--space-7) 0 clamp(60px, 8vw, 104px);
 }
 .meth-hero__halo {
   position: absolute;

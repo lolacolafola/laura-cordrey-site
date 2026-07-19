@@ -92,7 +92,9 @@
 /* ─── 1 · HERO ────────────────────────────────────────── */
 .ai-band--hero {
   background: #0E0B09;
-  padding-top: clamp(56px, 7vw, 92px);
+  /* Top pinned to --space-7 (48px) to match the ~46px hero top gap on the
+     other pages; was clamp(56px, 7vw, 92px). */
+  padding-top: var(--space-7);
   padding-bottom: clamp(56px, 7vw, 92px);
 }
 .ai-band__halo--hero {
