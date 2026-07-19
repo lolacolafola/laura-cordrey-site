@@ -415,6 +415,19 @@
 .svc-band--bone .svc-price__amount { color: var(--ink-on-surface); }
 .svc-band--bone .svc-price__unit { color: var(--ink-muted-on-surface); }
 
+/* Engagement index on the bone ground (opening section, lifted off the hero).
+ * The index tokens default to light-on-dark; recolour for the cream ground. */
+.svc-band--bone .svc-index__title { color: var(--ink-on-surface); }
+.svc-band--bone .svc-index__lede { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-index__one { color: var(--ink-muted-on-surface); }
+.svc-band--bone .svc-index__row { border-top-color: rgba(21, 17, 15, 0.12); }
+.svc-band--bone .svc-index__row:last-child { border-bottom-color: rgba(21, 17, 15, 0.12); }
+/* Flagship still leads the list (gold reads as washed-out on cream, so use the
+ * accent); AI row name was cream — invisible on bone — so drop it to ink. */
+.svc-band--bone .svc-index__row--flag .svc-index__nm { color: var(--accent); }
+.svc-band--bone .svc-index__row--flag .svc-index__arr { color: var(--accent); }
+.svc-band--bone .svc-index__row--ai .svc-index__nm { color: var(--ink-on-surface); }
+
 /* Grey (§02 SOS) — kicker turns red for urgency */
 .svc-band--grey .svc-ctanote { color: rgba(239, 233, 220, 0.7); }
 

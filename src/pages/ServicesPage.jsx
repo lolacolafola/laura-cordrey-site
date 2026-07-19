@@ -61,13 +61,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── ENGAGEMENT INDEX (Engine flagship first, then the pieces) ─ */}
-      <section className="svc-band svc-band--deep">
+      {/* ─── ENGAGEMENT INDEX (Engine flagship first, then the pieces) ─
+        * Bone ground so this opening section lifts off the dark hero. */}
+      <section className="svc-band svc-band--bone">
         <div className="container">
           <div className="svc-index__head">
             <h2 className="svc-index__title">Start with the whole engine, or one piece.</h2>
             <p className="svc-index__lede">
-              The Fan Engine is all of it, run as one system. Or begin with a
+              The Fan Engine<span className="tm">™</span> is all of it, run as one system. Or begin with a
               single lever you already think in: protect what you have, acquire
               without paying, deepen your best. Each connects to the same engine.
             </p>
@@ -104,9 +105,9 @@ export default function ServicesPage() {
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </Link>
           </nav>
-          <p style={{ marginTop: 'clamp(20px,2.4vw,28px)', marginBottom: 0, fontSize: '.95rem', lineHeight: 1.55, color: 'rgba(239,233,220,.7)', fontWeight: 500 }}>
+          <p style={{ marginTop: 'clamp(20px,2.4vw,28px)', marginBottom: 0, fontSize: '.95rem', lineHeight: 1.55, color: 'var(--ink-muted-on-surface)', fontWeight: 500 }}>
             Each one plug-and-play. If you don&rsquo;t have the team to run it, I bring one.{' '}
-            <a href="#how-i-work" className="svc-txtlink" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.32)', paddingBottom: 2 }}>
+            <a href="#how-i-work" className="svc-txtlink" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 2 }}>
               How I work <span aria-hidden="true">↓</span>
             </a>
           </p>
@@ -182,7 +183,7 @@ export default function ServicesPage() {
       <section className="svc-band svc-band--grey" id="sentiment-sos">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">01 · Protect</span>
+            <span className="svc-eng__kick svc-eng__kick--accent">Protect</span>
             <h2 className="svc-eng__title">
               Sentiment <mark>SOS</mark>.
             </h2>
@@ -215,7 +216,7 @@ export default function ServicesPage() {
       <section className="svc-band" id="fan-programs">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">02 · Acquire</span>
+            <span className="svc-eng__kick svc-eng__kick--accent">Acquire</span>
             <h2 className="svc-eng__title">
               Fan <mark>Programs</mark>.
             </h2>
@@ -248,7 +249,7 @@ export default function ServicesPage() {
       <section className="svc-band svc-band--bone" id="fan-moments">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick">03 · Deepen</span>
+            <span className="svc-eng__kick">Deepen</span>
             <h2 className="svc-eng__title">
               Fan <mark>Moments</mark>.
             </h2>
@@ -281,7 +282,7 @@ export default function ServicesPage() {
       <section className="svc-band svc-band--grey" id="advisory">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick">04 · In the room</span>
+            <span className="svc-eng__kick">In the room</span>
             <h2 className="svc-eng__title">
               <mark>Advisory</mark>.
             </h2>

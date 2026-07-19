@@ -225,7 +225,7 @@ function IntroScreen({ onStart }) {
         <p className="fa-foldbio">
           I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine, my framework for fan-led growth. This Fan Score is part of it.
         </p>
-        <div className="fa-foldsign">Laura Cordrey · The Fan Engine</div>
+        <div className="fa-foldsign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
       </div>
     </section>
   )
@@ -416,7 +416,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
         <button className="fa-btn" type="submit">Show my full result <span aria-hidden="true">→</span></button>
       </form>
       <p className="fa-trust">No spam. Your result, plus the occasional note on fan-led growth. Unsubscribe anytime.</p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
+      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
     </section>
   )
 }
@@ -557,7 +557,7 @@ function LiveResult({ scored, lead, restart }) {
         {dlError && <div className="fa-fldnote">{dlError}</div>}
       </div>
       <p className="fa-note">{noteText}</p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
+      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
     </section>
   )
 }
@@ -895,7 +895,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
       <p className="fa-note">
         This is the directional, self-assessed edition of the Fan Score, not a growth score. It's only as honest as the evidence behind each answer, so treat it as a starting point, best confirmed in a call. Re-run it monthly. The full engagement begins the day you go live.
       </p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
+      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
     </section>
   )
 }

@@ -100,7 +100,7 @@ export default function MethodologyPage() {
           <div>
             <span className="meth-eyebrow meth-eyebrow--gold">The method</span>
             <h1 className="meth-h1">
-              The Fan <mark>Engine</mark>.
+              The <mark>Fan Engine<span className="tm">™</span></mark>.
             </h1>
             <p className="meth-hero__lede">
               You're sitting on more fandom than you can see, prove, or bank.
@@ -144,7 +144,7 @@ export default function MethodologyPage() {
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
               </g>
               <text x="220" y="242" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="10.5" fontWeight="800" letterSpacing="2" fill="#D4C896">
-                FAN ENGINE
+                FAN ENGINE<tspan fontSize="6" dy="-4" letterSpacing="0">™</tspan>
               </text>
               <circle cx="220" cy="66" r="23" fill="#241D19" stroke="rgba(212,200,150,.32)" strokeWidth="1" />
               <g transform="translate(210.2,56.2) scale(.82)" fill="none" stroke="#C8362B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -239,7 +239,7 @@ export default function MethodologyPage() {
           </div>
 
           <div className="meth-schematic">
-            <span className="meth-eyebrow meth-eyebrow--gold meth-schematic__label">The Fan Engine</span>
+            <span className="meth-eyebrow meth-eyebrow--gold meth-schematic__label">The Fan Engine<span className="tm">™</span></span>
 
             <div className="meth-schematic__grid">
               {disciplines.map((d) => (

@@ -247,9 +247,9 @@ export default function FanValueModelPage() {
           The growth is already in your <mark>userbase</mark>. Here&rsquo;s what it&rsquo;s worth.
         </p>
         <p className="fvm-lede">
-          Put in the numbers you already know. I project the three ways fans grow you:
-          they stay, they spend more, and they bring you new customers, all from published
-          benchmarks. Conservative, and it shows its work.
+          Put in a few numbers you already have, and I&rsquo;ll show you what your fans
+          are worth: what you gain when they stay, spend more, and bring you new customers.
+          The estimate is conservative, and you can open the workings behind every figure.
         </p>
 
         <hr className="fvm-rule" />
@@ -668,7 +668,7 @@ export default function FanValueModelPage() {
           </span>
         </p>
 
-        <div className="fvm-sig">Laura Cordrey · The Fan Engine</div>
+        <div className="fvm-sig">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
       </div>
     </div>
   )
