@@ -237,10 +237,11 @@
   max-height: 56px;
   width: auto;
   object-fit: contain;
-  transition: transform var(--transition);
 }
-.about-proof__cell:hover img {
-  transform: scale(1.03);
+/* Same mobile arrangement as the other proof strips (svc-proof, homepage):
+   drop from 5 columns to 2 on phones so the logos don't cram. */
+@media (max-width: 640px) {
+  .about-proof__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .about-proof__note {
   margin-top: var(--space-4);
