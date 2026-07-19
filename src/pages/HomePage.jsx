@@ -127,7 +127,7 @@ export default function HomePage() {
           <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.9rem,8vw,7.4rem)', lineHeight: 0.92, letterSpacing: '-.04em', margin: 0, maxWidth: '15ch' }}>
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>
-          <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '50ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
+          <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '58ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
             The customers you already paid for are worth far more than you&rsquo;re getting. I build the brand love and advocacy that turns them into fans, so they stay, spend more, and bring new customers with them.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
@@ -201,7 +201,7 @@ export default function HomePage() {
             <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, maxWidth: '22ch', color: '#15110F' }}>
               You don’t buy fans. You <mark>earn</mark> them.
             </h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '50ch' }}>
+            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '58ch' }}>
               People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can’t buy that. Earn it, and here is what your fans start doing for you.
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function HomePage() {
           <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(28px,3.4vw,44px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.4vw,44px)' }}>
             <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
             <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,48px)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '46ch' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '52ch' }}>
                 <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
                   Fan Value estimate
                 </span>
@@ -252,7 +252,7 @@ export default function HomePage() {
       {/* ─── WHY YOU'RE HERE ─── */}
       <section id="why-youre-here" style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.12)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ maxWidth: '60ch' }}>
+          <div data-rev style={{ maxWidth: '68ch' }}>
             <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why you’re here</span>
             <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.1rem,5vw,4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>
               However you got here, <mark>fans are the next step</mark>.
@@ -405,22 +405,22 @@ export default function HomePage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
                   <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
                   <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s really driving it and hand you a fix you can ship, across product, comms and community, fast.</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s driving it and hand you a fix to ship fast.</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
                   <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="megaphone" size={24} /></span>
                   <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Programs</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You pay for every new customer, and your users could be bringing them in instead. One program, creator, advocacy, loyalty or referral, built and measured.</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You pay for every new customer. Your fans could bring them instead, built and measured.</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
                   <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
                   <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You’ve got a big moment coming: a launch, a release, a milestone. I turn it into one your fans carry for you, built for reach and sales, not just spend.</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>A big moment coming, launch, release or milestone? I turn it into one your fans carry.</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
                   <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Advisory</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership, without the full-time hire. Drop in for a strategy session, stay on as a retainer, or run it as an embedded fractional lead. As much or as little as you need.</span>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership without the full-time hire. As much or as little as you need.</span>
                 </div>
               </div>
             </Link>
@@ -444,7 +444,7 @@ export default function HomePage() {
           <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.8rem,9vw,7rem)', lineHeight: 0.9, letterSpacing: '-.04em', margin: 0, maxWidth: '13ch', color: '#FBF4E6' }}>
             What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
           </h2>
-          <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '42ch', margin: 0 }}>
+          <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '52ch', margin: 0 }}>
             See what your fans are worth on your own numbers, or tell me what&rsquo;s going on and I&rsquo;ll be in touch.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>

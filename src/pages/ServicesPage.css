@@ -144,9 +144,13 @@
 }
 .svc-index__row {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: var(--space-5);
-  align-items: baseline;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "nm arr"
+    "one arr";
+  column-gap: var(--space-5);
+  row-gap: 5px;
+  align-items: center;
   padding: 1.6rem 0;
   border-top: 1px solid var(--hairline);
   text-decoration: none;
@@ -157,18 +161,22 @@
   border-bottom: 1px solid var(--hairline);
 }
 .svc-index__nm {
+  grid-area: nm;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   transition: transform var(--transition);
 }
 .svc-index__one {
-  font-size: 0.9rem;
+  grid-area: one;
+  font-size: 0.95rem;
   color: var(--ink-muted);
-  max-width: 24rem;
-  text-align: right;
+  max-width: 56rem;
+  text-align: left;
 }
 .svc-index__arr {
+  grid-area: arr;
+  align-self: center;
   color: var(--accent);
   font-weight: 800;
   font-size: 1.2rem;
@@ -515,8 +523,6 @@
 @media (max-width: 960px) {
   .svc-eng { grid-template-columns: 1fr; }
   .svc-eng__left { position: static; }
-  .svc-index__row { grid-template-columns: 1fr auto; }
-  .svc-index__one { display: none; }
 }
 
 /* AI index row: For AI companies (audience pointer, not an offer). */
