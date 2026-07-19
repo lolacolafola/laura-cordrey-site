@@ -51,6 +51,16 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
+  // Close drawer on a click/tap outside the header (nav + open sheet), so you
+  // don't have to hit the X. The opening click is on the toggle (inside
+  // .cinnav), so it won't self-close.
+  useEffect(() => {
+    if (!menuOpen) return
+    const onDown = (e) => { if (!e.target.closest('.cinnav')) setMenuOpen(false) }
+    document.addEventListener('click', onDown)
+    return () => document.removeEventListener('click', onDown)
+  }, [menuOpen])
+
   // Lock scroll while drawer open.
   useEffect(() => {
     const original = document.body.style.overflow

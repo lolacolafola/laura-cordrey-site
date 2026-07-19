@@ -381,7 +381,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
   const tText = tColor
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span></div>
+      <div className="fa-fig"><Sparkle />The Fan Score</div>
       <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
       <p className="fa-numlabel">
         of your growth is fan-powered. The other {scored.rented}% is untapped fan potential.
@@ -467,7 +467,7 @@ function LiveResult({ scored, lead, restart }) {
       <div className="fa-reveal">
         <div className="fa-reveal__glow" aria-hidden="true" />
         <div className="fa-reveal__inner">
-          <div className="fa-fig fa-fig--band"><Sparkle />The Fan Score<span className="tm">™</span></div>
+          <div className="fa-fig fa-fig--band"><Sparkle />The Fan Score</div>
           <div className="fa-tier">Your result · {tier}</div>
           <div className="fa-numblock">
             <div className="fa-bignum__halo" aria-hidden="true" />
@@ -527,7 +527,7 @@ function LiveResult({ scored, lead, restart }) {
         <div className="fa-cardcap">Share your result</div>
         <div className={`fa-card fa-card--${tierSlug}`} ref={cardRef}>
           <div className="fa-card__glow" aria-hidden="true" />
-          <div className="fa-ce"><Sparkle />The Fan Score<span className="tm">™</span></div>
+          <div className="fa-ce"><Sparkle />The Fan Score</div>
           <div className="fa-ct">{tier} · {TIER_COPY[tier]}</div>
           <div className="fa-cbig">{owned}%</div>
           <div className="fa-csub">of my growth is fan-powered</div>
