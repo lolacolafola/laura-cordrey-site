@@ -156,6 +156,10 @@
     justify-content: center;
     text-align: center;
     white-space: normal;
+    /* Trim the inline 30px side padding so the label sits on one line at
+       phone widths (two at the very narrowest) instead of three. */
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
   /* Logo strip: 3 on top, 2 centered underneath (no orphan). */
   .cin .hero-trust .grid-5 {
