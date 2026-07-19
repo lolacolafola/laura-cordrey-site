@@ -83,9 +83,12 @@
   gap: var(--space-5);
 }
 .svc-hero__top {
-  padding-bottom: var(--space-6);
+  /* Compact: rule hugs the eyebrow; the __inner flex gap carries the
+     space down to the title. Was space-6 pad + space-3 margin stacked on
+     top of the 24px flex gap, which floated the title ~90px down. */
+  padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--hairline);
-  margin-bottom: var(--space-3);
+  margin-bottom: 0;
 }
 .svc-hero__title {
   font-size: var(--fs-display-l);
@@ -110,6 +113,29 @@
 }
 
 /* ─── ENGAGEMENT INDEX ───────────────────────────────────── */
+.svc-index__head {
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 18px);
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+}
+.svc-index__title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+.svc-index__lede {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin: 0;
+  text-wrap: pretty;
+}
 .svc-index {
   display: flex;
   flex-direction: column;
@@ -264,6 +290,12 @@
 .svc-band--bone .svc-eng__right .svc-proofcard p strong {
   color: var(--accent-deep);
 }
+/* On the bone band the cream card is nearly the band colour — give it a
+ * firmer edge and a light-tuned lift so it reads as a distinct card. */
+.svc-band--bone .svc-proofcard {
+  border-color: rgba(21, 17, 15, 0.2);
+  box-shadow: 0 12px 30px rgba(21, 17, 15, 0.12);
+}
 
 /* ─── CREDIT META ─────────────────────────────────────────── */
 .svc-credit {
@@ -280,7 +312,10 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  /* Faint cream: four of the five offer bands are dark (default, grey, ox),
+     so light is the correct default. The one light band (bone) overrides to
+     dark below. --hairline (the credit border) is already a light rule. */
+  color: rgba(251, 243, 228, 0.55);
 }
 
 /* ─── TEXT LINK + CTA NOTE ────────────────────────────────── */
@@ -336,7 +371,6 @@
 .svc-band--ox .svc-youget { color: rgba(251, 243, 228, 0.85); }
 .svc-band--ox .svc-youget strong { color: #E7D9AD; }
 .svc-band--ox .svc-credit { border-top-color: rgba(251, 243, 228, 0.25); }
-.svc-band--ox .svc-credit__fmt { color: rgba(251, 243, 228, 0.55); }
 .svc-band--ox .svc-txtlink {
   color: #E7D9AD;
   border-bottom-color: rgba(231, 217, 173, 0.4);
@@ -463,6 +497,161 @@
   .svc-index__one { display: none; }
 }
 
-/* Fifth index row: For AI companies (audience pointer, not an offer). */
+/* AI index row: For AI companies (audience pointer, not an offer). */
 .svc-index__row--ai .svc-index__n { color: #D4C896; }
 .svc-index__row--ai .svc-index__nm { color: #EFE9DC; }
+
+/* Flagship index row: The Fan Engine keeps the red number so 01–05 stay one
+   sequence; it's marked out instead by the brighter cream name and gold arrow.
+   (Gold numbers are reserved for the AI row, which sits outside the 01–05 run.) */
+.svc-index__row--flag .svc-index__nm { color: #EFE9DC; }
+.svc-index__row--flag .svc-index__arr { color: #D4C896; }
+
+/* ─── FAN ENGINE · build phases (readable cards on the red) ─ */
+.svc-phases__eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #E7D9AD;
+  margin-top: var(--space-2);
+}
+.svc-phases {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 16px);
+  margin: 0;
+}
+/* Phase boxes sit on the oxblood flagship band. Recessed tonal panels
+   (darkened wash + faint cream hairline) rather than bright white cards,
+   so the section reads as one confident red statement, not a wall of white.
+   Gold label + icon, cream body. */
+.svc-phase {
+  background: rgba(0, 0, 0, 0.20);
+  border: 1px solid rgba(251, 243, 228, 0.16);
+  border-radius: 8px;
+  padding: clamp(18px, 2vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.svc-phase svg {
+  width: 26px;
+  height: 26px;
+  color: #E7D9AD;
+}
+.svc-phase__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E7D9AD;
+}
+.svc-phase p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #FBF3E4;
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .svc-phases { grid-template-columns: 1fr; }
+}
+
+/* ─── PROOF BAND (logos + client quote, one moment) ───────── */
+.svc-proof {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+  text-align: center;
+}
+.svc-proof__kick {
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+.svc-proof__logos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: clamp(18px, 2vw, 32px) clamp(24px, 3vw, 48px);
+}
+.svc-proof__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+}
+.svc-proof__cell img {
+  max-height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+.svc-proof__quote {
+  margin: 0;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-top: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--hairline);
+  width: 100%;
+}
+.svc-proof__quote blockquote {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.svc-proof__quote blockquote mark {
+  background: transparent;
+  color: #E0574B;
+  font-weight: 700;
+}
+.svc-proof__quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.svc-proof__quote figcaption img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(212, 200, 150, 0.4);
+}
+.svc-proof__quote figcaption span {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2px;
+}
+.svc-proof__quote figcaption strong {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.svc-proof__quote figcaption span span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+@media (max-width: 640px) {
+  .svc-proof__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
