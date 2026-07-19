@@ -498,12 +498,12 @@
 }
 
 /* AI index row: For AI companies (audience pointer, not an offer). */
-.svc-index__row--ai .svc-index__n { color: #D4C896; }
 .svc-index__row--ai .svc-index__nm { color: #EFE9DC; }
 
-/* Flagship index row: The Fan Engine keeps the red number so 01–05 stay one
-   sequence; it's marked out instead by the brighter cream name and gold arrow.
-   (Gold numbers are reserved for the AI row, which sits outside the 01–05 run.) */
+/* Flagship index row: The Fan Engine is the one gold-marked row — gold number,
+   brighter cream name, gold arrow — so it reads as the flagship at the top of
+   the list. Every other number (including AI) stays red. */
+.svc-index__row--flag .svc-index__n { color: #D4C896; }
 .svc-index__row--flag .svc-index__nm { color: #EFE9DC; }
 .svc-index__row--flag .svc-index__arr { color: #D4C896; }
 

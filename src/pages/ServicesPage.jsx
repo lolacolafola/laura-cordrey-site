@@ -17,9 +17,9 @@ const CLIENTS = [
 
 /* Services — editorial "Work with me" page. Structure kept from the live
  * design (hero → numbered index → per-offer blocks → How I work → close);
- * copy is the CMO-pass v-final deck (18 Jul), pieces-first: protect / acquire
- * / deepen, then the Fan Engine, then Advisory. Logos + the Brusson quote live
- * together in one proof band before the close. */
+ * copy is the CMO-pass v-final deck (18 Jul). Engine-first: the Fan Engine
+ * flagship, then the pieces (protect / acquire / deepen), then Advisory.
+ * Logos + the Brusson quote live together in one proof band before the close. */
 
 export default function ServicesPage() {
   useDocumentMeta({
@@ -58,18 +58,24 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── ENGAGEMENT INDEX (pieces first, Engine as flagship) ─ */}
+      {/* ─── ENGAGEMENT INDEX (Engine flagship first, then the pieces) ─ */}
       <section className="svc-band svc-band--deep">
         <div className="container">
           <div className="svc-index__head">
-            <h2 className="svc-index__title">Three ways to start. One system behind them.</h2>
+            <h2 className="svc-index__title">Start with the whole engine, or one piece.</h2>
             <p className="svc-index__lede">
-              Each piece is a lever you already think in: protect what you have,
-              acquire without paying, deepen your best. Start with one. They all
-              connect to the same engine.
+              The Fan Engine is all of it, run as one system. Or begin with a
+              single lever you already think in: protect what you have, acquire
+              without paying, deepen your best. Each connects to the same engine.
             </p>
           </div>
           <nav className="svc-index" aria-label="Engagements">
+            <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
+              <span className="svc-index__n">✦</span>
+              <span className="svc-index__nm">The Fan Engine</span>
+              <span className="svc-index__one">The flagship. The whole engine, powered by your fans.</span>
+              <span className="svc-index__arr" aria-hidden="true">→</span>
+            </a>
             <a href="#sentiment-sos" className="svc-index__row">
               <span className="svc-index__n">01</span>
               <span className="svc-index__nm">Sentiment SOS</span>
@@ -88,14 +94,8 @@ export default function ServicesPage() {
               <span className="svc-index__one">Deepen. Your top customers spend more and stay longer.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
-            <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
-              <span className="svc-index__n">04</span>
-              <span className="svc-index__nm">The Fan Engine</span>
-              <span className="svc-index__one">The flagship. The whole engine, powered by your fans.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
             <a href="#advisory" className="svc-index__row">
-              <span className="svc-index__n">05</span>
+              <span className="svc-index__n">04</span>
               <span className="svc-index__nm">Advisory</span>
               <span className="svc-index__one">One decision, or an embedded role.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
@@ -116,107 +116,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── §01 SENTIMENT SOS · Protect (grey) ───────────────── */}
-      <section className="svc-band svc-band--grey" id="sentiment-sos">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">01 · Protect</span>
-            <h2 className="svc-eng__title">
-              Sentiment <mark>SOS</mark>.
-            </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
-            </Link>
-            <span className="svc-ctanote">
-              In a crisis right now? We can start this week.
-            </span>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> your community has turned on you in public, and it&rsquo;s getting worse.</p>
-            <p className="svc-youget"><strong>What you get:</strong> the real cause found in days, and a fix to ship across product and community, in one to two weeks, faster if it can&rsquo;t wait. And sentiment tracked, so you watch it climb back.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> you keep the customers a blow-up would have cost you.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>85% positive sentiment</strong> held across a 15M-player community. Ghost Recon, Ubisoft.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">1 to 2 weeks · Faster if it can&rsquo;t wait</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── §02 FAN PROGRAMS · Acquire (dark) ────────────────── */}
-      <section className="svc-band" id="fan-programs">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">02 · Acquire</span>
-            <h2 className="svc-eng__title">
-              Fan <mark>Programs</mark>.
-            </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Talk about a program <span aria-hidden="true">→</span>
-            </Link>
-            <Link to="/case-studies" className="svc-txtlink">
-              See programs I&rsquo;ve built <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> you pay for every new customer, and your users could be bringing them instead.</p>
-            <p className="svc-youget"><strong>What you get:</strong> one program, built and measured, creator, advocacy, loyalty or referral, whichever fits.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> growth you don&rsquo;t pay for every time.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>50M+ views</strong> from a program I structured, members reaching their own audiences at $0 media spend. Rainbow Six Siege, Ubisoft.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">From 3 weeks · Scoped to the program</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── §03 FAN MOMENTS · Deepen (bone) ──────────────────── */}
-      <section className="svc-band svc-band--bone" id="fan-moments">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick">03 · Deepen</span>
-            <h2 className="svc-eng__title">
-              Fan <mark>Moments</mark>.
-            </h2>
-            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
-              Talk about your moment <span aria-hidden="true">→</span>
-            </Link>
-            <Link to="/case-studies" className="svc-txtlink">
-              See moments I&rsquo;ve built <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> you want to give your best fans a moment they&rsquo;ll love.</p>
-            <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, a workshop, unique merch, a drop, or a brand collab made right for your audience. Measured, so you see what it drove.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> your top customers spend more and stay longer.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                A fan drop that sold out and made <strong>$32K in under three hours</strong>, US Mobile. A Live Nation activation that changed behaviour: over half its users said they wouldn&rsquo;t have carpooled to shows without it. BlaBlaCar.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">From 2 weeks · Scheduled around your date</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── §04 THE FAN ENGINE · flagship (oxblood) ──────────── */}
+      {/* ─── §01 THE FAN ENGINE · flagship (oxblood) ──────────── */}
       <section className="svc-band svc-band--ox" id="fan-engine">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick">04 · Or build the whole engine</span>
+            <span className="svc-eng__kick">The whole system</span>
             <h2 className="svc-eng__title">The Fan Engine.</h2>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
@@ -228,7 +132,7 @@ export default function ServicesPage() {
           <div className="svc-eng__right">
             <p className="svc-eng__body">
               Fan-led growth built into the bones of the business, measured end
-              to end. Everything above, run as one system, not one-off projects.
+              to end. Everything else, run as one system, not one-off projects.
             </p>
             <p className="svc-youget"><strong>Need it when:</strong> your growth runs on paid and stops the day you stop paying, and the userbase you paid a fortune to build gives you nothing back.</p>
             <span className="svc-phases__eyebrow">What you get, end to end</span>
@@ -270,12 +174,104 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
+      {/* ─── §02 SENTIMENT SOS · Protect (grey) ───────────────── */}
+      <section className="svc-band svc-band--grey" id="sentiment-sos">
+        <div className="container svc-eng">
+          <div className="svc-eng__left">
+            <span className="svc-eng__kick svc-eng__kick--accent">01 · Protect</span>
+            <h2 className="svc-eng__title">
+              Sentiment <mark>SOS</mark>.
+            </h2>
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
+            </Link>
+            <span className="svc-ctanote">
+              In a crisis right now? We can start this week.
+            </span>
+          </div>
+          <div className="svc-eng__right">
+            <p className="svc-youget"><strong>Need it when:</strong> your community has turned on you in public, and it&rsquo;s getting worse.</p>
+            <p className="svc-youget"><strong>What you get:</strong> the real cause found in days, and a fix to ship across product and community, in one to two weeks, faster if it can&rsquo;t wait. And sentiment tracked, so you watch it climb back.</p>
+            <p className="svc-youget"><strong>Payoff:</strong> you keep the customers a blow-up would have cost you.</p>
+            <div className="svc-proofcard">
+              <span className="svc-proofcard__label">Proof</span>
+              <p>
+                <strong>85% positive sentiment</strong> held across a 15M-player community. Ghost Recon, Ubisoft.
+              </p>
+            </div>
+            <div className="svc-credit">
+              <span className="svc-credit__fmt">1 to 2 weeks · Faster if it can&rsquo;t wait</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ─── §03 FAN PROGRAMS · Acquire (dark) ────────────────── */}
+      <section className="svc-band" id="fan-programs">
+        <div className="container svc-eng">
+          <div className="svc-eng__left">
+            <span className="svc-eng__kick svc-eng__kick--accent">02 · Acquire</span>
+            <h2 className="svc-eng__title">
+              Fan <mark>Programs</mark>.
+            </h2>
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              Talk about a program <span aria-hidden="true">→</span>
+            </Link>
+            <Link to="/case-studies" className="svc-txtlink">
+              See programs I&rsquo;ve built <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="svc-eng__right">
+            <p className="svc-youget"><strong>Need it when:</strong> you pay for every new customer, and your users could be bringing them instead.</p>
+            <p className="svc-youget"><strong>What you get:</strong> one program, built and measured, creator, advocacy, loyalty or referral, whichever fits.</p>
+            <p className="svc-youget"><strong>Payoff:</strong> growth you don&rsquo;t pay for every time.</p>
+            <div className="svc-proofcard">
+              <span className="svc-proofcard__label">Proof</span>
+              <p>
+                <strong>50M+ views</strong> from a program I structured, members reaching their own audiences at $0 media spend. Rainbow Six Siege, Ubisoft.
+              </p>
+            </div>
+            <div className="svc-credit">
+              <span className="svc-credit__fmt">From 3 weeks · Scoped to the program</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ─── §04 FAN MOMENTS · Deepen (bone) ──────────────────── */}
+      <section className="svc-band svc-band--bone" id="fan-moments">
+        <div className="container svc-eng">
+          <div className="svc-eng__left">
+            <span className="svc-eng__kick">03 · Deepen</span>
+            <h2 className="svc-eng__title">
+              Fan <mark>Moments</mark>.
+            </h2>
+            <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
+              Talk about your moment <span aria-hidden="true">→</span>
+            </Link>
+            <Link to="/case-studies" className="svc-txtlink">
+              See moments I&rsquo;ve built <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="svc-eng__right">
+            <p className="svc-youget"><strong>Need it when:</strong> you want to give your best fans a moment they&rsquo;ll love.</p>
+            <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, a workshop, unique merch, a drop, or a brand collab made right for your audience. Measured, so you see what it drove.</p>
+            <p className="svc-youget"><strong>Payoff:</strong> your top customers spend more and stay longer.</p>
+            <div className="svc-proofcard">
+              <span className="svc-proofcard__label">Proof</span>
+              <p>
+                A fan drop that sold out and made <strong>$32K in under three hours</strong>, US Mobile. A Live Nation activation that changed behaviour: over half its users said they wouldn&rsquo;t have carpooled to shows without it. BlaBlaCar.
+              </p>
+            </div>
+            <div className="svc-credit">
+              <span className="svc-credit__fmt">From 2 weeks · Scheduled around your date</span>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* ─── §05 ADVISORY (dark) ──────────────────────────────── */}
       <section className="svc-band svc-band--grey" id="advisory">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick">05 · In the room</span>
+            <span className="svc-eng__kick">04 · In the room</span>
             <h2 className="svc-eng__title">
               <mark>Advisory</mark>.
             </h2>
