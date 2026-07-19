@@ -103,9 +103,12 @@
   border-radius: 3px;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1),
+              color 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
-.fa-btn:hover { background: var(--fa-accent-deep); }
+/* Match the rest of the site: red CTA fills gold with dark ink on hover,
+   rather than darkening to oxblood. */
+.fa-btn:hover { background: #D4C896; color: var(--fa-ink); }
 /* Arrow nudge on hover, matching the rest of the site's CTAs. */
 .fa-btn span { display: inline-block; transition: transform 0.2s cubic-bezier(0.16, 0.84, 0.44, 1); }
 .fa-btn:hover span { transform: translateX(4px); }
