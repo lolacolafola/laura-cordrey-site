@@ -154,16 +154,15 @@ export default function AboutPage() {
                 <mark>I made it one</mark>.
               </h1>
               <p className="about-intro__lede">
-                I build fan-led growth for fan-driven brands:{' '}
-                <mark>the brand they fall for</mark>, and the Fan Engine<span className="tm">™</span> that
-                turns that love into growth you can measure.
+                I build <mark>the brand people fall for</mark>, and the Fan
+                Engine<span className="tm">™</span> that turns that love into
+                growth you can measure: higher retention, higher lifetime value,
+                and the reach you&rsquo;d otherwise pay for.
               </p>
               <p className="about-intro__sub">
-                Lower acquisition cost, higher retention, the reach you&rsquo;d
-                otherwise pay for. I&rsquo;ve built from nothing and I&rsquo;ve
-                built from millions: thirteen years of it, most of it in gaming,
-                entertainment and live service, where fans are loudest and
-                feedback lands in real time.
+                I&rsquo;ve built it from nothing and at millions of users.
+                Thirteen years, mostly in games, entertainment and live service,
+                where fans are loudest and feedback is instant.
               </p>
             </div>
             <figure className="about-hero__portrait">
@@ -218,7 +217,7 @@ export default function AboutPage() {
             <p>
               Paid acquisition got the budgets, the teams, the dashboards. The
               other half of growth, keeping the fans you have and turning them
-              into the ones who bring the next wave, got none of that.{' '}
+              into the ones who bring you new customers, got none of that.{' '}
               <strong>So it looks optional. It isn&rsquo;t. It just never had
               an owner.</strong>
             </p>

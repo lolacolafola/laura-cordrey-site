@@ -12,9 +12,9 @@ const BASE = import.meta.env.BASE_URL
 // Ubisoft is program-wide 60M+ reach (labelled "across programs"). Cards route to
 // /case-studies. BlaBlaCar's story is told in the carousel, not as a headline number.
 const stats = [
-  { value: '$32K', unit: 'in 3 hrs', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
+  { value: '$32K', unit: 'in under three hours', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
   { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
-  { value: '+80%', unit: 'MAU', label: 'from fan-focused product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.jpg', alt: 'Azarus game ad platform' },
+  { value: '+80%', unit: 'MAU', label: 'from streamer-led product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.jpg', alt: 'Azarus game ad platform' },
   { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
 ]
 
@@ -72,7 +72,7 @@ export default function HomePage() {
   useDocumentMeta({
     title: 'Laura Cordrey · Fan-led growth for fan-driven brands',
     description:
-      'Laura Cordrey builds the fan-led growth engine that turns customers into fans who stay, pay, and bring more. A decade across Ubisoft, BlaBlaCar, US Mobile, Azarus.',
+      'Laura Cordrey builds the fan-led growth engine that turns customers into fans who stay, pay, and bring more. Thirteen years across Ubisoft, BlaBlaCar, US Mobile, Azarus.',
     canonical: pageUrl(''),
     ogType: 'website',
     jsonLd: authorJsonLd(),
@@ -128,7 +128,7 @@ export default function HomePage() {
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>
           <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '50ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
-            You pay ads to bring customers in. Stop paying, and growth stops. I turn the customers you already have into fans who stay, spend more, and bring the next ones in. Growth you own, not rent.
+            The customers you already paid for are worth far more than you&rsquo;re getting. I build the brand love and advocacy that turns them into fans, so they stay, spend more, and bring new customers with them.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
@@ -183,10 +183,10 @@ export default function HomePage() {
             </div>
             <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                When people love what you make, they stay, they spend more, they bring their friends, and they get you talked about. That is <mark>word of mouth and earned media</mark>, and nothing sells harder.
+                <strong style={{ color: '#EFE9DC', fontWeight: 800 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends. <mark>Growth you own, not rent.</mark>
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                It comes from your brand, your product, and your community working as one. Get that right and customers become fans. That is <mark>fan-led growth</mark>. I build it into one engine you own, and I show you what it’s worth.
+                When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into an engine you own, then show you what it&rsquo;s worth.
               </p>
             </div>
           </div>
@@ -445,16 +445,19 @@ export default function HomePage() {
             What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
           </h2>
           <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '42ch', margin: 0 }}>
-            Take the 2-minute Fan Score to see where you stand, or tell me what&rsquo;s going on and I&rsquo;ll be in touch.
+            See what your fans are worth on your own numbers, or tell me what&rsquo;s going on and I&rsquo;ll be in touch.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
-            <Link to="/fan-score" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
-              Take the 2-min Fan Score <span className="ar" aria-hidden>→</span>
+            <Link to="/fan-value" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
+              See what your fans are worth <span className="ar" aria-hidden>→</span>
             </Link>
             <Link to={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
               Let’s talk <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
+          <span style={{ fontSize: '.95rem', color: 'rgba(251,244,230,.7)', fontWeight: 600, marginTop: 2 }}>
+            Or take the <Link to="/fan-score" style={{ color: '#F2D79A', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(242,215,154,.45)' }}>2-minute Fan Score</Link> to find your gaps first.
+          </span>
           {/* Just-keeping-tabs LinkedIn line — the dead email-capture form
             * that used to live here was removed once /contact took over as
             * the real contact surface (that form did nothing on submit). */}

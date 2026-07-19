@@ -177,9 +177,9 @@ function loadHtml2Canvas() {
 
 export default function FanAuditPage() {
   useDocumentMeta({
-    title: 'The Fan Score · How fan-powered is your growth? · Laura Cordrey',
+    title: 'The Fan Score · How fan-led is your growth? · Laura Cordrey',
     description:
-      'A short diagnostic that tells you how fan-powered your growth is today, and the one move that would grow it. Two minutes.',
+      'A short diagnostic that tells you how fan-led your growth is today, and the one move that would grow it. Two minutes.',
     canonical: pageUrl('/fan-score'),
     ogType: 'website',
   })
@@ -210,10 +210,16 @@ function IntroScreen({ onStart }) {
   return (
     <section className="fa-rel">
       <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span></div>
-      <h1 className="fa-h1">How fan-powered is your growth?</h1>
-      <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-powered growth keeps going.</p>
+      <h1 className="fa-h1">How fan-led is your growth?</h1>
+      <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-led growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
       <button className="fa-btn" onClick={onStart}>Get my Fan Score <span aria-hidden="true">→</span></button>
+      <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
+        Prefer to skip to the numbers?{' '}
+        <Link to="/fan-value" style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+          Fan Value: what your fans are worth? <span aria-hidden="true">→</span>
+        </Link>
+      </p>
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
@@ -277,7 +283,7 @@ function LiveFlow({ screen, setScreen }) {
       edition: 'live',
       name: lead.name.trim(),
       email: lead.email.trim(),
-      score: scored ? `${scored.owned}% fan-powered · ${scored.tier}` : 'incomplete',
+      score: scored ? `${scored.owned}% fan-led · ${scored.tier}` : 'incomplete',
       _subject: `[fan-score] ${lead.email.trim()} · ${scored ? scored.owned + '% · ' + scored.tier : ''}`,
     })
     setScreen('liveResult')
@@ -384,14 +390,14 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
       <div className="fa-fig"><Sparkle />The Fan Score</div>
       <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
       <p className="fa-numlabel">
-        of your growth is fan-powered. The other {scored.rented}% is untapped fan potential.
+        of your growth is fan-led. The other {scored.rented}% is untapped fan potential.
       </p>
       <div className="fa-splitbar">
         <i style={{ width: scored.owned + '%', background: tFill }} />
         <i style={{ width: scored.rented + '%', background: '#A79C89' }} />
       </div>
       <div className="fa-splitlegend">
-        <span style={{ color: tText }}>{scored.owned}% fan-powered</span>
+        <span style={{ color: tText }}>{scored.owned}% fan-led</span>
         <span style={{ color: '#6B6157' }}>{scored.rented}% untapped</span>
       </div>
       <hr className="fa-rule" />
@@ -431,7 +437,7 @@ function LiveResult({ scored, lead, restart }) {
     : (() => {
         const pctMin = Math.round(((scored.lowVal - 1) / 2) * 100)
         return {
-          main: <><b>{listAnd(tied)} are level-pegging at {pctMin}% fan-powered.</b> They build on each other, so start with the earliest: {startPillar}. {LEAK_COPY[startPillar]}</>,
+          main: <><b>{listAnd(tied)} are level-pegging at {pctMin}% fan-led.</b> They build on each other, so start with the earliest: {startPillar}. {LEAK_COPY[startPillar]}</>,
           card: <>Start with: <b>{startPillar}</b></>,
         }
       })()
@@ -453,7 +459,7 @@ function LiveResult({ scored, lead, restart }) {
 
   const emailCopy = () => {
     const subj = 'My Fan Score'
-    const body = `My result: ${owned}% of my growth is fan-powered (${tier}).\nBiggest opportunity: ${startPillar}.\n\nCheck yours: ${location.href}`
+    const body = `My result: ${owned}% of my growth is fan-led (${tier}).\nBiggest opportunity: ${startPillar}.\n\nCheck yours: ${location.href}`
     location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
 
@@ -472,13 +478,13 @@ function LiveResult({ scored, lead, restart }) {
           <div className="fa-numblock">
             <div className="fa-bignum__halo" aria-hidden="true" />
             <div className="fa-bignum">{owned}%</div>
-            <div className="fa-numside">fan-powered<br /><span>{rented}% still untapped</span></div>
+            <div className="fa-numside">fan-led<br /><span>{rented}% still untapped</span></div>
           </div>
           <div className="fa-splitbar fa-splitbar--band">
             <i className="fa-splitbar__fan" style={{ width: owned + '%' }} />
           </div>
           <div className="fa-splitlegend fa-splitlegend--band">
-            <span className="fa-splitlegend__fan">{owned}% fan-powered</span>
+            <span className="fa-splitlegend__fan">{owned}% fan-led</span>
             <span className="fa-splitlegend__rented">{rented}% untapped</span>
           </div>
           <h2 className="fa-rhead">{R_HEAD[tier]}</h2>
@@ -490,7 +496,7 @@ function LiveResult({ scored, lead, restart }) {
 
       {/* Light body: what's driving it, leak, move, CTA */}
       <div className="fa-sectlbl fa-sectlbl--drive">What's driving it</div>
-      <p className="fa-hmdesc">Each discipline on the same scale. The tinted track is the room still to build; the fill is fan-powered growth you already have.</p>
+      <p className="fa-hmdesc">Each discipline on the same scale. The tinted track is the room still to build; the fill is fan-led growth you already have.</p>
       <div className="fa-dcards">
         {disciplines.map((d) => (
           <div className="fa-dcard" key={d.key}>
@@ -513,7 +519,7 @@ function LiveResult({ scored, lead, restart }) {
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
         <Link className="fa-btn" to={`/fan-value?score=${owned}`}>
-          See what closing this is worth <span aria-hidden="true">→</span>
+          See what your fans are worth <span aria-hidden="true">→</span>
         </Link>
         <Link className="fa-btn" to={CONTACT_URL}>
           Let’s talk <span aria-hidden="true">→</span>
@@ -530,7 +536,7 @@ function LiveResult({ scored, lead, restart }) {
           <div className="fa-ce"><Sparkle />The Fan Score</div>
           <div className="fa-ct">{tier} · {TIER_COPY[tier]}</div>
           <div className="fa-cbig">{owned}%</div>
-          <div className="fa-csub">of my growth is fan-powered</div>
+          <div className="fa-csub">of my growth is fan-led</div>
           <div className="fa-cbars">
             {disciplines.map((d) => (
               <div className="fa-cbar" key={d.key}>
@@ -627,7 +633,7 @@ function PreFlow({ screen, setScreen }) {
       <section className="fa-rel">
         <div className="fa-fig"><Sparkle />The Fan Score · Pre-launch edition</div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
-        <p className="fa-lede">With no users yet, a "% fan-powered" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
+        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
         <p className="fa-introget">No numbers needed. A minute or two.</p>
         <hr className="fa-rule" />
         <div className="fa-actionrow">

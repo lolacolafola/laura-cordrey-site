@@ -228,7 +228,7 @@ export default function FanValueModelPage() {
           </div>
         ) : (
           <div className="fvm-coldbar">
-            <span className="fvm-coldbar__txt">New here? Get your Fan Score in 2 minutes</span>
+            <span className="fvm-coldbar__txt">Fan Score: how fan-led is your growth?</span>
             <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
               Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
             </Link>
@@ -248,7 +248,7 @@ export default function FanValueModelPage() {
         </p>
         <p className="fvm-lede">
           Put in the numbers you already know. I project the three ways fans grow you:
-          they stay, they spend more, and they bring the next wave, all from published
+          they stay, they spend more, and they bring you new customers, all from published
           benchmarks. Conservative, and it shows its work.
         </p>
 
@@ -382,7 +382,7 @@ export default function FanValueModelPage() {
               </div>
             </div>
             <p className="fvm-reveal__sub">
-              a year, as your fans stay, spend more, and bring the next wave. Your revenue and spend, lifted by conservative benchmarks.
+              a year, as your fans stay, spend more, and bring you new customers. Your revenue and spend, lifted by conservative benchmarks.
             </p>
 
             {/* Split: new revenue vs ad budget saved */}

@@ -10,7 +10,7 @@ export default function LogoBanner() {
     <section className="logo-banner" aria-label="Past clients">
       <div className="container">
         <div className="logo-banner__head">
-          <span className="marker">Ten years building this across consumer, tech, gaming</span>
+          <span className="marker">Thirteen years building this across consumer, tech, gaming</span>
         </div>
 
         <ul className="logo-banner__row">

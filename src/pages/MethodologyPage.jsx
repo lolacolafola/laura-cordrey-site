@@ -72,7 +72,7 @@ const stages = [
   { num: '02', name: 'Habit.', body: 'A reason to come back on their own, without a discount every time.' },
   { num: '03', name: 'Belonging.', body: 'A real community, where fans are in it with each other and with you.' },
   { num: '04', name: 'Identity.', body: 'Where your brand becomes part of how a fan sees themselves.' },
-  { num: '05', name: 'Advocacy.', body: 'Fans bringing the next wave, so your acquisition cost falls.' },
+  { num: '05', name: 'Advocacy.', body: 'Fans bringing you new customers, so your acquisition cost falls.' },
 ]
 
 const scoreboard = [
@@ -227,7 +227,7 @@ export default function MethodologyPage() {
             </p>
             <p className="meth-lede meth-lede--follow">
               I run all four disciplines as one engine, wired together by a
-              measurement spine. I have spent a decade across brand, product,
+              measurement spine. I have spent thirteen years across brand, product,
               community and growth, because the leaks do not respect the org
               chart.{' '}
               <mark className="meth-underline">

@@ -69,7 +69,7 @@ export default function ContactPage() {
   useDocumentMeta({
     title: 'Contact · Laura Cordrey',
     description:
-      'Tell me what you need: growth and brand work, or speaking. I read every message and follow up within two working days to set up a call.',
+      'Tell me what you need: growth and brand work, or speaking. I read every message and follow up within one working day to set up a call.',
     canonical: pageUrl('contact'),
     ogType: 'website',
   })
@@ -136,10 +136,10 @@ export default function ContactPage() {
     ? 'Send booking request'
     : 'Send message'
   const successMsg = isConsulting
-    ? 'Your enquiry is in. I read every one myself and will follow up within two working days to set up a call.'
+    ? 'Your enquiry is in. I read every one myself and will follow up within one working day to set up a call.'
     : isSpeaking
-    ? 'Your booking request is in. I reply to speaking enquiries within two working days, usually sooner.'
-    : 'Message received. I will get back to you within two working days.'
+    ? 'Your booking request is in. I reply to speaking enquiries within one working day, usually sooner.'
+    : 'Message received. I will get back to you within one working day.'
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -298,10 +298,10 @@ export default function ContactPage() {
                         </label>
                         <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
-                          <option>The Fan Engine: I want the whole system</option>
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Programs: I want my users bringing new customers</option>
                           <option>Fan Moments: I have a big moment coming</option>
+                          <option>The Fan Engine: I want the whole system</option>
                           <option>Advisory: a session, or an ongoing embedded role</option>
                           <option value="Fan-led growth for AI: a founding-partner pilot">Fan-led growth for AI: a founding-partner pilot</option>
                           <option>Not sure yet, help me scope it</option>
@@ -400,7 +400,7 @@ export default function ContactPage() {
                       {sending ? 'Sending…' : submitLabel} <span aria-hidden="true">→</span>
                     </button>
                     <p className="contact-submit__note">
-                      Goes straight to my inbox. I read every one and reply within two working days.
+                      Goes straight to my inbox. I read every one and reply within one working day.
                     </p>
                   </div>
                 </div>

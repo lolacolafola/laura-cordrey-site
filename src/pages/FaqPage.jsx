@@ -53,7 +53,7 @@ const FAQS = [
   },
   {
     q: 'What is the Fan Score?',
-    a: 'A free two-minute self-assessment that tells you how fan-powered your growth is today and where the biggest untapped opportunity sits. It is the fastest way to see whether this whole approach is relevant to you. There is a pre-launch edition if you have no users yet.',
+    a: 'A free two-minute self-assessment that tells you how fan-led your growth is today and where the biggest untapped opportunity sits. It is the fastest way to see whether this whole approach is relevant to you. There is a pre-launch edition if you have no users yet.',
   },
   {
     q: 'Why "fans" and not "customers" or "community"?',
