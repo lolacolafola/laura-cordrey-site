@@ -51,7 +51,7 @@ export default function ServicesPage() {
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/fan-led-growth-audit" className="btn btn--ghost btn--lg">
+            <Link to="/fan-score" className="btn btn--ghost btn--lg">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -463,10 +463,10 @@ export default function ServicesPage() {
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/fan-led-growth-audit" className="btn btn--lg svc-finale__ghost">
+            <Link to="/fan-score" className="btn btn--lg svc-finale__ghost">
               Take the 2-min Fan Score <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/fan-led-growth-value-model" className="btn btn--lg svc-finale__ghost">
+            <Link to="/fan-value" className="btn btn--lg svc-finale__ghost">
               Size your Fan Value <span aria-hidden="true">→</span>
             </Link>
           </div>

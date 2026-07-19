@@ -5,7 +5,7 @@ import { pageUrl } from '../lib/seo.js'
 import './FanValueModelPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
-const AUDIT_URL = '/fan-led-growth-audit'
+const FANSCORE_URL = '/fan-score'
 
 const Sparkle = ({ size = 14 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -108,7 +108,7 @@ export default function FanValueModelPage() {
     title: 'The Fan Value Model · What your fans are worth · Laura Cordrey',
     description:
       'A quick estimate of what fan-led growth is worth to your brand each year, built from published benchmarks. Conservative, and it shows its work.',
-    canonical: pageUrl('/fan-led-growth-value-model'),
+    canonical: pageUrl('/fan-value'),
     ogType: 'website',
   })
 
@@ -224,12 +224,12 @@ export default function FanValueModelPage() {
         {arrivedFromAudit ? (
           <div className="fvm-arrival" role="note">
             <Arrow />
-            <span>From your audit · Fan Score <b>{auditScore}%</b></span>
+            <span>From your Fan Score · <b>{auditScore}%</b></span>
           </div>
         ) : (
           <div className="fvm-coldbar">
             <span className="fvm-coldbar__txt">New here? Get your Fan Score in 2 minutes</span>
-            <Link className="fvm-coldbar__link" to={AUDIT_URL}>
+            <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
               Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
             </Link>
           </div>

@@ -54,8 +54,14 @@ export default function App() {
           <Route path="/speaking" element={<SpeakingPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/methodology" element={<MethodologyPage />} />
-          <Route path="/fan-led-growth-value-model" element={<FanValueModelPage />} />
-          <Route path="/fan-led-growth-audit" element={<FanAuditPage />} />
+          {/* Tools live at their branded slugs. */}
+          <Route path="/fan-value" element={<FanValueModelPage />} />
+          <Route path="/fan-score" element={<FanAuditPage />} />
+          {/* Client-side redirects: old slugs kept working after the rename to
+              the branded tool names. Netlify serves true 301s (public/_redirects);
+              these cover the SPA fallback (GitHub Pages) + any in-app nav. */}
+          <Route path="/fan-led-growth-audit" element={<Navigate to="/fan-score" replace />} />
+          <Route path="/fan-led-growth-value-model" element={<Navigate to="/fan-value" replace />} />
           <Route path="/ai" element={<AIPage />} />
           <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />

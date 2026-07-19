@@ -180,7 +180,7 @@ export default function FanAuditPage() {
     title: 'The Fan Score · How fan-powered is your growth? · Laura Cordrey',
     description:
       'A short diagnostic that tells you how fan-powered your growth is today, and the one move that would grow it. Two minutes.',
-    canonical: pageUrl('/fan-led-growth-audit'),
+    canonical: pageUrl('/fan-score'),
     ogType: 'website',
   })
 
@@ -217,7 +217,7 @@ function IntroScreen({ onStart }) {
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
-          I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine, my framework for fan-led growth. This audit is part of it.
+          I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine, my framework for fan-led growth. This Fan Score is part of it.
         </p>
         <div className="fa-foldsign">Laura Cordrey · The Fan Engine</div>
       </div>
@@ -512,7 +512,7 @@ function LiveResult({ scored, lead, restart }) {
 
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
-        <Link className="fa-btn" to={`/fan-led-growth-value-model?score=${owned}`}>
+        <Link className="fa-btn" to={`/fan-value?score=${owned}`}>
           See what closing this is worth →
         </Link>
         <Link className="fa-btn" to={CONTACT_URL}>
@@ -546,7 +546,7 @@ function LiveResult({ scored, lead, restart }) {
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
           <button className="fa-btn fa-btn--ghost" onClick={emailCopy}>Email me a copy</button>
-          <button className="fa-back" onClick={restart}>Retake the audit</button>
+          <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
         {dlError && <div className="fa-fldnote">{dlError}</div>}
       </div>
@@ -726,7 +726,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
   }
 
   const moveText = effective === 3
-    ? 'move into the build with a measurement baseline from day one, so the full audit has real numbers the moment you launch.'
+    ? 'move into the build with a measurement baseline from day one, so the full Fan Score has real numbers the moment you launch.'
     : MOVE_PRE[binding]
 
   const cLeak = effective === 3
@@ -826,7 +826,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
         <Link className="fa-btn" to={CONTACT_URL}>Let’s talk →</Link>
-        <button className="fa-back" onClick={restart}>Retake the audit</button>
+        <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
       </div>
       <p className="fa-ctatail">
         This is the pre-launch reality check. The full engagement begins the day you go live.
@@ -858,7 +858,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
           <button className="fa-btn fa-btn--ghost" onClick={emailCopy}>Email me a copy</button>
-          <button className="fa-back" onClick={restart}>Retake the audit</button>
+          <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
         {dlError && <div className="fa-fldnote">{dlError}</div>}
       </div>
@@ -887,7 +887,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
       </div>
 
       <p className="fa-note">
-        This is the directional, self-assessed edition of the audit, not a growth score. It's only as honest as the evidence behind each answer, so treat it as a starting point, best confirmed in a call. Re-run it monthly. The full engagement begins the day you go live.
+        This is the directional, self-assessed edition of the Fan Score, not a growth score. It's only as honest as the evidence behind each answer, so treat it as a starting point, best confirmed in a call. Re-run it monthly. The full engagement begins the day you go live.
       </p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
     </section>

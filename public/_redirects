@@ -1,1 +1,8 @@
+# Tool URL renames — true 301s on Netlify (GitHub Pages has no _redirects and
+# falls back to the client-side <Navigate> routes in App.jsx). Must come before
+# the SPA catch-all so they win.
+/fan-led-growth-audit        /fan-score  301!
+/fan-led-growth-value-model  /fan-value  301!
+
+# SPA fallback: serve index.html for client-routed paths.
 /*  /index.html  200

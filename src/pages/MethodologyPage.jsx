@@ -108,7 +108,7 @@ export default function MethodologyPage() {
               and to prove what they're worth.
             </p>
             <div className="meth-ctas">
-              <Link to="/fan-led-growth-audit" className="btn btn--primary btn--lg">
+              <Link to="/fan-score" className="btn btn--primary btn--lg">
                 Take the 2-min Fan Score
               </Link>
               <Link to={CONTACT_URL} className="btn btn--ghost btn--lg">
@@ -406,7 +406,7 @@ export default function MethodologyPage() {
             against your real numbers.
           </p>
           <div className="meth-ctas">
-            <Link to="/fan-led-growth-audit" className="btn btn--lg meth-close__cta">
+            <Link to="/fan-score" className="btn btn--lg meth-close__cta">
               Take the 2-min Fan Score
             </Link>
             <Link to={CONTACT_URL} className="btn btn--ghost btn--lg meth-close__ghost">

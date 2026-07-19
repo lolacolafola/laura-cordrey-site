@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import './Layout.css'
 
 const CONTACT_URL = '/contact'
-const FANSCORE_URL = '/fan-led-growth-audit'
+const FANSCORE_URL = '/fan-score'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
@@ -25,8 +25,8 @@ const footerLinks = [
   { label: 'Work',      to: '/case-studies' },
   { label: 'Services',  to: '/services' },
   { label: 'Method',    to: '/methodology' },
-  { label: 'Fan Score', to: '/fan-led-growth-audit' },
-  { label: 'Fan Value', to: '/fan-led-growth-value-model' },
+  { label: 'Fan Score', to: '/fan-score' },
+  { label: 'Fan Value', to: '/fan-value' },
   { label: 'AI',        to: '/ai' },
   { label: 'Speaking',  to: '/speaking' },
   { label: 'About',     to: '/about' },

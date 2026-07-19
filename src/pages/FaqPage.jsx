@@ -102,7 +102,7 @@ export default function FaqPage() {
             Ask me directly <span aria-hidden="true">→</span>
           </Link>
           <p className="faq-close__alt">
-            Or start with the free <Link to="/fan-led-growth-audit">2-minute Fan Score</Link>.
+            Or start with the free <Link to="/fan-score">2-minute Fan Score</Link>.
           </p>
         </div>
       </div>
