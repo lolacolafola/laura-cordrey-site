@@ -169,12 +169,31 @@
   border-radius: 3px;
   border: 1px solid #C8362B;
   text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.12s ease;
 }
+.cinnav__mcta span { transition: transform 0.2s ease; }
+/* Primary sheet CTA: gold on press/hover (matching the buttons elsewhere),
+   arrow nudges, and a small press feedback on tap. */
+.cinnav__mcta:hover,
+.cinnav__mcta:active {
+  background: #D4C896;
+  border-color: #D4C896;
+  color: #15110F;
+}
+.cinnav__mcta:hover span,
+.cinnav__mcta:active span { transform: translateX(4px); }
+.cinnav__mcta:active { transform: translateY(1px); }
 /* Secondary CTA in the sheet: full-width outline, lighter than "Let's talk". */
 .cinnav__mcta--ghost {
   background: transparent;
   border-color: rgba(239, 233, 220, 0.3);
   color: #EFE9DC;
+}
+.cinnav__mcta--ghost:hover,
+.cinnav__mcta--ghost:active {
+  background: transparent;
+  border-color: #D4C896;
+  color: #D4C896;
 }
 
 /* 1024px, not 820px: the full link row (6 links + CTA) needs ~1000px.

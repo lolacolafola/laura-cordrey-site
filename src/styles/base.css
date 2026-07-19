@@ -2,6 +2,16 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Trademark mark for the proprietary tool names (Fan Engine / Fan Score /
+   Fan Value). Small raised superscript so it signals IP without shouting. */
+.tm {
+  font-size: 0.52em;
+  vertical-align: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-left: 0.05em;
+}
+
 html, body {
   margin: 0;
   padding: 0;

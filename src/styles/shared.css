@@ -612,8 +612,11 @@
   color: var(--surface);
 }
 .btn--primary:hover {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
+  /* Gold on hover (dark text) — the warmer, more colourful lift used on the
+     homepage buttons, instead of dimming to a darker red. */
+  background: #D4C896;
+  border-color: #D4C896;
+  color: #15110F;
 }
 .btn--ghost {
   background: transparent;

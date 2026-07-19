@@ -71,37 +71,31 @@ export default function ServicesPage() {
           </div>
           <nav className="svc-index" aria-label="Engagements">
             <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
-              <span className="svc-index__n">✦</span>
-              <span className="svc-index__nm">The Fan Engine</span>
+              <span className="svc-index__nm">The Fan Engine<span className="tm">™</span></span>
               <span className="svc-index__one">The flagship. The whole engine, powered by your fans.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <a href="#sentiment-sos" className="svc-index__row">
-              <span className="svc-index__n">01</span>
               <span className="svc-index__nm">Sentiment SOS</span>
               <span className="svc-index__one">Protect. Keep the customers a blow-up would cost you.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <a href="#fan-programs" className="svc-index__row">
-              <span className="svc-index__n">02</span>
               <span className="svc-index__nm">Fan Programs</span>
               <span className="svc-index__one">Acquire. Growth you don&rsquo;t pay for every time.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <a href="#fan-moments" className="svc-index__row">
-              <span className="svc-index__n">03</span>
               <span className="svc-index__nm">Fan Moments</span>
               <span className="svc-index__one">Deepen. Your top customers spend more and stay longer.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <a href="#advisory" className="svc-index__row">
-              <span className="svc-index__n">04</span>
               <span className="svc-index__nm">Advisory</span>
               <span className="svc-index__one">One decision, or an embedded role.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <Link to="/ai" className="svc-index__row svc-index__row--ai">
-              <span className="svc-index__n">AI</span>
               <span className="svc-index__nm">For AI companies</span>
               <span className="svc-index__one">Fan-led growth, built for AI. Founding-partner terms.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
@@ -121,7 +115,7 @@ export default function ServicesPage() {
         <div className="container svc-eng">
           <div className="svc-eng__left">
             <span className="svc-eng__kick">The whole system</span>
-            <h2 className="svc-eng__title">The Fan Engine.</h2>
+            <h2 className="svc-eng__title">The Fan Engine<span className="tm">™</span>.</h2>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg svc-eng__cta">
               Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
             </Link>
