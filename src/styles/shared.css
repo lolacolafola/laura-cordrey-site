@@ -606,6 +606,13 @@
   line-height: 1;
 }
 .btn:hover { transform: translateY(-1px); }
+/* Trailing arrow nudges right on hover — consistent with the homepage
+   buttons, so every .btn CTA animates its arrow the same way. */
+.btn > span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.btn:hover > span[aria-hidden="true"] { transform: translateX(3px); }
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);

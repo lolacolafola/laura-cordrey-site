@@ -408,7 +408,7 @@ export default function HomePage() {
               <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Build the whole engine</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                 <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="gear" size={30} /></span>
-                <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine</span>
+                <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine<span className="tm">™</span></span>
                 <span style={{ fontSize: '1.04rem', lineHeight: 1.6, color: 'rgba(239,233,220,.82)' }}>
                   The whole system, plugged into your company. It connects the brand they fall for, the product they stick with, and the way you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
                 </span>

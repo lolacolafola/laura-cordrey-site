@@ -238,7 +238,7 @@ export default function FanValueModelPage() {
         <div className="fvm-topbar">
           <span className="fvm-eyebrow-brand">
             <Sparkle />
-            <span>The Fan Value Model</span>
+            <span>The Fan Value Model<span className="tm">™</span></span>
           </span>
           <label className="fvm-cur">
             Your currency

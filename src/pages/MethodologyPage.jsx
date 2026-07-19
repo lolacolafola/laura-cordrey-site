@@ -104,7 +104,7 @@ export default function MethodologyPage() {
             </h1>
             <p className="meth-hero__lede">
               You're sitting on more fandom than you can see, prove, or bank.
-              The Fan Engine is the system I build to turn customers into fans,
+              The Fan Engine<span className="tm">™</span> is the system I build to turn customers into fans,
               and to prove what they're worth.
             </p>
             <div className="meth-ctas">

@@ -155,7 +155,7 @@ export default function AboutPage() {
               </h1>
               <p className="about-intro__lede">
                 I build fan-led growth for fan-driven brands:{' '}
-                <mark>the brand they fall for</mark>, and the Fan Engine that
+                <mark>the brand they fall for</mark>, and the Fan Engine<span className="tm">™</span> that
                 turns that love into growth you can measure.
               </p>
               <p className="about-intro__sub">
