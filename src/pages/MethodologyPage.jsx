@@ -76,11 +76,10 @@ const stages = [
 ]
 
 const scoreboard = [
-  { label: 'LTV:CAC, up', body: 'fans spend more over time, so each user you buy is worth more.' },
-  { label: 'Payback period, down', body: 'fans buy again sooner, so you recoup acquisition cost faster.' },
-  { label: 'Cohort retention, up', body: 'the users you paid for stay.' },
-  { label: '% organic-sourced growth, up', body: 'fans bring others in, so new users arrive without spend.' },
-  { label: 'Earned reach, up', body: 'fans make the content that markets you, so you reach new people without paying for media.' },
+  { label: 'Retention up', body: 'the customers you paid for stay.' },
+  { label: 'LTV:CAC up', body: 'fans spend more, so each customer you buy is worth more.' },
+  { label: 'Organic and earned growth up', body: 'fans bring others and make the content that markets you, so new customers arrive without spend.' },
+  { label: 'Recommended by AI, up', body: 'ask an AI what to choose, and it answers from what your fans post.' },
 ]
 
 export default function MethodologyPage() {
@@ -226,15 +225,11 @@ export default function MethodologyPage() {
               prove it moved.
             </p>
             <p className="meth-lede meth-lede--follow">
-              I run all four disciplines as one engine, wired together by a
-              measurement spine. I have spent thirteen years across brand, product,
-              community and growth, because the leaks do not respect the org
-              chart.{' '}
-              <mark className="meth-underline">
-                Fan-led work is usually felt, not counted. I tie every part to
-                a number
-              </mark>
-              , so what you build is something you can put in front of a board.
+              I run all four disciplines as one connected engine, not four
+              separate workstreams. Thirteen years across brand, product,
+              community and growth means I see where growth leaks between the
+              teams and close it, and I put a number on every part of it, so
+              what you build is something you can take to a board.
             </p>
           </div>
 
@@ -308,8 +303,8 @@ export default function MethodologyPage() {
               <polyline points="3 3 3 8 8 8" />
             </svg>
             <span className="meth-loop__note">
-              Advocacy feeds back to activation: the engine brings in the next
-              wave, so it grows itself.
+              Advocacy feeds back to activation: the engine brings you new
+              customers, so it grows itself.
             </span>
           </div>
 
@@ -330,53 +325,45 @@ export default function MethodologyPage() {
               <span className="meth-eyebrow meth-eyebrow--gold">How I prove it</span>
             </div>
             <h2 className="meth-h2">
-              And <mark>I can prove it</mark>.
+              Measurable, and <mark>measured honestly</mark>.
             </h2>
             <p className="meth-lede">
-              This is the part fan-led work usually skips, and the reason it
-              gets undervalued. I do not. Every stage of the journey is tied to
-              the number it moves, and each of those ladders to a business
-              outcome. No vanity metrics.
+              Fan-led growth gets called unmeasurable. It isn&rsquo;t. I set a
+              baseline before I start, track real cohorts instead of last-click
+              guesses, and I&rsquo;m honest about what can&rsquo;t be cleanly
+              pinned down. No baseline, no claim, and no vanity metrics.
             </p>
           </div>
 
           {/* Proof strip: the receipts behind "I can prove it". Numbers are
-           * verbatim from the case studies; each links to its story. */}
+           * verbatim from the case studies. Static, not per-stat links (the old
+           * per-stat links pointed at the wrong stories); the full Work page is
+           * one click below. */}
           <div className="meth-proofstrip">
-            <Link to="/case-studies/ubisoft-siege-champions" className="meth-proof">
+            <div className="meth-proof">
               <span className="meth-proof__n">50M+</span>
-              <span className="meth-proof__l">UGC views at $0 media spend · Ubisoft</span>
-            </Link>
-            <Link to="/case-studies/us-mobile-dark-star" className="meth-proof">
+              <span className="meth-proof__l">UGC views at $0 media spend · Rainbow Six Siege</span>
+            </div>
+            <div className="meth-proof">
               <span className="meth-proof__n">$32K</span>
               <span className="meth-proof__l">in under three hours, sold out · US Mobile</span>
-            </Link>
-            <Link to="/case-studies/azarus-game-ads" className="meth-proof">
+            </div>
+            <div className="meth-proof">
               <span className="meth-proof__n">+80%</span>
-              <span className="meth-proof__l">MAU from one streamer campaign · Azarus</span>
-            </Link>
+              <span className="meth-proof__l">MAU from streamer-led product launches · Azarus</span>
+            </div>
           </div>
+          <p className="meth-proofstrip__more">
+            <Link to="/case-studies">See the case studies <span aria-hidden="true">→</span></Link>
+          </p>
 
           <div className="meth-measured__blocks">
             <div className="meth-measured__block">
-              <span className="meth-eyebrow meth-eyebrow--gold">The honest method</span>
+              <span className="meth-eyebrow meth-eyebrow--gold">The scoreboard: numbers you already track</span>
               <p className="meth-measured__body">
-                Earned growth resists clean last-click attribution, and I do
-                not pretend otherwise. I baseline first (no baseline, no
-                claim), track deltas by cohort instead of last clicks, use
-                holdouts where feasible, and name the limits out loud. Stating
-                the method is what makes &ldquo;measurable&rdquo; defensible.
-              </p>
-            </div>
-
-            <div className="meth-measured__block">
-              <span className="meth-eyebrow meth-eyebrow--gold">The scoreboard: the numbers you already track</span>
-              <p className="meth-measured__body">
-                You don't need new fan metrics to see it working. Fan-led
-                growth moves the numbers your team already reports, the same
-                stay, pay and bring-more behaviours in the language of your
-                P&amp;L. When they move together, your paid spend is
-                compounding instead of leaking.
+                You don&rsquo;t need new fan metrics. Fan-led growth moves the
+                ones your team already reports, in the language of your
+                P&amp;L:
               </p>
               <ul className="meth-scoreboard">
                 {scoreboard.map((s) => (
@@ -386,6 +373,9 @@ export default function MethodologyPage() {
                   </li>
                 ))}
               </ul>
+              <p className="meth-measured__body">
+                When these move together, your paid spend compounds instead of leaking.
+              </p>
             </div>
           </div>
         </div>

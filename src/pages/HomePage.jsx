@@ -186,7 +186,7 @@ export default function HomePage() {
                 <strong style={{ color: '#EFE9DC', fontWeight: 800 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends. <mark>Growth you own, not rent.</mark>
               </p>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into an engine you own, then show you what it&rsquo;s worth.
+                When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>an engine you own</Link>, then show you what it&rsquo;s worth.
               </p>
             </div>
           </div>

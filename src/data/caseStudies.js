@@ -205,7 +205,7 @@ const caseStudies = [
   {
     id: 'ubisoft-siege-champions',
     company: 'Ubisoft · Siege Champions',
-    headline: '50M+ UGC views, $0 spend',
+    headline: '50M+ UGC views, $0 media spend',
     hook: 'Community advocacy, scaled to creators. 50M+ UGC views in year one, zero media spend.',
     tldr: 'I scaled Ubisoft’s community advocacy model into an invite-only creator program for Rainbow Six Siege: 200 members across 18 markets, <mark>50M+ UGC views in year one</mark>, $0 media spend.',
     year: '2020–2021',

@@ -163,7 +163,7 @@ export default function ServicesPage() {
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>
-                <strong>60M+ fan views and ~$600K+ earned media</strong> across Ubisoft programs, at $0 spend.
+                <strong>60M+ fan views and ~$600K+ earned media</strong> across Ubisoft programs, at $0 media spend.
               </p>
             </div>
             <div className="svc-credit">

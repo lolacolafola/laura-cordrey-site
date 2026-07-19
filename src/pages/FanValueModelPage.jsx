@@ -439,7 +439,7 @@ export default function FanValueModelPage() {
               )}
             </p>
             <div className="fvm-comp__cap">
-              New revenue is cash your fans add by staying and spending. Ad budget saved is the paid acquisition their referrals replace &mdash; real value, not extra invoiced revenue.
+              New revenue is the cash your fans add by staying and spending more. Ad budget saved is what you don&rsquo;t spend when their referrals bring in customers you&rsquo;d otherwise pay to acquire.
             </div>
 
             {/* Chart on dark */}
