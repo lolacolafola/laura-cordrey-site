@@ -33,9 +33,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Headless browser for the build-time prerender step (scripts/prerender.mjs).
+      - run: npx playwright install --with-deps chromium
       - run: npm run build
         env:
           VITE_BASE: /laura-cordrey-site/
+      # 404.html = the prerendered home, so client-side deep links resolve on Pages.
       - run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5
         with:

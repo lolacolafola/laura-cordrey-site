@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'

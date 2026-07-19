@@ -1,0 +1,20 @@
+# Netlify build config — production, built from `main`.
+#
+# Netlify auto-build is currently OFF (deploys are triggered manually), but this
+# file documents the build and keeps it reproducible whenever a deploy runs.
+#
+# The build runs `vite build` then the prerender step (scripts/prerender.mjs),
+# which snapshots each route to static HTML for crawlers / AI answer engines.
+# Prerender is resilient: if headless Chromium can't run here it is skipped and
+# the site falls back to the client-rendered SPA, so a deploy never fails.
+#
+# Redirects (tool-slug 301s + SPA fallback) live in public/_redirects.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Install Playwright's Chromium inside the project (node_modules) so Netlify's
+  # build cache keeps it and doesn't re-download it on every deploy.
+  PLAYWRIGHT_BROWSERS_PATH = "0"
