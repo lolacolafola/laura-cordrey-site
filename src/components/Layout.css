@@ -44,7 +44,12 @@
   color: #EFE9DC;
   text-decoration: none;
   flex: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
+/* The logo is the backup route home (there's an explicit Home nav item too).
+   It's a real link, so the hover response is honest. */
+.cinnav__brand:hover { color: #D4C896; }
 
 .cinnav__links {
   display: flex;
@@ -105,6 +110,18 @@
   border-color: #D4C896;
   color: #15110F;
 }
+/* Secondary CTA (Fan Score): outline, not a second filled-red button, so the
+   filled "Let's talk" stays the single primary in the header. */
+.cinnav__cta--ghost {
+  background: transparent;
+  border-color: rgba(239, 233, 220, 0.3);
+  color: #EFE9DC;
+}
+.cinnav__cta--ghost:hover {
+  background: transparent;
+  border-color: #D4C896;
+  color: #D4C896;
+}
 
 .cinnav__toggle {
   display: none;
@@ -150,7 +167,14 @@
   font-size: 0.98rem;
   padding: 15px 18px;
   border-radius: 3px;
+  border: 1px solid #C8362B;
   text-decoration: none;
+}
+/* Secondary CTA in the sheet: full-width outline, lighter than "Let's talk". */
+.cinnav__mcta--ghost {
+  background: transparent;
+  border-color: rgba(239, 233, 220, 0.3);
+  color: #EFE9DC;
 }
 
 /* 1024px, not 820px: the full link row (6 links + CTA) needs ~1000px.

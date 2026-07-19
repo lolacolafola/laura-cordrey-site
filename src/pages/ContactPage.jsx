@@ -177,6 +177,9 @@ export default function ContactPage() {
         <p className="contact-lede">
           Whatever brought you here, let’s talk. Tell me what’s going on and I’ll follow up to set up a call. Pick the closest fit below, and I’ll only ask what I need to reply well.
         </p>
+        <p className="contact-reassure">
+          Every message comes straight to me, and I reply within one working day.
+        </p>
 
         {submitted ? (
           <div className="contact-success" role="status" aria-live="polite">
@@ -198,7 +201,7 @@ export default function ContactPage() {
                 aria-pressed={isConsulting}
               >
                 <span className="contact-picker__icon" aria-hidden="true"><BriefcaseIcon /></span>
-                <span className="contact-picker__ttl">Growth &amp; brand</span>
+                <span className="contact-picker__ttl">Fan-led growth</span>
                 <span className="contact-picker__sub">A session, advisory, or a full engagement.</span>
               </button>
               <button
@@ -268,11 +271,12 @@ export default function ContactPage() {
                         </label>
                         <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
-                          <option>A session or workshop: one problem, worked live</option>
-                          <option>Fractional or advisory: ongoing senior support</option>
                           <option>Sentiment SOS: my community is turning</option>
+                          <option>Fan Programs: I want my users bringing new customers</option>
                           <option>Fan Moments: I have a big moment coming</option>
                           <option>The Fan Engine: I want the whole system</option>
+                          <option>A session or workshop: one problem, worked live</option>
+                          <option>Fractional or advisory: ongoing senior support</option>
                           <option value="Fan-led growth for AI: a founding-partner pilot">Fan-led growth for AI: a founding-partner pilot</option>
                           <option>Not sure yet, help me scope it</option>
                         </select>

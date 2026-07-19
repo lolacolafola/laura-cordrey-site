@@ -139,7 +139,7 @@ export default function HomePage() {
                 See how it works <span className="ar" aria-hidden>→</span>
               </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>I read every message myself and follow up within two working days.</span>
+            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Every message comes straight to me, and I reply within one working day.</span>
           </div>
 
           {/* Edit 5: hero proof strip — hairline top only (no bottom rule so

@@ -217,7 +217,7 @@ function IntroScreen({ onStart }) {
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
-          I spent over a decade turning audiences into fans at gaming giants like Ubisoft, the unicorn BlaBlaCar, and US tech startups. I built what I learned into the Fan Engine, my framework for fan-led growth. This audit is part of it.
+          I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine, my framework for fan-led growth. This audit is part of it.
         </p>
         <div className="fa-foldsign">Laura Cordrey · The Fan Engine</div>
       </div>

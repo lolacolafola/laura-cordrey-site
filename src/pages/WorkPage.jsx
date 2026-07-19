@@ -43,7 +43,7 @@ export default function WorkPage() {
         <div aria-hidden="true" style={{ position: 'absolute', top: '-24%', right: '-8%', width: '60vw', height: '60vw', maxWidth: 760, maxHeight: 760, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(56px,7vw,104px) clamp(24px,5vw,64px) clamp(40px,5vw,64px)' }}>
           <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(22px,3vw,34px)' }}>
-            Case Studies · 2013–2026
+            Selected Work · 2013–2026
           </span>
 
           <div className="work-lockup" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>

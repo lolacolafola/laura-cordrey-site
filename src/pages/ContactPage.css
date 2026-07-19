@@ -29,7 +29,9 @@
   width: 100%;
   max-width: 660px;
   margin: 0 auto;
-  padding: clamp(48px, 8vh, 88px) clamp(20px, 5vw, 40px) clamp(64px, 9vh, 110px);
+  /* Top pinned to --space-7 (48px) to match the hero top gap (~46px) on the
+     other pages; was clamp(48px, 8vh, 88px), which grew with viewport. */
+  padding: var(--space-7) clamp(20px, 5vw, 40px) clamp(64px, 9vh, 110px);
 }
 
 /* ─── HEADER ───────────────────────────────────────── */
@@ -57,6 +59,17 @@
   color: #8A8078;
   max-width: 52ch;
   margin: 0 0 clamp(32px, 5vw, 42px);
+}
+/* Response-time promise — sits tight under the lede (pulled up past its
+   bottom margin), gold so it reads as reassurance, not body copy. Matches
+   the homepage hero line word for word. */
+.contact-reassure {
+  margin: -20px 0 clamp(32px, 5vw, 42px);
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: #D4C896;
+  font-weight: 600;
+  max-width: 52ch;
 }
 
 /* ─── INTENT PICKER ────────────────────────────────── */

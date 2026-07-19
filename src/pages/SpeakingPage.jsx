@@ -123,7 +123,7 @@ export default function SpeakingPage() {
           </span>
           <h1 className="sp-h1">The stages, the screen, the voice.</h1>
           <p className="sp-hero__lede">
-            Over a decade fronting fan moments for the biggest names in gaming. World-stage keynotes, live broadcast, and the pieces I wrote, produced and voiced myself.
+            Thirteen years fronting fan moments for the biggest names in gaming. World-stage keynotes, live broadcast, and the pieces I wrote, produced and voiced myself.
           </p>
           <Link to={CONTACT_URL} className="btn btn--primary btn--lg sp-hero__cta">
             Book me to speak <span aria-hidden="true">→</span>
