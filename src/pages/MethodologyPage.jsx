@@ -86,7 +86,7 @@ export default function MethodologyPage() {
   useDocumentMeta({
     title: 'The Fan Engine · The method · Laura Cordrey',
     description:
-      "You're sitting on more fandom than you can see, prove, or bank. The Fan Engine is the system Laura Cordrey builds to turn customers into fans, and to prove what they're worth.",
+      "You're sitting on more fandom than you can prove or bank. The Fan Engine turns customers into fans, and proves what they're worth.",
     canonical: pageUrl('methodology'),
   })
 

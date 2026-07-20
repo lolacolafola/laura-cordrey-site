@@ -82,7 +82,7 @@ export default function AboutPage() {
   useDocumentMeta({
     title: 'About · Laura Cordrey · Fan-led growth for consumer brands',
     description:
-      "I build fan-led growth for consumer brands: the brand they fall for, and the Fan Engine that turns that love into growth you can measure. Thirteen years across gaming, entertainment and live service.",
+      "I build fan-led growth: the Fan Engine that turns brand love into growth you can measure. Thirteen years across gaming, entertainment and live service.",
     canonical: pageUrl('about'),
     ogType: 'profile',
     jsonLd: {

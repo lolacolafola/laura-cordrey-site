@@ -139,7 +139,7 @@ export default function AIPage() {
   useDocumentMeta({
     title: 'Fan-led growth for AI · Laura Cordrey',
     description:
-      'A point of view on running an AI company like a AAA live-service game. Fan-led growth as distribution, sentiment, feedback and operations for the crowd around your model.',
+      'A point of view on running an AI company like a AAA live-service game: distribution, sentiment, feedback and operations for the crowd around your model.',
     canonical: pageUrl('ai'),
     ogType: 'article',
   })

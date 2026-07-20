@@ -90,7 +90,7 @@ export default function SpeakingPage() {
   useDocumentMeta({
     title: 'Speaking · Laura Cordrey · Keynote, spokesperson, voice over',
     description:
-      'Laura Cordrey speaking reel: keynote presentations, live studio interviews, livestream hosting, on-camera spokesperson work and voice over. 20+ speaking moments across stage, studio and broadcast.',
+      'Laura Cordrey speaking reel: keynotes, studio interviews, livestream hosting, spokesperson work and voice over. 20+ moments across stage, studio, broadcast.',
     canonical: pageUrl('speaking'),
     ogType: 'profile',
   })
