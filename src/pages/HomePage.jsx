@@ -28,10 +28,10 @@ const whyFans = [
 ]
 
 const situations = [
-  { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop the moment you stop paying.' },
-  { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the extra growth fans bring on top.' },
-  { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.' },
-  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.' },
+  { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop the moment you stop paying.', icon: 'spark' },
+  { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the extra growth fans bring on top.', icon: 'rocket' },
+  { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.', icon: 'shield' },
+  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.', icon: 'gear' },
 ]
 
 // Small inline-svg helpers — stroke-based, matching the design.
@@ -70,7 +70,7 @@ const INNER = { maxWidth: 1280, margin: '0 auto', width: '100%' }
 
 export default function HomePage() {
   useDocumentMeta({
-    title: 'Laura Cordrey · Fan-led growth for fan-driven brands',
+    title: 'Laura Cordrey | Fan-Led Growth Consultant for Consumer Brands',
     description:
       'Laura Cordrey builds the fan-led growth engine that turns customers into fans who stay, pay, and bring more. Thirteen years across Ubisoft, BlaBlaCar, US Mobile, Azarus.',
     canonical: pageUrl(''),
@@ -128,7 +128,7 @@ export default function HomePage() {
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>
           <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '58ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
-            The customers you already paid for are worth far more than you&rsquo;re getting. I build the brand love and advocacy that turns them into fans, so they stay, spend more, and bring new customers with them.
+            The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and connection that turn them into fans, so they stay, spend more, and bring new customers with them.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
@@ -183,8 +183,14 @@ export default function HomePage() {
             </div>
             <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                <strong style={{ color: '#EFE9DC', fontWeight: 800 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends. <mark>Growth you own, not rent.</mark>
+                <strong style={{ color: '#EFE9DC', fontWeight: 800 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends.
               </p>
+              <div style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(18px,2.2vw,26px) clamp(22px,2.6vw,30px)' }}>
+                <div aria-hidden="true" style={{ position: 'absolute', top: '-50%', right: '-10%', width: '30vw', height: '30vw', maxWidth: 260, maxHeight: 260, background: 'radial-gradient(circle,rgba(200,54,43,.18) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
+                <p style={{ position: 'relative', fontSize: 'clamp(1.3rem,2.4vw,1.9rem)', fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.15, color: '#EFE9DC', margin: 0 }}>
+                  Growth you <span style={{ color: '#C8362B' }}>own</span>, not rent.
+                </p>
+              </div>
               <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
                 When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>an engine you own</Link>, then show you what it&rsquo;s worth.
               </p>
@@ -264,7 +270,10 @@ export default function HomePage() {
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(14px,1.8vw,22px)', marginTop: 'clamp(40px,5vw,64px)' }}>
             {situations.map((s, i) => (
               <div key={s.title} data-rev style={{ display: 'flex', flexDirection: 'column', gap: 10, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(200,54,43,.55)', borderRadius: 4, padding: 'clamp(24px,2.8vw,36px)' }}>
-                <span style={{ fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>{String(i + 1).padStart(2, '0')}</span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name={s.icon} size={22} /></span>
+                </div>
                 <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.25rem,2vw,1.6rem)', letterSpacing: '-.02em', margin: 0, color: '#EFE9DC' }}>{s.title}</h3>
                 <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.58, color: 'rgba(239,233,220,.72)', margin: 0 }}>{s.copy}</p>
               </div>
@@ -292,6 +301,17 @@ export default function HomePage() {
             <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(14px,1.6vw,20px) 0 0', maxWidth: '50ch' }}>
               Which is how I know where growth really comes from, and where it leaks. The biggest opportunity most companies walk straight past is the customers they already have. So that is what I build: the system that makes them stay, spend and recommend, with brand, product, community and growth run as one <mark>Fan Engine<span className="tm">™</span></mark>, and the baselines to prove it.
             </p>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 'clamp(18px,2.2vw,26px) 0 0', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(18px,2.6vw,34px)', borderTop: '1px solid rgba(239,233,220,.12)' }}>
+              {[
+                { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 84 },
+                { src: 'logos/amazon-game-studios.png', alt: 'Amazon Game Studios', maxw: 78 },
+                { src: 'logos/blablacar-vert.png', alt: 'BlaBlaCar', maxw: 84 },
+              ].map((l) => (
+                <li key={l.alt} style={{ opacity: 0.7 }}>
+                  <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 34, maxWidth: l.maxw, width: 'auto', objectFit: 'contain' }} />
+                </li>
+              ))}
+            </ul>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
               <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me <span className="ar" aria-hidden>→</span>
@@ -342,7 +362,7 @@ export default function HomePage() {
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ marginBottom: 'clamp(32px,4vw,52px)', maxWidth: '40ch' }}>
             <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 14 }}>Best wins</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#EFE9DC' }}>Proof it pays.</h2>
+            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#EFE9DC' }}>Proof fan-led growth pays.</h2>
           </div>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,22px)' }}>
             {stats.map((s) => (
@@ -393,8 +413,11 @@ export default function HomePage() {
                 </span>
               </div>
               <ul style={{ listStyle: 'none', margin: 'auto 0 0', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {['Brand', 'Product', 'Community', 'Growth'].map((p) => (
-                  <li key={p} style={{ fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px' }}>{p}</li>
+                {[{ label: 'Brand', icon: 'sparkle' }, { label: 'Product', icon: 'rocket' }, { label: 'Community', icon: 'users' }, { label: 'Growth', icon: 'loop' }].map((p) => (
+                  <li key={p.label} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px 7px 10px' }}>
+                    <span style={{ color: '#D4C896', lineHeight: 0 }}><Icon name={p.icon} size={14} /></span>
+                    {p.label}
+                  </li>
                 ))}
               </ul>
             </Link>
