@@ -149,7 +149,7 @@ export default function HomePage() {
             * separate "client roster" chapter. */}
           <div className="hero-trust logoband" style={{ marginTop: 'clamp(44px,5vw,68px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(20px,2.6vw,30px)', textAlign: 'center', borderTop: '1px solid rgba(239,233,220,.14)', paddingTop: 'clamp(28px,4vw,44px)' }}>
             <span style={{ fontSize: '.78rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-              Thirteen years building fan-led growth across video games &amp; tech
+              Thirteen years building fan-led growth
             </span>
             <ul className="herologos logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 1000, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'end', justifyItems: 'center', gap: 'clamp(20px,4vw,60px)' }}>
               {[
