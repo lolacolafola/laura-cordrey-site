@@ -19,6 +19,16 @@ must be written to a file in this repo, **not left only in the chat reply.**
 - Never make anything up. Only defensible, factual claims.
 - Flag any claim that needs confirmation before it goes live.
 
+## Git commits
+- GitHub blocks pushes that expose Laura's personal email. **Every commit in this
+  repo must be authored with the GitHub noreply address**, not the personal one:
+  `git commit --author="Laura Cordrey <261253710+lolacolafola@users.noreply.github.com>"`
+- This can't be fixed by changing git config (config changes are off-limits), so
+  it must be passed explicitly on every `git commit` call in this repo.
+- If a commit lands with the wrong author before a push, fix it before pushing
+  (e.g. `git commit --amend --author="..."` for the tip commit) rather than
+  pushing and hitting the GH007 rejection.
+
 ## Design rules
 - **Hover honesty.** Cursor response is a promise: if an element lifts, scales,
   glows or otherwise reacts on hover, clicking it must do something. `:hover`
