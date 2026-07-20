@@ -72,7 +72,7 @@ export default function HomePage() {
   useDocumentMeta({
     title: 'Laura Cordrey | Fan-Led Growth Consultant for Consumer Brands',
     description:
-      'Laura Cordrey builds the fan-led growth engine that turns customers into fans who stay, pay, and bring more. Thirteen years across Ubisoft, BlaBlaCar, US Mobile, Azarus.',
+      'Laura Cordrey builds fan-led growth for consumer brands. Thirteen years turning customers into fans across Ubisoft, BlaBlaCar, US Mobile, Amazon Games.',
     canonical: pageUrl(''),
     ogType: 'website',
     jsonLd: authorJsonLd(),
