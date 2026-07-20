@@ -3,8 +3,8 @@
 # the SPA catch-all so they win.
 /fan-led-growth-audit        /fan-score  301!
 /fan-led-growth-value-model  /fan-value  301!
-/work                        /case-studies         301!
-/work/*                      /case-studies/:splat  301!
+/case-studies                /work         301!
+/case-studies/*              /work/:splat  301!
 
 # SPA fallback: serve index.html for client-routed paths.
 /*  /index.html  200

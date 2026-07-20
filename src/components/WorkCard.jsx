@@ -35,7 +35,7 @@ export default function WorkCard({ caseStudy, slot }) {
 
   return (
     <Link
-      to={`/case-studies/${cs.id}`}
+      to={`/work/${cs.id}`}
       className={`work-card${lightBg ? ' work-card--light' : ''}`}
     >
       <div className="work-card__media">

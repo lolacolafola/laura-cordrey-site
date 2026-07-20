@@ -12,17 +12,17 @@ const navLinks = [
   { key: 'home',     label: 'Home',      path: '/',                     isHash: false },
   { key: 'services', label: 'Services',  path: '/services',             isHash: false },
   { key: 'method',   label: 'Method',    path: '/methodology',          isHash: false },
-  { key: 'work',     label: 'Work',      path: '/case-studies',         isHash: false },
+  { key: 'work',     label: 'Work',      path: '/work',                 isHash: false },
   { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
   { key: 'about',    label: 'About',     path: '/about',                isHash: false },
   { key: 'fanscore', label: 'Fan Score', path: '/fan-score',            isHash: false },
 ]
 
 // Same journey as the header, plus the IP pages and Speaking that the header
-// keeps tucked away. "Work" here matches the nav label (route /case-studies).
+// keeps tucked away.
 const footerLinks = [
   { label: 'Home',      to: '/' },
-  { label: 'Work',      to: '/case-studies' },
+  { label: 'Work',      to: '/work' },
   { label: 'Services',  to: '/services' },
   { label: 'Method',    to: '/methodology' },
   { label: 'Fan Score', to: '/fan-score' },

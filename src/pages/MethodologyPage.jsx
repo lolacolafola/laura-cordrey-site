@@ -354,7 +354,7 @@ export default function MethodologyPage() {
             </div>
           </div>
           <p className="meth-proofstrip__more">
-            <Link to="/case-studies">See the case studies <span aria-hidden="true">→</span></Link>
+            <Link to="/work">See the case studies <span aria-hidden="true">→</span></Link>
           </p>
 
           <div className="meth-measured__blocks">
@@ -404,7 +404,7 @@ export default function MethodologyPage() {
             </Link>
           </div>
           <p className="meth-close__back">
-            Or <Link to="/case-studies">see the work first &rarr;</Link>
+            Or <Link to="/work">see the work first &rarr;</Link>
             {' '}&middot;{' '}
             <Link to="/ai">fan-led growth for AI &rarr;</Link>
           </p>

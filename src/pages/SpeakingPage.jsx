@@ -37,12 +37,12 @@ const onStageClips = ON_STAGE_KEYS.map((k) => {
 // Off-stage clips — all produced pieces minus Delta Company announce
 // (`XiIiqCktG2g`) since the on-stage E3 unveil covers Delta already.
 // Case-study routes added where a piece has a dedicated /work case
-// study (Azarus target = /case-studies/azarus-game-ads since the explainer is
+// study (Azarus target = /work/azarus-game-ads since the explainer is
 // for the ad platform, not the streamer-led growth work).
 const CASE_STUDY_MAP = {
-  RsimGZVWlsU: '/case-studies/claw-mobile',
-  '34AzFfo7C6E': '/case-studies/azarus-game-ads',
-  F5g7fOzxGYY: '/case-studies/ubisoft-delta-company',
+  RsimGZVWlsU: '/work/claw-mobile',
+  '34AzFfo7C6E': '/work/azarus-game-ads',
+  F5g7fOzxGYY: '/work/ubisoft-delta-company',
 }
 const offStageClips = producedSections
   .flatMap((s) => s.clips)

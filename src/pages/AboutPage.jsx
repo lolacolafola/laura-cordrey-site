@@ -197,7 +197,7 @@ export default function AboutPage() {
             <p className="about-proof__note">
               Full history{' '}
               <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">on LinkedIn</a>
-              , see the <Link to="/case-studies">case studies</Link>.
+              , see the <Link to="/work">case studies</Link>.
             </p>
           </div>
         </div>
@@ -635,7 +635,7 @@ export default function AboutPage() {
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg about-close__primary">
               Let’s talk <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/case-studies" className="about-txtlink about-txtlink--cream">
+            <Link to="/work" className="about-txtlink about-txtlink--cream">
               See the case studies <span aria-hidden="true">→</span>
             </Link>
             <Link to="/speaking" className="about-txtlink about-txtlink--cream">

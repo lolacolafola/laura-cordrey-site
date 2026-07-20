@@ -1,5 +1,5 @@
 // Single source of truth for case studies.
-// Used by HomePage teasers, the /case-studies index, and /case-studies/:slug articles.
+// Used by HomePage teasers, the /work index, and /work/:slug articles.
 //
 // Per study:
 //   media.image    — article hero image (in /public). Brand logo banner for now.

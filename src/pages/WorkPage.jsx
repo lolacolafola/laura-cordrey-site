@@ -21,7 +21,7 @@ export default function WorkPage() {
     title: 'Case Studies · Fan-led growth work by Laura Cordrey',
     description:
       'Selected case studies from thirteen years of fan-led growth work: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, and Claw Mobile.',
-    canonical: pageUrl('case-studies'),
+    canonical: pageUrl('work'),
     ogType: 'website',
     jsonLd: workIndexJsonLd({ caseStudies }),
   })

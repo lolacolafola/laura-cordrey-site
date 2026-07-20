@@ -10,7 +10,7 @@ export default function DeltaCompanyPage() {
     title: 'Delta Company · A first-of-its-kind community program at Ubisoft · Laura Cordrey',
     description:
       'I designed Delta Company at Ubisoft: 5 clusters, 14 languages, 130 invited members, 10M+ UGC views, unveiled at UbiE3 2019, replicated across franchises.',
-    canonical: '/case-studies/ubisoft-delta-company',
+    canonical: '/work/ubisoft-delta-company',
   })
   return <CaseStudyCinematic slug="ubisoft-delta-company" study={getCinematicStudy('ubisoft-delta-company')} />
 }

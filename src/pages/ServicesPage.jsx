@@ -238,7 +238,7 @@ export default function ServicesPage() {
               <Link to={contactFor('programs')} className="btn btn--primary btn--lg svc-eng__cta">
                 Talk about a program <span aria-hidden="true">→</span>
               </Link>
-              <Link to="/case-studies" className="svc-txtlink">
+              <Link to="/work" className="svc-txtlink">
                 See programs I&rsquo;ve built <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -271,7 +271,7 @@ export default function ServicesPage() {
               <Link to={contactFor('moments')} className="btn btn--primary btn--lg svc-eng__cta">
                 Talk about your moment <span aria-hidden="true">→</span>
               </Link>
-              <Link to="/case-studies" className="svc-txtlink">
+              <Link to="/work" className="svc-txtlink">
                 See moments I&rsquo;ve built <span aria-hidden="true">→</span>
               </Link>
             </div>

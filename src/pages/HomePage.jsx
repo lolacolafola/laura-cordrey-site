@@ -10,7 +10,7 @@ const BASE = import.meta.env.BASE_URL
 
 // Best wins stat bar — four ironclad numbers across revenue, reach, growth and sentiment.
 // Ubisoft is program-wide 60M+ reach (labelled "across programs"). Cards route to
-// /case-studies. BlaBlaCar's story is told in the carousel, not as a headline number.
+// /work. BlaBlaCar's story is told in the carousel, not as a headline number.
 const stats = [
   { value: '$32K', unit: 'in under three hours', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
   { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
@@ -366,7 +366,7 @@ export default function HomePage() {
           </div>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,22px)' }}>
             {stats.map((s) => (
-              <Link to="/case-studies" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+              <Link to="/work" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
                   <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </figure>
@@ -381,7 +381,7 @@ export default function HomePage() {
             ))}
           </div>
           <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
-            <Link to="/case-studies" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
+            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
               See my deep-dive case studies <span aria-hidden>→</span>
             </Link>
             <span style={{ fontSize: '.78rem', color: 'rgba(239,233,220,.62)', fontWeight: 600 }}>
