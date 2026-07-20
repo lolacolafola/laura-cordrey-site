@@ -20,9 +20,9 @@ export const SITE_URL = (
 
 export const AUTHOR = {
   name: 'Laura Cordrey',
-  jobTitle: 'Fan-led growth for fan-driven brands. Brand, product, community, growth.',
+  jobTitle: 'Fan-led growth for consumer brands. Brand, product, community, growth.',
   description:
-    'Builds fan-led growth for fan-driven brands: the Fan Engine that turns communities into measurable revenue.',
+    'Builds fan-led growth for consumer brands: the Fan Engine that turns communities into measurable revenue.',
   url: SITE_URL,
   sameAs: [
     'https://www.linkedin.com/in/lauracordrey/',

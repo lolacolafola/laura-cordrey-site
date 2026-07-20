@@ -26,7 +26,7 @@ const CLIENTS = [
 
 export default function ServicesPage() {
   useDocumentMeta({
-    title: 'Work with me · Laura Cordrey · Fan-led growth for fan-driven brands',
+    title: 'Work with me · Laura Cordrey · Fan-led growth for consumer brands',
     description:
       'Make the userbase you already paid for worth more. Protect it with Sentiment SOS, grow off it with Fan Programs, deepen it with Fan Moments, build the whole Fan Engine, or get advisory. Start with the free 2-minute Fan Score.',
     canonical: pageUrl('services'),

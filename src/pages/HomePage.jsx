@@ -123,7 +123,7 @@ export default function HomePage() {
         <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 700, maxHeight: 700, background: 'radial-gradient(circle,rgba(212,200,150,.08) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
 
         <div style={{ position: 'relative', padding: 'clamp(112px,14vh,160px) clamp(20px,5vw,64px) clamp(44px,5vw,68px)', ...INNER }}>
-          <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(20px,3vw,30px)' }}>Fan-led growth for fan-driven brands</span>
+          <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(20px,3vw,30px)' }}>Fan-led growth for consumer brands</span>
           <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.9rem,8vw,7.4rem)', lineHeight: 0.92, letterSpacing: '-.04em', margin: 0, maxWidth: '15ch' }}>
             Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
           </h1>

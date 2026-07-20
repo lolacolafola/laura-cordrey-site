@@ -155,7 +155,7 @@ export default function Layout({ children }) {
         <div className="cinfoot__inner">
           <div className="cinfoot__brand">
             <span className="cinfoot__name">Laura Cordrey</span>
-            <span className="cinfoot__line">Fan-led growth for fan-driven brands.</span>
+            <span className="cinfoot__line">Fan-led growth for consumer brands.</span>
             <span className="cinfoot__meta">Paris · Since 2013</span>
           </div>
           <nav className="cinfoot__nav">
