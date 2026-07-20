@@ -473,8 +473,8 @@ const orderedStudies = [
       ] },
       { type: 'section', kicker: '[01] · The opportunity', title: 'One story, 22 markets.',
         body: [
-          'BlaBlaCar was growing at an exponential rate: new markets, new teams, dozens of social accounts, and content requests piling up. Every market was telling its own version of the brand.',
-          'That was the opening. One story, told consistently and in the fans’ own voice, would travel further than 22 of them. And in the UK, a whole market was there to be built from scratch, with growth that cost less than throwing money at ads.',
+          'New markets, new teams, and a brand story every market was writing for itself, in its own way.',
+          'That was the opportunity. One story, told consistently and in the fans’ own voice, would travel further than 22 separate ones. And in the UK, a whole market was there to be built from scratch, with growth that cost less than throwing money at ads.',
         ] },
       { type: 'band', contain: true, src: P('blablacar/blablacar-logo-blue.png') },
       { type: 'section', kicker: '[02] · The UK, from zero', title: 'Making carpooling part of the culture.',
@@ -497,7 +497,7 @@ const orderedStudies = [
           'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
           'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them, organically, first. People connected with them. When paid did come, that same creative is what brought acquisition down to a €5 CAC.',
         ] },
-      { type: 'carousel', contain: true, caption: 'First-person brand content, shot the way a fan would: real carpool moments and playful creative, not a polished ad in sight. The stuff people actually connected with.', items: [
+      { type: 'carousel', contain: true, caption: 'Laughing, singing, the view out the window: real carpool moments, not a polished ad.', items: [
         { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg') },
         { src: P('blablacar/blablacar-party.mp4'), poster: P('blablacar/blablacar-party-poster.jpg') },
         { src: P('blablacar/blablacar-coffee-quote.jpg') },
@@ -505,15 +505,13 @@ const orderedStudies = [
         { src: P('blablacar/blablacar-countdown-post.jpg') },
         { src: P('blablacar/blablacar-dog.mp4'), poster: P('blablacar/blablacar-dog-poster.jpg') },
       ] },
-      { type: 'carousel', contain: true, aspect: '1600 / 400', caption: 'The same story told as a route ad: real carpoolers, the price, the trip. One consistent brand, in every market.', items: [
+      { type: 'carousel', contain: true, aspect: '1600 / 400', caption: 'The same story as a route ad: the carpoolers, the price, the trip. One brand, every market.', items: [
         { src: P('blablacar/blablacar-route-ad-lille.mp4'), poster: P('blablacar/blablacar-route-ad-lille-poster.jpg') },
         { src: P('blablacar/blablacar-storytelling-ad.mp4'), poster: P('blablacar/blablacar-storytelling-ad-poster.jpg') },
       ] },
-      { type: 'quote',
-        quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
-        cite: 'How I thought about the brand at the time.' },
+      { type: 'statement', text: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.' },
       { type: 'result', kicker: 'The result', value: '€5',
-        caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Paid acquisition built on storytelling creative, so every paid pound went further.' },
+        caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Paid acquisition built on storytelling creative.' },
       { type: 'section', kicker: '[04] · The rollout', title: 'One brand, 22 markets.',
         body: [
           'I rolled one consistent brand across all 22 markets, and rebuilt the internal design process behind it: a full review and restructure that cut ad-hoc requests to the design team by 90%, while holding the KPIs. One brand, recognisable everywhere, run by a system the local teams could keep up themselves.',
