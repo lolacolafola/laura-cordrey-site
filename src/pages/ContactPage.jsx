@@ -291,17 +291,17 @@ export default function ContactPage() {
 
                   {isConsulting && (
                     <div className="contact-branch">
-                      <p className="contact-branch__eyebrow">Your growth problem</p>
+                      <p className="contact-branch__eyebrow">Your growth need</p>
                       <div className="contact-field">
                         <label htmlFor="contact-need">
                           What is closest to what you need? <span className="contact-field__hint">(we refine on a call)</span>
                         </label>
                         <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
+                          <option>The Fan Engine: I want the whole system</option>
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Programs: I want my users bringing new customers</option>
                           <option>Fan Moments: I have a big moment coming</option>
-                          <option>The Fan Engine: I want the whole system</option>
                           <option>Advisory: a session, or an ongoing embedded role</option>
                           <option value="Fan-led growth for AI: a founding-partner pilot">Fan-led growth for AI: a founding-partner pilot</option>
                           <option>Not sure yet, help me scope it</option>
