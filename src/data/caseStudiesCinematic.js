@@ -495,7 +495,7 @@ const orderedStudies = [
       { type: 'section', divider: true, kicker: '[03] · The move', title: 'Real moments, not perfect gram.',
         body: [
           'In 2016 I moved to the central Brand and Design team as Global Brand Content Manager. There I rebuilt how BlaBlaCar told its story: first-person, shot on a phone, real carpool moments (laughing, singing, the view out the window) instead of polished “perfect gram” ads.',
-          'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them. People connected with them organically. Paid came after, on top of an audience that already wanted us, and that is what brought acquisition to a €5 CAC.',
+          'This wasn’t a tested, optimised strategy. I had a gut feeling that real moments would land harder than polished ads, so I made them, organically, first. People connected with them. When paid did come, that same creative is what brought acquisition down to a €5 CAC.',
         ] },
       { type: 'carousel', contain: true, caption: 'First-person brand content, shot the way a fan would: real carpool moments and playful creative, not a polished ad in sight. The stuff people actually connected with.', items: [
         { src: P('blablacar/blablacar-diver.mp4'), poster: P('blablacar/blablacar-diver-poster.jpg') },
@@ -513,7 +513,7 @@ const orderedStudies = [
         quote: 'BlaBlaCar is all about stories. Every shared ride is a human connection, so I built the brand to sound like one.',
         cite: 'How I thought about the brand at the time.' },
       { type: 'result', kicker: 'The result', value: '€5',
-        caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Organic first, paid second: trust built the demand, so every paid pound went further.' },
+        caption: 'cost per acquisition — a quarterly average across 22 markets, at 3% CTR and 2M impressions. Paid acquisition built on storytelling creative, so every paid pound went further.' },
       { type: 'section', kicker: '[04] · The rollout', title: 'One brand, 22 markets.',
         body: [
           'I rolled one consistent brand across all 22 markets, and rebuilt the internal design process behind it: a full review and restructure that cut ad-hoc requests to the design team by 90%, while holding the KPIs. One brand, recognisable everywhere, run by a system the local teams could keep up themselves.',
@@ -522,7 +522,7 @@ const orderedStudies = [
       { type: 'takeaway', kicker: '[05] · The takeaway', title: 'Storytelling is growth.',
         lede: 'Honestly, this is where I got the space to be creative: to work out how to talk to people like humans, not like a brand. And it worked. People connected with it, and that connection grew the business.',
         principles: [
-          { num: '01', head: 'Lead organic, layer paid.', body: 'Stories earned the trust and the demand first. Paid then amplified an audience that already wanted us, which is what took acquisition to a €5 CAC.' },
+          { num: '01', head: 'Storytelling makes paid work harder.', body: 'Real moments as the creative meant paid acquisition landed harder with people, which is what took acquisition to a €5 CAC.' },
           { num: '02', head: 'First person beats polish.', body: 'Real carpool moments shot on a phone outperformed the perfect gram. People believe the person in the passenger seat, not the ad.' },
           { num: '03', head: 'One brand, run locally.', body: 'A system let 22 markets tell the same story in their own voice, without a flood of ad-hoc requests back to the centre.' },
         ] },

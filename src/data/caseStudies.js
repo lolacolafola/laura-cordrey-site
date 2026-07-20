@@ -264,8 +264,8 @@ const caseStudies = [
     id: 'blablacar-storytelling',
     company: 'BlaBlaCar · Brand & Storytelling',
     headline: 'Where I learned storytelling, and turned it into growth',
-    hook: 'First-person storytelling across 22 markets, and a €5 CAC from organic-first acquisition.',
-    tldr: 'How I built BlaBlaCar’s <mark>first-person storytelling system</mark>, real carpool moments over polished ads, rolled one brand across 22 markets, and grew acquisition organic-first to a <mark>€5 CAC</mark>.',
+    hook: 'First-person storytelling across 22 markets, and paid acquisition down to a €5 CAC.',
+    tldr: 'How I built BlaBlaCar’s <mark>first-person storytelling system</mark>, real carpool moments over polished ads, rolled one brand across 22 markets, and brought paid acquisition down to a <mark>€5 CAC</mark>.',
     year: '2013–2016',
     role: 'UK Community Manager, then Global Brand Content Manager',
     accent: '#2F6BD8',
@@ -280,9 +280,9 @@ const caseStudies = [
     challenge:
       'BlaBlaCar was scaling fast across 22 markets, but the brand was fragmenting and paid was the default way to grow. A new market, the UK, had to be built from zero, and growth needed to cost less than throwing money at ads.',
     approach:
-      'I joined the four-person UK launch team, then became Global Brand Content Manager. I built a first-person storytelling system: real carpool moments, laughing, singing, the view out the window, instead of polished “perfect gram” ads. I led with organic storytelling to build trust and demand, then layered paid on top, which brought acquisition to a €5 CAC. And I rolled one consistent brand across all 22 markets with a monthly content system that cut design-team requests by 90%. On the ground, I made BlaBlaCar the first ever Official Ridesharing Partner of Live Nation, 300+ branded parking spots and a festival community tent across Latitude, Leeds and Reading, turning festivals into a channel that made carpooling feel culturally normal in the UK.',
+      'I joined the four-person UK launch team, then became Global Brand Content Manager. I built a first-person storytelling system: real carpool moments, laughing, singing, the view out the window, instead of polished “perfect gram” ads, organically at first. When paid acquisition came, I used that same storytelling as the creative, which brought it down to a €5 CAC. And I rolled one consistent brand across all 22 markets with a monthly content system that cut design-team requests by 90%. On the ground, I made BlaBlaCar the first ever Official Ridesharing Partner of Live Nation, 300+ branded parking spots and a festival community tent across Latitude, Leeds and Reading, turning festivals into a channel that made carpooling feel culturally normal in the UK.',
     takeaway:
-      'This is where I learned that storytelling is growth, not decoration. Authentic content built trust, trust built demand, and demand made every paid dollar go further. It is the foundation of how I work now.',
+      'This is where I learned that storytelling is growth, not decoration. I built the system organically first, then when paid came, that same creative is what made every paid dollar go further. It is the foundation of how I work now.',
     gallery: [
       { src: 'case-studies/blablacar/blablacar-photobooth-strip.png', alt: 'BlaBlaCar photobooth strip of candid carpool moments', caption: 'First-person content: real moments, not polished ads.' },
       { src: 'case-studies/blablacar/blablacar-tweet-latitude.png', alt: 'BlaBlaCar festival tweet at Latitude', caption: 'Storytelling on social, in the fans’ own voice.' },
