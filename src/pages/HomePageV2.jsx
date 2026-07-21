@@ -606,7 +606,7 @@ export default function HomePageV2() {
                 <input type="text" name="name" required placeholder="Your name" aria-label="Your name" value={form.name} onChange={onField('name')} />
                 <input type="email" name="email" required placeholder="Email" aria-label="Email" value={form.email} onChange={onField('email')} />
                 <textarea name="message" required placeholder="What are you working on?" aria-label="What are you working on" value={form.message} onChange={onField('message')} />
-                <button type="submit" className="btnsend">Send</button>
+                <button type="submit" className="btnsend btnink">Send</button>
                 {/* Route to the branching form for anyone with a specific
                   * brief. This short form only captures name/email/message,
                   * so /contact is where need, timeline and the speaking

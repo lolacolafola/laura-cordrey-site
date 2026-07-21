@@ -72,36 +72,38 @@
 }
 .cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
 
-/* Secondary buttons: espresso solid with cream text, going red on hover.
+/* Secondary buttons: espresso solid, cream text. On hover the FILL DOES NOT
+ * CHANGE — the label and border go gold instead, with a 1px lift.
  *
- * THE RULE: hovering promotes a button one step up the palette ladder.
- *   espresso → red   (secondary)
- *   red      → gold  (primary)
- * Consistent direction, and each button gets a large, unmistakable change.
+ * THE RULE, and it now holds with no exceptions:
+ *   red      = primary. Only. Always.
+ *   espresso = secondary. Only. Always.
+ *   gold     = hover. Only. Always.
  *
- * Gold was tried here first and failed on measurement, not taste: gold
- * against the cream About ground is 1.39:1, so the button went from 15.5:1
- * at rest to barely separable — LESS present when you point at it than when
- * you do not. Red on cream is 4.32:1 and red on the dark speaking ground is
- * 3.75:1, so both stay clearly visible.
+ * Every earlier version swapped the fill on hover, and the fill is also what
+ * signals importance — so hovering a secondary made it look like a different
+ * level. Red-on-hover was the worst case: a hovered secondary became pixel-
+ * identical to a resting primary, and both can be on screen at once (hovering
+ * "More about me" while the red nav CTA sits above it).
  *
- * Note this does mean red carries two roles: primary-at-rest and
- * secondary-on-hover. The ladder is what makes that legible rather than
- * confusing — red is always "one step up from where you started".
+ * Holding the fill also fixes the ground problem that forced every previous
+ * exception. Gold fill dissolves on cream (1.39:1); red fill dissolves on the
+ * oxblood close. Because the fill stays espresso, the button keeps 15.5:1
+ * against cream and stays solid over the speaking video, on every ground.
+ * Gold label on espresso is 11.2:1.
  *
- * The hairline is for the speaking band, where this sits over a video loop.
- * Espresso on a dark frame would otherwise lose its edge; the border holds
- * the shape without lightening the fill. It is invisible on cream. */
-.cinv2 a.btnink {
+ * Not a tag selector, so the Send <button> can share it — which is why Send
+ * is no longer a special case. */
+.cinv2 .btnink {
   background: var(--bg);
   border: 1px solid rgba(239,233,220,.28);
   color: #EFE9DC;
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  transition: color .2s ease, border-color .2s ease, transform .12s ease;
 }
-.cinv2 a.btnink:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #EFE9DC;
+.cinv2 .btnink:hover {
+  color: var(--edge);
+  border-color: var(--edge);
+  transform: translateY(-1px);
 }
 
 /* .btngold and .btnblack lived here briefly and were removed after a critique:
@@ -463,25 +465,19 @@
 .cinv2 .cform input:focus,
 .cinv2 .cform textarea:focus { outline: none; border-color: #15110F; }
 .cinv2 .cform textarea { min-height: 120px; resize: vertical; }
+/* Layout and type only — Send carries .btnink for its colours and hover, so
+ * it follows the same rule as the other two secondaries. It used to need a
+ * carve-out (red on the oxblood ground is near-invisible); holding the fill
+ * removes the need for one. */
 .cinv2 button.btnsend {
   justify-self: start;
-  background: var(--bg);
-  color: #FBF4E6;
-  border: none;
   border-radius: 2px;
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: .92rem;
   font-weight: 700;
   padding: 13px 24px;
   cursor: pointer;
-  transition: background .2s ease, color .2s ease;
 }
-/* Send skips a rung on the ladder, and has to. It is espresso like the other
- * secondaries, so espresso → red would be the rule — but this button sits ON
- * the oxblood close, and red on red is near-invisible. It goes straight to
- * gold instead, using #F2D79A (the on-oxblood gold this section already uses
- * for its rule and links) rather than --edge, which goes muddy against red. */
-.cinv2 button.btnsend:hover { background: #F2D79A; color: var(--bg); }
 .cinv2 .contact-done {
   background: #fff;
   border-radius: 2px;
