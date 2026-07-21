@@ -26,7 +26,7 @@ const navLinks = [
 // Scoped to the v2 preview routes below so the live nav is untouched while
 // both homepage directions exist side by side.
 const navLinksV2 = [
-  { key: 'flg',      label: 'Fan-led growth', path: '/fan-led-growth', isHash: false },
+  { key: 'flg',      label: 'Fan-Led Growth', path: '/fan-led-growth', isHash: false },
   { key: 'work',     label: 'Work',           path: '/work',           isHash: false },
   { key: 'services', label: 'Services',       path: '/services',       isHash: false },
   { key: 'speaking', label: 'Speaking',       path: '/speaking',       isHash: false },

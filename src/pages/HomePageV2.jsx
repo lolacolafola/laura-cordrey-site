@@ -227,19 +227,20 @@ export default function HomePageV2() {
           * No redesign. */}
         <div
           className={HERO_PORTRAIT ? 'hero-split' : 'hero-centred'}
-          style={{ position: 'relative', ...INNER, padding: 'clamp(96px,12vh,148px) clamp(20px,5vw,64px) clamp(72px,8vw,104px)' }}
+          style={{ position: 'relative', ...INNER, padding: 'clamp(52px,6.5vh,80px) clamp(20px,5vw,64px) clamp(40px,4.5vw,60px)' }}
         >
           <div className="hero-copy">
             <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
             <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '17ch' }}>
-              Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
+              Fans who <mark>stay</mark>, <mark>pay</mark>,<br />and <mark>bring more</mark>.
             </h1>
             <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '52ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
               The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
             </p>
 
+            {/* No leading rule: the tick was reading as a stray mark once the
+              * block was centred, with nothing to align to on the left. */}
             <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
-              <span style={{ width: 24, height: 2, background: '#C8362B', flex: 'none' }} />
               <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
               <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
             </div>
@@ -259,14 +260,13 @@ export default function HomePageV2() {
             </figure>
           )}
         </div>
-      </section>
 
-      {/* ─── 2 · TRUSTED BY ─── */}
-      {/* No hairlines and no background of its own: the band sits on the same
-        * --bg-deep as the hero, so boxing it in was reading as a separate
-        * colour block. It now flows straight out of the hero. */}
-      <section className="logoband" style={{ background: 'var(--bg-deep)' }}>
-        <div style={{ ...INNER, padding: 'clamp(24px,3vw,38px) clamp(20px,5vw,64px) clamp(30px,3.6vw,44px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(16px,2vw,22px)' }}>
+        {/* ─── 2 · TRUSTED BY ───
+          * Inside the hero section, not after it. Matching the background was
+          * not enough on its own: the hero carries two radial glows, so a
+          * separate sibling underneath sat on flat #0E0B09 and read as a
+          * different colour. As a child it shares the ground and the glows. */}
+        <div className="logoband" style={{ position: 'relative', ...INNER, padding: '0 clamp(20px,5vw,64px) clamp(34px,4vw,52px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(14px,1.8vw,20px)' }}>
           {/* The small gold rule from the design system
             * (.about-strip__clients::before in shared.css): 48x1px --edge,
             * the editorial break that sits above a credentials strip. */}
@@ -277,10 +277,13 @@ export default function HomePageV2() {
           <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--ink-muted)', fontWeight: 700 }}>
             Trusted by teams at
           </span>
-          <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 940, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(18px,4vw,52px)' }}>
+          {/* Logos down from 46px to 36px, in proportion with the hook coming
+            * down from 102px to 84px: they are a supporting credential, not a
+            * second headline. */}
+          <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 860, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(18px,4vw,48px)' }}>
             {CLIENT_LOGOS.map((l) => (
               <li key={l.alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', opacity: .72 }}>
-                <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 46, maxWidth: l.maxw, width: 'auto', objectFit: 'contain' }} />
+                <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 36, maxWidth: Math.round(l.maxw * 0.8), width: 'auto', objectFit: 'contain' }} />
               </li>
             ))}
           </ul>
@@ -317,8 +320,11 @@ export default function HomePageV2() {
           </div>
           <figure data-rev style={{ margin: 0 }}>
             <div style={{ position: 'relative', aspectRatio: '4 / 3', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
-              <img src={BASE + 'portraits/laura-e3.jpg'} alt="Laura Cordrey speaking on stage at E3" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%', display: 'block' }} />
-              <span style={{ position: 'absolute', left: 0, bottom: 0, right: 0, padding: '16px 18px', background: 'linear-gradient(transparent,rgba(14,11,9,.85))', fontSize: '.74rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 600 }}>On stage · E3</span>
+              {/* The mic shot rather than the E3 stage one: its dark ground and
+                * warm browns sit in the espresso/red/cream palette, where the
+                * E3 frame's green and tan backdrop fought it. */}
+              <img src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'} alt="Laura Cordrey speaking at Ubisoft XP 2019" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 22%', display: 'block' }} />
+              <span style={{ position: 'absolute', left: 0, bottom: 0, right: 0, padding: '16px 18px', background: 'linear-gradient(transparent,rgba(14,11,9,.85))', fontSize: '.74rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 600 }}>On stage · Ubisoft XP</span>
             </div>
           </figure>
         </div>
@@ -497,7 +503,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
-                <Link to="/fan-score" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Take the quiz
                 </Link>
               </div>
@@ -518,7 +524,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>
-                <Link to="/fan-value" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Run the numbers
                 </Link>
               </div>
