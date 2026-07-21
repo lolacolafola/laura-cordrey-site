@@ -369,14 +369,15 @@
   max-width: 940px;
   margin: 0 auto;
 }
-/* Gold top border, not red: see the section comment in HomePageV2.jsx. Keeps
- * red reserved for the CTAs inside these cards. */
+/* No coloured top bar. A 3px accent rule on a card is the most template-y
+ * pattern there is, and these cards do not need it: the hairline border and
+ * the inner viz panel with the gauge/bars already give them their identity.
+ * The bar was redundant and read a touch cheap. */
 .cinv2 .tool {
   display: flex;
   flex-direction: column;
   background: #1F1A17;
   border: 1px solid rgba(239,233,220,.1);
-  border-top: 3px solid var(--edge);
   border-radius: 3px;
   overflow: hidden;
 }

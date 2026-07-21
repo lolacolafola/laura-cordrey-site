@@ -365,7 +365,9 @@ export default function HomePageV2() {
             * column — at full column width the 4:5 ratio made it ~675px tall,
             * which towered over the text beside it. */}
           <figure data-rev style={{ margin: '0 auto', width: '100%', maxWidth: 400 }}>
-            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
+            {/* No red top rule: it is a photograph, the image is the content.
+              * A rule on a photo adds nothing, same call as the work cards. */}
+            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F' }}>
               {/* The mic shot rather than the E3 stage one: its dark ground and
                 * warm browns sit in the espresso/red/cream palette, where the
                 * E3 frame's green and tan backdrop fought it. */}
