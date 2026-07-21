@@ -308,6 +308,12 @@
   box-shadow: 0 1px 3px rgba(21,17,15,.06);
   color: inherit;
   transition: transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;
+  /* Composite the card onto its own layer. The image/panel seam and the 1px
+     border sit at fractional pixels, so a plain lift re-rasterised them every
+     frame with different anti-aliasing, which showed as a flickering grey
+     line. Painted once and moved as a texture, that shimmer is gone. */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .cinv2 .casec img {
   width: 100%;
@@ -315,6 +321,8 @@
   object-fit: cover;
   display: block;
   transition: transform .5s cubic-bezier(.16,.84,.44,1);
+  /* Same reason, for the scaling image inside overflow: hidden. */
+  backface-visibility: hidden;
 }
 .cinv2 .casec:hover {
   transform: translateY(-3px);
