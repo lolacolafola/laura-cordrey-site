@@ -226,16 +226,18 @@
 /* Image on top, cream text panel below (the original .statc pattern).
  * The card lifts on hover and it navigates, so the motion is honest.
  *
- * Red top rule added so the motif is complete: every card and every
- * full-bleed band on this page now opens with a 3px rule. Red by default,
- * gold on the two tool cards because that section is deliberately gold. */
+ * NO red top rule. One was added here to "complete the motif" and it was the
+ * wrong call: this section already carries a red eyebrow, a red rule, three
+ * red stat figures and a red link, so the card rules took it to ten red
+ * elements — the second-reddest section on the page, right after the tools
+ * section had been cut from five to two for exactly that reason. These cards
+ * are image-led and get their identity from the photography. */
 .cinv2 a.casec {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background: #FCFAF3;
   border: 1px solid rgba(21,17,15,.1);
-  border-top: 3px solid var(--accent);
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(21,17,15,.06);
   text-decoration: none;
@@ -261,10 +263,14 @@
 .cinv2 a.casec:hover img { transform: scale(1.045); }
 
 /* ─── 6 · Speaking band ─────────────────────────────────── */
+/* No top rule. A heavy rule marks a boundary the layout does not already
+ * make obvious — but cream meeting near-black video is roughly a 15:1 value
+ * change, the hardest edge on the page. Full-bleed, it also made the loudest
+ * horizontal element in view a seam rather than content, pulling the eye to
+ * the join instead of to the stage. */
 .cinv2 .speak {
   position: relative;
   overflow: hidden;
-  border-top: 3px solid #C8362B;
   background: #14100E;
 }
 .cinv2 .speak-bg { position: absolute; inset: 0; z-index: 0; }
