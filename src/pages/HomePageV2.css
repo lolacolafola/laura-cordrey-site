@@ -510,12 +510,14 @@
  * rising at 0s and they arrive one after another. Same read as a stagger,
  * with no window where a bar is held at zero height waiting to begin. */
 .cinv2 .tool.is-live .bars i {
-  animation: v2BarRise .40s cubic-bezier(.22,.85,.3,1) forwards;
+  /* Slowed so the cascade lands around the same time as the 1.1s gauge draw;
+     the bars were finishing by 0.88s and read as snappier than Fan Score. */
+  animation: v2BarRise .62s cubic-bezier(.22,.85,.3,1) forwards;
 }
-.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .52s; }
-.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .64s; }
-.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: .76s; }
-.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: .88s; }
+.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .76s; }
+.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .90s; }
+.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: 1.04s; }
+.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: 1.18s; }
 
 @keyframes v2BarRise {
   from { transform: scaleY(0); }
