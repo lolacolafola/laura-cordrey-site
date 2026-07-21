@@ -413,8 +413,8 @@ export default function HomePageV2() {
             * than one per card. The three cards describe the offers; this is
             * the one place to go for all of them. */}
           <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(32px,4vw,46px)' }}>
-            <Link to="/services" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-              See all the ways to work with me
+            <Link to="/services" className="btncreamsoft" style={{ display: 'inline-flex', alignItems: 'center', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+              Work with me
             </Link>
           </div>
         </div>
