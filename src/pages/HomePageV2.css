@@ -127,12 +127,13 @@
  * filling these cards with pattern (ghost numeral, arcs, rings, contours,
  * halo) are gone; the ground does the work.
  *
- * The card is NOT a link. "Fix one thing now" covers three separate
- * services, so a card-wide click target could not resolve to one honest
- * destination. Each card carries a real button instead.
+ * The cards carry no CTA and no link. "Fix one thing now" covers three
+ * separate services, so neither a card-wide click target nor a per-card
+ * button could resolve to one honest destination. A single button sits under
+ * the group instead.
  *
- * Hover crossfades the two layers rather than rotating the card in 3D. The
- * flip was heavy on the eye, and it hid the button mid-turn. */
+ * Hover crossfades the two layers rather than rotating the card in 3D, which
+ * is what the benchmark does and is far gentler on the eye. */
 .cinv2 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -153,13 +154,12 @@
 .cinv2 .svcard--espresso { background: var(--bg);      color: #EFE9DC; border-color: rgba(212,200,150,.2); }
 .cinv2 .svcard--cream    { background: var(--surface); color: var(--bg); }
 
-/* The crossfade area. A fixed min-height keeps the three buttons on one
-   line: without it each card would size to its own copy length. */
+/* The crossfade area. A fixed min-height keeps the three cards the same
+   height: without it each would size to its own copy length. */
 .cinv2 .svcard-faces {
   position: relative;
   flex: 1;
   min-height: clamp(210px, 22vw, 270px);
-  margin-bottom: clamp(20px, 2.4vw, 26px);
 }
 .cinv2 .svcard-front,
 .cinv2 .svcard-back {
@@ -205,22 +205,6 @@
   font-weight: 500;
   opacity: .82;
 }
-
-/* Button is the inverse of its ground, so it reads as a button on all three,
-   and goes red on hover across the board. */
-.cinv2 .svcard-cta {
-  align-self: flex-start;
-  font-size: .92rem;
-  font-weight: 700;
-  padding: 13px 24px;
-  border-radius: 3px;
-  text-decoration: none;
-  transition: background .2s ease, color .2s ease;
-}
-.cinv2 .svcard--gold .svcard-cta,
-.cinv2 .svcard--cream .svcard-cta { background: var(--bg); color: #EFE9DC; }
-.cinv2 .svcard--espresso .svcard-cta { background: #EFE9DC; color: var(--bg); }
-.cinv2 .svcard-cta:hover { background: var(--accent); color: #EFE9DC; }
 
 /* Touch and reduced motion: no crossfade, both layers stacked and readable.
    Nothing is hidden behind a hover the device cannot perform. */

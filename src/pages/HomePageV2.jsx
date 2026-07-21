@@ -74,8 +74,9 @@ const CLIENT_LOGOS = [
 // services, so a single card-wide click target could not honestly resolve to
 // one destination. Each card carries a real button instead.
 //
-// `tone` also picks the button colours: the button is always the inverse of
-// its ground, so it reads as a button on every card.
+// The cards carry no CTA of their own. One button sits underneath the group
+// instead, because "Fix one thing now" covers three separate services and a
+// per-card link could not resolve to a single honest destination.
 const WAYS = [
   {
     no: '01',
@@ -83,8 +84,6 @@ const WAYS = [
     title: 'The Fan Engine\u2122',
     kicker: 'Build the whole engine',
     copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
-    cta: 'See how it works',
-    to: '/services#fan-engine',
   },
   {
     no: '02',
@@ -92,8 +91,6 @@ const WAYS = [
     title: 'Fix one thing now',
     kicker: 'Move fast on one problem',
     copy: 'One thing, moved fast: a sentiment turnaround, a fan or referral programme, or a launch moment that converts. With the baselines to prove it worked.',
-    cta: 'See the options',
-    to: '/services',
   },
   {
     no: '03',
@@ -101,8 +98,6 @@ const WAYS = [
     title: 'Advisory',
     kicker: 'Expertise on call',
     copy: 'Senior fan-led growth leadership without the full-time hire. In the room when you need it, as much or as little as you need.',
-    cta: 'See how it works',
-    to: '/services#advisory',
   },
 ]
 
@@ -410,18 +405,16 @@ export default function HomePageV2() {
                     </span>
                   </div>
                 </div>
-                {/* Real button. The card is deliberately not one big link:
-                  * "Fix one thing now" covers three separate services, so a
-                  * card-wide click target could not resolve to one honest
-                  * destination. */}
-                <Link to={w.to} className="svcard-cta">{w.cta}</Link>
               </div>
             ))}
           </div>
 
-          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(28px,3.4vw,40px)' }}>
-            <Link to="/services" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.3)', paddingBottom: 3 }}>
-              See all the ways to work with me <span className="ar" aria-hidden>→</span>
+          {/* The section's single CTA, a real button under the group rather
+            * than one per card. The three cards describe the offers; this is
+            * the one place to go for all of them. */}
+          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(32px,4vw,46px)' }}>
+            <Link to="/services" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+              See all the ways to work with me
             </Link>
           </div>
         </div>
