@@ -4,7 +4,6 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { postLead } from '../lib/forms.js'
 import './HomePageV2.css'
 
-const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
@@ -223,33 +222,30 @@ export default function HomePageV2() {
         <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '70vw', height: '70vw', maxWidth: 820, maxHeight: 820, background: 'radial-gradient(circle,rgba(200,54,43,.15) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 640, maxHeight: 640, background: 'radial-gradient(circle,rgba(212,200,150,.07) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
 
-        <div className="hero-grid" style={{ position: 'relative', ...INNER, padding: 'clamp(88px,11vh,132px) clamp(20px,5vw,64px) clamp(64px,7vw,96px)', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 'clamp(36px,6vw,80px)', alignItems: 'center' }}>
-          <div>
-            <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
-            <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '13ch' }}>
-              Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
-            </h1>
-            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '46ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
-              The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 20px', marginTop: 'clamp(26px,3.2vw,36px)' }}>
-              <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-                Let&rsquo;s talk <span className="ar" aria-hidden>→</span>
-              </Link>
-              <Link to="/methodology" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-                See how it works <span className="ar" aria-hidden>→</span>
-              </Link>
-            </div>
-            <span style={{ display: 'block', fontSize: '.84rem', color: '#8A8078', fontWeight: 600, marginTop: 'clamp(16px,1.8vw,20px)' }}>
-              Every message comes straight to me, and I reply within one working day.
-            </span>
+        {/* Text-only, full width: there isn't a hero-grade portrait in the
+          * library yet, and a weak one costs more than the empty column.
+          * One CTA (Cowork's structure) — the signature line carries the
+          * name that the portrait used to. */}
+        <div style={{ position: 'relative', ...INNER, padding: 'clamp(96px,12vh,148px) clamp(20px,5vw,64px) clamp(72px,8vw,104px)' }}>
+          <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
+          <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '17ch' }}>
+            Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
+          </h1>
+          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '52ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
+            The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
+          </p>
+
+          <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
+            <span style={{ width: 24, height: 2, background: '#C8362B', flex: 'none' }} />
+            <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
+            <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
           </div>
 
-          <figure className="hero-portrait" style={{ margin: 0 }}>
-            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
-              <img src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'} alt="Laura Cordrey speaking at Ubisoft XP 2019" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 22%', display: 'block' }} />
-            </div>
-          </figure>
+          <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
+            <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+              Get in touch <span className="ar" aria-hidden>→</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -274,8 +270,10 @@ export default function HomePageV2() {
         <div className="grid-2" style={{ ...INNER, padding: SECTION_PAD, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5.5vw,72px)', alignItems: 'center' }}>
           <div data-rev>
             <Eyebrow tone="red">The person behind it</Eyebrow>
+            {/* Short title (Cowork's). The long "I've seen the whole picture"
+              * headline read heavy here — the eyebrow already frames it. */}
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#15110F' }}>
-              I&rsquo;ve seen the whole picture. <mark>This is the part I chose to build</mark>.
+              Meet Laura
             </h2>
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '46ch' }}>
               Thirteen years across brand, growth and community at Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. Which is how I know where growth really comes from, and where it leaks.
@@ -360,30 +358,29 @@ export default function HomePageV2() {
             </h2>
           </div>
 
+          {/* Card layout from the original homepage (.statc): image on top at
+            * 16:10, text on a cream panel underneath. Overlaying the caption
+            * on the image cropped the art and left the stat fighting the
+            * photo for contrast. Same cards, new short copy. */}
           <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,20px)' }}>
             {CASES.map((c) => (
-              <Link to="/work" key={c.client} className="casec" data-rev aria-label={`${c.client}: ${c.value} ${c.label}`}>
-                <figure style={{ margin: 0, position: 'relative', aspectRatio: '4 / 3', overflow: 'hidden', background: '#15110F' }}>
+              <Link to="/work" key={c.client} className="casec" data-rev aria-label={`${c.client}: ${c.value}, ${c.label}`}>
+                <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
                   <img src={BASE + c.img} alt={c.alt} loading="lazy" />
-                  {/* Scrim runs dark well above the text: the US Mobile shot is
-                    * a light packshot, so a soft bottom-only fade left the
-                    * stat sitting on near-white. */}
-                  <figcaption style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 2, padding: 'clamp(34px,4vw,46px) clamp(16px,1.8vw,22px) clamp(16px,1.8vw,22px)', background: 'linear-gradient(0deg,rgba(14,11,9,.96) 0%,rgba(14,11,9,.86) 42%,rgba(14,11,9,.42) 74%,rgba(14,11,9,0) 100%)' }}>
-                    <span style={{ display: 'block', fontWeight: HEAD_W, fontSize: 'clamp(1.35rem,2vw,1.7rem)', letterSpacing: '-.02em', lineHeight: 1.1, color: '#EFE9DC' }}>{c.value}</span>
-                    <span style={{ display: 'block', fontSize: '.84rem', color: '#CABFB4', fontWeight: 600, marginTop: 3 }}>{c.label}</span>
-                  </figcaption>
                 </figure>
+                <div style={{ padding: 'clamp(18px,1.8vw,24px)', display: 'flex', flexDirection: 'column', gap: 7 }}>
+                  <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.5rem,2.3vw,2rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B' }}>{c.value}</span>
+                  <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{c.label}</span>
+                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
+                </div>
               </Link>
             ))}
           </div>
 
-          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(26px,3.2vw,38px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(26px,3.2vw,38px)' }}>
             <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
               See all work <span className="ar" aria-hidden>→</span>
             </Link>
-            <span style={{ fontSize: '.78rem', color: '#7A7167', fontWeight: 600 }}>
-              These numbers roll up several projects per brand, the full write-ups live on the Work page.
-            </span>
           </div>
         </div>
       </section>
@@ -404,13 +401,13 @@ export default function HomePageV2() {
           />
         </div>
         <div className="speak-scrim" aria-hidden="true" />
-        <div style={{ ...INNER, position: 'relative', zIndex: 2, padding: 'clamp(84px,10vw,132px) clamp(20px,5vw,64px)', maxWidth: 760, textAlign: 'center' }}>
-          <Eyebrow>Speaking</Eyebrow>
+        <div className="speak-copy" style={{ ...INNER, position: 'relative', zIndex: 2, padding: 'clamp(84px,10vw,132px) clamp(20px,5vw,64px)', maxWidth: 760, textAlign: 'center' }}>
+          <span className="speak-eyebrow"><Eyebrow>Speaking</Eyebrow></span>
           <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
           <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 auto 14px', maxWidth: '20ch', color: '#EFE9DC' }}>
             A key speaker at the industry&rsquo;s biggest events.
           </h2>
-          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.84)', margin: '0 auto clamp(24px,3vw,32px)', maxWidth: '46ch' }}>
+          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#EFE9DC', margin: '0 auto clamp(24px,3vw,32px)', maxWidth: '46ch' }}>
             I have presented my own fan-led projects, including on the E3 main stage.
           </p>
           <Link to="/speaking" className="btnghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
@@ -505,23 +502,23 @@ export default function HomePageV2() {
         </div>
       </section>
 
-      {/* ─── 9 · LET'S TALK ─── */}
+      {/* ─── 9 · LET'S TALK ───
+        * Cowork's close, matched: eyebrow, gold rule, "Tell me about your
+        * brand.", the one lead line, and the LinkedIn line. Nothing added.
+        * Only the form is wired up for real. */}
       <section className="contact-red" id="contact" style={{ color: '#FBF4E6' }}>
-        <div className="contact-grid" style={{ ...INNER, padding: 'clamp(72px,9vw,120px) clamp(20px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(36px,5vw,72px)', alignItems: 'start' }}>
+        <div className="contact-grid" style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(36px,5vw,60px)', alignItems: 'start' }}>
           <div data-rev>
-            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.2em', textTransform: 'uppercase', color: '#F2D79A', fontWeight: 700 }}>Let&rsquo;s talk</span>
-            <hr style={{ width: 46, height: 3, background: '#F2D79A', border: 'none', margin: '14px 0 22px' }} />
-            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2close, lineHeight: 1.02, letterSpacing: '-.032em', margin: 0, maxWidth: '12ch', color: '#FBF4E6' }}>
+            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.26em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Let&rsquo;s talk</span>
+            <hr style={{ width: 52, height: 4, background: '#D4C896', border: 'none', margin: '14px 0 26px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.7rem,3.2vw,2.4rem)', lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#EFE9DC' }}>
               Tell me about your brand.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', maxWidth: '38ch', margin: 'clamp(16px,2vw,22px) 0 0' }}>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.86)', maxWidth: '40ch', margin: '0 0 22px' }}>
               I&rsquo;ll tell you honestly whether fan-led growth is the lever for you.
             </p>
-            <p style={{ borderLeft: '2px solid #F2D79A', paddingLeft: 16, fontWeight: 600, fontSize: '.96rem', margin: 'clamp(20px,2.4vw,26px) 0 0', color: '#FBF4E6' }}>
-              Every message comes straight to me, and I reply within one working day.
-            </p>
-            <p style={{ fontSize: '.9rem', color: 'rgba(251,244,230,.82)', fontWeight: 600, margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
-              Or take the <Link to="/fan-score" style={{ color: '#F2D79A', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>2-minute Fan Score</Link> first, or find me on <a href={LINKEDIN_URL} style={{ color: '#F2D79A', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>LinkedIn</a>.
+            <p style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.82)', fontWeight: 600, margin: 0 }}>
+              Or find me on <a href={LINKEDIN_URL} style={{ color: '#D4C896', fontWeight: 700 }}>LinkedIn</a>.
             </p>
           </div>
 
@@ -538,12 +535,7 @@ export default function HomePageV2() {
                 <input type="text" name="name" required placeholder="Your name" aria-label="Your name" value={form.name} onChange={onField('name')} />
                 <input type="email" name="email" required placeholder="Email" aria-label="Email" value={form.email} onChange={onField('email')} />
                 <textarea name="message" required placeholder="What are you working on?" aria-label="What are you working on" value={form.message} onChange={onField('message')} />
-                <button type="submit" className="btnsend">
-                  Send <span className="ar" aria-hidden>→</span>
-                </button>
-                <span style={{ fontSize: '.82rem', color: 'rgba(251,244,230,.76)', fontWeight: 600 }}>
-                  Need to send more detail? Use the <Link to={CONTACT_URL} style={{ color: '#F2D79A', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>full contact form</Link>.
-                </span>
+                <button type="submit" className="btnsend">Send</button>
               </form>
             )}
           </div>

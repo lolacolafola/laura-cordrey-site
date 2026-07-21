@@ -158,13 +158,21 @@
 }
 
 /* ─── 5 · Case cards ────────────────────────────────────── */
+/* Image on top, cream text panel below (the original .statc pattern).
+ * The card lifts on hover and it navigates, so the motion is honest. */
 .cinv2 a.casec {
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  border-radius: 3px;
+  background: #FCFAF3;
+  border: 1px solid rgba(21,17,15,.1);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(21,17,15,.06);
   text-decoration: none;
   color: inherit;
+  transition: transform .3s cubic-bezier(.16,.84,.44,1),
+              box-shadow .3s ease,
+              border-color .25s ease;
 }
 .cinv2 a.casec img {
   width: 100%;
@@ -172,6 +180,13 @@
   object-fit: cover;
   display: block;
   transition: transform .4s cubic-bezier(.16,.84,.44,1);
+}
+.cinv2 a.casec:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 38px rgba(21,17,15,.18);
+  border-color: rgba(200,54,43,.32);
+  position: relative;
+  z-index: 1;
 }
 .cinv2 a.casec:hover img { transform: scale(1.045); }
 
@@ -190,16 +205,22 @@
   height: 100%;
   object-fit: cover;
 }
-/* Two-layer scrim. The clip has burnt-in stage titles ("DELTA COMPANY")
- * that competed with the headline, so a radial darkening sits over the
- * centre where the copy lands, on top of the vertical wash. */
+/* Light scrim only — the earlier heavy two-layer version made the footage
+ * unreadable. Legibility of the copy is handled by a text-shadow on the
+ * copy itself (below) rather than by darkening the whole clip. */
 .cinv2 .speak-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    radial-gradient(70% 60% at 50% 50%, rgba(14,11,9,.86) 0%, rgba(14,11,9,.45) 70%, rgba(14,11,9,.2) 100%),
-    linear-gradient(180deg, rgba(14,11,9,.72) 0%, rgba(14,11,9,.88) 100%);
+  background: linear-gradient(180deg, rgba(14,11,9,.46) 0%, rgba(14,11,9,.6) 100%);
+}
+/* The clip is a loop, so the frame behind the copy changes from a dark wide
+ * stage to a bright close-up. Shadow on the type (rather than more scrim)
+ * keeps it legible across every frame without dimming the footage. */
+.cinv2 .speak-copy h2,
+.cinv2 .speak-copy p,
+.cinv2 .speak-copy .speak-eyebrow {
+  text-shadow: 0 1px 2px rgba(14,11,9,.75), 0 2px 10px rgba(14,11,9,.9), 0 4px 30px rgba(14,11,9,.85);
 }
 
 /* ─── 8 · Tool cards ────────────────────────────────────── */
@@ -290,16 +311,18 @@
 .cinv2 .contact-red {
   background: linear-gradient(135deg, #9A2822 0%, #8E2520 55%, #7C1F1A 100%);
 }
-.cinv2 .cform { display: grid; gap: 13px; }
+/* Form matched to Cowork's spec: white fields, 2px radius, .92rem espresso
+ * Send button at 13px/24px. */
+.cinv2 .cform { display: grid; gap: 14px; }
 .cinv2 .cform input,
 .cinv2 .cform textarea {
   width: 100%;
-  background: #FBF4E6;
+  background: #fff;
   border: 1px solid rgba(255,255,255,.35);
   border-radius: 2px;
   color: #15110F;
   font-family: 'Manrope', system-ui, sans-serif;
-  font-size: .96rem;
+  font-size: .95rem;
   font-weight: 500;
   padding: 14px 16px;
 }
@@ -307,27 +330,24 @@
 .cinv2 .cform textarea::placeholder { color: #5E564E; }
 .cinv2 .cform input:focus,
 .cinv2 .cform textarea:focus { outline: none; border-color: #15110F; }
-.cinv2 .cform textarea { min-height: 116px; resize: vertical; }
+.cinv2 .cform textarea { min-height: 120px; resize: vertical; }
 .cinv2 button.btnsend {
   justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   background: #15110F;
-  color: #FBF4E6;
-  border: 1px solid #15110F;
-  border-radius: 3px;
+  color: #EFE9DC;
+  border: none;
+  border-radius: 2px;
   font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 1rem;
+  font-size: .92rem;
   font-weight: 700;
-  padding: 15px 30px;
+  padding: 13px 24px;
   cursor: pointer;
-  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  transition: background .2s ease, transform .12s ease;
 }
-.cinv2 button.btnsend:hover { background: #0E0B09; border-color: #0E0B09; transform: translateY(-1px); }
+.cinv2 button.btnsend:hover { background: #0E0B09; transform: translateY(-1px); }
 .cinv2 .contact-done {
-  background: #FBF4E6;
-  border-radius: 3px;
+  background: #fff;
+  border-radius: 2px;
   padding: clamp(26px, 3vw, 34px);
 }
 
@@ -357,8 +377,6 @@
 
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .cinv2 .hero-grid { grid-template-columns: 1fr !important; }
-  .cinv2 .hero-portrait { order: -1; max-width: 320px; }
   .cinv2 .grid-2 { grid-template-columns: 1fr !important; }
   .cinv2 .grid-3 { grid-template-columns: 1fr !important; }
   .cinv2 .flip-grid { grid-template-columns: 1fr; }
