@@ -275,16 +275,17 @@ export default function HomePageV2() {
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#15110F' }}>
               Meet Laura
             </h2>
-            {/* Cowork's sequencing: past > now > two-beat close. Option A in
-              * content/copy/copy-homepage-v2-about.md (B and C are there too).
-              * Cowork's "across North America and EMEA" is deliberately left
-              * out: it is not sourced anywhere else on the site. The Animoca
-              * acquisition takes its place and is both true and harder. */}
+            {/* Option D, content/copy/copy-homepage-v2-about.md. Cowork's
+              * sequencing (past > now > two-beat close) with "I've worked the
+              * whole machine" rescued from the live homepage: the roster says
+              * where she has been, that line says what she can see. The
+              * remaining texture ("complicated tech, crowded roadmaps...")
+              * stays on /about. Region claim confirmed by Laura 21 Jul 2026. */}
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '46ch' }}>
-              Thirteen years building brand, community and growth where fans are loudest: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca.
+              Thirteen years building brand, community and growth where fans are loudest, for global brands and startups across North America and EMEA: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. I&rsquo;ve worked the whole machine.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#15110F', fontWeight: 600, margin: 'clamp(12px,1.4vw,16px) 0 0', maxWidth: '46ch' }}>
-              Now I run my own consultancy for fan-led growth, bringing what worked at those names together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the return.
+              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
               <Link to="/about" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
