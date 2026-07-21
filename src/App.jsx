@@ -9,6 +9,7 @@ function CaseStudiesRedirect() {
 }
 import ScrollToTop from './components/ScrollToTop.jsx'
 import HomePage from './pages/HomePage.jsx'
+import HomePageV2 from './pages/HomePageV2.jsx'
 import WorkPage from './pages/WorkPage.jsx'
 import WorkArticle from './pages/WorkArticle.jsx'
 import DeltaCompanyPage from './pages/DeltaCompanyPage.jsx'
@@ -35,6 +36,12 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          {/* Lighter homepage rebuild, parked alongside the live one so both
+              can be compared. Not in the nav, not in the sitemap (so the
+              prerender skips it) and noindex'd at runtime. Decide later
+              whether it replaces "/" — see
+              content/copy/homepage-density-analysis.md. */}
+          <Route path="/home-v2" element={<HomePageV2 />} />
           <Route path="/work" element={<WorkPage />} />
           {/* Bespoke deep-dive case studies — explicit routes take precedence
               over the generic /work/:slug template. */}

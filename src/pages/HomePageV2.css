@@ -1,0 +1,380 @@
+/* HomePage — lighter rebuild (21 Jul 2026).
+ * Inline styles in HomePage.jsx carry the per-section visual spec.
+ * This file holds hover / reveal / responsive behaviour that can't be
+ * inlined, plus the four new modules: flip cards, speaking band, tool
+ * cards and the red contact close. */
+
+/* Headings dropped from 800 to 700, so <mark> must follow rather than
+ * re-bolding the word it highlights. */
+.cinv2 mark { background: transparent; color: #C8362B; font-weight: inherit; }
+
+/* ─── Scroll-reveal ─────────────────────────────────────── */
+.cinv2 [data-rev] {
+  transition: opacity .9s cubic-bezier(.16,.84,.44,1),
+              transform .9s cubic-bezier(.16,.84,.44,1);
+}
+.cinv2 [data-rev].cin-hide { opacity: 0; transform: translateY(40px); }
+
+/* ─── Buttons ───────────────────────────────────────────── */
+/* Hover honesty (CLAUDE.md): only <a>/<button> move under the cursor.
+ * Logo cells, the quote and the tool viz panels stay static. */
+.cinv2 a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }
+.cinv2 a.btncream:hover { background: #F2D79A !important; border-color: #F2D79A !important; }
+.cinv2 a.btnsoft {
+  background: rgba(239,233,220,.09);
+  border: 1px solid rgba(239,233,220,.22);
+  color: #EFE9DC;
+  transition: background .2s ease, border-color .2s ease;
+}
+.cinv2 a.btnsoft:hover { background: rgba(239,233,220,.18) !important; border-color: rgba(239,233,220,.42) !important; }
+.cinv2 a.btnsoftd {
+  background: rgba(21,17,15,.06);
+  border: 1px solid rgba(21,17,15,.18);
+  color: #15110F;
+  transition: background .2s ease, border-color .2s ease;
+}
+.cinv2 a.btnsoftd:hover { background: rgba(21,17,15,.12) !important; border-color: rgba(21,17,15,.36) !important; }
+.cinv2 a.btnghost {
+  background: transparent;
+  border: 1.5px solid rgba(239,233,220,.5);
+  color: #EFE9DC;
+  transition: background .2s ease, border-color .2s ease;
+}
+.cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
+
+.cinv2 a.btnp .ar, .cinv2 a.btnsoft .ar, .cinv2 a.btnsoftd .ar,
+.cinv2 a.btnghost .ar, .cinv2 a.tlink .ar, .cinv2 button.btnsend .ar { transition: transform .2s ease; }
+.cinv2 a.btnp:hover .ar, .cinv2 a.btnsoft:hover .ar, .cinv2 a.btnsoftd:hover .ar,
+.cinv2 a.btnghost:hover .ar, .cinv2 a.tlink:hover .ar, .cinv2 button.btnsend:hover .ar { transform: translateX(4px); }
+.cinv2 a.tlink { transition: color .2s ease, border-color .2s ease; }
+.cinv2 a.tlink:hover { color: #D4C896 !important; }
+
+/* ─── 4 · Flip cards ────────────────────────────────────── */
+/* Each .flip is an <a>, so the hover motion is honest: it moves and it
+ * navigates. Both faces render into the DOM for prerender + a11y. */
+.cinv2 .flip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 18px);
+}
+.cinv2 a.flip {
+  display: block;
+  perspective: 1500px;
+  aspect-ratio: 1 / 1.02;
+  text-decoration: none;
+  color: inherit;
+}
+.cinv2 .flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1);
+}
+.cinv2 a.flip:hover .flip-inner,
+.cinv2 a.flip:focus-visible .flip-inner { transform: rotateY(180deg); }
+.cinv2 .flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 2.6vw, 32px);
+  background: #15110F;
+  border: 1px solid rgba(239,233,220,.1);
+  border-top: 3px solid #C8362B;
+  border-radius: 3px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cinv2 .flip-back { transform: rotateY(180deg); }
+.cinv2 .flip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cinv2 .flip-icon { color: #C8362B; line-height: 0; }
+.cinv2 .flip-no {
+  display: block;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: #C8362B;
+}
+.cinv2 .flip-title {
+  display: block;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.12;
+  color: #EFE9DC;
+}
+.cinv2 .flip-more {
+  display: block;
+  margin-top: 10px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #8A8078;
+}
+.cinv2 .flip-copy {
+  display: block;
+  line-height: 1.6;
+  color: rgba(239,233,220,.74);
+  font-weight: 500;
+}
+.cinv2 .flip-see {
+  display: block;
+  margin-top: 14px;
+  color: #D4C896;
+  font-weight: 700;
+  font-size: .84rem;
+  letter-spacing: .03em;
+}
+
+/* Touch devices and reduced-motion: no flip. Show the front, then the
+ * back's copy stacked under it, so nothing is hidden behind a gesture
+ * that device can't perform. */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cinv2 a.flip { aspect-ratio: auto; perspective: none; }
+  .cinv2 .flip-inner { transform: none !important; transition: none; }
+  .cinv2 .flip-face {
+    position: relative;
+    inset: auto;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  .cinv2 .flip-front { padding-bottom: 8px; }
+  .cinv2 .flip-front .flip-more { display: none; }
+  .cinv2 .flip-back {
+    transform: none;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    padding-top: 0;
+  }
+  .cinv2 .flip-back .flip-no { display: none; }
+  .cinv2 .flip-back .flip-title { display: none; }
+}
+
+/* ─── 5 · Case cards ────────────────────────────────────── */
+.cinv2 a.casec {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+}
+.cinv2 a.casec img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s cubic-bezier(.16,.84,.44,1);
+}
+.cinv2 a.casec:hover img { transform: scale(1.045); }
+
+/* ─── 6 · Speaking band ─────────────────────────────────── */
+.cinv2 .speak {
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid #C8362B;
+  background: #14100E;
+}
+.cinv2 .speak-bg { position: absolute; inset: 0; z-index: 0; }
+.cinv2 .speak-bg video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Two-layer scrim. The clip has burnt-in stage titles ("DELTA COMPANY")
+ * that competed with the headline, so a radial darkening sits over the
+ * centre where the copy lands, on top of the vertical wash. */
+.cinv2 .speak-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(70% 60% at 50% 50%, rgba(14,11,9,.86) 0%, rgba(14,11,9,.45) 70%, rgba(14,11,9,.2) 100%),
+    linear-gradient(180deg, rgba(14,11,9,.72) 0%, rgba(14,11,9,.88) 100%);
+}
+
+/* ─── 8 · Tool cards ────────────────────────────────────── */
+.cinv2 .tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 22px);
+}
+.cinv2 .tool {
+  display: flex;
+  flex-direction: column;
+  background: #1F1A17;
+  border: 1px solid rgba(239,233,220,.1);
+  border-top: 3px solid #C8362B;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cinv2 .tool-viz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 250px;
+  padding: clamp(26px, 3vw, 34px);
+  background: linear-gradient(158deg, #251e18 0%, #1a1512 100%);
+  border-bottom: 1px solid rgba(239,233,220,.1);
+}
+.cinv2 .tool-kick {
+  display: block;
+  margin-bottom: 16px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #D4C896;
+}
+.cinv2 .tool-cap {
+  margin-top: 8px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #8A8078;
+}
+.cinv2 .tool-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(22px, 2.6vw, 30px);
+}
+.cinv2 .gauge { position: relative; width: 180px; max-width: 100%; margin: 0 auto; }
+.cinv2 .gauge svg { width: 100%; display: block; }
+.cinv2 .gauge-num {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -.02em;
+  color: #EFE9DC;
+}
+.cinv2 .gauge-num span { font-size: .84rem; color: #8A8078; font-weight: 700; }
+.cinv2 .val-num {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 2.9rem);
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: #EFE9DC;
+}
+.cinv2 .val-num .k { color: #C8362B; font-size: .55em; vertical-align: top; margin-left: 2px; }
+.cinv2 .bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 9px;
+  height: 44px;
+  margin-top: 20px;
+}
+.cinv2 .bars i {
+  width: 19px;
+  background: linear-gradient(180deg, #C8362B 0%, #8E2520 100%);
+  border-radius: 2px 2px 0 0;
+  opacity: .9;
+}
+
+/* ─── 9 · Red contact close ─────────────────────────────── */
+.cinv2 .contact-red {
+  background: linear-gradient(135deg, #9A2822 0%, #8E2520 55%, #7C1F1A 100%);
+}
+.cinv2 .cform { display: grid; gap: 13px; }
+.cinv2 .cform input,
+.cinv2 .cform textarea {
+  width: 100%;
+  background: #FBF4E6;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 2px;
+  color: #15110F;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: .96rem;
+  font-weight: 500;
+  padding: 14px 16px;
+}
+.cinv2 .cform input::placeholder,
+.cinv2 .cform textarea::placeholder { color: #5E564E; }
+.cinv2 .cform input:focus,
+.cinv2 .cform textarea:focus { outline: none; border-color: #15110F; }
+.cinv2 .cform textarea { min-height: 116px; resize: vertical; }
+.cinv2 button.btnsend {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #15110F;
+  color: #FBF4E6;
+  border: 1px solid #15110F;
+  border-radius: 3px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.cinv2 button.btnsend:hover { background: #0E0B09; border-color: #0E0B09; transform: translateY(-1px); }
+.cinv2 .contact-done {
+  background: #FBF4E6;
+  border-radius: 3px;
+  padding: clamp(26px, 3vw, 34px);
+}
+
+/* ─── Hero entrance ─────────────────────────────────────── */
+@keyframes cinv2FadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cinv2 .logoband { opacity: 0; animation: cinv2FadeUp .9s cubic-bezier(.16,.84,.44,1) .45s forwards; }
+
+/* ─── Hero glow pulse ───────────────────────────────────── */
+.cinv2 .heroglow { animation: cinv2Glow 7s ease-in-out infinite; }
+@keyframes cinv2Glow {
+  0%   { opacity: .7; transform: scale(1); }
+  50%  { opacity: 1;  transform: scale(1.08); }
+  100% { opacity: .7; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinv2 .heroglow { animation: none; }
+  .cinv2 .logoband { opacity: 1; animation: none; }
+  .cinv2 [data-rev] { transition: none; }
+  .cinv2 .speak-bg video { display: none; }
+}
+
+.cinv2 #about, .cinv2 #services, .cinv2 #speaking, .cinv2 #tools, .cinv2 #contact { scroll-margin-top: 78px; }
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cinv2 .hero-grid { grid-template-columns: 1fr !important; }
+  .cinv2 .hero-portrait { order: -1; max-width: 320px; }
+  .cinv2 .grid-2 { grid-template-columns: 1fr !important; }
+  .cinv2 .grid-3 { grid-template-columns: 1fr !important; }
+  .cinv2 .flip-grid { grid-template-columns: 1fr; }
+  .cinv2 .tools-grid { grid-template-columns: 1fr; }
+  .cinv2 .contact-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 760px) {
+  /* Logo strip: 3 on top, 2 centred underneath (no orphan). */
+  .cinv2 .logoshelf {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(18px, 5vw, 28px) !important;
+  }
+  .cinv2 .logoshelf > li {
+    flex: 0 0 calc(33.333% - clamp(18px, 5vw, 28px));
+    max-width: 30%;
+  }
+}
