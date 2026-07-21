@@ -90,12 +90,6 @@
   -webkit-backface-visibility: hidden;
 }
 .cinv2 .flip-back { transform: rotateY(180deg); }
-.cinv2 .flip-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cinv2 .flip-icon { color: #C8362B; line-height: 0; }
 .cinv2 .flip-no {
   display: block;
   font-size: .74rem;
@@ -224,10 +218,14 @@
 }
 
 /* ─── 8 · Tool cards ────────────────────────────────────── */
+/* Narrower than the full measure, with a wider gutter between them, so the
+ * two cards read as a pair with air around them rather than a split bar. */
 .cinv2 .tools-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 22px);
+  gap: clamp(24px, 3.4vw, 48px);
+  max-width: 940px;
+  margin: 0 auto;
 }
 .cinv2 .tool {
   display: flex;

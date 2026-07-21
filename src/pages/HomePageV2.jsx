@@ -56,28 +56,13 @@ const CLIENT_LOGOS = [
   { src: 'logos/azarus-vert.png', alt: 'Azarus / Animoca', maxw: 118 },
 ]
 
-// Stroke icons, carried over from the previous build so the three cards keep
-// the site's existing visual language (and so the front face isn't a void).
-const Icon = ({ name, size = 30 }) => {
-  const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
-  switch (name) {
-    case 'gear':
-      return (<svg {...common}><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="9" /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" /></svg>)
-    case 'spark':
-      return (<svg {...common} strokeWidth={1.6}><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" /><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z" /></svg>)
-    case 'users':
-      return (<svg {...common}><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><path d="M18 7v6M21 10h-6" /></svg>)
-    default:
-      return null
-  }
-}
-
 // Three ways in. Front face carries the name, back face the detail.
 // Both faces are in the DOM (prerender + screen readers get everything).
+// Numbers only on the front, no icons: three abstract marks next to three
+// numerals was doing the same job twice.
 const WAYS = [
   {
     no: '01',
-    icon: 'gear',
     title: 'The Fan Engine™',
     kicker: 'Build the whole engine',
     copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
@@ -85,7 +70,6 @@ const WAYS = [
   },
   {
     no: '02',
-    icon: 'spark',
     title: 'Fix one thing now',
     kicker: 'Move fast on one problem',
     copy: 'One thing, moved fast: a sentiment turnaround, a fan or referral programme, or a launch moment that converts. With the baselines to prove it worked.',
@@ -93,7 +77,6 @@ const WAYS = [
   },
   {
     no: '03',
-    icon: 'users',
     title: 'Advisory',
     kicker: 'Expertise on call',
     copy: 'Senior fan-led growth leadership without the full-time hire. In the room when you need it, as much or as little as you need.',
@@ -253,8 +236,11 @@ export default function HomePageV2() {
       {/* ─── 2 · TRUSTED BY ─── */}
       <section className="logoband" style={{ background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)', borderBottom: '1px solid rgba(239,233,220,.12)' }}>
         <div style={{ ...INNER, padding: 'clamp(30px,3.6vw,44px) clamp(20px,5vw,64px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(18px,2.4vw,26px)' }}>
+          {/* Cowork's label. "Thirteen years..." was here, but the About
+            * section opens with "Thirteen years building brand, community and
+            * growth" two screens later, so it read as a repeat. */}
           <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A8078', fontWeight: 700 }}>
-            Thirteen years building fan-led growth
+            Trusted by teams at
           </span>
           <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 940, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(18px,4vw,52px)' }}>
             {CLIENT_LOGOS.map((l) => (
@@ -324,10 +310,7 @@ export default function HomePageV2() {
               <Link key={w.no} to={w.to} className="flip" data-rev aria-label={`${w.title}. ${w.copy}`}>
                 <span className="flip-inner">
                   <span className="flip-face flip-front">
-                    <span className="flip-top">
-                      <span className="flip-no">{w.no}</span>
-                      <span className="flip-icon"><Icon name={w.icon} /></span>
-                    </span>
+                    <span className="flip-no">{w.no}</span>
                     <span>
                       <span className="flip-title" style={{ fontSize: 'clamp(1.3rem,1.9vw,1.6rem)' }}>{w.title}</span>
                       <span className="flip-more">{w.kicker} →</span>
