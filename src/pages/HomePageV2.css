@@ -190,13 +190,18 @@
 
 /* ─── 5 · Case cards ────────────────────────────────────── */
 /* Image on top, cream text panel below (the original .statc pattern).
- * The card lifts on hover and it navigates, so the motion is honest. */
+ * The card lifts on hover and it navigates, so the motion is honest.
+ *
+ * Red top rule added so the motif is complete: every card and every
+ * full-bleed band on this page now opens with a 3px rule. Red by default,
+ * gold on the two tool cards because that section is deliberately gold. */
 .cinv2 a.casec {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background: #FCFAF3;
   border: 1px solid rgba(21,17,15,.1);
+  border-top: 3px solid var(--accent);
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(21,17,15,.06);
   text-decoration: none;

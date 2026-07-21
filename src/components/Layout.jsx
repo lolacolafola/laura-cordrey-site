@@ -182,7 +182,10 @@ export default function Layout({ children }) {
           <div className="cinfoot__brand">
             <span className="cinfoot__name">Laura Cordrey</span>
             <span className="cinfoot__line">Fan-led growth for consumer brands.</span>
-            <span className="cinfoot__meta">Paris · Since 2013</span>
+            {/* Scoped to the v2 routes like the nav above, so the live footer
+                is untouched while both directions exist. Drop the isV2 test
+                to take it site-wide. */}
+            <span className="cinfoot__meta">{isV2 ? 'Paris. Working globally' : 'Paris · Since 2013'}</span>
           </div>
           <nav className="cinfoot__nav">
             {footerLinks.map((n) => (
