@@ -8,7 +8,12 @@ export default function ScrollToTop() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
     if (!hash) {
-      window.scrollTo(0, 0)
+      // behavior: 'instant' overrides the global `html { scroll-behavior:
+      // smooth }` (Layout.css). Without it, opening a new page ANIMATES the
+      // scroll to the top, which reads as the current page scrolling rather
+      // than a new page loading — genuinely confusing. The hash branch below
+      // already jumps instantly, so this makes route resets consistent with it.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
       return
     }
     const id = hash.slice(1)
