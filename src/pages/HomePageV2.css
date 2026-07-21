@@ -72,28 +72,12 @@
 }
 .cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
 
-/* Gold at rest, red on hover — the inverse of .btnp. Used on the two tool
- * cards: three red buttons in one section was too much red. */
-.cinv2 a.btngold {
-  background: var(--edge);
-  border: 1px solid var(--edge);
-  color: var(--bg);
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
-}
-.cinv2 a.btngold:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #EFE9DC;
-}
-
-/* Espresso on the cream About ground, going red on hover. */
-.cinv2 a.btnblack {
-  background: var(--bg);
-  border: 1px solid var(--bg);
-  color: #EFE9DC;
-  transition: background .2s ease, border-color .2s ease;
-}
-.cinv2 a.btnblack:hover { background: var(--accent); border-color: var(--accent); }
+/* .btngold and .btnblack lived here briefly and were removed after a critique:
+ * gold-at-rest/red-on-hover was the exact mirror of .btnp (red-at-rest/gold-
+ * on-hover), so red meant both "primary action" and "you are hovering
+ * something secondary", and gold meant both in reverse. Neither colour could
+ * hold a meaning. One rule now: red is the primary action, gold is its hover
+ * response, and secondary buttons stay quiet. */
 
 .cinv2 a.btnp .ar, .cinv2 a.btnsoft .ar, .cinv2 a.btnsoftd .ar,
 .cinv2 a.btnghost .ar, .cinv2 a.tlink .ar, .cinv2 button.btnsend .ar { transition: transform .2s ease; }
@@ -280,12 +264,14 @@
   max-width: 940px;
   margin: 0 auto;
 }
+/* Gold top border, not red: see the section comment in HomePageV2.jsx. Keeps
+ * red reserved for the CTAs inside these cards. */
 .cinv2 .tool {
   display: flex;
   flex-direction: column;
   background: #1F1A17;
   border: 1px solid rgba(239,233,220,.1);
-  border-top: 3px solid #C8362B;
+  border-top: 3px solid var(--edge);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -388,39 +374,32 @@
   to   { stroke-dasharray: 163 264; }
 }
 
-/* Bars stand at full height by default; .is-live replays the rise. The shine
- * loop runs unconditionally so the card still has life without the observer. */
+/* Bars stand at full height by default; .is-live replays the rise once.
+ *
+ * The looping shine that used to pass along them was cut: an infinite
+ * brightness pulse sits in peripheral vision while someone reads the card
+ * copy, and it was the most complex, least useful half of this effect. The
+ * one-time entrance is what makes a static readout feel alive; perpetual
+ * motion just competes with the text. */
 .cinv2 .bars i {
   transform: scaleY(1);
   transform-origin: bottom;
-  animation: v2BarShine 3.6s ease-in-out infinite;
 }
-.cinv2 .bars i:nth-child(1) { animation-delay: 0s; }
-.cinv2 .bars i:nth-child(2) { animation-delay: .15s; }
-.cinv2 .bars i:nth-child(3) { animation-delay: .30s; }
-.cinv2 .bars i:nth-child(4) { animation-delay: .45s; }
-.cinv2 .bars i:nth-child(5) { animation-delay: .60s; }
 
 /* The cascade comes from staggered DURATIONS, not delays: every bar starts
  * rising at 0s and they arrive one after another. Same read as a stagger,
  * with no window where a bar is held at zero height waiting to begin. */
 .cinv2 .tool.is-live .bars i {
-  animation:
-    v2BarRise .40s cubic-bezier(.22,.85,.3,1) forwards,
-    v2BarShine 3.6s ease-in-out 1.4s infinite;
+  animation: v2BarRise .40s cubic-bezier(.22,.85,.3,1) forwards;
 }
-.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .52s, 3.6s; }
-.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .64s, 3.6s; }
-.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: .76s, 3.6s; }
-.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: .88s, 3.6s; }
+.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .52s; }
+.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .64s; }
+.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: .76s; }
+.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: .88s; }
 
 @keyframes v2BarRise {
   from { transform: scaleY(0); }
   to   { transform: scaleY(1); }
-}
-@keyframes v2BarShine {
-  0%, 72%, 100% { filter: brightness(1); }
-  80%           { filter: brightness(1.55); }
 }
 
 /* ─── 9 · Red contact close ─────────────────────────────── */
@@ -515,9 +494,8 @@
   .cinv2 .logoband { opacity: 1; animation: none; }
   .cinv2 [data-rev] { transition: none; }
   .cinv2 .speak-bg video { display: none; }
-  /* Tool visuals sit in their finished state (already the default) with the
-     shine loop switched off. The JS never adds .is-live here either. */
-  .cinv2 .bars i { animation: none; }
+  /* Tool visuals sit in their finished state, which is already the default —
+     the JS never adds .is-live under reduced motion. */
   .cinv2 .hero-copy a.btnp::after { display: none; }
 }
 

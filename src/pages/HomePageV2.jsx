@@ -338,14 +338,16 @@ export default function HomePageV2() {
               Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
-              <Link to="/about" className="btnblack" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
+              <Link to="/about" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me
               </Link>
             </div>
           </div>
           {/* 4:5 as on the original homepage: taller and narrower suits a
-            * standing figure and balances the text column better than 4:3. */}
-          <figure data-rev style={{ margin: 0 }}>
+            * standing figure. Capped at 400px so it does not fill the whole
+            * column — at full column width the 4:5 ratio made it ~675px tall,
+            * which towered over the text beside it. */}
+          <figure data-rev style={{ margin: '0 auto', width: '100%', maxWidth: 400 }}>
             <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
               {/* The mic shot rather than the E3 stage one: its dark ground and
                 * warm browns sit in the espresso/red/cream palette, where the
@@ -459,7 +461,9 @@ export default function HomePageV2() {
           />
         </div>
         <div className="speak-scrim" aria-hidden="true" />
-        <div className="speak-copy" style={{ ...INNER, position: 'relative', zIndex: 2, padding: 'clamp(84px,10vw,132px) clamp(20px,5vw,64px)', maxWidth: 760, textAlign: 'center' }}>
+        {/* data-rev was missing here, which is why this was the one section
+          * that did not fade up like the rest of the page. */}
+        <div data-rev className="speak-copy" style={{ ...INNER, position: 'relative', zIndex: 2, padding: 'clamp(84px,10vw,132px) clamp(20px,5vw,64px)', maxWidth: 760, textAlign: 'center' }}>
           <span className="speak-eyebrow"><Eyebrow>Speaking</Eyebrow></span>
           <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
           <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 auto 14px', maxWidth: '20ch', color: '#EFE9DC' }}>
@@ -494,12 +498,17 @@ export default function HomePageV2() {
         </div>
       </section>
 
-      {/* ─── 8 · TOOLS ─── */}
+      {/* ─── 8 · TOOLS ───
+        * Gold section. The rule and the card top-borders are --edge rather
+        * than --accent, so the red count here drops from five elements to
+        * two (the CTAs). That fixes "too much red" at the source instead of
+        * by weakening the buttons, and gives the section its own identity as
+        * the IP tools. Red stays reserved for actions. */}
       <section id="tools" style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.1)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ textAlign: 'center', maxWidth: '54ch', margin: '0 auto clamp(34px,4vw,48px)' }}>
             <Eyebrow>Want to take the first step on your own?</Eyebrow>
-            <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
+            <hr style={{ width: 46, height: 3, background: 'var(--edge)', border: 'none', margin: '14px auto 20px' }} />
             <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.74)', margin: 0 }}>
               Two quick ways to see where you stand with fan-led growth.
             </p>
@@ -530,7 +539,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
-                <Link to="/fan-score" className="btngold" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Take the quiz
                 </Link>
               </div>
@@ -551,7 +560,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>
-                <Link to="/fan-value" className="btngold" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Run the numbers
                 </Link>
               </div>
