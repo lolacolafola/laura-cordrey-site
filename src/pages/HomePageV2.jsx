@@ -66,31 +66,43 @@ const CLIENT_LOGOS = [
   { src: 'logos/azarus-vert.png', alt: 'Azarus / Animoca', maxw: 118 },
 ]
 
-// Three ways in. Front face carries the name, back face the detail.
-// Both faces are in the DOM (prerender + screen readers get everything).
-// Numbers only on the front, no icons: three abstract marks next to three
-// numerals was doing the same job twice.
+// Three ways in. Each card carries its own brand ground (gold, espresso,
+// cream) rather than decoration: the gold card is the trademarked flagship,
+// and the three grounds give hierarchy and variety with nothing invented.
+//
+// The card itself is NOT a link. "Fix one thing now" covers three separate
+// services, so a single card-wide click target could not honestly resolve to
+// one destination. Each card carries a real button instead.
+//
+// `tone` also picks the button colours: the button is always the inverse of
+// its ground, so it reads as a button on every card.
 const WAYS = [
   {
     no: '01',
-    title: 'The Fan Engine™',
+    tone: 'gold',
+    title: 'The Fan Engine\u2122',
     kicker: 'Build the whole engine',
     copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
+    cta: 'See how it works',
     to: '/services#fan-engine',
   },
   {
     no: '02',
+    tone: 'espresso',
     title: 'Fix one thing now',
     kicker: 'Move fast on one problem',
     copy: 'One thing, moved fast: a sentiment turnaround, a fan or referral programme, or a launch moment that converts. With the baselines to prove it worked.',
+    cta: 'See the options',
     to: '/services',
   },
   {
     no: '03',
+    tone: 'cream',
     title: 'Advisory',
     kicker: 'Expertise on call',
     copy: 'Senior fan-led growth leadership without the full-time hire. In the room when you need it, as much or as little as you need.',
-    to: '/services',
+    cta: 'See how it works',
+    to: '/services#advisory',
   },
 ]
 
@@ -375,33 +387,35 @@ export default function HomePageV2() {
             </p>
           </div>
 
-          <div className="flip-grid">
+          <div className="svc-grid">
             {WAYS.map((w) => (
-              <Link key={w.no} to={w.to} className="flip" data-rev aria-label={`${w.title}. ${w.copy}`}>
-                <span className="flip-inner">
-                  {/* data-no drives the oversized ghost numeral in the CSS.
-                    * Placeholder furniture until real artwork exists — see the
-                    * .flip-front::after block in HomePageV2.css to remove it. */}
-                  <span className="flip-face flip-front">
-                    <span className="flip-no">{w.no}</span>
+              <div key={w.no} className={`svcard svcard--${w.tone}`} data-rev>
+                {/* Two stacked layers that crossfade on hover, rather than a
+                  * 3D flip: gentler on the eye and it never hides the button.
+                  * Both layers are in the DOM for prerender and screen
+                  * readers, and both are visible without hover on touch. */}
+                <div className="svcard-faces">
+                  <div className="svcard-front">
+                    <span className="svcard-no">{w.no}</span>
                     <span>
-                      <span className="flip-title" style={{ fontSize: 'clamp(1.3rem,1.9vw,1.6rem)' }}>{w.title}</span>
-                      {/* No arrow: the whole card is the link, and at marker
-                        * tracking the extra glyph pushed the longest kicker
-                        * onto a second line, knocking the three out of line. */}
-                      <span className="flip-more">{w.kicker}</span>
+                      <span className="svcard-title">{w.title}</span>
+                      <span className="svcard-kicker">{w.kicker}</span>
                     </span>
-                  </span>
-                  <span className="flip-face flip-back">
+                  </div>
+                  <div className="svcard-back">
+                    <span className="svcard-no">{w.no}</span>
                     <span>
-                      <span className="flip-no">{w.no}</span>
-                      <span className="flip-title" style={{ fontSize: T.h3, display: 'block', margin: '8px 0 10px' }}>{w.title}</span>
-                      <span className="flip-copy" style={{ fontSize: T.body }}>{w.copy}</span>
+                      <span className="svcard-title svcard-title--sm">{w.title}</span>
+                      <span className="svcard-copy">{w.copy}</span>
                     </span>
-                    <span className="flip-see">See how it works →</span>
-                  </span>
-                </span>
-              </Link>
+                  </div>
+                </div>
+                {/* Real button. The card is deliberately not one big link:
+                  * "Fix one thing now" covers three separate services, so a
+                  * card-wide click target could not resolve to one honest
+                  * destination. */}
+                <Link to={w.to} className="svcard-cta">{w.cta}</Link>
+              </div>
             ))}
           </div>
 

@@ -120,154 +120,122 @@
 .cinv2 a.tlink { transition: color .2s ease, border-color .2s ease; }
 .cinv2 a.tlink:hover { color: #D4C896 !important; }
 
-/* ─── 4 · Flip cards ────────────────────────────────────── */
-/* Each .flip is an <a>, so the hover motion is honest: it moves and it
- * navigates. Both faces render into the DOM for prerender + a11y. */
-.cinv2 .flip-grid {
+/* ─── 4 · Service cards ─────────────────────────────────── */
+/* Three brand grounds instead of decoration: gold for the trademarked
+ * flagship, then espresso, then cream. That gives hierarchy and variety
+ * using only the palette, with nothing invented. Five earlier attempts at
+ * filling these cards with pattern (ghost numeral, arcs, rings, contours,
+ * halo) are gone; the ground does the work.
+ *
+ * The card is NOT a link. "Fix one thing now" covers three separate
+ * services, so a card-wide click target could not resolve to one honest
+ * destination. Each card carries a real button instead.
+ *
+ * Hover crossfades the two layers rather than rotating the card in 3D. The
+ * flip was heavy on the eye, and it hid the button mid-turn. */
+.cinv2 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 1.6vw, 18px);
+  gap: clamp(14px, 1.6vw, 20px);
 }
-.cinv2 a.flip {
-  display: block;
-  perspective: 1500px;
-  aspect-ratio: 1 / 1.02;
-  text-decoration: none;
-  color: inherit;
+.cinv2 .svcard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  border-top: 3px solid var(--accent);
+  padding: clamp(24px, 2.6vw, 32px);
+  overflow: hidden;
 }
-.cinv2 .flip-inner {
+
+/* Grounds. Each sets its own ink so the copy stays legible. */
+.cinv2 .svcard--gold     { background: var(--edge);    color: var(--bg); }
+.cinv2 .svcard--espresso { background: var(--bg);      color: #EFE9DC; border-color: rgba(212,200,150,.2); }
+.cinv2 .svcard--cream    { background: var(--surface); color: var(--bg); }
+
+/* The crossfade area. A fixed min-height keeps the three buttons on one
+   line: without it each card would size to its own copy length. */
+.cinv2 .svcard-faces {
   position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform .55s cubic-bezier(.4,.2,.2,1);
+  flex: 1;
+  min-height: clamp(210px, 22vw, 270px);
+  margin-bottom: clamp(20px, 2.4vw, 26px);
 }
-.cinv2 a.flip:hover .flip-inner,
-.cinv2 a.flip:focus-visible .flip-inner { transform: rotateY(180deg); }
-.cinv2 .flip-face {
+.cinv2 .svcard-front,
+.cinv2 .svcard-back {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(24px, 2.6vw, 32px);
-  background: #15110F;
-  /* Gold hairline rather than cream: the one place a premium cue costs
-     nothing and adds no visual noise. Red top rule stays. */
-  border: 1px solid rgba(212,200,150,.2);
-  border-top: 3px solid #C8362B;
-  border-radius: 3px;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  transition: opacity .32s ease;
 }
-.cinv2 .flip-back { transform: rotateY(180deg); }
-/* ─── TEMPORARY: ring motif + tonal step ─────────────────
- * Placeholder for the three service cards until real artwork exists. Two
- * parts, both pure CSS, no assets:
- *
- * 1. Concentric rings bleeding off the top-right corner. Deliberately the
- *    same arc language as the Fan Score gauge further down the page, so this
- *    echoes something already in the system rather than inventing a motif
- *    Laura would then have to live with or undo.
- * 2. A tonal step across the three cards, lightest to darkest, which gives
- *    the 01 > 02 > 03 sequence a quiet visual ladder. All three stay darker
- *    than the #1F1A17 section ground so the cards still read as cards.
- *
- * No red or gold here on purpose: the brand keeps red for emphasis and
- * structure, not for large flooded areas, and the cards already carry a red
- * top rule and a red numeral.
- *
- * Static, so it is print and reduced-motion safe.
- *
- * TO REMOVE: delete this block and the data-no attribute in HomePageV2.jsx. */
-/* No decorative fill here any more. Five attempts went into filling this
- * space with texture (ghost numeral, sparse arcs, dense rings, contours,
- * colour halo) before the actual diagnosis landed: the card feels empty
- * because the front face says nothing, not because it lacks pattern. The
- * value sits on the back, behind a hover most visitors never trigger and
- * touch devices never see. Decoration cannot fix an informational gap.
- *
- * Gold now does the premium signalling, as the brand intends it: a hairline
- * and a marker, never a wash. Gold as area cheapens; gold as detail reads
- * expensive. */
+.cinv2 .svcard-back { opacity: 0; }
+.cinv2 .svcard:hover .svcard-front { opacity: 0; }
+.cinv2 .svcard:hover .svcard-back  { opacity: 1; }
 
-/* Tonal step, lightest card first. Applies to both faces so a flipped card
-   keeps its own tone. */
-.cinv2 .flip-grid > :nth-child(1) .flip-face { background: #1C1714; }
-.cinv2 .flip-grid > :nth-child(2) .flip-face { background: #191411; }
-.cinv2 .flip-grid > :nth-child(3) .flip-face { background: #15110F; }
-
-/* Keep the real content above the contours. Targets the spans specifically,
- * not `> *`: a universal child selector also hit the contour <svg>, forcing
- * position:relative onto it, which dropped it back into the flex flow. That
- * shrank it to a flex item and pushed the numeral out of the top corner. */
-.cinv2 .flip-front > span { position: relative; z-index: 1; }
-
-.cinv2 .flip-no {
+.cinv2 .svcard-no {
   display: block;
   font-size: .74rem;
   font-weight: 700;
   letter-spacing: .12em;
-  color: #C8362B;
+  opacity: .6;
 }
-.cinv2 .flip-title {
+.cinv2 .svcard-title {
   display: block;
   font-weight: 700;
+  font-size: clamp(1.3rem, 1.9vw, 1.6rem);
   letter-spacing: -.02em;
   line-height: 1.12;
-  color: #EFE9DC;
 }
-/* Gold marker, not muted grey. Same treatment as the section eyebrows, which
- * is the brand's premium signal: small, uppercase, well letter-spaced, gold.
- * Costs no new copy and lifts the card without adding decoration. */
-.cinv2 .flip-more {
+.cinv2 .svcard-title--sm { font-size: clamp(1.1rem, 1.5vw, 1.3rem); margin-bottom: 10px; }
+.cinv2 .svcard-kicker {
   display: block;
   margin-top: 12px;
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--edge);
+  opacity: .62;
 }
-.cinv2 .flip-copy {
+.cinv2 .svcard-copy {
   display: block;
+  font-size: clamp(.95rem, 1.05vw, 1.04rem);
   line-height: 1.6;
-  color: rgba(239,233,220,.74);
   font-weight: 500;
-}
-.cinv2 .flip-see {
-  display: block;
-  margin-top: 14px;
-  color: #D4C896;
-  font-weight: 700;
-  font-size: .84rem;
-  letter-spacing: .03em;
+  opacity: .82;
 }
 
-/* Touch devices and reduced-motion: no flip. Show the front, then the
- * back's copy stacked under it, so nothing is hidden behind a gesture
- * that device can't perform. */
+/* Button is the inverse of its ground, so it reads as a button on all three,
+   and goes red on hover across the board. */
+.cinv2 .svcard-cta {
+  align-self: flex-start;
+  font-size: .92rem;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.cinv2 .svcard--gold .svcard-cta,
+.cinv2 .svcard--cream .svcard-cta { background: var(--bg); color: #EFE9DC; }
+.cinv2 .svcard--espresso .svcard-cta { background: #EFE9DC; color: var(--bg); }
+.cinv2 .svcard-cta:hover { background: var(--accent); color: #EFE9DC; }
+
+/* Touch and reduced motion: no crossfade, both layers stacked and readable.
+   Nothing is hidden behind a hover the device cannot perform. */
 @media (hover: none), (prefers-reduced-motion: reduce) {
-  .cinv2 a.flip { aspect-ratio: auto; perspective: none; }
-  .cinv2 .flip-inner { transform: none !important; transition: none; }
-  .cinv2 .flip-face {
+  .cinv2 .svcard-faces { min-height: 0; }
+  .cinv2 .svcard-front,
+  .cinv2 .svcard-back {
     position: relative;
     inset: auto;
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
+    opacity: 1 !important;
+    transition: none;
   }
-  .cinv2 .flip-front { padding-bottom: 8px; }
-  .cinv2 .flip-front .flip-more { display: none; }
-  .cinv2 .flip-back {
-    transform: none;
-    border-top: none;
-    border-radius: 0 0 3px 3px;
-    padding-top: 0;
-  }
-  .cinv2 .flip-back .flip-no { display: none; }
-  .cinv2 .flip-back .flip-title { display: none; }
+  .cinv2 .svcard-back { margin-top: 16px; }
+  .cinv2 .svcard-back .svcard-no,
+  .cinv2 .svcard-back .svcard-title { display: none; }
 }
 
 /* ─── 5 · Case cards ────────────────────────────────────── */
@@ -619,7 +587,7 @@
 @media (max-width: 900px) {
   .cinv2 .grid-2 { grid-template-columns: 1fr !important; }
   .cinv2 .grid-3 { grid-template-columns: 1fr !important; }
-  .cinv2 .flip-grid { grid-template-columns: 1fr; }
+  .cinv2 .svc-grid { grid-template-columns: 1fr; }
   .cinv2 .tools-grid { grid-template-columns: 1fr; }
   .cinv2 .contact-grid { grid-template-columns: 1fr !important; }
 }
