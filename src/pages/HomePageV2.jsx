@@ -177,27 +177,13 @@ export default function HomePageV2() {
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    // Count a number element from 0 to its data-to over ~1.4s, ease-out.
-    const countUp = (node, to, dur = 1400) => {
-      const start = performance.now()
-      const step = (now) => {
-        const p = Math.min(1, (now - start) / dur)
-        const eased = 1 - Math.pow(1 - p, 3)
-        node.textContent = String(Math.round(to * eased))
-        if (p < 1) requestAnimationFrame(step)
-        else node.textContent = String(to)
-      }
-      requestAnimationFrame(step)
-    }
-
-    // One trigger drives a tool card's whole visualisation: the gauge draw
-    // and bar rise (CSS, keyed off .is-live) and the count-up number. Because
-    // it is one function, entrance and hover replay ALL of it together, so
-    // the two cards animate in step rather than one going stale.
+    // Replays a tool card's CSS visualisation: the gauge draw and the bar
+    // rise, keyed off .is-live. `restart` (hover) clears and re-adds the class
+    // on the next frame to run it from the top; entrance just adds it once.
+    // Guarded so a rapid re-hover does not stutter.
     //
-    // `restart` (hover) clears and re-adds .is-live on the next frame to
-    // replay the CSS from the top; without it (entrance) the class is just
-    // added once. Guarded so a rapid re-hover does not stutter.
+    // The number is deliberately NOT animated: counting it up read as too much
+    // motion. The gauge and bars carry it.
     const fireViz = (tool, restart) => {
       if (restart) {
         if (tool.dataset.replaying) return
@@ -207,8 +193,6 @@ export default function HomePageV2() {
         window.setTimeout(() => { delete tool.dataset.replaying }, 1400)
       }
       tool.classList.add('is-live')
-      const num = tool.querySelector('.val-count')
-      if (num) countUp(num, Number(num.dataset.to) || 0)
     }
 
     // Service-card sheen still fires once on entrance only (see the .svcard
@@ -400,7 +384,7 @@ export default function HomePageV2() {
               Thirteen years building brand, community and growth where fans are loudest, for global brands and startups across North America and EMEA: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. I&rsquo;ve worked the whole machine.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#15110F', fontWeight: 600, margin: 'clamp(12px,1.4vw,16px) 0 0', maxWidth: '46ch' }}>
-              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling.<br />I can prove the return.
+              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove<br />the return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
               <Link to="/about" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
@@ -481,13 +465,14 @@ export default function HomePageV2() {
             </h2>
           </div>
 
-          {/* Card layout from the original homepage (.statc): image on top at
-            * 16:10, text on a cream panel underneath. Overlaying the caption
-            * on the image cropped the art and left the stat fighting the
-            * photo for contrast. Same cards, new short copy. */}
+          {/* Static cards, not links. Each shows a single brand's headline
+            * stat but the only destination is the /work index, so a per-card
+            * link promised a case study it could not deliver, which confused
+            * a visitor. The one route out is the "See all work" link below.
+            * Being non-links, they also drop the hover motion (hover honesty). */}
           <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,20px)' }}>
             {CASES.map((c) => (
-              <Link to="/work" key={c.client} className="casec" data-rev aria-label={`${c.client}: ${c.value}, ${c.label}`}>
+              <div key={c.client} className="casec" data-rev>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
                   <img src={BASE + c.img} alt={c.alt} loading="lazy" />
                 </figure>
@@ -496,7 +481,7 @@ export default function HomePageV2() {
                   <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{c.label}</span>
                   <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -612,11 +597,9 @@ export default function HomePageV2() {
             <div className="tool" data-rev>
               <div className="tool-viz">
                 <span className="tool-kick">One number</span>
-                {/* The number counts 0 to 560, driven by the same .is-live
-                  * trigger as the gauge and bars, so entrance AND hover replay
-                  * all of it together. Default text is the final value, so a
-                  * browser or crawler where nothing fires shows $560K. */}
-                <div className="val-num">$<span className="val-count" data-to="560">560</span><span className="k">K</span></div>
+                {/* Static: counting the number up read as too much motion.
+                  * The gauge and bars carry the entrance and hover animation. */}
+                <div className="val-num">$560<span className="k">K</span></div>
                 <div className="tool-cap">Estimated annual value</div>
                 <div className="bars" aria-hidden="true">
                   <i style={{ height: '32%' }} /><i style={{ height: '50%' }} /><i style={{ height: '66%' }} /><i style={{ height: '84%' }} /><i style={{ height: '100%' }} />

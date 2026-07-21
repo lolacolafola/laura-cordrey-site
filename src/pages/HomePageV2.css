@@ -292,7 +292,10 @@
  * elements — the second-reddest section on the page, right after the tools
  * section had been cut from five to two for exactly that reason. These cards
  * are image-led and get their identity from the photography. */
-.cinv2 a.casec {
+/* Static, not links: no hover lift or image zoom. They stopped being <a>
+ * because each only routed to the /work index, not the case study its stat
+ * implied. Informational cards stay still under the cursor (hover honesty). */
+.cinv2 .casec {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -300,27 +303,14 @@
   border: 1px solid rgba(21,17,15,.1);
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(21,17,15,.06);
-  text-decoration: none;
   color: inherit;
-  transition: transform .3s cubic-bezier(.16,.84,.44,1),
-              box-shadow .3s ease,
-              border-color .25s ease;
 }
-.cinv2 a.casec img {
+.cinv2 .casec img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .4s cubic-bezier(.16,.84,.44,1);
 }
-.cinv2 a.casec:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 38px rgba(21,17,15,.18);
-  border-color: rgba(200,54,43,.32);
-  position: relative;
-  z-index: 1;
-}
-.cinv2 a.casec:hover img { transform: scale(1.045); }
 
 /* ─── 6 · Speaking band ─────────────────────────────────── */
 /* No top rule. A heavy rule marks a boundary the layout does not already
