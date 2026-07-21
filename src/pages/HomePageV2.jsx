@@ -589,7 +589,7 @@ export default function HomePageV2() {
               I&rsquo;ll tell you honestly whether fan-led growth is the lever for you.
             </p>
             <p style={{ fontSize: '.9rem', color: 'rgba(251,244,230,.82)', fontWeight: 600, margin: 0 }}>
-              Or find me on <a href={LINKEDIN_URL} style={{ color: '#F2D79A', fontWeight: 700 }}>LinkedIn</a>.
+              Or find me on <a href={LINKEDIN_URL} className="oxlink">LinkedIn</a>.
             </p>
           </div>
 
@@ -612,7 +612,7 @@ export default function HomePageV2() {
                   * so /contact is where need, timeline and the speaking
                   * fields get asked. */}
                 <span style={{ fontSize: '.84rem', color: 'rgba(251,244,230,.8)', fontWeight: 600 }}>
-                  Something specific in mind? Use the <Link to={CONTACT_URL} style={{ color: '#F2D79A', fontWeight: 700 }}>full contact form</Link>.
+                  Something specific in mind? Use the <Link to={CONTACT_URL} className="oxlink">full contact form</Link>.
                 </span>
               </form>
             )}

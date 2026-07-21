@@ -484,6 +484,28 @@
   padding: 13px 24px;
   cursor: pointer;
 }
+/* Inline links inside the oxblood close ("LinkedIn", "full contact form").
+ * They were bold gold text with no underline and NO hover rule at all — a
+ * regression from matching Cowork's close, whose base stylesheet strips
+ * underlines globally. Two problems: without an underline they barely read as
+ * links, and with no hover they gave no confirmation they were clickable.
+ *
+ * Gold is their rest colour here, so gold cannot also be the hover. They
+ * brighten to cream instead, which is the same "one step up in value" move
+ * the buttons make. */
+.cinv2 .oxlink {
+  color: #F2D79A;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(242,215,154,.45);
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.cinv2 .oxlink:hover {
+  color: #FBF4E6;
+  text-decoration-color: #FBF4E6;
+}
+
 .cinv2 .contact-done {
   background: #fff;
   border-radius: 2px;
