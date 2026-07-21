@@ -16,7 +16,11 @@ import { useEffect, useRef, useState } from 'react'
 export default function Counter({ value, prefix = '', suffix = '', duration = 1400 }) {
   const ref = useRef(null)
   const fired = useRef(false)
-  const [display, setDisplay] = useState(0)
+  // Default to the final value, not 0. If the observer never fires (an old
+  // browser, a privacy setting, a prerender snapshot, or a headless viewer),
+  // the correct number is shown rather than a stuck "0". When it does fire it
+  // resets to 0 and counts up, the standard scroll-triggered pattern.
+  const [display, setDisplay] = useState(value)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -25,10 +29,9 @@ export default function Counter({ value, prefix = '', suffix = '', duration = 14
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    if (reduced) {
-      setDisplay(value)
-      return
-    }
+    // Reduced motion: leave the number at its default, which is already the
+    // final value, so it never animates.
+    if (reduced) return
 
     const el = ref.current
     if (!el) return

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { postLead } from '../lib/forms.js'
+import Counter from '../components/Counter.jsx'
 import './HomePageV2.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -188,7 +189,31 @@ export default function HomePageV2() {
       { threshold: 0.35 }
     )
     el.querySelectorAll('.tool, .svcard').forEach((t) => io.observe(t))
-    return () => io.disconnect()
+
+    // Hover replays a tool card's visualisation: the gauge redraws, the bars
+    // rise again. Honest because the card FRAME never moves — nothing lifts,
+    // scales or glows toward the cursor, so it makes no "clickable" promise
+    // (the button inside is the click target). It reads as the data being
+    // alive. Removing then re-adding .is-live on the next frame restarts the
+    // existing CSS animations. Guarded so a re-hover mid-animation does not
+    // stutter.
+    const tools = [...el.querySelectorAll('.tool')]
+    const replay = (t) => {
+      if (t.dataset.replaying) return
+      t.dataset.replaying = '1'
+      t.classList.remove('is-live')
+      // Force a reflow so the class removal takes before it is re-added.
+      void t.offsetWidth
+      t.classList.add('is-live')
+      window.setTimeout(() => { delete t.dataset.replaying }, 1200)
+    }
+    const enter = (e) => replay(e.currentTarget)
+    tools.forEach((t) => t.addEventListener('pointerenter', enter))
+
+    return () => {
+      io.disconnect()
+      tools.forEach((t) => t.removeEventListener('pointerenter', enter))
+    }
   }, [])
 
   // Scroll-reveal: any [data-rev] element below the fold starts hidden and reveals once it scrolls in.
@@ -352,7 +377,7 @@ export default function HomePageV2() {
               Thirteen years building brand, community and growth where fans are loudest, for global brands and startups across North America and EMEA: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. I&rsquo;ve worked the whole machine.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#15110F', fontWeight: 600, margin: 'clamp(12px,1.4vw,16px) 0 0', maxWidth: '46ch' }}>
-              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the return.
+              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling.<br />I can prove the return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
               <Link to="/about" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
@@ -564,7 +589,12 @@ export default function HomePageV2() {
             <div className="tool" data-rev>
               <div className="tool-viz">
                 <span className="tool-kick">One number</span>
-                <div className="val-num">$560<span className="k">K</span></div>
+                {/* Counts 0 to 560 on entrance, so the Fan Value card has a
+                  * headline animation of its own. Its equivalent of the Fan
+                  * Score gauge drawing: before, only the small bars moved and
+                  * the number, the actual hero, sat static. Counter defaults
+                  * to the final value if its observer never fires. */}
+                <div className="val-num">$<Counter value={560} /><span className="k">K</span></div>
                 <div className="tool-cap">Estimated annual value</div>
                 <div className="bars" aria-hidden="true">
                   <i style={{ height: '32%' }} /><i style={{ height: '50%' }} /><i style={{ height: '66%' }} /><i style={{ height: '84%' }} /><i style={{ height: '100%' }} />
