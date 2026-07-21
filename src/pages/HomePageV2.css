@@ -263,7 +263,11 @@
   line-height: 1.6;
   font-weight: 500;
   color: color-mix(in srgb, currentColor 84%, transparent);
+  /* Pulls a lone last word up onto the line above, so the copy never ends on
+     a single orphaned word ("...not rent / it."). The kicker gets it too. */
+  text-wrap: pretty;
 }
+.cinv2 .svcard-kicker { text-wrap: pretty; }
 
 /* Touch and reduced motion: the copy is open from the start, so nothing is
    hidden behind a hover the device cannot perform. The kicker stays, since
@@ -628,6 +632,12 @@
   .cinv2 .grid-2 { grid-template-columns: 1fr !important; }
   .cinv2 .grid-3 { grid-template-columns: 1fr !important; }
   .cinv2 .svc-grid { grid-template-columns: 1fr; }
+  /* Stacked full-width, the tall portrait proportion just leaves a big empty
+     top, so drop the min-height and let each card fit its content. The copy
+     is already shown on touch, so nothing needs reserving. Content top-aligns
+     rather than being pushed to the bottom of an oversized box. */
+  .cinv2 .svcard { min-height: 0; }
+  .cinv2 .svcard-body { margin-top: clamp(28px, 8vw, 44px); }
   .cinv2 .tools-grid { grid-template-columns: 1fr; }
   .cinv2 .contact-grid { grid-template-columns: 1fr !important; }
 }
