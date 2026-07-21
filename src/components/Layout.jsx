@@ -62,6 +62,21 @@ export default function Layout({ children }) {
   const nav = isV2 ? navLinksV2 : navLinks
   const ctaLabel = isV2 ? 'Get in touch' : 'Let’s talk'
 
+  // The brand was hardcoded to "/", which meant clicking it from /home-v2
+  // navigated to the LIVE homepage rather than back to the top of the page
+  // you were on. On non-v2 routes this resolves to "/" exactly as before.
+  const homePath = isV2 ? '/home-v2' : '/'
+
+  // Already at the top-level page? Scroll to the top instead of a no-op
+  // navigation. Scoped to the v2 routes so live behaviour is unchanged;
+  // drop the isV2 test to apply it site-wide.
+  const onBrandClick = (e) => {
+    if (!isV2 || location.pathname !== homePath) return
+    e.preventDefault()
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })
+  }
+
   // Close drawer on route change.
   useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
@@ -126,7 +141,7 @@ export default function Layout({ children }) {
     <div className="layout">
       <header className={`cinnav${solid ? ' is-solid' : ''}${menuOpen ? ' is-open' : ''}`}>
         <div className="cinnav__inner">
-          <Link to="/" className="cinnav__brand" aria-label="Home">Laura Cordrey</Link>
+          <Link to={homePath} onClick={onBrandClick} className="cinnav__brand" aria-label="Home">Laura Cordrey</Link>
 
           <div className="cinnav__links">
             {nav.map(renderNavLink)}
