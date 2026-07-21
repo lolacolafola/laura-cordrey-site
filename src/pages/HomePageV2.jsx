@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { postLead } from '../lib/forms.js'
-import Counter from '../components/Counter.jsx'
 import './HomePageV2.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -177,37 +176,61 @@ export default function HomePageV2() {
     const el = revealRef.current
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    // Count a number element from 0 to its data-to over ~1.4s, ease-out.
+    const countUp = (node, to, dur = 1400) => {
+      const start = performance.now()
+      const step = (now) => {
+        const p = Math.min(1, (now - start) / dur)
+        const eased = 1 - Math.pow(1 - p, 3)
+        node.textContent = String(Math.round(to * eased))
+        if (p < 1) requestAnimationFrame(step)
+        else node.textContent = String(to)
+      }
+      requestAnimationFrame(step)
+    }
+
+    // One trigger drives a tool card's whole visualisation: the gauge draw
+    // and bar rise (CSS, keyed off .is-live) and the count-up number. Because
+    // it is one function, entrance and hover replay ALL of it together, so
+    // the two cards animate in step rather than one going stale.
+    //
+    // `restart` (hover) clears and re-adds .is-live on the next frame to
+    // replay the CSS from the top; without it (entrance) the class is just
+    // added once. Guarded so a rapid re-hover does not stutter.
+    const fireViz = (tool, restart) => {
+      if (restart) {
+        if (tool.dataset.replaying) return
+        tool.dataset.replaying = '1'
+        tool.classList.remove('is-live')
+        void tool.offsetWidth // reflow so the removal commits before re-add
+        window.setTimeout(() => { delete tool.dataset.replaying }, 1400)
+      }
+      tool.classList.add('is-live')
+      const num = tool.querySelector('.val-count')
+      if (num) countUp(num, Number(num.dataset.to) || 0)
+    }
+
+    // Service-card sheen still fires once on entrance only (see the .svcard
+    // note): a sweep is a "click me" cue and those cards do not navigate.
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-live')
-            io.unobserve(e.target)
-          }
+          if (!e.isIntersecting) return
+          if (e.target.classList.contains('tool')) fireViz(e.target, false)
+          else e.target.classList.add('is-live')
+          io.unobserve(e.target)
         })
       },
       { threshold: 0.35 }
     )
     el.querySelectorAll('.tool, .svcard').forEach((t) => io.observe(t))
 
-    // Hover replays a tool card's visualisation: the gauge redraws, the bars
-    // rise again. Honest because the card FRAME never moves — nothing lifts,
-    // scales or glows toward the cursor, so it makes no "clickable" promise
-    // (the button inside is the click target). It reads as the data being
-    // alive. Removing then re-adding .is-live on the next frame restarts the
-    // existing CSS animations. Guarded so a re-hover mid-animation does not
-    // stutter.
+    // Hover replays the whole visualisation. Honest under the hover rule: the
+    // card FRAME never moves, so nothing lifts or scales toward the cursor and
+    // no false "clickable" promise is made. The button inside is the target.
     const tools = [...el.querySelectorAll('.tool')]
-    const replay = (t) => {
-      if (t.dataset.replaying) return
-      t.dataset.replaying = '1'
-      t.classList.remove('is-live')
-      // Force a reflow so the class removal takes before it is re-added.
-      void t.offsetWidth
-      t.classList.add('is-live')
-      window.setTimeout(() => { delete t.dataset.replaying }, 1200)
-    }
-    const enter = (e) => replay(e.currentTarget)
+    const enter = (e) => fireViz(e.currentTarget, true)
     tools.forEach((t) => t.addEventListener('pointerenter', enter))
 
     return () => {
@@ -589,12 +612,11 @@ export default function HomePageV2() {
             <div className="tool" data-rev>
               <div className="tool-viz">
                 <span className="tool-kick">One number</span>
-                {/* Counts 0 to 560 on entrance, so the Fan Value card has a
-                  * headline animation of its own. Its equivalent of the Fan
-                  * Score gauge drawing: before, only the small bars moved and
-                  * the number, the actual hero, sat static. Counter defaults
-                  * to the final value if its observer never fires. */}
-                <div className="val-num">$<Counter value={560} /><span className="k">K</span></div>
+                {/* The number counts 0 to 560, driven by the same .is-live
+                  * trigger as the gauge and bars, so entrance AND hover replay
+                  * all of it together. Default text is the final value, so a
+                  * browser or crawler where nothing fires shows $560K. */}
+                <div className="val-num">$<span className="val-count" data-to="560">560</span><span className="k">K</span></div>
                 <div className="tool-cap">Estimated annual value</div>
                 <div className="bars" aria-hidden="true">
                   <i style={{ height: '32%' }} /><i style={{ height: '50%' }} /><i style={{ height: '66%' }} /><i style={{ height: '84%' }} /><i style={{ height: '100%' }} />
