@@ -72,18 +72,22 @@
 }
 .cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
 
-/* Secondary buttons: espresso solid with cream text, going gold on hover.
+/* Secondary buttons: espresso solid with cream text, going red on hover.
  *
- * THE RULE, in full: rest state carries the level (red = primary, espresso =
- * secondary), and GOLD IS THE HOVER RESPONSE FOR EVERY BUTTON ON THE PAGE.
- * So each colour holds exactly one meaning.
+ * THE RULE: hovering promotes a button one step up the palette ladder.
+ *   espresso → red   (secondary)
+ *   red      → gold  (primary)
+ * Consistent direction, and each button gets a large, unmistakable change.
  *
- * The previous version deepened espresso to near-black instead, which is
- * almost imperceptible — secondary buttons barely acknowledged the cursor
- * while the primaries flipped red to gold. Hover feedback has to be visible
- * to be feedback. Going gold also avoids the trap the version before that
- * fell into, where red-on-hover made red mean both "primary action" and
- * "you are hovering something secondary".
+ * Gold was tried here first and failed on measurement, not taste: gold
+ * against the cream About ground is 1.39:1, so the button went from 15.5:1
+ * at rest to barely separable — LESS present when you point at it than when
+ * you do not. Red on cream is 4.32:1 and red on the dark speaking ground is
+ * 3.75:1, so both stay clearly visible.
+ *
+ * Note this does mean red carries two roles: primary-at-rest and
+ * secondary-on-hover. The ladder is what makes that legible rather than
+ * confusing — red is always "one step up from where you started".
  *
  * The hairline is for the speaking band, where this sits over a video loop.
  * Espresso on a dark frame would otherwise lose its edge; the border holds
@@ -95,9 +99,9 @@
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
 .cinv2 a.btnink:hover {
-  background: var(--edge);
-  border-color: var(--edge);
-  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #EFE9DC;
 }
 
 /* .btngold and .btnblack lived here briefly and were removed after a critique:
@@ -472,9 +476,11 @@
   cursor: pointer;
   transition: background .2s ease, color .2s ease;
 }
-/* Gold on hover like every other button. Uses #F2D79A, the on-oxblood gold
- * this section already uses for its rule and links, rather than --edge:
- * the espresso gold goes muddy against red. Same rule, that ground's gold. */
+/* Send skips a rung on the ladder, and has to. It is espresso like the other
+ * secondaries, so espresso → red would be the rule — but this button sits ON
+ * the oxblood close, and red on red is near-invisible. It goes straight to
+ * gold instead, using #F2D79A (the on-oxblood gold this section already uses
+ * for its rule and links) rather than --edge, which goes muddy against red. */
 .cinv2 button.btnsend:hover { background: #F2D79A; color: var(--bg); }
 .cinv2 .contact-done {
   background: #fff;
