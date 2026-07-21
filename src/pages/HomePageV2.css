@@ -193,8 +193,10 @@
 .cinv2 .svcard--cream    { background: var(--surface); color: var(--bg); }
 
 /* Minimum card height, so the three stay equal and the number sits clear of
-   the title block regardless of copy length. */
-.cinv2 .svcard { min-height: clamp(250px, 26vw, 320px); }
+   the title block regardless of copy length. Portrait, echoing the
+   benchmark's cards (ratio ~1.1, taller than wide): at the ~337px card width
+   on a wide desktop this lands near 400px, a ratio of ~1.2. */
+.cinv2 .svcard { min-height: clamp(320px, 30vw, 408px); }
 /* The copy appears beneath the kicker. Nothing fades out, so there is no
  * overlap to time and nothing can flicker: the number, title and kicker are
  * permanent, and only the copy changes state.
