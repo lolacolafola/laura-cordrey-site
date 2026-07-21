@@ -379,7 +379,10 @@ export default function HomePageV2() {
             {WAYS.map((w) => (
               <Link key={w.no} to={w.to} className="flip" data-rev aria-label={`${w.title}. ${w.copy}`}>
                 <span className="flip-inner">
-                  <span className="flip-face flip-front">
+                  {/* data-no drives the oversized ghost numeral in the CSS.
+                    * Placeholder furniture until real artwork exists — see the
+                    * .flip-front::after block in HomePageV2.css to remove it. */}
+                  <span className="flip-face flip-front" data-no={w.no}>
                     <span className="flip-no">{w.no}</span>
                     <span>
                       <span className="flip-title" style={{ fontSize: 'clamp(1.3rem,1.9vw,1.6rem)' }}>{w.title}</span>

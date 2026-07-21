@@ -161,6 +161,53 @@
   -webkit-backface-visibility: hidden;
 }
 .cinv2 .flip-back { transform: rotateY(180deg); }
+/* ─── TEMPORARY: ring motif + tonal step ─────────────────
+ * Placeholder for the three service cards until real artwork exists. Two
+ * parts, both pure CSS, no assets:
+ *
+ * 1. Concentric rings bleeding off the top-right corner. Deliberately the
+ *    same arc language as the Fan Score gauge further down the page, so this
+ *    echoes something already in the system rather than inventing a motif
+ *    Laura would then have to live with or undo.
+ * 2. A tonal step across the three cards, lightest to darkest, which gives
+ *    the 01 > 02 > 03 sequence a quiet visual ladder. All three stay darker
+ *    than the #1F1A17 section ground so the cards still read as cards.
+ *
+ * No red or gold here on purpose: the brand keeps red for emphasis and
+ * structure, not for large flooded areas, and the cards already carry a red
+ * top rule and a red numeral.
+ *
+ * Static, so it is print and reduced-motion safe.
+ *
+ * TO REMOVE: delete this block and the data-no attribute in HomePageV2.jsx. */
+.cinv2 .flip-front::before {
+  content: '';
+  position: absolute;
+  right: -150px;
+  top: -130px;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  /* Evenly spaced concentric rings, one gradient rather than stacked
+     elements, so the ring count is a single number to tune. */
+  background: repeating-radial-gradient(
+    circle at center,
+    rgba(239,233,220,.085) 0 1px,
+    transparent 1px 44px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Tonal step, lightest card first. Applies to both faces so a flipped card
+   keeps its own tone. */
+.cinv2 .flip-grid > :nth-child(1) .flip-face { background: #1C1714; }
+.cinv2 .flip-grid > :nth-child(2) .flip-face { background: #191411; }
+.cinv2 .flip-grid > :nth-child(3) .flip-face { background: #15110F; }
+
+/* Keep the real content above the rings. */
+.cinv2 .flip-front > * { position: relative; z-index: 1; }
+
 .cinv2 .flip-no {
   display: block;
   font-size: .74rem;
