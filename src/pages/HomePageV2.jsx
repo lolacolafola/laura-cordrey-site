@@ -8,6 +8,16 @@ const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
+// ─── Hero portrait switch ────────────────────────────────────────────────
+// null → centred, type-led hero (current: there is no hero-grade portrait in
+// the library yet, and a weak one costs more than no image at all).
+//
+// To add one when the shoot happens, set this to a path under /public, e.g.
+//   const HERO_PORTRAIT = 'portraits/laura-hero.jpg'
+// That single line switches the hero to copy-left / portrait-right and
+// left-aligns the copy. Nothing else needs changing. Use a 4:5 portrait.
+const HERO_PORTRAIT = null
+
 /* Homepage — lighter rebuild (21 Jul 2026, branch `homepage-lighter`).
  *
  * Structure, 8 beats:
@@ -36,7 +46,7 @@ const BASE = import.meta.env.BASE_URL
 const HEAD_W = 700
 
 const T = {
-  h1: 'clamp(2.6rem, 6vw, 4.75rem)',      // ~76px at 1280 (was ~102px)
+  h1: 'clamp(2.8rem, 6.6vw, 5.25rem)',    // ~84px at 1280 (live page: ~102px)
   h2: 'clamp(1.8rem, 3.2vw, 2.75rem)',    // ~44px at 1280 (was 54-67px)
   h2close: 'clamp(2.4rem, 5vw, 3.75rem)', // the close still gets to shout
   h3: 'clamp(1.15rem, 1.6vw, 1.4rem)',
@@ -206,30 +216,48 @@ export default function HomePageV2() {
         <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '70vw', height: '70vw', maxWidth: 820, maxHeight: 820, background: 'radial-gradient(circle,rgba(200,54,43,.15) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 640, maxHeight: 640, background: 'radial-gradient(circle,rgba(212,200,150,.07) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
 
-        {/* Text-only, full width: there isn't a hero-grade portrait in the
-          * library yet, and a weak one costs more than the empty column.
-          * One CTA (Cowork's structure) — the signature line carries the
-          * name that the portrait used to. */}
-        <div style={{ position: 'relative', ...INNER, padding: 'clamp(96px,12vh,148px) clamp(20px,5vw,64px) clamp(72px,8vw,104px)' }}>
-          <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
-          <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '17ch' }}>
-            Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
-          </h1>
-          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '52ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
-            The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
-          </p>
+        {/* Type-led hero. Centred deliberately: left-aligned copy with an
+          * empty right half read as "the image failed to load" rather than
+          * "text-only by design". Centring removes the hole, so nothing looks
+          * missing, and lets the hook run bigger and wider.
+          *
+          * TO ADD A PORTRAIT LATER: set HERO_PORTRAIT at the top of this file
+          * to an image path. That is the only change needed — the layout
+          * switches to copy-left / portrait-right and the copy left-aligns.
+          * No redesign. */}
+        <div
+          className={HERO_PORTRAIT ? 'hero-split' : 'hero-centred'}
+          style={{ position: 'relative', ...INNER, padding: 'clamp(96px,12vh,148px) clamp(20px,5vw,64px) clamp(72px,8vw,104px)' }}
+        >
+          <div className="hero-copy">
+            <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
+            <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '17ch' }}>
+              Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
+            </h1>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '52ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
+              The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
+            </p>
 
-          <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
-            <span style={{ width: 24, height: 2, background: '#C8362B', flex: 'none' }} />
-            <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
-            <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
+            <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
+              <span style={{ width: 24, height: 2, background: '#C8362B', flex: 'none' }} />
+              <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
+              <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
+            </div>
+
+            <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
+              <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+                Get in touch <span className="ar" aria-hidden>→</span>
+              </a>
+            </div>
           </div>
 
-          <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
-            <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-              Get in touch <span className="ar" aria-hidden>→</span>
-            </a>
-          </div>
+          {HERO_PORTRAIT && (
+            <figure className="hero-portrait" style={{ margin: 0 }}>
+              <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
+                <img src={BASE + HERO_PORTRAIT} alt="Laura Cordrey" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </figure>
+          )}
         </div>
       </section>
 

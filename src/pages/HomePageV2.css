@@ -349,6 +349,26 @@
   padding: clamp(26px, 3vw, 34px);
 }
 
+/* ─── Hero, two modes ───────────────────────────────────── */
+/* Driven by HERO_PORTRAIT in HomePageV2.jsx. Centred while there is no
+ * portrait, split the moment one is set. */
+.cinv2 .hero-centred { text-align: center; }
+.cinv2 .hero-centred .hero-copy > * { margin-left: auto; margin-right: auto; }
+.cinv2 .hero-centred .hero-sig { justify-content: center; }
+
+.cinv2 .hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .cinv2 .hero-split { grid-template-columns: 1fr; }
+  .cinv2 .hero-split .hero-portrait { order: -1; max-width: 320px; }
+}
+
 /* ─── Hero entrance ─────────────────────────────────────── */
 @keyframes cinv2FadeUp {
   from { opacity: 0; transform: translateY(24px); }
