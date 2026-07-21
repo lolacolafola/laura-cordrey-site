@@ -153,7 +153,9 @@
   justify-content: space-between;
   padding: clamp(24px, 2.6vw, 32px);
   background: #15110F;
-  border: 1px solid rgba(239,233,220,.1);
+  /* Gold hairline rather than cream: the one place a premium cue costs
+     nothing and adds no visual noise. Red top rule stays. */
+  border: 1px solid rgba(212,200,150,.2);
   border-top: 3px solid #C8362B;
   border-radius: 3px;
   overflow: hidden;
@@ -180,24 +182,16 @@
  * Static, so it is print and reduced-motion safe.
  *
  * TO REMOVE: delete this block and the data-no attribute in HomePageV2.jsx. */
-.cinv2 .flip-front::before {
-  content: '';
-  position: absolute;
-  right: -150px;
-  top: -130px;
-  width: 440px;
-  height: 440px;
-  border-radius: 50%;
-  /* Evenly spaced concentric rings, one gradient rather than stacked
-     elements, so the ring count is a single number to tune. */
-  background: repeating-radial-gradient(
-    circle at center,
-    rgba(239,233,220,.085) 0 1px,
-    transparent 1px 44px
-  );
-  pointer-events: none;
-  z-index: 0;
-}
+/* No decorative fill here any more. Five attempts went into filling this
+ * space with texture (ghost numeral, sparse arcs, dense rings, contours,
+ * colour halo) before the actual diagnosis landed: the card feels empty
+ * because the front face says nothing, not because it lacks pattern. The
+ * value sits on the back, behind a hover most visitors never trigger and
+ * touch devices never see. Decoration cannot fix an informational gap.
+ *
+ * Gold now does the premium signalling, as the brand intends it: a hairline
+ * and a marker, never a wash. Gold as area cheapens; gold as detail reads
+ * expensive. */
 
 /* Tonal step, lightest card first. Applies to both faces so a flipped card
    keeps its own tone. */
@@ -205,8 +199,11 @@
 .cinv2 .flip-grid > :nth-child(2) .flip-face { background: #191411; }
 .cinv2 .flip-grid > :nth-child(3) .flip-face { background: #15110F; }
 
-/* Keep the real content above the rings. */
-.cinv2 .flip-front > * { position: relative; z-index: 1; }
+/* Keep the real content above the contours. Targets the spans specifically,
+ * not `> *`: a universal child selector also hit the contour <svg>, forcing
+ * position:relative onto it, which dropped it back into the flex flow. That
+ * shrank it to a flex item and pushed the numeral out of the top corner. */
+.cinv2 .flip-front > span { position: relative; z-index: 1; }
 
 .cinv2 .flip-no {
   display: block;
@@ -222,13 +219,17 @@
   line-height: 1.12;
   color: #EFE9DC;
 }
+/* Gold marker, not muted grey. Same treatment as the section eyebrows, which
+ * is the brand's premium signal: small, uppercase, well letter-spaced, gold.
+ * Costs no new copy and lifts the card without adding decoration. */
 .cinv2 .flip-more {
   display: block;
-  margin-top: 10px;
-  font-size: .74rem;
+  margin-top: 12px;
+  font-size: .68rem;
   font-weight: 700;
-  letter-spacing: .05em;
-  color: #8A8078;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--edge);
 }
 .cinv2 .flip-copy {
   display: block;

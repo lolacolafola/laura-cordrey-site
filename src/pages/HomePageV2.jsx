@@ -382,11 +382,14 @@ export default function HomePageV2() {
                   {/* data-no drives the oversized ghost numeral in the CSS.
                     * Placeholder furniture until real artwork exists — see the
                     * .flip-front::after block in HomePageV2.css to remove it. */}
-                  <span className="flip-face flip-front" data-no={w.no}>
+                  <span className="flip-face flip-front">
                     <span className="flip-no">{w.no}</span>
                     <span>
                       <span className="flip-title" style={{ fontSize: 'clamp(1.3rem,1.9vw,1.6rem)' }}>{w.title}</span>
-                      <span className="flip-more">{w.kicker} →</span>
+                      {/* No arrow: the whole card is the link, and at marker
+                        * tracking the extra glyph pushed the longest kicker
+                        * onto a second line, knocking the three out of line. */}
+                      <span className="flip-more">{w.kicker}</span>
                     </span>
                   </span>
                   <span className="flip-face flip-back">
