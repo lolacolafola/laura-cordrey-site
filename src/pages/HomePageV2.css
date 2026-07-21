@@ -72,14 +72,18 @@
 }
 .cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
 
-/* Secondary buttons: espresso solid with cream text, deepening on hover.
- * The same treatment the Send button already uses, so the page now has
- * exactly two button levels — red .btnp for primary actions, espresso
- * .btnink for secondary — instead of five.
+/* Secondary buttons: espresso solid with cream text, going gold on hover.
  *
- * Hover deepens rather than switching to red or gold. Introducing a brand
- * colour on hover is what broke the previous system: it made red mean both
- * "primary action" and "you are hovering something secondary".
+ * THE RULE, in full: rest state carries the level (red = primary, espresso =
+ * secondary), and GOLD IS THE HOVER RESPONSE FOR EVERY BUTTON ON THE PAGE.
+ * So each colour holds exactly one meaning.
+ *
+ * The previous version deepened espresso to near-black instead, which is
+ * almost imperceptible — secondary buttons barely acknowledged the cursor
+ * while the primaries flipped red to gold. Hover feedback has to be visible
+ * to be feedback. Going gold also avoids the trap the version before that
+ * fell into, where red-on-hover made red mean both "primary action" and
+ * "you are hovering something secondary".
  *
  * The hairline is for the speaking band, where this sits over a video loop.
  * Espresso on a dark frame would otherwise lose its edge; the border holds
@@ -88,9 +92,13 @@
   background: var(--bg);
   border: 1px solid rgba(239,233,220,.28);
   color: #EFE9DC;
-  transition: background .2s ease, transform .12s ease;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
-.cinv2 a.btnink:hover { background: var(--bg-deep); transform: translateY(-1px); }
+.cinv2 a.btnink:hover {
+  background: var(--edge);
+  border-color: var(--edge);
+  color: var(--bg);
+}
 
 /* .btngold and .btnblack lived here briefly and were removed after a critique:
  * gold-at-rest/red-on-hover was the exact mirror of .btnp (red-at-rest/gold-
@@ -462,9 +470,12 @@
   font-weight: 700;
   padding: 13px 24px;
   cursor: pointer;
-  transition: background .2s ease, transform .12s ease;
+  transition: background .2s ease, color .2s ease;
 }
-.cinv2 button.btnsend:hover { background: #0E0B09; transform: translateY(-1px); }
+/* Gold on hover like every other button. Uses #F2D79A, the on-oxblood gold
+ * this section already uses for its rule and links, rather than --edge:
+ * the espresso gold goes muddy against red. Same rule, that ground's gold. */
+.cinv2 button.btnsend:hover { background: #F2D79A; color: var(--bg); }
 .cinv2 .contact-done {
   background: #fff;
   border-radius: 2px;
