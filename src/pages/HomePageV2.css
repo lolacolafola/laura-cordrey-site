@@ -19,6 +19,36 @@
 /* Hover honesty (CLAUDE.md): only <a>/<button> move under the cursor.
  * Logo cells, the quote and the tool viz panels stay static. */
 .cinv2 a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }
+
+/* Hero CTA: a light band sweeps across as it turns gold. The button already
+ * navigates, so the motion is honest. overflow:hidden clips the band to the
+ * button; the pseudo-element sits behind the label via z-index. */
+.cinv2 .hero-copy a.btnp {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cinv2 .hero-copy a.btnp::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  opacity: 0;
+}
+.cinv2 .hero-copy a.btnp:hover::after {
+  animation: v2Sheen .62s cubic-bezier(.3,.7,.35,1) forwards;
+}
+@keyframes v2Sheen {
+  from { left: -60%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  to   { left: 115%; opacity: 0; }
+}
 .cinv2 a.btncream:hover { background: #F2D79A !important; border-color: #F2D79A !important; }
 .cinv2 a.btnsoft {
   background: rgba(239,233,220,.09);
@@ -41,6 +71,29 @@
   transition: background .2s ease, border-color .2s ease;
 }
 .cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
+
+/* Gold at rest, red on hover — the inverse of .btnp. Used on the two tool
+ * cards: three red buttons in one section was too much red. */
+.cinv2 a.btngold {
+  background: var(--edge);
+  border: 1px solid var(--edge);
+  color: var(--bg);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.cinv2 a.btngold:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #EFE9DC;
+}
+
+/* Espresso on the cream About ground, going red on hover. */
+.cinv2 a.btnblack {
+  background: var(--bg);
+  border: 1px solid var(--bg);
+  color: #EFE9DC;
+  transition: background .2s ease, border-color .2s ease;
+}
+.cinv2 a.btnblack:hover { background: var(--accent); border-color: var(--accent); }
 
 .cinv2 a.btnp .ar, .cinv2 a.btnsoft .ar, .cinv2 a.btnsoftd .ar,
 .cinv2 a.btnghost .ar, .cinv2 a.tlink .ar, .cinv2 button.btnsend .ar { transition: transform .2s ease; }
@@ -289,7 +342,10 @@
   line-height: 1;
   color: #EFE9DC;
 }
-.cinv2 .val-num .k { color: #C8362B; font-size: .55em; vertical-align: top; margin-left: 2px; }
+/* The K sits on the baseline, not raised. Superscripting a magnitude suffix
+ * is not standard practice (superscript reads as a footnote marker); "$560K"
+ * is one number and should sit on one line. */
+.cinv2 .val-num .k { color: var(--accent); font-size: .62em; vertical-align: baseline; margin-left: 1px; }
 .cinv2 .bars {
   display: flex;
   align-items: flex-end;
@@ -303,6 +359,68 @@
   background: linear-gradient(180deg, #C8362B 0%, #8E2520 100%);
   border-radius: 2px 2px 0 0;
   opacity: .9;
+}
+
+/* ─── Tool card visuals, ambient motion ─────────────────── */
+/* IMPORTANT: the FINISHED state is the default. The scroll-triggered
+ * animation is an enhancement layered on top via .is-live, added by an
+ * IntersectionObserver in HomePageV2.jsx.
+ *
+ * Written this way round deliberately. The first version had the empty state
+ * as the default and relied on the observer to fill it in, which meant any
+ * failure — an old browser, a privacy setting, or the preview pane used to
+ * check this, where IntersectionObserver does not fire at all — rendered an
+ * empty gauge and flat bars. Now the worst case is simply no animation.
+ * Nothing here promises a click, so it is ambient motion under the rules. */
+
+/* Gauge: 163 is the filled arc length, 264 the full dasharray period. */
+.cinv2 .gauge-fill { stroke-dasharray: 163 264; }
+/* No animation-delay, and `forwards` not `both`: with a delay + `both` the
+ * element holds the empty `from` state while it waits, so anything that stops
+ * the animation actually running (a throttled background tab, an offscreen
+ * render) leaves it blank. Starting at 0s means `from` only ever applies once
+ * the animation is genuinely underway. */
+.cinv2 .tool.is-live .gauge-fill {
+  animation: v2GaugeDraw 1.1s cubic-bezier(.22,.85,.3,1) forwards;
+}
+@keyframes v2GaugeDraw {
+  from { stroke-dasharray: 0 264; }
+  to   { stroke-dasharray: 163 264; }
+}
+
+/* Bars stand at full height by default; .is-live replays the rise. The shine
+ * loop runs unconditionally so the card still has life without the observer. */
+.cinv2 .bars i {
+  transform: scaleY(1);
+  transform-origin: bottom;
+  animation: v2BarShine 3.6s ease-in-out infinite;
+}
+.cinv2 .bars i:nth-child(1) { animation-delay: 0s; }
+.cinv2 .bars i:nth-child(2) { animation-delay: .15s; }
+.cinv2 .bars i:nth-child(3) { animation-delay: .30s; }
+.cinv2 .bars i:nth-child(4) { animation-delay: .45s; }
+.cinv2 .bars i:nth-child(5) { animation-delay: .60s; }
+
+/* The cascade comes from staggered DURATIONS, not delays: every bar starts
+ * rising at 0s and they arrive one after another. Same read as a stagger,
+ * with no window where a bar is held at zero height waiting to begin. */
+.cinv2 .tool.is-live .bars i {
+  animation:
+    v2BarRise .40s cubic-bezier(.22,.85,.3,1) forwards,
+    v2BarShine 3.6s ease-in-out 1.4s infinite;
+}
+.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .52s, 3.6s; }
+.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .64s, 3.6s; }
+.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: .76s, 3.6s; }
+.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: .88s, 3.6s; }
+
+@keyframes v2BarRise {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes v2BarShine {
+  0%, 72%, 100% { filter: brightness(1); }
+  80%           { filter: brightness(1.55); }
 }
 
 /* ─── 9 · Red contact close ─────────────────────────────── */
@@ -397,6 +515,10 @@
   .cinv2 .logoband { opacity: 1; animation: none; }
   .cinv2 [data-rev] { transition: none; }
   .cinv2 .speak-bg video { display: none; }
+  /* Tool visuals sit in their finished state (already the default) with the
+     shine loop switched off. The JS never adds .is-live here either. */
+  .cinv2 .bars i { animation: none; }
+  .cinv2 .hero-copy a.btnp::after { display: none; }
 }
 
 .cinv2 #about, .cinv2 #services, .cinv2 #speaking, .cinv2 #tools, .cinv2 #contact { scroll-margin-top: 78px; }

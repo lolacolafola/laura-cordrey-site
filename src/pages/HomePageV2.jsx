@@ -150,6 +150,30 @@ export default function HomePageV2() {
     }
   }, [])
 
+  // Tool card visuals: the gauge draws itself in and the bars rise, once,
+  // when the section first scrolls into view. Ambient motion, promising
+  // nothing, so it is fine under the design rules — and it is skipped
+  // entirely under prefers-reduced-motion.
+  const toolsRef = useRef(null)
+  useEffect(() => {
+    const el = toolsRef.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-live')
+            io.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.35 }
+    )
+    el.querySelectorAll('.tool').forEach((t) => io.observe(t))
+    return () => io.disconnect()
+  }, [])
+
   // Scroll-reveal: any [data-rev] element below the fold starts hidden and reveals once it scrolls in.
   const rootRef = useRef(null)
   useEffect(() => {
@@ -280,7 +304,7 @@ export default function HomePageV2() {
           {/* Logos down from 46px to 36px, in proportion with the hook coming
             * down from 102px to 84px: they are a supporting credential, not a
             * second headline. */}
-          <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 860, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(18px,4vw,48px)' }}>
+          <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 700, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(12px,2vw,24px)' }}>
             {CLIENT_LOGOS.map((l) => (
               <li key={l.alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', opacity: .72 }}>
                 <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 36, maxWidth: Math.round(l.maxw * 0.8), width: 'auto', objectFit: 'contain' }} />
@@ -295,10 +319,11 @@ export default function HomePageV2() {
         <div className="grid-2" style={{ ...INNER, padding: SECTION_PAD, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5.5vw,72px)', alignItems: 'center' }}>
           <div data-rev>
             <Eyebrow tone="red">The person behind it</Eyebrow>
-            {/* Short title (Cowork's). The long "I've seen the whole picture"
-              * headline read heavy here — the eyebrow already frames it. */}
+            {/* First person, to match the copy under it. "Meet Laura" was
+              * third person sitting on top of "I've worked the whole machine",
+              * so the section changed voice halfway down. */}
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#15110F' }}>
-              Meet Laura
+              Hi, I&rsquo;m Laura.
             </h2>
             {/* Option D, content/copy/copy-homepage-v2-about.md. Cowork's
               * sequencing (past > now > two-beat close) with "I've worked the
@@ -313,13 +338,15 @@ export default function HomePageV2() {
               Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
-              <Link to="/about" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
+              <Link to="/about" className="btnblack" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
                 More about me
               </Link>
             </div>
           </div>
+          {/* 4:5 as on the original homepage: taller and narrower suits a
+            * standing figure and balances the text column better than 4:3. */}
           <figure data-rev style={{ margin: 0 }}>
-            <div style={{ position: 'relative', aspectRatio: '4 / 3', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
+            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
               {/* The mic shot rather than the E3 stage one: its dark ground and
                 * warm browns sit in the espresso/red/cream palette, where the
                 * E3 frame's green and tan backdrop fought it. */}
@@ -478,7 +505,7 @@ export default function HomePageV2() {
             </p>
           </div>
 
-          <div className="tools-grid">
+          <div className="tools-grid" ref={toolsRef}>
             {/* Fan Score */}
             <div className="tool" data-rev>
               <div className="tool-viz">
@@ -486,7 +513,7 @@ export default function HomePageV2() {
                 <div className="gauge">
                   <svg viewBox="0 0 200 118" fill="none" aria-hidden="true">
                     <path d="M16 100 A84 84 0 0 1 184 100" stroke="rgba(239,233,220,.12)" strokeWidth="14" strokeLinecap="round" />
-                    <path d="M16 100 A84 84 0 0 1 184 100" stroke="url(#fsg)" strokeWidth="14" strokeLinecap="round" strokeDasharray="163 264" />
+                    <path className="gauge-fill" d="M16 100 A84 84 0 0 1 184 100" stroke="url(#fsg)" strokeWidth="14" strokeLinecap="round" strokeDasharray="163 264" />
                     <defs>
                       <linearGradient id="fsg" x1="0" y1="0" x2="1" y2="0">
                         <stop offset="0" stopColor="#8E2520" />
@@ -503,7 +530,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
-                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-score" className="btngold" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Take the quiz
                 </Link>
               </div>
@@ -524,7 +551,7 @@ export default function HomePageV2() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>
-                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-value" className="btngold" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Run the numbers
                 </Link>
               </div>
