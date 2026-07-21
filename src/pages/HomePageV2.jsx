@@ -161,13 +161,19 @@ export default function HomePageV2() {
     }
   }, [])
 
-  // Tool card visuals: the gauge draws itself in and the bars rise, once,
-  // when the section first scrolls into view. Ambient motion, promising
-  // nothing, so it is fine under the design rules — and it is skipped
-  // entirely under prefers-reduced-motion.
-  const toolsRef = useRef(null)
+  // Entrance visuals, fired once when an element first scrolls into view:
+  // the tool gauge draws itself and its bars rise, and a sheen sweeps across
+  // each service card.
+  //
+  // The sheen is deliberately NOT on hover. A light sweep is the strongest
+  // "click me" cue there is, and the service cards do not navigate, so on
+  // hover it would promise something the card cannot deliver. On entrance it
+  // is ambient motion, which the design rules allow anywhere.
+  //
+  // Skipped entirely under prefers-reduced-motion.
+  const revealRef = useRef(null)
   useEffect(() => {
-    const el = toolsRef.current
+    const el = revealRef.current
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const io = new IntersectionObserver(
@@ -181,7 +187,7 @@ export default function HomePageV2() {
       },
       { threshold: 0.35 }
     )
-    el.querySelectorAll('.tool').forEach((t) => io.observe(t))
+    el.querySelectorAll('.tool, .svcard').forEach((t) => io.observe(t))
     return () => io.disconnect()
   }, [])
 
@@ -236,7 +242,7 @@ export default function HomePageV2() {
 
   return (
     <div
-      ref={rootRef}
+      ref={(n) => { rootRef.current = n; revealRef.current = n }}
       className="cinv2"
       style={{
         background: '#15110F',
@@ -417,8 +423,8 @@ export default function HomePageV2() {
             * than one per card. The three cards describe the offers; this is
             * the one place to go for all of them. */}
           <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(32px,4vw,46px)' }}>
-            <Link to="/services" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-              See all services
+            <Link to="/services" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.3)', paddingBottom: 3 }}>
+              See all services <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -531,7 +537,7 @@ export default function HomePageV2() {
             </p>
           </div>
 
-          <div className="tools-grid" ref={toolsRef}>
+          <div className="tools-grid">
             {/* Fan Score */}
             <div className="tool" data-rev>
               <div className="tool-viz">

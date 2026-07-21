@@ -140,6 +140,7 @@
   gap: clamp(14px, 1.6vw, 20px);
 }
 .cinv2 .svcard {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 3px;
@@ -147,6 +148,44 @@
   padding: clamp(24px, 2.6vw, 32px);
   overflow: hidden;
 }
+
+/* Sheen, the same sweep the hero CTA uses, fired once as each card enters
+ * view and staggered across the three.
+ *
+ * On entrance, NOT on hover. A light sweep is the strongest "click me" cue
+ * there is, and these cards do not navigate, so on hover it would promise
+ * something the card cannot deliver. On entrance it is ambient motion, which
+ * the design rules allow anywhere.
+ *
+ * Opacity is tuned per ground: a white band that reads clearly on espresso is
+ * nearly invisible on cream, so the lighter the card, the stronger the band.
+ *
+ * .is-live is added by the observer in HomePageV2.jsx. If it never fires the
+ * cards simply sit still, which is the correct fallback. */
+.cinv2 .svcard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  z-index: 2;
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.30) 50%, transparent 100%);
+}
+.cinv2 .svcard--gold::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.62) 50%, transparent 100%);
+}
+.cinv2 .svcard--cream::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.92) 50%, transparent 100%);
+}
+.cinv2 .svcard.is-live::after {
+  animation: v2Sheen 1.05s cubic-bezier(.3,.7,.35,1) forwards;
+}
+.cinv2 .svc-grid > :nth-child(2).is-live::after { animation-delay: .14s; }
+.cinv2 .svc-grid > :nth-child(3).is-live::after { animation-delay: .28s; }
 
 /* Grounds. Each sets its own ink so the copy stays legible. */
 .cinv2 .svcard--gold     { background: var(--edge);    color: var(--bg); }
