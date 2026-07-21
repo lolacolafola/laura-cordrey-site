@@ -231,10 +231,10 @@
 
 .cinv2 .svcard-no {
   display: block;
-  font-size: .74rem;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
   font-weight: 700;
-  letter-spacing: .12em;
-  opacity: .6;
+  letter-spacing: .1em;
+  opacity: .55;
 }
 .cinv2 .svcard-title {
   display: block;
