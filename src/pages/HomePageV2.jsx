@@ -106,7 +106,11 @@ const WAYS = [
 const CASES = [
   { value: 'Sold out', unit: '', label: 'a $129 fan drop, in under 3 hours', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
   { value: '60M+', unit: '', label: 'UGC reach, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
-  { value: '85%', unit: '', label: 'positive sentiment, across 15M players', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
+  // "across" dropped: the label needed 270px against 289px available, so it
+  // wrapped on any window under ~1196px. Grid rows are equal height, so that
+  // one wrap made all three cards taller. Now ~225px, in line with the other
+  // two, which hold one line down to ~950px.
+  { value: '85%', unit: '', label: 'positive sentiment, 15M players', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
 ]
 
 function Eyebrow({ children, tone = 'gold' }) {

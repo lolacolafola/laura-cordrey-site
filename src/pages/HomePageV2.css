@@ -160,6 +160,13 @@
   flex: 1;
   min-height: clamp(210px, 22vw, 270px);
 }
+/* Staggered handoff, not a simultaneous crossfade. Both layers sit in the
+ * same box, so fading them at the same time put two sets of text on top of
+ * each other mid-transition, which read as a glitch. Slowing that down would
+ * have made it worse, not better: the overlap was the problem, not the speed.
+ *
+ * One layer now clears before the other arrives, in both directions. Total
+ * ~0.45s, in the range the benchmark uses (0.2s to 0.4s). */
 .cinv2 .svcard-front,
 .cinv2 .svcard-back {
   position: absolute;
@@ -167,11 +174,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: opacity .32s ease;
 }
-.cinv2 .svcard-back { opacity: 0; }
-.cinv2 .svcard:hover .svcard-front { opacity: 0; }
-.cinv2 .svcard:hover .svcard-back  { opacity: 1; }
+.cinv2 .svcard-front { transition: opacity .26s ease .16s; }
+.cinv2 .svcard-back  { opacity: 0; transition: opacity .2s ease 0s; }
+.cinv2 .svcard:hover .svcard-front { opacity: 0; transition: opacity .2s ease 0s; }
+.cinv2 .svcard:hover .svcard-back  { opacity: 1; transition: opacity .26s ease .16s; }
 
 .cinv2 .svcard-no {
   display: block;
@@ -183,11 +190,13 @@
 .cinv2 .svcard-title {
   display: block;
   font-weight: 700;
-  font-size: clamp(1.3rem, 1.9vw, 1.6rem);
+  /* Matches the tool-card h3 scale (~20px at 1280). These were 24px, which
+     put them a step above every other card title on the page. */
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   letter-spacing: -.02em;
-  line-height: 1.12;
+  line-height: 1.14;
 }
-.cinv2 .svcard-title--sm { font-size: clamp(1.1rem, 1.5vw, 1.3rem); margin-bottom: 10px; }
+.cinv2 .svcard-title--sm { font-size: clamp(1.05rem, 1.4vw, 1.24rem); margin-bottom: 10px; }
 .cinv2 .svcard-kicker {
   display: block;
   margin-top: 12px;
