@@ -292,9 +292,12 @@
  * elements — the second-reddest section on the page, right after the tools
  * section had been cut from five to two for exactly that reason. These cards
  * are image-led and get their identity from the photography. */
-/* Static, not links: no hover lift or image zoom. They stopped being <a>
- * because each only routed to the /work index, not the case study its stat
- * implied. Informational cards stay still under the cursor (hover honesty). */
+/* Not links (they only routed to the /work index, not the case study each
+ * stat implied). A gentle hover was added back at Laura's request: a small
+ * lift and a faint image zoom, roughly half the previous strength. The cursor
+ * stays the default arrow, NOT a pointer, so the card has a little life
+ * without the cursor itself promising a click. A deliberate, minimal relaxing
+ * of the hover-honesty rule for these cards only. */
 .cinv2 .casec {
   display: flex;
   flex-direction: column;
@@ -304,12 +307,25 @@
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(21,17,15,.06);
   color: inherit;
+  transition: transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;
 }
 .cinv2 .casec img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform .5s cubic-bezier(.16,.84,.44,1);
+}
+.cinv2 .casec:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(21,17,15,.12);
+}
+.cinv2 .casec:hover img { transform: scale(1.025); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cinv2 .casec, .cinv2 .casec img { transition: none; }
+  .cinv2 .casec:hover { transform: none; }
+  .cinv2 .casec:hover img { transform: none; }
 }
 
 /* ─── 6 · Speaking band ─────────────────────────────────── */
