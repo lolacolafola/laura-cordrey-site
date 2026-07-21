@@ -4,6 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { postLead } from '../lib/forms.js'
 import './HomePageV2.css'
 
+const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
@@ -542,6 +543,13 @@ export default function HomePageV2() {
                 <input type="email" name="email" required placeholder="Email" aria-label="Email" value={form.email} onChange={onField('email')} />
                 <textarea name="message" required placeholder="What are you working on?" aria-label="What are you working on" value={form.message} onChange={onField('message')} />
                 <button type="submit" className="btnsend">Send</button>
+                {/* Route to the branching form for anyone with a specific
+                  * brief. This short form only captures name/email/message,
+                  * so /contact is where need, timeline and the speaking
+                  * fields get asked. */}
+                <span style={{ fontSize: '.84rem', color: 'rgba(239,233,220,.8)', fontWeight: 600 }}>
+                  Something specific in mind? Use the <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700 }}>full contact form</Link>.
+                </span>
               </form>
             )}
           </div>
