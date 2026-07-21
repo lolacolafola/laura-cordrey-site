@@ -1,0 +1,57 @@
+/* /fan-led-growth — overview page for the simplified v2 nav.
+ * Namespaced .flg so it cannot collide with .cin (live homepage) or
+ * .cinv2 (homepage v2). Matches the v2 aesthetic: 700-weight headings,
+ * lighter type scale. */
+
+.flg mark { background: transparent; color: #C8362B; font-weight: inherit; }
+
+/* ─── Scroll-reveal ─────────────────────────────────────── */
+.flg [data-rev] {
+  transition: opacity .9s cubic-bezier(.16,.84,.44,1),
+              transform .9s cubic-bezier(.16,.84,.44,1);
+}
+.flg [data-rev].flg-hide { opacity: 0; transform: translateY(40px); }
+
+/* ─── Buttons ───────────────────────────────────────────── */
+/* Hover honesty: the benefit and situation cards are plain divs and stay
+ * static under the cursor. Only these links move. */
+.flg a.flg-btnp {
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.flg a.flg-btnp:hover {
+  background: #D4C896 !important;
+  color: #15110F !important;
+  border-color: #D4C896 !important;
+}
+.flg a.flg-btnsoft {
+  background: rgba(239,233,220,.09);
+  border: 1px solid rgba(239,233,220,.22);
+  color: #EFE9DC;
+  transition: background .2s ease, border-color .2s ease;
+}
+.flg a.flg-btnsoft:hover {
+  background: rgba(239,233,220,.18);
+  border-color: rgba(239,233,220,.42);
+}
+.flg a .ar { transition: transform .2s ease; }
+.flg a:hover .ar { transform: translateX(4px); }
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .flg .flg-grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .flg .flg-grid-2 { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 620px) {
+  .flg .flg-grid-3 { grid-template-columns: 1fr !important; }
+  /* Estimate card: let the CTA go full width so its label can't overflow
+     the card's rounded edge on narrow screens. */
+  .flg .flg-est a.flg-btnp {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flg [data-rev] { transition: none; }
+}

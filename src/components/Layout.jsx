@@ -18,6 +18,25 @@ const navLinks = [
   { key: 'fanscore', label: 'Fan Score', path: '/fan-score',            isHash: false },
 ]
 
+// Simplified nav from the Cowork homepage direction: five items and one CTA,
+// down from seven plus a LinkedIn icon. Dropped: Home (the logo does it),
+// Method, AI, Fan Score. Added: Speaking, which was previously footer-only.
+// Fan Score keeps its homepage Tools section, the close and the footer.
+//
+// Scoped to the v2 preview routes below so the live nav is untouched while
+// both homepage directions exist side by side.
+const navLinksV2 = [
+  { key: 'flg',      label: 'Fan-led growth', path: '/fan-led-growth', isHash: false },
+  { key: 'work',     label: 'Work',           path: '/work',           isHash: false },
+  { key: 'services', label: 'Services',       path: '/services',       isHash: false },
+  { key: 'speaking', label: 'Speaking',       path: '/speaking',       isHash: false },
+  { key: 'about',    label: 'About',          path: '/about',          isHash: false },
+]
+
+// Routes that get the simplified nav. Remove this and swap navLinks for
+// navLinksV2 if the v2 direction is promoted site-wide.
+const V2_ROUTES = ['/home-v2', '/fan-led-growth']
+
 // Same journey as the header, plus the IP pages and Speaking that the header
 // keeps tucked away.
 const footerLinks = [
@@ -39,6 +58,9 @@ export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
+  const isV2 = V2_ROUTES.includes(location.pathname)
+  const nav = isV2 ? navLinksV2 : navLinks
+  const ctaLabel = isV2 ? 'Get in touch' : 'Let’s talk'
 
   // Close drawer on route change.
   useEffect(() => { setMenuOpen(false) }, [location.pathname])
@@ -107,14 +129,16 @@ export default function Layout({ children }) {
           <Link to="/" className="cinnav__brand" aria-label="Home">Laura Cordrey</Link>
 
           <div className="cinnav__links">
-            {navLinks.map(renderNavLink)}
-            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="cinnav__li">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
-              </svg>
-            </a>
+            {nav.map(renderNavLink)}
+            {!isV2 && (
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="cinnav__li">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+                </svg>
+              </a>
+            )}
             <Link to={CONTACT_URL} className="cinnav__cta">
-              Let’s talk <span aria-hidden="true">→</span>
+              {ctaLabel} <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -135,7 +159,7 @@ export default function Layout({ children }) {
 
         {menuOpen && (
           <div className="cinnav__menu">
-            {navLinks.map((l) => (
+            {nav.map((l) => (
               l.isHash ? (
                 <a key={l.key} href={l.path} className="cinnav__mlink" onClick={() => setMenuOpen(false)}>{l.label}</a>
               ) : (
@@ -143,7 +167,7 @@ export default function Layout({ children }) {
               )
             ))}
             <Link to={CONTACT_URL} className="cinnav__mcta" onClick={() => setMenuOpen(false)}>
-              Let’s talk <span aria-hidden="true">→</span>
+              {ctaLabel} <span aria-hidden="true">→</span>
             </Link>
           </div>
         )}

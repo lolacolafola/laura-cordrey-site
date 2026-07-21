@@ -10,6 +10,7 @@ function CaseStudiesRedirect() {
 import ScrollToTop from './components/ScrollToTop.jsx'
 import HomePage from './pages/HomePage.jsx'
 import HomePageV2 from './pages/HomePageV2.jsx'
+import FanLedGrowthPage from './pages/FanLedGrowthPage.jsx'
 import WorkPage from './pages/WorkPage.jsx'
 import WorkArticle from './pages/WorkArticle.jsx'
 import DeltaCompanyPage from './pages/DeltaCompanyPage.jsx'
@@ -42,6 +43,11 @@ export default function App() {
               whether it replaces "/" — see
               content/copy/homepage-density-analysis.md. */}
           <Route path="/home-v2" element={<HomePageV2 />} />
+          {/* Destination for "Fan-led growth", the first item in the
+              simplified v2 nav. Carries the three education sections the v2
+              homepage cut, verbatim. Preview only: noindex, absent from the
+              sitemap. See content/copy/fan-led-growth-page-plan.md. */}
+          <Route path="/fan-led-growth" element={<FanLedGrowthPage />} />
           <Route path="/work" element={<WorkPage />} />
           {/* Bespoke deep-dive case studies — explicit routes take precedence
               over the generic /work/:slug template. */}
