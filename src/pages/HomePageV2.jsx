@@ -370,7 +370,6 @@ export default function HomePageV2() {
                 * warm browns sit in the espresso/red/cream palette, where the
                 * E3 frame's green and tan backdrop fought it. */}
               <img src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'} alt="Laura Cordrey speaking at Ubisoft XP 2019" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 22%', display: 'block' }} />
-              <span style={{ position: 'absolute', left: 0, bottom: 0, right: 0, padding: '16px 18px', background: 'linear-gradient(transparent,rgba(14,11,9,.85))', fontSize: '.74rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 600 }}>On stage · Ubisoft XP</span>
             </div>
           </figure>
         </div>
