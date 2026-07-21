@@ -137,8 +137,10 @@ export default function Layout({ children }) {
                 </svg>
               </a>
             )}
+            {/* No arrow on the v2 CTA: buttons lose the arrow in that
+                direction, text links keep it. */}
             <Link to={CONTACT_URL} className="cinnav__cta">
-              {ctaLabel} <span aria-hidden="true">→</span>
+              {ctaLabel}{!isV2 && <> <span aria-hidden="true">→</span></>}
             </Link>
           </div>
 
@@ -167,7 +169,7 @@ export default function Layout({ children }) {
               )
             ))}
             <Link to={CONTACT_URL} className="cinnav__mcta" onClick={() => setMenuOpen(false)}>
-              {ctaLabel} <span aria-hidden="true">→</span>
+              {ctaLabel}{!isV2 && <> <span aria-hidden="true">→</span></>}
             </Link>
           </div>
         )}

@@ -306,9 +306,9 @@
 }
 
 /* ─── 9 · Red contact close ─────────────────────────────── */
-.cinv2 .contact-red {
-  background: linear-gradient(135deg, #9A2822 0%, #8E2520 55%, #7C1F1A 100%);
-}
+/* The site's own oxblood, not Cowork's three-stop gradient. #A12A1E is what
+ * the live close uses; the gradient was an approximation of it. */
+.cinv2 .contact-red { background: #A12A1E; }
 /* Form matched to Cowork's spec: white fields, 2px radius, .92rem espresso
  * Send button at 13px/24px. */
 .cinv2 .cform { display: grid; gap: 14px; }
@@ -331,8 +331,8 @@
 .cinv2 .cform textarea { min-height: 120px; resize: vertical; }
 .cinv2 button.btnsend {
   justify-self: start;
-  background: #15110F;
-  color: #EFE9DC;
+  background: var(--bg);
+  color: #FBF4E6;
   border: none;
   border-radius: 2px;
   font-family: 'Manrope', system-ui, sans-serif;
@@ -353,7 +353,15 @@
 /* Driven by HERO_PORTRAIT in HomePageV2.jsx. Centred while there is no
  * portrait, split the moment one is set. */
 .cinv2 .hero-centred { text-align: center; }
-.cinv2 .hero-centred .hero-copy > * { margin-left: auto; margin-right: auto; }
+/* Flex-centred, not margin-auto: the h1 and lede carry inline `margin`
+ * shorthands, which reset margin-left/right to 0 and beat a stylesheet
+ * `margin: auto`. That left the blocks flush left with only their text
+ * centred. As flex items they centre regardless of their own margins. */
+.cinv2 .hero-centred .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .cinv2 .hero-centred .hero-sig { justify-content: center; }
 
 .cinv2 .hero-split {

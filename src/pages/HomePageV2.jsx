@@ -246,7 +246,7 @@ export default function HomePageV2() {
 
             <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
               <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-                Get in touch <span className="ar" aria-hidden>→</span>
+                Get in touch
               </a>
             </div>
           </div>
@@ -262,12 +262,19 @@ export default function HomePageV2() {
       </section>
 
       {/* ─── 2 · TRUSTED BY ─── */}
-      <section className="logoband" style={{ background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)', borderBottom: '1px solid rgba(239,233,220,.12)' }}>
-        <div style={{ ...INNER, padding: 'clamp(30px,3.6vw,44px) clamp(20px,5vw,64px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(18px,2.4vw,26px)' }}>
+      {/* No hairlines and no background of its own: the band sits on the same
+        * --bg-deep as the hero, so boxing it in was reading as a separate
+        * colour block. It now flows straight out of the hero. */}
+      <section className="logoband" style={{ background: 'var(--bg-deep)' }}>
+        <div style={{ ...INNER, padding: 'clamp(24px,3vw,38px) clamp(20px,5vw,64px) clamp(30px,3.6vw,44px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(16px,2vw,22px)' }}>
+          {/* The small gold rule from the design system
+            * (.about-strip__clients::before in shared.css): 48x1px --edge,
+            * the editorial break that sits above a credentials strip. */}
+          <span aria-hidden="true" style={{ display: 'block', width: 48, height: 1, background: 'var(--edge)' }} />
           {/* Cowork's label. "Thirteen years..." was here, but the About
             * section opens with "Thirteen years building brand, community and
             * growth" two screens later, so it read as a repeat. */}
-          <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#8A8078', fontWeight: 700 }}>
+          <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--ink-muted)', fontWeight: 700 }}>
             Trusted by teams at
           </span>
           <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 940, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(18px,4vw,52px)' }}>
@@ -304,7 +311,7 @@ export default function HomePageV2() {
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
               <Link to="/about" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
-                More about me <span className="ar" aria-hidden>→</span>
+                More about me
               </Link>
             </div>
           </div>
@@ -429,7 +436,7 @@ export default function HomePageV2() {
             I have presented my own fan-led projects, including on the E3 main stage.
           </p>
           <Link to="/speaking" className="btnghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-            See my talks <span className="ar" aria-hidden>→</span>
+            See my talks
           </Link>
         </div>
       </section>
@@ -491,7 +498,7 @@ export default function HomePageV2() {
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
                 <Link to="/fan-score" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
-                  Take the quiz <span className="ar" aria-hidden>→</span>
+                  Take the quiz
                 </Link>
               </div>
             </div>
@@ -512,7 +519,7 @@ export default function HomePageV2() {
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>
                 <Link to="/fan-value" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, textDecoration: 'none', marginTop: 'auto', alignSelf: 'flex-start' }}>
-                  Run the numbers <span className="ar" aria-hidden>→</span>
+                  Run the numbers
                 </Link>
               </div>
             </div>
@@ -526,17 +533,21 @@ export default function HomePageV2() {
         * Only the form is wired up for real. */}
       <section className="contact-red" id="contact" style={{ color: '#FBF4E6' }}>
         <div className="contact-grid" style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(36px,5vw,60px)', alignItems: 'start' }}>
+          {/* Cowork's layout, but the site's own colours on the red ground:
+            * #F2D79A gold and #FBF4E6 cream, which is what the live close
+            * uses. Cowork's #D4C896 / #EFE9DC are the on-espresso pair and go
+            * muddy against oxblood. */}
           <div data-rev>
-            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.26em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Let&rsquo;s talk</span>
-            <hr style={{ width: 52, height: 4, background: '#D4C896', border: 'none', margin: '14px 0 26px' }} />
-            <h2 style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.7rem,3.2vw,2.4rem)', lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#EFE9DC' }}>
+            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.26em', textTransform: 'uppercase', color: '#F2D79A', fontWeight: 700 }}>Let&rsquo;s talk</span>
+            <hr style={{ width: 52, height: 4, background: '#F2D79A', border: 'none', margin: '14px 0 26px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.7rem,3.2vw,2.4rem)', lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#FBF4E6' }}>
               Tell me about your brand.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.86)', maxWidth: '40ch', margin: '0 0 22px' }}>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', maxWidth: '40ch', margin: '0 0 22px' }}>
               I&rsquo;ll tell you honestly whether fan-led growth is the lever for you.
             </p>
-            <p style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.82)', fontWeight: 600, margin: 0 }}>
-              Or find me on <a href={LINKEDIN_URL} style={{ color: '#D4C896', fontWeight: 700 }}>LinkedIn</a>.
+            <p style={{ fontSize: '.9rem', color: 'rgba(251,244,230,.82)', fontWeight: 600, margin: 0 }}>
+              Or find me on <a href={LINKEDIN_URL} style={{ color: '#F2D79A', fontWeight: 700 }}>LinkedIn</a>.
             </p>
           </div>
 
@@ -558,8 +569,8 @@ export default function HomePageV2() {
                   * brief. This short form only captures name/email/message,
                   * so /contact is where need, timeline and the speaking
                   * fields get asked. */}
-                <span style={{ fontSize: '.84rem', color: 'rgba(239,233,220,.8)', fontWeight: 600 }}>
-                  Something specific in mind? Use the <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700 }}>full contact form</Link>.
+                <span style={{ fontSize: '.84rem', color: 'rgba(251,244,230,.8)', fontWeight: 600 }}>
+                  Something specific in mind? Use the <Link to={CONTACT_URL} style={{ color: '#F2D79A', fontWeight: 700 }}>full contact form</Link>.
                 </span>
               </form>
             )}
