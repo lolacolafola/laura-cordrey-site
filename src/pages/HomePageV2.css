@@ -221,20 +221,6 @@
   .cinv2 .svcard-back .svcard-title { display: none; }
 }
 
-/* The section's single CTA. Cream rather than red: with gold, espresso and
- * cream cards already in play, a red button made four colours in one band.
- * Cream is the softest of the three and does not compete with the gold
- * flagship. Goes gold on hover like every other button, which works here
- * because the ground is dark: the 1.39:1 gold-on-cream problem only applies
- * on a cream ground. */
-.cinv2 .btncreamsoft {
-  background: var(--surface);
-  border: 1px solid var(--surface);
-  color: var(--bg);
-  transition: background .2s ease, border-color .2s ease;
-}
-.cinv2 .btncreamsoft:hover { background: var(--edge); border-color: var(--edge); }
-
 /* ─── 5 · Case cards ────────────────────────────────────── */
 /* Image on top, cream text panel below (the original .statc pattern).
  * The card lifts on hover and it navigates, so the motion is honest.
