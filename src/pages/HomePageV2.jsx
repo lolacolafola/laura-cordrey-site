@@ -395,17 +395,16 @@ export default function HomePageV2() {
           <div className="svc-grid">
             {WAYS.map((w) => (
               <div key={w.no} className={`svcard svcard--${w.tone}`} data-rev>
-                {/* The number and title never move. Only the line beneath
-                  * them swaps, kicker out and copy in, which is what makes
-                  * the transition read as one thing changing rather than the
-                  * whole card being replaced. */}
+                {/* Nothing ever fades OUT. The number, title and kicker are
+                  * permanent; the copy simply appears beneath them. It holds
+                  * its layout space at rest so the card never resizes, which
+                  * means no overlap is possible and nothing has to be timed
+                  * against anything else. */}
                 <span className="svcard-no">{w.no}</span>
                 <div className="svcard-body">
                   <span className="svcard-title">{w.title}</span>
-                  <div className="svcard-swap">
-                    <span className="svcard-kicker">{w.kicker}</span>
-                    <span className="svcard-copy">{w.copy}</span>
-                  </div>
+                  <span className="svcard-kicker">{w.kicker}</span>
+                  <span className="svcard-copy"><span>{w.copy}</span></span>
                 </div>
               </div>
             ))}

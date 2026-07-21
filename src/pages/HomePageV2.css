@@ -132,8 +132,8 @@
  * button could resolve to one honest destination. A single button sits under
  * the group instead.
  *
- * On hover the back panel fades in over the front rather than the card
- * rotating in 3D. See the note on that transition below. */
+ * On hover only the line under the title changes, kicker out then copy in.
+ * See the note on that handoff below. */
 .cinv2 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -195,37 +195,37 @@
 /* Minimum card height, so the three stay equal and the number sits clear of
    the title block regardless of copy length. */
 .cinv2 .svcard { min-height: clamp(250px, 26vw, 320px); }
-/* Only the line under the title swaps. The number and the title are single
- * persistent elements that never move or fade.
+/* The copy appears beneath the kicker. Nothing fades out, so there is no
+ * overlap to time and nothing can flicker: the number, title and kicker are
+ * permanent, and only the copy changes state.
  *
- * Every earlier version had two full-card layers holding their own copy of
- * the number and title, and the two layouts put the title at different
- * heights, so mid-fade the card showed the same title twice in two places.
- * That, not the timing, was what read as buggy. Fading a whole layer meant
- * animating things that were not actually changing.
+ * At rest the copy is collapsed (zero height, faded, nudged up) but still in
+ * the layout as a reserved slot, so the card never resizes on hover. On hover
+ * it opens: height, opacity and position animate together, 0.42s ease.
  *
- * Now the kicker and the copy share one slot and cross over inside it, at
- * 0.4s ease-in-out to match the benchmark. Nothing else on the card moves. */
+ * grid-template-rows animates cleanly from 0fr to 1fr, which is what lets the
+ * copy push in smoothly rather than snapping to its height. */
 .cinv2 .svcard-body {
   display: flex;
   flex-direction: column;
   margin-top: auto;
 }
-.cinv2 .svcard-swap {
-  position: relative;
-  /* Sized to the longest copy so the card never resizes on hover. */
-  min-height: clamp(112px, 12vw, 150px);
-  margin-top: 12px;
-}
-.cinv2 .svcard-kicker,
+.cinv2 .svcard-kicker { margin-top: 12px; }
 .cinv2 .svcard-copy {
-  position: absolute;
-  inset: 0;
-  transition: opacity .4s ease-in-out;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: grid-template-rows .42s ease, opacity .42s ease, transform .42s ease, margin-top .42s ease;
+  margin-top: 0;
 }
-.cinv2 .svcard-copy { opacity: 0; }
-.cinv2 .svcard:hover .svcard-kicker { opacity: 0; }
-.cinv2 .svcard:hover .svcard-copy { opacity: 1; }
+.cinv2 .svcard-copy > * { overflow: hidden; min-height: 0; }
+.cinv2 .svcard:hover .svcard-copy {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 14px;
+}
 
 .cinv2 .svcard-no {
   display: block;
@@ -255,7 +255,7 @@
    rule sits after the swap rules and so overrode the copy's resting
    opacity: 0, leaving both the kicker and the copy visible at once. The
    muting is done with colour-mix instead, which the swap can animate freely. */
-.cinv2 .svcard-copy {
+.cinv2 .svcard-copy > span {
   display: block;
   font-size: clamp(.95rem, 1.05vw, 1.04rem);
   line-height: 1.6;
@@ -263,16 +263,15 @@
   color: color-mix(in srgb, currentColor 84%, transparent);
 }
 
-/* Touch and reduced motion: no swap. The kicker is dropped and the copy is
-   shown outright, so nothing is hidden behind a hover the device cannot
-   perform, and the slot collapses to the copy's natural height. */
+/* Touch and reduced motion: the copy is open from the start, so nothing is
+   hidden behind a hover the device cannot perform. The kicker stays, since
+   nothing needs to fade out to make room. */
 @media (hover: none), (prefers-reduced-motion: reduce) {
-  .cinv2 .svcard-swap { min-height: 0; }
-  .cinv2 .svcard-kicker { display: none; }
   .cinv2 .svcard-copy {
-    position: relative;
-    inset: auto;
+    grid-template-rows: 1fr;
     opacity: 1;
+    transform: none;
+    margin-top: 14px;
     transition: none;
   }
 }
