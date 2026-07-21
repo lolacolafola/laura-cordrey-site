@@ -132,8 +132,8 @@
  * button could resolve to one honest destination. A single button sits under
  * the group instead.
  *
- * Hover crossfades the two layers rather than rotating the card in 3D, which
- * is what the benchmark does and is far gentler on the eye. */
+ * On hover the back panel fades in over the front rather than the card
+ * rotating in 3D. See the note on that transition below. */
 .cinv2 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -192,32 +192,40 @@
 .cinv2 .svcard--espresso { background: var(--bg);      color: #EFE9DC; border-color: rgba(212,200,150,.2); }
 .cinv2 .svcard--cream    { background: var(--surface); color: var(--bg); }
 
-/* The crossfade area. A fixed min-height keeps the three cards the same
-   height: without it each would size to its own copy length. */
-.cinv2 .svcard-faces {
-  position: relative;
-  flex: 1;
-  min-height: clamp(210px, 22vw, 270px);
-}
-/* Staggered handoff, not a simultaneous crossfade. Both layers sit in the
- * same box, so fading them at the same time put two sets of text on top of
- * each other mid-transition, which read as a glitch. Slowing that down would
- * have made it worse, not better: the overlap was the problem, not the speed.
+/* Minimum card height, so the three stay equal and the number sits clear of
+   the title block regardless of copy length. */
+.cinv2 .svcard { min-height: clamp(250px, 26vw, 320px); }
+/* Only the line under the title swaps. The number and the title are single
+ * persistent elements that never move or fade.
  *
- * One layer now clears before the other arrives, in both directions. Total
- * ~0.45s, in the range the benchmark uses (0.2s to 0.4s). */
-.cinv2 .svcard-front,
-.cinv2 .svcard-back {
-  position: absolute;
-  inset: 0;
+ * Every earlier version had two full-card layers holding their own copy of
+ * the number and title, and the two layouts put the title at different
+ * heights, so mid-fade the card showed the same title twice in two places.
+ * That, not the timing, was what read as buggy. Fading a whole layer meant
+ * animating things that were not actually changing.
+ *
+ * Now the kicker and the copy share one slot and cross over inside it, at
+ * 0.4s ease-in-out to match the benchmark. Nothing else on the card moves. */
+.cinv2 .svcard-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  margin-top: auto;
 }
-.cinv2 .svcard-front { transition: opacity .26s ease .16s; }
-.cinv2 .svcard-back  { opacity: 0; transition: opacity .2s ease 0s; }
-.cinv2 .svcard:hover .svcard-front { opacity: 0; transition: opacity .2s ease 0s; }
-.cinv2 .svcard:hover .svcard-back  { opacity: 1; transition: opacity .26s ease .16s; }
+.cinv2 .svcard-swap {
+  position: relative;
+  /* Sized to the longest copy so the card never resizes on hover. */
+  min-height: clamp(112px, 12vw, 150px);
+  margin-top: 12px;
+}
+.cinv2 .svcard-kicker,
+.cinv2 .svcard-copy {
+  position: absolute;
+  inset: 0;
+  transition: opacity .4s ease-in-out;
+}
+.cinv2 .svcard-copy { opacity: 0; }
+.cinv2 .svcard:hover .svcard-kicker { opacity: 0; }
+.cinv2 .svcard:hover .svcard-copy { opacity: 1; }
 
 .cinv2 .svcard-no {
   display: block;
@@ -235,38 +243,38 @@
   letter-spacing: -.02em;
   line-height: 1.14;
 }
-.cinv2 .svcard-title--sm { font-size: clamp(1.05rem, 1.4vw, 1.24rem); margin-bottom: 10px; }
 .cinv2 .svcard-kicker {
   display: block;
-  margin-top: 12px;
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  opacity: .62;
+  color: inherit;
 }
+/* No opacity here. It used to carry opacity: .82 for a muted look, but this
+   rule sits after the swap rules and so overrode the copy's resting
+   opacity: 0, leaving both the kicker and the copy visible at once. The
+   muting is done with colour-mix instead, which the swap can animate freely. */
 .cinv2 .svcard-copy {
   display: block;
   font-size: clamp(.95rem, 1.05vw, 1.04rem);
   line-height: 1.6;
   font-weight: 500;
-  opacity: .82;
+  color: color-mix(in srgb, currentColor 84%, transparent);
 }
 
-/* Touch and reduced motion: no crossfade, both layers stacked and readable.
-   Nothing is hidden behind a hover the device cannot perform. */
+/* Touch and reduced motion: no swap. The kicker is dropped and the copy is
+   shown outright, so nothing is hidden behind a hover the device cannot
+   perform, and the slot collapses to the copy's natural height. */
 @media (hover: none), (prefers-reduced-motion: reduce) {
-  .cinv2 .svcard-faces { min-height: 0; }
-  .cinv2 .svcard-front,
-  .cinv2 .svcard-back {
+  .cinv2 .svcard-swap { min-height: 0; }
+  .cinv2 .svcard-kicker { display: none; }
+  .cinv2 .svcard-copy {
     position: relative;
     inset: auto;
-    opacity: 1 !important;
+    opacity: 1;
     transition: none;
   }
-  .cinv2 .svcard-back { margin-top: 16px; }
-  .cinv2 .svcard-back .svcard-no,
-  .cinv2 .svcard-back .svcard-title { display: none; }
 }
 
 /* ─── 5 · Case cards ────────────────────────────────────── */

@@ -395,24 +395,16 @@ export default function HomePageV2() {
           <div className="svc-grid">
             {WAYS.map((w) => (
               <div key={w.no} className={`svcard svcard--${w.tone}`} data-rev>
-                {/* Two stacked layers that crossfade on hover, rather than a
-                  * 3D flip: gentler on the eye and it never hides the button.
-                  * Both layers are in the DOM for prerender and screen
-                  * readers, and both are visible without hover on touch. */}
-                <div className="svcard-faces">
-                  <div className="svcard-front">
-                    <span className="svcard-no">{w.no}</span>
-                    <span>
-                      <span className="svcard-title">{w.title}</span>
-                      <span className="svcard-kicker">{w.kicker}</span>
-                    </span>
-                  </div>
-                  <div className="svcard-back">
-                    <span className="svcard-no">{w.no}</span>
-                    <span>
-                      <span className="svcard-title svcard-title--sm">{w.title}</span>
-                      <span className="svcard-copy">{w.copy}</span>
-                    </span>
+                {/* The number and title never move. Only the line beneath
+                  * them swaps, kicker out and copy in, which is what makes
+                  * the transition read as one thing changing rather than the
+                  * whole card being replaced. */}
+                <span className="svcard-no">{w.no}</span>
+                <div className="svcard-body">
+                  <span className="svcard-title">{w.title}</span>
+                  <div className="svcard-swap">
+                    <span className="svcard-kicker">{w.kicker}</span>
+                    <span className="svcard-copy">{w.copy}</span>
                   </div>
                 </div>
               </div>
