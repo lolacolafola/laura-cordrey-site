@@ -41,8 +41,8 @@ export default function App() {
           <Route path="/home-v2" element={<Navigate to="/" replace />} />
           {/* Destination for "Fan-led growth", the first item in the
               simplified v2 nav. Carries the three education sections the v2
-              homepage cut, verbatim. Preview only: noindex, absent from the
-              sitemap. See content/copy/fan-led-growth-page-plan.md. */}
+              homepage cut, verbatim. Indexed and prerendered since 22 Jul 2026.
+              See content/copy/fan-led-growth-page-plan.md. */}
           <Route path="/fan-led-growth" element={<FanLedGrowthPage />} />
           <Route path="/work" element={<WorkPage />} />
           {/* Bespoke deep-dive case studies — explicit routes take precedence

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl, fanLedGrowthJsonLd } from '../lib/seo.js'
 import './FanLedGrowthPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -18,9 +19,16 @@ const CONTACT_URL = '/contact?intent=consulting'
  *
  * Provenance table: content/copy/fan-led-growth-page-plan.md
  *
- * Preview only: noindex and absent from the sitemap (so the prerender skips
- * it) until the v2 direction is decided. Overlaps /methodology in places;
- * that overlap is flagged in the plan doc, not resolved.
+ * Shipped 22 Jul 2026. It was preview-only (noindex, out of the sitemap)
+ * "until the v2 direction is decided" — that decision landed when v2 became
+ * the homepage, and this page is now the FIRST item in the site-wide nav, so
+ * keeping it noindexed and unprerendered was hiding the most prominent
+ * destination on the site. It now carries a real canonical, sits in the
+ * sitemap (which is what makes scripts/prerender.mjs snapshot it), and emits
+ * the DefinedTerm for "fan-led growth" itself.
+ *
+ * Still open: this overlaps /methodology in places. Flagged in the plan doc,
+ * not resolved.
  */
 
 const HEAD_W = 700
@@ -79,26 +87,12 @@ const Icon = ({ name, size = 28 }) => {
 
 export default function FanLedGrowthPage() {
   useDocumentMeta({
-    title: 'Fan-led growth · Laura Cordrey',
-    description: 'What fan-led growth is, why fans compound, and who it is for. Preview page.',
-    ogType: 'article',
+    title: 'What is fan-led growth? · Laura Cordrey',
+    description:
+      'Fan-led growth is growth you own, not rent. What it is, why fans compound, and who it is for.',
+    canonical: pageUrl('fan-led-growth'),
+    jsonLd: fanLedGrowthJsonLd(),
   })
-
-  // Preview-only, same treatment as /home-v2: keep it out of search and stop
-  // it inheriting index.html's static canonical (which points at "/").
-  useEffect(() => {
-    const robots = document.createElement('meta')
-    robots.setAttribute('name', 'robots')
-    robots.setAttribute('content', 'noindex, nofollow')
-    document.head.appendChild(robots)
-    const canonical = document.head.querySelector('link[rel="canonical"]')
-    const prevHref = canonical?.getAttribute('href')
-    canonical?.setAttribute('href', `${window.location.origin}/fan-led-growth`)
-    return () => {
-      robots.parentNode?.removeChild(robots)
-      if (canonical && prevHref != null) canonical.setAttribute('href', prevHref)
-    }
-  }, [])
 
   const rootRef = useRef(null)
   useEffect(() => {

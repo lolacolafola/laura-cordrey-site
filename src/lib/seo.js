@@ -274,6 +274,75 @@ export function methodologyJsonLd({ stages }) {
   }
 }
 
+// ─── Fan-led growth (the plain-language definition page) ────────────────
+// /fan-led-growth is the page that should own the "what is fan-led growth"
+// query, so it carries the DefinedTerm for the term itself — sibling to the
+// Fan Engine DefinedTerm on /methodology, which defines the *method* rather
+// than the *idea*. The FAQPage entries are not new copy: each answer is a
+// verbatim sentence already visible on the page, which is what FAQPage
+// requires (schema must reflect on-page content, not extend it).
+export function fanLedGrowthJsonLd() {
+  const canonical = pageUrl('fan-led-growth')
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'DefinedTerm',
+        '@id': `${canonical}#fan-led-growth`,
+        name: 'Fan-Led Growth',
+        description:
+          'Growth driven by fans rather than paid acquisition. When people love what you do, they stay, they spend more, and they bring others with them. No single team makes a fan: it takes brand, product and community pulling the same way.',
+        inDefinedTermSet: 'Fan-Led Growth methodology',
+        url: canonical,
+      },
+      {
+        '@type': 'WebPage',
+        '@id': canonical,
+        name: 'Fan-led growth',
+        description:
+          'What fan-led growth is, why fans compound, and who it is for.',
+        url: canonical,
+        author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+        about: { '@id': `${canonical}#fan-led-growth` },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            question: 'What is fan-led growth?',
+            answer:
+              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way.',
+          },
+          {
+            question: 'Why do fans grow a business?',
+            answer:
+              'Fans stay longer and spend more, they make the content that markets you at no media cost, they bring their friends in so growth leans less on ad spend, and they defend you in public through a rough week. Built once, the engine keeps working and starts to fuel itself.',
+          },
+          {
+            question: 'How is fan-led growth different from paid acquisition?',
+            answer:
+              'With paid acquisition you rent your growth: you pay for every customer, and the day you stop, it stops. Fans work the other way. Build them once, and they keep growing you long after the spend ends.',
+          },
+          {
+            question: 'Who is fan-led growth for?',
+            answer:
+              'Companies with a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too.',
+          },
+        ].map(({ question, answer }) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer,
+            author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
+          },
+        })),
+      },
+    ],
+  }
+}
+
 // ─── Breadcrumbs (per case study) ───────────────────────────────────────
 export function breadcrumbJsonLd(items) {
   return {

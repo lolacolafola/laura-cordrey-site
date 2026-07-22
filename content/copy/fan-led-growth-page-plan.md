@@ -2,7 +2,8 @@
 
 Branch: `homepage-lighter`
 Date: 21 Jul 2026
-Status: built, preview only (noindex, not in sitemap)
+Status: **shipped 22 Jul 2026** — indexed, in the sitemap, prerendered.
+(Was: built, preview only. See the update at the foot of this file.)
 
 ## Why this page exists
 
@@ -61,3 +62,51 @@ Cowork's nav, followed exactly:
 Dropped versus the live nav: Home (the logo does it), Method, AI, Fan Score,
 and the LinkedIn icon. Fan Score keeps its homepage Tools section, the close,
 and the footer. AI and Method keep their footer links.
+
+---
+
+## UPDATE — shipped 22 Jul 2026
+
+The preview flag came off. The condition set above was "preview-only until the
+v2 direction is decided"; that decision landed when v2 became the homepage and
+the simplified nav went site-wide. At that point the page was in an incoherent
+state: **the first item in the site-wide nav, but `noindex, nofollow` and
+absent from the sitemap** — so `scripts/prerender.mjs` skipped it and every
+crawler and AI answer engine saw an empty shell at the site's most prominent
+destination.
+
+What changed:
+
+- **Meta.** The hand-rolled `noindex` + runtime-canonical effect is gone,
+  replaced with the same `useDocumentMeta({ title, description, canonical,
+  jsonLd })` call every other page uses, with `canonical: pageUrl('fan-led-growth')`.
+- **Title.** `Fan-led growth · Laura Cordrey` → **`What is fan-led growth? · Laura Cordrey`**,
+  and the description lost its "Preview page." suffix. This page should own the
+  "what is fan-led growth" query; the title now matches the question.
+- **Sitemap.** Added at priority 0.9, directly after the homepage. The sitemap
+  is the single source of truth for the prerenderer, so this is what makes the
+  route get snapshotted. (Also un-jammed the last three entries, which had been
+  written onto one line.)
+- **JSON-LD.** New `fanLedGrowthJsonLd()` in `src/lib/seo.js`, emitting a
+  three-entity `@graph`:
+  - `DefinedTerm` for **Fan-Led Growth** itself — the sibling of the Fan Engine
+    `DefinedTerm` on `/methodology`, which defines the *method*; this defines
+    the *idea*.
+  - `WebPage`, linked to that term via `about`.
+  - `FAQPage` with four Q/As. **No new copy was written for this.** Every answer
+    is a verbatim sentence already visible on the page, which is what FAQPage
+    requires — schema has to reflect on-page content, not extend it. The
+    questions are the ones the page's own section headings already answer.
+
+Verified: `npm run build` snapshots 19/19 routes including `/fan-led-growth`;
+the static file carries 569 words of real body copy, an `<h1>`, the production
+canonical, no `robots` tag, and JSON-LD that parses. No `flg-hide` classes are
+baked into the snapshot, so nothing ships at `opacity: 0`. Mobile at 375px has
+no horizontal overflow and both card grids collapse to one column.
+
+### Still open
+
+The `/methodology` overlap is **unchanged and still unresolved.** Shipping this
+page makes the decision more urgent, not less: two indexed pages now cover
+adjacent ground. Either `/methodology` becomes the deeper "how I run it" page
+with this as the plain-language front door, or the two merge. Needs Laura.
