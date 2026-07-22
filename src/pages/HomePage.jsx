@@ -466,7 +466,11 @@ export default function HomePage() {
                   <img src={BASE + c.img} alt={c.alt} loading="lazy" />
                 </figure>
                 <div style={{ padding: 'clamp(18px,1.8vw,24px)', display: 'flex', flexDirection: 'column', gap: 7 }}>
-                  <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.5rem,2.3vw,2rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B' }}>{c.value}</span>
+                  {/* Trimmed to sit on the now-smaller card: clamp(1.5rem,2.3vw,
+                    * 2rem) was carried at full size while the cards shrank
+                    * (viewport-based, not card-based), so it read proportionally
+                    * large. Now ~25.6px at 1280 vs the old 29px. */}
+                  <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.35rem,2vw,1.7rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B' }}>{c.value}</span>
                   <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{c.label}</span>
                   <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
                 </div>
