@@ -26,7 +26,11 @@ const CLIENTS = [
 
 export default function ServicesPage() {
   useDocumentMeta({
-    title: 'Work with me · Laura Cordrey · Fan-led growth for consumer brands',
+    // 45 chars. Was 65, over the 60 limit, since before this week. The
+    // handover's "leave the over-long titles" exemption is for the case
+    // studies, where the pattern is `Client · Result · Laura Cordrey` and the
+    // client name survives truncation. This one just ran long.
+    title: 'Work with me · Laura Cordrey · Fan-led growth',
     description:
       'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine, or advisory. Free 2-minute Fan Score.',
     canonical: pageUrl('services'),
@@ -46,9 +50,14 @@ export default function ServicesPage() {
             The whole engine, or just the{' '}
             <mark>piece you need</mark>.
           </h1>
+          {/* The three verbs here are the same three words the index rows and
+            * section kickers use, deliberately: protect / grow / deepen. The
+            * index used to say "Acquire" for the middle one, so the page
+            * promised three things in the hero and then labelled one of them
+            * something else. "grow off it" was also clumsy. */}
           <p className="svc-hero__lede">
             Make the userbase you already paid for worth more. Protect it, grow
-            off it, deepen it, or build the whole system that does all three.
+            from it, deepen it, or build the whole system that does all three.
           </p>
           {/* For anyone who lands here cold: the argument sits one click away.
               Kept out of the lede so it doesn't compete with the two CTAs. */}
@@ -75,9 +84,15 @@ export default function ServicesPage() {
           {/* The lede under this heading was cut on 22 Jul 2026 (copy
             * reduction). It restated the hero and then the six rows below
             * restated it a third time in their own words. The rows ARE the
-            * skim layer; they did not need a paragraph introducing them. */}
+            * skim layer; they did not need a paragraph introducing them.
+            *
+            * The heading changed with it. It read "Start with the whole engine,
+            * or one piece", which is the H1 ("The whole engine, or just the
+            * piece you need") said twice, one screen apart. The cut lede had
+            * been the only thing separating them. It now asks the question the
+            * six rows below actually answer. */}
           <div className="svc-index__head">
-            <h2 className="svc-index__title">Start with the whole engine, or one piece.</h2>
+            <h2 className="svc-index__title">Where would you start?</h2>
           </div>
           <nav className="svc-index" aria-label="Engagements">
             <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
@@ -92,7 +107,7 @@ export default function ServicesPage() {
             </a>
             <a href="#fan-programs" className="svc-index__row">
               <span className="svc-index__nm">Fan Programs</span>
-              <span className="svc-index__one">Acquire. Growth you don&rsquo;t pay for every time.</span>
+              <span className="svc-index__one">Grow. Growth you don&rsquo;t pay for every time.</span>
               <span className="svc-index__arr" aria-hidden="true">→</span>
             </a>
             <a href="#fan-moments" className="svc-index__row">
@@ -112,7 +127,7 @@ export default function ServicesPage() {
             </Link>
           </nav>
           <p style={{ marginTop: 'clamp(20px,2.4vw,28px)', marginBottom: 0, fontSize: '.95rem', lineHeight: 1.55, color: 'var(--ink-muted-on-surface)', fontWeight: 500 }}>
-            Each one plug-and-play. If you don&rsquo;t have the team to run it, I bring one.{' '}
+            Each one stands on its own. If you don&rsquo;t have the team to run it, I bring one.{' '}
             <a href="#how-i-work" className="svc-txtlink" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 2 }}>
               How I work <span aria-hidden="true">↓</span>
             </a>
@@ -204,7 +219,12 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="svc-credit">
-              <span className="svc-credit__fmt">1 to 2 weeks · Faster if it can&rsquo;t wait</span>
+              {/* "Faster if it can't wait" was cut on 22 Jul 2026: the CTA note
+                * right below says the same thing more concretely ("we can start
+                * this week"), and "one to two weeks" is already in the What you
+                * get line above. The timeline was stated twice and the urgency
+                * twice, inside about 80 words. */}
+              <span className="svc-credit__fmt">1 to 2 weeks</span>
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('sos')} className="btn btn--primary btn--lg svc-eng__cta">
@@ -220,7 +240,7 @@ export default function ServicesPage() {
       <section className="svc-band" id="fan-programs">
         <div className="container svc-eng">
           <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">Acquire</span>
+            <span className="svc-eng__kick svc-eng__kick--accent">Grow</span>
             <h2 className="svc-eng__title">
               Fan <mark>Programs</mark>.
             </h2>
@@ -258,7 +278,12 @@ export default function ServicesPage() {
             </h2>
           </div>
           <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> you want to give your best fans a moment they&rsquo;ll love.</p>
+            {/* Was "you want to give your best fans a moment they'll love",
+              * which was the only "Need it when" on the page naming a want
+              * rather than a problem, and it was circular: you need a fan
+              * moment when you want a fan moment. Every other one gives the
+              * reader a reason to act now. */}
+            <p className="svc-youget"><strong>Need it when:</strong> your best customers get exactly what everyone else gets, and nothing you do makes them feel any different.</p>
             <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, unique merch, a drop, or a brand collab. Measured, so you see what it drove.</p>
             <p className="svc-youget"><strong>Payoff:</strong> your top customers spend more and stay longer.</p>
             <div className="svc-proofcard">
@@ -292,6 +317,12 @@ export default function ServicesPage() {
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you have one decision to get right, or you want senior fan-led growth leadership without a full-time hire.</p>
             <p className="svc-youget"><strong>What you get:</strong> one call on your hardest fan-led growth question, with someone who has built it at scale. You leave knowing exactly what to do, and the plan lands in writing that week.</p>
+            {/* Added 22 Jul 2026. Advisory was the one offer of five without a
+              * Payoff, on a page whose whole spine is Need it when / What you
+              * get / Payoff / Proof. It is also the easiest yes here, so it was
+              * the offer where a reader is closest to acting and the page went
+              * quiet on them. */}
+            <p className="svc-youget"><strong>Payoff:</strong> you get the call right the first time, without carrying a full-time hire to do it.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>

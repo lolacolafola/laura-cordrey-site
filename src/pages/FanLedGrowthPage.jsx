@@ -359,7 +359,7 @@ export default function FanLedGrowthPage() {
         * Colours follow the homepage close, which is the same ground: #F2D79A
         * gold and #FBF4E6 cream. The on-espresso pair (#D4C896 / #EFE9DC) goes
         * muddy on oxblood. */}
-      <section style={{ background: '#A12A1E', color: '#FBF4E6' }}>
+      <section className="flg-close--ox" style={{ background: '#A12A1E', color: '#FBF4E6' }}>
         <div style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', textAlign: 'center' }}>
           {/* Width in px, not ch: `ch` resolves against THIS div's inherited
             * 16px font, not the 60px heading inside it, so a 30ch cap came out
