@@ -88,15 +88,19 @@ const WAYS = [
   // DO NOT write that the Fan Engine is trademarked, registered, or protected.
   // A first draft of this card said "I built it, named it and trademarked it";
   // Laura caught it. The mark is not registered. The claim to make is
-  // AUTHORSHIP, which is true and is the whole point: she built the method and
-  // named it. Nothing about registration, and nothing about what does or does
-  // not exist elsewhere.
+  // AUTHORSHIP, which is true and is the whole point: she built the method.
+  // Nothing about registration, and nothing about what does or does not exist
+  // elsewhere.
+  //
+  // Nor "and named", which a second draft carried: the name is the card title
+  // sitting directly above the sentence, so saying it was named restates what
+  // the reader is already looking at.
   {
     no: '01',
     tone: 'gold',
     title: 'The Fan Engine\u2122',
     kicker: 'The method I built',
-    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. My own method, built from scratch and named. For teams ready to own their growth, not rent it.',
+    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. My own method, built from scratch. For teams ready to own their growth, not rent it.',
   },
   {
     no: '02',
