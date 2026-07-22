@@ -337,10 +337,14 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #E0574B;
+  /* #E0574B measured 4.45 on the #241D19 card ground, a hair under 4.5 on a
+     numeral that repeats seven times. */
+  color: #EA6E62;
   margin-bottom: 18px;
 }
-.ai-card__num b { color: #8A8078; font-weight: 700; }
+/* #8A8078 measured 4.30 on the same ground. This is the category label
+   ("Distribution", "Retention") beside each numeral, so it repeats too. */
+.ai-card__num b { color: #B8AEA2; font-weight: 700; }
 .ai-card__ttl {
   font-size: 1.5rem;
   line-height: 1.1;
