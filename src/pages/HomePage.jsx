@@ -281,7 +281,12 @@ export default function HomePage() {
           * No redesign. */}
         <div
           className={HERO_PORTRAIT ? 'hero-split' : 'hero-centred'}
-          style={{ position: 'relative', ...INNER, padding: 'clamp(52px,6.5vh,80px) clamp(20px,5vw,64px) clamp(40px,4.5vw,60px)' }}
+          // Top padding clears the fixed 69px nav and keeps a ~50px gap above
+          // the eyebrow. The old 52-80px worked at /home-v2 (solid nav + a
+          // page-offset), but as the real homepage the nav floats over the
+          // hero with no offset, so this padding is the only clearance. The
+          // 116px floor protects short screens.
+          style={{ position: 'relative', ...INNER, padding: 'clamp(116px,13.5vh,144px) clamp(20px,5vw,64px) clamp(40px,4.5vw,60px)' }}
         >
           <div className="hero-copy">
             <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
