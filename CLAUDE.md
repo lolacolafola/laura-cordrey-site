@@ -66,42 +66,56 @@ must be written to a file in this repo, **not left only in the chat reply.**
 - Ambient animation (scroll reveals, autonomous loops like the radar sweep) is
   fine anywhere — it promises nothing. Keep it off under
   `prefers-reduced-motion`.
-- **Which red, decided by job and ground — never by eye.** There are four, and
-  picking between them is a lookup, not a judgement call. Defined in
-  `src/styles/tokens.css`.
+- **Which red: decided by ROLE first, ground second.** `--accent` `#C8362B` is
+  the brand red and it stays the brand red. It is what the art direction is
+  built on, so it should move only where it physically cannot work.
 
-  | Token | Value | Use it for |
+  Measured, with the WCAG thresholds that apply (display = ≥24px, or ≥18.66px
+  bold, and needs 3.0; everything else needs 4.5):
+
+  | ground | `--accent` | display | body |
+  |---|---|---|---|
+  | black `#0E0B09` | 3.75 | **pass** | fail |
+  | dark `#15110F` | 3.59 | **pass** | fail |
+  | espresso `#241D19` | 3.18 | **pass** | fail |
+  | bone `#EFE9DC` | 4.32 | **pass** | fail |
+  | cream `#FCFAF3` | 5.00 | **pass** | **pass** |
+  | brown `#2D2723` | 2.82 | fail | fail |
+  | oxblood `#A12A1E` | 1.40 | fail | fail |
+
+  So the brand red is fine on **five of seven grounds** as display type, and
+  only ever really fails as small text. Hence the split, in
+  `src/styles/base.css`:
+
+  | Variable | Default | Job |
   |---|---|---|
-  | `--accent` | `#C8362B` | **Fills**: buttons, bars, dots, gradient stops. Plus display text on cream. |
-  | `--accent-deep` | `#8E2520` | Red **text on light** grounds (bone, cream). Also hover/pressed. |
-  | `--accent-light` | `#E4695E` | Red **text on dark** grounds. |
-  | — | `#A12A1E` | The oxblood **ground**. Never text. |
+  | `--accent-display` | `--accent` | Headings and big numerals. Applied automatically via `h1 mark, h2 mark, h3 mark` — a heading mark is display type by definition, so there is no modifier class to remember. |
+  | `--accent-text` | `--accent-light` | Small red text, where the brand red genuinely fails. |
 
-  Measured contrast, which is where the rule comes from:
-
-  | | black `#0E0B09` | dark `#15110F` | card `#241D19` | brown `#2D2723` | bone `#EFE9DC` | cream `#FCFAF3` |
-  |---|---|---|---|---|---|---|
-  | `--accent` | 3.75 | 3.59 | 3.18 | 2.82 | 4.32 | 5.00 |
-  | `--accent-deep` | 2.28 | 2.18 | 1.93 | 1.71 | **7.13** | **8.26** |
-  | `--accent-light` | **6.05** | **5.79** | **5.12** | **4.54** | 2.68 | 3.10 |
-
-  - **`--accent` is a fill colour, not a text colour.** It is the brand red and
-    the instinct is to reach for it, but as body text it fails AA on every
-    ground on this site except cream. That is why the other two exist.
-  - `--accent-light` is the only red clearing 4.5 on all four dark grounds, so
-    it is the safe default for red text on dark.
+  - **Light grounds** carry `on-light` (or set the two variables themselves),
+    which takes both to `--accent-deep` `#8E2520`: 7.13 on bone, 8.26 on cream.
+    That reads as the same red, richer, not as a different colour.
+  - **Brown and oxblood are the only two grounds that cannot take the brand red
+    at any size.** They set `--accent-display` themselves — brown to
+    `--accent-light`, oxblood to cream `#FBF3E4`. These are the ONLY places on
+    the site where a second red appears in a heading. Everywhere else is
+    `#C8362B`.
+  - **Set the variables on the innermost element that owns a ground, not the
+    outermost.** They inherit, so a dark row inside a bone band, or a cream
+    card inside a dark row, must re-declare. `/services` nests three deep:
+    band, row, card. Getting this wrong produced `#8E2520` on `#15110F` at
+    2.18 and a `.on-light` page root that poisoned every dark band under it.
+  - **Do not hardcode a red in page CSS.** A `.cinv2 mark { color: #C8362B }`
+    in `HomePage.css` silently beat the ground system on two bone bands. If a
+    page rule needs to touch a mark, touch weight or background, not colour.
+  - `#E0574B` is a **graphic tint**: gradient stops and Fan Value chart
+    segments. Not a text colour. Per-case-study `accent` values in
+    `src/data/caseStudies.js` (Claw Mobile's `#FF6B5B`) are client brand
+    colours and sit outside this system on purpose.
   - **Red is "the single gesture colour" (tokens.css). Spend it once per
     section.** A kicker plus a `<mark>` plus a row of 54px red numerals is
-    three gestures, and it reads as decoration rather than emphasis. When a
-    section wants more than one, the largest element gives it up first.
-  - `#E0574B` is a **graphic tint**, not a member of the text palette: the
-    second stop in the red gradients and the lighter segment in the Fan Value
-    charts. Existing text uses on the two darkest grounds are measured and
-    fine (5.26 / 5.04); do not add new ones, and never put it on `#241D19` or
-    `#2D2723` (4.45 / 3.95).
-  - Per-case-study `accent` values in `src/data/caseStudies.js` (e.g. Claw
-    Mobile's `#FF6B5B`) are client brand colours and sit outside this system
-    on purpose. Leave them alone.
+    three gestures and reads as decoration. When a section wants more than one,
+    the largest element gives it up first.
 
 - **Change a band's ground, re-check every `<mark>` on it.** The red `<mark>`
   is the single most common contrast failure on this site, and it is always

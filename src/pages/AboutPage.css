@@ -43,6 +43,9 @@
 .about-band--grey {
   background: #2D2723;
   border-top: 0;
+  /* brown: --accent measures 2.82 here, failing even for display type.
+     One of only two grounds on the site that cannot take the brand red. */
+  --accent-display: var(--accent-light);
 }
 /* Espresso, the third warm dark. Added 22 Jul 2026 when story 03 came off
    oxblood so the finale keeps that colour to itself. Already in the palette
@@ -55,6 +58,9 @@
   background: #A12A1E;
   color: #FBF3E4;
   border-top: 0;
+  /* oxblood: --accent measures 1.40 here. Marks on this ground go cream. */
+  --accent-display: #FBF3E4;
+  --accent-text: #FBF3E4;
 }
 .about-band--bone {
   background: var(--surface);
@@ -166,13 +172,10 @@
   gap: var(--space-5);
   max-width: 40rem;
 }
-/* The h1's own <mark> takes the global rule in base.css, which is --accent.
-   At 84px on the brown ground that measures 2.82, under the 3.0 large-text
-   bar. The lede mark below needs the same treatment for the same reason. */
-.about-hero__title mark {
-  background: transparent;
-  color: var(--accent-light);
-}
+/* No colour here any more. The hero ground went from brown to near-black, and
+   base.css now gives `h1 mark` the brand red via --accent-display: 3.75 on
+   #0E0B09, which clears the 3.0 display threshold. This rule existed to work
+   around the brown ground and outlived it. */
 .about-hero__title {
   font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84 */
   font-weight: 700;
@@ -203,13 +206,12 @@
   letter-spacing: -0.01em;
   margin: 0;
 }
-/* #E4695E on the brown hero ground: --accent measures 2.82 there, under the
-   3.0 that even large text needs. Third time this page has hit the same
-   thing, and it is always the same cause: the mark colour is not re-checked
-   when the band under it changes. The hero moved to #2D2723 today. */
+/* The lede mark is BODY size (20px, not a heading), so it takes --accent-text
+   rather than the brand red: #C8362B is 3.75 on this ground against the 4.5
+   small text needs. This is the split base.css describes. */
 .about-intro__lede mark {
   background: transparent;
-  color: var(--accent-light);
+  color: var(--accent-text);
   font-weight: 800;
 }
 /* #B8AEA2, not --ink-muted: the hero ground moved from near-black to the
@@ -413,7 +415,7 @@
    so both take the documented substitutions for this ground. The kicker keeps
    --edge gold, which clears comfortably. */
 .about-band--espresso .about-eng__right p { color: #B8AEA2; }
-.about-band--espresso .about-eng__title mark { color: var(--accent-light); }
+/* espresso takes the brand red at display size (3.18): no override needed. */
 /* Cream, not red. This band already spends its gesture on the heading <mark>;
    two 54px red numerals under it made red the loudest thing on a band whose
    job is a story. Matches the grey and bone story bands: the mark carries the

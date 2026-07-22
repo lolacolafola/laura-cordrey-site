@@ -22,6 +22,9 @@
   background: #A12A1E;
   color: #FBF3E4;
   border-top: 0;
+  /* oxblood: --accent measures 1.40 here. Marks on this ground go cream. */
+  --accent-display: #FBF3E4;
+  --accent-text: #FBF3E4;
 }
 .svc-band--grey {
   background: #2D2723;
@@ -88,6 +91,9 @@
    to black, so brown is no longer used twice on the site. */
 .svc-hero {
   background: #2D2723;
+  /* brown: --accent measures 2.82 here, failing even for display type.
+     One of only two grounds on the site that cannot take the brand red. */
+  --accent-display: var(--accent-light);
   padding-top: var(--space-7);
   /* CTAs are the hero's last element (the hint line was removed), so the
      full space-9 read as dead space. Tightened to match the top. */
@@ -134,8 +140,9 @@
   max-width: 50ch;
   margin: 0;
 }
-/* --accent measures 2.82 on the brown; --accent-light is 4.54. */
-.svc-hero__title mark { background: transparent; color: var(--accent-light); }
+/* No colour here: the hero sets --accent-display itself (brown cannot take the
+   brand red at any size) and base.css applies it to `h1 mark`. */
+.svc-hero__title mark { background: transparent; }
 .svc-hero__backlink {
   font-size: 0.95rem;
   color: #B8AEA2;

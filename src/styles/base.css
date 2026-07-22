@@ -111,28 +111,53 @@ mark {
 
 
 
-/* ─── Red text, resolved by ground ───────────────────────────────────
- * The shared red-text elements read --accent-text rather than a fixed value.
- * It defaults to --accent-light because the site's default ground is dark, and
- * any container on a light ground re-points it with ONE line:
+/* ─── The red, resolved by ROLE first and ground second ──────────────
+ * Corrected 22 Jul 2026 after Laura pointed out the About hero was showing a
+ * visibly different red. It was, and the earlier version of this block is why:
+ * it resolved every red by ground alone, which pushed the brand red off the
+ * dark headings where the art direction actually lives.
  *
- *     .my-bone-band { --accent-text: var(--accent-deep); }
+ * The measurement that settles it. --accent #C8362B against the site's
+ * grounds, where DISPLAY text needs 3.0 and body text needs 4.5:
  *
- * or by carrying the `on-light` class. That is the whole mechanism: no
- * per-page selector lists, and a new light section is one declaration away
- * from being correct.
+ *   black #0E0B09    3.75   display PASS   body fail
+ *   dark  #15110F    3.59   display PASS   body fail
+ *   espresso #241D19 3.18   display PASS   body fail
+ *   bone  #EFE9DC    4.32   display PASS   body fail
+ *   cream #FCFAF3    5.00   display PASS   body PASS
+ *   brown #2D2723    2.82   display fail   body fail
+ *   oxblood #A12A1E  1.40   display fail   body fail
  *
- * Why it matters: --accent #C8362B measures 4.32 on bone and 3.59-3.75 on the
- * darks. It passes as DISPLAY text (>=24px, threshold 3.0) on both and fails
- * as body text (4.5) on both. Marks and kickers appear at both sizes, so the
- * default has to be a value that works at either. See the table in CLAUDE.md. */
-:root { --accent-text: var(--accent-light); }
-.on-light { --accent-text: var(--accent-deep); }
+ * So the brand red is fine on FIVE of seven grounds as display type, and only
+ * ever fails as small text. The split is therefore by role:
+ *
+ *   --accent-display   headings and big numerals. The brand red, and it stays
+ *                      the brand red everywhere it can. This is the colour
+ *                      people see and comment on; it should not move.
+ *   --accent-text      small red text, where the brand red genuinely fails.
+ *
+ * Headings carry the display value automatically, because an h1/h2/h3 mark is
+ * display type by definition. No modifier class, nothing to remember.
+ *
+ * Two grounds cannot take the brand red at any size: brown and oxblood. They
+ * set --accent-display themselves, and they are the ONLY places a second red
+ * appears. Everything else is #C8362B. */
+:root {
+  --accent-display: var(--accent);
+  --accent-text: var(--accent-light);
+}
+.on-light {
+  --accent-display: var(--accent-deep);
+  --accent-text: var(--accent-deep);
+}
+/* Inline marks in body copy take the small-text value. */
 mark,
 .accent,
 .tlink,
 .ar,
 .marker { color: var(--accent-text); }
+/* Marks inside headings are display type and take the brand red. */
+h1 mark, h2 mark, h3 mark { color: var(--accent-display); }
 
 /* ─── Print + reduced-motion safety net ─────────────────────────────
  * Scroll-reveal animations start elements invisible until they enter

@@ -6,7 +6,12 @@
 
 /* Headings dropped from 800 to 700, so <mark> must follow rather than
  * re-bolding the word it highlights. */
-.cinv2 mark { background: transparent; color: #C8362B; font-weight: inherit; }
+/* Colour comes from base.css now: --accent-text for inline marks, the brand
+   red via --accent-display for marks inside headings. This rule hardcoded
+   #C8362B, which meant the two BODY-size marks on the bone bands rendered at
+   4.32 regardless of the .on-light ground. Only the weight override stays,
+   because this page's headings run 700 rather than the global 800. */
+.cinv2 mark { background: transparent; font-weight: inherit; }
 
 /* ─── Scroll-reveal ─────────────────────────────────────── */
 .cinv2 [data-rev] {
