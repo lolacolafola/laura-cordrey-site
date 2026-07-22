@@ -199,7 +199,7 @@
   font-weight: 800;
 }
 .about-intro__sub {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   margin: var(--space-5) 0 0;
@@ -309,7 +309,7 @@
   text-align: left;
 }
 .about-manifesto__body p {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   margin: 0;
@@ -365,7 +365,7 @@
   padding-top: calc(0.75rem + var(--space-5));
 }
 .about-eng__right p {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   max-width: 40rem;
@@ -443,7 +443,7 @@
   margin: 0;
 }
 .about-imgsplit__content p {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   max-width: 40rem;
@@ -632,7 +632,7 @@
   max-width: 46rem;
 }
 .about-magic p {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink);
   margin: 0;
@@ -819,7 +819,7 @@
   text-wrap: balance;
 }
 .about-close__line {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.55;
   color: rgba(251, 243, 228, 0.88);
   max-width: 38rem;
@@ -875,7 +875,7 @@
   background: var(--bg-deep);
 }
 .about-speaking__lede {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   color: var(--ink-muted);
   max-width: 60ch;
   margin-top: var(--space-3);
@@ -976,7 +976,7 @@
 }
 .about-speaking__detail {
   color: var(--ink);
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   margin: 0;
 }
@@ -1105,7 +1105,7 @@
 }
 .about-speaking__voiceover-detail {
   color: var(--ink-muted);
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.55;
   max-width: 60ch;
   margin: 0;

@@ -125,7 +125,7 @@
   color: #4A423B;
   max-width: 58ch;
   margin-top: clamp(24px, 3.2vw, 36px);
-  font-size: clamp(1.12rem, 1.55vw, 1.4rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede, was 19.8 */
   line-height: 1.62;
 }
 
@@ -165,7 +165,7 @@
   align-items: center;
 }
 .meth-hero__lede {
-  font-size: clamp(1.08rem, 1.55vw, 1.34rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede, was 19.8 */
   line-height: 1.55;
   color: rgba(239, 233, 220, 0.82);
   max-width: 46ch;
@@ -461,7 +461,8 @@
 .meth-band--close {
   background: #A12A1E;
   color: #FBF3E4;
-  padding: clamp(88px, 11vw, 150px) 0;
+  /* 110 at 1280, matching the homepage close. Was 140.8. */
+  padding: clamp(72px, 8.6vw, 116px) 0;
 }
 .meth-close__glow {
   position: absolute;
@@ -493,7 +494,7 @@
 }
 .meth-close__hl { color: #F2D79A; }
 .meth-close__lede {
-  font-size: clamp(1.08rem, 1.5vw, 1.34rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede, was 19.2 */
   line-height: 1.5;
   color: rgba(251, 243, 228, 0.85);
   max-width: 56ch;

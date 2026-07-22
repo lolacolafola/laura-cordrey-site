@@ -396,7 +396,10 @@ export default function ServicesPage() {
       <section id="how-i-work" className="svc-band svc-band--bone">
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(36px,4vw,52px)' }}>
           <div style={{ maxWidth: '46rem', display: 'flex', flexDirection: 'column', gap: 'clamp(16px,2vw,22px)' }}>
-            <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>
+            {/* #8E2520, not #C8362B: the red measured 4.32 on the bone ground
+                against 4.5 for text this size. Same substitution as the other
+                bone-ground kickers on /about, /ai and /fan-engine. */}
+            <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#8E2520', fontWeight: 700 }}>
               How I work
             </span>
             <h2 style={{ fontSize: T.h2, lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: HEAD_W, color: '#15110F', margin: 0, textWrap: 'balance' }}>

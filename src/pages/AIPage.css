@@ -185,8 +185,8 @@
 /* ─── 2 · CREDIBILITY BAND ────────────────────────────── */
 .ai-band--cred {
   background: #2D2723;
-  padding-top: clamp(64px, 7vw, 104px);
-  padding-bottom: clamp(64px, 7vw, 104px);
+  padding-top: clamp(64px, 7.5vw, 108px);
+  padding-bottom: clamp(64px, 7.5vw, 108px);
 }
 .ai-cred__grid {
   display: grid;
@@ -277,8 +277,8 @@
 /* ─── 3 · FOUR MOVES ────────────────────────────────── */
 .ai-band--moves {
   background: #15110F;
-  padding-top: clamp(64px, 7vw, 104px);
-  padding-bottom: clamp(64px, 7vw, 104px);
+  padding-top: clamp(64px, 7.5vw, 108px);
+  padding-bottom: clamp(64px, 7.5vw, 108px);
 }
 .ai-moves__head {
   text-align: center;
@@ -364,15 +364,17 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 /* ─── 4 · WHY I AM AI-NATIVE ───────────────────────── */
 .ai-band--native {
   background: #0E0B09;
-  padding-top: clamp(64px, 7vw, 104px);
-  padding-bottom: clamp(64px, 7vw, 104px);
+  padding-top: clamp(64px, 7.5vw, 108px);
+  padding-bottom: clamp(64px, 7.5vw, 108px);
   border-top: 1px solid rgba(239, 233, 220, 0.08);
 }
 .ai-native__head {
   margin-bottom: clamp(28px, 3.5vw, 40px);
 }
 .ai-native__head .ai-eyebrow { margin-bottom: 12px; }
-.ai-native__title { margin: 0; max-width: 20ch; font-size: clamp(1.8rem, 2.8vw, 2.4rem); }
+/* Was clamp(1.8rem,2.8vw,2.4rem) = 35.8, the one h2 on this page that
+   missed the scale in the first pass. */
+.ai-native__title { margin: 0; max-width: 20ch; font-size: clamp(1.8rem, 3.2vw, 2.75rem); }
 
 .ai-native__grid {
   list-style: none;
@@ -418,8 +420,8 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-band--manifesto {
   background: #EFE9DC;
   color: #15110F;
-  padding-top: clamp(64px, 7vw, 104px);
-  padding-bottom: clamp(64px, 7vw, 104px);
+  padding-top: clamp(64px, 7.5vw, 108px);
+  padding-bottom: clamp(64px, 7.5vw, 108px);
 }
 .ai-manifesto {
   max-width: 640px;
@@ -451,7 +453,8 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-band--finale {
   background: #A12A1E;
   color: #FBF3E4;
-  padding: clamp(80px, 9vw, 140px) 0;
+  /* 110 at 1280, matching the homepage close. Was 140.8. */
+  padding: clamp(72px, 8.6vw, 116px) 0;
   text-align: center;
   overflow: hidden;
 }
@@ -522,9 +525,12 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 }
 
 /* ─── 5b · HOW WE'D WORK TOGETHER (offer stack) ────── */
+/* offers and founding share the #15110F ground and read as one block, so the
+   joint between them stays tight on purpose. Only the OUTER edges take the
+   96px SECTION_PAD; the inner pair keeps its deliberate 64/0. */
 .ai-band--offers {
   background: #15110F;
-  padding-top: clamp(64px, 7vw, 104px);
+  padding-top: clamp(64px, 7.5vw, 108px);
   padding-bottom: clamp(40px, 5vw, 72px);
 }
 .ai-offers__list {
@@ -543,7 +549,7 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-band--founding {
   background: #15110F;
   padding-top: 0;
-  padding-bottom: clamp(64px, 7vw, 104px);
+  padding-bottom: clamp(64px, 7.5vw, 108px);
 }
 .ai-founding__card {
   position: relative;
