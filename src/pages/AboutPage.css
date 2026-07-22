@@ -598,59 +598,19 @@
   margin-top: 1.25rem !important;
 }
 
-/* ─── FOUR DISCIPLINES (bone, 4-col hairline grid) ────────── */
-.about-disc {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--hairline-dark);
-}
-.about-disc__item {
-  background: var(--surface);
-  padding: var(--space-6) var(--space-5);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-.about-disc__icon {
-  display: inline-flex;
-  color: var(--accent);
-}
-.about-disc__icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.about-disc__title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--ink-on-surface);
-  margin: 0;
-}
-.about-disc__note {
-  font-size: 0.9rem;
-  color: var(--ink-muted-on-surface);
-  line-height: 1.55;
-  margin: 0;
-}
-.about-disc__close {
-  margin-top: var(--space-6);
-  font-size: var(--fs-body-l);
-  color: var(--ink-muted-on-surface);
-  max-width: 44rem;
-  line-height: 1.55;
-}
-.about-disc__close strong {
-  color: var(--ink-on-surface);
-  font-weight: 800;
-}
+/* The .about-disc rules that lived here went with the "Four disciplines"
+ * section on 22 Jul 2026 (copy reduction). The canonical version of that
+ * content is the schematic on /fan-engine. */
+
+/* "How I work now" moved onto the bone ground the cut section used to hold,
+ * so the page keeps its light/dark alternation. Both rules exist only
+ * because .about-magic was written for a dark band. */
+.about-band--bone .about-magic p { color: var(--ink-on-surface); }
+/* `p` in the selector on purpose: .about-band--bone .about-magic p above is
+ * one element more specific than a bare .about-magic__tail, so without it the
+ * tail loses its muted colour and reads at full ink. */
+.about-band--bone .about-magic p.about-magic__tail { color: var(--ink-muted-on-surface); }
+
 /* Bone-band section-head marker is red, not gold — matches Services v5. */
 .about-band--bone .marker { color: var(--accent); }
 .about-band--bone .section-head__title { color: var(--ink-on-surface); }
@@ -827,11 +787,7 @@
      same treatment as the hero portrait above. */
   .about-imgsplit .about-artplate--tower { max-width: 22rem; margin-inline: auto; width: 100%; }
   .about-imgsplit__content .about-pulls { flex-wrap: wrap; }
-  .about-disc { grid-template-columns: repeat(2, 1fr); }
   .about-talks { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-  .about-disc { grid-template-columns: 1fr; }
 }
 
 /* ─────────────────────────────────────────────────────────────

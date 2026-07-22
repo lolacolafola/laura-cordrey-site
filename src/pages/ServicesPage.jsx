@@ -74,13 +74,12 @@ export default function ServicesPage() {
         * Bone ground so this opening section lifts off the dark hero. */}
       <section className="svc-band svc-band--bone">
         <div className="container">
+          {/* The lede under this heading was cut on 22 Jul 2026 (copy
+            * reduction). It restated the hero and then the six rows below
+            * restated it a third time in their own words. The rows ARE the
+            * skim layer; they did not need a paragraph introducing them. */}
           <div className="svc-index__head">
             <h2 className="svc-index__title">Start with the whole engine, or one piece.</h2>
-            <p className="svc-index__lede">
-              The Fan Engine<span className="tm">™</span> is all of it, run as one system. Or begin with a
-              single lever you already think in: protect what you have, acquire
-              without paying, deepen your best. Each connects to the same engine.
-            </p>
           </div>
           <nav className="svc-index" aria-label="Engagements">
             <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
@@ -138,36 +137,37 @@ export default function ServicesPage() {
           </div>
           <div className="svc-eng__right">
             <p className="svc-eng__body">
-              My own framework, shaped over thirteen years turning customers into
-              fans at Ubisoft, Amazon Games and BlaBlaCar. Fan-led growth built
-              into the bones of the business, measured end to end. Everything
-              else, run as one system, not one-off projects.
+              My own framework, shaped over thirteen years at Ubisoft, Amazon
+              Games and BlaBlaCar. Fan-led growth built into the bones of the
+              business, run as one system and measured end to end.
             </p>
-            <p className="svc-youget"><strong>Need it when:</strong> your growth runs on paid and stops the day you stop paying, and the userbase you paid a fortune to build gives you nothing back.</p>
+            <p className="svc-youget"><strong>Need it when:</strong> your growth stops the day you stop paying, and the userbase you paid for gives you nothing back.</p>
             <span className="svc-phases__eyebrow">What you get, end to end</span>
             <div className="svc-phases">
               <div className="svc-phase">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="4" y2="13" /><line x1="10" y1="20" x2="10" y2="5" /><line x1="16" y1="20" x2="16" y2="10" /><line x1="20" y1="20" x2="20" y2="15" /></svg>
                 <span className="svc-phase__label">The picture</span>
-                <p>Who your fans are, what they&rsquo;re worth today, and where you&rsquo;re losing money, all on your own data. That&rsquo;s your Fan Value, and a plan for the next six months.</p>
+                <p>Who your fans are, what they&rsquo;re worth today, and where you&rsquo;re losing money, on your own data. Your Fan Value, and a six-month plan.</p>
               </div>
               <div className="svc-phase">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z" /><path d="M3 12l9 4.5L21 12" /><path d="M3 16.5L12 21l9-4.5" /></svg>
                 <span className="svc-phase__label">The build</span>
-                <p>The whole engine, working as one, the brand they fall for, the product that keeps them coming back, its loops designed like a game (and a power-user group feeding it feedback, if you want that), the community they belong to, and the programs that bring their friends.</p>
+                <p>The whole engine working as one: the brand they fall for, the product that keeps them coming back with loops designed like a game, the community they belong to, and the programs that bring their friends.</p>
               </div>
               <div className="svc-phase">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="3 12 7 12 10 5 14 19 17 12 21 12" /></svg>
                 <span className="svc-phase__label">The tracking</span>
-                <p>You see who&rsquo;s staying, who&rsquo;s spending more, who&rsquo;s posting about you and bringing others in, and how they feel. Your fans grouped and tagged. Built with you, to your stack and needs, with reporting to the right teams so they can act on it.</p>
+                <p>Who&rsquo;s staying, who&rsquo;s spending more, who&rsquo;s bringing others in, and how they feel. Built to your stack, reported to the teams who can act on it.</p>
               </div>
               <div className="svc-phase">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7" /><polyline points="21 3 21 8 16 8" /></svg>
                 <span className="svc-phase__label">Every quarter</span>
-                <p>A re-score and a fresh read on what your fans are worth, so it keeps paying off.</p>
+                <p>A re-score and a fresh read on what your fans are worth.</p>
               </div>
             </div>
-            <p className="svc-youget"><strong>How far I take it is your call:</strong> the design, built and launched alongside you, or run day to day with a team I bring and direct.</p>
+            {/* "How far I take it is your call" was cut on 22 Jul 2026: the
+              * light end is Advisory and the heavy end is step 03 of How I
+              * Work ("I bring the people to run it"), both on this page. */}
             <p className="svc-youget"><strong>Payoff:</strong> more revenue from the customers you already have, from an engine that keeps working after I&rsquo;ve gone.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
@@ -199,7 +199,7 @@ export default function ServicesPage() {
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> your community has turned on you in public, and it&rsquo;s getting worse.</p>
-            <p className="svc-youget"><strong>What you get:</strong> the real cause found in days, and a fix to ship across product and community, in one to two weeks, faster if it can&rsquo;t wait. And sentiment tracked, so you watch it climb back.</p>
+            <p className="svc-youget"><strong>What you get:</strong> the real cause found in days, a fix shipped across product and community in one to two weeks, and sentiment tracked so you watch it climb back.</p>
             <p className="svc-youget"><strong>Payoff:</strong> you keep the customers a blow-up would have cost you.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
@@ -265,12 +265,12 @@ export default function ServicesPage() {
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you want to give your best fans a moment they&rsquo;ll love.</p>
-            <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, a workshop, unique merch, a drop, or a brand collab made right for your audience. Measured, so you see what it drove.</p>
+            <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, unique merch, a drop, or a brand collab. Measured, so you see what it drove.</p>
             <p className="svc-youget"><strong>Payoff:</strong> your top customers spend more and stay longer.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>
-                A fan drop that sold out and made <strong>$32K in under three hours</strong>, US Mobile. A Live Nation activation that changed behaviour: over half its users said they wouldn&rsquo;t have carpooled to shows without it. BlaBlaCar.
+                A fan drop that sold out and made <strong>$32K in under three hours</strong>, US Mobile. A Live Nation activation where over half of users said they wouldn&rsquo;t have carpooled to shows without it, BlaBlaCar.
               </p>
             </div>
             <div className="svc-credit">
@@ -298,7 +298,7 @@ export default function ServicesPage() {
           </div>
           <div className="svc-eng__right">
             <p className="svc-youget"><strong>Need it when:</strong> you have one decision to get right, or you want senior fan-led growth leadership without a full-time hire.</p>
-            <p className="svc-youget"><strong>What you get:</strong> one call on your hardest fan-led growth question, with someone who&rsquo;s built it at scale. You leave knowing exactly what to do, and the plan to do it lands in writing that week. Book one session, or keep me on.</p>
+            <p className="svc-youget"><strong>What you get:</strong> one call on your hardest fan-led growth question, with someone who has built it at scale. You leave knowing exactly what to do, and the plan lands in writing that week.</p>
             <div className="svc-proofcard">
               <span className="svc-proofcard__label">Proof</span>
               <p>
@@ -317,25 +317,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── FOR AI COMPANIES (slim pointer band) ─────────────── */}
-      <section className="svc-band svc-band--deep">
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(20px,3vw,40px)' }}>
-          <div style={{ maxWidth: '52ch', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-              For AI companies
-            </span>
-            <h2 style={{ fontSize: 'clamp(1.4rem,2.4vw,1.9rem)', lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: 800, color: '#EFE9DC', margin: 0, textWrap: 'balance' }}>
-              Shipping a model with a crowd around it? There&rsquo;s a page in your language.
-            </h2>
-            <p style={{ fontSize: '1rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
-              The same work, in your language, on founding-partner terms while I build the first AI case studies.
-            </p>
-          </div>
-          <Link to="/ai" className="btn btn--ghost btn--lg" style={{ flex: 'none' }}>
-            Fan-led growth for AI <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-      </section>
+      {/* The "For AI companies" band was cut on 22 Jul 2026 (copy reduction).
+        * The index nav at the top of this page already carries a "For AI
+        * companies" row, with its own one-liner, pointing at the same page,
+        * so the band was a second button to a destination the reader had
+        * already been offered. */}
 
       {/* ─── HOW I WORK (cream, intro + 3 labelled steps) ─────── */}
       <section id="how-i-work" className="svc-band svc-band--bone">
@@ -348,7 +334,7 @@ export default function ServicesPage() {
               I go deep, then hand you a plan you can actually run.
             </h2>
             <p style={{ fontSize: 'clamp(1.05rem,1.4vw,1.2rem)', lineHeight: 1.55, fontWeight: 500, color: '#5E564E', margin: 0, textWrap: 'pretty' }}>
-              However you work with me, the process is the same. I get inside your product, your data and your team first, so what I build fits your reality and lands ready to run. And if you don&rsquo;t have the people to run it, I bring them.
+              However you work with me, the process is the same. I get inside your product, your data and your team first, so what I build lands ready to run.
             </p>
           </div>
 
@@ -374,17 +360,17 @@ export default function ServicesPage() {
               {
                 n: '01',
                 label: 'I go deep.',
-                copy: 'Your product, your data, your team: interviews, a survey, the real numbers, so the plan is built on what’s actually happening, not a surface read.',
+                copy: 'Your product, your data, your team: interviews, a survey, the real numbers, so the plan is built on what’s actually happening.',
               },
               {
                 n: '02',
                 label: 'You get a plan that’s ready to run.',
-                copy: 'A fan-led growth strategy and roadmap, built on your own data: the moves that matter, sequenced and measurable, ready to run from day one.',
+                copy: 'A fan-led growth strategy and roadmap, built on your own data: the moves that matter, sequenced and measurable.',
               },
               {
                 n: '03',
                 label: 'I bring the people to run it.',
-                copy: 'No team for it? I pull in a network of specialists I trust and direct them, so you get the plan and the people, without waiting to hire.',
+                copy: 'No team for it? I pull in specialists I trust and direct them, so you get the plan and the people.',
               },
             ].map((s) => (
               <li
@@ -432,8 +418,8 @@ export default function ServicesPage() {
             <span className="svc-proof__kick">Who you&rsquo;re working with</span>
             <p style={{ fontSize: 'clamp(1.05rem,1.4vw,1.2rem)', lineHeight: 1.55, color: 'var(--ink)', margin: 0, textWrap: 'pretty' }}>
               Thirteen years across Ubisoft, Amazon Games, BlaBlaCar and a US
-              startup acquired by Animoca. One person who has built brand, product,
-              community and growth, so I read all four as one system.
+              startup acquired by Animoca. One person who has built brand,
+              product, community and growth, and reads them as one&nbsp;system.
             </p>
           </div>
           <ul className="svc-proof__logos" aria-label="Brands where Laura has run fan-led growth">
@@ -468,11 +454,10 @@ export default function ServicesPage() {
           <span className="svc-sparkle">✦</span>
           <span className="svc-sparkle">✦</span>
         </div>
+        {/* The reassurance line above the title was cut on 22 Jul 2026: it
+          * said "tell me what's going on" two lines above the close line that
+          * says "or tell me what's going on". */}
         <div className="container svc-finale__inner">
-          <p className="svc-finale__reassure">
-            Not sure which fits? Tell me what&rsquo;s going on and we&rsquo;ll
-            find the right one together.
-          </p>
           <h2 className="svc-finale__title">What&rsquo;s your fanbase worth?</h2>
           <p className="svc-finale__line">
             Take the 2-minute Fan Score, or tell me what&rsquo;s going on.

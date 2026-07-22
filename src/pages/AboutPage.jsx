@@ -10,58 +10,9 @@ const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
-// Four disciplines, run as one Fan Engine — Measurement is the spine, not
-// a 5th pillar. Icons per the 6 Jul design handoff: sparkle / repeat /
-// user-plus / megaphone, mapped to Brand / Product / Community / Growth.
-const disciplines = [
-  {
-    key: 'brand',
-    title: 'Brand',
-    note: 'Build the story that turns customers into fans.',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" />
-      </svg>
-    ),
-  },
-  {
-    key: 'product',
-    title: 'Product',
-    note: 'Design the wow moments that bring fans back.',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="m17 2 4 4-4 4" />
-        <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
-        <path d="m7 22-4-4 4-4" />
-        <path d="M21 13v1a4 4 0 0 1-4 4H3" />
-      </svg>
-    ),
-  },
-  {
-    key: 'community',
-    title: 'Community',
-    note: 'Build a space where fans belong.',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <line x1="19" y1="8" x2="19" y2="14" />
-        <line x1="22" y1="11" x2="16" y2="11" />
-      </svg>
-    ),
-  },
-  {
-    key: 'growth',
-    title: 'Growth',
-    note: "Earn the reach you'd otherwise pay for.",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="m3 11 18-5v12L3 14v-3z" />
-        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
-      </svg>
-    ),
-  },
-]
+// The `disciplines` list that used to live here was removed with the "Four
+// disciplines, one engine" section on 22 Jul 2026 (see the note where that
+// section was). The canonical version is the schematic on /fan-engine.
 
 // Speaking teaser — 3 cards derived from src/data/speaking.js so the About
 // page and /speaking never drift apart. YouTube maxres thumbnails act as
@@ -160,9 +111,9 @@ export default function AboutPage() {
                 and the reach you&rsquo;d otherwise pay for.
               </p>
               <p className="about-intro__sub">
-                I&rsquo;ve built it from nothing and at millions of users.
-                Thirteen years, mostly in games, entertainment and live service,
-                where fans are loudest and feedback is instant.
+                I&rsquo;ve built it from nothing and at millions of users, over
+                thirteen years in games, entertainment and live service, where
+                fans are loudest and feedback is instant.
               </p>
             </div>
             <figure className="about-hero__portrait">
@@ -215,9 +166,9 @@ export default function AboutPage() {
           </h2>
           <div className="about-manifesto__body">
             <p>
-              Paid acquisition got the budgets, the teams, the dashboards. The
-              other half of growth, keeping the fans you have and turning them
-              into the ones who bring you new customers, got none of that.{' '}
+              Paid acquisition got the budgets, the teams, the dashboards.
+              Keeping the fans you have, and turning them into the ones who
+              bring you new customers, got none of that.{' '}
               <strong>So it looks optional. It isn&rsquo;t. It just never had
               an owner.</strong>
             </p>
@@ -225,6 +176,16 @@ export default function AboutPage() {
               That&rsquo;s what I build: fan-led growth as a structured engine,
               measured in your numbers.{' '}
               <strong>Your fans do the selling. I can prove the return.</strong>
+            </p>
+            {/* Carries the claim the "Four disciplines" section used to make,
+              * in one line. That section was cut on 22 Jul 2026: the same four
+              * words with a note each are on /fan-engine (the schematic) and
+              * again on /services, and of the three this is the page whose
+              * job is Laura rather than the method. */}
+            <p>
+              Brand, product, community and growth: I&rsquo;ve built in all
+              four, which is what lets me wire them into one engine and put a
+              number on the whole thing.
             </p>
           </div>
         </div>
@@ -244,13 +205,10 @@ export default function AboutPage() {
               Everything I build starts with story. I learned storytelling in
               marketing at <strong>BlaBlaCar</strong>, and world-building at{' '}
               <strong>Ubisoft</strong>: what makes people fall for a world and
-              want to live in it, not just pass through a funnel.
-            </p>
-            <p>
-              That&rsquo;s why I bring people in across brand, events and
-              product: naming and positioning, script-to-screen production,
-              content across BlaBlaCar&rsquo;s twenty-two markets. The story
-              underneath is what makes it hold.
+              want to live in it, not just pass through a funnel. That&rsquo;s
+              why I bring people in across brand, events and product, from
+              naming and positioning to script-to-screen production and content
+              across twenty-two markets.
             </p>
             <div className="about-pulls">
               <div className="about-pull">
@@ -468,9 +426,9 @@ export default function AboutPage() {
             </h2>
             <p>
               Live games taught me that a 15-million-player community can turn
-              in a day. I held it at an average of 85% positive sentiment
-              through launches, updates and the rough patches, by reading the
-              signals in real time and acting before it turned.
+              in a day. I held mine at an average of 85% positive sentiment
+              through launches, updates and rough patches, by reading the
+              signals in real time and acting early.
             </p>
             <p>
               Steering a community&rsquo;s mood is a craft, and an
@@ -483,7 +441,7 @@ export default function AboutPage() {
             <div className="about-pulls">
               <div className="about-pull">
                 <b>85%</b>
-                <span>average positive sentiment held across launches and rough patches</span>
+                <span>average positive sentiment, held through launches and rough patches</span>
               </div>
               <div className="about-pull">
                 <b>15M</b>
@@ -506,10 +464,10 @@ export default function AboutPage() {
           <div className="about-eng__right">
             <p>
               Hand me your biggest brand moment, the launch, the drop, the
-              thing everyone will be watching, and I&rsquo;ll deliver it with
-              a cool head. I created my own fan program and unveiled it live
-              on the E3 stage, with 10 million watching, and I&rsquo;ve run
-              live game partnerships on a broadcast seen by 500,000 at once.{' '}
+              thing everyone will be watching, and I&rsquo;ll deliver it with a
+              cool head. I unveiled my own fan program live on the E3 stage,
+              with 10 million watching, and I&rsquo;ve run live game
+              partnerships seen by 500,000 at once.{' '}
               <strong>Go big or go home.</strong>
             </p>
             <div className="about-pulls">
@@ -526,8 +484,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── HOW I WORK NOW ───────────────────────────────────── */}
-      <section className="about-band">
+      {/* ─── HOW I WORK NOW ─────────────────────────────────────
+        * On bone since 22 Jul 2026. It used to be a dark band with the bone
+        * "Four disciplines" section under it; with that section cut, this and
+        * the speaking teaser were two dark bands in a row. The teaser's card
+        * captions are built for a dark ground, so this is the one that moves. */}
+      <section className="about-band about-band--bone">
         <div className="container">
           <div className="section-head">
             <span className="marker">How I work now</span>
@@ -537,10 +499,9 @@ export default function AboutPage() {
             <p>
               I run my own practice end to end: strategy, positioning, brand,
               product, and the code to ship it. When a build calls for a
-              specialist, I bring one in and direct the work. And I&rsquo;m not
-              just advising on fan engagement, I&rsquo;m building it, as{' '}
-              <mark>Fractional Head of Brand &amp; Growth at Magic</mark>, a
-              fan engagement platform.
+              specialist, I bring one in and direct the work. And I&rsquo;m
+              building fan engagement, not just advising on it, as{' '}
+              <mark>Fractional Head of Brand &amp; Growth at Magic</mark>.
             </p>
             <p className="about-magic__tail">
               Experience makes the work good. AI makes it fast.
@@ -549,33 +510,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── FOUR DISCIPLINES (bone) ──────────────────────────── */}
-      <section className="about-band about-band--bone">
-        <div className="container">
-          <div className="section-head">
-            <span className="marker">Four disciplines, one engine</span>
-            <h2 className="section-head__title">
-              I don&rsquo;t own one topic. <mark>I own four.</mark>
-            </h2>
-          </div>
-          <ol className="about-disc" aria-label="The four disciplines">
-            {disciplines.map((d) => (
-              <li className="about-disc__item" key={d.key}>
-                <span className="about-disc__icon">{d.icon}</span>
-                <h3 className="about-disc__title">{d.title}</h3>
-                <p className="about-disc__note">{d.note}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="about-disc__close">
-            I&rsquo;ve built in all four.{' '}
-            <strong>
-              That&rsquo;s what lets me wire them into one engine and put a
-              number on the whole thing.
-            </strong>
-          </p>
-        </div>
-      </section>
+      {/* The "Four disciplines, one engine" section was cut on 22 Jul 2026.
+        * Brand / Product / Community / Growth with a note each is already the
+        * schematic on /fan-engine and the spine of /services, so three pages
+        * were teaching the same four words. Its claim ("I've built in all
+        * four, which is what lets me wire them into one engine") survives as
+        * the last line of the manifesto near the top of this page. */}
 
       {/* ─── SPEAKING TEASER ──────────────────────────────────── */}
       <section className="about-band">

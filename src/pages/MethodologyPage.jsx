@@ -55,7 +55,7 @@ const disciplines = [
   {
     icon: <BrandIcon />,
     word: 'Brand',
-    note: 'The foundation. Story, identity and the moments that create shared belonging.',
+    note: 'The foundation. Story, identity and the moments that create belonging.',
   },
   {
     icon: <ProductIcon />,
@@ -65,7 +65,7 @@ const disciplines = [
   {
     icon: <CommunityIcon />,
     word: 'Community',
-    note: 'Belonging. The spaces and rituals that make fans feel part of something bigger.',
+    note: 'Belonging. The spaces and rituals that make fans part of something bigger.',
   },
   {
     icon: <GrowthIcon />,
@@ -85,7 +85,7 @@ const stages = [
 const scoreboard = [
   { label: 'Retention up', body: 'the customers you paid for stay.' },
   { label: 'LTV:CAC up', body: 'fans spend more, so each customer you buy is worth more.' },
-  { label: 'Organic and earned growth up', body: 'fans bring others and make the content that markets you, so new customers arrive without spend.' },
+  { label: 'Organic and earned growth up', body: 'fans bring others and make the content that markets you.' },
   { label: 'Recommended by AI, up', body: 'ask an AI what to choose, and it answers from what your fans post.' },
 ]
 
@@ -214,17 +214,16 @@ export default function MethodologyPage() {
             <h2 className="meth-h2">
               Four disciplines. <mark>One spine.</mark>
             </h2>
+            {/* The two ledes here were merged into one on 22 Jul 2026 (copy
+              * reduction): the first defined fan-led growth, which the reader
+              * has just been told on /fan-led-growth, the page nearly all of
+              * this page's traffic arrives from. */}
             <p className="meth-lede">
-              Fan-led growth: growth that comes from fans who stay, pay, and
-              bring more. I build the engine that creates those fans, and I
-              prove it moved.
-            </p>
-            <p className="meth-lede meth-lede--follow">
               I run all four disciplines as one connected engine, not four
               separate workstreams. Thirteen years across brand, product,
               community and growth means I see where growth leaks between the
-              teams and close it, and I put a number on every part of it, so
-              what you build is something you can take to a board.
+              teams and close it, and put a number on every part, so what you
+              build is something you can take to a board.
             </p>
           </div>
 
@@ -277,8 +276,8 @@ export default function MethodologyPage() {
             <h2 className="meth-h2 meth-h2--onbone">What the engine builds for your customer.</h2>
             <p className="meth-lede meth-lede--onbone">
               The four disciplines move a customer from a first purchase to
-              bringing others in, through five stages. Real people do not climb
-              them in a tidy line, so treat it as a map, not a formula.
+              bringing others in, through five stages. Real people don&rsquo;t
+              climb them in a tidy line, so treat it as a map, not a formula.
             </p>
           </div>
 
@@ -303,11 +302,10 @@ export default function MethodologyPage() {
             </span>
           </div>
 
-          <p className="meth-journey__quote">
-            Belonging and identity are what make advocacy compound instead of
-            needing to be bought again every time.{' '}
-            <mark>I build that, and I show it moving in the numbers.</mark>
-          </p>
+          {/* The pull-quote that closed this band was cut on 22 Jul 2026. Its
+            * first half restated the loop note directly above it, and its
+            * second half ("I show it moving in the numbers") is the headline
+            * of the section immediately below. */}
         </div>
       </section>
 
@@ -325,8 +323,8 @@ export default function MethodologyPage() {
             <p className="meth-lede">
               Fan-led growth gets called unmeasurable. It isn&rsquo;t. I set a
               baseline before I start, track real cohorts instead of last-click
-              guesses, and I&rsquo;m honest about what can&rsquo;t be cleanly
-              pinned down. No baseline, no claim, and no vanity metrics.
+              guesses, and I&rsquo;m honest about what can&rsquo;t be pinned
+              down. No baseline, no claim.
             </p>
           </div>
 
@@ -363,8 +361,7 @@ export default function MethodologyPage() {
               <span className="meth-eyebrow meth-eyebrow--gold">The scoreboard: numbers you already track</span>
               <p className="meth-measured__body">
                 You don&rsquo;t need new fan metrics. Fan-led growth moves the
-                ones your team already reports, in the language of your
-                P&amp;L:
+                ones your team already reports:
               </p>
               <ul className="meth-scoreboard">
                 {scoreboard.map((s) => (
@@ -392,9 +389,8 @@ export default function MethodologyPage() {
             <span className="meth-close__hl">build first</span>.
           </h2>
           <p className="meth-close__lede">
-            The Fan Score takes two minutes. You'll see where your fan-led
-            growth is already worth more than you're counting, then we size it
-            against your real numbers.
+            The Fan Score takes two minutes and shows where your fan-led growth
+            is already worth more than you're counting.
           </p>
           <div className="meth-ctas">
             <Link to="/fan-score" className="btn btn--lg meth-close__cta">

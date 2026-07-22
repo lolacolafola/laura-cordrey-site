@@ -136,13 +136,9 @@
   margin: 0;
   text-wrap: balance;
 }
-.svc-index__lede {
-  font-size: var(--fs-body-l);
-  line-height: 1.55;
-  color: var(--ink-muted);
-  margin: 0;
-  text-wrap: pretty;
-}
+/* .svc-index__lede was removed on 22 Jul 2026 with the paragraph it styled
+ * (copy reduction): the six index rows are the skim layer, so the heading
+ * did not need a lede under it. */
 .svc-index {
   display: flex;
   flex-direction: column;
@@ -431,7 +427,6 @@
 /* Engagement index on the bone ground (opening section, lifted off the hero).
  * The index tokens default to light-on-dark; recolour for the cream ground. */
 .svc-band--bone .svc-index__title { color: var(--ink-on-surface); }
-.svc-band--bone .svc-index__lede { color: var(--ink-muted-on-surface); }
 .svc-band--bone .svc-index__one { color: var(--ink-muted-on-surface); }
 .svc-band--bone .svc-index__row { border-top-color: rgba(21, 17, 15, 0.12); }
 .svc-band--bone .svc-index__row:last-child { border-bottom-color: rgba(21, 17, 15, 0.12); }
@@ -457,12 +452,9 @@
   align-items: center;
   gap: var(--space-5);
 }
-.svc-finale__reassure {
-  font-size: var(--fs-body-l);
-  color: rgba(251, 243, 228, 0.85);
-  max-width: 36rem;
-  margin: 0 0 var(--space-6);
-}
+/* .svc-finale__reassure was removed on 22 Jul 2026 with its paragraph: it
+ * said "tell me what's going on" two lines above the close line that says
+ * "or tell me what's going on". */
 .svc-finale__title {
   font-size: var(--fs-display-l);
   font-weight: 800;

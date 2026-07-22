@@ -107,7 +107,8 @@
   max-width: 62ch;
   margin: clamp(20px, 2.6vw, 30px) 0 0;
 }
-.meth-lede--follow { margin-top: clamp(16px, 2vw, 22px); }
+/* .meth-lede--follow went with the second Method lede on 22 Jul 2026 (copy
+ * reduction): the two ledes there were merged into one. */
 .meth-lede--onbone {
   color: #4A423B;
   max-width: 58ch;
