@@ -66,6 +66,43 @@ must be written to a file in this repo, **not left only in the chat reply.**
 - Ambient animation (scroll reveals, autonomous loops like the radar sweep) is
   fine anywhere — it promises nothing. Keep it off under
   `prefers-reduced-motion`.
+- **Which red, decided by job and ground — never by eye.** There are four, and
+  picking between them is a lookup, not a judgement call. Defined in
+  `src/styles/tokens.css`.
+
+  | Token | Value | Use it for |
+  |---|---|---|
+  | `--accent` | `#C8362B` | **Fills**: buttons, bars, dots, gradient stops. Plus display text on cream. |
+  | `--accent-deep` | `#8E2520` | Red **text on light** grounds (bone, cream). Also hover/pressed. |
+  | `--accent-light` | `#E4695E` | Red **text on dark** grounds. |
+  | — | `#A12A1E` | The oxblood **ground**. Never text. |
+
+  Measured contrast, which is where the rule comes from:
+
+  | | black `#0E0B09` | dark `#15110F` | card `#241D19` | brown `#2D2723` | bone `#EFE9DC` | cream `#FCFAF3` |
+  |---|---|---|---|---|---|---|
+  | `--accent` | 3.75 | 3.59 | 3.18 | 2.82 | 4.32 | 5.00 |
+  | `--accent-deep` | 2.28 | 2.18 | 1.93 | 1.71 | **7.13** | **8.26** |
+  | `--accent-light` | **6.05** | **5.79** | **5.12** | **4.54** | 2.68 | 3.10 |
+
+  - **`--accent` is a fill colour, not a text colour.** It is the brand red and
+    the instinct is to reach for it, but as body text it fails AA on every
+    ground on this site except cream. That is why the other two exist.
+  - `--accent-light` is the only red clearing 4.5 on all four dark grounds, so
+    it is the safe default for red text on dark.
+  - **Red is "the single gesture colour" (tokens.css). Spend it once per
+    section.** A kicker plus a `<mark>` plus a row of 54px red numerals is
+    three gestures, and it reads as decoration rather than emphasis. When a
+    section wants more than one, the largest element gives it up first.
+  - `#E0574B` is a **graphic tint**, not a member of the text palette: the
+    second stop in the red gradients and the lighter segment in the Fan Value
+    charts. Existing text uses on the two darkest grounds are measured and
+    fine (5.26 / 5.04); do not add new ones, and never put it on `#241D19` or
+    `#2D2723` (4.45 / 3.95).
+  - Per-case-study `accent` values in `src/data/caseStudies.js` (e.g. Claw
+    Mobile's `#FF6B5B`) are client brand colours and sit outside this system
+    on purpose. Leave them alone.
+
 - **Change a band's ground, re-check every `<mark>` on it.** The red `<mark>`
   is the single most common contrast failure on this site, and it is always
   the same cause: the buttons and body copy get checked when a section's

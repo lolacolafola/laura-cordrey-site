@@ -161,7 +161,7 @@
    bar. The lede mark below needs the same treatment for the same reason. */
 .about-hero__title mark {
   background: transparent;
-  color: #E4695E;
+  color: var(--accent-light);
 }
 .about-hero__title {
   font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84 */
@@ -199,7 +199,7 @@
    when the band under it changes. The hero moved to #2D2723 today. */
 .about-intro__lede mark {
   background: transparent;
-  color: #E4695E;
+  color: var(--accent-light);
   font-weight: 800;
 }
 /* #B8AEA2, not --ink-muted: the hero ground moved from near-black to the
@@ -490,7 +490,7 @@
    card, for exactly this reason. */
 .about-band--grey .about-eng__title mark {
   background: transparent;
-  color: #E4695E;
+  color: var(--accent-light);
 }
 .about-band--grey .about-imgsplit__content p {
   color: #B8AEA2;
@@ -502,7 +502,7 @@
    --accent still misses it at 2.82 on this ground. Same lighter red as the
    mark above, for the same reason. */
 .about-band--grey .about-pull b {
-  color: #E4695E;
+  color: var(--accent-light);
 }
 .about-imgsplit__content .about-pulls {
   display: flex;
@@ -728,7 +728,16 @@
 .about-band--bone .about-eng__right p { color: var(--ink-muted-on-surface); }
 .about-band--bone .about-eng__right p strong { color: var(--ink-on-surface); }
 .about-band--bone .about-pulls { border-top-color: rgba(21, 17, 15, 0.14); }
-.about-band--bone .about-pull b { color: var(--accent-deep); }
+/* The pull numbers are INK on bone, not red, and this is the one place this
+   band deliberately departs from the dark-ground version of the same section.
+   --accent is described in tokens.css as "the single gesture colour". On the
+   dark bands the section spends it once, on the <mark> in the heading. On
+   bone it was being spent three times: the kicker, the mark, and two 54px
+   numerals, which is the most red anywhere on the site in one screen and the
+   thing Laura flagged. The numerals are the largest of the three, so they are
+   the ones that give it up. Red now appears twice, at small and display size,
+   and the numbers read as the data they are. */
+.about-band--bone .about-pull b { color: var(--ink-on-surface); }
 .about-band--bone .about-pull span { color: var(--ink-muted-on-surface); }
 
 .about-band--bone .marker { color: var(--accent-deep); }

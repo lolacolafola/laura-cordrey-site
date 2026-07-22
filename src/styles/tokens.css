@@ -15,8 +15,29 @@
   --ink-muted-on-surface: #5E564E;
   --ink-faint: #4A4239;     /* lowest hierarchy, dividers */
 
-  --accent: #C8362B;        /* editorial red — single gesture colour */
-  --accent-deep: #8E2520;   /* hover / pressed */
+  /* ─── The red system ──────────────────────────────────────────────────
+     Four reds, and which one you use is decided by the JOB and the GROUND,
+     never by eye. Measured contrast is in CLAUDE.md; the short version:
+
+       --accent       #C8362B  FILLS. Buttons, bars, dots, gradient stops,
+                               and display text on cream. As body text it
+                               fails AA on every ground on the site except
+                               cream (4.32 on bone, 2.82 on brown), which is
+                               why it must not be reached for by default.
+       --accent-deep  #8E2520  Red TEXT on LIGHT grounds. 7.13 on bone,
+                               8.26 on cream. Also hover / pressed.
+       --accent-light #E4695E  Red TEXT on DARK grounds. The only red that
+                               clears 4.5 on all four (black 6.05, dark 5.79,
+                               card 5.12, brown 4.54).
+       #A12A1E                 The oxblood GROUND. Never text.
+
+     #E0574B is a graphic tint, not a text colour: it is the second stop in
+     the red gradients and the lighter segment in the Fan Value charts. It
+     reads fine as a shape and fails as text on the two lighter dark grounds
+     (4.45 on #241D19, 3.95 on #2D2723), so it stays out of this list. */
+  --accent: #C8362B;        /* editorial red — fills, and display on cream */
+  --accent-deep: #8E2520;   /* red text on light grounds; hover / pressed */
+  --accent-light: #E4695E;  /* red text on dark grounds */
   --edge: #D4C896;          /* small marks, rules, mono labels */
 
   --hairline: rgba(239, 233, 220, 0.10); /* thin rule on dark */

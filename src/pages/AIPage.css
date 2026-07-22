@@ -337,9 +337,11 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  /* #E0574B measured 4.45 on the #241D19 card ground, a hair under 4.5 on a
-     numeral that repeats seven times. */
-  color: #EA6E62;
+  /* #E0574B measures 4.45 on the #241D19 card ground, a hair under 4.5 on a
+     numeral that repeats seven times. --accent-light is 5.12 there and is the
+     site's one answer for red text on dark, so this uses that rather than the
+     bespoke value it briefly had. */
+  color: var(--accent-light);
   margin-bottom: 18px;
 }
 /* #8A8078 measured 4.30 on the same ground. This is the category label
