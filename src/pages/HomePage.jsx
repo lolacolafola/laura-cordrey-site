@@ -59,7 +59,7 @@ const CLIENT_LOGOS = [
 ]
 
 // Three ways in. Each card carries its own brand ground (gold, espresso,
-// cream) rather than decoration: the gold card is the trademarked flagship,
+// cream) rather than decoration: the gold card is the flagship offer,
 // and the three grounds give hierarchy and variety with nothing invented.
 //
 // The card itself is NOT a link. "Fix one thing now" covers three separate
@@ -83,14 +83,20 @@ const WAYS = [
   //
   // Wording matches what the page already says twice further down, "a method
   // of my own" and "one method I built", so the card stops being the one place
-  // the authorship goes missing. Claims kept to what is provable: she built it,
-  // named it, holds the mark. No claim about what else does or does not exist.
+  // the authorship goes missing.
+  //
+  // DO NOT write that the Fan Engine is trademarked, registered, or protected.
+  // A first draft of this card said "I built it, named it and trademarked it";
+  // Laura caught it. The mark is not registered. The claim to make is
+  // AUTHORSHIP, which is true and is the whole point: she built the method and
+  // named it. Nothing about registration, and nothing about what does or does
+  // not exist elsewhere.
   {
     no: '01',
     tone: 'gold',
     title: 'The Fan Engine\u2122',
     kicker: 'The method I built',
-    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. I built it, named it and trademarked it. For teams ready to own their growth, not rent it.',
+    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. My own method, built from scratch and named. For teams ready to own their growth, not rent it.',
   },
   {
     no: '02',

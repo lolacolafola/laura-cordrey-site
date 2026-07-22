@@ -101,18 +101,21 @@
   border-bottom: 1px solid var(--hairline);
   position: relative;
 }
-.about-hero__top {
-  /* Compact: rule hugs the eyebrow, tight gap to the hero grid below.
-     Was space-6 pad + space-7 margin, which floated the title ~100px down. */
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--hairline);
-  margin-bottom: var(--space-5);
-}
+/* .about-hero__top went with the "About" eyebrow on 22 Jul 2026. Its only
+   job was to hold that label and the hairline under it; with the label gone
+   the rule would have been a line under nothing. */
+/* 1fr/1fr and stretch since 22 Jul 2026, per Laura: the portrait takes a whole
+   half of the hero rather than a narrower column floated beside the copy.
+   Was 1.3fr/1fr with align-items:center, which left the image ~43% of the
+   width and vertically centred, so it read as an inset rather than as half
+   the page. `stretch` is what makes it a half: the figure now takes the full
+   height of the taller column, and the img's existing object-fit:cover crops
+   to whatever shape that gives it. */
 .about-hero__grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  align-items: stretch;
 }
 .about-hero__col {
   display: flex;
@@ -148,8 +151,19 @@
   pointer-events: none;
   z-index: 0;
 }
+/* min-height so the portrait still reads as a half when the copy column is
+   short. Without it, `stretch` sizes the figure to the text, and on a wide
+   viewport where the h1 sets on two lines the image would shrink to a letterbox.
+   520 is roughly the height of the copy column at 1280 with the h1 on three
+   lines, so this binds only when the copy is shorter than that. */
 .about-hero__portrait {
   position: relative;
+  min-height: 520px;
+  /* The UA stylesheet gives <figure> `margin: 16px 40px`, which was never
+     reset here. The portrait was rendering 480px wide inside a 560px column,
+     inset 40px on each side, for as long as this hero has existed. Resetting
+     it is what actually makes the image a half rather than a half minus 80. */
+  margin: 0;
   /* Match the AI page cred photo frame: soft gold hairline, subtle rounding,
      clip the caption gradient inside. */
   border: 1px solid rgba(212, 200, 150, 0.28);
@@ -662,6 +676,14 @@
   line-height: 1.06;
 }
 
+/* The <mark> inside .about-magic sits on the bone ground at --accent, 4.32.
+   It used to pass: at --fs-body-l (20px) and weight 800 it cleared the WCAG
+   "large text" bar of 3.0. Dropping this page's body copy to 16.8 to match the
+   homepage took it under 18.66px, so it is now normal text and needs 4.5.
+   A size change moved a contrast threshold, which is exactly the kind of thing
+   that only shows up by re-measuring after the change. */
+.about-band--bone .about-magic p mark { color: var(--accent-deep); }
+
 /* Bone-band section-head marker is red, not gold — matches Services v5.
    --accent (#C8362B) on the bone ground measures 4.32 against 4.5 for text
    this size. --accent-deep is the same gesture and lands at 7.13, which is
@@ -839,8 +861,10 @@
 @media (max-width: 900px) {
   .about-hero__grid { grid-template-columns: 1fr; }
   /* Once the hero collapses to one column the portrait sits alone in a wide
-     row — centre it so it doesn't dangle to the left. */
-  .about-hero__portrait { max-width: 20rem; margin-inline: auto; }
+     row — centre it so it doesn't dangle to the left. The desktop min-height
+     is released here: at 20rem wide a 520px floor would stretch the crop into
+     a tall slab on a phone. */
+  .about-hero__portrait { max-width: 20rem; margin-inline: auto; min-height: 0; }
   .about-eng { grid-template-columns: 1fr; }
   .about-eng__left { position: static; }
   .about-eng__right { padding-top: 0; }

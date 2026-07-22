@@ -95,9 +95,16 @@ export default function AboutPage() {
           * focal device so the top of the page isn't dead-flat. */}
         <span className="about-hero__halo" aria-hidden="true" />
         <div className="container">
-          <div className="about-hero__top">
-            <span className="marker">About</span>
-          </div>
+          {/* The "About" eyebrow and its hairline came off on 22 Jul 2026.
+            * It was the page's own nav label repeated back at a reader who had
+            * just clicked "About" and could still see it underlined in the
+            * header, so it carried no information and cost a row at the most
+            * expensive point on the page.
+            *
+            * This is NOT the same element as the /services eyebrow, which
+            * Laura flagged in the same breath: that one reads "Work with me",
+            * which is editorial framing rather than the nav label ("Services"),
+            * so it earns its row and stays. Same treatment, different job. */}
           <div className="about-hero__grid">
             <div className="about-hero__col">
               <h1 className="about-hero__title">
