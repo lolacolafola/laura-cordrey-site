@@ -154,42 +154,21 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* ─── THE GAP · manifesto opener (bone) ─────────────────
-        * Fix 1: flipped from --deep to --bone. First dark/light snap
-        * now arrives at §2, not §5, so the top half stops reading as
-        * three quiet dark blocks in a row. */}
-      <section className="about-band about-band--bone about-manifesto">
-        <div className="container about-manifesto__inner">
-          <span className="marker about-manifesto__kick">The gap I&rsquo;m building for</span>
-          <h2 className="about-manifesto__title">
-            Paid is a discipline. <mark>Fandom isn&rsquo;t</mark>, yet.
-          </h2>
-          <div className="about-manifesto__body">
-            <p>
-              Paid acquisition got the budgets, the teams, the dashboards.
-              Keeping the fans you have, and turning them into the ones who
-              bring you new customers, got none of that.{' '}
-              <strong>So it looks optional. It isn&rsquo;t. It just never had
-              an owner.</strong>
-            </p>
-            <p>
-              That&rsquo;s what I build: fan-led growth as a structured engine,
-              measured in your numbers.{' '}
-              <strong>Your fans do the selling. I can prove the return.</strong>
-            </p>
-            {/* Carries the claim the "Four disciplines" section used to make,
-              * in one line. That section was cut on 22 Jul 2026: the same four
-              * words with a note each are on /fan-engine (the schematic) and
-              * again on /services, and of the three this is the page whose
-              * job is Laura rather than the method. */}
-            <p>
-              Brand, product, community and growth: I&rsquo;ve built in all
-              four, which is what lets me wire them into one engine and put a
-              number on the whole thing.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* The "The gap I'm building for" manifesto band was cut on 22 Jul 2026,
+        * 981px of it. It made the same argument /fan-led-growth already makes
+        * in its "What to do about it" section, down to the shape of the claim:
+        * that no one team owns brand, product, community and growth, so the
+        * work has no owner and reads as optional. Two pages were running the
+        * same argument, and of the two, the one whose job IS the argument is
+        * /fan-led-growth. That page is also the one with a real search job
+        * ("what is fan-led growth" has no competing definition), so the
+        * argument belongs where a stranger will land on it.
+        *
+        * Its one sharper line, "Paid is a discipline. Fandom isn't, yet.",
+        * moved to /fan-led-growth rather than being lost. Its one genuinely
+        * about-Laura claim, that she has built in all four disciplines, moved
+        * down into "How I work now" on this page, which is the section about
+        * her practice. Nothing was deleted outright. */}
 
       {/* ─── STORY 01 · STORYTELLING ──────────────────────────── */}
       <section className="about-band">
@@ -222,119 +201,18 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        {/* §3 art plate — 21:9 cinematic close, full container width.
-          * Animates via .artplay class added by IntersectionObserver on first
-          * view (see useEffect at page root). Static under reduced-motion. */}
-        <div className="container about-artplate-wrap">
-          <figure className="about-artplate about-artplate--wide" aria-hidden="true">
-              <svg viewBox="0 0 840 360" preserveAspectRatio="xMidYMid slice" className="about-artplate__svg">
-                <defs>
-                  <linearGradient id="about-sky" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#2A1912" />
-                    <stop offset=".5" stopColor="#1A1310" />
-                    <stop offset="1" stopColor="#100C0A" />
-                  </linearGradient>
-                  <radialGradient id="about-pg" cx="50%" cy="50%" r="50%">
-                    <stop offset="0" stopColor="rgba(200,54,43,.5)" />
-                    <stop offset="1" stopColor="rgba(200,54,43,0)" />
-                  </radialGradient>
-                  <radialGradient id="about-planet" cx="38%" cy="32%" r="75%">
-                    <stop offset="0" stopColor="#E8534A" />
-                    <stop offset=".55" stopColor="#C8362B" />
-                    <stop offset="1" stopColor="#741D14" />
-                  </radialGradient>
-                </defs>
-                <rect width="840" height="360" fill="url(#about-sky)" />
-                <g className="a-stars" fill="#D4C896">
-                  <circle cx="0" cy="97" r="1.4" opacity="0.43" /><circle cx="316" cy="36" r="1.7" opacity="0.61" />
-                  <circle cx="446" cy="48" r="0.6" opacity="0.82" /><circle cx="756" cy="84" r="0.8" opacity="0.42" />
-                  <circle cx="158" cy="60" r="0.6" opacity="0.82" /><circle cx="449" cy="156" r="1.4" opacity="0.30" />
-                  <circle cx="453" cy="24" r="1.5" opacity="0.58" /><circle cx="396" cy="83" r="0.8" opacity="0.26" />
-                  <circle cx="19" cy="184" r="1.6" opacity="0.80" /><circle cx="479" cy="142" r="1.2" opacity="0.49" />
-                  <circle cx="316" cy="49" r="0.9" opacity="0.70" /><circle cx="306" cy="10" r="1.1" opacity="0.36" />
-                  <circle cx="381" cy="61" r="0.7" opacity="0.30" /><circle cx="829" cy="101" r="0.6" opacity="0.95" />
-                  <circle cx="364" cy="130" r="0.7" opacity="0.63" /><circle cx="836" cy="35" r="1.3" opacity="0.53" />
-                  <circle cx="369" cy="138" r="0.7" opacity="0.82" /><circle cx="677" cy="18" r="0.5" opacity="0.34" />
-                  <circle cx="535" cy="70" r="0.8" opacity="0.60" /><circle cx="438" cy="19" r="1.7" opacity="0.49" />
-                  <circle cx="645" cy="49" r="1.3" opacity="0.89" /><circle cx="392" cy="82" r="1.6" opacity="0.58" />
-                  <circle cx="821" cy="59" r="1.5" opacity="0.86" /><circle cx="624" cy="103" r="1.5" opacity="0.62" />
-                  <circle cx="258" cy="64" r="0.9" opacity="0.56" /><circle cx="476" cy="121" r="0.6" opacity="0.59" />
-                  <circle cx="383" cy="2" r="1.3" opacity="0.52" /><circle cx="375" cy="173" r="0.7" opacity="0.55" />
-                  <circle cx="246" cy="76" r="0.8" opacity="0.51" /><circle cx="597" cy="173" r="0.5" opacity="0.58" />
-                  <circle cx="690" cy="99" r="0.7" opacity="0.53" /><circle cx="108" cy="150" r="1.0" opacity="0.30" />
-                  <circle cx="502" cy="62" r="0.8" opacity="0.52" /><circle cx="264" cy="114" r="0.7" opacity="0.45" />
-                  <circle cx="831" cy="36" r="1.3" opacity="0.61" /><circle cx="659" cy="24" r="0.9" opacity="0.41" />
-                  <circle cx="251" cy="31" r="1.6" opacity="0.76" /><circle cx="495" cy="96" r="1.1" opacity="0.51" />
-                  <circle cx="246" cy="72" r="1.0" opacity="0.55" /><circle cx="270" cy="65" r="0.6" opacity="0.76" />
-                  <circle cx="344" cy="2" r="0.9" opacity="0.63" /><circle cx="161" cy="161" r="1.6" opacity="0.93" />
-                  <circle cx="667" cy="43" r="1.1" opacity="0.39" /><circle cx="732" cy="150" r="1.7" opacity="0.49" />
-                  <circle cx="528" cy="125" r="1.6" opacity="0.34" /><circle cx="571" cy="184" r="1.7" opacity="0.34" />
-                  <circle cx="310" cy="7" r="1.2" opacity="0.37" /><circle cx="424" cy="29" r="1.5" opacity="0.43" />
-                  <circle cx="182" cy="62" r="1.4" opacity="0.54" /><circle cx="804" cy="106" r="1.0" opacity="0.70" />
-                  <circle cx="787" cy="91" r="1.1" opacity="0.31" /><circle cx="633" cy="28" r="1.2" opacity="0.67" />
-                  <circle cx="289" cy="72" r="0.8" opacity="0.82" /><circle cx="405" cy="120" r="1.1" opacity="0.29" />
-                  <circle cx="529" cy="125" r="0.7" opacity="0.81" /><circle cx="179" cy="9" r="1.1" opacity="0.77" />
-                  <circle cx="810" cy="99" r="0.6" opacity="0.70" /><circle cx="320" cy="92" r="0.9" opacity="0.52" />
-                  <circle cx="710" cy="157" r="1.6" opacity="0.64" /><circle cx="44" cy="136" r="0.8" opacity="0.68" />
-                </g>
-                <g className="a-shoot">
-                  <line x1="380" y1="46" x2="434" y2="20" stroke="#EFE9DC" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="380" cy="46" r="1.7" fill="#EFE9DC" />
-                </g>
-                <g className="a-shoot2">
-                  <line x1="200" y1="96" x2="248" y2="72" stroke="#D4C896" strokeWidth="1.2" strokeLinecap="round" opacity=".85" />
-                  <circle cx="200" cy="96" r="1.4" fill="#D4C896" />
-                </g>
-                <circle cx="618" cy="126" r="195" fill="url(#about-pg)" />
-                <g className="a-sun">
-                  <ellipse cx="618" cy="126" rx="112" ry="27" fill="none" stroke="#D4C896" strokeWidth=".8" opacity=".28" transform="rotate(-14 618 126)" />
-                  <circle cx="618" cy="126" r="58" fill="url(#about-planet)" />
-                  <path d="M564,112 Q618,130 672,108" stroke="rgba(21,17,15,.28)" strokeWidth="5" fill="none" />
-                  <path d="M567,140 Q618,155 670,136" stroke="rgba(21,17,15,.22)" strokeWidth="4" fill="none" />
-                  <ellipse cx="618" cy="126" rx="94" ry="21" fill="none" stroke="#D4C896" strokeWidth="1.6" opacity=".55" transform="rotate(-14 618 126)" />
-                </g>
-                <path d="M0,236 Q120,200 240,226 T480,222 T700,240 T840,226 V360 H0 Z" fill="#3A2820" />
-                <path d="M0,282 Q170,244 340,272 T680,270 T840,262 V360 H0 Z" fill="#271B16" />
-                <path d="M0,322 Q200,296 420,314 T840,310 V360 H0 Z" fill="#171110" />
-                <g className="a-contour" stroke="#D4C896" fill="none" strokeWidth="1" opacity=".5">
-                  <path d="M470,262 Q560,246 660,258 T840,252" />
-                  <path d="M490,276 Q580,262 680,272 T840,268" />
-                  <path d="M510,292 Q600,280 700,288 T840,284" />
-                  <path d="M470,306 Q590,296 720,304 T840,300" />
-                  <ellipse cx="702" cy="250" rx="46" ry="9" />
-                  <ellipse cx="702" cy="250" rx="28" ry="5.5" />
-                  <ellipse cx="702" cy="250" rx="12" ry="2.6" />
-                </g>
-                <g className="a-contour" stroke="#D4C896" strokeWidth="1" opacity=".55">
-                  <path d="M515,236 H525 M520,231 V241" />
-                  <path d="M607,220 H617 M612,215 V225" />
-                  <path d="M757,238 H767 M762,233 V243" />
-                  <path d="M695,298 H705 M700,293 V303" />
-                  <path d="M815,272 H825 M820,267 V277" />
-                </g>
-                <g className="a-fig">
-                  <ellipse cx="301" cy="311" rx="20" ry="2.6" fill="rgba(0,0,0,.4)" />
-                  <circle cx="301" cy="291" r="2.8" fill="#0B0807" />
-                  <path d="M298,295 q3,-2 6,0 l1.4,16 h-8.8 z" fill="#0B0807" />
-                  <path d="M304.6,293.5 q1.8,7 1.6,17" stroke="rgba(232,83,74,.85)" strokeWidth="1" fill="none" />
-                </g>
-                <g className="a-ember" fill="#D4C896">
-                  <circle cx="180" cy="281" r="1.6" opacity="0.74" /><circle cx="315" cy="307" r="2.0" opacity="0.53" />
-                  <circle cx="377" cy="307" r="0.8" opacity="0.32" /><circle cx="377" cy="286" r="1.3" opacity="0.57" />
-                  <circle cx="456" cy="288" r="1.5" opacity="0.36" /><circle cx="503" cy="302" r="2.0" opacity="0.52" />
-                  <circle cx="208" cy="279" r="2.0" opacity="0.78" /><circle cx="344" cy="272" r="2.0" opacity="0.70" />
-                  <circle cx="331" cy="271" r="0.9" opacity="0.76" /><circle cx="440" cy="309" r="1.7" opacity="0.73" />
-                  <circle cx="233" cy="281" r="0.9" opacity="0.45" /><circle cx="278" cy="279" r="1.7" opacity="0.66" />
-                  <circle cx="274" cy="279" r="1.7" opacity="0.61" /><circle cx="382" cy="302" r="1.8" opacity="0.43" />
-                </g>
-              </svg>
-              <figcaption className="about-artplate__cap">
-                <b>The worlds behind the work</b>
-                <span>Ubisoft · BlaBlaCar · live service</span>
-              </figcaption>
-            </figure>
-          </div>
-        </section>
+        {/* The 21:9 art plate that closed this section was cut on 22 Jul
+          * 2026, 507px of it. It sat BELOW the copy, so every pixel of it was
+          * added to the page height, and its caption ("The worlds behind the
+          * work · Ubisoft · BlaBlaCar · live service") restated the section
+          * heading and the two proof numbers directly above it.
+          *
+          * The tower plate in the next section is deliberately kept. That one
+          * sits BESIDE the copy in the 5fr/7fr split, so it costs nothing it
+          * does not already occupy, and its caption carries proof that appears
+          * nowhere else on the band (15M players, 85% positive). Additive
+          * decoration goes; structural art stays. */}
+      </section>
 
       {/* ─── STORY 02 · COMMUNITY — image LEFT, editorial RIGHT ──
         * Fix 4: true mirror. Watchtower plate anchors the LEFT (4:5),
@@ -503,6 +381,15 @@ export default function AboutPage() {
               building fan engagement, not just advising on it, as{' '}
               <mark>Fractional Head of Brand &amp; Growth at Magic</mark>.
             </p>
+            {/* Moved here from the manifesto band when that was cut on 22 Jul
+              * 2026. It is the one claim in that section that was about Laura
+              * rather than about the argument, and this is the section about
+              * her practice. */}
+            <p>
+              Brand, product, community and growth: I&rsquo;ve built in all
+              four, which is what lets me wire them into one engine and put a
+              number on the whole thing.
+            </p>
             <p className="about-magic__tail">
               Experience makes the work good. AI makes it fast.
             </p>
@@ -515,7 +402,7 @@ export default function AboutPage() {
         * schematic on /fan-engine and the spine of /services, so three pages
         * were teaching the same four words. Its claim ("I've built in all
         * four, which is what lets me wire them into one engine") survives as
-        * the last line of the manifesto near the top of this page. */}
+        * the second paragraph of "How I work now" directly above. */}
 
       {/* ─── SPEAKING TEASER ──────────────────────────────────── */}
       <section className="about-band">

@@ -285,8 +285,18 @@ export default function FanLedGrowthPage() {
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#EFE9DC' }}>
               Knowing fans matter is the <mark>easy part</mark>.
             </h2>
+            {/* The "paid is a discipline" framing arrived here on 22 Jul 2026
+              * from the /about manifesto band, which was cut because it made
+              * this same argument on a page whose job is Laura, not the
+              * argument. This is the one line of it sharper than what was
+              * already here: it names what fandom is being measured against,
+              * which is what makes "nobody owns it" land as a gap rather than
+              * an excuse. */}
             <p style={{ fontSize: T.lede, lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
-              Most companies already believe it. What stops them is that no single team owns it: brand, product, community and growth each hold a piece, and nobody holds the whole. So it stays a feeling nobody can put a number&nbsp;on.
+              Paid acquisition is a discipline: it got the budgets, the teams, the dashboards. Fandom is not one yet. Keeping the customers you have, and turning them into the ones who bring you new customers, got none of&nbsp;that.
+            </p>
+            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
+              So it looks optional. It is not. It just never had an owner: brand, product, community and growth each hold a piece, and nobody holds the whole. So it stays a feeling nobody can put a number&nbsp;on.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(18px,2vw,24px) 0 0' }}>
               That is the part I build. The <mark>Fan Engine<span className="tm">&trade;</span></mark> runs all four as one system, and ties each part to a number you can take to a&nbsp;board.

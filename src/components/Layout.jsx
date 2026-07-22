@@ -16,16 +16,25 @@ const HELLO_EMAIL = 'hello@lauracordrey.com'
 // growth" is a term that stranger does not know yet. "Why fans" poses the
 // question the page answers. The search-facing wording lives in the body links
 // that now point at the page, where a full phrase reads naturally.
+//
+// Speaking left this list on 22 Jul 2026. It is a second product for a second
+// buyer, and it was the only nav item pointing away from the consulting sale.
+// Event bookers arrive by referral or a direct link, not by browsing a
+// consultancy's header. The page keeps four inbound body links (one from the
+// homepage, three from /about) plus the footer, so it is not buried, and the
+// header now reads as one journey rather than a list: problem, proof, offer,
+// person.
 const navLinks = [
   { key: 'flg',      label: 'Why fans', path: '/fan-led-growth', isHash: false },
   { key: 'work',     label: 'Work',     path: '/work',           isHash: false },
   { key: 'services', label: 'Services', path: '/services',       isHash: false },
-  { key: 'speaking', label: 'Speaking', path: '/speaking',       isHash: false },
   { key: 'about',    label: 'About',    path: '/about',          isHash: false },
 ]
 
-// Same journey as the header, plus the IP pages and Speaking that the header
-// keeps tucked away.
+// Same journey as the header, plus the IP pages, AI and Speaking that the
+// header keeps tucked away. These footer entries are load-bearing for the
+// pages not in the header: they are how a crawler reaches /ai, /speaking and
+// the three IP pages at all. Do not thin this list to declutter.
 const footerLinks = [
   { label: 'Home',      to: '/' },
   { label: 'Work',      to: '/work' },

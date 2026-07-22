@@ -11,6 +11,13 @@
  * page and various /about teasers; that page is gone. The .speaking-*
  * classes below are the current source of truth for this page. */
 
+/* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
+   Mirrors src/lib/scale.js, the rebuild /services and /about have both now
+   had. Before: h1 58.9 @800, h2 35.8 @800, ratio 1.64 against 2.05 on the
+   rebuilt pages, and every heading on the page at weight 800.
+   Values are literal because this page is styled in CSS, not inline. If
+   scale.js moves, move these with it. */
+
 /* Sitewide container — the existing shared .container is used by JSX. */
 
 .sp-eyebrow {
@@ -22,7 +29,9 @@
   margin-bottom: 12px;
 }
 .sp-eyebrow--gold { color: #D4C896; }
-.sp-eyebrow--red { color: #C8362B; }
+/* #C8362B on the near-black hero ground measured 3.59 against 4.5. #E0574B
+   is the lighter red already used for .sp-kicker on this page. */
+.sp-eyebrow--red { color: #E0574B; }
 .sp-eyebrow--brightgold { color: #F2D79A; }
 
 /* ─── 1 · VIDEO HERO ────────────────────────────────── */
@@ -68,17 +77,17 @@
   color: #EFE9DC;
 }
 .sp-h1 {
-  font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-  line-height: 1;
+  font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84, was ~59 */
+  line-height: 1.02;
   letter-spacing: -0.03em;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0 0 clamp(18px, 2.2vw, 24px);
   max-width: 15ch;
   text-wrap: balance;
 }
 .sp-hero__lede {
-  font-size: 1.2rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede */
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.86);
   max-width: 54ch;
@@ -96,9 +105,12 @@
 }
 
 /* ─── Shared band shell ─────────────────────────────── */
+/* Vertical padding mirrors SECTION_PAD in src/lib/scale.js (96px at 1280).
+   Was clamp(56px,7vw,104px), resolving to 89.6, so this page ran tighter
+   bands than the rest of the site. */
 .sp-band {
   position: relative;
-  padding: clamp(56px, 7vw, 104px) 0;
+  padding: clamp(64px, 7.5vw, 108px) 0;
 }
 .sp-band__head {
   display: flex;
@@ -123,10 +135,10 @@
 }
 
 .sp-h2 {
-  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41 */
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0;
   text-wrap: balance;
@@ -136,7 +148,7 @@
 .sp-kicker {
   display: block;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #E0574B;
@@ -230,7 +242,7 @@
 .sp-row:last-child { border-bottom: 1px solid rgba(239, 233, 220, 0.12); }
 .sp-row__idx {
   font-size: clamp(2.4rem, 3.8vw, 3.4rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.03em;
   color: #C8362B;
   line-height: 1;
@@ -242,7 +254,7 @@
   font-size: clamp(1.5rem, 2.2vw, 2rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0;
 }
@@ -261,7 +273,12 @@
 }
 
 /* ─── 3 · OFF THE STAGE ─────────────────────────────── */
+/* #2D2723 is the lightest dark ground on the page, and the red kicker that
+   clears AA on #15110F measures 3.95 on it. Gold is the site's small-mark
+   colour on dark grounds; /services made the same substitution in 4381bab
+   and accepted losing the red/gold distinction to keep the labels legible. */
 .sp-band--offstage { background: #2D2723; }
+.sp-band--offstage .sp-kicker { color: #D4C896; }
 .sp-list {
   list-style: none;
   margin: 0;
@@ -284,7 +301,7 @@
   font-size: 1.16rem;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0;
 }
@@ -367,14 +384,14 @@
 }
 .sp-timeline__year {
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.1em;
   color: #E0574B;
   flex: none;
 }
 .sp-timeline__title {
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   letter-spacing: -0.01em;
 }
@@ -395,7 +412,7 @@
 .sp-band--finale {
   background: #A12A1E;
   color: #FBF3E4;
-  padding: clamp(80px, 9vw, 140px) 0;
+  padding: clamp(72px, 8.6vw, 116px) 0;
   text-align: center;
   overflow: hidden;
 }
@@ -412,10 +429,10 @@
 }
 .sp-finale { position: relative; z-index: 1; }
 .sp-finale__title {
-  font-size: clamp(2.1rem, 3.4vw, 3.2rem);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 5vw, 3.75rem); /* T.h2close ~60 — the close still shouts */
+  line-height: 1.04;
   letter-spacing: -0.025em;
-  font-weight: 800;
+  font-weight: 700;
   color: #FBF3E4;
   margin: 0 auto clamp(28px, 3.4vw, 38px);
   max-width: 20ch;
@@ -430,10 +447,13 @@
   background: #F2D79A;
   border-color: #F2D79A;
 }
+/* Was 0.7 alpha, which measured 4.01 on the oxblood ground against 4.5. The
+   same "Or email" line at the same 0.7 fails identically on /ai and
+   /fan-engine; all three moved to 0.88 together. */
 .sp-finale__mail {
   margin: clamp(18px, 2.4vw, 26px) 0 0;
   font-size: 0.95rem;
-  color: rgba(251, 243, 228, 0.7);
+  color: rgba(251, 243, 228, 0.88);
 }
 .sp-finale__mail a {
   color: #F2D79A;

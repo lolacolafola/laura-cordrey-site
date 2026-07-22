@@ -24,9 +24,11 @@
 }
 
 /* Full-bleed band. */
+/* Vertical padding mirrors SECTION_PAD in src/lib/scale.js (96px at 1280).
+   Was clamp(72px,9vw,128px), resolving to 115.2. */
 .meth-band {
   position: relative;
-  padding: clamp(72px, 9vw, 128px) 0;
+  padding: clamp(64px, 7.5vw, 108px) 0;
   overflow: hidden;
 }
 
@@ -61,33 +63,43 @@
 }
 .meth-sechead__num {
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
   color: #C8362B;
 }
 
+/* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
+   Mirrors src/lib/scale.js, the rebuild /services and /about have both had.
+   Before: h1 81.9 @800, h2 60.8 @800, ratio 1.35 against 2.05 on the rebuilt
+   pages. The h2 was the loudest section heading on the site: at 60.8 it
+   outweighed the h1 on /speaking (58.9) and on /ai (56.3), which is the
+   clearest sign these pages were never tuned against each other.
+   Values are literal because this page is styled in CSS, not inline. */
+
 /* Display type. */
 .meth-h1 {
-  font-weight: 800;
-  font-size: clamp(2.9rem, 6.4vw, 5.4rem);
-  line-height: 0.92;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84 */
+  line-height: 1.02;
   letter-spacing: -0.04em;
   margin: clamp(18px, 2.5vw, 26px) 0 0;
   max-width: 12ch;
 }
 .meth-h2 {
-  font-weight: 800;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  line-height: 1.02;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41, was ~61 */
+  line-height: 1.06;
   letter-spacing: -0.03em;
   margin: 0;
   max-width: 18ch;
   text-wrap: balance;
 }
+/* The problem heading keeps a step over a plain h2, but a step, not a tier:
+   it was 67px against the h2's 61, i.e. indistinguishable. */
 .meth-h2--problem {
-  font-size: clamp(2.4rem, 5.4vw, 4.2rem);
-  line-height: 1;
+  font-size: clamp(2rem, 3.7vw, 3.1rem);
+  line-height: 1.04;
   letter-spacing: -0.035em;
   max-width: 20ch;
 }
@@ -96,12 +108,12 @@
 .meth-page mark {
   background: transparent;
   color: #C8362B;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* Shared lede paragraph. */
 .meth-lede {
-  font-size: clamp(1.08rem, 1.5vw, 1.34rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede */
   line-height: 1.6;
   color: rgba(239, 233, 220, 0.82);
   max-width: 62ch;
@@ -257,12 +269,14 @@
   align-items: flex-start;
 }
 .meth-schematic__word {
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.16rem;
   letter-spacing: -0.02em;
 }
+/* #8A8078 measured 4.30 on this ground against 4.5, on a note that repeats
+   four times. #B8AEA2 is the muted-on-dark already used on /speaking. */
 .meth-schematic__note {
-  color: #8A8078;
+  color: #B8AEA2;
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -292,7 +306,7 @@
   gap: 12px;
 }
 .meth-schematic__spine-title {
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(1.02rem, 1.4vw, 1.24rem);
 }
 .meth-schematic__spine-sub {
@@ -343,8 +357,11 @@
 .meth-stages__item:nth-child(3) { border-top-color: rgba(200, 54, 43, 0.62); }
 .meth-stages__item:nth-child(4) { border-top-color: rgba(200, 54, 43, 0.82); }
 .meth-stages__item:nth-child(5) { border-top: 3px solid #C8362B; }
+/* The stages sit on the bone ground, where #C8362B measures 4.32 against 4.5.
+   --accent-deep is the same gesture at 7.13, the substitution /services made
+   for the identical failure in 4381bab. */
 .meth-stages__num {
-  color: #C8362B;
+  color: #8E2520;
   font-size: 0.85rem;
   font-weight: 700;
   opacity: 0.55;
@@ -352,10 +369,10 @@
 .meth-stages__item:nth-child(2) .meth-stages__num { opacity: 0.68; }
 .meth-stages__item:nth-child(3) .meth-stages__num { opacity: 0.8; }
 .meth-stages__item:nth-child(4) .meth-stages__num { opacity: 0.9; }
-.meth-stages__item:nth-child(5) .meth-stages__num { opacity: 1; font-weight: 800; }
+.meth-stages__item:nth-child(5) .meth-stages__num { opacity: 1; font-weight: 700; }
 .meth-stages__name {
   margin: 0;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.4rem;
   letter-spacing: -0.02em;
 }
@@ -431,7 +448,7 @@
   border-top: 1px solid rgba(239, 233, 220, 0.12);
 }
 .meth-scoreboard__label {
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.16rem;
 }
 .meth-scoreboard__body {
@@ -465,9 +482,9 @@
   gap: clamp(18px, 2.4vw, 26px);
 }
 .meth-close__title {
-  font-weight: 800;
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 1;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 3.75rem); /* T.h2close ~60, was ~74 */
+  line-height: 1.04;
   letter-spacing: -0.025em;
   margin: 0;
   max-width: 18ch;
@@ -506,7 +523,9 @@
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(251, 243, 228, 0.7);
+  /* Was 0.7, which measured 4.01 on oxblood. Same fix as the "Or email" line
+     on /speaking and /ai, all three moved together. */
+  color: rgba(251, 243, 228, 0.88);
   font-weight: 700;
   margin: clamp(10px, 1.6vw, 18px) 0 0;
 }
@@ -538,7 +557,7 @@
 }
 .meth-proof__n {
   font-size: clamp(1.7rem, 3vw, 2.2rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -.02em;
   color: #EFE9DC;
   line-height: 1;
@@ -552,7 +571,8 @@
   align-items: center;
   gap: 0 14px;
 }
-.meth-proofstrip__sep { color: rgba(212, 200, 150, .45); }
+/* Was .45 alpha, 3.15. A separator is still text. */
+.meth-proofstrip__sep { color: rgba(212, 200, 150, .72); }
 /* On narrow screens the two links stack, so the middot would dangle. */
 @media (max-width: 560px) {
   .meth-proofstrip__more { gap: 8px 0; }

@@ -25,9 +25,11 @@
 }
 
 /* Full-bleed section band — each has its own ground and vertical rhythm. */
+/* Vertical padding mirrors SECTION_PAD in src/lib/scale.js (96px at 1280).
+   Was clamp(56px,7vw,104px), resolving to 89.6. */
 .ai-band {
   position: relative;
-  padding: clamp(56px, 7vw, 104px) 0;
+  padding: clamp(64px, 7.5vw, 108px) 0;
   overflow: hidden;
 }
 
@@ -41,15 +43,23 @@
   margin-bottom: 18px;
 }
 .ai-eyebrow--gold { color: #D4C896; }
-.ai-eyebrow--red { color: #C8362B; }
+/* #C8362B on the bone ground measured 4.32 against 4.5. --accent-deep is the
+   same gesture at 7.13; /services and /about made the same substitution. */
+.ai-eyebrow--red { color: #8E2520; }
 .ai-eyebrow--brightgold { color: #F2D79A; }
+
+/* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
+   Mirrors src/lib/scale.js, the rebuild /services, /about and /fan-engine
+   have all now had. Before: h1 56.3 @800, h2 38.4 @800, ratio 1.47 against
+   2.05 on the rebuilt pages, and the smallest h1 on the site.
+   Values are literal because this page is styled in CSS, not inline. */
 
 /* Shared display type. */
 .ai-h1 {
-  font-size: clamp(2.6rem, 4.4vw, 4rem);
+  font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84, was ~56 */
   line-height: 1.02;
   letter-spacing: -0.035em;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0 0 clamp(24px, 3vw, 32px);
   max-width: 15ch;
   text-wrap: balance;
@@ -57,13 +67,13 @@
 .ai-h1 mark {
   background: transparent;
   color: #E0574B;
-  font-weight: 800;
+  font-weight: 700;
 }
 .ai-h2 {
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41 */
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0 0 clamp(20px, 2.5vw, 28px);
   max-width: 22ch;
   text-wrap: balance;
@@ -71,11 +81,11 @@
 .ai-h2 mark {
   background: transparent;
   color: #E0574B;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .ai-lead-p {
-  font-size: 1.24rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede */
   line-height: 1.6;
   color: #D6CEC1;
   font-weight: 500;
@@ -228,7 +238,8 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #8A8078;
+  /* #8A8078 measured 3.81 on the #2D2723 ground against 4.5. */
+  color: #B8AEA2;
 }
 
 /* Restrained proof row — deliberately quiet, not a KPI banner. */
@@ -245,7 +256,7 @@
 .ai-cred__proof b {
   display: block;
   font-size: clamp(1.7rem, 2.4vw, 2.3rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
   color: #EFE9DC;
@@ -323,7 +334,7 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-card__num {
   display: block;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #E0574B;
@@ -334,7 +345,7 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   font-size: 1.5rem;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0 0 14px;
   text-wrap: balance;
@@ -387,7 +398,7 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 }
 .ai-icard__ttl {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #EFE9DC;
   margin: 0;
   letter-spacing: -0.01em;
@@ -411,17 +422,17 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   margin: 0 auto;
   text-align: center;
 }
-.ai-manifesto .ai-eyebrow--red { color: #C8362B; }
+.ai-manifesto .ai-eyebrow--red { color: #8E2520; }
 .ai-manifesto__title {
   color: #15110F;
   margin: 0 auto clamp(24px, 3vw, 32px);
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41 */
   max-width: 20ch;
 }
 .ai-manifesto__title mark {
   background: transparent;
   color: #C8362B;
-  font-weight: 800;
+  font-weight: 700;
 }
 .ai-manifesto__body { text-align: left; }
 .ai-manifesto__body p {
@@ -453,10 +464,10 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 }
 .ai-finale { position: relative; z-index: 1; }
 .ai-finale__title {
-  font-size: clamp(2.2rem, 3.6vw, 3.4rem);
-  line-height: 1.02;
+  font-size: clamp(2.4rem, 5vw, 3.75rem); /* T.h2close ~60 — the close still shouts */
+  line-height: 1.04;
   letter-spacing: -0.025em;
-  font-weight: 800;
+  font-weight: 700;
   color: #FBF3E4;
   margin: 0 auto clamp(28px, 3.4vw, 38px);
   max-width: 18ch;
@@ -464,7 +475,7 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-finale__title mark {
   background: transparent;
   color: #F2D79A;
-  font-weight: 800;
+  font-weight: 700;
 }
 .ai-finale__cta {
   background: #FBF3E4;
@@ -478,7 +489,9 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
 .ai-finale__mail {
   margin: clamp(18px, 2.4vw, 26px) 0 0;
   font-size: 0.95rem;
-  color: rgba(251, 243, 228, 0.7);
+  /* Was 0.7, which measured 4.01 on oxblood. Same fix as the "Or email" line
+     on /speaking and /fan-engine, all three moved together. */
+  color: rgba(251, 243, 228, 0.88);
 }
 .ai-finale__mail a {
   color: #F2D79A;

@@ -12,9 +12,26 @@
  * classes when tidying — they power the full speaking reel.
  * ─────────────────────────────────────────────────────────── */
 
+/* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
+   Mirrors src/lib/scale.js, the same rebuild /services went through in
+   4381bab. This page had never had it, and it was the worst case on the
+   site: the hero title, the manifesto title, all three story titles, both
+   section-heads and the close ALL computed to 76.8px at weight 800. The
+   hero-to-section ratio was 1.00 against 2.05 on the rebuilt pages, so
+   nothing receded and the page shouted seven times at one volume.
+
+   Measured before: 7,480px for 690 words, against /services at 4,005px for
+   984. The least dense page on the site.
+
+   Values are literal rather than imported because this page is styled in
+   CSS, not inline. If scale.js moves, move these with it. */
+
 /* ─── BAND SYSTEM ─────────────────────────────────────────── */
+/* Vertical padding mirrors SECTION_PAD in src/lib/scale.js (96px at 1280).
+   Was clamp(72px,9vw,128px), resolving to 115.2, which made this page run
+   looser bands than the rest of the site across seven of them. */
 .about-band {
-  padding: clamp(72px, 9vw, 128px) 0;
+  padding: clamp(64px, 7.5vw, 108px) 0;
   border-top: 1px solid var(--hairline);
   position: relative;
 }
@@ -103,8 +120,8 @@
   gap: var(--space-5);
 }
 .about-hero__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84 */
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
@@ -165,8 +182,11 @@
   max-width: 52rem;
   position: relative;
 }
+/* Was clamp(1.3rem,2vw,1.7rem), 25.6px at 1280. With the h1 now at 84 rather
+   than 76.8, a 25.6px lede sat too close under it to read as a second voice.
+   This is the hero sub-lede size, one step above T.lede. */
 .about-intro__lede {
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
   line-height: 1.5;
   color: var(--ink);
   font-weight: 600;
@@ -329,10 +349,10 @@
   color: var(--edge);
 }
 .about-eng__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41, was ~77 */
+  font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.02;
+  line-height: 1.06;
   margin: 0;
 }
 .about-eng__right {
@@ -416,10 +436,10 @@
   color: var(--edge);
 }
 .about-imgsplit__content .about-eng__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41, was ~77 */
+  font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.02;
+  line-height: 1.06;
   margin: 0;
 }
 .about-imgsplit__content p {
@@ -432,6 +452,35 @@
 .about-imgsplit__content p strong {
   color: var(--ink);
   font-weight: 800;
+}
+
+/* ── Contrast on the grey band (#2D2723), 22 Jul 2026 ──────────────────
+   The grey ground is the lightest of the dark bands, and two things that
+   clear AA on #15110F fail on it:
+
+     the red <mark> in "before it turns", 76.8px   2.82  (needs 3)
+     --ink-muted body copy, 20px, x4               3.81  (needs 4.5)
+
+   The mark is the same failure Laura caught last session on the /services
+   oxblood close, where a red mark on a red ground measured 1.4: the mark
+   colour does not get re-checked when the band under it changes. #E4695E is
+   the lighter red already carrying this job on /fan-led-growth's estimate
+   card, for exactly this reason. */
+.about-band--grey .about-eng__title mark {
+  background: transparent;
+  color: #E4695E;
+}
+.about-band--grey .about-imgsplit__content p {
+  color: #B8AEA2;
+}
+.about-band--grey .about-pull span {
+  color: #B8AEA2;
+}
+/* The pull numbers ("85%", "15M") are 54.4px, so they only need 3.0, and
+   --accent still misses it at 2.82 on this ground. Same lighter red as the
+   mark above, for the same reason. */
+.about-band--grey .about-pull b {
+  color: #E4695E;
 }
 .about-imgsplit__content .about-pulls {
   display: flex;
@@ -611,8 +660,22 @@
  * tail loses its muted colour and reads at full ink. */
 .about-band--bone .about-magic p.about-magic__tail { color: var(--ink-muted-on-surface); }
 
-/* Bone-band section-head marker is red, not gold — matches Services v5. */
-.about-band--bone .marker { color: var(--accent); }
+/* .section-head__title is declared in shared.css at var(--fs-display-l), which
+   resolves to 76.8px, the same as the h1 was. This page is the only place the
+   class is used (grep: two call sites, both in AboutPage.jsx), so it is
+   brought onto the page scale here rather than in shared.css, where a change
+   would reach anything that adopts the pattern later. */
+.section-head__title {
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41 */
+  font-weight: 700;
+  line-height: 1.06;
+}
+
+/* Bone-band section-head marker is red, not gold — matches Services v5.
+   --accent (#C8362B) on the bone ground measures 4.32 against 4.5 for text
+   this size. --accent-deep is the same gesture and lands at 7.13, which is
+   the substitution /services made in 4381bab for the identical failure. */
+.about-band--bone .marker { color: var(--accent-deep); }
 .about-band--bone .section-head__title { color: var(--ink-on-surface); }
 
 /* ─── SPEAKING TEASER (3-col talk cards) ─────────────────── */
@@ -724,22 +787,31 @@
 }
 
 /* ─── FINALE (oxblood centered) ───────────────────────────── */
+/* Was clamp(88px,11vw,150px) = 140.8. The close is allowed more air than a
+   normal band, but not 1.5x it. /services settled on 110 for the same job. */
 .about-close {
-  padding: clamp(88px, 11vw, 150px) 0;
+  padding: clamp(72px, 8.6vw, 116px) 0;
   text-align: center;
   overflow: hidden;
 }
 .about-close__inner {
   position: relative;
 }
-.about-close__kick {
-  color: #E7D9AD;
+/* #D4C896 (inherited via .marker) measured 4.36 on the oxblood ground against
+   4.5. #F2D79A is the `ox` tone settled on Eyebrow.jsx last session for this
+   exact ground, and clears it.
+   Written as `.marker.about-close__kick`, not the bare class: `.marker` in
+   base.css is the same 0,1,0 specificity, and Vite's module graph puts
+   base.css after this file in dev, so a single-class rule loses the tie and
+   the colour silently stays #D4C896. Verified in the browser, not assumed. */
+.marker.about-close__kick {
+  color: #F2D79A;
   display: inline-block;
 }
 .about-close__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
-  line-height: 1.02;
+  font-size: clamp(2.4rem, 5vw, 3.75rem); /* T.h2close ~60 — the close still shouts */
+  font-weight: 700;
+  line-height: 1.04;
   letter-spacing: -0.025em;
   color: #FBF3E4;
   max-width: 20ch;
