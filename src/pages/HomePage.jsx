@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
 import { postLead } from '../lib/forms.js'
+import { HEAD_W, T, SECTION_PAD, INNER } from '../lib/scale.js'
+import Eyebrow from '../components/Eyebrow.jsx'
 import './HomePage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -44,20 +46,9 @@ const HERO_PORTRAIT = null
  * which is what made the previous version hard to restyle.
  */
 
-const HEAD_W = 700
-
-const T = {
-  h1: 'clamp(2.8rem, 6.6vw, 5.25rem)',    // ~84px at 1280 (live page: ~102px)
-  h2: 'clamp(1.8rem, 3.2vw, 2.75rem)',    // ~44px at 1280 (was 54-67px)
-  h2close: 'clamp(2.4rem, 5vw, 3.75rem)', // the close still gets to shout
-  h3: 'clamp(1.15rem, 1.6vw, 1.4rem)',
-  lede: 'clamp(1.05rem, 1.3vw, 1.22rem)',
-  body: 'clamp(.95rem, 1.05vw, 1.04rem)',
-  marker: '.74rem',
-}
-
-const SECTION_PAD = 'clamp(64px, 7.5vw, 108px) clamp(20px, 5vw, 64px)'
-const INNER = { maxWidth: 1180, margin: '0 auto', width: '100%' }
+// Type scale, section padding and the inner measure now live in
+// src/lib/scale.js so other pages share them rather than copying them. Values
+// are unchanged; see that file for why it was extracted.
 
 const CLIENT_LOGOS = [
   { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 118 },
@@ -113,23 +104,6 @@ const CASES = [
   // two, which hold one line down to ~950px.
   { value: '85%', unit: '', label: 'positive sentiment, 15M players', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
 ]
-
-function Eyebrow({ children, tone = 'gold' }) {
-  return (
-    <span
-      style={{
-        display: 'block',
-        fontSize: T.marker,
-        letterSpacing: '.2em',
-        textTransform: 'uppercase',
-        color: tone === 'gold' ? '#D4C896' : '#C8362B',
-        fontWeight: 700,
-      }}
-    >
-      {children}
-    </span>
-  )
-}
 
 export default function HomePage() {
   // The live homepage. Full SEO: real title, canonical to "/", author schema.

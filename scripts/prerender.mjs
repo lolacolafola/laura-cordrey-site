@@ -120,7 +120,23 @@ async function main() {
         { timeout: 15000 },
       )
       await page.waitForTimeout(600) // let useDocumentMeta inject title/meta/JSON-LD
-      const html = '<!doctype html>\n' + (await page.evaluate(() => document.documentElement.outerHTML))
+      const html = '<!doctype html>\n' + (await page.evaluate(() => {
+        // Scroll-reveal state must not be serialised. Every page marks
+        // below-the-fold blocks with a *-hide class that sets opacity:0, and
+        // the class gets baked into the snapshot because we run the real app
+        // in a real browser. The observer un-hides them once the SPA hydrates,
+        // so this is invisible in practice — but until then the static HTML
+        // renders content the crawler can read and a human cannot see. Strip
+        // the hidden state so the snapshot is visible on its own.
+        document
+          .querySelectorAll('[class*="-hide"]')
+          .forEach((el) => {
+            el.classList.forEach((c) => {
+              if (/-hide$/.test(c)) el.classList.remove(c)
+            })
+          })
+        return document.documentElement.outerHTML
+      }))
       const outDir = route === '/' ? DIST : join(DIST, route)
       await mkdir(outDir, { recursive: true })
       await writeFile(join(outDir, 'index.html'), html, 'utf8')

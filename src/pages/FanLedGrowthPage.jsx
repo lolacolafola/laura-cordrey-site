@@ -2,46 +2,53 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, fanLedGrowthJsonLd } from '../lib/seo.js'
+import { HEAD_W, T, SECTION_PAD, INNER, GRID_CAP } from '../lib/scale.js'
+import Eyebrow from '../components/Eyebrow.jsx'
 import './FanLedGrowthPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
 
-/* /fan-led-growth — plain-language overview page.
+/* /fan-led-growth — the plain-language front door.
  *
- * Destination for the "Fan-led growth" item in the simplified v2 nav.
+ * The page's job, in Laura's words: explain what fan-led growth IS, then
+ * connect that to the rest of the site. Six beats, each handing to a
+ * different page, so this is a front door rather than a cul-de-sac:
  *
- * IMPORTANT: no copy on this page is newly written. Every line is lifted
- * verbatim from the live homepage (src/pages/HomePage.jsx on main), from the
- * three sections the v2 homepage cut: "What it is", "Why fans" and "Why
- * you're here". Those sections were ~500 words and ten cards, and cutting
- * them was the biggest single lever on homepage density. The argument they
- * carried now lives here instead of three screens down a homepage.
+ *   What it is       (here)
+ *   The evidence  →  /work
+ *   Why fans      →  /fan-value      (the estimate card)
+ *   So what do you do about it  →  /methodology
+ *   Who it's for     (here)
+ *   Where to start →  /fan-value · /services · /fan-score
  *
- * Provenance table: content/copy/fan-led-growth-page-plan.md
+ * Provenance: content/copy/fan-led-growth-page-plan.md for the three original
+ * sections (lifted verbatim from the old homepage), and
+ * content/copy/fan-led-growth-critique-and-copy-v1.md +
+ * fan-led-growth-proof-research-v2.md for the three bands added on 22 Jul.
  *
- * Shipped 22 Jul 2026. It was preview-only (noindex, out of the sitemap)
- * "until the v2 direction is decided" — that decision landed when v2 became
- * the homepage, and this page is now the FIRST item in the site-wide nav, so
- * keeping it noindexed and unprerendered was hiding the most prominent
- * destination on the site. It now carries a real canonical, sits in the
- * sitemap (which is what makes scripts/prerender.mjs snapshot it), and emits
- * the DefinedTerm for "fan-led growth" itself.
+ * Shipped out of preview 22 Jul 2026: indexed, in the sitemap, prerendered.
  *
- * Still open: this overlaps /methodology in places. Flagged in the plan doc,
- * not resolved.
+ * The type scale is imported, NOT redeclared. It used to be a local copy of
+ * HomePage's, and the copy had drifted — h1 silently held the h2close value,
+ * so the page opened at section volume with no hierarchy release, and a round
+ * of homepage breathing-room work could not reach it. See src/lib/scale.js.
  */
 
-const HEAD_W = 700
-const T = {
-  h1: 'clamp(2.4rem, 5vw, 3.75rem)',
-  h2: 'clamp(1.8rem, 3.2vw, 2.75rem)',
-  h3: 'clamp(1.15rem, 1.6vw, 1.4rem)',
-  lede: 'clamp(1.05rem, 1.3vw, 1.22rem)',
-  body: 'clamp(.95rem, 1.05vw, 1.04rem)',
-  marker: '.74rem',
-}
-const SECTION_PAD = 'clamp(64px, 7.5vw, 108px) clamp(20px, 5vw, 64px)'
-const INNER = { maxWidth: 1180, margin: '0 auto', width: '100%' }
+// Benchmarks, verbatim from the line already live on /fan-score
+// (FanAuditPage.jsx). Kept word-for-word so the two pages cannot drift.
+//
+// Deliberately the "top fans" figures, not the blended ones on /fan-value.
+// /fan-value applies a LOWER lift (Gallup's ~23%) because only some customers
+// ever become fans, and its caveat explaining that sits right next to it.
+// This page is about what a fan IS, so the per-fan numbers are the honest
+// ones here. Do not mix the two sets on one page: they look contradictory
+// without the caveat that reconciles them.
+const BENCHMARKS = [
+  { value: '2 to 3×', label: 'longer top fans stay' },
+  { value: '66 to 80%', label: 'more top fans spend' },
+  { value: '~4×', label: 'more often top fans refer' },
+]
+const BENCHMARK_SOURCES = 'Bain, Nielsen, HBR, Wharton'
 
 const whyFans = [
   { title: 'They invest more', copy: 'Fans stay longer and spend more, so you keep and grow what you paid to win.', icon: 'lock' },
@@ -119,46 +126,74 @@ export default function FanLedGrowthPage() {
   return (
     <div ref={rootRef} className="flg" style={{ background: '#15110F', color: '#EFE9DC', fontFamily: 'Manrope, system-ui, sans-serif', fontWeight: 500, lineHeight: 1.55 }}>
 
-      {/* ─── WHAT IT IS ─── */}
+      {/* ─── 1. WHAT IT IS ─── */}
+      {/* Centred, like the homepage hero in its no-portrait state. It used to
+        * left-hug a 62ch measure, leaving half a wide viewport empty. */}
       <section style={{ background: '#0E0B09' }}>
-        <div style={{ ...INNER, padding: 'clamp(76px,9vw,120px) clamp(20px,5vw,64px) clamp(64px,7.5vw,100px)' }}>
-          <div style={{ maxWidth: '62ch' }}>
-            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.2em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>What it is</span>
+        <div className="flg-hero" style={{ ...INNER, padding: 'clamp(76px,9vw,120px) clamp(20px,5vw,64px) clamp(64px,7.5vw,100px)' }}>
+          <div className="flg-hero__copy" style={{ maxWidth: '62ch' }}>
+            <Eyebrow>Fan-led growth</Eyebrow>
             <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.04, letterSpacing: '-.03em', margin: 'clamp(16px,2vw,22px) 0 0' }}>
-              Fans are <mark>the growth you already own</mark>.
+              Fans are <mark>the growth you already&nbsp;own</mark>.
             </h1>
-            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
-              <strong style={{ color: '#EFE9DC', fontWeight: 700 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends.
+            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 'clamp(24px,3vw,32px) 0 0' }}>
+              <strong style={{ color: '#EFE9DC', fontWeight: 700 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend&nbsp;ends.
             </p>
           </div>
 
-          <div data-rev style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(20px,2.4vw,28px) clamp(22px,2.6vw,32px)', margin: 'clamp(28px,3.4vw,40px) 0 0', maxWidth: 620 }}>
+          <div data-rev className="flg-pull" style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(20px,2.4vw,28px) clamp(22px,2.6vw,32px)', margin: 'clamp(32px,3.8vw,44px) 0 0', maxWidth: 620 }}>
             <div aria-hidden="true" style={{ position: 'absolute', top: '-50%', right: '-10%', width: '30vw', height: '30vw', maxWidth: 260, maxHeight: 260, background: 'radial-gradient(circle,rgba(200,54,43,.18) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
             <p style={{ position: 'relative', fontSize: 'clamp(1.3rem,2.2vw,1.8rem)', fontWeight: HEAD_W, letterSpacing: '-.02em', lineHeight: 1.15, margin: 0 }}>
               Growth you <span style={{ color: '#C8362B' }}>own</span>, not rent.
             </p>
           </div>
 
-          <p data-rev style={{ fontSize: T.lede, lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(24px,3vw,34px) 0 0', maxWidth: '62ch' }}>
-            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>an engine you own</Link>, then show you what it&rsquo;s worth.
+          <p data-rev className="flg-hero__close" style={{ fontSize: T.lede, lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(28px,3.4vw,38px) 0 0', maxWidth: '62ch' }}>
+            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
           </p>
         </div>
       </section>
 
-      {/* ─── WHY FANS ─── */}
+      {/* ─── 2. THE EVIDENCE ─── */}
+      {/* Typographic, no cards. Two jobs: answer the "says who?" that the six
+        * benefit cards below invite, and give the eye a non-card band between
+        * the hero and the first grid. Same reasoning that put the full-bleed
+        * speaking band into the homepage rebuild. */}
+      <section style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.1)' }}>
+        <div style={{ ...INNER, padding: 'clamp(48px,5.5vw,76px) clamp(20px,5vw,64px)' }}>
+          <div data-rev>
+            <Eyebrow>The evidence</Eyebrow>
+          </div>
+          <div className="flg-stats" data-rev style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(22px,3vw,44px)', marginTop: 'clamp(24px,3vw,34px)', maxWidth: 860 }}>
+            {BENCHMARKS.map((b) => (
+              <div key={b.label} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.9rem,3.6vw,3rem)', lineHeight: 1, letterSpacing: '-.03em', color: '#D4C896' }}>{b.value}</span>
+                <span style={{ fontSize: T.body, lineHeight: 1.45, color: 'rgba(239,233,220,.74)', fontWeight: 600 }}>{b.label}</span>
+              </div>
+            ))}
+          </div>
+          <p data-rev style={{ fontSize: '.86rem', color: 'rgba(239,233,220,.5)', fontWeight: 600, margin: 'clamp(22px,2.6vw,30px) 0 0' }}>
+            {BENCHMARK_SOURCES}. <Link to="/work" className="flg-inline">And here is what it looked like when I built it&nbsp;&rarr;</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 3. WHY FANS ─── */}
       <section style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev>
-            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Why fans</span>
+            <Eyebrow tone="red">Why fans</Eyebrow>
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', maxWidth: '22ch', color: '#15110F' }}>
               You don&rsquo;t buy fans. You <mark>earn</mark> them.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#4A423B', margin: 'clamp(16px,2vw,22px) 0 0', maxWidth: '58ch' }}>
-              People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can&rsquo;t buy that. Earn it, and here is what your fans start doing for you.
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '58ch' }}>
+              People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can&rsquo;t buy that. Earn it, and here is what your fans start doing for&nbsp;you.
             </p>
           </div>
 
-          <div className="flg-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.8vw,20px)', marginTop: 'clamp(34px,4.4vw,56px)' }}>
+          {/* Capped and centred so the row is never the widest thing on the
+            * page, matching the homepage work-card grid. */}
+          <div className="flg-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.8vw,20px)', marginTop: 'clamp(34px,4.4vw,56px)', ...GRID_CAP }}>
             {whyFans.map((p) => (
               <div key={p.title} data-rev style={{ display: 'flex', flexDirection: 'column', gap: 12, background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(22px,2.6vw,32px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
                 <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name={p.icon} size={26} /></span>
@@ -168,13 +203,13 @@ export default function FanLedGrowthPage() {
             ))}
           </div>
 
-          <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(24px,3vw,38px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(26px,3.2vw,40px)' }}>
+          <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(24px,3vw,38px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(26px,3.2vw,40px)', ...GRID_CAP }}>
             <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
             <div className="flg-est" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(20px,3vw,44px)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: '52ch' }}>
                 <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Fan Value estimate</span>
                 <p style={{ fontSize: 'clamp(1.1rem,1.5vw,1.4rem)', lineHeight: 1.32, fontWeight: HEAD_W, color: '#EFE9DC', margin: 0 }}>
-                  The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M brand.
+                  The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M&nbsp;brand.
                 </p>
                 <p style={{ fontSize: '.9rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
                   On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others. An example, not your numbers.
@@ -188,20 +223,49 @@ export default function FanLedGrowthPage() {
         </div>
       </section>
 
-      {/* ─── WHY YOU'RE HERE ─── */}
+      {/* ─── 4. SO WHAT DO YOU DO ABOUT IT ─── */}
+      {/* The beat the page was missing: it won the argument and then went
+        * quiet. Also the hand-off that gives each page one job — this page is
+        * the idea, /methodology is the method. Copy-only, no cards, so it
+        * doubles as the break between the two card grids. */}
       <section style={{ background: '#15110F' }}>
+        <div style={{ ...INNER, padding: 'clamp(56px,6.5vw,92px) clamp(20px,5vw,64px)' }}>
+          <div data-rev style={{ maxWidth: '60ch' }}>
+            <Eyebrow>What to do about it</Eyebrow>
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0' }}>
+              Knowing fans matter is the <mark>easy part</mark>.
+            </h2>
+            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
+              Most companies already believe this. What stops them is that no single team owns it: brand, product and community each hold a piece, and nobody holds the whole. So it stays a feeling nobody can put a number&nbsp;on.
+            </p>
+            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(18px,2vw,24px) 0 0' }}>
+              That is the part I build. The <mark>Fan Engine<span className="tm">&trade;</span></mark> runs all four as one system, and ties each part to a number you can put in front of a&nbsp;board.
+            </p>
+            <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
+              <Link to="/methodology" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+                See how the Fan Engine works <span className="ar" aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 5. WHO IT'S FOR ─── */}
+      {/* On the deeper ground so it separates from the band above, which is
+        * also dark but carries no cards. */}
+      <section style={{ background: '#0E0B09' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ maxWidth: '66ch' }}>
-            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Who it&rsquo;s for</span>
+            <Eyebrow>Who it&rsquo;s for</Eyebrow>
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0' }}>
               However you got here, <mark>fans are the next step</mark>.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.62, color: 'rgba(239,233,220,.82)', margin: 'clamp(16px,2vw,22px) 0 0' }}>
-              I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too. The two are a perfect marriage, and fan-led is the half still on the table.
+            <p style={{ fontSize: T.lede, lineHeight: 1.62, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
+              I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it&nbsp;too.
             </p>
           </div>
 
-          <div className="flg-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.8vw,20px)', marginTop: 'clamp(34px,4.4vw,56px)' }}>
+          <div className="flg-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.8vw,20px)', marginTop: 'clamp(34px,4.4vw,56px)', ...GRID_CAP }}>
             {situations.map((s, i) => (
               <div key={s.title} data-rev style={{ display: 'flex', flexDirection: 'column', gap: 10, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(200,54,43,.55)', borderRadius: 4, padding: 'clamp(22px,2.6vw,34px)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -213,16 +277,43 @@ export default function FanLedGrowthPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div data-rev style={{ marginTop: 'clamp(28px,3.4vw,44px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 20px' }}>
-            <span style={{ fontSize: T.lede, fontWeight: HEAD_W, color: '#EFE9DC' }}>Sound like you? That&rsquo;s exactly what I build.</span>
-            <Link to={CONTACT_URL} className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-              Get in touch <span className="ar" aria-hidden>→</span>
+      {/* ─── 6. WHERE TO START ─── */}
+      {/* The page used to end on an inline sentence and two buttons, then the
+        * footer. Every other page closes with a band. Three tiers, the order
+        * settled on the homepage close: the number first, the offer second,
+        * the low-commitment diagnostic as a quiet third. */}
+      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+        <div style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', textAlign: 'center' }}>
+          {/* Width in px, not ch: `ch` resolves against THIS div's inherited
+            * 16px font, not the 60px heading inside it, so a 30ch cap came out
+            * at ~240px and broke the headline over four lines. */}
+          <div data-rev style={{ maxWidth: 620, margin: '0 auto' }}>
+            <Eyebrow tone="red">Where to start</Eyebrow>
+            <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '16px auto 22px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2close, lineHeight: 1.04, letterSpacing: '-.03em', margin: 0, color: '#15110F' }}>
+              Stop <mark>renting</mark> your growth.
+            </h2>
+          </div>
+          <p data-rev style={{ fontSize: T.lede, lineHeight: 1.6, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) auto 0', maxWidth: '46ch' }}>
+            If any of that sounded like your company, the next step is a number, not a&nbsp;meeting.
+          </p>
+          <div data-rev className="flg-close__ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '14px 16px', marginTop: 'clamp(26px,3.2vw,36px)' }}>
+            <Link to="/fan-value" className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
+              See what your fans are worth <span className="ar" aria-hidden>→</span>
             </Link>
-            <Link to="/services" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+            <Link to="/services" className="flg-btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
               See how we&rsquo;d work together <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
+          <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: '#6B6157', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>
+            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ink">Take the 2-minute Fan Score&nbsp;&rarr;</Link>
+          </p>
+          <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: '#6B6157', margin: 'clamp(8px,1vw,10px) 0 0' }}>
+            Or <Link to={CONTACT_URL} className="flg-inline flg-inline--ink">tell me about your brand</Link>.
+          </p>
         </div>
       </section>
     </div>
