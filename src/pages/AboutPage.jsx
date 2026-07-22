@@ -187,8 +187,14 @@ export default function AboutPage() {
         * down into "How I work now" on this page, which is the section about
         * her practice. Nothing was deleted outright. */}
 
-      {/* ─── STORY 01 · STORYTELLING ──────────────────────────── */}
-      <section className="about-band">
+      {/* ─── STORY 01 · STORYTELLING (bone) ───────────────────
+        * On bone since 22 Jul 2026, per Laura. With the hero now a full-bleed
+        * photograph on near-black and the community story on #2D2723, this
+        * band sitting on the default dark made three dark grounds in a row
+        * before the page offered any relief. Bone here puts the first
+        * light/dark snap at the second section, and the sequence reads
+        * black · bone · brown · oxblood · bone · dark · oxblood. */}
+      <section className="about-band about-band--bone">
         <div className="container about-eng">
           <div className="about-eng__left">
             <span className="about-eng__kick">Storytelling &amp; world-building</span>

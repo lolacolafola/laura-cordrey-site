@@ -105,7 +105,7 @@
 .about-hero {
   position: relative;
   overflow: hidden;
-  background: #2D2723;
+  background: #0E0B09;
   border-bottom: 1px solid var(--hairline);
   /* 104/56 rather than 140/60. The hero is 1280 wide and the source is
      1024x683, so every extra 100px of height costs another 0.15x of upscale
@@ -141,8 +141,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, #2D2723 3%, rgba(45, 39, 35, 0.84) 20%, rgba(45, 39, 35, 0) 48%),
-    linear-gradient(to right, #2D2723 32%, rgba(45, 39, 35, 0.86) 48%, rgba(45, 39, 35, 0.3) 72%, rgba(45, 39, 35, 0.1) 100%);
+    linear-gradient(to top, #0E0B09 3%, rgba(14, 11, 9, 0.86) 20%, rgba(14, 11, 9, 0) 48%),
+    linear-gradient(to right, #0E0B09 32%, rgba(14, 11, 9, 0.88) 48%, rgba(14, 11, 9, 0.32) 72%, rgba(14, 11, 9, 0.1) 100%);
   pointer-events: none;
 }
 .about-hero > .container { position: relative; z-index: 1; }
@@ -705,6 +705,32 @@
    --accent (#C8362B) on the bone ground measures 4.32 against 4.5 for text
    this size. --accent-deep is the same gesture and lands at 7.13, which is
    the substitution /services made in 4381bab for the identical failure. */
+/* ── The editorial split on the bone ground ────────────────────────────
+   Added 22 Jul 2026 when story 01 ("I build worlds people fall for.") moved
+   to bone. Every one of these classes was written for a dark ground, so
+   without the full set the section renders cream-on-cream. Contrast values
+   are the measured ones on #EFE9DC:
+
+     --edge gold kicker      1.9  -> --accent-deep  7.13
+     cream title             1.1  -> --ink-on-surface
+     --ink-muted body        2.4  -> --ink-muted-on-surface
+     --accent pull numbers   4.32 -> --accent-deep  (54px, but 4.32 < 4.5
+                                     only matters for the <span> under it;
+                                     moved together so the pair matches)
+   The <mark> is the one to watch, per the CLAUDE.md rule: red on bone is
+   4.32, which fails at body size and passes at display size. It is a 41px
+   heading here, so 3.0 applies and --accent would pass, but it is set to
+   --accent-deep anyway so the same section stays correct if the heading
+   scale ever comes down. */
+.about-band--bone .about-eng__kick { color: var(--accent-deep); }
+.about-band--bone .about-eng__title { color: var(--ink-on-surface); }
+.about-band--bone .about-eng__title mark { color: var(--accent-deep); }
+.about-band--bone .about-eng__right p { color: var(--ink-muted-on-surface); }
+.about-band--bone .about-eng__right p strong { color: var(--ink-on-surface); }
+.about-band--bone .about-pulls { border-top-color: rgba(21, 17, 15, 0.14); }
+.about-band--bone .about-pull b { color: var(--accent-deep); }
+.about-band--bone .about-pull span { color: var(--ink-muted-on-surface); }
+
 .about-band--bone .marker { color: var(--accent-deep); }
 .about-band--bone .section-head__title { color: var(--ink-on-surface); }
 

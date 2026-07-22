@@ -66,3 +66,23 @@ must be written to a file in this repo, **not left only in the chat reply.**
 - Ambient animation (scroll reveals, autonomous loops like the radar sweep) is
   fine anywhere — it promises nothing. Keep it off under
   `prefers-reduced-motion`.
+- **Change a band's ground, re-check every `<mark>` on it.** The red `<mark>`
+  is the single most common contrast failure on this site, and it is always
+  the same cause: the buttons and body copy get checked when a section's
+  background changes, and the mark does not. It has bitten four times:
+  `#C8362B` on oxblood at **1.4** (the /services close), on `#2D2723` at
+  **2.82** (twice on /about), and a 20px→16.8px body change silently pushing a
+  mark under the 18.66px "large text" line so 4.32 stopped being a pass.
+  - Large text (≥24px, or ≥18.66px bold) needs **3.0**. Everything else needs
+    **4.5**. A font-size change can move a mark across that boundary without
+    the colour changing at all.
+  - Known-good substitutions, already used across the site: **`#E4695E`** for
+    red marks on dark grounds, **`var(--accent-deep)` `#8E2520`** for red on
+    bone or cream, **`#F2D79A`** for gold on oxblood, **`#B8AEA2`** for muted
+    body copy on the mid-dark grounds (`#2D2723`, `#241D19`), where
+    `--ink-muted` measures 3.8–4.3.
+  - Measure in the browser, not by eye, and composite `rgba()`/`color()`
+    foregrounds over the resolved ground before computing the ratio. Note that
+    Chrome returns some colours as `color(srgb 0.93 0.91 0.86 / 0.84)` with
+    channels in **0–1, not 0–255**; a parser that assumes 0–255 invents
+    failures that are not there.

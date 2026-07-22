@@ -52,17 +52,28 @@ export default function WorkPage() {
         * build prerenders every route and the SEO audit checks for exactly one
         * h1 per snapshot. It is just no longer at hero scale: 41px, the same
         * T.h2 step the rest of the site uses for section heads, so it reads as
-        * a label rather than a headline. "Receipts, not a résumé" survives as
-        * the eyebrow, where the joke still lands in a quarter of the space.
+        * a label rather than a headline.
+        *
+        * The eyebrow went back to "Selected Work · 2013-2026" on Laura's call.
+        * "Receipts, not a résumé" was moved up here when the lockup was cut,
+        * on the reasoning that the line was too good to lose; she does not
+        * like it, and a line nobody wants is not worth keeping for the pun.
+        * What was there before is plain, says what the page is, and carries
+        * the date range, which is the useful part.
         *
         * The "Let's talk" CTA went with the lockup. It is in the nav, in the
         * footer, and at the foot of every case study this page links to, so a
         * fourth instance above the fold was asking before showing anything. */}
+      {/* The red radial halo top-right came out on 22 Jul 2026, per Laura.
+        * It was sized for the old hero: a 760px glow behind an 89px headline
+        * and a two-column lockup. Against a 375px header it had nothing left
+        * to sit behind, so it read as a red smudge above the cards rather
+        * than as lighting. The cards carry their own artwork; the header does
+        * not need a light source. */}
       <section style={{ position: 'relative', background: '#0E0B09', color: '#EFE9DC', overflow: 'hidden' }}>
-        <div aria-hidden="true" style={{ position: 'absolute', top: '-24%', right: '-8%', width: '60vw', height: '60vw', maxWidth: 760, maxHeight: 760, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(24px,5vw,64px) clamp(32px,4vw,48px)' }}>
           <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(14px,1.8vw,20px)' }}>
-            Receipts, not a résumé · 2013–2026
+            Selected Work · 2013–2026
           </span>
 
           {/* The one line. Keeps the sector words the old paragraph carried
