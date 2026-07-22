@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import caseStudies from '../data/caseStudies.js'
 import WorkCard from '../components/WorkCard.jsx'
@@ -6,7 +5,9 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, workIndexJsonLd } from '../lib/seo.js'
 import '../styles/shared.css' // shared .work-card / .work-grid / .section-head styles
 
-const CONTACT_URL = '/contact?intent=consulting'
+// CONTACT_URL and the react-router Link import went with the hero CTA on
+// 22 Jul 2026. This page no longer links to /contact directly; the nav, the
+// footer and every case study it points at all do.
 
 // Derive unique sector list from the data — order = first-seen across the
 // case-study array so editorial control stays in caseStudies.js.
@@ -36,36 +37,45 @@ export default function WorkPage() {
 
   return (
     <>
-      {/* ─── HERO + PROOF BAND ────────────────────────────────
-        * Replaces the old "The work." quiet head with a hero-scale
-        * lockup ("Receipts, not a résumé.") and a continuous receipts
-        * band front-loading four proof numbers, so the hard proof
-        * (revenue, reach, community, sentiment) sits above the fold
-        * instead of hiding below the grid. */}
+      {/* ─── HEADER ───────────────────────────────────────────
+        * Stripped back on 22 Jul 2026, per Laura: eyebrow, one small résumé
+        * line, the filter choices. Nothing else.
+        *
+        * This page was carrying a full hero: an 89px "Receipts, not a résumé."
+        * lockup beside a 58-word paragraph and a CTA. On an index page that is
+        * the wrong shape. Every other page opens with a big statement, so
+        * /work opened like all the others and then made you scroll past it to
+        * reach the thing you came for. Here the work IS the hero, and the
+        * header's only job is to say what this is and let you filter it.
+        *
+        * The h1 is kept, and kept as the only one on the page, because the
+        * build prerenders every route and the SEO audit checks for exactly one
+        * h1 per snapshot. It is just no longer at hero scale: 41px, the same
+        * T.h2 step the rest of the site uses for section heads, so it reads as
+        * a label rather than a headline. "Receipts, not a résumé" survives as
+        * the eyebrow, where the joke still lands in a quarter of the space.
+        *
+        * The "Let's talk" CTA went with the lockup. It is in the nav, in the
+        * footer, and at the foot of every case study this page links to, so a
+        * fourth instance above the fold was asking before showing anything. */}
       <section style={{ position: 'relative', background: '#0E0B09', color: '#EFE9DC', overflow: 'hidden' }}>
         <div aria-hidden="true" style={{ position: 'absolute', top: '-24%', right: '-8%', width: '60vw', height: '60vw', maxWidth: 760, maxHeight: 760, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(56px,7vw,104px) clamp(24px,5vw,64px) clamp(40px,5vw,64px)' }}>
-          <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(22px,3vw,34px)' }}>
-            Selected Work · 2013–2026
+        <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(24px,5vw,64px) clamp(32px,4vw,48px)' }}>
+          <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(14px,1.8vw,20px)' }}>
+            Receipts, not a résumé · 2013–2026
           </span>
 
-          <div className="work-lockup" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
-            <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.8rem,6.4vw,5.6rem)', lineHeight: 0.94, letterSpacing: '-.04em', margin: 0, maxWidth: '13ch' }}>
-              <mark style={{ background: 'transparent', color: '#C8362B', fontWeight: 800 }}>Receipts</mark>, not a résumé.
-            </h1>
-            <div style={{ paddingBottom: 8, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              <p style={{ fontSize: 'clamp(1.06rem,1.4vw,1.28rem)', lineHeight: 1.55, color: 'rgba(239,233,220,.82)', margin: '0 0 22px' }}>
-                Thirteen years of fan-led growth across AAA gaming, mobility and telco. A $32K sellout in under three hours, 60M+ organic reach at zero media spend, 0 to a million in a new market. A select few of my favorite projects below. Want your brand on here?
-              </p>
-              <Link to={CONTACT_URL} className="work-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '.95rem', letterSpacing: '.02em', textDecoration: 'none' }}>
-                Let’s talk <span className="ar" aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
+          {/* The one line. Keeps the sector words the old paragraph carried
+            * ("fan-led growth", "gaming", "mobility", "telco") because those
+            * are what this page ranks on; drops the three proof numbers, which
+            * are all restated on the cards directly below it. */}
+          <h1 style={{ fontWeight: 700, fontSize: 'clamp(1.8rem,3.2vw,2.75rem)', lineHeight: 1.12, letterSpacing: '-.025em', margin: 0, maxWidth: '26ch' }}>
+            Thirteen years of fan-led growth across AAA gaming, mobility and&nbsp;telco.
+          </h1>
 
-          {/* Filters sit inside the hero band so they read as part of the
+          {/* Filters sit inside the header band so they read as part of the
             * header stratum, not a separate section on the light ground. */}
-          <div className="work-filters" role="tablist" aria-label="Filter case studies by sector" style={{ marginTop: 'clamp(40px,5vw,60px)', marginBottom: 0 }}>
+          <div className="work-filters" role="tablist" aria-label="Filter case studies by sector" style={{ marginTop: 'clamp(28px,3.4vw,40px)', marginBottom: 0 }}>
             {['All', ...SECTORS].map((s) => (
               <button
                 key={s}

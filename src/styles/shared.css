@@ -1146,8 +1146,7 @@
   border-color: var(--ink-on-surface);
 }
 
-/* Work hero lockup: collapse to one column on small screens (the inline
- * grid can't respond to viewport; this override wins via !important). */
-@media (max-width: 760px) {
-  .work-lockup { grid-template-columns: 1fr !important; }
-}
+/* .work-lockup went with the /work hero on 22 Jul 2026. It was the companion
+ * class for an inline two-column grid, per the rule that an inline
+ * gridTemplateColumns always needs one; the header is a single column now, so
+ * there is no grid left for it to collapse. */
