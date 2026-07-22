@@ -3,9 +3,10 @@
  * Editorial layout: hero + intro, "gap" argument, three story
  * beats (storytelling, community, big moments), how-I-work-now,
  * four disciplines, speaking teaser, selected experience, close.
- * Alternating band grounds (dark → deep → dark → grey → oxblood
- * → dark → bone → dark → deep → oxblood finale). Design ref:
- * design_handoff_final_pass/about/.
+ * Band grounds, 22 Jul 2026: black (full-bleed hero) → bone → brown
+ * → espresso → bone → dark → oxblood finale. Oxblood appears ONCE, on the
+ * close, per the site rule that editorial pages close on it.
+ * Design ref: design_handoff_final_pass/about/.
  *
  * NOTE: The .about-speaking* block near the bottom is shared with
  * SpeakingPage.jsx (which imports this file). Do NOT remove those
@@ -41,6 +42,13 @@
 }
 .about-band--grey {
   background: #2D2723;
+  border-top: 0;
+}
+/* Espresso, the third warm dark. Added 22 Jul 2026 when story 03 came off
+   oxblood so the finale keeps that colour to itself. Already in the palette
+   as the /ai card ground. */
+.about-band--espresso {
+  background: #241D19;
   border-top: 0;
 }
 .about-band--ox {
@@ -399,12 +407,27 @@
 }
 
 /* Oxblood story-03 overrides — kicker cream, body cream, forced-cream mark */
+/* Espresso overrides. --ink-muted measures 4.30 on #241D19 and --accent 3.18,
+   so both take the documented substitutions for this ground. The kicker keeps
+   --edge gold, which clears comfortably. */
+.about-band--espresso .about-eng__right p { color: #B8AEA2; }
+.about-band--espresso .about-eng__title mark { color: var(--accent-light); }
+/* Cream, not red. This band already spends its gesture on the heading <mark>;
+   two 54px red numerals under it made red the loudest thing on a band whose
+   job is a story. Matches the grey and bone story bands: the mark carries the
+   red, the numbers carry the data. See "spend the gesture once" in CLAUDE.md. */
+.about-band--espresso .about-pull b { color: #EFE9DC; }
+.about-band--espresso .about-pull span { color: #B8AEA2; }
+
 .about-band--ox .about-eng__kick { color: #E7D9AD; }
 .about-band--ox .about-eng__right p { color: rgba(251, 243, 228, 0.88); }
 .about-band--ox .about-eng__right p strong { color: #FBF3E4; }
-.about-eng__mark--cream {
-  color: #FBF3E4 !important;
-}
+/* .about-eng__mark--cream went with the oxblood story band on 22 Jul 2026.
+   It existed for one reason: red on #A12A1E measures 1.4, so the mark on
+   "the big moment" had to be cream to be visible at all, which meant it was
+   the same colour as the words around it and stopped reading as a mark.
+   On espresso the mark is red again and does its job. The oxblood CLOSE has
+   no mark, so nothing else needed it. */
 
 /* ─── PULLS (stat row inside a story's right column) ──────── */
 .about-pulls {
@@ -498,11 +521,13 @@
 .about-band--grey .about-pull span {
   color: #B8AEA2;
 }
-/* The pull numbers ("85%", "15M") are 54.4px, so they only need 3.0, and
-   --accent still misses it at 2.82 on this ground. Same lighter red as the
-   mark above, for the same reason. */
+/* Cream, matching the espresso and bone story bands. This was --accent-light
+   after the contrast fix, which was right on ratio but still left the band
+   spending red twice: on the heading <mark> and on two 54px numerals.
+   Consistent across all three story bands now, per "spend the gesture once"
+   in CLAUDE.md: the mark carries the red, the numbers carry the data. */
 .about-band--grey .about-pull b {
-  color: var(--accent-light);
+  color: #EFE9DC;
 }
 .about-imgsplit__content .about-pulls {
   display: flex;

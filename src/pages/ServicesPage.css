@@ -75,7 +75,17 @@
  * vertical rhythm. No decorative sparkles or halo — this hero
  * lives inside the site, not on the cover.
  * ───────────────────────────────────────────────────────────── */
+/* Brown ground since 22 Jul 2026, per Laura, to stop every page opening on
+   the same near-black.
+   Brown specifically, and the page's own rows are the reason: the offer rows
+   already cycle bone, gold (--edge) and espresso (--bg). A bone hero would run
+   straight into the first bone row with nothing between them, and espresso is
+   what the dark rows already use. #2D2723 is the only warm ground on this page
+   not already spoken for, so the hero reads as its own stratum.
+   It is also free now: /about's hero tried this colour earlier today and went
+   to black, so brown is no longer used twice on the site. */
 .svc-hero {
+  background: #2D2723;
   padding-top: var(--space-7);
   /* CTAs are the hero's last element (the hint line was removed), so the
      full space-9 read as dead space. Tightened to match the top. */
@@ -112,16 +122,21 @@
   text-wrap: balance;
   margin: 0;
 }
+/* #B8AEA2, not --ink-muted: the hero ground is #2D2723 since 22 Jul 2026 and
+   --ink-muted measures 3.81 there against 4.5. The documented substitution for
+   this ground; see the red/ground table in CLAUDE.md. */
 .svc-hero__lede {
   font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede ~16.8 */
   line-height: 1.55;
-  color: var(--ink-muted);
+  color: #B8AEA2;
   max-width: 50ch;
   margin: 0;
 }
+/* --accent measures 2.82 on the brown; --accent-light is 4.54. */
+.svc-hero__title mark { background: transparent; color: var(--accent-light); }
 .svc-hero__backlink {
   font-size: 0.95rem;
-  color: var(--ink-muted);
+  color: #B8AEA2;
   margin: clamp(14px, 1.8vw, 18px) 0 0;
 }
 .svc-hero__ctas {

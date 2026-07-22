@@ -353,13 +353,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── STORY 03 · BIG MOMENTS (oxblood) ─────────────────── */}
-      <section className="about-band about-band--ox">
+      {/* ─── STORY 03 · BIG MOMENTS (espresso) ────────────────
+        * Off oxblood on 22 Jul 2026. This was the remaining big pop of red on
+        * the page and it was costing the close: the site rule settled the same
+        * week is that editorial pages CLOSE on oxblood, which makes oxblood
+        * the finale's signature. Spending a whole band of it mid-page means
+        * the reader has already met the loudest colour before they arrive at
+        * the thing it was reserved for.
+        *
+        * Espresso #241D19 instead, which is already in the palette on the /ai
+        * cards. That gives the page three distinct warm darks rather than one
+        * dark and two reds: black · bone · brown · espresso · bone · dark ·
+        * oxblood. The cream <mark> went with the ground: it existed only
+        * because red-on-oxblood measured 1.4, and on espresso the mark can be
+        * red again and actually read as a mark. */}
+      <section className="about-band about-band--espresso">
         <div className="container about-eng">
           <div className="about-eng__left">
             <span className="about-eng__kick">Go big or go home</span>
             <h2 className="about-eng__title">
-              Trusted with <mark className="about-eng__mark--cream">the big moment</mark>.
+              Trusted with <mark>the big moment</mark>.
             </h2>
           </div>
           <div className="about-eng__right">
