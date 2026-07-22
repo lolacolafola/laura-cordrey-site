@@ -358,10 +358,10 @@ export default function HomePage() {
       </section>
 
       {/* ─── 3 · ABOUT ─── */}
-      <section id="about" style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section id="about" className="on-light" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div className="grid-2" style={{ ...INNER, padding: SECTION_PAD, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5.5vw,72px)', alignItems: 'center' }}>
           <div data-rev>
-            <Eyebrow tone="red">The person behind it</Eyebrow>
+            <Eyebrow tone="deep">The person behind it</Eyebrow>
             {/* First person, to match the copy under it. "Meet Laura" was
               * third person sitting on top of "I've worked the whole machine",
               * so the section changed voice halfway down. */}
@@ -460,10 +460,10 @@ export default function HomePage() {
       </section>
 
       {/* ─── 5 · SELECTED WORK ─── */}
-      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section className="on-light" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ textAlign: 'center', marginBottom: 'clamp(32px,4vw,48px)' }}>
-            <Eyebrow tone="red">Selected work</Eyebrow>
+            <Eyebrow tone="deep">Selected work</Eyebrow>
             <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 0, color: '#15110F' }}>
               My biggest wins, so far.
@@ -491,14 +491,14 @@ export default function HomePage() {
                     * large. Now ~25.6px at 1280 vs the old 29px. */}
                   <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.35rem,2vw,1.7rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B' }}>{c.value}</span>
                   <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{c.label}</span>
-                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
+                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#5E564E', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
                 </div>
               </div>
             ))}
           </div>
 
           <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(26px,3.2vw,38px)' }}>
-            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
+            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#8E2520', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
               See all work <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
@@ -539,9 +539,9 @@ export default function HomePage() {
       </section>
 
       {/* ─── 7 · IN THEIR WORDS ─── */}
-      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section className="on-light" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div data-rev style={{ ...INNER, padding: SECTION_PAD, maxWidth: 760, textAlign: 'center' }}>
-          <Eyebrow tone="red">In their words</Eyebrow>
+          <Eyebrow tone="deep">In their words</Eyebrow>
           <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 24px' }} />
           <blockquote style={{ margin: 0, padding: 0 }}>
             <p style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.4rem,2.4vw,1.95rem)', letterSpacing: '-.02em', lineHeight: 1.25, color: '#15110F', margin: 0, textWrap: 'pretty' }}>

@@ -66,7 +66,7 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: #C8362B;
+  color: var(--accent-text);
 }
 
 /* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
@@ -105,9 +105,11 @@
 }
 .meth-h2--onbone { max-width: 20ch; }
 
+/* var(--accent-text): this page runs bone bands and dark bands, and the marks
+   appear on both. The two bone bands set the variable to the deep red below. */
 .meth-page mark {
   background: transparent;
-  color: #C8362B;
+  color: var(--accent-text);
   font-weight: 700;
 }
 
@@ -219,6 +221,8 @@
 .meth-band--problem {
   background: #EFE9DC;
   color: #15110F;
+  /* light ground: red text resolves deep. See base.css --accent-text. */
+  --accent-text: var(--accent-deep);
   border-bottom: 1px solid rgba(21, 17, 15, 0.1);
 }
 .meth-whofor {
@@ -335,6 +339,8 @@
 .meth-band--journey {
   background: #EFE9DC;
   color: #15110F;
+  /* light ground: red text resolves deep. See base.css --accent-text. */
+  --accent-text: var(--accent-deep);
   border-bottom: 1px solid rgba(21, 17, 15, 0.1);
 }
 .meth-stages {

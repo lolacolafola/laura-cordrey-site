@@ -70,11 +70,17 @@ p { margin: 0; }
 }
 
 /* ─── Highlight ─────────────────────────────────────────── */
-/* <mark> renders the highlighted fragment in solid accent red, bold,
-   no background — matches the .accent em treatment on the homepage. */
+/* <mark> renders the highlighted fragment in red, bold, no background.
+ *
+ * --accent-light, not --accent, since 22 Jul 2026. The site's default ground
+ * is dark, and --accent measures 3.75 on black / 3.59 on #15110F / 2.82 on the
+ * brown: fine for a display heading (threshold 3.0) and a fail for every mark
+ * at body size (4.5). Marks appear at both sizes, so the default has to be the
+ * value that works at both. `.on-light mark` takes it back to --accent-deep on
+ * bone and cream. See the red table in CLAUDE.md. */
 mark {
   background: transparent;
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 800;
 }
 
@@ -103,7 +109,30 @@ mark {
   margin: 0;
 }
 
-.accent { color: var(--accent); }
+
+
+/* ─── Red text, resolved by ground ───────────────────────────────────
+ * The shared red-text elements read --accent-text rather than a fixed value.
+ * It defaults to --accent-light because the site's default ground is dark, and
+ * any container on a light ground re-points it with ONE line:
+ *
+ *     .my-bone-band { --accent-text: var(--accent-deep); }
+ *
+ * or by carrying the `on-light` class. That is the whole mechanism: no
+ * per-page selector lists, and a new light section is one declaration away
+ * from being correct.
+ *
+ * Why it matters: --accent #C8362B measures 4.32 on bone and 3.59-3.75 on the
+ * darks. It passes as DISPLAY text (>=24px, threshold 3.0) on both and fails
+ * as body text (4.5) on both. Marks and kickers appear at both sizes, so the
+ * default has to be a value that works at either. See the table in CLAUDE.md. */
+:root { --accent-text: var(--accent-light); }
+.on-light { --accent-text: var(--accent-deep); }
+mark,
+.accent,
+.tlink,
+.ar,
+.marker { color: var(--accent-text); }
 
 /* ─── Print + reduced-motion safety net ─────────────────────────────
  * Scroll-reveal animations start elements invisible until they enter

@@ -29,9 +29,10 @@
   margin-bottom: 12px;
 }
 .sp-eyebrow--gold { color: #D4C896; }
-/* #C8362B on the near-black hero ground measured 3.59 against 4.5. #E0574B
-   is the lighter red already used for .sp-kicker on this page. */
-.sp-eyebrow--red { color: #E0574B; }
+/* var(--accent-text), which on this page's dark grounds resolves to
+   --accent-light. Was a hardcoded #E0574B; the token is the same job with the
+   site's one answer for red text on dark. */
+.sp-eyebrow--red { color: var(--accent-text); }
 .sp-eyebrow--brightgold { color: #F2D79A; }
 
 /* ─── 1 · VIDEO HERO ────────────────────────────────── */
@@ -151,7 +152,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #E0574B;
+  color: var(--accent-text);
   margin-bottom: 10px;
 }
 .sp-kicker--bright { font-size: 0.68rem; }
@@ -244,7 +245,7 @@
   font-size: clamp(2.4rem, 3.8vw, 3.4rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #C8362B;
+  color: var(--accent-text);
   line-height: 1;
   align-self: center;
 }
@@ -386,7 +387,7 @@
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #E0574B;
+  color: var(--accent-text);
   flex: none;
 }
 .sp-timeline__title {

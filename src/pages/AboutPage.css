@@ -60,6 +60,8 @@
   background: var(--surface);
   color: var(--ink-on-surface);
   border-top: 0;
+  /* light ground: red text resolves deep. See base.css --accent-text. */
+  --accent-text: var(--accent-deep);
 }
 
 /* ─── HALO + SPARKLES (decoration) ────────────────────────── */

@@ -158,7 +158,7 @@ export default function FanLedGrowthPage() {
         * The centred hero is the HOMEPAGE's signature and stays unique to it —
         * flipping only the ground would have read as "the homepage in light
         * mode", because this hero was built to match it exactly. */}
-      <section style={{ background: '#EFE9DC' }}>
+      <section className="on-light" style={{ background: '#EFE9DC' }}>
         <div className="flg-hero" style={{ ...INNER, padding: 'clamp(76px,9vw,120px) clamp(20px,5vw,64px) clamp(64px,7.5vw,100px)' }}>
           <div className="flg-hero__copy" style={{ maxWidth: '62ch' }}>
             <Eyebrow tone="deep">Fan-led growth</Eyebrow>
@@ -193,7 +193,7 @@ export default function FanLedGrowthPage() {
         * benefit cards below invite, and give the eye a non-card band between
         * the hero and the first grid. Same reasoning that put the full-bleed
         * speaking band into the homepage rebuild. */}
-      <section style={{ background: '#FCFAF3', borderTop: '1px solid rgba(21,17,15,.1)', borderBottom: '1px solid rgba(21,17,15,.1)' }}>
+      <section className="on-light" style={{ background: '#FCFAF3', borderTop: '1px solid rgba(21,17,15,.1)', borderBottom: '1px solid rgba(21,17,15,.1)' }}>
         <div style={{ ...INNER, padding: 'clamp(48px,5.5vw,76px) clamp(20px,5vw,64px)' }}>
           <div data-rev>
             <Eyebrow tone="deep">The evidence</Eyebrow>
@@ -216,7 +216,7 @@ export default function FanLedGrowthPage() {
       </section>
 
       {/* ─── 3. WHY FANS ─── */}
-      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section className="on-light" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev>
             <Eyebrow tone="deep">Why fans</Eyebrow>
@@ -310,7 +310,7 @@ export default function FanLedGrowthPage() {
       </section>
 
       {/* ─── 5. WHO IT'S FOR ─── */}
-      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+      <section className="on-light" style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
           <div data-rev style={{ maxWidth: '66ch' }}>
             <Eyebrow tone="deep">Who it&rsquo;s for</Eyebrow>

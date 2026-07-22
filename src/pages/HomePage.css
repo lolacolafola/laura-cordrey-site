@@ -421,7 +421,9 @@
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: #8A8078;
+  /* #8A8078 measures 4.46 on the #1F1A17 tool-card ground, just under 4.5.
+     #B8AEA2 is the muted-on-dark already used for this across the site. */
+  color: #B8AEA2;
 }
 .cinv2 .tool-body {
   display: flex;
@@ -440,7 +442,7 @@
   letter-spacing: -.02em;
   color: #EFE9DC;
 }
-.cinv2 .gauge-num span { font-size: .84rem; color: #8A8078; font-weight: 700; }
+.cinv2 .gauge-num span { font-size: .84rem; color: #B8AEA2; font-weight: 700; }
 .cinv2 .val-num {
   font-weight: 700;
   font-size: clamp(2.2rem, 4vw, 2.9rem);

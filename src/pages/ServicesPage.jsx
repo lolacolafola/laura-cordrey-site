@@ -436,7 +436,7 @@ export default function ServicesPage() {
               <li key={s.n} className="svc-how__step" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <span
                   className="svc-how__num"
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start', fontSize: 'clamp(1.35rem,2vw,1.75rem)', fontWeight: HEAD_W, letterSpacing: '-.02em', lineHeight: 1, color: '#C8362B', background: '#EFE9DC', padding: '0 14px', height: 68, position: 'relative', zIndex: 1 }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start', fontSize: 'clamp(1.35rem,2vw,1.75rem)', fontWeight: HEAD_W, letterSpacing: '-.02em', lineHeight: 1, color: 'var(--accent-text)', background: '#EFE9DC', padding: '0 14px', height: 68, position: 'relative', zIndex: 1 }}
                 >
                   {s.n}
                 </span>

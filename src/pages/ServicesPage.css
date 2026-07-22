@@ -31,6 +31,8 @@
   background: var(--surface);
   color: var(--ink-on-surface);
   border-top: 0;
+  /* light ground: red text resolves deep. See base.css --accent-text. */
+  --accent-text: var(--accent-deep);
 }
 
 /* Anchor targets slide clear of the fixed nav. */
@@ -312,7 +314,12 @@
 }
 
 /* ─── PROOF CARD (inset cream, cascade-safe) ──────────────── */
+/* The card owns its own light ground, so it owns --accent-text too. It nests
+   inside espresso rows (dark) which nest inside bone bands (light), and the
+   variable belongs on whichever element actually sets the background. Three
+   levels of ground nesting on this page: band, row, card. */
 .svc-proofcard {
+  --accent-text: var(--accent-deep);
   background: #FCFAF3;
   border: 1px solid rgba(21, 17, 15, 0.1);
   border-radius: 3px;
@@ -326,7 +333,9 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  /* Reads --accent-text so it resolves by ground: the proof card sits on both
+     the bone rows and the dark ones. Was --accent, 4.32 on the cream card. */
+  color: var(--accent-text);
   display: block;
   margin-bottom: 0.6rem;
 }
@@ -806,7 +815,12 @@
    these rows sit on, so light rows were invisible against it and half the
    alternation disappeared. Measured before it was caught by eye. */
 .svc-row--bone     { background: #FBF3E4; color: var(--ink-on-surface); }
-.svc-row--espresso { background: var(--bg); color: #EFE9DC; border-color: rgba(212, 200, 150, 0.18); }
+/* --accent-text is re-set here, not just inherited: these dark rows sit INSIDE
+   .svc-band--bone, which points the variable at the deep red for its own light
+   ground. Without this line the espresso rows inherit it and render #8E2520 on
+   #15110F at 2.18. The rule is that the variable belongs on the innermost
+   element that owns a ground, not the outermost. */
+.svc-row--espresso { background: var(--bg); color: #EFE9DC; border-color: rgba(212, 200, 150, 0.18); --accent-text: var(--accent-light); }
 /* Gold is the flagship's colour on the homepage cards too, so the Fan Engine
    reading gold here completes a rule the site already had rather than
    inventing one. It is a LIGHT ground: dark ink, and the same light-ground
@@ -851,7 +865,7 @@
    standard --accent #C8362B measures 4.32 on cream and 2.82 on espresso, both
    under the 4.5 minimum for a label this size. Same rule as Eyebrow.jsx. */
 .svc-row--bone .svc-row__kick { color: #8E2520; }
-.svc-row--espresso .svc-row__kick { color: #E0574B; }
+.svc-row--espresso .svc-row__kick { color: var(--accent-text); }
 
 .svc-row__title {
   display: flex;
@@ -867,8 +881,8 @@
 .svc-row--espresso .svc-row__stop { color: #EFE9DC; }
 /* The red word. At ~40px this is large text (threshold 3.0); it measures 4.74
    on the light rows, and the espresso rows take the lighter red for 5.04. */
-.svc-row--bone .svc-row__b { color: var(--accent); }
-.svc-row--espresso .svc-row__b { color: #E0574B; }
+.svc-row--bone .svc-row__b { color: var(--accent-text); }
+.svc-row--espresso .svc-row__b { color: var(--accent-text); }
 
 .svc-row__teaser {
   font-size: clamp(1rem, 1.15vw, 1.1rem);
@@ -1167,5 +1181,5 @@
  * separated from the ground it sits on — the mildest form of the bug that
  * made the earlier mock's light rows invisible. The espresso rows already
  * carry a border for the same reason; this gives the light ones one too. */
-.svc-row--bone { border-color: rgba(21, 17, 15, 0.12); }
-.svc-row--gold { border-color: rgba(21, 17, 15, 0.10); }
+.svc-row--bone { border-color: rgba(21, 17, 15, 0.12); --accent-text: var(--accent-deep); }
+.svc-row--gold { border-color: rgba(21, 17, 15, 0.10); --accent-text: var(--accent-deep); }

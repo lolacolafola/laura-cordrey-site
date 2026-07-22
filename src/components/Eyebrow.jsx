@@ -14,14 +14,19 @@ import { T, HEAD_W } from '../lib/scale.js'
 //   ox   #F2D79A  on oxblood #A12A1E → 5.21  ✓
 //
 // So: `gold` on dark grounds, `deep` on light grounds, `ox` on the oxblood
-// close band. `red` is kept only because it is already in use on the
-// homepage's cream bands; prefer `deep` for anything new, and treat the
-// remaining `red` instances as a site-wide pass still to do.
+// close band.
+//
+// The `red` tone was RETIRED on 22 Jul 2026. It existed only because three
+// homepage eyebrows used it on cream, each measuring 4.32 against the 4.5 this
+// size needs; that was recorded here as "a site-wide pass still to do" and
+// this is that pass. All three moved to `deep` (7.13). The key is kept as an
+// alias so an old call site degrades to a passing colour rather than crashing,
+// but nothing should use it: the ground picks the tone.
 //
 // `ox` exists because gold #D4C896 goes muddy on oxblood: it is the
 // on-espresso gold. #F2D79A is the pair the homepage close already uses on
 // the same ground, so this tone is that value given a name.
-const TONES = { gold: '#D4C896', red: '#C8362B', deep: '#8E2520', ox: '#F2D79A' }
+const TONES = { gold: '#D4C896', deep: '#8E2520', ox: '#F2D79A', red: '#8E2520' }
 
 export default function Eyebrow({ children, tone = 'gold' }) {
   return (
