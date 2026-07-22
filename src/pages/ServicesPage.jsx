@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, serviceJsonLd } from '../lib/seo.js'
+import { HEAD_W, T } from '../lib/scale.js'
 import './ServicesPage.css'
 
 const BASE = import.meta.env.BASE_URL
@@ -8,15 +9,6 @@ const CONTACT_URL = '/contact?intent=consulting'
 // Deep-link a specific offer so the contact form opens with it pre-selected.
 // Keys must match VALID_NEEDS in ContactPage.jsx.
 const contactFor = (need) => `/contact?intent=consulting&need=${need}`
-
-/* Brand logos for the proof band — same assets/order as About's proof strip. */
-const CLIENTS = [
-  { src: 'logos/blablacar-vert.png', alt: 'BlaBlaCar', maxw: 108 },
-  { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 108 },
-  { src: 'logos/amazon-game-studios.png', alt: 'Amazon Games', maxw: 96 },
-  { src: 'logos/azarus-vert.png', alt: 'Azarus / Animoca', maxw: 108 },
-  { src: 'logos/us-mobile-mark.png', alt: 'US Mobile', maxw: 108 },
-]
 
 /* Services — editorial "Work with me" page. Structure kept from the live
  * design (hero → numbered index → per-offer blocks → How I work → close);
@@ -68,11 +60,14 @@ export default function ServicesPage() {
             </Link>
             .
           </p>
+          {/* ONE hero CTA, 22 Jul 2026. The Fan Score ghost button was the
+            * second, and this was the only page on the site with two: the
+            * homepage, /ai, /speaking and /fan-score all carry exactly one.
+            * The Fan Score is still offered twice in the close, where a reader
+            * who is not ready to talk is the one who needs it. */}
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
-            <Link to="/fan-score" className="btn btn--ghost btn--lg">
-              Take the 2-min Fan Score</Link>
           </div>
         </div>
       </section>
@@ -353,10 +348,11 @@ export default function ServicesPage() {
             <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>
               How I work
             </span>
-            <h2 style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: 800, color: '#15110F', margin: 0, textWrap: 'balance' }}>
+            {/* T.h2 / HEAD_W from src/lib/scale.js, was clamp(1.6rem,3vw,2.4rem)@800. */}
+            <h2 style={{ fontSize: T.h2, lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: HEAD_W, color: '#15110F', margin: 0, textWrap: 'balance' }}>
               I go deep, then hand you a plan you can actually run.
             </h2>
-            <p style={{ fontSize: 'clamp(1.05rem,1.4vw,1.2rem)', lineHeight: 1.55, fontWeight: 500, color: '#5E564E', margin: 0, textWrap: 'pretty' }}>
+            <p style={{ fontSize: T.lede, lineHeight: 1.55, fontWeight: 500, color: '#5E564E', margin: 0, textWrap: 'pretty' }}>
               However you work with me, the process is the same. I get inside your product, your data and your team first, so what I build lands ready to run.
             </p>
           </div>
@@ -408,8 +404,8 @@ export default function ServicesPage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     alignSelf: 'flex-start',
-                    fontSize: 'clamp(1.6rem,2.4vw,2.1rem)',
-                    fontWeight: 800,
+                    fontSize: 'clamp(1.35rem,2vw,1.75rem)',
+                    fontWeight: HEAD_W,
                     letterSpacing: '-.02em',
                     lineHeight: 1,
                     color: '#C8362B',
@@ -422,7 +418,7 @@ export default function ServicesPage() {
                 >
                   {s.n}
                 </span>
-                <h3 style={{ fontSize: 'clamp(1.15rem,1.6vw,1.4rem)', fontWeight: 800, letterSpacing: '-.01em', lineHeight: 1.2, color: '#15110F', margin: 0 }}>
+                <h3 style={{ fontSize: T.h3, fontWeight: HEAD_W, letterSpacing: '-.01em', lineHeight: 1.2, color: '#15110F', margin: 0 }}>
                   {s.label}
                 </h3>
                 <p style={{ fontSize: 'clamp(.98rem,1.15vw,1.08rem)', lineHeight: 1.55, color: '#5E564E', margin: 0 }}>
@@ -431,31 +427,17 @@ export default function ServicesPage() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
 
-      {/* ─── PROOF BAND · who you're working with + logos + quote ── */}
-      <section className="svc-band svc-band--deep">
-        <div className="container svc-proof">
-          <div style={{ maxWidth: '48rem', display: 'flex', flexDirection: 'column', gap: 'clamp(12px,1.6vw,18px)' }}>
-            <span className="svc-proof__kick">Who you&rsquo;re working with</span>
-            <p style={{ fontSize: 'clamp(1.05rem,1.4vw,1.2rem)', lineHeight: 1.55, color: 'var(--ink)', margin: 0, textWrap: 'pretty' }}>
-              Thirteen years across Ubisoft, Amazon Games, BlaBlaCar and a US
-              startup acquired by Animoca. One person who has built brand,
-              product, community and growth, and reads them as one&nbsp;system.
-            </p>
-          </div>
-          <ul className="svc-proof__logos" aria-label="Brands where Laura has run fan-led growth">
-            {CLIENTS.map((l) => (
-              <li key={l.alt} className="svc-proof__cell">
-                <img src={BASE + l.src} alt={l.alt} style={{ maxWidth: l.maxw }} loading="lazy" />
-              </li>
-            ))}
-          </ul>
-          <figure className="svc-proof__quote">
-            <svg width="34" height="34" viewBox="0 0 40 40" fill="#D4C896" aria-hidden="true" style={{ flexShrink: 0 }}>
-              <path d="M17 7c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L17 7zm18 0c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L35 7z" />
-            </svg>
+          {/* The Brusson quote, kept when the proof band around it was removed
+            * on 22 Jul 2026. The five client logos in that band genuinely were
+            * duplicated (homepage and /about both carry them), but the quote
+            * was NOT: checking the built HTML after the cut showed it surviving
+            * on the homepage alone, which left the site's commercial page with
+            * no third-party voice at all. It sits here rather than in its own
+            * band because this section is about what working with Laura is
+            * like, which is what the quote is about. ~150px against the 537px
+            * band it came from. */}
+          <figure className="svc-how__quote">
             <blockquote>
               Laura is a <mark>start-up swiss knife</mark> &hellip; with some extra fun!
             </blockquote>
@@ -469,6 +451,14 @@ export default function ServicesPage() {
           </figure>
         </div>
       </section>
+
+      {/* The PROOF BAND (logos + the Brusson quote) was removed on 22 Jul 2026.
+        * It was 537px, 6.5% of the page, and entirely duplicated: the same five
+        * logos and the same quote are on /about and the homepage. It was also
+        * the weakest proof on this page, because every offer already carries its
+        * own proof with a real number (60M+ views, 85% across 15M players, $32K
+        * in three hours), which beats a logo wall at the moment someone is
+        * deciding. See content/copy/services-weight-options.md, option 2. */}
 
       {/* ─── FINALE (oxblood, centered) ───────────────────────── */}
       <section className="svc-band svc-band--ox svc-finale">

@@ -6,8 +6,11 @@
  * FINAL v5. Design reference: design_handoff_final_pass/services/. */
 
 /* ─── BAND SYSTEM ─────────────────────────────────────────── */
+/* Vertical padding mirrors SECTION_PAD in src/lib/scale.js (96px at 1280).
+   Was clamp(72px,9vw,128px), which resolved to 115.2 and made this the only
+   page running looser bands than the rest of the site. */
 .svc-band {
-  padding: clamp(72px, 9vw, 128px) 0;
+  padding: clamp(64px, 7.5vw, 108px) 0;
   border-top: 1px solid var(--hairline);
   position: relative;
 }
@@ -92,16 +95,25 @@
   border-bottom: 1px solid var(--hairline);
   margin-bottom: 0;
 }
+/* ── Type scale, 22 Jul 2026 ──────────────────────────────────────────
+   Mirrors src/lib/scale.js, which the homepage and /fan-led-growth import.
+   This page had never been through the lighter rebuild: every heading was
+   weight 800, and the five offer titles plus the finale all carried
+   --fs-display-l, the SAME size as the h1. The hero-to-section ratio was
+   1.0 against 2.05 on the rebuilt pages, so nothing receded and the page
+   shouted eight times at one volume.
+   Values here are literal rather than imported because this page is styled
+   in CSS, not inline. If scale.js moves, move these with it. */
 .svc-hero__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1  ~84 */
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
   margin: 0;
 }
 .svc-hero__lede {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede ~16.8 */
   line-height: 1.55;
   color: var(--ink-muted);
   max-width: 50ch;
@@ -128,8 +140,8 @@
   margin-bottom: clamp(28px, 3.5vw, 44px);
 }
 .svc-index__title {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41 */
+  font-weight: 700;
   line-height: 1.14;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -152,7 +164,9 @@
   column-gap: var(--space-5);
   row-gap: 5px;
   align-items: center;
-  padding: 1.6rem 0;
+  /* Was 1.6rem. With the row name down from 35.2px to ~24, this brings a row
+     to roughly 76px and the whole six-row index under one screen. */
+  padding: 1.15rem 0;
   border-top: 1px solid var(--hairline);
   text-decoration: none;
   color: inherit;
@@ -161,10 +175,13 @@
 .svc-index__row:last-child {
   border-bottom: 1px solid var(--hairline);
 }
+/* Down from clamp(1.5rem,3vw,2.2rem)@800, which was 35.2px and made each row
+   135px tall: six rows came to 813px, taller than a laptop viewport. A skim
+   layer you cannot see all of is not a skim layer. */
 .svc-index__nm {
   grid-area: nm;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 800;
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  font-weight: 700;
   letter-spacing: -0.02em;
   transition: transform var(--transition);
 }
@@ -187,9 +204,13 @@
 .svc-index__row:hover .svc-index__arr { transform: translateX(4px); }
 
 /* ─── OFFER SECTION (editorial 2-col) ────────────────────── */
+/* 4fr/8fr since 22 Jul 2026, was 5fr/7fr. The left column holds a kicker and a
+   41px title, ~61px of content, and was 461px wide against a right column of
+   646 that had to grow tall to fit. Widening the right column shortens every
+   offer block without touching a word. */
 .svc-eng {
   display: grid;
-  grid-template-columns: 5fr 7fr;
+  grid-template-columns: 4fr 8fr;
   gap: clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
@@ -213,12 +234,16 @@
   text-transform: uppercase;
   color: var(--edge);
 }
+/* Was var(--accent): red #C8362B on the dark and grey bands measures 2.82,
+   against 4.5 for text this size. Eyebrow.jsx carries the same finding and
+   the same rule: gold on dark grounds, never red. The red/gold distinction
+   between "Protect" and "Deepen" could not survive it. */
 .svc-eng__kick--accent {
-  color: var(--accent);
+  color: var(--edge);
 }
 .svc-eng__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem); /* T.h2 ~41, was ~77 */
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.02;
   margin: 0;
@@ -252,7 +277,7 @@
 }
 .svc-eng__body strong {
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .svc-youget {
@@ -262,9 +287,13 @@
   max-width: 38rem;
   margin: 0;
 }
+/* Gold, not --accent. Red measured 2.82 on the grey and dark bands, under the
+   3.0 large-text minimum, and these three labels are the page's spine: they
+   repeat fifteen times. Bone keeps red below (4.32 there, and it passes at
+   this size); oxblood takes cream. Same gold-on-dark rule as Eyebrow.jsx. */
 .svc-youget strong {
-  color: var(--accent);
-  font-weight: 800;
+  color: var(--edge);
+  font-weight: 700;
 }
 
 /* ─── PROOF CARD (inset cream, cascade-safe) ──────────────── */
@@ -333,7 +362,8 @@
   /* Faint cream: four of the five offer bands are dark (default, grey, ox),
      so light is the correct default. The one light band (bone) overrides to
      dark below. --hairline (the credit border) is already a light rule. */
-  color: rgba(251, 243, 228, 0.55);
+  /* 0.55 measured 3.04 at this size, under the 4.5 minimum. 0.78 is 5.4. */
+  color: rgba(251, 243, 228, 0.78);
 }
 
 /* ─── TEXT LINK + CTA NOTE ────────────────────────────────── */
@@ -387,7 +417,10 @@
 .svc-band--ox .svc-eng__body { color: rgba(251, 243, 228, 0.85); }
 .svc-band--ox .svc-eng__body strong { color: #FBF3E4; }
 .svc-band--ox .svc-youget { color: rgba(251, 243, 228, 0.85); }
-.svc-band--ox .svc-youget strong { color: #E7D9AD; }
+/* #E7D9AD measured 2.82 on oxblood. These three labels are the page's spine
+   and repeat fifteen times, so they were the hardest text on the page to
+   read. Cream #FBF3E4 is 6.58 and is already this band's strong colour. */
+.svc-band--ox .svc-youget strong { color: #FBF3E4; }
 .svc-band--ox .svc-credit { border-top-color: rgba(251, 243, 228, 0.25); }
 .svc-band--ox .svc-txtlink {
   color: #E7D9AD;
@@ -407,7 +440,9 @@
 }
 
 /* Bone (§03 Fan Moments) — inverted */
-.svc-band--bone .svc-eng__kick { color: var(--accent); }
+/* #8E2520 not --accent: the standard red is 4.32 on cream, under 4.5 for
+   text this size. Same substitution Eyebrow.jsx makes for light grounds. */
+.svc-band--bone .svc-eng__kick { color: #8E2520; }
 .svc-band--bone .svc-eng__title { color: var(--ink-on-surface); }
 .svc-band--bone .svc-eng__body { color: var(--ink-muted-on-surface); }
 .svc-band--bone .svc-eng__body strong { color: var(--ink-on-surface); }
@@ -441,7 +476,7 @@
 
 /* ─── FINALE (oxblood centered) ───────────────────────────── */
 .svc-finale {
-  padding: clamp(88px, 11vw, 150px) 0;
+  padding: clamp(72px, 9vw, 110px) 0;
   text-align: center;
   overflow: hidden;
 }
@@ -456,8 +491,8 @@
  * said "tell me what's going on" two lines above the close line that says
  * "or tell me what's going on". */
 .svc-finale__title {
-  font-size: var(--fs-display-l);
-  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 3.75rem); /* T.h2close ~60 */
+  font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.025em;
   color: #FBF3E4;
@@ -677,4 +712,49 @@
 }
 @media (max-width: 640px) {
   .svc-proof__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ─── Brusson quote, inside "How I work" ─────────────────────
+ * Replaces the deleted proof band's quote block. Compact: no icon, no card,
+ * one rule above it, on the bone ground that section already uses. */
+.svc-how__quote {
+  margin: clamp(36px, 4vw, 52px) 0 0;
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--hairline-dark);
+  max-width: 46rem;
+}
+.svc-how__quote blockquote {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink-on-surface);
+}
+.svc-how__quote blockquote mark {
+  background: transparent;
+  color: #8E2520;
+}
+.svc-how__quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.svc-how__quote figcaption img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+.svc-how__quote figcaption strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ink-on-surface);
+}
+.svc-how__quote figcaption span span {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--ink-muted-on-surface);
 }
