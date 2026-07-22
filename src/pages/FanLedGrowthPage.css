@@ -6,23 +6,12 @@
 .flg mark { background: transparent; color: #C8362B; font-weight: inherit; }
 .flg .tm { font-size: .5em; vertical-align: super; letter-spacing: 0; }
 
-/* ─── Hero ──────────────────────────────────────────────── */
-/* Centred, matching the homepage hero in its no-portrait state. Flex-centred
- * rather than margin-auto for the same reason the homepage does it: the h1
- * and lede carry inline `margin` shorthands, which reset margin-left/right
- * to 0 and beat a stylesheet `margin: auto`. As flex items they centre
- * regardless of their own margins. */
-.flg .flg-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.flg .flg-hero__copy { display: flex; flex-direction: column; align-items: center; }
-/* The closing paragraph is four or five lines long. A centred rag on a block
- * that deep costs real readability — the eye loses the start of each line — so
- * the block stays centred on the page but its text sets left. */
-.flg .flg-hero__close { text-align: left; }
+/* ─── Hero (editorial mode) ─────────────────────────────── */
+/* Left-aligned, deliberately. The CENTRED hero is the homepage's signature and
+ * stays unique to it — this page was built to match the homepage exactly, and
+ * flipping only the ground colour would have read as "the homepage in light
+ * mode". Ground and architecture change together, or neither is worth doing. */
+.flg .flg-hero { text-align: left; }
 
 /* ─── Scroll-reveal ─────────────────────────────────────── */
 .flg [data-rev] {
@@ -52,19 +41,11 @@
   background: rgba(239,233,220,.18);
   border-color: rgba(239,233,220,.42);
 }
-/* Ink button for the close, on the cream ground. */
-.flg a.flg-btnink {
-  background: #15110F;
-  color: #EFE9DC;
-  border: 1px solid #15110F;
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
-}
-.flg a.flg-btnink:hover {
-  background: transparent;
-  color: #15110F;
-}
-
-/* Inline text links. */
+/* Inline text links. Colour follows the ground, which on this page means the
+ * light variant is the common case: `--ink` for the cream and bone bands, the
+ * gold default for the two dark inversions (the Fan Engine hand-off and the
+ * close). #8E2520 rather than the standard #C8362B because the standard red
+ * only reaches 4.32:1 on cream, under the 4.5 minimum; this reaches 7.13. */
 .flg a.flg-inline {
   color: #D4C896;
   font-weight: 700;
@@ -73,7 +54,7 @@
   transition: color .2s ease;
 }
 .flg a.flg-inline:hover { color: #EFE9DC; }
-.flg a.flg-inline--ink { color: #C8362B; }
+.flg a.flg-inline--ink { color: #8E2520; }
 .flg a.flg-inline--ink:hover { color: #15110F; }
 
 .flg a .ar { transition: transform .2s ease; }
@@ -84,13 +65,6 @@
   .flg .flg-grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   .flg .flg-grid-2 { grid-template-columns: 1fr !important; }
 }
-/* The hero lede is three centred lines on a desktop, which reads fine, but
-   five or six on a phone, where a centred rag stops being decorative and
-   starts costing readability. Headline stays centred, prose sets left. */
-@media (max-width: 700px) {
-  .flg .flg-hero__copy p { text-align: left; }
-}
-
 @media (max-width: 620px) {
   .flg .flg-grid-3 { grid-template-columns: 1fr !important; }
   /* Three benchmarks stack rather than squeezing to ~100px columns, which
