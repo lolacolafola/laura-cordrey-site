@@ -38,3 +38,10 @@ export const INNER = { maxWidth: 1180, margin: '0 auto', width: '100%' }
 // silently clobber a `marginTop` set alongside it at the call site, because
 // React writes both and the shorthand resets the other edges.
 export const GRID_CAP = { maxWidth: 960, marginLeft: 'auto', marginRight: 'auto' }
+
+// The same cap, held to the left edge instead of centred. For left-aligned
+// editorial pages (/fan-led-growth), where a centred grid puts the cards 46px
+// right of the heading and prose above them and the page grows a staircase
+// down its left edge. Centring is only consistent where the surrounding
+// headings are centred too, which is the homepage, not those pages.
+export const GRID_CAP_LEFT = { maxWidth: 960, marginLeft: 0, marginRight: 'auto' }

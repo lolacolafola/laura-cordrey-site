@@ -617,7 +617,22 @@ export default function HomePage() {
           <div data-rev>
             <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.26em', textTransform: 'uppercase', color: '#F2D79A', fontWeight: 700 }}>Let&rsquo;s talk</span>
             <hr style={{ width: 52, height: 4, background: '#F2D79A', border: 'none', margin: '14px 0 26px' }} />
-            <h2 style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.7rem,3.2vw,2.4rem)', lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#FBF4E6' }}>
+            {/* T.h2close, not a bespoke clamp, since 22 Jul 2026.
+              *
+              * This was clamp(1.7rem,3.2vw,2.4rem), which resolves to 38.4px at
+              * 1280 against a section h2 of 41px: the closing headline was the
+              * SMALLEST h2 on the page, so the homepage ended quieter than its
+              * own middle. The shared scale has always had an h2close for
+              * exactly this ("the close still gets to shout") and this page was
+              * the one not using it.
+              *
+              * Checked before changing, because a 60px headline in a 496px
+              * column beside a form sounds like a crowding problem: it isn't.
+              * The copy column runs 218px against the form's 349px, so there is
+              * 131px of slack. At 60px the column grows to 306px, still 43px
+              * shorter than the form beside it. It breaks cleanly too:
+              * "Tell me about / your brand.", no widow. */}
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2close, lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#FBF4E6' }}>
               Tell me about your brand.
             </h2>
             <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', maxWidth: '40ch', margin: '0 0 22px' }}>
