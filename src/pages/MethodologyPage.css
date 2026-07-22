@@ -158,6 +158,19 @@
   max-width: 46ch;
   margin: clamp(22px, 3vw, 32px) 0 0;
 }
+/* The disqualifier, rescued from the cut "problem" band. Deliberately quieter
+   than the lede and set off by a rule: it is an honest filter, not a pitch. */
+.meth-hero__note {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  font-weight: 600;
+  color: rgba(239, 233, 220, 0.62);
+  max-width: 44ch;
+  margin: clamp(18px, 2.2vw, 24px) 0 0;
+  padding-left: 16px;
+  border-left: 2px solid rgba(212, 200, 150, 0.35);
+}
+
 .meth-hero__plate {
   display: flex;
   flex-direction: column;

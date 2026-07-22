@@ -250,12 +250,12 @@ export function methodologyJsonLd({ stages }) {
     '@graph': [
       {
         '@type': 'DefinedTerm',
-        '@id': `${pageUrl('methodology')}#fan-engine`,
+        '@id': `${pageUrl('fan-engine')}#fan-engine`,
         name: 'the Fan Engine',
         description:
           'A five-stage methodology for turning passive audiences into fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Built by Laura Cordrey across brand, product, community and growth work at Ubisoft, BlaBlaCar, US Mobile and Azarus / Animoca.',
         inDefinedTermSet: 'Fan-Led Growth methodology',
-        url: pageUrl('methodology'),
+        url: pageUrl('fan-engine'),
       },
       {
         '@type': 'HowTo',

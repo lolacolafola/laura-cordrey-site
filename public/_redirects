@@ -3,6 +3,7 @@
 # the SPA catch-all so they win.
 /fan-led-growth-audit        /fan-score  301!
 /fan-led-growth-value-model  /fan-value  301!
+/methodology                 /fan-engine  301!
 /case-studies                          /work                        301!
 /case-studies/ubisoft-delta-company    /work/ubisoft-delta-company    301!
 /case-studies/us-mobile-dark-star      /work/us-mobile-dark-star      301!

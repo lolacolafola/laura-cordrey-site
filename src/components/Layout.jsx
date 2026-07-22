@@ -24,7 +24,7 @@ const footerLinks = [
   { label: 'Home',      to: '/' },
   { label: 'Work',      to: '/work' },
   { label: 'Services',  to: '/services' },
-  { label: 'Method',    to: '/methodology' },
+  { label: 'The Fan Engine', to: '/fan-engine' },
   { label: 'Fan Score', to: '/fan-score' },
   { label: 'Fan Value', to: '/fan-value' },
   { label: 'AI',        to: '/ai' },

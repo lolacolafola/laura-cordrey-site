@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
               Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
             </Link>
-            <Link to="/methodology" className="svc-txtlink">
+            <Link to="/fan-engine" className="svc-txtlink">
               How the Engine works <span aria-hidden="true">→</span>
             </Link>
           </div>

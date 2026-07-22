@@ -62,7 +62,11 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/speaking" element={<SpeakingPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/methodology" element={<MethodologyPage />} />
+          <Route path="/fan-engine" element={<MethodologyPage />} />
+          {/* Renamed from /methodology on 22 Jul 2026 so the URL matches the
+              thing it is: the Fan Engine. Same pattern as the earlier
+              /fan-led-growth-audit -> /fan-score rename. */}
+          <Route path="/methodology" element={<Navigate to="/fan-engine" replace />} />
           {/* Tools live at their branded slugs. */}
           <Route path="/fan-value" element={<FanValueModelPage />} />
           <Route path="/fan-score" element={<FanAuditPage />} />

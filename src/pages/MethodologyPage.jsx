@@ -5,14 +5,21 @@ import './MethodologyPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
 
-/* /methodology (The Fan Engine) cinematic dark-band design, ported from
- * the v6 comp. Six full-bleed bands:
+/* /fan-engine — The Fan Engine. Cinematic dark-band design, ported from the
+ * v6 comp. Renamed from /methodology on 22 Jul 2026 so the URL says what the
+ * page is; /methodology 301s here.
+ *
+ * FIVE full-bleed bands (was six):
  *   1. Hero     : deep ground, split layout, engine emblem right
- *   2. Problem  : bone ground, numbered editorial head
- *   3. Method   : warm dark card ground, signature schematic
- *   4. Journey  : bone ground, quiet five-stage list
- *   5. Measured : deep ground, honest method + scoreboard
- *   6. Close    : oxblood finale, cream CTA
+ *   2. Method   : warm dark card ground, signature schematic
+ *   3. Journey  : bone ground, quiet five-stage list
+ *   4. Measured : deep ground, honest method + scoreboard
+ *   5. Close    : oxblood finale, cream CTA
+ *
+ * The old band 2, "The problem", was cut: it restated /fan-led-growth almost
+ * line for line, so anyone arriving from there read the same argument twice
+ * before reaching anything new. This page now opens on the Fan Engine itself.
+ *
  * Copy is final and verbatim from the comp. No em dashes, no figure
  * labels, no compare-down framing. */
 
@@ -87,7 +94,7 @@ export default function MethodologyPage() {
     title: 'The Fan Engine · The method · Laura Cordrey',
     description:
       "You're sitting on more fandom than you can prove or bank. The Fan Engine turns customers into fans, and proves what they're worth.",
-    canonical: pageUrl('methodology'),
+    canonical: pageUrl('fan-engine'),
   })
 
   return (
@@ -106,14 +113,20 @@ export default function MethodologyPage() {
               The Fan Engine<span className="tm">™</span> is the system I build to turn customers into fans,
               and to prove what they're worth.
             </p>
-            <div className="meth-ctas">
-              <Link to="/fan-score" className="btn btn--primary btn--lg">
-                Take the 2-min Fan Score
-              </Link>
-              <Link to={CONTACT_URL} className="btn btn--ghost btn--lg">
-                Let’s talk
-              </Link>
-            </div>
+            {/* The disqualifier, kept when the "problem" band it used to sit in
+              * was cut: that band restated what /fan-led-growth already says,
+              * but this was the one line on it that page does NOT have, and a
+              * page that says who it is not for is worth more than one that
+              * doesn't. */}
+            <p className="meth-hero__note">
+              Not the fit if what you need is a one-off spike this quarter.
+              Fan-led growth compounds, which takes a few quarters, not a few
+              weeks.
+            </p>
+            {/* No CTA pair here. It was the same two buttons the close already
+              * carries, and readers now arrive from /fan-led-growth already
+              * sold on why this matters, so the page should get to the
+              * schematic rather than ask for a decision in its first screen. */}
           </div>
 
           <div className="meth-hero__plate">
@@ -174,46 +187,28 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* 2. THE PROBLEM (bone) */}
-      <section className="meth-band meth-band--problem">
-        <div className="meth-container">
-          <div className="meth-narrow">
-            <div className="meth-sechead meth-sechead--onbone">
-              <span className="meth-sechead__num">01</span>
-              <span className="meth-eyebrow meth-eyebrow--ink">The problem</span>
-            </div>
-            <h2 className="meth-h2 meth-h2--problem">
-              The growth you <mark>already paid for</mark>.
-            </h2>
-            <p className="meth-lede meth-lede--onbone">
-              Budget pours into acquisition and stops at the sale. The value
-              that makes a customer profitable comes after it: whether they
-              stay, buy again, and bring others. That work is split across
-              brand, product, community and growth, so no one owns it and it
-              goes unmeasured. The bucket leaks, and you keep paying to refill
-              it.
-            </p>
+      {/* "The problem" band was cut on 22 Jul 2026. It restated what
+        * /fan-led-growth already says, line for line: "the growth you already
+        * paid for" against that page's "the growth you already own", the
+        * leaking-bucket paragraph against its rent-versus-own hero, "no one
+        * owns it" against its "no single team owns it: brand, product and
+        * community each hold a piece", and "who this is for" against its whole
+        * four-card section. A reader arriving from that page was being told
+        * the same thing twice before reaching anything new.
+        *
+        * The one line it had that the other page does not — the disqualifier,
+        * "not the fit if what you need is a one-off spike" — moved up into
+        * the hero rather than being lost.
+        *
+        * The page now runs hero > schematic, which is what someone who came
+        * here for the Fan Engine actually wants. */}
 
-            <div className="meth-whofor">
-              <span className="meth-eyebrow meth-eyebrow--red meth-whofor__label">Who this is for</span>
-              <p className="meth-whofor__body">
-                This is for you if you pay to acquire customers, then watch the
-                value leak after the sale, or if you have a real fanbase you
-                can't yet prove or bank. It's not the fit if what you need is a
-                one-off spike this quarter. Fan-led growth compounds, which
-                takes a few quarters, not a few weeks.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. THE METHOD (signature schematic) */}
+      {/* 2. THE METHOD (signature schematic) */}
       <section className="meth-band meth-band--method">
         <div className="meth-container">
           <div className="meth-narrow meth-narrow--wide">
             <div className="meth-sechead">
-              <span className="meth-sechead__num">02</span>
+              <span className="meth-sechead__num">01</span>
               <span className="meth-eyebrow meth-eyebrow--gold">The method</span>
             </div>
             <h2 className="meth-h2">
@@ -271,12 +266,12 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* 4. THE JOURNEY (quiet list) */}
+      {/* 3. THE JOURNEY (quiet list) */}
       <section className="meth-band meth-band--journey">
         <div className="meth-container">
           <div className="meth-narrow">
             <div className="meth-sechead meth-sechead--onbone">
-              <span className="meth-sechead__num">03</span>
+              <span className="meth-sechead__num">02</span>
               <span className="meth-eyebrow meth-eyebrow--ink">What it builds</span>
             </div>
             <h2 className="meth-h2 meth-h2--onbone">What the engine builds for your customer.</h2>
@@ -316,12 +311,12 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* 5. MEASURED (how I prove it) */}
+      {/* 4. MEASURED (how I prove it) */}
       <section className="meth-band meth-band--measured">
         <div className="meth-container">
           <div className="meth-narrow meth-narrow--wide">
             <div className="meth-sechead">
-              <span className="meth-sechead__num">04</span>
+              <span className="meth-sechead__num">03</span>
               <span className="meth-eyebrow meth-eyebrow--gold">How I prove it</span>
             </div>
             <h2 className="meth-h2">
@@ -381,7 +376,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* 6. CLOSE (oxblood finale) */}
+      {/* 5. CLOSE (oxblood finale) */}
       <section className="meth-band meth-band--close">
         <div aria-hidden="true" className="meth-close__glow" />
         <div className="meth-container meth-close">

@@ -17,7 +17,7 @@ const CONTACT_URL = '/contact?intent=consulting'
  *   What it is       (here)
  *   The evidence  →  /work
  *   Why fans      →  /fan-value      (the estimate card)
- *   So what do you do about it  →  /methodology
+ *   So what do you do about it  →  /fan-engine
  *   Who it's for     (here)
  *   Where to start →  /fan-value · /services · /fan-score
  *
@@ -172,7 +172,7 @@ export default function FanLedGrowthPage() {
           </div>
 
           <p data-rev className="flg-hero__close" style={{ fontSize: T.lede, lineHeight: 1.66, color: '#15110F', fontWeight: 600, margin: 'clamp(28px,3.4vw,38px) 0 0', maxWidth: '62ch' }}>
-            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" className="flg-inline flg-inline--ink">an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
+            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/fan-engine" className="flg-inline flg-inline--ink">an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
           </p>
         </div>
       </section>
@@ -252,7 +252,7 @@ export default function FanLedGrowthPage() {
       {/* ─── 4. SO WHAT DO YOU DO ABOUT IT ─── */}
       {/* The beat the page was missing: it won the argument and then went
         * quiet. Also the hand-off that gives each page one job — this page is
-        * the idea, /methodology is the method. Copy-only, no cards, so it
+        * the idea, /fan-engine is the method. Copy-only, no cards, so it
         * doubles as the break between the two card grids. */}
       {/* `color` is set on the section, not just inherited: the page root is
         * now ink-on-cream, so every dark band has to re-declare its text
@@ -271,7 +271,7 @@ export default function FanLedGrowthPage() {
               That is the part I build. The <mark>Fan Engine<span className="tm">&trade;</span></mark> runs all four as one system, and ties each part to a number you can put in front of a&nbsp;board.
             </p>
             <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
-              <Link to="/methodology" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+              <Link to="/fan-engine" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
                 See how the Fan Engine works <span className="ar" aria-hidden>→</span>
               </Link>
             </div>
