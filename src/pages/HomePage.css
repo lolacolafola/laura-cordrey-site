@@ -1,186 +1,673 @@
-/* HomePage — cinematic rebuild.
- * Inline styles in HomePage.jsx carry the visual spec verbatim.
- * This file holds hover/reveal/responsive behaviors that can't be inlined. */
+/* HomePage — lighter rebuild (21 Jul 2026).
+ * Inline styles in HomePage.jsx carry the per-section visual spec.
+ * This file holds hover / reveal / responsive behaviour that can't be
+ * inlined, plus the four new modules: flip cards, speaking band, tool
+ * cards and the red contact close. */
 
-.cin mark { background: transparent; color: #C8362B; font-weight: 800; }
+/* Headings dropped from 800 to 700, so <mark> must follow rather than
+ * re-bolding the word it highlights. */
+.cinv2 mark { background: transparent; color: #C8362B; font-weight: inherit; }
 
 /* ─── Scroll-reveal ─────────────────────────────────────── */
-.cin [data-rev] {
+.cinv2 [data-rev] {
   transition: opacity .9s cubic-bezier(.16,.84,.44,1),
               transform .9s cubic-bezier(.16,.84,.44,1);
 }
-.cin [data-rev].cin-hide { opacity: 0; transform: translateY(40px); }
-
-/* ─── Logo shelf ────────────────────────────────────────── */
-/* Hover honesty: logo cells and the quote card are informational, not
- * links, so they get no cursor response. Only elements that navigate or
- * act on click may move on hover (see CLAUDE.md, Design rules). */
+.cinv2 [data-rev].cin-hide { opacity: 0; transform: translateY(40px); }
 
 /* ─── Buttons ───────────────────────────────────────────── */
-.cin a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }
-.cin a.btng:hover { border-color: #D4C896 !important; color: #D4C896 !important; }
-.cin a.btncream:hover { background: #F2D79A !important; border-color: #F2D79A !important; }
-.cin a.btncreamo:hover { background: rgba(251,244,230,.26) !important; border-color: #FBF4E6 !important; }
-.cin a.btnsoft {
+/* Hover honesty (CLAUDE.md): only <a>/<button> move under the cursor.
+ * Logo cells, the quote and the tool viz panels stay static. */
+.cinv2 a.btnp:hover { background: #D4C896 !important; color: #15110F !important; border-color: #D4C896 !important; }
+
+/* Hero CTA: a light band sweeps across as it turns gold. The button already
+ * navigates, so the motion is honest. overflow:hidden clips the band to the
+ * button; the pseudo-element sits behind the label via z-index. */
+.cinv2 .hero-copy a.btnp {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cinv2 .hero-copy a.btnp::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  opacity: 0;
+}
+.cinv2 .hero-copy a.btnp:hover::after {
+  animation: v2Sheen .62s cubic-bezier(.3,.7,.35,1) forwards;
+}
+@keyframes v2Sheen {
+  from { left: -60%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  to   { left: 115%; opacity: 0; }
+}
+.cinv2 a.btncream:hover { background: #F2D79A !important; border-color: #F2D79A !important; }
+.cinv2 a.btnsoft {
   background: rgba(239,233,220,.09);
   border: 1px solid rgba(239,233,220,.22);
   color: #EFE9DC;
   transition: background .2s ease, border-color .2s ease;
 }
-.cin a.btnsoft:hover { background: rgba(239,233,220,.18) !important; border-color: rgba(239,233,220,.42) !important; }
-.cin a.btnsoftd {
-  background: rgba(21,17,15,.07);
+.cinv2 a.btnsoft:hover { background: rgba(239,233,220,.18) !important; border-color: rgba(239,233,220,.42) !important; }
+.cinv2 a.btnsoftd {
+  background: rgba(21,17,15,.06);
   border: 1px solid rgba(21,17,15,.18);
   color: #15110F;
   transition: background .2s ease, border-color .2s ease;
 }
-.cin a.btnsoftd:hover { background: rgba(21,17,15,.13) !important; border-color: rgba(21,17,15,.36) !important; }
-.cin a.btnp .ar, .cin a.btng .ar, .cin a.btnsoft .ar, .cin a.btnsoftd .ar, .cin a.tlink .ar { transition: transform .2s ease; }
-.cin a.btnp:hover .ar, .cin a.btng:hover .ar, .cin a.btnsoft:hover .ar, .cin a.btnsoftd:hover .ar, .cin a.tlink:hover .ar { transform: translateX(4px); }
-.cin a.tlink:hover { color: #D4C896 !important; }
-
-/* ─── KPI / ways-to-work link cards: "come forward" ─────── */
-/* Only the cards that are real <Link>s lift on hover (wtw/wtwd → services,
- * statc → case studies). The why-fans .pot cards are plain divs and stay
- * static — hover honesty. (.aic was dead CSS, removed.) */
-.cin .wtw, .cin .wtwd, .cin .statc {
-  transition: transform .3s cubic-bezier(.16,.84,.44,1),
-              box-shadow .3s ease,
-              border-color .25s ease !important;
+.cinv2 a.btnsoftd:hover { background: rgba(21,17,15,.12) !important; border-color: rgba(21,17,15,.36) !important; }
+.cinv2 a.btnghost {
+  background: transparent;
+  border: 1.5px solid rgba(239,233,220,.5);
+  color: #EFE9DC;
+  transition: background .2s ease, border-color .2s ease;
 }
-.cin .wtw:hover, .cin .statc:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 38px rgba(21,17,15,.18);
-  border-color: rgba(200,54,43,.32) !important;
+.cinv2 a.btnghost:hover { background: rgba(239,233,220,.1); border-color: #EFE9DC; }
+
+/* Secondary buttons: espresso solid, cream text. On hover the FILL DOES NOT
+ * CHANGE — the label and border go gold instead, with a 1px lift.
+ *
+ * THE RULE, and it now holds with no exceptions:
+ *   red      = primary. Only. Always.
+ *   espresso = secondary. Only. Always.
+ *   gold     = hover. Only. Always.
+ *
+ * Every earlier version swapped the fill on hover, and the fill is also what
+ * signals importance — so hovering a secondary made it look like a different
+ * level. Red-on-hover was the worst case: a hovered secondary became pixel-
+ * identical to a resting primary, and both can be on screen at once (hovering
+ * "More about me" while the red nav CTA sits above it).
+ *
+ * Holding the fill also fixes the ground problem that forced every previous
+ * exception. Gold fill dissolves on cream (1.39:1); red fill dissolves on the
+ * oxblood close. Because the fill stays espresso, the button keeps 15.5:1
+ * against cream and stays solid over the speaking video, on every ground.
+ * Gold label on espresso is 11.2:1.
+ *
+ * Not a tag selector, so the Send <button> can share it — which is why Send
+ * is no longer a special case. */
+.cinv2 .btnink {
+  background: var(--bg);
+  border: 1px solid rgba(239,233,220,.28);
+  color: #EFE9DC;
+  transition: color .2s ease, border-color .2s ease, transform .12s ease;
+}
+.cinv2 .btnink:hover {
+  color: var(--edge);
+  border-color: var(--edge);
+  transform: translateY(-1px);
+}
+
+/* .btngold and .btnblack lived here briefly and were removed after a critique:
+ * gold-at-rest/red-on-hover was the exact mirror of .btnp (red-at-rest/gold-
+ * on-hover), so red meant both "primary action" and "you are hovering
+ * something secondary", and gold meant both in reverse. Neither colour could
+ * hold a meaning. One rule now: red is the primary action, gold is its hover
+ * response, and secondary buttons stay quiet. */
+
+.cinv2 a.btnp .ar, .cinv2 a.btnsoft .ar, .cinv2 a.btnsoftd .ar,
+.cinv2 a.btnghost .ar, .cinv2 a.tlink .ar, .cinv2 button.btnsend .ar { transition: transform .2s ease; }
+.cinv2 a.btnp:hover .ar, .cinv2 a.btnsoft:hover .ar, .cinv2 a.btnsoftd:hover .ar,
+.cinv2 a.btnghost:hover .ar, .cinv2 a.tlink:hover .ar, .cinv2 button.btnsend:hover .ar { transform: translateX(4px); }
+.cinv2 a.tlink { transition: color .2s ease, border-color .2s ease; }
+.cinv2 a.tlink:hover { color: #D4C896 !important; }
+
+/* ─── 4 · Service cards ─────────────────────────────────── */
+/* Three brand grounds instead of decoration: gold for the trademarked
+ * flagship, then espresso, then cream. That gives hierarchy and variety
+ * using only the palette, with nothing invented. Five earlier attempts at
+ * filling these cards with pattern (ghost numeral, arcs, rings, contours,
+ * halo) are gone; the ground does the work.
+ *
+ * The cards carry no CTA and no link. "Fix one thing now" covers three
+ * separate services, so neither a card-wide click target nor a per-card
+ * button could resolve to one honest destination. A single button sits under
+ * the group instead.
+ *
+ * On hover only the line under the title changes, kicker out then copy in.
+ * See the note on that handoff below. */
+.cinv2 .svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+}
+.cinv2 .svcard {
   position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: clamp(24px, 2.6vw, 32px);
+  overflow: hidden;
 }
-.cin .wtwd:hover {
-  transform: scale(1.03);
-  box-shadow: 0 18px 44px rgba(0,0,0,.55);
-  border-color: rgba(200,54,43,.32) !important;
-  position: relative;
-  z-index: 1;
-}
-.cin .statc:nth-of-type(2) { transition-delay: .08s; }
-.cin .statc:nth-of-type(3) { transition-delay: .16s; }
-.cin .statc:nth-of-type(4) { transition-delay: .24s; }
-/* .pot cards keep their delay for the staggered scroll-reveal (ambient
- * animation is fine); they just no longer respond to the cursor. */
-.cin .pot:nth-of-type(2) { transition-delay: .1s; }
-.cin .pot:nth-of-type(3) { transition-delay: .2s; }
 
-/* ─── Work rows (real links) ────────────────────────────── */
-.cin a.wrow { transition: border-color .25s ease; }
-.cin a.wrow:hover { border-color: rgba(200,54,43,.5) !important; }
-.cin a.wrow:hover .wcta { color: #C8362B !important; }
-.cin a.wrow .wmedia img { transition: transform .7s cubic-bezier(.16,.84,.44,1); }
-.cin a.wrow:hover .wmedia img { transform: scale(1.04); }
-
-/* ─── Email capture ─────────────────────────────────────── */
-.cin button.btnsend { transition: background .2s ease, border-color .2s ease, transform .2s ease; }
-.cin button.btnsend:hover { background: #C8362B; border-color: #C8362B; transform: translateY(-2px); }
-.cin button.btnsend span { transition: transform .2s ease; }
-.cin button.btnsend:hover span { transform: translateX(4px); }
-.cin input.cinmail::placeholder { color: rgba(251,244,230,.6); }
-.cin a.limov { transition: color .2s ease; }
-.cin a.limov span { display: inline-block; transition: transform .2s ease; }
-.cin a.limov:hover span { transform: translateX(3px); }
-
-/* ─── Hero entrance — proof strip fades up on load, logos stagger in ─ */
-@keyframes cinFadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes cinLogoIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.cin .hero-trust {
+/* Sheen, the same sweep the hero CTA uses, fired once as each card enters
+ * view and staggered across the three.
+ *
+ * On entrance, NOT on hover. A light sweep is the strongest "click me" cue
+ * there is, and these cards do not navigate, so on hover it would promise
+ * something the card cannot deliver. On entrance it is ambient motion, which
+ * the design rules allow anywhere.
+ *
+ * Opacity is tuned per ground: a white band that reads clearly on espresso is
+ * nearly invisible on cream, so the lighter the card, the stronger the band.
+ *
+ * .is-live is added by the observer in HomePageV2.jsx. If it never fires the
+ * cards simply sit still, which is the correct fallback. */
+.cinv2 .svcard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  z-index: 2;
+  transform: skewX(-18deg);
   opacity: 0;
-  animation: cinFadeUp .9s cubic-bezier(.16,.84,.44,1) .55s forwards;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.30) 50%, transparent 100%);
 }
-.cin .hero-trust .lgocell {
-  opacity: 0;
-  animation: cinLogoIn .7s cubic-bezier(.16,.84,.44,1) forwards;
+.cinv2 .svcard--gold::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.62) 50%, transparent 100%);
 }
-.cin .hero-trust .lgocell:nth-child(1) { animation-delay: 1.05s; }
-.cin .hero-trust .lgocell:nth-child(2) { animation-delay: 1.18s; }
-.cin .hero-trust .lgocell:nth-child(3) { animation-delay: 1.31s; }
-.cin .hero-trust .lgocell:nth-child(4) { animation-delay: 1.44s; }
-.cin .hero-trust .lgocell:nth-child(5) { animation-delay: 1.57s; }
+.cinv2 .svcard--cream::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.92) 50%, transparent 100%);
+}
+.cinv2 .svcard.is-live::after {
+  animation: v2Sheen 1.05s cubic-bezier(.3,.7,.35,1) forwards;
+}
+.cinv2 .svc-grid > :nth-child(2).is-live::after { animation-delay: .14s; }
+.cinv2 .svc-grid > :nth-child(3).is-live::after { animation-delay: .28s; }
 
-@media (prefers-reduced-motion: reduce) {
-  .cin .hero-trust,
-  .cin .hero-trust .lgocell {
+/* Grounds. Each sets its own ink so the copy stays legible. */
+.cinv2 .svcard--gold     { background: var(--edge);    color: var(--bg); }
+.cinv2 .svcard--espresso { background: var(--bg);      color: #EFE9DC; border-color: rgba(212,200,150,.2); }
+.cinv2 .svcard--cream    { background: var(--surface); color: var(--bg); }
+
+/* Minimum card height, so the three stay equal and the number sits clear of
+   the title block regardless of copy length. Portrait, echoing the
+   benchmark's cards (ratio ~1.1, taller than wide): at the ~337px card width
+   on a wide desktop this lands near 400px, a ratio of ~1.2. */
+.cinv2 .svcard { min-height: clamp(320px, 30vw, 408px); }
+/* The copy appears beneath the kicker. Nothing fades out, so there is no
+ * overlap to time and nothing can flicker: the number, title and kicker are
+ * permanent, and only the copy changes state.
+ *
+ * At rest the copy is collapsed (zero height, faded, nudged up) but still in
+ * the layout as a reserved slot, so the card never resizes on hover. On hover
+ * it opens: height, opacity and position animate together, 0.42s ease.
+ *
+ * grid-template-rows animates cleanly from 0fr to 1fr, which is what lets the
+ * copy push in smoothly rather than snapping to its height. */
+.cinv2 .svcard-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+.cinv2 .svcard-kicker { margin-top: 12px; }
+.cinv2 .svcard-copy {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: grid-template-rows .42s ease, opacity .42s ease, transform .42s ease, margin-top .42s ease;
+  margin-top: 0;
+}
+.cinv2 .svcard-copy > * { overflow: hidden; min-height: 0; }
+.cinv2 .svcard:hover .svcard-copy {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 14px;
+}
+
+.cinv2 .svcard-no {
+  display: block;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: .1em;
+  opacity: .55;
+}
+.cinv2 .svcard-title {
+  display: block;
+  font-weight: 700;
+  /* Matches the tool-card h3 scale (~20px at 1280). These were 24px, which
+     put them a step above every other card title on the page. */
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  letter-spacing: -.02em;
+  line-height: 1.14;
+}
+.cinv2 .svcard-kicker {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: inherit;
+}
+/* No opacity here. It used to carry opacity: .82 for a muted look, but this
+   rule sits after the swap rules and so overrode the copy's resting
+   opacity: 0, leaving both the kicker and the copy visible at once. The
+   muting is done with colour-mix instead, which the swap can animate freely. */
+.cinv2 .svcard-copy > span {
+  display: block;
+  font-size: clamp(.95rem, 1.05vw, 1.04rem);
+  line-height: 1.6;
+  font-weight: 500;
+  color: color-mix(in srgb, currentColor 84%, transparent);
+  /* Pulls a lone last word up onto the line above, so the copy never ends on
+     a single orphaned word ("...not rent / it."). The kicker gets it too. */
+  text-wrap: pretty;
+}
+.cinv2 .svcard-kicker { text-wrap: pretty; }
+
+/* Touch and reduced motion: the copy is open from the start, so nothing is
+   hidden behind a hover the device cannot perform. The kicker stays, since
+   nothing needs to fade out to make room. */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cinv2 .svcard-copy {
+    grid-template-rows: 1fr;
     opacity: 1;
-    animation: none;
+    transform: none;
+    margin-top: 14px;
+    transition: none;
   }
 }
 
+/* ─── 5 · Case cards ────────────────────────────────────── */
+/* Image on top, cream text panel below (the original .statc pattern).
+ * The card lifts on hover and it navigates, so the motion is honest.
+ *
+ * NO red top rule. One was added here to "complete the motif" and it was the
+ * wrong call: this section already carries a red eyebrow, a red rule, three
+ * red stat figures and a red link, so the card rules took it to ten red
+ * elements — the second-reddest section on the page, right after the tools
+ * section had been cut from five to two for exactly that reason. These cards
+ * are image-led and get their identity from the photography. */
+/* Not links (they only routed to the /work index, not the case study each
+ * stat implied). A gentle hover was added back at Laura's request: a small
+ * lift and a faint image zoom, roughly half the previous strength. The cursor
+ * stays the default arrow, NOT a pointer, so the card has a little life
+ * without the cursor itself promising a click. A deliberate, minimal relaxing
+ * of the hover-honesty rule for these cards only. */
+.cinv2 .casec {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #FCFAF3;
+  border: 1px solid rgba(21,17,15,.1);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(21,17,15,.06);
+  color: inherit;
+  transition: transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;
+  /* Composite the card onto its own layer. The image/panel seam and the 1px
+     border sit at fractional pixels, so a plain lift re-rasterised them every
+     frame with different anti-aliasing, which showed as a flickering grey
+     line. Painted once and moved as a texture, that shimmer is gone. */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.cinv2 .casec img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s cubic-bezier(.16,.84,.44,1);
+  /* Same reason, for the scaling image inside overflow: hidden. */
+  backface-visibility: hidden;
+}
+.cinv2 .casec:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(21,17,15,.12);
+}
+.cinv2 .casec:hover img { transform: scale(1.025); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cinv2 .casec, .cinv2 .casec img { transition: none; }
+  .cinv2 .casec:hover { transform: none; }
+  .cinv2 .casec:hover img { transform: none; }
+}
+
+/* ─── 6 · Speaking band ─────────────────────────────────── */
+/* No top rule. A heavy rule marks a boundary the layout does not already
+ * make obvious — but cream meeting near-black video is roughly a 15:1 value
+ * change, the hardest edge on the page. Full-bleed, it also made the loudest
+ * horizontal element in view a seam rather than content, pulling the eye to
+ * the join instead of to the stage. */
+.cinv2 .speak {
+  position: relative;
+  overflow: hidden;
+  background: #14100E;
+}
+.cinv2 .speak-bg { position: absolute; inset: 0; z-index: 0; }
+.cinv2 .speak-bg video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Light scrim only — the earlier heavy two-layer version made the footage
+ * unreadable. Legibility of the copy is handled by a text-shadow on the
+ * copy itself (below) rather than by darkening the whole clip. */
+.cinv2 .speak-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(14,11,9,.46) 0%, rgba(14,11,9,.6) 100%);
+}
+/* The clip is a loop, so the frame behind the copy changes from a dark wide
+ * stage to a bright close-up. Shadow on the type (rather than more scrim)
+ * keeps it legible across every frame without dimming the footage. */
+.cinv2 .speak-copy h2,
+.cinv2 .speak-copy p,
+.cinv2 .speak-copy .speak-eyebrow {
+  text-shadow: 0 1px 2px rgba(14,11,9,.75), 0 2px 10px rgba(14,11,9,.9), 0 4px 30px rgba(14,11,9,.85);
+}
+
+/* ─── 8 · Tool cards ────────────────────────────────────── */
+/* Narrower than the full measure, with a wider gutter between them, so the
+ * two cards read as a pair with air around them rather than a split bar. */
+.cinv2 .tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3.4vw, 48px);
+  max-width: 940px;
+  margin: 0 auto;
+}
+/* No coloured top bar. A 3px accent rule on a card is the most template-y
+ * pattern there is, and these cards do not need it: the hairline border and
+ * the inner viz panel with the gauge/bars already give them their identity.
+ * The bar was redundant and read a touch cheap. */
+.cinv2 .tool {
+  display: flex;
+  flex-direction: column;
+  background: #1F1A17;
+  border: 1px solid rgba(239,233,220,.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cinv2 .tool-viz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 250px;
+  padding: clamp(26px, 3vw, 34px);
+  background: linear-gradient(158deg, #251e18 0%, #1a1512 100%);
+  border-bottom: 1px solid rgba(239,233,220,.1);
+}
+.cinv2 .tool-kick {
+  display: block;
+  margin-bottom: 16px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #D4C896;
+}
+.cinv2 .tool-cap {
+  margin-top: 8px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #8A8078;
+}
+.cinv2 .tool-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(22px, 2.6vw, 30px);
+}
+.cinv2 .gauge { position: relative; width: 180px; max-width: 100%; margin: 0 auto; }
+.cinv2 .gauge svg { width: 100%; display: block; }
+.cinv2 .gauge-num {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -.02em;
+  color: #EFE9DC;
+}
+.cinv2 .gauge-num span { font-size: .84rem; color: #8A8078; font-weight: 700; }
+.cinv2 .val-num {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 2.9rem);
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: #EFE9DC;
+}
+/* The K sits on the baseline, not raised. Superscripting a magnitude suffix
+ * is not standard practice (superscript reads as a footnote marker); "$560K"
+ * is one number and should sit on one line. */
+.cinv2 .val-num .k { color: var(--accent); font-size: .62em; vertical-align: baseline; margin-left: 1px; }
+.cinv2 .bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 9px;
+  height: 44px;
+  margin-top: 20px;
+}
+.cinv2 .bars i {
+  width: 19px;
+  background: linear-gradient(180deg, #C8362B 0%, #8E2520 100%);
+  border-radius: 2px 2px 0 0;
+  opacity: .9;
+}
+
+/* ─── Tool card visuals, ambient motion ─────────────────── */
+/* IMPORTANT: the FINISHED state is the default. The scroll-triggered
+ * animation is an enhancement layered on top via .is-live, added by an
+ * IntersectionObserver in HomePageV2.jsx.
+ *
+ * Written this way round deliberately. The first version had the empty state
+ * as the default and relied on the observer to fill it in, which meant any
+ * failure — an old browser, a privacy setting, or the preview pane used to
+ * check this, where IntersectionObserver does not fire at all — rendered an
+ * empty gauge and flat bars. Now the worst case is simply no animation.
+ * Nothing here promises a click, so it is ambient motion under the rules. */
+
+/* Gauge: 163 is the filled arc length, 264 the full dasharray period. */
+.cinv2 .gauge-fill { stroke-dasharray: 163 264; }
+/* No animation-delay, and `forwards` not `both`: with a delay + `both` the
+ * element holds the empty `from` state while it waits, so anything that stops
+ * the animation actually running (a throttled background tab, an offscreen
+ * render) leaves it blank. Starting at 0s means `from` only ever applies once
+ * the animation is genuinely underway. */
+.cinv2 .tool.is-live .gauge-fill {
+  animation: v2GaugeDraw 1.1s cubic-bezier(.22,.85,.3,1) forwards;
+}
+@keyframes v2GaugeDraw {
+  from { stroke-dasharray: 0 264; }
+  to   { stroke-dasharray: 163 264; }
+}
+
+/* Bars stand at full height by default; .is-live replays the rise once.
+ *
+ * The looping shine that used to pass along them was cut: an infinite
+ * brightness pulse sits in peripheral vision while someone reads the card
+ * copy, and it was the most complex, least useful half of this effect. The
+ * one-time entrance is what makes a static readout feel alive; perpetual
+ * motion just competes with the text. */
+.cinv2 .bars i {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+
+/* The cascade comes from staggered DURATIONS, not delays: every bar starts
+ * rising at 0s and they arrive one after another. Same read as a stagger,
+ * with no window where a bar is held at zero height waiting to begin. */
+.cinv2 .tool.is-live .bars i {
+  /* Slowed so the cascade lands around the same time as the 1.1s gauge draw;
+     the bars were finishing by 0.88s and read as snappier than Fan Score. */
+  animation: v2BarRise .62s cubic-bezier(.22,.85,.3,1) forwards;
+}
+.cinv2 .tool.is-live .bars i:nth-child(2) { animation-duration: .76s; }
+.cinv2 .tool.is-live .bars i:nth-child(3) { animation-duration: .90s; }
+.cinv2 .tool.is-live .bars i:nth-child(4) { animation-duration: 1.04s; }
+.cinv2 .tool.is-live .bars i:nth-child(5) { animation-duration: 1.18s; }
+
+@keyframes v2BarRise {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* ─── 9 · Red contact close ─────────────────────────────── */
+/* The site's own oxblood, not Cowork's three-stop gradient. #A12A1E is what
+ * the live close uses; the gradient was an approximation of it. */
+.cinv2 .contact-red { background: #A12A1E; }
+/* Form matched to Cowork's spec: white fields, 2px radius, .92rem espresso
+ * Send button at 13px/24px. */
+.cinv2 .cform { display: grid; gap: 14px; }
+.cinv2 .cform input,
+.cinv2 .cform textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 2px;
+  color: #15110F;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: .95rem;
+  font-weight: 500;
+  padding: 14px 16px;
+}
+.cinv2 .cform input::placeholder,
+.cinv2 .cform textarea::placeholder { color: #5E564E; }
+.cinv2 .cform input:focus,
+.cinv2 .cform textarea:focus { outline: none; border-color: #15110F; }
+.cinv2 .cform textarea { min-height: 120px; resize: vertical; }
+/* Layout and type only — Send carries .btnink for its colours and hover, so
+ * it follows the same rule as the other two secondaries. It used to need a
+ * carve-out (red on the oxblood ground is near-invisible); holding the fill
+ * removes the need for one. */
+.cinv2 button.btnsend {
+  justify-self: start;
+  border-radius: 2px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  padding: 13px 24px;
+  cursor: pointer;
+}
+/* Inline links inside the oxblood close ("LinkedIn", "full contact form").
+ * They were bold gold text with no underline and NO hover rule at all — a
+ * regression from matching Cowork's close, whose base stylesheet strips
+ * underlines globally. Two problems: without an underline they barely read as
+ * links, and with no hover they gave no confirmation they were clickable.
+ *
+ * Gold is their rest colour here, so gold cannot also be the hover. They
+ * brighten to cream instead, which is the same "one step up in value" move
+ * the buttons make. */
+.cinv2 .oxlink {
+  color: #F2D79A;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(242,215,154,.45);
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.cinv2 .oxlink:hover {
+  color: #FBF4E6;
+  text-decoration-color: #FBF4E6;
+}
+
+.cinv2 .contact-done {
+  background: #fff;
+  border-radius: 2px;
+  padding: clamp(26px, 3vw, 34px);
+}
+
+/* ─── Hero, two modes ───────────────────────────────────── */
+/* Driven by HERO_PORTRAIT in HomePageV2.jsx. Centred while there is no
+ * portrait, split the moment one is set. */
+.cinv2 .hero-centred { text-align: center; }
+/* Flex-centred, not margin-auto: the h1 and lede carry inline `margin`
+ * shorthands, which reset margin-left/right to 0 and beat a stylesheet
+ * `margin: auto`. That left the blocks flush left with only their text
+ * centred. As flex items they centre regardless of their own margins. */
+.cinv2 .hero-centred .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cinv2 .hero-centred .hero-sig { justify-content: center; }
+
+.cinv2 .hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .cinv2 .hero-split { grid-template-columns: 1fr; }
+  .cinv2 .hero-split .hero-portrait { order: -1; max-width: 320px; }
+}
+
+/* ─── Hero entrance ─────────────────────────────────────── */
+@keyframes cinv2FadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cinv2 .logoband { opacity: 0; animation: cinv2FadeUp .9s cubic-bezier(.16,.84,.44,1) .45s forwards; }
+
 /* ─── Hero glow pulse ───────────────────────────────────── */
-.cin .heroglow { animation: cinGlow 7s ease-in-out infinite; }
-@keyframes cinGlow {
+.cinv2 .heroglow { animation: cinv2Glow 7s ease-in-out infinite; }
+@keyframes cinv2Glow {
   0%   { opacity: .7; transform: scale(1); }
   50%  { opacity: 1;  transform: scale(1.08); }
   100% { opacity: .7; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cin .heroglow { animation: none; }
-  .cin [data-rev] { transition: none; }
+  .cinv2 .heroglow { animation: none; }
+  .cinv2 .logoband { opacity: 1; animation: none; }
+  .cinv2 [data-rev] { transition: none; }
+  .cinv2 .speak-bg video { display: none; }
+  /* Tool visuals sit in their finished state, which is already the default —
+     the JS never adds .is-live under reduced motion. */
+  .cinv2 .hero-copy a.btnp::after { display: none; }
 }
 
-.cin #what-it-is, .cin #why-youre-here, .cin #about, .cin #services { scroll-margin-top: 78px; }
+.cinv2 #about, .cinv2 #services, .cinv2 #speaking, .cinv2 #tools, .cinv2 #contact { scroll-margin-top: 78px; }
 
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .cin .grid-2 { grid-template-columns: 1fr !important; }
-  .cin .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
-  .cin .grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
-  .cin .grid-5 { grid-template-columns: repeat(3, 1fr) !important; }
-  .cin .wrow { grid-template-columns: 1fr !important; }
-  .cin .wmedia { min-height: 240px !important; }
+  .cinv2 .grid-2 { grid-template-columns: 1fr !important; }
+  .cinv2 .grid-3 { grid-template-columns: 1fr !important; }
+  .cinv2 .svc-grid { grid-template-columns: 1fr; }
+  /* Stacked full-width, the tall portrait proportion just leaves a big empty
+     top, so drop the min-height and let each card fit its content. The copy
+     is already shown on touch, so nothing needs reserving. Content top-aligns
+     rather than being pushed to the bottom of an oversized box. */
+  .cinv2 .svcard { min-height: 0; }
+  .cinv2 .svcard-body { margin-top: clamp(28px, 8vw, 44px); }
+  .cinv2 .tools-grid { grid-template-columns: 1fr; }
+  .cinv2 .contact-grid { grid-template-columns: 1fr !important; }
 }
-@media (max-width: 560px) {
-  .cin .grid-4 { grid-template-columns: 1fr !important; }
-  .cin .grid-3 { grid-template-columns: 1fr !important; }
-  /* Fan Value estimate card: the CTA is inline-flex with a flex:none parent,
-     so its label never wrapped and the card's overflow:hidden clipped the
-     button's right edge on narrow screens. Make it a full-width, wrap-safe
-     block so it can't exceed the card. */
-  .cin .fv-cta-col { width: 100%; }
-  .cin .fv-cta-btn {
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-    text-align: center;
-    white-space: normal;
-    /* Trim the inline 30px side padding so the label sits on one line at
-       phone widths (two at the very narrowest) instead of three. */
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-  /* Logo strip: 3 on top, 2 centered underneath (no orphan). */
-  .cin .hero-trust .grid-5 {
+@media (max-width: 760px) {
+  /* Logo strip: 3 on top, 2 centred underneath (no orphan). */
+  .cinv2 .logoshelf {
     display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(18px, 5vw, 28px);
+    gap: clamp(18px, 5vw, 28px) !important;
   }
-  .cin .hero-trust .grid-5 > li {
+  .cinv2 .logoshelf > li {
     flex: 0 0 calc(33.333% - clamp(18px, 5vw, 28px));
     max-width: 30%;
-  }
-}
-/* Fan-value estimate readout (Edit 6) — collapse to 1 col ≤820px */
-@media (max-width: 820px) {
-  .estwrap { grid-template-columns: 1fr !important; }
-}
-/* Framed logo band (Edit 5) — 2-col row under 760px */
-@media (max-width: 760px) {
-  .logoshelf {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 28px !important;
   }
 }

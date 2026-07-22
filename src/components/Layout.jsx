@@ -6,36 +6,17 @@ const CONTACT_URL = '/contact'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
-// Order = Home, the offer, the method behind it, the proof, the frontier bet,
-// then the person. Speaking lives in the footer + About, not the primary nav.
+// Site-wide simplified nav: five items and one CTA. Fan-Led Growth leads,
+// then Work, Services, Speaking, About. Method, AI and Fan Score are dropped
+// from the header and stay reachable from the footer and in-page links; Home
+// is the logo. This replaced a seven-item nav at the homepage cutover.
 const navLinks = [
-  { key: 'home',     label: 'Home',      path: '/',                     isHash: false },
-  { key: 'services', label: 'Services',  path: '/services',             isHash: false },
-  { key: 'method',   label: 'Method',    path: '/methodology',          isHash: false },
-  { key: 'work',     label: 'Work',      path: '/work',                 isHash: false },
-  { key: 'ai',       label: 'AI',        path: '/ai',                   isHash: false },
-  { key: 'about',    label: 'About',     path: '/about',                isHash: false },
-  { key: 'fanscore', label: 'Fan Score', path: '/fan-score',            isHash: false },
-]
-
-// Simplified nav from the Cowork homepage direction: five items and one CTA,
-// down from seven plus a LinkedIn icon. Dropped: Home (the logo does it),
-// Method, AI, Fan Score. Added: Speaking, which was previously footer-only.
-// Fan Score keeps its homepage Tools section, the close and the footer.
-//
-// Scoped to the v2 preview routes below so the live nav is untouched while
-// both homepage directions exist side by side.
-const navLinksV2 = [
   { key: 'flg',      label: 'Fan-Led Growth', path: '/fan-led-growth', isHash: false },
   { key: 'work',     label: 'Work',           path: '/work',           isHash: false },
   { key: 'services', label: 'Services',       path: '/services',       isHash: false },
   { key: 'speaking', label: 'Speaking',       path: '/speaking',       isHash: false },
   { key: 'about',    label: 'About',          path: '/about',          isHash: false },
 ]
-
-// Routes that get the simplified nav. Remove this and swap navLinks for
-// navLinksV2 if the v2 direction is promoted site-wide.
-const V2_ROUTES = ['/home-v2', '/fan-led-growth']
 
 // Same journey as the header, plus the IP pages and Speaking that the header
 // keeps tucked away.
@@ -58,20 +39,13 @@ export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
-  const isV2 = V2_ROUTES.includes(location.pathname)
-  const nav = isV2 ? navLinksV2 : navLinks
-  const ctaLabel = isV2 ? 'Get in touch' : 'Let’s talk'
+  const nav = navLinks
+  const ctaLabel = 'Get in touch'
 
-  // The brand was hardcoded to "/", which meant clicking it from /home-v2
-  // navigated to the LIVE homepage rather than back to the top of the page
-  // you were on. On non-v2 routes this resolves to "/" exactly as before.
-  const homePath = isV2 ? '/home-v2' : '/'
-
-  // Already at the top-level page? Scroll to the top instead of a no-op
-  // navigation. Scoped to the v2 routes so live behaviour is unchanged;
-  // drop the isV2 test to apply it site-wide.
+  // Clicking the brand while already on the homepage scrolls to the top
+  // instead of a no-op navigation. Elsewhere it is a normal link to "/".
   const onBrandClick = (e) => {
-    if (!isV2 || location.pathname !== homePath) return
+    if (!isHome) return
     e.preventDefault()
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })
@@ -141,21 +115,14 @@ export default function Layout({ children }) {
     <div className="layout">
       <header className={`cinnav${solid ? ' is-solid' : ''}${menuOpen ? ' is-open' : ''}`}>
         <div className="cinnav__inner">
-          <Link to={homePath} onClick={onBrandClick} className="cinnav__brand" aria-label="Home">Laura Cordrey</Link>
+          <Link to="/" onClick={onBrandClick} className="cinnav__brand" aria-label="Home">Laura Cordrey</Link>
 
           <div className="cinnav__links">
             {nav.map(renderNavLink)}
-            {!isV2 && (
-              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="cinnav__li">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
-                </svg>
-              </a>
-            )}
-            {/* No arrow on the v2 CTA: buttons lose the arrow in that
-                direction, text links keep it. */}
+            {/* No arrow on the CTA and no LinkedIn icon: the simplified nav
+                keeps the header to five items and one button. */}
             <Link to={CONTACT_URL} className="cinnav__cta">
-              {ctaLabel}{!isV2 && <> <span aria-hidden="true">→</span></>}
+              {ctaLabel}
             </Link>
           </div>
 
@@ -184,7 +151,7 @@ export default function Layout({ children }) {
               )
             ))}
             <Link to={CONTACT_URL} className="cinnav__mcta" onClick={() => setMenuOpen(false)}>
-              {ctaLabel}{!isV2 && <> <span aria-hidden="true">→</span></>}
+              {ctaLabel}
             </Link>
           </div>
         )}
@@ -197,10 +164,7 @@ export default function Layout({ children }) {
           <div className="cinfoot__brand">
             <span className="cinfoot__name">Laura Cordrey</span>
             <span className="cinfoot__line">Fan-led growth for consumer brands.</span>
-            {/* Scoped to the v2 routes like the nav above, so the live footer
-                is untouched while both directions exist. Drop the isV2 test
-                to take it site-wide. */}
-            <span className="cinfoot__meta">{isV2 ? 'Paris. Working globally' : 'Paris · Since 2013'}</span>
+            <span className="cinfoot__meta">Paris. Working globally</span>
           </div>
           <nav className="cinfoot__nav">
             {footerLinks.map((n) => (

@@ -1,74 +1,138 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, authorJsonLd } from '../lib/seo.js'
+import { postLead } from '../lib/forms.js'
 import './HomePage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const BASE = import.meta.env.BASE_URL
 
-// Best wins stat bar — four ironclad numbers across revenue, reach, growth and sentiment.
-// Ubisoft is program-wide 60M+ reach (labelled "across programs"). Cards route to
-// /work. BlaBlaCar's story is told in the carousel, not as a headline number.
-const stats = [
-  { value: '$32K', unit: 'in under three hours', label: 'a $129 fan drop that sold out instantly', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
-  { value: '60M+', unit: 'reach', label: 'across Ubisoft programs, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
-  { value: '+80%', unit: 'MAU', label: 'from streamer-led product launches', client: 'Azarus', img: 'case-studies/homepage/hp-kpi-azarus.jpg', alt: 'Azarus game ad platform' },
-  { value: '85%', unit: 'positive sentiment', label: 'held across a 15M-player live-service community', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
-]
+// ─── Hero portrait switch ────────────────────────────────────────────────
+// null → centred, type-led hero (current: there is no hero-grade portrait in
+// the library yet, and a weak one costs more than no image at all).
+//
+// To add one when the shoot happens, set this to a path under /public, e.g.
+//   const HERO_PORTRAIT = 'portraits/laura-hero.jpg'
+// That single line switches the hero to copy-left / portrait-right and
+// left-aligns the copy. Nothing else needs changing. Use a 4:5 portrait.
+const HERO_PORTRAIT = null
 
-const whyFans = [
-  { title: 'They invest more',       copy: 'Fans stay longer and spend more, so you keep and grow what you paid to win.', icon: 'lock' },
-  { title: 'They spread the word',      copy: 'Fans make the content that markets you, at no media cost.', icon: 'megaphone' },
-  { title: 'They recommend you',    copy: 'Fans bring their friends in, so growth leans less on ad spend.', icon: 'users' },
-  { title: 'They defend you',        copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
-  { title: 'AI recommends you too', copy: 'When people ask AI what to pick, it answers from what your fans post. The more they love you, the more it points to you.', icon: 'sparkle' },
-  { title: 'It compounds',      copy: 'Built once, the engine keeps working and starts to fuel itself.', icon: 'loop' },
-]
+/* Homepage — lighter rebuild (21 Jul 2026, branch `homepage-lighter`).
+ *
+ * Structure, 8 beats:
+ *   Hero > Trusted by > About > Three ways I help > Selected work
+ *   > Speaking > In their words > Tools > Let's talk
+ *
+ * What changed and why. Feedback was that the page felt dense. Measured
+ * against anastasiashtompel.com the cause was NOT small type — this page's
+ * headings were 36-60% LARGER. It was four other things:
+ *   1. Weight — every heading at 800. Now 700 (see HEAD_W).
+ *   2. No hierarchy release — seven h2s within shouting distance of the
+ *      hero. The hero-to-section ratio was 1.5x; it is now ~2.4x, so
+ *      sections genuinely recede and the eye gets somewhere to rest.
+ *   3. Word count — 1,083 words vs the benchmark's 752. The two education
+ *      sections ("What it is", "Why fans", "Why you're here", ~500 words of
+ *      six + four cards) are cut. /methodology and /ai carry that argument
+ *      now, and the hero's second CTA routes there.
+ *   4. Card-grid monotony — four consecutive "kicker > h2 > lede > grid of
+ *      bordered cards" sections. Broken up by the full-bleed speaking band
+ *      and the centred testimonial.
+ *
+ * Type scale lives in T below rather than being re-typed inline per section,
+ * which is what made the previous version hard to restyle.
+ */
 
-const situations = [
-  { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop the moment you stop paying.', icon: 'spark' },
-  { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the extra growth fans bring on top.', icon: 'rocket' },
-  { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.', icon: 'shield' },
-  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.', icon: 'gear' },
-]
+const HEAD_W = 700
 
-// Small inline-svg helpers — stroke-based, matching the design.
-const Icon = ({ name, size = 28 }) => {
-  const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
-  switch (name) {
-    case 'rocket':
-      return (<svg {...common} strokeWidth={1.6}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>)
-    case 'lock':
-      return (<svg {...common}><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>)
-    case 'megaphone':
-      return (<svg {...common}><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8.5a4 4 0 0 1 0 7"/></svg>)
-    case 'users':
-      return (<svg {...common}><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M18 7v6M21 10h-6"/></svg>)
-    case 'shield':
-      return (<svg {...common}><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/></svg>)
-    case 'sparkle':
-      return (<svg {...common}><path d="M12 2.5l2.1 6.1 6.4.1-5.1 3.9 1.9 6.1-5.2-3.7-5.2 3.7 1.9-6.1-5.1-3.9 6.4-.1z"/></svg>)
-    case 'loop':
-      return (<svg {...common}><path d="M17 5a7 7 0 0 1 0 14H8"/><path d="M11 22l-3-3 3-3"/><path d="M7 19A7 7 0 0 1 7 5h9"/><path d="M13 2l3 3-3 3"/></svg>)
-    case 'pulse':
-      return (<svg {...common} strokeWidth={1.6}><path d="M2 12h4l2.5-7 4 14L15 12h7"/></svg>)
-    case 'spark':
-      return (<svg {...common} strokeWidth={1.6}><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>)
-    case 'gear':
-      return (<svg {...common}><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>)
-    case 'image':
-      return (<svg {...common} strokeWidth={1.2}><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L6 20"/></svg>)
-    default:
-      return null
-  }
+const T = {
+  h1: 'clamp(2.8rem, 6.6vw, 5.25rem)',    // ~84px at 1280 (live page: ~102px)
+  h2: 'clamp(1.8rem, 3.2vw, 2.75rem)',    // ~44px at 1280 (was 54-67px)
+  h2close: 'clamp(2.4rem, 5vw, 3.75rem)', // the close still gets to shout
+  h3: 'clamp(1.15rem, 1.6vw, 1.4rem)',
+  lede: 'clamp(1.05rem, 1.3vw, 1.22rem)',
+  body: 'clamp(.95rem, 1.05vw, 1.04rem)',
+  marker: '.74rem',
 }
 
-const SECTION_PAD = 'clamp(72px, 9vw, 128px) clamp(20px, 5vw, 64px)'
-const INNER = { maxWidth: 1280, margin: '0 auto', width: '100%' }
+const SECTION_PAD = 'clamp(64px, 7.5vw, 108px) clamp(20px, 5vw, 64px)'
+const INNER = { maxWidth: 1180, margin: '0 auto', width: '100%' }
+
+const CLIENT_LOGOS = [
+  { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 118 },
+  { src: 'logos/amazon-game-studios.png', alt: 'Amazon Game Studios', maxw: 108 },
+  { src: 'logos/blablacar-vert.png', alt: 'BlaBlaCar', maxw: 118 },
+  { src: 'logos/us-mobile-mark.png', alt: 'US Mobile', maxw: 118 },
+  { src: 'logos/azarus-vert.png', alt: 'Azarus / Animoca', maxw: 118 },
+]
+
+// Three ways in. Each card carries its own brand ground (gold, espresso,
+// cream) rather than decoration: the gold card is the trademarked flagship,
+// and the three grounds give hierarchy and variety with nothing invented.
+//
+// The card itself is NOT a link. "Fix one thing now" covers three separate
+// services, so a single card-wide click target could not honestly resolve to
+// one destination. Each card carries a real button instead.
+//
+// The cards carry no CTA of their own. One button sits underneath the group
+// instead, because "Fix one thing now" covers three separate services and a
+// per-card link could not resolve to a single honest destination.
+const WAYS = [
+  {
+    no: '01',
+    tone: 'gold',
+    title: 'The Fan Engine\u2122',
+    kicker: 'Build the whole engine',
+    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
+  },
+  {
+    no: '02',
+    tone: 'espresso',
+    title: 'Fix one thing now',
+    kicker: 'Move fast on one problem',
+    copy: 'One thing, moved fast: a sentiment turnaround, a fan or referral programme, or a launch moment that converts. With the baselines to prove it worked.',
+  },
+  {
+    no: '03',
+    tone: 'cream',
+    title: 'Advisory',
+    kicker: 'Expertise on call',
+    copy: 'Senior fan-led growth leadership without the full-time hire. In the room when you need it, as much or as little as you need.',
+  },
+]
+
+// Three headline wins. The fourth (Azarus +80% MAU) moved to /work to keep
+// this band at three — part of the density cut.
+const CASES = [
+  { value: 'Sold out', unit: '', label: 'a $129 fan drop, in under 3 hours', client: 'US Mobile', img: 'case-studies/homepage/hp-kpi-us-mobile-sim.png', alt: 'US Mobile Dark Star drop' },
+  { value: '60M+', unit: '', label: 'UGC reach, at $0 media spend', client: 'Ubisoft', img: 'case-studies/homepage/hp-kpi-ubi.jpg', alt: 'Ubisoft creator programs' },
+  // "across" dropped: the label needed 270px against 289px available, so it
+  // wrapped on any window under ~1196px. Grid rows are equal height, so that
+  // one wrap made all three cards taller. Now ~225px, in line with the other
+  // two, which hold one line down to ~950px.
+  { value: '85%', unit: '', label: 'positive sentiment, 15M players', client: 'Ghost Recon', img: 'case-studies/homepage/hp-kpi-ghost-recon.jpg', alt: 'Ghost Recon community' },
+]
+
+function Eyebrow({ children, tone = 'gold' }) {
+  return (
+    <span
+      style={{
+        display: 'block',
+        fontSize: T.marker,
+        letterSpacing: '.2em',
+        textTransform: 'uppercase',
+        color: tone === 'gold' ? '#D4C896' : '#C8362B',
+        fontWeight: 700,
+      }}
+    >
+      {children}
+    </span>
+  )
+}
 
 export default function HomePage() {
+  // The live homepage. Full SEO: real title, canonical to "/", author schema.
   useDocumentMeta({
     title: 'Laura Cordrey | Fan-Led Growth Consultant for Consumer Brands',
     description:
@@ -77,6 +141,68 @@ export default function HomePage() {
     ogType: 'website',
     jsonLd: authorJsonLd(),
   })
+
+  // Entrance visuals, fired once when an element first scrolls into view:
+  // the tool gauge draws itself and its bars rise, and a sheen sweeps across
+  // each service card.
+  //
+  // The sheen is deliberately NOT on hover. A light sweep is the strongest
+  // "click me" cue there is, and the service cards do not navigate, so on
+  // hover it would promise something the card cannot deliver. On entrance it
+  // is ambient motion, which the design rules allow anywhere.
+  //
+  // Skipped entirely under prefers-reduced-motion.
+  const revealRef = useRef(null)
+  useEffect(() => {
+    const el = revealRef.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    // Replays a tool card's CSS visualisation: the gauge draw and the bar
+    // rise, keyed off .is-live. `restart` (hover) clears and re-adds the class
+    // on the next frame to run it from the top; entrance just adds it once.
+    // Guarded so a rapid re-hover does not stutter.
+    //
+    // The number is deliberately NOT animated: counting it up read as too much
+    // motion. The gauge and bars carry it.
+    const fireViz = (tool, restart) => {
+      if (restart) {
+        if (tool.dataset.replaying) return
+        tool.dataset.replaying = '1'
+        tool.classList.remove('is-live')
+        void tool.offsetWidth // reflow so the removal commits before re-add
+        window.setTimeout(() => { delete tool.dataset.replaying }, 1400)
+      }
+      tool.classList.add('is-live')
+    }
+
+    // Service-card sheen still fires once on entrance only (see the .svcard
+    // note): a sweep is a "click me" cue and those cards do not navigate.
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return
+          if (e.target.classList.contains('tool')) fireViz(e.target, false)
+          else e.target.classList.add('is-live')
+          io.unobserve(e.target)
+        })
+      },
+      { threshold: 0.35 }
+    )
+    el.querySelectorAll('.tool, .svcard').forEach((t) => io.observe(t))
+
+    // Hover replays the whole visualisation. Honest under the hover rule: the
+    // card FRAME never moves, so nothing lifts or scales toward the cursor and
+    // no false "clickable" promise is made. The button inside is the target.
+    const tools = [...el.querySelectorAll('.tool')]
+    const enter = (e) => fireViz(e.currentTarget, true)
+    tools.forEach((t) => t.addEventListener('pointerenter', enter))
+
+    return () => {
+      io.disconnect()
+      tools.forEach((t) => t.removeEventListener('pointerenter', enter))
+    }
+  }, [])
 
   // Scroll-reveal: any [data-rev] element below the fold starts hidden and reveals once it scrolls in.
   const rootRef = useRef(null)
@@ -105,10 +231,32 @@ export default function HomePage() {
     return () => io.disconnect()
   }, [])
 
+  // Homepage contact form. Posts to the existing Netlify `contact` form using
+  // a strict subset of its registered fields (name, email, message, intent,
+  // source_page, bot-field) — so index.html needs no new registration.
+  // The full branching form still lives on /contact for qualified enquiries.
+  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState({ name: '', email: '', message: '', 'bot-field': '' })
+  const onField = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
+
+  function onSubmit(e) {
+    e.preventDefault()
+    if (form['bot-field']) return // honeypot tripped, drop silently
+    postLead({
+      form: 'contact',
+      name: form.name,
+      email: form.email,
+      message: form.message,
+      intent: 'consulting',
+      source_page: 'homepage',
+    })
+    setSent(true)
+  }
+
   return (
     <div
-      ref={rootRef}
-      className="cin"
+      ref={(n) => { rootRef.current = n; revealRef.current = n }}
+      className="cinv2"
       style={{
         background: '#15110F',
         color: '#EFE9DC',
@@ -117,382 +265,391 @@ export default function HomePage() {
         lineHeight: 1.55,
       }}
     >
-      {/* ─── HERO ─── */}
-      <section id="top" style={{ position: 'relative', minHeight: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: '#0E0B09' }}>
-        <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '70vw', height: '70vw', maxWidth: 900, maxHeight: 900, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 700, maxHeight: 700, background: 'radial-gradient(circle,rgba(212,200,150,.08) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
+      {/* ─── 1 · HERO ─── */}
+      <section id="top" style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#0E0B09' }}>
+        <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '70vw', height: '70vw', maxWidth: 820, maxHeight: 820, background: 'radial-gradient(circle,rgba(200,54,43,.15) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 640, maxHeight: 640, background: 'radial-gradient(circle,rgba(212,200,150,.07) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
 
-        <div style={{ position: 'relative', padding: 'clamp(112px,14vh,160px) clamp(20px,5vw,64px) clamp(44px,5vw,68px)', ...INNER }}>
-          <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(20px,3vw,30px)' }}>Fan-led growth for consumer brands</span>
-          <h1 style={{ fontWeight: 800, fontSize: 'clamp(2.9rem,8vw,7.4rem)', lineHeight: 0.92, letterSpacing: '-.04em', margin: 0, maxWidth: '15ch' }}>
-            Fans who <mark>stay</mark>, <mark>pay</mark>, and <mark>bring more</mark>.
-          </h1>
-          <p style={{ fontSize: 'clamp(1.12rem,1.7vw,1.5rem)', lineHeight: 1.5, color: 'rgba(239,233,220,.82)', maxWidth: '58ch', margin: 'clamp(24px,3.4vw,38px) 0 0' }}>
-            The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,1.6vw,18px)', marginTop: 'clamp(30px,3.6vw,44px)' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 26px' }}>
-              <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
-                Let’s talk <span className="ar" aria-hidden>→</span>
-              </Link>
-              <a href="#what-it-is" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, textDecoration: 'none' }}>
-                See how it works <span className="ar" aria-hidden>→</span>
+        {/* Type-led hero. Centred deliberately: left-aligned copy with an
+          * empty right half read as "the image failed to load" rather than
+          * "text-only by design". Centring removes the hole, so nothing looks
+          * missing, and lets the hook run bigger and wider.
+          *
+          * TO ADD A PORTRAIT LATER: set HERO_PORTRAIT at the top of this file
+          * to an image path. That is the only change needed — the layout
+          * switches to copy-left / portrait-right and the copy left-aligns.
+          * No redesign. */}
+        <div
+          className={HERO_PORTRAIT ? 'hero-split' : 'hero-centred'}
+          style={{ position: 'relative', ...INNER, padding: 'clamp(52px,6.5vh,80px) clamp(20px,5vw,64px) clamp(40px,4.5vw,60px)' }}
+        >
+          <div className="hero-copy">
+            <Eyebrow>Fan-led growth for consumer brands</Eyebrow>
+            <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.0, letterSpacing: '-.032em', margin: 'clamp(18px,2.4vw,26px) 0 0', maxWidth: '17ch' }}>
+              Fans who <mark>stay</mark>, <mark>pay</mark>,<br />and <mark>bring more</mark>.
+            </h1>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.8)', maxWidth: '52ch', margin: 'clamp(20px,2.6vw,28px) 0 0' }}>
+              The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
+            </p>
+
+            {/* No leading rule: the tick was reading as a stray mark once the
+              * block was centred, with nothing to align to on the left. */}
+            <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
+              <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
+              <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
+            </div>
+
+            <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
+              <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+                Get in touch
               </a>
             </div>
-            <span style={{ fontSize: '.86rem', color: '#8A8078', fontWeight: 600 }}>Every message comes straight to me, and I reply within one working day.</span>
           </div>
 
-          {/* Edit 5: hero proof strip — hairline top only (no bottom rule so
-            * the hero reads as one continuous moment), gold kicker centered,
-            * real PNGs at ~60px so they're legible. Bigger than the old 44px
-            * row but keeps the logos as a footer under the promise, not a
-            * separate "client roster" chapter. */}
-          <div className="hero-trust logoband" style={{ marginTop: 'clamp(44px,5vw,68px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(20px,2.6vw,30px)', textAlign: 'center', borderTop: '1px solid rgba(239,233,220,.14)', paddingTop: 'clamp(28px,4vw,44px)' }}>
-            <span style={{ fontSize: '.78rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-              Thirteen years building fan-led growth
-            </span>
-            <ul className="herologos logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 1000, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'end', justifyItems: 'center', gap: 'clamp(20px,4vw,60px)' }}>
-              {[
-                { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 130 },
-                { src: 'logos/amazon-game-studios.png',   alt: 'Amazon Game Studios', maxw: 120 },
-                { src: 'logos/blablacar-vert.png',        alt: 'BlaBlaCar', maxw: 130 },
-                { src: 'logos/us-mobile-mark.png',        alt: 'US Mobile', maxw: 130 },
-                { src: 'logos/azarus-vert.png',           alt: 'Azarus / Animoca', maxw: 130 },
-              ].map((l) => (
-                <li key={l.alt} className="lgocell" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-                  <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 60, maxWidth: l.maxw, width: 'auto', objectFit: 'contain' }} />
-                </li>
-              ))}
-            </ul>
-          </div>
+          {HERO_PORTRAIT && (
+            <figure className="hero-portrait" style={{ margin: 0 }}>
+              <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', borderTop: '3px solid #C8362B' }}>
+                <img src={BASE + HERO_PORTRAIT} alt="Laura Cordrey" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </figure>
+          )}
+        </div>
+
+        {/* ─── 2 · TRUSTED BY ───
+          * Inside the hero section, not after it. Matching the background was
+          * not enough on its own: the hero carries two radial glows, so a
+          * separate sibling underneath sat on flat #0E0B09 and read as a
+          * different colour. As a child it shares the ground and the glows. */}
+        <div className="logoband" style={{ position: 'relative', ...INNER, padding: '0 clamp(20px,5vw,64px) clamp(34px,4vw,52px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(14px,1.8vw,20px)' }}>
+          {/* The small gold rule from the design system
+            * (.about-strip__clients::before in shared.css): 48x1px --edge,
+            * the editorial break that sits above a credentials strip. */}
+          <span aria-hidden="true" style={{ display: 'block', width: 48, height: 1, background: 'var(--edge)' }} />
+          {/* Cowork's label. "Thirteen years..." was here, but the About
+            * section opens with "Thirteen years building brand, community and
+            * growth" two screens later, so it read as a repeat. */}
+          <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--ink-muted)', fontWeight: 700 }}>
+            Trusted by teams at
+          </span>
+          {/* Logos down from 46px to 36px, in proportion with the hook coming
+            * down from 102px to 84px: they are a supporting credential, not a
+            * second headline. */}
+          <ul className="logoshelf" style={{ listStyle: 'none', margin: 0, padding: 0, width: '100%', maxWidth: 700, display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', alignItems: 'center', justifyItems: 'center', gap: 'clamp(12px,2vw,24px)' }}>
+            {CLIENT_LOGOS.map((l) => (
+              <li key={l.alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', opacity: .72 }}>
+                <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 36, maxWidth: Math.round(l.maxw * 0.8), width: 'auto', objectFit: 'contain' }} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ─── WHAT IT IS ─── */}
-      <section id="what-it-is" style={{ background: '#15110F', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
+      {/* ─── 3 · ABOUT ─── */}
+      <section id="about" style={{ background: '#EFE9DC', color: '#15110F' }}>
+        <div className="grid-2" style={{ ...INNER, padding: SECTION_PAD, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5.5vw,72px)', alignItems: 'center' }}>
+          <div data-rev>
+            <Eyebrow tone="red">The person behind it</Eyebrow>
+            {/* First person, to match the copy under it. "Meet Laura" was
+              * third person sitting on top of "I've worked the whole machine",
+              * so the section changed voice halfway down. */}
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#15110F' }}>
+              Hi, I&rsquo;m Laura.
+            </h2>
+            {/* Option D, content/copy/copy-homepage-v2-about.md. Cowork's
+              * sequencing (past > now > two-beat close) with "I've worked the
+              * whole machine" rescued from the live homepage: the roster says
+              * where she has been, that line says what she can see. The
+              * remaining texture ("complicated tech, crowded roadmaps...")
+              * stays on /about. Region claim confirmed by Laura 21 Jul 2026. */}
+            <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '46ch' }}>
+              Thirteen years building brand, community and growth where fans are loudest, for global brands and startups across North America and EMEA: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. I&rsquo;ve worked the whole machine.
+            </p>
+            <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#15110F', fontWeight: 600, margin: 'clamp(12px,1.4vw,16px) 0 0', maxWidth: '46ch' }}>
+              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove<br />the return.
+            </p>
+            <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
+              <Link to="/about" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
+                More about me
+              </Link>
+            </div>
+          </div>
+          {/* 4:5 as on the original homepage: taller and narrower suits a
+            * standing figure. Capped at 400px so it does not fill the whole
+            * column — at full column width the 4:5 ratio made it ~675px tall,
+            * which towered over the text beside it. */}
+          <figure data-rev style={{ margin: '0 auto', width: '100%', maxWidth: 400 }}>
+            {/* No red top rule: it is a photograph, the image is the content.
+              * A rule on a photo adds nothing, same call as the work cards. */}
+            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F' }}>
+              {/* The mic shot rather than the E3 stage one: its dark ground and
+                * warm browns sit in the espresso/red/cream palette, where the
+                * E3 frame's green and tan backdrop fought it. */}
+              <img src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'} alt="Laura Cordrey speaking at Ubisoft XP 2019" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 22%', display: 'block' }} />
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      {/* ─── 4 · THREE WAYS I HELP ───
+        * Flip cards. Each card is a real <Link>, so hover motion is honest
+        * (CLAUDE.md design rules): it moves under the cursor and it navigates
+        * on click. Keyboard focus flips the card too. Both faces are in the
+        * DOM for prerender/SEO. Under (hover:none) and reduced-motion the
+        * flip is disabled and the back face stacks below the front. */}
+      <section id="services" style={{ background: '#1F1A17' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,5vw,80px)', alignItems: 'start' }}>
-            <div data-rev>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 'clamp(16px,2.2vw,24px)' }}>
-                <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="rocket" size={22} /></span>
-                <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>What it is</span>
+          <div data-rev style={{ textAlign: 'center', maxWidth: '58ch', margin: '0 auto clamp(34px,4vw,52px)' }}>
+            <Eyebrow>Three ways I help</Eyebrow>
+            <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.74)', margin: 0 }}>
+              It runs on one method I built: the Fan Engine<span className="tm">™</span>. Take the whole thing, or fix one part.
+            </p>
+          </div>
+
+          <div className="svc-grid">
+            {WAYS.map((w) => (
+              <div key={w.no} className={`svcard svcard--${w.tone}`} data-rev>
+                {/* Nothing ever fades OUT. The number, title and kicker are
+                  * permanent; the copy simply appears beneath them. It holds
+                  * its layout space at rest so the card never resizes, which
+                  * means no overlap is possible and nothing has to be timed
+                  * against anything else. */}
+                <span className="svcard-no">{w.no}</span>
+                <div className="svcard-body">
+                  <span className="svcard-title">{w.title}</span>
+                  <span className="svcard-kicker">{w.kicker}</span>
+                  <span className="svcard-copy"><span>{w.copy}</span></span>
+                </div>
               </div>
-              <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.1rem,4.8vw,3.9rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>
-                Fans are <mark>the growth you already own</mark>.
-              </h2>
-            </div>
-            <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,32px)' }}>
-              <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: 'rgba(239,233,220,.82)', margin: 0 }}>
-                <strong style={{ color: '#EFE9DC', fontWeight: 800 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend ends.
-              </p>
-              <div style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(18px,2.2vw,26px) clamp(22px,2.6vw,30px)' }}>
-                <div aria-hidden="true" style={{ position: 'absolute', top: '-50%', right: '-10%', width: '30vw', height: '30vw', maxWidth: 260, maxHeight: 260, background: 'radial-gradient(circle,rgba(200,54,43,.18) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
-                <p style={{ position: 'relative', fontSize: 'clamp(1.3rem,2.4vw,1.9rem)', fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.15, color: '#EFE9DC', margin: 0 }}>
-                  Growth you <span style={{ color: '#C8362B' }}>own</span>, not rent.
-                </p>
-              </div>
-              <p style={{ fontSize: 'clamp(1.08rem,1.45vw,1.34rem)', lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 0 }}>
-                When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/methodology" style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>an engine you own</Link>, then show you what it&rsquo;s worth.
-              </p>
-            </div>
+            ))}
+          </div>
+
+          {/* The section's single CTA, a real button under the group rather
+            * than one per card. The three cards describe the offers; this is
+            * the one place to go for all of them. */}
+          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(32px,4vw,46px)' }}>
+            <Link to="/services" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.3)', paddingBottom: 3 }}>
+              See all services <span className="ar" aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ─── WHY FANS ─── */}
+      {/* ─── 5 · SELECTED WORK ─── */}
       <section style={{ background: '#EFE9DC', color: '#15110F' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why fans</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, maxWidth: '22ch', color: '#15110F' }}>
-              You don’t buy fans. You <mark>earn</mark> them.
+          <div data-rev style={{ textAlign: 'center', marginBottom: 'clamp(32px,4vw,48px)' }}>
+            <Eyebrow tone="red">Selected work</Eyebrow>
+            <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 0, color: '#15110F' }}>
+              My biggest wins, so far.
             </h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0', maxWidth: '58ch' }}>
-              People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can’t buy that. Earn it, and here is what your fans start doing for you.
-            </p>
           </div>
 
-          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'clamp(16px,2vw,24px)', marginTop: 'clamp(40px,5vw,68px)' }}>
-            {whyFans.map((p) => (
-              <div key={p.title} className="pot" data-rev style={{ display: 'flex', flexDirection: 'column', gap: 14, background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(24px,2.8vw,38px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-                <span className="pico" style={{ color: '#C8362B', lineHeight: 0, transition: 'color .2s ease' }}><Icon name={p.icon} size={28} /></span>
-                <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.8rem)', letterSpacing: '-.02em', margin: 0, color: '#15110F' }}>{p.title}</h3>
-                <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.6, color: '#4A423B', margin: 0 }}>{p.copy}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Edit 6 (treatment 2a): dark espresso CTA card. The estimate
-            * demotes from a cream-card readout that competed with the six
-            * benefit tiles into a distinct secondary tier — dark ground
-            * previews the AI section below, keeping one accent per section.
-            * The number moves inline in a body-scale sentence, not a
-            * standalone display number. */}
-          <div data-rev style={{ position: 'relative', overflow: 'hidden', marginTop: 'clamp(28px,3.4vw,44px)', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.4vw,44px)' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
-            <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(24px,3vw,48px)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: '52ch' }}>
-                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>
-                  Fan Value estimate
-                </span>
-                <p style={{ fontSize: 'clamp(1.12rem,1.6vw,1.5rem)', lineHeight: 1.3, fontWeight: 700, color: '#EFE9DC', margin: 0 }}>
-                  The growth is already in <span style={{ color: '#D4C896' }}>your userbase</span>, about <span style={{ color: '#C8362B', fontWeight: 800, whiteSpace: 'nowrap' }}>$560K a year</span> for a $5M brand.
-                </p>
-                <p style={{ fontSize: '.92rem', lineHeight: 1.55, color: 'rgba(239,233,220,.66)', margin: 0 }}>
-                  On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others. An example, not your numbers.
-                </p>
-              </div>
-              <div className="fv-cta-col" style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', flex: 'none' }}>
-                <Link to="/fan-value" className="btnp fv-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-                  See what your fans are worth <span className="ar" aria-hidden>→</span>
-                </Link>
-                <span style={{ fontSize: '.9rem', color: 'rgba(239,233,220,.7)', fontWeight: 600 }}>
-                  or <Link to={CONTACT_URL} style={{ color: '#D4C896', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(212,200,150,.45)' }}>let’s talk</Link>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WHY YOU'RE HERE ─── */}
-      <section id="why-youre-here" style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.12)' }}>
-        <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ maxWidth: '68ch' }}>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Why you’re here</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.1rem,5vw,4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0 }}>
-              However you got here, <mark>fans are the next step</mark>.
-            </h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.4vw,26px) 0 0' }}>
-              I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too. The two are a perfect marriage, and fan-led is the half still on the table.
-            </p>
-          </div>
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(14px,1.8vw,22px)', marginTop: 'clamp(40px,5vw,64px)' }}>
-            {situations.map((s, i) => (
-              <div key={s.title} data-rev style={{ display: 'flex', flexDirection: 'column', gap: 10, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(200,54,43,.55)', borderRadius: 4, padding: 'clamp(24px,2.8vw,36px)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name={s.icon} size={22} /></span>
-                </div>
-                <h3 style={{ fontWeight: 800, fontSize: 'clamp(1.25rem,2vw,1.6rem)', letterSpacing: '-.02em', margin: 0, color: '#EFE9DC' }}>{s.title}</h3>
-                <p style={{ fontSize: 'clamp(.98rem,1.2vw,1.12rem)', lineHeight: 1.58, color: 'rgba(239,233,220,.72)', margin: 0 }}>{s.copy}</p>
-              </div>
-            ))}
-          </div>
-          <div data-rev style={{ marginTop: 'clamp(30px,3.6vw,48px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 22px' }}>
-            <span style={{ fontSize: 'clamp(1.08rem,1.5vw,1.3rem)', fontWeight: 700, color: '#EFE9DC' }}>Sound like you? That’s exactly what I build.</span>
-            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.04rem', padding: '16px 30px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>Let’s talk <span className="ar" aria-hidden>→</span></Link>
-            <Link to="/services" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>See how we&rsquo;d work together <span className="ar" aria-hidden>→</span></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WHY ME ─── */}
-      <section id="about" style={{ background: '#0E0B09', borderTop: '1px solid rgba(239,233,220,.12)' }}>
-        <div className="grid-2" style={{ ...INNER, padding: 'clamp(72px,9vw,128px) clamp(20px,5vw,64px) clamp(40px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 'clamp(36px,7vw,100px)', alignItems: 'center' }}>
-          <div data-rev style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>About me</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.3rem,5.2vw,4.4rem)', lineHeight: 0.98, letterSpacing: '-.03em', margin: 0 }}>
-              I’ve seen the whole picture. <mark>This is the part I chose to build</mark>.
-            </h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: 'rgba(239,233,220,.84)', margin: 0, maxWidth: '50ch' }}>
-              Thirteen years across brand, growth and community at Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. Complicated tech, crowded roadmaps, budgets from shoestring to enormous. I’ve worked the whole machine.
-            </p>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.62, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(14px,1.6vw,20px) 0 0', maxWidth: '50ch' }}>
-              Which is how I know where growth really comes from, and where it leaks. The biggest opportunity most companies walk straight past is the customers they already have. So that is what I build: the system that makes them stay, spend and recommend, with brand, product, community and growth run as one <mark>Fan Engine<span className="tm">™</span></mark>, and the baselines to prove it.
-            </p>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 'clamp(18px,2.2vw,26px) 0 0', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(18px,2.6vw,34px)', borderTop: '1px solid rgba(239,233,220,.12)' }}>
-              {[
-                { src: 'logos/ubisoft-stacked-white.png', alt: 'Ubisoft', maxw: 84 },
-                { src: 'logos/amazon-game-studios.png', alt: 'Amazon Game Studios', maxw: 78 },
-                { src: 'logos/blablacar-vert.png', alt: 'BlaBlaCar', maxw: 84 },
-              ].map((l) => (
-                <li key={l.alt} style={{ opacity: 0.7 }}>
-                  <img src={BASE + l.src} alt={l.alt} style={{ maxHeight: 34, maxWidth: l.maxw, width: 'auto', objectFit: 'contain' }} />
-                </li>
-              ))}
-            </ul>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 8 }}>
-              <Link to="/about" className="btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '16px 30px', borderRadius: 3, textDecoration: 'none' }}>
-                More about me <span className="ar" aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
-          <figure data-rev style={{ margin: 0 }}>
-            <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 3, overflow: 'hidden', background: '#15110F', border: '1px solid rgba(239,233,220,.12)' }}>
-              <img src={BASE + 'portraits/laura-e3.jpg'} alt="Laura Cordrey speaking on stage at E3" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%', display: 'block' }} />
-              <span style={{ position: 'absolute', left: 0, bottom: 0, right: 0, padding: '18px 20px', background: 'linear-gradient(transparent,rgba(14,11,9,.85))', fontSize: '.78rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 600 }}>On stage · E3</span>
-            </div>
-          </figure>
-        </div>
-
-        <div data-rev style={{ ...INNER, padding: '0 clamp(20px,5vw,64px) clamp(40px,5vw,64px)' }}>
-          {/* Espresso-card testimonial per the 7 Jul quote-card handoff.
-            * Replaces the earlier gold-ground / red-top-bar treatment that
-            * fought the brand system. Dark #1F1A17 surface with a gold rule,
-            * a soft red halo top-right, gold quote glyph, red mark on the
-            * flagship phrase. */}
-          <figure className="quotecard" style={{ position: 'relative', overflow: 'hidden', margin: '0 auto', maxWidth: 620, background: '#1F1A17', border: '1px solid rgba(239,233,220,.12)', borderTop: '2px solid rgba(212,200,150,.5)', borderRadius: 4, padding: '52px 48px 44px' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 90% at 88% -10%, rgba(200,54,43,.16), transparent 60%)', pointerEvents: 'none' }} />
-            <div style={{ position: 'relative' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 18 }}>
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="#D4C896" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
-                  <path d="M17 7c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L17 7zm18 0c-6 2.4-10 8-10 15v11h13V22h-6.6c.2-4 2.6-7 6.6-8.6L35 7z" />
-                </svg>
-                <blockquote style={{ margin: 0, padding: 0 }}>
-                  <p style={{ fontWeight: 600, fontSize: 20, lineHeight: 1.4, letterSpacing: '-.01em', color: 'rgba(239,233,220,.86)', margin: 0, textWrap: 'pretty' }}>
-                    Laura is a <mark style={{ background: 'transparent', color: '#E0574B', fontWeight: 700 }}>start-up swiss knife</mark> &hellip; with some extra fun!
-                  </p>
-                </blockquote>
-              </div>
-              <figcaption style={{ marginTop: 30, paddingTop: 24, borderTop: '1px solid rgba(239,233,220,.12)', display: 'flex', alignItems: 'center', gap: 18 }}>
-                <img src={BASE + 'portraits/nicolas-brusson.png'} alt="Nicolas Brusson" loading="lazy" style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', flex: 'none', boxShadow: '0 0 0 1px rgba(212,200,150,.4)' }} />
-                <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                  <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.015em', color: '#EFE9DC', lineHeight: 1.1 }}>Nicolas Brusson</span>
-                  <span style={{ fontSize: 16, fontWeight: 600, color: 'rgba(239,233,220,.78)', lineHeight: 1.3 }}>Co-founder &amp; CEO, BlaBlaCar</span>
-                </span>
-              </figcaption>
-            </div>
-          </figure>
-        </div>
-      </section>
-
-      {/* ─── PROOF ─── */}
-      <section style={{ background: '#2D2723', color: '#EFE9DC', borderTop: '1px solid rgba(239,233,220,.1)' }}>
-        <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ marginBottom: 'clamp(32px,4vw,52px)', maxWidth: '40ch' }}>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 14 }}>Best wins</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(1.9rem,4.4vw,3.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#EFE9DC' }}>Proof fan-led growth pays.</h2>
-          </div>
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,22px)' }}>
-            {stats.map((s) => (
-              <Link to="/work" key={s.client} className="statc" data-rev style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 4, overflow: 'hidden', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
+          {/* Static cards, not links. Each shows a single brand's headline
+            * stat but the only destination is the /work index, so a per-card
+            * link promised a case study it could not deliver, which confused
+            * a visitor. The one route out is the "See all work" link below.
+            * Being non-links, they also drop the hover motion (hover honesty). */}
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,20px)' }}>
+            {CASES.map((c) => (
+              <div key={c.client} className="casec" data-rev>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
-                  <img src={BASE + s.img} alt={s.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src={BASE + c.img} alt={c.alt} loading="lazy" />
                 </figure>
-                <div style={{ padding: 'clamp(18px,1.8vw,26px)', display: 'flex', flexDirection: 'column', gap: 9 }}>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.6rem,2.5vw,2.4rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B', display: 'block' }}>
-                    {s.value} <span style={{ fontSize: '1em', fontWeight: 800, color: '#C8362B', letterSpacing: '-.03em', whiteSpace: 'nowrap' }}>{s.unit}</span>
-                  </span>
-                  <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{s.label}</span>
-                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 4 }}>{s.client}</span>
+                <div style={{ padding: 'clamp(18px,1.8vw,24px)', display: 'flex', flexDirection: 'column', gap: 7 }}>
+                  <span style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.5rem,2.3vw,2rem)', lineHeight: 1.04, letterSpacing: '-.03em', color: '#C8362B' }}>{c.value}</span>
+                  <span style={{ fontSize: '.92rem', color: '#4A423B', fontWeight: 600, lineHeight: 1.42 }}>{c.label}</span>
+                  <span style={{ fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#9A8E7C', fontWeight: 700, marginTop: 3 }}>{c.client}</span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
-          <div data-rev style={{ marginTop: 'clamp(32px,4.5vw,56px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
-            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.04em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
-              See my deep-dive case studies <span aria-hidden>→</span>
+
+          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(26px,3.2vw,38px)' }}>
+            <Link to="/work" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#C8362B', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 3 }}>
+              See all work <span className="ar" aria-hidden>→</span>
             </Link>
-            <span style={{ fontSize: '.78rem', color: 'rgba(239,233,220,.62)', fontWeight: 600 }}>
-              These numbers roll up several projects per brand, the full write-ups live on the Case Studies page.
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 6 · SPEAKING ───
+        * Adapted from the /speaking video hero: same E3 stage clip, run
+        * full-bleed behind a scrim as Cowork proposed, reduced to one
+        * confident statement. Breaks the run of card grids. */}
+      <section className="speak" id="speaking">
+        <div className="speak-bg" aria-hidden="true">
+          <video
+            src={BASE + 'speaking/laura-e3-stage-wide.mp4'}
+            poster={BASE + 'speaking/laura-e3-stage-wide-poster.jpg'}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
+        <div className="speak-scrim" aria-hidden="true" />
+        {/* data-rev was missing here, which is why this was the one section
+          * that did not fade up like the rest of the page. */}
+        <div data-rev className="speak-copy" style={{ ...INNER, position: 'relative', zIndex: 2, padding: 'clamp(84px,10vw,132px) clamp(20px,5vw,64px)', maxWidth: 760, textAlign: 'center' }}>
+          <span className="speak-eyebrow"><Eyebrow>Speaking</Eyebrow></span>
+          <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
+          <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 auto 14px', maxWidth: '20ch', color: '#EFE9DC' }}>
+            A key speaker at the industry&rsquo;s biggest events.
+          </h2>
+          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#EFE9DC', margin: '0 auto clamp(24px,3vw,32px)', maxWidth: '46ch' }}>
+            I have presented my own fan-led projects, including on the E3 main stage.
+          </p>
+          <Link to="/speaking" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+            See my talks
+          </Link>
+        </div>
+      </section>
+
+      {/* ─── 7 · IN THEIR WORDS ─── */}
+      <section style={{ background: '#EFE9DC', color: '#15110F' }}>
+        <div data-rev style={{ ...INNER, padding: SECTION_PAD, maxWidth: 760, textAlign: 'center' }}>
+          <Eyebrow tone="red">In their words</Eyebrow>
+          <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 24px' }} />
+          <blockquote style={{ margin: 0, padding: 0 }}>
+            <p style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.4rem,2.4vw,1.95rem)', letterSpacing: '-.02em', lineHeight: 1.25, color: '#15110F', margin: 0, textWrap: 'pretty' }}>
+              &ldquo;Laura is a <mark>start-up swiss knife</mark> &hellip; with some extra fun!&rdquo;
+            </p>
+          </blockquote>
+          <div style={{ marginTop: 'clamp(20px,2.4vw,28px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+            <img src={BASE + 'portraits/nicolas-brusson.png'} alt="Nicolas Brusson" loading="lazy" style={{ width: 52, height: 52, borderRadius: '50%', objectFit: 'cover', flex: 'none', boxShadow: '0 0 0 1px rgba(21,17,15,.16)' }} />
+            <span style={{ textAlign: 'left' }}>
+              <span style={{ display: 'block', fontSize: '.95rem', fontWeight: 700, color: '#15110F', lineHeight: 1.3 }}>Nicolas Brusson</span>
+              <span style={{ display: 'block', fontSize: '.88rem', fontWeight: 600, color: '#5E564E', lineHeight: 1.3 }}>Co-founder &amp; CEO, BlaBlaCar</span>
             </span>
           </div>
         </div>
       </section>
 
-      {/* ─── WAYS TO WORK ─── */}
-      <section id="services" style={{ background: '#EFE9DC', color: '#15110F' }}>
+      {/* ─── 8 · TOOLS ───
+        * Gold section. The rule and the card top-borders are --edge rather
+        * than --accent, so the red count here drops from five elements to
+        * two (the CTAs). That fixes "too much red" at the source instead of
+        * by weakening the buttons, and gives the section its own identity as
+        * the IP tools. Red stays reserved for actions. */}
+      <section id="tools" style={{ background: '#15110F', borderTop: '1px solid rgba(239,233,220,.1)' }}>
         <div style={{ ...INNER, padding: SECTION_PAD }}>
-          <div data-rev style={{ maxWidth: '66ch', marginBottom: 'clamp(40px,5vw,64px)' }}>
-            <span style={{ display: 'block', fontSize: '.75rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700, marginBottom: 'clamp(18px,2.4vw,26px)' }}>Services</span>
-            <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.2rem,5.2vw,4.4rem)', lineHeight: 1, letterSpacing: '-.03em', margin: 0, color: '#15110F', maxWidth: '14ch' }}>Ways to work with me.</h2>
-            <p style={{ fontSize: 'clamp(1.08rem,1.5vw,1.32rem)', lineHeight: 1.6, color: '#4A423B', margin: '18px 0 0' }}>
-              Whatever brought you here, there are two ways in: build the whole engine that keeps and grows your fans, or fix one thing now.
+          <div data-rev style={{ textAlign: 'center', maxWidth: '54ch', margin: '0 auto clamp(34px,4vw,48px)' }}>
+            <Eyebrow>Want to take the first step on your own?</Eyebrow>
+            <hr style={{ width: 46, height: 3, background: 'var(--edge)', border: 'none', margin: '14px auto 20px' }} />
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.74)', margin: 0 }}>
+              Two quick ways to see where you stand with fan-led growth.
             </p>
           </div>
 
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(16px,2vw,24px)' }}>
-            <Link to="/services#fan-engine" className="wtwd" data-rev style={{ textDecoration: 'none', color: 'inherit', background: 'linear-gradient(155deg,#241a16,#15110F)', border: '1px solid rgba(200,54,43,.4)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)' }}>
-              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Build the whole engine</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                <span style={{ color: '#C8362B', lineHeight: 0 }}><Icon name="gear" size={30} /></span>
-                <span style={{ fontWeight: 800, fontSize: 'clamp(1.7rem,2.8vw,2.5rem)', letterSpacing: '-.02em', lineHeight: 1, color: '#EFE9DC' }}>The Fan Engine<span className="tm">™</span></span>
-                <span style={{ fontSize: '1.04rem', lineHeight: 1.6, color: 'rgba(239,233,220,.82)' }}>
-                  My own framework, shaped over thirteen years turning customers into fans. The whole system, plugged into your company. It connects the brand they fall for, the product they stick with, and the way you grow into one engine, measured end to end. Whether you’re starting from zero or growing the fanbase you already have.
+          <div className="tools-grid">
+            {/* Fan Score */}
+            <div className="tool" data-rev>
+              <div className="tool-viz">
+                <span className="tool-kick">Two minutes</span>
+                <div className="gauge">
+                  <svg viewBox="0 0 200 118" fill="none" aria-hidden="true">
+                    <path d="M16 100 A84 84 0 0 1 184 100" stroke="rgba(239,233,220,.12)" strokeWidth="14" strokeLinecap="round" />
+                    <path className="gauge-fill" d="M16 100 A84 84 0 0 1 184 100" stroke="url(#fsg)" strokeWidth="14" strokeLinecap="round" strokeDasharray="163 264" />
+                    <defs>
+                      <linearGradient id="fsg" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stopColor="#8E2520" />
+                        <stop offset="1" stopColor="#C8362B" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="gauge-num">62<span>/100</span></div>
+                </div>
+                <div className="tool-cap" style={{ marginTop: 14 }}>An example fan-led growth score</div>
+              </div>
+              <div className="tool-body">
+                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Score<span className="tm">™</span></h3>
+                <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
+                  A quick score of where you stand with fan-led growth, and where you are leaking it.
+                </p>
+                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                  Take the quiz
+                </Link>
+              </div>
+            </div>
+
+            {/* Fan Value */}
+            <div className="tool" data-rev>
+              <div className="tool-viz">
+                <span className="tool-kick">One number</span>
+                {/* Static: counting the number up read as too much motion.
+                  * The gauge and bars carry the entrance and hover animation. */}
+                <div className="val-num">$560<span className="k">K</span></div>
+                <div className="tool-cap">Estimated annual value</div>
+                <div className="bars" aria-hidden="true">
+                  <i style={{ height: '32%' }} /><i style={{ height: '50%' }} /><i style={{ height: '66%' }} /><i style={{ height: '84%' }} /><i style={{ height: '100%' }} />
+                </div>
+              </div>
+              <div className="tool-body">
+                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Value<span className="tm">™</span></h3>
+                <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
+                  What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
+                </p>
+                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                  Run the numbers
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 9 · LET'S TALK ───
+        * Cowork's close, matched: eyebrow, gold rule, "Tell me about your
+        * brand.", the one lead line, and the LinkedIn line. Nothing added.
+        * Only the form is wired up for real. */}
+      <section className="contact-red" id="contact" style={{ color: '#FBF4E6' }}>
+        <div className="contact-grid" style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(36px,5vw,60px)', alignItems: 'start' }}>
+          {/* Cowork's layout, but the site's own colours on the red ground:
+            * #F2D79A gold and #FBF4E6 cream, which is what the live close
+            * uses. Cowork's #D4C896 / #EFE9DC are the on-espresso pair and go
+            * muddy against oxblood. */}
+          <div data-rev>
+            <span style={{ display: 'block', fontSize: T.marker, letterSpacing: '.26em', textTransform: 'uppercase', color: '#F2D79A', fontWeight: 700 }}>Let&rsquo;s talk</span>
+            <hr style={{ width: 52, height: 4, background: '#F2D79A', border: 'none', margin: '14px 0 26px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: 'clamp(1.7rem,3.2vw,2.4rem)', lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 0 16px', color: '#FBF4E6' }}>
+              Tell me about your brand.
+            </h2>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', maxWidth: '40ch', margin: '0 0 22px' }}>
+              I&rsquo;ll tell you honestly whether fan-led growth is the lever for you.
+            </p>
+            <p style={{ fontSize: '.9rem', color: 'rgba(251,244,230,.82)', fontWeight: 600, margin: 0 }}>
+              Or find me on <a href={LINKEDIN_URL} className="oxlink">LinkedIn</a>.
+            </p>
+          </div>
+
+          <div data-rev>
+            {sent ? (
+              <div className="contact-done" role="status">
+                <span style={{ display: 'block', fontWeight: HEAD_W, fontSize: '1.3rem', letterSpacing: '-.02em', color: '#15110F', marginBottom: 8 }}>Thank you, that&rsquo;s with me.</span>
+                <span style={{ fontSize: '.98rem', color: '#4A423B', fontWeight: 500 }}>I read every message myself and I&rsquo;ll come back to you within one working day.</span>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} className="cform" noValidate={false}>
+                {/* Honeypot — must stay visually hidden and unlabelled for humans. */}
+                <input type="text" name="bot-field" value={form['bot-field']} onChange={onField('bot-field')} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }} />
+                <input type="text" name="name" required placeholder="Your name" aria-label="Your name" value={form.name} onChange={onField('name')} />
+                <input type="email" name="email" required placeholder="Email" aria-label="Email" value={form.email} onChange={onField('email')} />
+                <textarea name="message" required placeholder="What are you working on?" aria-label="What are you working on" value={form.message} onChange={onField('message')} />
+                <button type="submit" className="btnsend btnink">Send</button>
+                {/* Route to the branching form for anyone with a specific
+                  * brief. This short form only captures name/email/message,
+                  * so /contact is where need, timeline and the speaking
+                  * fields get asked. */}
+                <span style={{ fontSize: '.84rem', color: 'rgba(251,244,230,.8)', fontWeight: 600 }}>
+                  Something specific in mind? Use the <Link to={CONTACT_URL} className="oxlink">full contact form</Link>.
                 </span>
-              </div>
-              <ul style={{ listStyle: 'none', margin: 'auto 0 0', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {[{ label: 'Brand', icon: 'sparkle' }, { label: 'Product', icon: 'rocket' }, { label: 'Community', icon: 'users' }, { label: 'Growth', icon: 'loop' }].map((p) => (
-                  <li key={p.label} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '.76rem', letterSpacing: '.04em', fontWeight: 600, color: '#D4C896', border: '1px solid rgba(212,200,150,.32)', borderRadius: 999, padding: '7px 14px 7px 10px' }}>
-                    <span style={{ color: '#D4C896', lineHeight: 0 }}><Icon name={p.icon} size={14} /></span>
-                    {p.label}
-                  </li>
-                ))}
-              </ul>
-            </Link>
-
-            <Link to="/services" className="wtw" data-rev style={{ textDecoration: 'none', color: 'inherit', background: '#FCFAF3', border: '1px solid rgba(21,17,15,.1)', borderRadius: 3, padding: 'clamp(28px,3.2vw,46px)', display: 'flex', flexDirection: 'column', gap: 'clamp(22px,2.6vw,30px)', boxShadow: '0 1px 3px rgba(21,17,15,.06)' }}>
-              <span style={{ fontSize: '.74rem', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>Fix one thing now</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="pulse" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Sentiment SOS</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Your community is turning on you. I find what’s driving it and hand you a fix to ship fast.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="megaphone" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Programs</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>You pay for every new customer. Your fans could bring them instead, built and measured.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 22, borderBottom: '1px solid rgba(21,17,15,.1)' }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="spark" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Fan Moments</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>A big moment coming, launch, release or milestone? I turn it into one your fans carry.</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <span style={{ color: '#C8362B', lineHeight: 0, marginBottom: 2 }}><Icon name="users" size={24} /></span>
-                  <span style={{ fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', letterSpacing: '-.01em', color: '#15110F' }}>Advisory</span>
-                  <span style={{ fontSize: '1rem', lineHeight: 1.55, color: '#4A423B' }}>Senior fan-led growth leadership without the full-time hire. As much or as little as you need.</span>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          <div data-rev style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 24px', marginTop: 'clamp(32px,4vw,48px)' }}>
-            <Link to={CONTACT_URL} className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1.06rem', padding: '17px 32px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-              Let’s talk <span className="ar" aria-hidden>→</span>
-            </Link>
-            <Link to="/services" className="btnsoftd" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1.02rem', padding: '17px 32px', borderRadius: 3, textDecoration: 'none' }}>
-              See all the ways to work with me <span className="ar" aria-hidden>→</span>
-            </Link>
+              </form>
+            )}
           </div>
         </div>
       </section>
-
-      {/* ─── CLOSE ─── */}
-      <section style={{ background: '#A12A1E', color: '#FBF4E6' }}>
-        <div data-rev style={{ ...INNER, padding: 'clamp(88px,11vw,150px) clamp(20px,5vw,64px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 'clamp(24px,3.5vw,40px)' }}>
-          <span style={{ fontSize: '.75rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#F2D79A', fontWeight: 700 }}>Let’s work together</span>
-          <h2 style={{ fontWeight: 800, fontSize: 'clamp(2.8rem,9vw,7rem)', lineHeight: 0.9, letterSpacing: '-.04em', margin: 0, maxWidth: '13ch', color: '#FBF4E6' }}>
-            What’s your <span style={{ color: '#F2D79A' }}>fanbase</span> worth?
-          </h2>
-          <p style={{ fontSize: 'clamp(1.15rem,1.8vw,1.5rem)', lineHeight: 1.5, color: 'rgba(251,244,230,.86)', maxWidth: '52ch', margin: 0 }}>
-            See what your fans are worth on your own numbers, or tell me what&rsquo;s going on and I&rsquo;ll be in touch.
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 6 }}>
-            <Link to="/fan-value" className="btncream" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: '#FBF4E6', color: '#15110F', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid #FBF4E6', textDecoration: 'none' }}>
-              See what your fans are worth <span className="ar" aria-hidden>→</span>
-            </Link>
-            <Link to={CONTACT_URL} className="btncreamo" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'rgba(251,244,230,.16)', color: '#FBF4E6', fontWeight: 700, fontSize: '1.08rem', padding: '18px 34px', borderRadius: 3, border: '1px solid rgba(251,244,230,.4)', textDecoration: 'none' }}>
-              Let’s talk <span className="ar" aria-hidden>→</span>
-            </Link>
-          </div>
-          <span style={{ fontSize: '.95rem', color: 'rgba(251,244,230,.7)', fontWeight: 600, marginTop: 2 }}>
-            Or take the <Link to="/fan-score" style={{ color: '#F2D79A', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(242,215,154,.45)' }}>2-minute Fan Score</Link> to find your gaps first.
-          </span>
-          {/* Just-keeping-tabs LinkedIn line — the dead email-capture form
-            * that used to live here was removed once /contact took over as
-            * the real contact surface (that form did nothing on submit). */}
-          <span style={{ fontSize: '.92rem', color: 'rgba(251,244,230,.7)', fontWeight: 600, marginTop: 'clamp(8px,1.4vw,16px)' }}>
-            Just keeping tabs?{' '}
-            <a href={LINKEDIN_URL} className="limov" style={{ color: '#FBF4E6', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3, textDecorationColor: 'rgba(251,244,230,.45)' }}>
-              Connect on LinkedIn <span aria-hidden>→</span>
-            </a>
-          </span>
-        </div>
-      </section>
-
     </div>
   )
 }
