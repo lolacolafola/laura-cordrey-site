@@ -45,7 +45,7 @@ const CheckIcon = () => (
 // Keys the Services-page CTAs deep-link with (?need=…). Each value must match
 // a consulting_need <option> exactly so the select pre-selects on arrival.
 const VALID_NEEDS = {
-  'engine': 'The Fan Engine: I want the whole system',
+  'engine': 'The Fan Engine™: I want the whole system',
   'sos': 'Sentiment SOS: my community is turning',
   'programs': 'Fan Programs: I want my users bringing new customers',
   'moments': 'Fan Moments: I have a big moment coming',
@@ -298,7 +298,7 @@ export default function ContactPage() {
                         </label>
                         <select id="contact-need" name="consulting_need" className="contact-select" defaultValue={initialNeed}>
                           <option value="">Choose one</option>
-                          <option>The Fan Engine: I want the whole system</option>
+                          <option>The Fan Engine™: I want the whole system</option>
                           <option>Sentiment SOS: my community is turning</option>
                           <option>Fan Programs: I want my users bringing new customers</option>
                           <option>Fan Moments: I have a big moment coming</option>

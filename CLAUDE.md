@@ -45,6 +45,19 @@ must be written to a file in this repo, **not left only in the chat reply.**
   tends to block) followed by `git add <those exact files>` — never `git add -A`,
   which will also stage unrelated untracked files sitting in the working tree.
 
+## Naming rules
+- **It is never "the Engine". It is always the Fan Engine, and it always
+  carries the ™.** No shortening, no "the Engine" on second reference, no
+  bare "Fan Engine" without the mark. This is a trademark, and a trademark
+  that is used loosely stops being one.
+  - In JSX, use the styled mark: `Fan Engine<span className="tm">™</span>`
+  - In plain strings (meta descriptions, `<option>` labels, JSON-LD, alt
+    text) use the literal character: `Fan Engine™`
+  - Same rule for **Fan Score** and the **Fan Value Model** — canonical names,
+    never abbreviated or improvised.
+- Before shipping copy, grep for drift:
+  `grep -rn "the Engine" src/ | grep -v "Fan Engine"`
+
 ## Design rules
 - **Hover honesty.** Cursor response is a promise: if an element lifts, scales,
   glows or otherwise reacts on hover, clicking it must do something. `:hover`

@@ -758,3 +758,396 @@
   font-size: 0.88rem;
   color: var(--ink-muted-on-surface);
 }
+
+/* ═══ OFFER ROWS ══════════════════════════════════════════════
+ * Six full-width rows, stacked. Face is the handoff-board design: a
+ * letterspaced kicker, the title over two lines with the last word in red and
+ * a full stop, a teaser in the right column, and a plus at the top right.
+ * Grounds alternate bone and espresso down the stack.
+ *
+ * Open, a row reads exactly like the old offer band: the same 4fr/8fr split,
+ * title on the left, the case on the right, in the original order and using
+ * the original classes — .svc-eng__body, .svc-youget, .svc-phases,
+ * .svc-proofcard, .svc-credit, .svc-eng__act. The teaser sits in the right
+ * column too, so opening reads as the teaser being replaced by the full case
+ * rather than as something new appearing underneath.
+ * ═════════════════════════════════════════════════════════════ */
+
+.svc-cards { display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 18px); }
+
+.svc-row {
+  position: relative;           /* containing block for the plus */
+  border-radius: 3px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+/* #FBF3E4, NOT var(--surface): --surface is #EFE9DC, which is exactly the band
+   these rows sit on, so light rows were invisible against it and half the
+   alternation disappeared. Measured before it was caught by eye. */
+.svc-row--bone     { background: #FBF3E4; color: var(--ink-on-surface); }
+.svc-row--espresso { background: var(--bg); color: #EFE9DC; border-color: rgba(212, 200, 150, 0.18); }
+/* Gold is the flagship's colour on the homepage cards too, so the Fan Engine
+   reading gold here completes a rule the site already had rather than
+   inventing one. It is a LIGHT ground: dark ink, and the same light-ground
+   overrides the cream rows use. */
+.svc-row--gold { background: var(--edge); color: var(--bg); }
+
+/* ─── FACE ─────────────────────────────────────────────────── */
+.svc-row__face {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  padding: clamp(26px, 3vw, 40px) clamp(96px, 8vw, 120px) clamp(26px, 3vw, 40px) clamp(26px, 3vw, 40px);
+  transition: background-color var(--transition);
+}
+/* Open, the face becomes the panel's header and stops centring its two
+   columns, so the title sits at the top beside the case. */
+.svc-row[data-open='true'] .svc-row__face {
+  align-items: start;
+  padding-bottom: 0;
+}
+
+.svc-row__head { display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 18px); }
+
+.svc-row__kick {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+/* #8E2520 on the light rows (7.82) and #E0574B on espresso (5.04). The
+   standard --accent #C8362B measures 4.32 on cream and 2.82 on espresso, both
+   under the 4.5 minimum for a label this size. Same rule as Eyebrow.jsx. */
+.svc-row--bone .svc-row__kick { color: #8E2520; }
+.svc-row--espresso .svc-row__kick { color: #E0574B; }
+
+.svc-row__title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.svc-row--bone .svc-row__a,
+.svc-row--bone .svc-row__stop { color: var(--ink-on-surface); }
+.svc-row--espresso .svc-row__a,
+.svc-row--espresso .svc-row__stop { color: #EFE9DC; }
+/* The red word. At ~40px this is large text (threshold 3.0); it measures 4.74
+   on the light rows, and the espresso rows take the lighter red for 5.04. */
+.svc-row--bone .svc-row__b { color: var(--accent); }
+.svc-row--espresso .svc-row__b { color: #E0574B; }
+
+.svc-row__teaser {
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  line-height: 1.5;
+  font-weight: 500;
+  color: color-mix(in srgb, currentColor 78%, transparent);
+  text-wrap: pretty;
+  max-width: 38rem;
+}
+.svc-row[data-open='true'] .svc-row__teaser { display: none; }
+
+/* ─── PLUS, top right ──────────────────────────────────────── */
+.svc-row__plus {
+  position: absolute;
+  top: clamp(26px, 3vw, 40px);
+  right: clamp(26px, 3vw, 40px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.5;
+  transition: opacity var(--transition), background-color var(--transition), color var(--transition);
+}
+.svc-row__plus svg { width: 20px; height: 20px; }
+.svc-row__bar { transition: transform var(--transition); transform-origin: 12px 12px; }
+.svc-row[data-open='true'] .svc-row__bar { transform: rotate(90deg); }
+.svc-row[data-open='true'] .svc-row__plus { opacity: 1; }
+.svc-row__plus--arrow { font-size: 1.15rem; font-weight: 800; line-height: 1; }
+
+/* Hover. Faces are buttons and the AI row is a link, so this is honest. */
+.svc-row__face:hover .svc-row__plus,
+.svc-row--link:hover .svc-row__plus { opacity: 1; }
+/* Hover tints the WHOLE ROW, and only while it is closed.
+ * It used to be on .svc-row__face, which meant that on an open row the header
+ * lit up while the panel underneath it stayed the row's own colour — a seam
+ * straight across the middle of the offer. A closed row is nothing but its
+ * face, so tinting the row is identical there and has no seam to create.
+ * Open rows get no tint at all: the panel below is not clickable, so lighting
+ * it on hover would promise a click that is not there. */
+.svc-row--bone:not([data-open='true']):hover { background: #F7EEDC; }
+.svc-row--gold:not([data-open='true']):hover { background: #DCD1A4; }
+.svc-row--espresso:not([data-open='true']):hover { background: #221C18; }
+.svc-row__face:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+
+/* ─── PANEL ───────────────────────────────────────────────────
+ * ALWAYS RENDERED. The build prerenders this route; a conditional render would
+ * strip the offer detail from the HTML a crawler is served. Hidden with
+ * grid-template-rows, the same technique the homepage cards use. */
+.svc-row__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s ease;
+  /* The band classes set a background; the row's own ground should show. */
+  background: transparent;
+}
+.svc-row[data-open='true'] .svc-row__panel { grid-template-rows: 1fr; }
+.svc-row__panelin { overflow: hidden; min-height: 0; }
+/* Same 4fr/8fr as the face, with the first column left empty, so the case
+   lines up under the teaser it replaced and beside the title. */
+.svc-row__pad {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: 0 clamp(96px, 8vw, 120px) clamp(30px, 3.4vw, 44px) clamp(26px, 3vw, 40px);
+}
+.svc-row__body {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* The four Fan Engine phases were tuned for the oxblood band: a darkened wash
+   with gold labels. That still reads on the espresso rows, but the flagship is
+   a light row, so it needs the light treatment. */
+.svc-row--bone .svc-phases__eyebrow { color: #8E2520; }
+.svc-row--bone .svc-phase { background: #FCFAF3; border-color: rgba(21, 17, 15, 0.14); }
+.svc-row--bone .svc-phase svg,
+.svc-row--bone .svc-phase__label { color: #8E2520; }
+.svc-row--bone .svc-phase p { color: var(--ink-muted-on-surface); }
+/* --ink-muted is a dark-ground token. Only the SOS row uses this, and SOS is
+   an espresso row, so the default is already right — this is here for the case
+   where the alternation changes. */
+.svc-row--bone .svc-ctanote { color: var(--ink-muted-on-surface); }
+
+/* Deep-linked rows must clear the fixed nav. */
+.svc-row[id] { scroll-margin-top: 96px; }
+
+.svc-cards__foot {
+  margin: clamp(22px, 2.6vw, 30px) 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink-muted-on-surface);
+}
+/* --accent-deep, not --accent: #C8362B is 4.32 on cream at 14.4px bold. */
+.svc-cards__footlink { color: var(--accent-deep); border-bottom-color: rgba(142, 37, 32, 0.32); }
+
+@media (max-width: 860px) {
+  .svc-row__face,
+  .svc-row__pad { grid-template-columns: 1fr; }
+  .svc-row__face { padding-right: clamp(76px, 16vw, 96px); }
+  .svc-row__pad { padding-right: clamp(26px, 3vw, 40px); }
+  .svc-row__body { grid-column: 1; }
+  .svc-row__face { gap: clamp(16px, 3vw, 24px); }
+  .svc-row--bone .svc-phases,
+  .svc-row--espresso .svc-phases { grid-template-columns: 1fr; }
+  .svc-row__plus { width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-row__panel, .svc-row__bar, .svc-row__plus, .svc-row__face { transition: none; }
+}
+
+/* The proof card is a cream inset on every row, so its text must be dark ink
+   whatever the row's ground. The original page has rules for exactly this
+   hazard, with a comment warning that the band's ink rule "turns the
+   proof-card text into cream on cream" — but they are scoped to
+   `.svc-eng__right`, which this markup does not use, so they never applied.
+   Measured on the espresso rows before this: ratio 1.16, invisible. */
+.svc-row__body .svc-proofcard p { color: var(--ink-on-surface); }
+.svc-row__body .svc-proofcard p strong { color: var(--accent-deep); font-weight: 800; }
+
+/* ─── DARK ROWS: undo the section's light-ground cascade ──────
+ * The whole offers section is `<section class="svc-band svc-band--bone">`, so
+ * every `.svc-band--bone .svc-youget`-style override in this file also matches
+ * the espresso rows nested inside it. The assumption that dark rows would
+ * inherit the original dark-ground defaults was wrong: the section selector
+ * outranks them.
+ *
+ * Measured on an espresso row before this block: .svc-youget 2.61,
+ * .svc-credit__fmt 2.61, .svc-txtlink 2.18 — all under the 4.5 minimum, all
+ * because they were painted in the cream-ground palette on near-black.
+ *
+ * These restore the original dark-band values. Same specificity as the rules
+ * they beat (0,2,0), so this block MUST stay after them in the file. */
+.svc-row--espresso .svc-eng__body { color: rgba(239, 233, 220, 0.85); }
+.svc-row--espresso .svc-eng__body strong { color: #FBF3E4; }
+.svc-row--espresso .svc-youget { color: rgba(239, 233, 220, 0.85); }
+/* Gold, not red. #C8362B is 2.82 on this ground; --edge is 11.3. The same
+   substitution the original file makes for the dark and grey bands, and the
+   same rule as Eyebrow.jsx: gold on dark grounds, never red. */
+.svc-row--espresso .svc-youget strong { color: var(--edge); }
+.svc-row--espresso .svc-credit { border-top-color: rgba(251, 243, 228, 0.25); }
+.svc-row--espresso .svc-credit__fmt { color: rgba(251, 243, 228, 0.78); }
+.svc-row--espresso .svc-txtlink {
+  color: #E7D9AD;
+  border-bottom-color: rgba(231, 217, 173, 0.4);
+}
+.svc-row--espresso .svc-txtlink:hover { color: #FBF3E4; }
+.svc-row--espresso .svc-ctanote { color: rgba(239, 233, 220, 0.7); }
+
+/* ─── GOLD ROW ────────────────────────────────────────────────
+ * Measured on the gold: kicker #6E1C18 6.79, dark title 11.17, red word
+ * #8E2520 5.13, teaser 6.80. Plain --accent #C8362B is far too weak on this
+ * ground, so both the kicker and the red word take deep reds here. */
+.svc-row--gold .svc-row__kick { color: #6E1C18; }
+.svc-row--gold .svc-row__a,
+.svc-row--gold .svc-row__stop { color: var(--bg); }
+/* #6E1C18, the same deep red as the kicker above. #8E2520 measured 5.13 here,
+   which passes, but on a ground this warm and this light it read washed out
+   rather than wrong. The deeper red measures 6.79. */
+.svc-row--gold .svc-row__b { color: #6E1C18; }
+/* The flagship carries the four phases, and gold is a light ground, so they
+   need the same inversion the cream rows get. */
+.svc-row--gold .svc-phases__eyebrow { color: #6E1C18; }
+.svc-row--gold .svc-phase { background: #FCFAF3; border-color: rgba(21, 17, 15, 0.16); }
+.svc-row--gold .svc-phase svg,
+.svc-row--gold .svc-phase__label { color: #8E2520; }
+.svc-row--gold .svc-phase p { color: var(--ink-muted-on-surface); }
+.svc-row--gold .svc-ctanote { color: var(--ink-muted-on-surface); }
+
+
+/* ─── HOVER ───────────────────────────────────────────────────
+ * The sweep that was here is gone. It was the homepage's entrance sheen moved
+ * onto hover, and even thinned to a 26% band it read as a flashy wipe across a
+ * full-width row rather than as a glint on a small card. The effect does not
+ * scale to this surface, so the honest answer was to drop it rather than keep
+ * tuning it.
+ *
+ * What is left is quiet and does the same job: the ground shifts a shade, and
+ * the plus fills in. Both say "this responds", neither performs. Closed rows
+ * only — an open row's panel is not clickable, so lighting it would promise a
+ * click that is not there.
+ *
+ * The ground shifts are defined with the row grounds further up this file.
+ * This block is only the plus. */
+.svc-row:not([data-open='true']) .svc-row__face:hover .svc-row__plus,
+.svc-row--link:hover .svc-row__plus {
+  opacity: 1;
+}
+.svc-row--bone:not([data-open='true']) .svc-row__face:hover .svc-row__plus,
+.svc-row--gold:not([data-open='true']) .svc-row__face:hover .svc-row__plus {
+  background: var(--ink-on-surface);
+  color: #FBF3E4;
+  border-color: var(--ink-on-surface);
+}
+.svc-row--espresso:not([data-open='true']) .svc-row__face:hover .svc-row__plus,
+.svc-row--link:hover .svc-row__plus {
+  background: #EFE9DC;
+  color: var(--bg);
+  border-color: #EFE9DC;
+}
+
+/* ─── FOR AI COMPANIES BAND ───────────────────────────────────
+ * The photograph is the only image on the page, and it sits here to break up
+ * the run of five text rows above it. */
+/* Warm brown, not the near-black --bg-deep the OG band used. At #0E0B09 this
+   band sat within four points of the espresso offer rows above it, so it read
+   as more of the same rather than as a break. #2D2723 is already in this file
+   (it was the old .svc-band--grey ground), and it is visibly warmer and
+   lighter than the rows without introducing a new colour. */
+.svc-ai { background: #2D2723; }
+
+.svc-ai__inner {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.svc-ai__fig {
+  margin: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: #0E0B09;
+}
+.svc-ai__fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.svc-ai__copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vw, 16px);
+  align-items: flex-start;
+}
+.svc-ai__kick {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4C896;
+  font-weight: 700;
+}
+.svc-ai__title {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #EFE9DC;
+  margin: 0;
+  text-wrap: balance;
+}
+.svc-ai__lede {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(239, 233, 220, 0.72);
+  margin: 0;
+  max-width: 46ch;
+}
+.svc-ai__cta { margin-top: var(--space-3); }
+
+@media (max-width: 860px) {
+  .svc-ai__inner { grid-template-columns: 1fr; }
+}
+
+/* ─── GOLD ROW: the panel, not just the face ──────────────────
+ * The gold ground was applied to the row without re-measuring the panel
+ * inside it, and the cream-ground palette does not survive the move.
+ * Measured on gold before this block:
+ *   .svc-eng__body      #5E564E  4.29  FAIL (needs 4.5)
+ *   .svc-youget         #5E564E  4.29  FAIL
+ *   .svc-credit__fmt    #5E564E  4.29  FAIL
+ *   .svc-youget strong  #C8362B  3.11  passes as large text, but barely —
+ *                                      which is why it read washed out
+ *
+ * Gold is lighter than the cream rows, so muted browns that hold on #FBF3E4
+ * do not hold here. Everything steps one shade darker. */
+.svc-row--gold .svc-eng__body,
+.svc-row--gold .svc-youget,
+.svc-row--gold .svc-credit__fmt { color: #443C34; }
+.svc-row--gold .svc-eng__body strong { color: var(--ink-on-surface); }
+/* Need it when: / What you get: / Payoff: — the page's spine, repeating three
+   times in this row alone. Deep red, matching the kicker and the title. */
+.svc-row--gold .svc-youget strong { color: #6E1C18; }
+.svc-row--gold .svc-credit { border-top-color: rgba(21, 17, 15, 0.22); }
+.svc-row--gold .svc-txtlink { border-bottom-color: rgba(110, 28, 24, 0.4); }
+
+/* ─── LIGHT ROWS: a hairline so they read as a card ───────────
+ * #FBF3E4 on the #EFE9DC band is a four-point difference, so Advisory barely
+ * separated from the ground it sits on — the mildest form of the bug that
+ * made the earlier mock's light rows invisible. The espresso rows already
+ * carry a border for the same reason; this gives the light ones one too. */
+.svc-row--bone { border-color: rgba(21, 17, 15, 0.12); }
+.svc-row--gold { border-color: rgba(21, 17, 15, 0.10); }

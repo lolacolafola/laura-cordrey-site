@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, serviceJsonLd } from '../lib/seo.js'
@@ -10,18 +11,150 @@ const CONTACT_URL = '/contact?intent=consulting'
 // Keys must match VALID_NEEDS in ContactPage.jsx.
 const contactFor = (need) => `/contact?intent=consulting&need=${need}`
 
-/* Services — editorial "Work with me" page. Structure kept from the live
- * design (hero → numbered index → per-offer blocks → How I work → close);
- * copy is the CMO-pass v-final deck (18 Jul). Engine-first: the Fan Engine
- * flagship, then the pieces (protect / acquire / deepen), then Advisory.
- * Logos + the Brusson quote live together in one proof band before the close. */
+/* Services — "Work with me". Six offers as cards; a plus opens the one you
+ * want, in place.
+ *
+ * The card face is the design from Laura's handoff boards: a letterspaced
+ * kicker, the title over two lines with the last word in red and a full stop,
+ * one teaser line, and a plus. Grounds alternate bone and espresso in a
+ * checkerboard across the grid.
+ *
+ * THE DETAIL INSIDE EACH CARD IS THE ORIGINAL COPY, restored verbatim from
+ * 81af613 — Need it when / What you get / Payoff / Proof / duration / CTA, and
+ * the Fan Engine's four phases. An intermediate version cut this down to tick
+ * lists and lost the diagnosis; that was wrong and is reverted. The only copy
+ * written for this version is the six teaser lines on the card faces.
+ *
+ * FOUR RULES THIS MUST KEEP (handover-services-weight-23jul.md):
+ *   1. Panels are CSS-hidden, NEVER unmounted. The build prerenders every
+ *      sitemap route; a conditional render would delete the offer detail from
+ *      the HTML a crawler is served.
+ *   2. Hash deep links open their panel. /ai points at #sentiment-sos and
+ *      #fan-moments.
+ *   3. The flagship opens by default, or the page reads as thin.
+ *   4. More than one open at once, or comparison is impossible.
+ */
+
+const OFFERS = [
+  {
+    id: 'fan-engine',
+    tone: 'gold',
+    kicker: 'The whole system',
+    a: 'The Fan',
+    b: 'Engine',
+    tm: true,
+    teaser: 'The whole engine, powered by your fans.',
+    body:
+      'My own framework, shaped over thirteen years at Ubisoft, Amazon Games and BlaBlaCar. Fan-led growth built into the bones of the business, run as one system and measured end to end.',
+    need:
+      'your growth stops the day you stop paying, and the userbase you paid for gives you nothing back.',
+    phasesLabel: 'What you get, end to end',
+    phases: [
+      { label: 'The picture', copy: 'Who your fans are, what they’re worth today, and where you’re losing money, on your own data. Your Fan Value, and a six-month plan.' },
+      { label: 'The build', copy: 'The whole engine working as one: the brand they fall for, the product that keeps them coming back with loops designed like a game, the community they belong to, and the programs that bring their friends.' },
+      { label: 'The tracking', copy: 'Who’s staying, who’s spending more, who’s bringing others in, and how they feel. Built to your stack, reported to the teams who can act on it.' },
+      { label: 'Every quarter', copy: 'A re-score and a fresh read on what your fans are worth.' },
+    ],
+    payoff:
+      'more revenue from the customers you already have, from an engine that keeps working after I’ve gone.',
+    proofFig: '60M+ fan views and ~$600K+ earned media',
+    proofRest: 'across Ubisoft programs, at $0 media spend.',
+    meta: '6 to 8 weeks to build, then ongoing · Priced per engagement',
+    /* NAMING RULE: it is never "the Engine". It is always the Fan Engine, and
+     * it always carries the ™. See CLAUDE.md. */
+    cta: {
+      label: (
+        <>
+          Let&rsquo;s talk about the Fan Engine<span className="tm">™</span>
+        </>
+      ),
+      need: 'engine',
+    },
+    link: {
+      to: '/fan-engine',
+      label: (
+        <>
+          How the Fan Engine<span className="tm">™</span> works
+        </>
+      ),
+    },
+  },
+  {
+    id: 'sentiment-sos',
+    tone: 'espresso',
+    kicker: 'Protect',
+    a: 'Sentiment',
+    b: 'SOS',
+    teaser: 'When your community turns, move fast.',
+    need: 'your community has turned on you in public, and it’s getting worse.',
+    get:
+      'the real cause found in days, a fix shipped across product and community in one to two weeks, and sentiment tracked so you watch it climb back.',
+    payoff: 'you keep the customers a blow-up would have cost you.',
+    proofFig: '85% positive sentiment',
+    proofRest: 'held across a 15M-player community. Ghost Recon, Ubisoft.',
+    meta: '1 to 2 weeks',
+    cta: { label: 'It’s urgent, let’s talk', need: 'sos' },
+    note: 'In a crisis right now? We can start this week.',
+  },
+  {
+    id: 'fan-programs',
+    tone: 'espresso',
+    kicker: 'Grow',
+    a: 'Fan',
+    b: 'Programs',
+    teaser: 'Your users bring you the next ones.',
+    need: 'you pay for every new customer, and your users could be bringing them instead.',
+    get:
+      'one program, built and measured, creator, advocacy, loyalty or referral, whichever fits.',
+    payoff: 'growth you don’t pay for every time.',
+    proofFig: '50M+ views',
+    proofRest:
+      'from a program I structured, members reaching their own audiences at $0 media spend. Rainbow Six Siege, Ubisoft.',
+    meta: 'From 3 weeks · Scoped to the program',
+    cta: { label: 'Talk about a program', need: 'programs' },
+    link: { to: '/work', label: 'See programs I’ve built' },
+  },
+  {
+    id: 'fan-moments',
+    tone: 'espresso',
+    kicker: 'Deepen',
+    a: 'Fan',
+    b: 'Moments',
+    teaser: 'Give your best customers something to feel.',
+    need:
+      'your best customers get exactly what everyone else gets, and nothing you do makes them feel any different.',
+    get:
+      'something built for them, a VIP event, unique merch, a drop, or a brand collab. Measured, so you see what it drove.',
+    payoff: 'your top customers spend more and stay longer.',
+    proofFig: '$32K in under three hours',
+    proofRest:
+      'from a fan drop that sold out, US Mobile. And a Live Nation activation where over half of users said they wouldn’t have carpooled to shows without it, BlaBlaCar.',
+    meta: 'From 2 weeks · Scheduled around your date',
+    cta: { label: 'Talk about your moment', need: 'moments' },
+    link: { to: '/work', label: 'See moments I’ve built' },
+  },
+  {
+    id: 'advisory',
+    tone: 'bone',
+    kicker: 'In the room',
+    a: '',
+    b: 'Advisory',
+    teaser: 'One decision, or an embedded role.',
+    need:
+      'you have one decision to get right, or you want senior fan-led growth leadership without a full-time hire.',
+    get:
+      'one call on your hardest fan-led growth question, with someone who has built it at scale. You leave knowing exactly what to do, and the plan lands in writing that week.',
+    payoff: 'you get the call right the first time, without carrying a full-time hire to do it.',
+    proofFig: 'Thirteen years',
+    proofRest:
+      'of the judgment behind fan programs at Ubisoft and US Mobile, and a platform acquired by Animoca.',
+    meta: 'Priced per session or an ongoing embedded role',
+    cta: { label: 'Book a session', need: 'advisory' },
+  },
+]
 
 export default function ServicesPage() {
   useDocumentMeta({
-    // 45 chars. Was 65, over the 60 limit, since before this week. The
-    // handover's "leave the over-long titles" exemption is for the case
-    // studies, where the pattern is `Client · Result · Laura Cordrey` and the
-    // client name survives truncation. This one just ran long.
     title: 'Work with me · Laura Cordrey · Fan-led growth',
     description:
       'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine, or advisory. Free 2-minute Fan Score.',
@@ -29,6 +162,41 @@ export default function ServicesPage() {
     ogType: 'website',
     jsonLd: serviceJsonLd(),
   })
+
+  /* Every row starts CLOSED, at Laura's call on 22 Jul 2026. This supersedes
+   * the "flagship opens by default, or the page reads as thin" rule in
+   * handover-services-weight-23jul.md — that rule was written when the rows
+   * were plain text and the page needed something to show. The faces now carry
+   * the kicker, the title and a teaser on four colour grounds, so the closed
+   * stack reads as a deliberate menu rather than as an empty page.
+   *
+   * Still a Set, not a single id, so any number can be open at once and two
+   * offers can be compared side by side. */
+  const [open, setOpen] = useState(() => new Set())
+
+  const toggle = useCallback((id) => {
+    setOpen((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }, [])
+
+  // Rule 2. A deep link that lands on a closed card is a broken promise.
+  useEffect(() => {
+    const openFromHash = () => {
+      const id = window.location.hash.replace('#', '')
+      if (!id || !OFFERS.some((o) => o.id === id)) return
+      setOpen((prev) => new Set(prev).add(id))
+      window.requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: 'start' })
+      })
+    }
+    openFromHash()
+    window.addEventListener('hashchange', openFromHash)
+    return () => window.removeEventListener('hashchange', openFromHash)
+  }, [])
 
   return (
     <>
@@ -39,20 +207,14 @@ export default function ServicesPage() {
             <span className="marker">Work with me</span>
           </div>
           <h1 className="svc-hero__title">
-            The whole engine, or just the{' '}
-            <mark>piece you need</mark>.
+            The whole engine, or just the <mark>piece you need</mark>.
           </h1>
-          {/* The three verbs here are the same three words the index rows and
-            * section kickers use, deliberately: protect / grow / deepen. The
-            * index used to say "Acquire" for the middle one, so the page
-            * promised three things in the hero and then labelled one of them
-            * something else. "grow off it" was also clumsy. */}
           <p className="svc-hero__lede">
             Make the userbase you already paid for worth more. Protect it, grow
             from it, deepen it, or build the whole system that does all three.
           </p>
-          {/* For anyone who lands here cold: the argument sits one click away.
-              Kept out of the lede so it doesn't compete with the two CTAs. */}
+          {/* One of this page's two inbound links to /fan-led-growth in the
+            * built HTML. Do not remove it without checking the other. */}
           <p className="svc-hero__backlink">
             New to this? Start with{' '}
             <Link to="/fan-led-growth" className="svc-txtlink">
@@ -60,11 +222,6 @@ export default function ServicesPage() {
             </Link>
             .
           </p>
-          {/* ONE hero CTA, 22 Jul 2026. The Fan Score ghost button was the
-            * second, and this was the only page on the site with two: the
-            * homepage, /ai, /speaking and /fan-score all carry exactly one.
-            * The Fan Score is still offered twice in the close, where a reader
-            * who is not ready to talk is the one who needs it. */}
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
@@ -72,283 +229,176 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── ENGAGEMENT INDEX (Engine flagship first, then the pieces) ─
-        * Bone ground so this opening section lifts off the dark hero. */}
+      {/* ─── THE SIX OFFERS, AS CARDS ─────────────────────────── */}
       <section className="svc-band svc-band--bone">
         <div className="container">
-          {/* The lede under this heading was cut on 22 Jul 2026 (copy
-            * reduction). It restated the hero and then the six rows below
-            * restated it a third time in their own words. The rows ARE the
-            * skim layer; they did not need a paragraph introducing them.
-            *
-            * The heading changed with it. It read "Start with the whole engine,
-            * or one piece", which is the H1 ("The whole engine, or just the
-            * piece you need") said twice, one screen apart. The cut lede had
-            * been the only thing separating them. It now asks the question the
-            * six rows below actually answer. */}
           <div className="svc-index__head">
             <h2 className="svc-index__title">Where would you start?</h2>
           </div>
-          <nav className="svc-index" aria-label="Engagements">
-            <a href="#fan-engine" className="svc-index__row svc-index__row--flag">
-              <span className="svc-index__nm">The Fan Engine<span className="tm">™</span></span>
-              <span className="svc-index__one">The flagship. The whole engine, powered by your fans.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
-            <a href="#sentiment-sos" className="svc-index__row">
-              <span className="svc-index__nm">Sentiment SOS</span>
-              <span className="svc-index__one">Protect. Keep the customers a blow-up would cost you.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
-            <a href="#fan-programs" className="svc-index__row">
-              <span className="svc-index__nm">Fan Programs</span>
-              <span className="svc-index__one">Grow. Growth you don&rsquo;t pay for every time.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
-            <a href="#fan-moments" className="svc-index__row">
-              <span className="svc-index__nm">Fan Moments</span>
-              <span className="svc-index__one">Deepen. Your top customers spend more and stay longer.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
-            <a href="#advisory" className="svc-index__row">
-              <span className="svc-index__nm">Advisory</span>
-              <span className="svc-index__one">One decision, or an embedded role.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </a>
-            <Link to="/ai" className="svc-index__row svc-index__row--ai">
-              <span className="svc-index__nm">For AI companies</span>
-              <span className="svc-index__one">Fan-led growth, built for AI. Founding-partner terms.</span>
-              <span className="svc-index__arr" aria-hidden="true">→</span>
-            </Link>
-          </nav>
-          <p style={{ marginTop: 'clamp(20px,2.4vw,28px)', marginBottom: 0, fontSize: '.95rem', lineHeight: 1.55, color: 'var(--ink-muted-on-surface)', fontWeight: 500 }}>
+
+          <div className="svc-cards">
+            {OFFERS.map((o) => {
+              const isOpen = open.has(o.id)
+              return (
+                <article
+                  key={o.id}
+                  id={o.id}
+                  className={`svc-row svc-row--${o.tone}`}
+                  data-open={isOpen}
+                >
+                  {/* The whole face is the control, with the plus marking it at
+                    * the top right. A full-width row that reacts to the cursor
+                    * has to be clickable across its whole surface, or the hover
+                    * is a lie (CLAUDE.md hover honesty). The plus is absolutely
+                    * positioned but lives inside the button, so it is part of
+                    * the same hit area rather than a second target. */}
+                  <button
+                    type="button"
+                    className="svc-row__face"
+                    aria-expanded={isOpen}
+                    aria-controls={`${o.id}-panel`}
+                    onClick={() => toggle(o.id)}
+                  >
+                    <span className="svc-row__head">
+                      <span className="svc-row__kick">{o.kicker}</span>
+                      <span className="svc-row__title">
+                        {o.a && <span className="svc-row__a">{o.a}</span>}
+                        <span className="svc-row__b">
+                          {o.b}
+                          {o.tm && <span className="tm">™</span>}
+                          <span className="svc-row__stop">.</span>
+                        </span>
+                      </span>
+                    </span>
+                    {/* Sits in the right column, exactly where the detail
+                      * appears when the row opens, so opening reads as the
+                      * teaser being replaced by the full case. */}
+                    <span className="svc-row__teaser">{o.teaser}</span>
+                    <span className="svc-row__plus" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <line x1="12" y1="5" x2="12" y2="19" className="svc-row__bar" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  {/* Rule 1: always rendered, hidden with grid-template-rows.
+                    *
+                    * The panel content is the ORIGINAL offer band, in the
+                    * original order and using the original classes, offset into
+                    * the right column so an open row reads exactly like the old
+                    * page: title on the left, the case on the right.
+                    *
+                    * `svc-band--bone` goes on only on the light rows. The
+                    * original .svc-youget / .svc-credit / .svc-txtlink defaults
+                    * were written for the dark bands, so the espresso rows get
+                    * the right colours by inheriting them untouched. Both
+                    * grounds reuse contrast work that was already done. */}
+                  <div
+                    className={`svc-row__panel${o.tone === 'espresso' ? '' : ' svc-band--bone'}`}
+                    id={`${o.id}-panel`}
+                  >
+                    <div className="svc-row__panelin">
+                      <div className="svc-row__pad">
+                        <div className="svc-row__body">
+                          {o.body && <p className="svc-eng__body">{o.body}</p>}
+                          <p className="svc-youget"><strong>Need it when:</strong> {o.need}</p>
+                          {o.get && <p className="svc-youget"><strong>What you get:</strong> {o.get}</p>}
+                          {o.phases && (
+                            <>
+                              <span className="svc-phases__eyebrow">{o.phasesLabel}</span>
+                              <div className="svc-phases">
+                                {o.phases.map((p) => (
+                                  <div className="svc-phase" key={p.label}>
+                                    <span className="svc-phase__label">{p.label}</span>
+                                    <p>{p.copy}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          )}
+                          <p className="svc-youget"><strong>Payoff:</strong> {o.payoff}</p>
+                          <div className="svc-proofcard">
+                            <span className="svc-proofcard__label">Proof</span>
+                            <p><strong>{o.proofFig}</strong> {o.proofRest}</p>
+                          </div>
+                          <div className="svc-credit">
+                            <span className="svc-credit__fmt">{o.meta}</span>
+                          </div>
+                          <div className="svc-eng__act">
+                            <Link to={contactFor(o.cta.need)} className="btn btn--primary btn--lg svc-eng__cta">
+                              {o.cta.label}
+                            </Link>
+                            {o.note && <span className="svc-ctanote">{o.note}</span>}
+                            {o.link && (
+                              <Link to={o.link.to} className="svc-txtlink">
+                                {o.link.label} <span aria-hidden="true">→</span>
+                              </Link>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+
+            {/* AI is NOT a row. It is not an offer, it is an audience, and it
+              * goes somewhere rather than opening. It has its own band below
+              * the offers — see the FOR AI COMPANIES section. */}
+          </div>
+
+          <p className="svc-cards__foot">
             Each one stands on its own. If you don&rsquo;t have the team to run it, I bring one.{' '}
-            <a href="#how-i-work" className="svc-txtlink" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'none', borderBottom: '1px solid rgba(200,54,43,.32)', paddingBottom: 2 }}>
+            <a href="#how-i-work" className="svc-txtlink svc-cards__footlink">
               How I work <span aria-hidden="true">↓</span>
             </a>
           </p>
         </div>
       </section>
 
-      {/* ─── §01 THE FAN ENGINE · flagship (oxblood) ──────────── */}
-      <section className="svc-band svc-band--ox" id="fan-engine">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick">The whole system</span>
-            <h2 className="svc-eng__title">The Fan Engine<span className="tm">™</span>.</h2>
-            <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
-              Let&rsquo;s talk about the Engine</Link>
-            <Link to="/fan-engine" className="svc-txtlink">
-              How the Engine works <span aria-hidden="true">→</span>
+      {/* ─── FOR AI COMPANIES ─────────────────────────────────────
+        * The OG slim pointer band, restored from 1ac0f8a~1 where it was cut on
+        * 22 Jul in the copy reduction. Copy is unchanged.
+        *
+        * It now carries the E3 photograph, which is the image the /ai page
+        * uses, so the band both points at that page and breaks up a run of
+        * five text rows with the only picture on the page. */}
+      <section className="svc-band svc-band--deep svc-ai">
+        <div className="container svc-ai__inner">
+          <figure className="svc-ai__fig">
+            <img
+              src={BASE + 'portraits/laura-e3.jpg'}
+              alt="Laura Cordrey on stage at E3"
+              loading="lazy"
+              width="540"
+              height="488"
+            />
+          </figure>
+          <div className="svc-ai__copy">
+            <span className="svc-ai__kick">For AI companies</span>
+            <h2 className="svc-ai__title">
+              Shipping a model with a crowd around it? There&rsquo;s a page in your language.
+            </h2>
+            <p className="svc-ai__lede">
+              The same work, in your language, on founding-partner terms while I
+              build the first AI case studies.
+            </p>
+            <Link to="/ai" className="btn btn--ghost btn--lg svc-ai__cta">
+              Fan-led growth for AI <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <div className="svc-eng__right">
-            <p className="svc-eng__body">
-              My own framework, shaped over thirteen years at Ubisoft, Amazon
-              Games and BlaBlaCar. Fan-led growth built into the bones of the
-              business, run as one system and measured end to end.
-            </p>
-            <p className="svc-youget"><strong>Need it when:</strong> your growth stops the day you stop paying, and the userbase you paid for gives you nothing back.</p>
-            <span className="svc-phases__eyebrow">What you get, end to end</span>
-            <div className="svc-phases">
-              <div className="svc-phase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="4" y2="13" /><line x1="10" y1="20" x2="10" y2="5" /><line x1="16" y1="20" x2="16" y2="10" /><line x1="20" y1="20" x2="20" y2="15" /></svg>
-                <span className="svc-phase__label">The picture</span>
-                <p>Who your fans are, what they&rsquo;re worth today, and where you&rsquo;re losing money, on your own data. Your Fan Value, and a six-month plan.</p>
-              </div>
-              <div className="svc-phase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z" /><path d="M3 12l9 4.5L21 12" /><path d="M3 16.5L12 21l9-4.5" /></svg>
-                <span className="svc-phase__label">The build</span>
-                <p>The whole engine working as one: the brand they fall for, the product that keeps them coming back with loops designed like a game, the community they belong to, and the programs that bring their friends.</p>
-              </div>
-              <div className="svc-phase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="3 12 7 12 10 5 14 19 17 12 21 12" /></svg>
-                <span className="svc-phase__label">The tracking</span>
-                <p>Who&rsquo;s staying, who&rsquo;s spending more, who&rsquo;s bringing others in, and how they feel. Built to your stack, reported to the teams who can act on it.</p>
-              </div>
-              <div className="svc-phase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7" /><polyline points="21 3 21 8 16 8" /></svg>
-                <span className="svc-phase__label">Every quarter</span>
-                <p>A re-score and a fresh read on what your fans are worth.</p>
-              </div>
-            </div>
-            {/* "How far I take it is your call" was cut on 22 Jul 2026: the
-              * light end is Advisory and the heavy end is step 03 of How I
-              * Work ("I bring the people to run it"), both on this page. */}
-            <p className="svc-youget"><strong>Payoff:</strong> more revenue from the customers you already have, from an engine that keeps working after I&rsquo;ve gone.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>60M+ fan views and ~$600K+ earned media</strong> across Ubisoft programs, at $0 media spend.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">
-                6 to 8 weeks to build, then ongoing · Priced per engagement
-              </span>
-            </div>
-            <div className="svc-eng__act">
-              <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
-                Let&rsquo;s talk about the Engine</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ─── §02 SENTIMENT SOS · Protect (grey) ───────────────── */}
-      <section className="svc-band svc-band--grey" id="sentiment-sos">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">Protect</span>
-            <h2 className="svc-eng__title">
-              Sentiment <mark>SOS</mark>.
-            </h2>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> your community has turned on you in public, and it&rsquo;s getting worse.</p>
-            <p className="svc-youget"><strong>What you get:</strong> the real cause found in days, a fix shipped across product and community in one to two weeks, and sentiment tracked so you watch it climb back.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> you keep the customers a blow-up would have cost you.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>85% positive sentiment</strong> held across a 15M-player community. Ghost Recon, Ubisoft.
-              </p>
-            </div>
-            <div className="svc-credit">
-              {/* "Faster if it can't wait" was cut on 22 Jul 2026: the CTA note
-                * right below says the same thing more concretely ("we can start
-                * this week"), and "one to two weeks" is already in the What you
-                * get line above. The timeline was stated twice and the urgency
-                * twice, inside about 80 words. */}
-              <span className="svc-credit__fmt">1 to 2 weeks</span>
-            </div>
-            <div className="svc-eng__act">
-              <Link to={contactFor('sos')} className="btn btn--primary btn--lg svc-eng__cta">
-                It&rsquo;s urgent, let&rsquo;s talk</Link>
-              <span className="svc-ctanote">
-                In a crisis right now? We can start this week.
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ─── §03 FAN PROGRAMS · Acquire (dark) ────────────────── */}
-      <section className="svc-band" id="fan-programs">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick svc-eng__kick--accent">Grow</span>
-            <h2 className="svc-eng__title">
-              Fan <mark>Programs</mark>.
-            </h2>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> you pay for every new customer, and your users could be bringing them instead.</p>
-            <p className="svc-youget"><strong>What you get:</strong> one program, built and measured, creator, advocacy, loyalty or referral, whichever fits.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> growth you don&rsquo;t pay for every time.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>50M+ views</strong> from a program I structured, members reaching their own audiences at $0 media spend. Rainbow Six Siege, Ubisoft.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">From 3 weeks · Scoped to the program</span>
-            </div>
-            <div className="svc-eng__act">
-              <Link to={contactFor('programs')} className="btn btn--primary btn--lg svc-eng__cta">
-                Talk about a program</Link>
-              <Link to="/work" className="svc-txtlink">
-                See programs I&rsquo;ve built <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ─── §04 FAN MOMENTS · Deepen (bone) ──────────────────── */}
-      <section className="svc-band svc-band--bone" id="fan-moments">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick">Deepen</span>
-            <h2 className="svc-eng__title">
-              Fan <mark>Moments</mark>.
-            </h2>
-          </div>
-          <div className="svc-eng__right">
-            {/* Was "you want to give your best fans a moment they'll love",
-              * which was the only "Need it when" on the page naming a want
-              * rather than a problem, and it was circular: you need a fan
-              * moment when you want a fan moment. Every other one gives the
-              * reader a reason to act now. */}
-            <p className="svc-youget"><strong>Need it when:</strong> your best customers get exactly what everyone else gets, and nothing you do makes them feel any different.</p>
-            <p className="svc-youget"><strong>What you get:</strong> something built for them, a VIP event, unique merch, a drop, or a brand collab. Measured, so you see what it drove.</p>
-            <p className="svc-youget"><strong>Payoff:</strong> your top customers spend more and stay longer.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                A fan drop that sold out and made <strong>$32K in under three hours</strong>, US Mobile. A Live Nation activation where over half of users said they wouldn&rsquo;t have carpooled to shows without it, BlaBlaCar.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">From 2 weeks · Scheduled around your date</span>
-            </div>
-            <div className="svc-eng__act">
-              <Link to={contactFor('moments')} className="btn btn--primary btn--lg svc-eng__cta">
-                Talk about your moment</Link>
-              <Link to="/work" className="svc-txtlink">
-                See moments I&rsquo;ve built <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ─── §05 ADVISORY (dark) ──────────────────────────────── */}
-      <section className="svc-band svc-band--grey" id="advisory">
-        <div className="container svc-eng">
-          <div className="svc-eng__left">
-            <span className="svc-eng__kick">In the room</span>
-            <h2 className="svc-eng__title">
-              <mark>Advisory</mark>.
-            </h2>
-          </div>
-          <div className="svc-eng__right">
-            <p className="svc-youget"><strong>Need it when:</strong> you have one decision to get right, or you want senior fan-led growth leadership without a full-time hire.</p>
-            <p className="svc-youget"><strong>What you get:</strong> one call on your hardest fan-led growth question, with someone who has built it at scale. You leave knowing exactly what to do, and the plan lands in writing that week.</p>
-            {/* Added 22 Jul 2026. Advisory was the one offer of five without a
-              * Payoff, on a page whose whole spine is Need it when / What you
-              * get / Payoff / Proof. It is also the easiest yes here, so it was
-              * the offer where a reader is closest to acting and the page went
-              * quiet on them. */}
-            <p className="svc-youget"><strong>Payoff:</strong> you get the call right the first time, without carrying a full-time hire to do it.</p>
-            <div className="svc-proofcard">
-              <span className="svc-proofcard__label">Proof</span>
-              <p>
-                <strong>Thirteen years</strong> of the judgment behind fan programs at Ubisoft and US Mobile, and a platform acquired by Animoca.
-              </p>
-            </div>
-            <div className="svc-credit">
-              <span className="svc-credit__fmt">Priced per session or an ongoing embedded role</span>
-            </div>
-            <div className="svc-eng__act">
-              <Link to={contactFor('advisory')} className="btn btn--primary btn--lg svc-eng__cta">
-                Book a session</Link>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* The "For AI companies" band was cut on 22 Jul 2026 (copy reduction).
-        * The index nav at the top of this page already carries a "For AI
-        * companies" row, with its own one-liner, pointing at the same page,
-        * so the band was a second button to a destination the reader had
-        * already been offered. */}
-
-      {/* ─── HOW I WORK (cream, intro + 3 labelled steps) ─────── */}
+      {/* ─── HOW I WORK ───────────────────────────────────────── */}
       <section id="how-i-work" className="svc-band svc-band--bone">
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(36px,4vw,52px)' }}>
           <div style={{ maxWidth: '46rem', display: 'flex', flexDirection: 'column', gap: 'clamp(16px,2vw,22px)' }}>
             <span style={{ display: 'block', fontSize: '.78rem', letterSpacing: '.22em', textTransform: 'uppercase', color: '#C8362B', fontWeight: 700 }}>
               How I work
             </span>
-            {/* T.h2 / HEAD_W from src/lib/scale.js, was clamp(1.6rem,3vw,2.4rem)@800. */}
             <h2 style={{ fontSize: T.h2, lineHeight: 1.2, letterSpacing: '-.02em', fontWeight: HEAD_W, color: '#15110F', margin: 0, textWrap: 'balance' }}>
               I go deep, then hand you a plan you can actually run.
             </h2>
@@ -376,45 +426,14 @@ export default function ServicesPage() {
               style={{ position: 'absolute', top: 34, left: '5%', right: '5%', height: 1, background: 'rgba(21,17,15,.14)', pointerEvents: 'none' }}
             />
             {[
-              {
-                n: '01',
-                label: 'I go deep.',
-                copy: 'Your product, your data, your team: interviews, a survey, the real numbers, so the plan is built on what’s actually happening.',
-              },
-              {
-                n: '02',
-                label: 'You get a plan that’s ready to run.',
-                copy: 'A fan-led growth strategy and roadmap, built on your own data: the moves that matter, sequenced and measurable.',
-              },
-              {
-                n: '03',
-                label: 'I bring the people to run it.',
-                copy: 'No team for it? I pull in specialists I trust and direct them, so you get the plan and the people.',
-              },
+              { n: '01', label: 'I go deep.', copy: 'Your product, your data, your team: interviews, a survey, the real numbers, so the plan is built on what’s actually happening.' },
+              { n: '02', label: 'You get a plan that’s ready to run.', copy: 'A fan-led growth strategy and roadmap, built on your own data: the moves that matter, sequenced and measurable.' },
+              { n: '03', label: 'I bring the people to run it.', copy: 'No team for it? I pull in specialists I trust and direct them, so you get the plan and the people.' },
             ].map((s) => (
-              <li
-                key={s.n}
-                className="svc-how__step"
-                style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 16 }}
-              >
+              <li key={s.n} className="svc-how__step" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <span
                   className="svc-how__num"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    alignSelf: 'flex-start',
-                    fontSize: 'clamp(1.35rem,2vw,1.75rem)',
-                    fontWeight: HEAD_W,
-                    letterSpacing: '-.02em',
-                    lineHeight: 1,
-                    color: '#C8362B',
-                    background: '#EFE9DC',
-                    padding: '0 14px',
-                    height: 68,
-                    position: 'relative',
-                    zIndex: 1,
-                  }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start', fontSize: 'clamp(1.35rem,2vw,1.75rem)', fontWeight: HEAD_W, letterSpacing: '-.02em', lineHeight: 1, color: '#C8362B', background: '#EFE9DC', padding: '0 14px', height: 68, position: 'relative', zIndex: 1 }}
                 >
                   {s.n}
                 </span>
@@ -428,48 +447,24 @@ export default function ServicesPage() {
             ))}
           </ol>
 
-          {/* The Brusson quote, kept when the proof band around it was removed
-            * on 22 Jul 2026. The five client logos in that band genuinely were
-            * duplicated (homepage and /about both carry them), but the quote
-            * was NOT: checking the built HTML after the cut showed it surviving
-            * on the homepage alone, which left the site's commercial page with
-            * no third-party voice at all. It sits here rather than in its own
-            * band because this section is about what working with Laura is
-            * like, which is what the quote is about. ~150px against the 537px
-            * band it came from. */}
-          <figure className="svc-how__quote">
-            <blockquote>
-              Laura is a <mark>start-up swiss knife</mark> &hellip; with some extra fun!
-            </blockquote>
-            <figcaption>
-              <img src={BASE + 'portraits/nicolas-brusson.png'} alt="Nicolas Brusson" loading="lazy" />
-              <span>
-                <strong>Nicolas Brusson</strong>
-                <span>Co-founder &amp; CEO, BlaBlaCar</span>
-              </span>
-            </figcaption>
-          </figure>
+          {/* The Brusson quote was cut on 22 Jul 2026 at Laura's request,
+            * along with the proof band it originally sat in.
+            * NOTE FOR WHOEVER PICKS THIS UP: checking the built HTML on 22 Jul
+            * showed this quote is NOT duplicated on /about — it survives on
+            * the homepage only. So /services, the site's commercial page, now
+            * carries no third-party voice at all. That is a deliberate call,
+            * not an oversight, but it is worth revisiting if the page ever
+            * needs to work harder. */}
         </div>
       </section>
-
-      {/* The PROOF BAND (logos + the Brusson quote) was removed on 22 Jul 2026.
-        * It was 537px, 6.5% of the page, and entirely duplicated: the same five
-        * logos and the same quote are on /about and the homepage. It was also
-        * the weakest proof on this page, because every offer already carries its
-        * own proof with a real number (60M+ views, 85% across 15M players, $32K
-        * in three hours), which beats a logo wall at the moment someone is
-        * deciding. See content/copy/services-weight-options.md, option 2. */}
 
       {/* ─── FINALE (oxblood, centered) ───────────────────────── */}
       <section className="svc-band svc-band--ox svc-finale">
         <div className="svc-halo svc-halo--bl" aria-hidden="true" />
-        <div className="svc-sparkles svc-sparkles--gold" aria-hidden="true">
-          <span className="svc-sparkle">✦</span>
-          <span className="svc-sparkle">✦</span>
-        </div>
-        {/* The reassurance line above the title was cut on 22 Jul 2026: it
-          * said "tell me what's going on" two lines above the close line that
-          * says "or tell me what's going on". */}
+        {/* The two gold sparkles were removed on 22 Jul 2026. They were the
+          * only decoration of their kind on the page, so they read as a
+          * leftover rather than as a motif. The halo stays: it is a soft
+          * gradient wash, not a mark. */}
         <div className="container svc-finale__inner">
           <h2 className="svc-finale__title">What&rsquo;s your fanbase worth?</h2>
           <p className="svc-finale__line">

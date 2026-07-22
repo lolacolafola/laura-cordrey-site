@@ -642,7 +642,7 @@ export default function FanValueModelPage() {
 
         {/* Final CTA */}
         <div className="fvm-cta">
-          <p className="fvm-cta__eyebrow">The Fan Engine</p>
+          <p className="fvm-cta__eyebrow">The Fan Engine<span className="tm">™</span></p>
           <p className="fvm-cta__q">
             My flagship system is how you build the engine that captures this. Book a call to baseline it on your real numbers.
           </p>

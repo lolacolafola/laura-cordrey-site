@@ -13,7 +13,7 @@ const CONTACT_URL = '/contact?intent=consulting'
 const FAQS = [
   {
     q: 'What is fan-led growth?',
-    a: 'Fan-led growth is growth powered by the customers you already have. Instead of renting attention through paid ads, you build the conditions for customers to become fans: people who stay longer, spend more, and bring the next customer with them. Paid acquisition is a meter you feed. A fan-led growth engine is an asset you own. The system I build to do this is the Fan Engine: brand, product, community and growth run as one system, measured against the numbers a board cares about.',
+    a: 'Fan-led growth is growth powered by the customers you already have. Instead of renting attention through paid ads, you build the conditions for customers to become fans: people who stay longer, spend more, and bring the next customer with them. Paid acquisition is a meter you feed. A fan-led growth engine is an asset you own. The system I build to do this is the Fan Engine™: brand, product, community and growth run as one system, measured against the numbers a board cares about.',
     more: { to: '/fan-led-growth', label: 'How customers become fans' },
   },
   {
@@ -30,10 +30,10 @@ const FAQS = [
   },
   {
     q: 'What does it cost?',
-    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while limited spots last.',
+    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine™, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while limited spots last.',
   },
   {
-    q: 'What happens in the first month of the Fan Engine?',
+    q: 'What happens in the first month of the Fan Engine™?',
     a: 'Four weeks, four outputs. Week one: access and interviews. Week two: the audit and the Fan Signal Index built on your data, so we know who your fans actually are. Week three: your Fan Value calculated on your real numbers. Week four: a six-month plan, first sprint scoped with owners and targets. You end the month knowing what your fandom is worth and exactly what we build first.',
   },
   {
@@ -66,7 +66,7 @@ export default function FaqPage() {
   useDocumentMeta({
     title: 'FAQ · Fan-led growth, the Fan Engine, and how I work · Laura Cordrey',
     description:
-      'Direct answers: what fan-led growth is, how the Fan Engine works, what it costs, how fans are found and measured, and how fast Sentiment SOS can start.',
+      'Direct answers: what fan-led growth is, how the Fan Engine™ works, what it costs, how fans are found and measured, and how fast Sentiment SOS can start.',
     canonical: pageUrl('faq'),
     ogType: 'website',
     jsonLd: {
