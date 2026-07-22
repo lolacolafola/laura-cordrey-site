@@ -456,7 +456,10 @@ export default function HomePage() {
             * link promised a case study it could not deliver, which confused
             * a visitor. The one route out is the "See all work" link below.
             * Being non-links, they also drop the hover motion (hover honesty). */}
-          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,20px)' }}>
+          {/* Capped narrower and centred, like the tools grid, so the cards
+            * read a touch smaller and in step with the rest of the page rather
+            * than the widest thing on it. Everything scales proportionally. */}
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(14px,1.6vw,20px)', maxWidth: 960, margin: '0 auto' }}>
             {CASES.map((c) => (
               <div key={c.client} className="casec" data-rev>
                 <figure style={{ margin: 0, aspectRatio: '16 / 10', overflow: 'hidden', background: '#15110F' }}>
