@@ -6,16 +6,22 @@ const CONTACT_URL = '/contact'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
-// Site-wide simplified nav: five items and one CTA. Fan-Led Growth leads,
-// then Work, Services, Speaking, About. Method, AI and Fan Score are dropped
+// Site-wide simplified nav: five items and one CTA. "Why fans" leads, then
+// Work, Services, Speaking, About. The Fan Engine, AI and Fan Score are dropped
 // from the header and stay reachable from the footer and in-page links; Home
 // is the logo. This replaced a seven-item nav at the homepage cutover.
+//
+// The first slot was labelled "Fan-Led Growth" until 22 Jul 2026. It points at
+// the one page with a real job of being found by a stranger, and "fan-led
+// growth" is a term that stranger does not know yet. "Why fans" poses the
+// question the page answers. The search-facing wording lives in the body links
+// that now point at the page, where a full phrase reads naturally.
 const navLinks = [
-  { key: 'flg',      label: 'Fan-Led Growth', path: '/fan-led-growth', isHash: false },
-  { key: 'work',     label: 'Work',           path: '/work',           isHash: false },
-  { key: 'services', label: 'Services',       path: '/services',       isHash: false },
-  { key: 'speaking', label: 'Speaking',       path: '/speaking',       isHash: false },
-  { key: 'about',    label: 'About',          path: '/about',          isHash: false },
+  { key: 'flg',      label: 'Why fans', path: '/fan-led-growth', isHash: false },
+  { key: 'work',     label: 'Work',     path: '/work',           isHash: false },
+  { key: 'services', label: 'Services', path: '/services',       isHash: false },
+  { key: 'speaking', label: 'Speaking', path: '/speaking',       isHash: false },
+  { key: 'about',    label: 'About',    path: '/about',          isHash: false },
 ]
 
 // Same journey as the header, plus the IP pages and Speaking that the header

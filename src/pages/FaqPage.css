@@ -51,6 +51,18 @@
   color: #B8AEA2;
   max-width: 64ch;
 }
+/* Trailing "read more" link on answers that have a fuller page behind them. */
+.faq-a__more {
+  color: #D4C896;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(212, 200, 150, .32);
+  transition: border-color .2s ease;
+}
+.faq-a__more:hover {
+  border-bottom-color: rgba(212, 200, 150, .8);
+}
 .faq-close {
   margin-top: clamp(48px, 6vw, 72px);
   text-align: center;

@@ -14,6 +14,7 @@ const FAQS = [
   {
     q: 'What is fan-led growth?',
     a: 'Fan-led growth is growth powered by the customers you already have. Instead of renting attention through paid ads, you build the conditions for customers to become fans: people who stay longer, spend more, and bring the next customer with them. Paid acquisition is a meter you feed. A fan-led growth engine is an asset you own. The system I build to do this is the Fan Engine: brand, product, community and growth run as one system, measured against the numbers a board cares about.',
+    more: { to: '/fan-led-growth', label: 'How customers become fans' },
   },
   {
     q: 'How is this different from hiring a community manager or agency?',
@@ -91,7 +92,21 @@ export default function FaqPage() {
           {FAQS.map((f) => (
             <div className="faq-item" key={f.q}>
               <dt className="faq-q">{f.q}</dt>
-              <dd className="faq-a">{f.a}</dd>
+              {/* `f.a` stays a plain string: it is the same value the FAQPage
+                  schema emits, and schema text must match what is on the page.
+                  An optional `more` renders as a trailing link instead of an
+                  inline one, so the answer text and the schema cannot drift. */}
+              <dd className="faq-a">
+                {f.a}
+                {f.more && (
+                  <>
+                    {' '}
+                    <Link to={f.more.to} className="faq-a__more">
+                      {f.more.label} <span aria-hidden="true">→</span>
+                    </Link>
+                  </>
+                )}
+              </dd>
             </div>
           ))}
         </dl>

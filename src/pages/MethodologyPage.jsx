@@ -348,8 +348,14 @@ export default function MethodologyPage() {
               <span className="meth-proof__l">MAU from streamer-led product launches · Azarus</span>
             </div>
           </div>
+          {/* Two ways on from the proof: the work, or the argument behind it.
+              The second is the return path to /fan-led-growth, which until now
+              was only reachable from the nav. Sits here rather than in the
+              close, so it doesn't pull against the diagnostic CTA. */}
           <p className="meth-proofstrip__more">
             <Link to="/work">See the case studies <span aria-hidden="true">→</span></Link>
+            <span className="meth-proofstrip__sep" aria-hidden="true">·</span>
+            <Link to="/fan-led-growth">Why fans grow a business <span aria-hidden="true">→</span></Link>
           </p>
 
           <div className="meth-measured__blocks">

@@ -50,6 +50,15 @@ export default function ServicesPage() {
             Make the userbase you already paid for worth more. Protect it, grow
             off it, deepen it, or build the whole system that does all three.
           </p>
+          {/* For anyone who lands here cold: the argument sits one click away.
+              Kept out of the lede so it doesn't compete with the two CTAs. */}
+          <p className="svc-hero__backlink">
+            New to this? Start with{' '}
+            <Link to="/fan-led-growth" className="svc-txtlink">
+              how customers become fans
+            </Link>
+            .
+          </p>
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk <span aria-hidden="true">→</span>

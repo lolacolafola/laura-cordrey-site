@@ -19,8 +19,11 @@ export default function WorkPage() {
 
   useDocumentMeta({
     title: 'Case Studies · Fan-led growth work by Laura Cordrey',
+    // Trimmed from 176 chars on 22 Jul 2026: the tail was past the ~160 Google
+    // shows, so the last two case studies were never visible. Also retargeted
+    // from "fan-led growth work" to the problem phrasing people search for.
     description:
-      'Selected case studies from thirteen years of fan-led growth work: Ubisoft Delta Company, Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, and Claw Mobile.',
+      'Thirteen years of turning customers into fans: Ubisoft Delta Company and Siege Champions, US Mobile Dark Star, BlaBlaCar × Live Nation, Azarus, Claw Mobile.',
     canonical: pageUrl('work'),
     ogType: 'website',
     jsonLd: workIndexJsonLd({ caseStudies }),

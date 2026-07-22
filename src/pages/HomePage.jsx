@@ -108,9 +108,16 @@ const CASES = [
 export default function HomePage() {
   // The live homepage. Full SEO: real title, canonical to "/", author schema.
   useDocumentMeta({
-    title: 'Laura Cordrey | Fan-Led Growth Consultant for Consumer Brands',
+    // Retargeted 22 Jul 2026. The old title sold "Fan-Led Growth Consultant",
+    // a term with no commercial search demand whose SERP is ceiling fans and
+    // the UK football fan-led review. This one leads with the problem people
+    // actually search for. Client order is US-first: Ubisoft and Amazon Games
+    // carry the most recognition with a US buyer, and names at the front
+    // survive truncation. Description held under 160 chars so the client list
+    // stays inside the visible window in search results and link previews.
+    title: 'Laura Cordrey | I turn your customers into fans',
     description:
-      'Laura Cordrey builds fan-led growth for consumer brands. Thirteen years turning customers into fans across Ubisoft, BlaBlaCar, US Mobile, Amazon Games.',
+      "Your customers are worth more than you're getting. I turn them into fans who stay, spend more and bring others in. Ubisoft, Amazon Games, US Mobile, BlaBlaCar.",
     canonical: pageUrl(''),
     ogType: 'website',
     jsonLd: authorJsonLd(),
@@ -409,6 +416,17 @@ export default function HomePage() {
           <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(32px,4vw,46px)' }}>
             <Link to="/services" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#D4C896', fontWeight: 700, fontSize: '.9rem', letterSpacing: '.03em', textDecoration: 'none', borderBottom: '1px solid rgba(212,200,150,.3)', paddingBottom: 3 }}>
               See all services <span className="ar" aria-hidden>→</span>
+            </Link>
+          </div>
+
+          {/* The way back to the argument, for anyone not yet sold on the
+            * premise. Quieter than the services link above it on purpose:
+            * this is the second read, not the first. It is also the only
+            * link to /fan-led-growth from the homepage, so the wording is
+            * the phrase people actually search for. */}
+          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(14px,1.6vw,18px)' }}>
+            <Link to="/fan-led-growth" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'rgba(239,233,220,.62)', fontWeight: 600, fontSize: '.88rem', textDecoration: 'none', borderBottom: '1px solid rgba(239,233,220,.22)', paddingBottom: 3 }}>
+              How customers become fans <span className="ar" aria-hidden>→</span>
             </Link>
           </div>
         </div>

@@ -543,7 +543,20 @@
   line-height: 1;
 }
 .meth-proof__l { font-size: .85rem; line-height: 1.45; color: #B8AEA2; }
-.meth-proofstrip__more { margin: clamp(2px, 1vw, 8px) 0 0; font-size: .95rem; }
+.meth-proofstrip__more {
+  margin: clamp(2px, 1vw, 8px) 0 0;
+  font-size: .95rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 14px;
+}
+.meth-proofstrip__sep { color: rgba(212, 200, 150, .45); }
+/* On narrow screens the two links stack, so the middot would dangle. */
+@media (max-width: 560px) {
+  .meth-proofstrip__more { gap: 8px 0; }
+  .meth-proofstrip__sep { display: none; }
+}
 .meth-proofstrip__more a {
   color: #D4C896;
   font-weight: 700;
