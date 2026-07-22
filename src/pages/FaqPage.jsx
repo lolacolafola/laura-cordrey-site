@@ -114,8 +114,7 @@ export default function FaqPage() {
         <div className="faq-close">
           <p className="faq-close__lede">Question not here?</p>
           <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-            Ask me directly <span aria-hidden="true">→</span>
-          </Link>
+            Ask me directly</Link>
           <p className="faq-close__alt">
             Or start with the free <Link to="/fan-score">2-minute Fan Score</Link>.
           </p>

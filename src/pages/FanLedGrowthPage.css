@@ -41,6 +41,33 @@
   background: rgba(239,233,220,.18);
   border-color: rgba(239,233,220,.42);
 }
+
+/* ─── On the oxblood close band ──────────────────────────
+ * Three variants for #A12A1E, all mirroring the homepage close, which sits on
+ * the same ground. The on-espresso pair (#D4C896 gold, #EFE9DC cream) goes
+ * muddy on oxblood, so gold is #F2D79A and cream is #FBF4E6 here.
+ *
+ * The primary is an INK button, not the red one: red on oxblood is
+ * near-invisible. The homepage hit this and solved it the same way. */
+.flg a.flg-btnink {
+  background: #15110F;
+  border: 1px solid rgba(251,244,230,.28);
+  color: #FBF4E6;
+  transition: color .2s ease, border-color .2s ease;
+}
+.flg a.flg-btnink:hover {
+  color: #F2D79A;
+  border-color: #F2D79A;
+}
+.flg a.flg-btnsoft--ox {
+  background: rgba(251,244,230,.10);
+  border-color: rgba(251,244,230,.34);
+  color: #FBF4E6;
+}
+.flg a.flg-btnsoft--ox:hover {
+  background: rgba(251,244,230,.2);
+  border-color: rgba(251,244,230,.55);
+}
 /* Inline text links. Colour follows the ground, which on this page means the
  * light variant is the common case: `--ink` for the cream and bone bands, the
  * gold default for the two dark inversions (the Fan Engine hand-off and the
@@ -56,6 +83,10 @@
 .flg a.flg-inline:hover { color: #EFE9DC; }
 .flg a.flg-inline--ink { color: #8E2520; }
 .flg a.flg-inline--ink:hover { color: #15110F; }
+/* On oxblood: gold #D4C896 measures 3.02 against #A12A1E, under the 4.5
+ * minimum for small text. #F2D79A reaches 5.21. */
+.flg a.flg-inline--ox { color: #F2D79A; }
+.flg a.flg-inline--ox:hover { color: #FBF4E6; }
 
 .flg a .ar { transition: transform .2s ease; }
 .flg a:hover .ar { transform: translateX(4px); }

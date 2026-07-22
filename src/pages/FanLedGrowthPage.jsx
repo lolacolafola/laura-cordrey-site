@@ -56,9 +56,15 @@ const whyFans = [
   // "They invest more" until 22 Jul 2026: fans spend, investors invest, and it
   // was the only place on the page using that word. The title now matches the
   // sentence under it.
-  { title: 'They stay and spend more', copy: 'Fans stay longer and spend more, so you keep what you paid to win.', icon: 'lock' },
+  // Cards 1 and 3 carry only the consequence. Their bodies used to open by
+  // restating their own titles ("They stay and spend more" / "Fans stay longer
+  // and spend more..."), which meant you read the same thing twice inside one
+  // card before reaching the part that earns its place. It was also what made
+  // the evidence band above read as an echo: the stats measure the behaviour,
+  // the cards are supposed to price it.
+  { title: 'They stay and spend more', copy: 'You keep what you paid to win, instead of buying the same customer twice.', icon: 'lock' },
   { title: 'They spread the word', copy: 'Fans make the content that markets you, at no media cost.', icon: 'megaphone' },
-  { title: 'They recommend you', copy: 'Fans bring their friends in, so growth leans less on ad spend.', icon: 'users' },
+  { title: 'They recommend you', copy: 'Their friends arrive on a recommendation, so your cost per customer falls.', icon: 'users' },
   { title: 'They defend you', copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
   { title: 'AI recommends you too', copy: 'Ask an AI what to pick, and it answers from what your fans post.', icon: 'sparkle' },
   { title: 'It compounds', copy: 'Built once, the engine keeps working and starts to fuel itself.', icon: 'loop' },
@@ -252,8 +258,7 @@ export default function FanLedGrowthPage() {
                 </p>
               </div>
               <Link to="/fan-value" className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', flex: 'none' }}>
-                See what your fans are worth <span className="ar" aria-hidden>→</span>
-              </Link>
+                See what your fans are worth</Link>
             </div>
           </div>
         </div>
@@ -288,8 +293,7 @@ export default function FanLedGrowthPage() {
             </p>
             <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
               <Link to="/fan-engine" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-                See how the Fan Engine works <span className="ar" aria-hidden>→</span>
-              </Link>
+                See how the Fan Engine works</Link>
             </div>
           </div>
         </div>
@@ -338,39 +342,54 @@ export default function FanLedGrowthPage() {
         * footer. Every other page closes with a band. Three tiers, the order
         * settled on the homepage close: the number first, the offer second,
         * the low-commitment diagnostic as a quiet third. */}
-      {/* The one full inversion, and it lands where it should: the close is the
-        * only moment on the page asking for a decision. On an otherwise light
-        * page the dark ground does the work the homepage needs a red band for. */}
-      <section style={{ background: '#0E0B09', color: '#EFE9DC' }}>
+      {/* OXBLOOD since 22 Jul 2026, was #0E0B09.
+        *
+        * The dark close was justified as "the one full inversion", a light page
+        * earning its ending by going dark. The premise was wrong: the page
+        * already goes dark two sections earlier for "What to do about it"
+        * (#15110F), and #0E0B09 is 11 RGB units from it. To the eye the close
+        * was repeating a ground the reader had just seen, at the one moment it
+        * most needs to feel like an ending.
+        *
+        * Every other editorial page on the site closes on #A12A1E, so the red
+        * band is also the site-wide signal for "this is the ask". Band order is
+        * now cream, off-white, cream, near-black, cream, oxblood: a genuinely
+        * new ground at the end.
+        *
+        * Colours follow the homepage close, which is the same ground: #F2D79A
+        * gold and #FBF4E6 cream. The on-espresso pair (#D4C896 / #EFE9DC) goes
+        * muddy on oxblood. */}
+      <section style={{ background: '#A12A1E', color: '#FBF4E6' }}>
         <div style={{ ...INNER, padding: 'clamp(72px,9vw,110px) clamp(20px,5vw,64px)', textAlign: 'center' }}>
           {/* Width in px, not ch: `ch` resolves against THIS div's inherited
             * 16px font, not the 60px heading inside it, so a 30ch cap came out
             * at ~240px and broke the headline over four lines. */}
           <div data-rev style={{ maxWidth: 620, margin: '0 auto' }}>
-            <Eyebrow>Where to start</Eyebrow>
-            <hr style={{ width: 46, height: 3, background: '#D4C896', border: 'none', margin: '16px auto 22px' }} />
-            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2close, lineHeight: 1.04, letterSpacing: '-.03em', margin: 0, color: '#EFE9DC' }}>
+            <Eyebrow tone="ox">Where to start</Eyebrow>
+            <hr style={{ width: 46, height: 3, background: '#F2D79A', border: 'none', margin: '16px auto 22px' }} />
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2close, lineHeight: 1.04, letterSpacing: '-.03em', margin: 0, color: '#FBF4E6' }}>
               Stop <mark>renting</mark> your growth.
             </h2>
           </div>
-          <p data-rev style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.82)', margin: 'clamp(18px,2.2vw,24px) auto 0', maxWidth: '46ch' }}>
+          <p data-rev style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', margin: 'clamp(18px,2.2vw,24px) auto 0', maxWidth: '46ch' }}>
             If any of that sounded like your company, the next step is a number, not a&nbsp;meeting.
           </p>
+          {/* Primary is the ink button, not the red one: red on oxblood is
+            * near-invisible, which the homepage close hit and solved the same
+            * way (see the .btnsend note in HomePage.css). */}
           <div data-rev className="flg-close__ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '14px 16px', marginTop: 'clamp(26px,3.2vw,36px)' }}>
-            <Link to="/fan-value" className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none' }}>
-              See what your fans are worth <span className="ar" aria-hidden>→</span>
-            </Link>
-            <Link to="/services" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-              See how we&rsquo;d work together <span className="ar" aria-hidden>→</span>
-            </Link>
+            <Link to="/fan-value" className="flg-btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+              See what your fans are worth</Link>
+            <Link to="/services" className="flg-btnsoft flg-btnsoft--ox" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
+              See how we&rsquo;d work together</Link>
           </div>
           {/* "Or tell me about your brand" was cut on 22 Jul 2026. The close
             * offered four exits, and the fourth was a meeting one line under
             * "the next step is a number, not a meeting". Contact is in the nav
             * as "Get in touch" on every screen, and the second button here
             * goes to /services, which opens with two ways to talk. */}
-          <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: 'rgba(239,233,220,.6)', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>
-            Not ready for either? <Link to="/fan-score" className="flg-inline">Take the 2-minute Fan Score&nbsp;&rarr;</Link>
+          <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: 'rgba(251,244,230,.82)', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>
+            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ox">Take the 2-minute Fan Score&nbsp;&rarr;</Link>
           </p>
         </div>
       </section>

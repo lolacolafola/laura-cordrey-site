@@ -647,8 +647,7 @@ export default function FanValueModelPage() {
             My flagship system is how you build the engine that captures this. Book a call to baseline it on your real numbers.
           </p>
           <Link to={CONTACT_URL} className="fvm-btn">
-            Let’s talk <span className="fvm-btn__arrow" aria-hidden="true">→</span>
-          </Link>
+            Let’s talk</Link>
         </div>
 
         {/* Footnotes */}

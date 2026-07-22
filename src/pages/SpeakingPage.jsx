@@ -126,8 +126,7 @@ export default function SpeakingPage() {
             Thirteen years fronting fan moments for the biggest names in gaming. World-stage keynotes, live broadcast, and the pieces I wrote, produced and voiced myself.
           </p>
           <Link to={CONTACT_URL} className="btn btn--primary btn--lg sp-hero__cta">
-            Book me to speak <span aria-hidden="true">→</span>
-          </Link>
+            Book me to speak</Link>
         </div>
       </section>
 
@@ -256,8 +255,7 @@ export default function SpeakingPage() {
             If you have a moment coming up, put me in it.
           </h2>
           <Link to={CONTACT_URL} className="btn btn--lg sp-finale__cta">
-            Book a chat <span aria-hidden="true">→</span>
-          </Link>
+            Book a chat</Link>
           <p className="sp-finale__mail">
             Or email <a href={`mailto:${HELLO_EMAIL}`}>{HELLO_EMAIL}</a>
           </p>

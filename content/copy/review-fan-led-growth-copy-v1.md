@@ -180,7 +180,92 @@ with two ways to talk).
 715 → **709 words**. Build clean at 19/19 routes, all four inbound links still
 returning 2, every figure and source untouched.
 
+---
+
+## Follow-up, 22 Jul: is the repetition actually a problem?
+
+Asked directly, and having sat with the page: **mostly no, and I overstated it
+above.** Two things I did not weigh properly the first time.
+
+**1. The two bands are in different registers.** The evidence band states what
+research measures about fan *behaviour*. The cards state what that behaviour
+does to *your business*. Those are not the same sentence:
+
+| Evidence | Card |
+|---|---|
+| "66 to 80% more top fans spend" | "so you keep what you paid to win" |
+| "~4× more often top fans refer" | "so growth leans less on ad spend" |
+
+The payload of each card is its second clause, and no stat carries it.
+
+**2. It is the ordinary shape of a persuasive page.** Claim, proof, implication.
+A reader who scanned the numbers and skipped the cards, or scanned the cards and
+skipped the numbers, gets the argument either way. Two encounters is insurance
+for skimmers, not waste.
+
+Only two of the six cards overlap at all, and only in their opening clause.
+
+### The sliver that is real
+
+Cards 1 and 3 spend their first clause restating **their own title**:
+
+> **They stay and spend more**
+> *Fans stay longer and spend more,* so you keep what you paid to win.
+
+> **They recommend you**
+> *Fans bring their friends in,* so growth leans less on ad spend.
+
+Read the title then the body and you read the same thing twice inside one card,
+before reaching the part that earns its place. That is a sentence problem, not a
+structure problem, and it is why the band above felt like it was echoing.
+
+**Recommended:** let the title carry the behaviour and the body carry only the
+consequence.
+
+| | Card 1 · "They stay and spend more" | Card 2 · "They recommend you" |
+|---|---|---|
+| **A (recommended)** | You keep what you paid to win, instead of buying the same customer twice. | Their friends arrive on a recommendation, so your cost per customer falls. |
+| B | The budget that won them keeps earning, long after the campaign ended. | Growth that arrives without a media buy, and gets cheaper as it goes. |
+| Now | Fans stay longer and spend more, so you keep what you paid to win. | Fans bring their friends in, so growth leans less on ad spend. |
+
+A is the recommendation. It costs no words, keeps all six cards and the grid,
+and the second encounter now adds something instead of echoing. B's second
+column reuses "media", which card 2 already owns with "at no media cost".
+
+**With this, I would not cut any cards.** The earlier recommendation to cut
+cards 1 and 3 is withdrawn.
+
+### Should the evidence band move under "Why fans"?
+
+Good instinct, and it fixes something real: in the current order the stats are a
+*preview* of the cards, and after the move they would be the *proof* of them.
+Claim, then argument, then receipts, reads better than receipts, then argument
+that restates the receipts.
+
+**But it costs more than it gains, for a reason that is not visible in the
+copy.** That band is the only thing separating two identical grounds:
+
+| Band | Ground |
+|---|---|
+| Hero | `#EFE9DC` cream |
+| **The evidence** | **`#FCFAF3` off-white** |
+| Why fans | `#EFE9DC` cream |
+
+Move it down and the hero, the "Why fans" lede and six cards become one
+unbroken cream run before the first dark band arrives. That is the flat,
+relentless rhythm the homepage work was fixing, traded for a sequencing gain
+most readers would not consciously notice.
+
+**If you want it moved anyway, it has to travel with a re-ground:** "Why fans"
+onto `#FCFAF3`, so hero → cards still changes ground. That is a bigger design
+change than the problem justifies, but it is the only version that works.
+
+**Recommendation: leave the order, fix the two card bodies.**
+
+---
+
 ### Why the card cut is a design decision, not a copy one
+*(superseded by the follow-up above, kept for the reasoning)*
 
 The grid is `repeat(3, minmax(0,1fr))`. Six cards fill two rows exactly.
 Cutting two leaves four: a row of three and one card alone on the second row,

@@ -164,8 +164,7 @@ export default function AIPage() {
               Every few weeks an AI company ships, and within the hour the internet has decided how it feels. I ran that exact problem for 15-million-player live games. It has a playbook, it just does not have a name in AI yet.
             </p>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg ai-hero__cta">
-              Let&rsquo;s build it together <span aria-hidden="true">→</span>
-            </Link>
+              Let&rsquo;s build it together</Link>
           </div>
           <div className="ai-hero__plate">
             <RadarPlate />
@@ -350,8 +349,7 @@ export default function AIPage() {
               If you are an AI company between Series A and C, with a passionate user base and no senior community or advocacy leader yet, this is built for you.
             </p>
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg ai-founding__cta">
-              Talk about a founding-partner pilot <span aria-hidden="true">→</span>
-            </Link>
+              Talk about a founding-partner pilot</Link>
           </div>
         </div>
       </section>
@@ -367,8 +365,7 @@ export default function AIPage() {
             Who wants to build it <mark>with me?</mark>
           </h2>
           <Link to={CONTACT_URL} className="btn btn--lg ai-finale__cta">
-            Let&rsquo;s talk <span aria-hidden="true">→</span>
-          </Link>
+            Let&rsquo;s talk</Link>
           <p className="ai-finale__mail">
             Or email <a href={`mailto:${HELLO_EMAIL}`}>{HELLO_EMAIL}</a>
           </p>

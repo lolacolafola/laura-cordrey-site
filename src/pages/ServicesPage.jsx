@@ -61,11 +61,9 @@ export default function ServicesPage() {
           </p>
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-              Let&rsquo;s talk <span aria-hidden="true">→</span>
-            </Link>
+              Let&rsquo;s talk</Link>
             <Link to="/fan-score" className="btn btn--ghost btn--lg">
-              Take the 2-min Fan Score <span aria-hidden="true">→</span>
-            </Link>
+              Take the 2-min Fan Score</Link>
           </div>
         </div>
       </section>
@@ -129,8 +127,7 @@ export default function ServicesPage() {
             <span className="svc-eng__kick">The whole system</span>
             <h2 className="svc-eng__title">The Fan Engine<span className="tm">™</span>.</h2>
             <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
-              Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
-            </Link>
+              Let&rsquo;s talk about the Engine</Link>
             <Link to="/fan-engine" className="svc-txtlink">
               How the Engine works <span aria-hidden="true">→</span>
             </Link>
@@ -182,8 +179,7 @@ export default function ServicesPage() {
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('engine')} className="btn btn--primary btn--lg svc-eng__cta">
-                Let&rsquo;s talk about the Engine <span aria-hidden="true">→</span>
-              </Link>
+                Let&rsquo;s talk about the Engine</Link>
             </div>
           </div>
         </div>
@@ -212,8 +208,7 @@ export default function ServicesPage() {
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('sos')} className="btn btn--primary btn--lg svc-eng__cta">
-                It&rsquo;s urgent, let&rsquo;s talk <span aria-hidden="true">→</span>
-              </Link>
+                It&rsquo;s urgent, let&rsquo;s talk</Link>
               <span className="svc-ctanote">
                 In a crisis right now? We can start this week.
               </span>
@@ -245,8 +240,7 @@ export default function ServicesPage() {
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('programs')} className="btn btn--primary btn--lg svc-eng__cta">
-                Talk about a program <span aria-hidden="true">→</span>
-              </Link>
+                Talk about a program</Link>
               <Link to="/work" className="svc-txtlink">
                 See programs I&rsquo;ve built <span aria-hidden="true">→</span>
               </Link>
@@ -278,8 +272,7 @@ export default function ServicesPage() {
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('moments')} className="btn btn--primary btn--lg svc-eng__cta">
-                Talk about your moment <span aria-hidden="true">→</span>
-              </Link>
+                Talk about your moment</Link>
               <Link to="/work" className="svc-txtlink">
                 See moments I&rsquo;ve built <span aria-hidden="true">→</span>
               </Link>
@@ -310,8 +303,7 @@ export default function ServicesPage() {
             </div>
             <div className="svc-eng__act">
               <Link to={contactFor('advisory')} className="btn btn--primary btn--lg svc-eng__cta">
-                Book a session <span aria-hidden="true">→</span>
-              </Link>
+                Book a session</Link>
             </div>
           </div>
         </div>
@@ -464,14 +456,11 @@ export default function ServicesPage() {
           </p>
           <div className="svc-finale__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
-              Let&rsquo;s talk <span aria-hidden="true">→</span>
-            </Link>
+              Let&rsquo;s talk</Link>
             <Link to="/fan-score" className="btn btn--lg svc-finale__ghost">
-              Take the 2-min Fan Score <span aria-hidden="true">→</span>
-            </Link>
+              Take the 2-min Fan Score</Link>
             <Link to="/fan-value" className="btn btn--lg svc-finale__ghost">
-              Size your Fan Value <span aria-hidden="true">→</span>
-            </Link>
+              Size your Fan Value</Link>
           </div>
           <p className="svc-finale__note">
             Prefer to send a note?{' '}

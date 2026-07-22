@@ -519,11 +519,9 @@ function LiveResult({ scored, lead, restart }) {
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
         <Link className="fa-btn" to={`/fan-value?score=${owned}`}>
-          See what your fans are worth <span aria-hidden="true">→</span>
-        </Link>
+          See what your fans are worth</Link>
         <Link className="fa-btn" to={CONTACT_URL}>
-          Let’s talk <span aria-hidden="true">→</span>
-        </Link>
+          Let’s talk</Link>
       </div>
       <p className="fa-ctatail">
         See the number, or skip ahead and build it with me. That’s the Fan Engine.
@@ -831,7 +829,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
 
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
-        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk <span aria-hidden="true">→</span></Link>
+        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk</Link>
         <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
       </div>
       <p className="fa-ctatail">

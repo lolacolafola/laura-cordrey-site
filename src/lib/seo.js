@@ -336,22 +336,29 @@ export function fanLedGrowthJsonLd() {
           {
             question: 'How do you turn customers into fans?',
             answer:
-              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans.',
+              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans.',
           },
           {
             question: 'What is a superfan worth?',
             answer:
-              'Not every customer becomes a superfan. The ones who do behave differently, and it shows up in the numbers. Top fans stay 2 to 3 times longer, spend 66 to 80% more, and refer around 4 times more often. Sources: Bain, Nielsen, HBR, Wharton.',
+              'Not every customer becomes a superfan. Your top fans behave differently, and it shows up in the numbers. Top fans stay 2 to 3 times longer, spend 66 to 80% more, and refer around 4 times more often. Sources: Bain, Nielsen, HBR, Wharton.',
           },
           {
             question: 'What is fan-led growth?',
             answer:
-              "People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can't buy that. Earn it, and here is what your fans start doing for you.",
+              "People become fans when they feel they belong: a reason to care, a space to connect, a voice, the feeling of being seen. Ad spend can't buy that. Earn it, and here is what your fans start doing for you.",
           },
           {
+            // The six benefit cards, in page order, each as "title: body" with
+            // both halves verbatim from the card. Written this way rather than
+            // paraphrased so the two cannot drift: if a card changes, the only
+            // correct edit here is to paste the new card in.
+            //
+            // The AI card was missing from this answer until 22 Jul 2026, so
+            // the schema listed five of the six on the page.
             question: 'Why do fans grow a business?',
             answer:
-              'Fans stay longer and spend more, so you keep and grow what you paid to win. Fans make the content that markets you, at no media cost. Fans bring their friends in, so growth leans less on ad spend. Fans stay through a rough week, and defend you in public. Built once, the engine keeps working and starts to fuel itself.',
+              'They stay and spend more: you keep what you paid to win, instead of buying the same customer twice. They spread the word: fans make the content that markets you, at no media cost. They recommend you: their friends arrive on a recommendation, so your cost per customer falls. They defend you: fans stay through a rough week, and defend you in public. AI recommends you too: ask an AI what to pick, and it answers from what your fans post. It compounds: built once, the engine keeps working and starts to fuel itself.',
           },
           {
             question: 'How is fan-led growth different from paid acquisition?',
@@ -361,7 +368,7 @@ export function fanLedGrowthJsonLd() {
           {
             question: 'Who is fan-led growth for?',
             answer:
-              'I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too.',
+              'I work with companies that have a disruptive brand, a vocal userbase and growth that runs on network effects. If product-led growth got you here, fan-led growth is what comes next: the product sold itself, now your fans sell it too.',
           },
         ].map(({ question, answer }) => ({
           '@type': 'Question',
