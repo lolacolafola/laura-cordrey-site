@@ -116,13 +116,17 @@ export default function AboutPage() {
                 fans are loudest and feedback is instant.
               </p>
             </div>
+            {/* The visible "Ubisoft XP 2019" caption came off on 22 Jul 2026,
+              * per Laura. The alt text keeps the detail: it is accurate, it is
+              * what a screen reader and a crawler read, and the venue is a
+              * credential worth keeping in the machine-readable layer even
+              * when it is not on the page. */}
             <figure className="about-hero__portrait">
               <img
                 src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'}
                 alt="Laura Cordrey speaking on stage at Ubisoft XP 2019"
                 loading="eager"
               />
-              <figcaption className="about-hero__cap">Ubisoft XP 2019</figcaption>
             </figure>
           </div>
 
@@ -378,8 +382,8 @@ export default function AboutPage() {
               I run my own practice end to end: strategy, positioning, brand,
               product, and the code to ship it. When a build calls for a
               specialist, I bring one in and direct the work. And I&rsquo;m
-              building fan engagement, not just advising on it, as{' '}
-              <mark>Fractional Head of Brand &amp; Growth at Magic</mark>.
+              building fan engagement, not just advising on it, in{' '}
+              <mark>fractional brand and growth roles inside startups</mark>.
             </p>
             {/* Moved here from the manifesto band when that was cut on 22 Jul
               * 2026. It is the one claim in that section that was about Laura
@@ -445,10 +449,13 @@ export default function AboutPage() {
       {/* ─── FINALE (oxblood, centered) ───────────────────────── */}
       <section className="about-band about-band--ox about-close">
         <div className="about-halo about-halo--bl" aria-hidden="true" />
-        <div className="about-sparkles about-sparkles--gold" aria-hidden="true">
-          <span className="about-sparkle">✦</span>
-          <span className="about-sparkle">✦</span>
-        </div>
+        {/* The two gold sparkles came off on 22 Jul 2026, finishing the job
+          * started on /services the same day. They were only ever on these two
+          * closes, so once /services dropped them this page was the last
+          * holdout and they read as a leftover rather than a motif. Either
+          * everywhere or nowhere; nowhere, because a two-page motif is not a
+          * motif. The halo stays on both: it is a soft gradient wash, not a
+          * mark. */}
         <div className="container about-close__inner">
           <span className="marker about-close__kick">Work with me</span>
           <h2 className="about-close__title">

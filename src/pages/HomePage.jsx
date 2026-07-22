@@ -70,12 +70,27 @@ const CLIENT_LOGOS = [
 // instead, because "Fix one thing now" covers three separate services and a
 // per-card link could not resolve to a single honest destination.
 const WAYS = [
+  // The kicker was 'Build the whole engine' until 22 Jul 2026, which described
+  // the deliverable and said nothing about whose method it is. The \u2122 was
+  // carrying the entire ownership signal on its own, and a trademark symbol is
+  // a legal mark, not something a skimming reader decodes as "she invented
+  // this".
+  //
+  // The KICKER is where this had to change, not the copy: title and kicker are
+  // the permanent layer, and .svcard-copy only opens on hover (and on touch /
+  // reduced-motion, where it is open from the start). Ownership stated only in
+  // the copy would be invisible to everyone who does not hover.
+  //
+  // Wording matches what the page already says twice further down, "a method
+  // of my own" and "one method I built", so the card stops being the one place
+  // the authorship goes missing. Claims kept to what is provable: she built it,
+  // named it, holds the mark. No claim about what else does or does not exist.
   {
     no: '01',
     tone: 'gold',
     title: 'The Fan Engine\u2122',
-    kicker: 'Build the whole engine',
-    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
+    kicker: 'The method I built',
+    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. I built it, named it and trademarked it. For teams ready to own their growth, not rent it.',
   },
   {
     no: '02',
