@@ -26,9 +26,17 @@ const HELLO_EMAIL = 'hello@lauracordrey.com'
  * autoplay YouTube iframe; starting another clip resets the previous.
  * Copy is verbatim from the handoff. */
 
-// On-stage clips — flagship stage / live / livestream, one each.
-// Studio's World-premiere announce stays out (Delta Company E3 above covers it).
-const ON_STAGE_KEYS = ['stage', 'live', 'livestream']
+// On-stage clips — flagship stage / live / studio, one each.
+//
+// Was ['stage', 'live', 'livestream'], on the reasoning that the E3 unveil
+// above already covered Delta Company so the World-premiere announce could
+// stay out. Laura spotted the cost of that on 22 Jul 2026: it left the Ghost
+// Recon announce, one of her strongest pieces, absent from the top three
+// entirely, while the release-day community stream held a slot she rates
+// lowest. The announce is back in and the livestream is gone from the data.
+//
+// Order matches the /about teaser so the two pages tell the same story.
+const ON_STAGE_KEYS = ['stage', 'live', 'studio']
 const onStageClips = ON_STAGE_KEYS.map((k) => {
   const s = speakingSections.find((x) => x.key === k)
   return { ...s.clips[0], kicker: s.title }

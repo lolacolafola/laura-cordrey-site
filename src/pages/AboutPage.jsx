@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { featuredSpeaking } from '../data/speaking.js'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
@@ -30,6 +30,10 @@ const experience = [
 ]
 
 export default function AboutPage() {
+  // One clip playing at a time, mirroring SpeakingPage. Starting a second
+  // clip unmounts the first iframe, so nothing keeps playing off-screen.
+  const [playingId, setPlayingId] = useState(null)
+
   useDocumentMeta({
     title: 'About · Laura Cordrey · Fan-led growth for consumer brands',
     description:
@@ -90,10 +94,23 @@ export default function AboutPage() {
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
+      {/* Full-bleed since 22 Jul 2026, per Laura. The image is the ground, not
+        * a column: it covers the whole header and a two-axis scrim carries the
+        * copy on the left and the logo strip along the bottom.
+        *
+        * This suits the asset far better than the half-column it replaced. The
+        * E3 still is 1024x683 landscape; cropping it into a tall 560x841 slot
+        * threw away 55% of the frame and upscaled what was left. Full-bleed
+        * uses the whole frame, and the scrim covers the softness that a 1.25x
+        * upscale would otherwise show. */}
       <header className="about-hero">
-        {/* Fix 3: soft red halo behind the portrait column. One restrained
-          * focal device so the top of the page isn't dead-flat. */}
-        <span className="about-hero__halo" aria-hidden="true" />
+        <div className="about-hero__media">
+          <img
+            src={BASE + 'portraits/laura-e3-stage.jpg'}
+            alt="Laura Cordrey on stage at E3 2019, unveiling Ghost Recon Breakpoint's Delta Company"
+            loading="eager"
+          />
+        </div>
         <div className="container">
           {/* The "About" eyebrow and its hairline came off on 22 Jul 2026.
             * It was the page's own nav label repeated back at a reader who had
@@ -105,40 +122,29 @@ export default function AboutPage() {
             * Laura flagged in the same breath: that one reads "Work with me",
             * which is editorial framing rather than the nav label ("Services"),
             * so it earns its row and stays. Same treatment, different job. */}
-          <div className="about-hero__grid">
-            <div className="about-hero__col">
-              <h1 className="about-hero__title">
-                Fan-led growth wasn&rsquo;t a job ten years ago.{' '}
-                <mark>I made it one</mark>.
-              </h1>
-              <p className="about-intro__lede">
-                I build <mark>the brand people fall for</mark>, and the Fan
-                Engine<span className="tm">™</span> that turns that love into
-                growth you can measure: higher retention, higher lifetime value,
-                and the reach you&rsquo;d otherwise pay for.
-              </p>
-              <p className="about-intro__sub">
-                I&rsquo;ve built it from nothing and at millions of users, over
-                thirteen years in games, entertainment and live service, where
-                fans are loudest and feedback is instant.
-              </p>
-            </div>
-            {/* The visible "Ubisoft XP 2019" caption came off on 22 Jul 2026,
-              * per Laura. The alt text keeps the detail: it is accurate, it is
-              * what a screen reader and a crawler read, and the venue is a
-              * credential worth keeping in the machine-readable layer even
-              * when it is not on the page. */}
-            <figure className="about-hero__portrait">
-              <img
-                src={BASE + 'portraits/laura-ubi-xp-2019-v2.jpeg'}
-                alt="Laura Cordrey speaking on stage at Ubisoft XP 2019"
-                loading="eager"
-              />
-            </figure>
+          <div className="about-hero__col">
+            <h1 className="about-hero__title">
+              Fan-led growth wasn&rsquo;t a job ten years ago.{' '}
+              <mark>I made it one</mark>.
+            </h1>
+            <p className="about-intro__lede">
+              I build <mark>the brand people fall for</mark>, and the Fan
+              Engine<span className="tm">™</span> that turns that love into
+              growth you can measure: higher retention, higher lifetime value,
+              and the reach you&rsquo;d otherwise pay for.
+            </p>
+            <p className="about-intro__sub">
+              I&rsquo;ve built it from nothing and at millions of users, over
+              thirteen years in games, entertainment and live service, where
+              fans are loudest and feedback is instant.
+            </p>
           </div>
 
-          {/* In-hero proof strip — clients sit alongside the promise, not
-              buried at the bottom of the page. Mirrors the homepage pattern. */}
+          {/* In-hero proof strip, matching the homepage logoband: same 48x1
+            * gold rule, same .72rem/.2em label, and the same logo sizing
+            * (36px cap, maxw x0.8, 0.72 opacity, 700px shelf). These were
+            * running at maxw x1.0 with no height cap and a 920px shelf, which
+            * is why they read bigger here than on the homepage. */}
           <div className="about-proof">
             <span className="about-proof__rule" aria-hidden="true" />
             <span className="about-proof__kick">
@@ -150,7 +156,7 @@ export default function AboutPage() {
                   <img
                     src={BASE + l.src}
                     alt={l.alt}
-                    style={{ maxWidth: l.maxw }}
+                    style={{ maxHeight: 36, maxWidth: Math.round(l.maxw * 0.8) }}
                     loading="lazy"
                   />
                 </li>
@@ -390,7 +396,7 @@ export default function AboutPage() {
               product, and the code to ship it. When a build calls for a
               specialist, I bring one in and direct the work. And I&rsquo;m
               building fan engagement, not just advising on it, in{' '}
-              <mark>fractional brand and growth roles inside startups</mark>.
+              <mark>fractional leadership roles inside startups</mark>.
             </p>
             {/* Moved here from the manifesto band when that was cut on 22 Jul
               * 2026. It is the one claim in that section that was about Laura
@@ -424,24 +430,55 @@ export default function AboutPage() {
               On the <mark>big stages</mark>.
             </h2>
           </div>
+          {/* These were <Link to="/speaking"> wrapping a thumbnail with a play
+            * button on it. Laura, 22 Jul 2026: "you can't play the videos, it
+            * takes you to the speaking page, that's not great." She is right,
+            * and it is the hover-honesty rule in its strongest form: a play
+            * button is not decoration, it is a promise about what a click
+            * does. Clicking now plays, in place, exactly as /speaking does.
+            *
+            * Same one-at-a-time state as SpeakingPage: starting a clip stops
+            * whichever was running. The route out to /speaking is still there
+            * as the "More keynote speaking" link under the row, which is a
+            * text link and so promises navigation rather than playback. */}
           <ul className="about-talks">
             {talks.map((t) => (
               <li key={t.youtube}>
-                <Link to="/speaking" className="about-talk">
+                <div className="about-talk">
                   <div className="about-talk__thumb">
-                    <img
-                      src={`https://i.ytimg.com/vi/${t.youtube}/maxresdefault.jpg`}
-                      alt=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
-                    <span className="about-talk__play" aria-hidden="true" />
+                    {playingId === t.youtube ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${t.youtube}?autoplay=1&rel=0&modestbranding=1${t.start ? `&start=${t.start}` : ''}`}
+                        title={t.headline}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        className="about-talk__btn"
+                        onClick={() => setPlayingId(t.youtube)}
+                        aria-label={`Play: ${t.headline}`}
+                      >
+                        <img
+                          src={`https://i.ytimg.com/vi/${t.youtube}/maxresdefault.jpg`}
+                          alt=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
+                        <span className="about-talk__play" aria-hidden="true">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </span>
+                      </button>
+                    )}
                   </div>
                   <span className="about-talk__cap">
                     <span className="about-talk__venue">{t.venue}</span>
                     <span className="about-talk__title">{t.headline}</span>
                   </span>
-                </Link>
+                </div>
               </li>
             ))}
           </ul>

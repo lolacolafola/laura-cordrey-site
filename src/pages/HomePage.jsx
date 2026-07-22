@@ -92,15 +92,17 @@ const WAYS = [
   // Nothing about registration, and nothing about what does or does not exist
   // elsewhere.
   //
-  // Nor "and named", which a second draft carried: the name is the card title
-  // sitting directly above the sentence, so saying it was named restates what
-  // the reader is already looking at.
+  // Nor "and named", nor "My own method, built from scratch" at all. Three
+  // drafts kept adding a sentence to the copy to say what the KICKER already
+  // says, on a layer most readers never open. "The method I built" sits above
+  // the copy, permanently visible, and does the whole job. The copy went back
+  // to describing the offer, which is its actual job.
   {
     no: '01',
     tone: 'gold',
     title: 'The Fan Engine\u2122',
     kicker: 'The method I built',
-    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. My own method, built from scratch. For teams ready to own their growth, not rent it.',
+    copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
   },
   {
     no: '02',

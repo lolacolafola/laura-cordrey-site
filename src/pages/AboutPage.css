@@ -91,36 +91,77 @@
 .about-sparkles--gold .about-sparkle { color: #E7D9AD; }
 
 /* ─── HERO ────────────────────────────────────────────────────
- * Inside-page hero, matching Services + Methodology: small eyebrow
- * with a hairline under it, display-l title (not xl), tight
- * vertical rhythm. Portrait retained on the right at desktop.
+ * Full-bleed since 22 Jul 2026, per Laura. Was a two-column grid with the
+ * portrait on the right; the image is now the ground for the whole header,
+ * with a two-axis scrim holding the copy on the left and the logo strip
+ * along the bottom.
+ *
+ * The ground is #2D2723, the warm brown already used as .about-band--grey,
+ * rather than the near-black the rest of the dark bands run. Laura asked for
+ * brown here to give the page a different opening note; because the scrim
+ * fades INTO this colour rather than into black, the brown is what the eye
+ * actually reads on the left third where the copy sits.
  * ───────────────────────────────────────────────────────────── */
 .about-hero {
-  padding-top: var(--space-7);
-  padding-bottom: var(--space-9);
-  border-bottom: 1px solid var(--hairline);
   position: relative;
+  overflow: hidden;
+  background: #2D2723;
+  border-bottom: 1px solid var(--hairline);
+  /* 104/56 rather than 140/60. The hero is 1280 wide and the source is
+     1024x683, so every extra 100px of height costs another 0.15x of upscale
+     on a landscape photo that is already being stretched to cover. */
+  padding-top: clamp(72px, 8vw, 104px);
+  padding-bottom: clamp(36px, 4vw, 56px);
 }
-/* .about-hero__top went with the "About" eyebrow on 22 Jul 2026. Its only
-   job was to hold that label and the hairline under it; with the label gone
-   the rule would have been a line under nothing. */
-/* 1fr/1fr and stretch since 22 Jul 2026, per Laura: the portrait takes a whole
-   half of the hero rather than a narrower column floated beside the copy.
-   Was 1.3fr/1fr with align-items:center, which left the image ~43% of the
-   width and vertically centred, so it read as an inset rather than as half
-   the page. `stretch` is what makes it a half: the figure now takes the full
-   height of the taller column, and the img's existing object-fit:cover crops
-   to whatever shape that gives it. */
-.about-hero__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: stretch;
+.about-hero__media {
+  position: absolute;
+  inset: 0;
+  margin: 0;
 }
+.about-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 20%, not 68%. object-position picks which slice of the OVERFLOWING image
+     is visible, so shifting the window right (68%) moves a centred subject
+     LEFT in the frame, which is what put her behind the copy. Shifting the
+     window left (20%) lands her right of centre, clear of the text.
+     The Y term is inert here and kept only for clarity: the box is always
+     wider-than-tall relative to the 1.5:1 source, so cover scales by height
+     and the full height of the photograph is shown. */
+  object-position: 20% center;
+  display: block;
+}
+/* Two gradients, one element. Horizontal carries the copy: opaque brown to
+   ~30%, then a long feather so the photograph is never hard-edged. Vertical
+   darkens the last third so the logo strip sits on ground rather than on a
+   pair of jeans. Stated as one `background` so they composite in order. */
+.about-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, #2D2723 3%, rgba(45, 39, 35, 0.84) 20%, rgba(45, 39, 35, 0) 48%),
+    linear-gradient(to right, #2D2723 32%, rgba(45, 39, 35, 0.86) 48%, rgba(45, 39, 35, 0.3) 72%, rgba(45, 39, 35, 0.1) 100%);
+  pointer-events: none;
+}
+.about-hero > .container { position: relative; z-index: 1; }
+/* 40rem, not 34. At 34rem (544px) an 84px h1 still set on FIVE lines and ran
+   441px tall, which is what was making the hero 1,237px and forcing a 1.8x
+   upscale on the photograph. 640px brings it to three, and the opaque end of
+   the horizontal scrim moved to 32% to keep the wider column on solid ground. */
 .about-hero__col {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  max-width: 40rem;
+}
+/* The h1's own <mark> takes the global rule in base.css, which is --accent.
+   At 84px on the brown ground that measures 2.82, under the 3.0 large-text
+   bar. The lede mark below needs the same treatment for the same reason. */
+.about-hero__title mark {
+  background: transparent;
+  color: #E4695E;
 }
 .about-hero__title {
   font-size: clamp(2.8rem, 6.6vw, 5.25rem); /* T.h1 ~84 */
@@ -130,58 +171,12 @@
   text-wrap: balance;
   margin: 0;
 }
-.about-hero {
-  position: relative;
-  overflow: hidden;
-}
-.about-hero > .container { position: relative; z-index: 1; }
-/* Fix 3: soft red radial halo behind the portrait column — one restrained
- * focal device so the top of the page isn't dead-flat. Sits at hero level
- * so it bleeds around the portrait, ~16% opacity, feathered out. */
-.about-hero__halo {
-  position: absolute;
-  top: -10%;
-  right: -8%;
-  width: 46vw;
-  height: 46vw;
-  max-width: 620px;
-  max-height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 54, 43, 0.18), transparent 62%);
-  pointer-events: none;
-  z-index: 0;
-}
-/* min-height so the portrait still reads as a half when the copy column is
-   short. Without it, `stretch` sizes the figure to the text, and on a wide
-   viewport where the h1 sets on two lines the image would shrink to a letterbox.
-   520 is roughly the height of the copy column at 1280 with the h1 on three
-   lines, so this binds only when the copy is shorter than that. */
-.about-hero__portrait {
-  position: relative;
-  min-height: 520px;
-  /* The UA stylesheet gives <figure> `margin: 16px 40px`, which was never
-     reset here. The portrait was rendering 480px wide inside a 560px column,
-     inset 40px on each side, for as long as this hero has existed. Resetting
-     it is what actually makes the image a half rather than a half minus 80. */
-  margin: 0;
-  /* Match the AI page cred photo frame: soft gold hairline, subtle rounding,
-     clip the caption gradient inside. */
-  border: 1px solid rgba(212, 200, 150, 0.28);
-  border-radius: 4px;
-  overflow: hidden;
-}
-/* .about-hero__cap went with the visible "Ubisoft XP 2019" caption on
-   22 Jul 2026. The class had one call site, in AboutPage.jsx, and no other
-   page imports it (SpeakingPage.jsx shares this stylesheet but uses
-   .sp-* and .about-speaking* only), so the rule went with it rather than
-   sitting here as a dead gradient. */
-.about-hero__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  display: block;
-}
+
+/* .about-hero__top went with the "About" eyebrow on 22 Jul 2026, .about-hero
+   __portrait / __grid / __halo with the full-bleed rebuild the same day: the
+   grid, the framed portrait column and the red halo all existed to make a
+   two-column hero work, and there is no second column now. */
+
 .about-intro {
   margin-top: var(--space-6);
   max-width: 52rem;
@@ -198,15 +193,22 @@
   letter-spacing: -0.01em;
   margin: 0;
 }
+/* #E4695E on the brown hero ground: --accent measures 2.82 there, under the
+   3.0 that even large text needs. Third time this page has hit the same
+   thing, and it is always the same cause: the mark colour is not re-checked
+   when the band under it changes. The hero moved to #2D2723 today. */
 .about-intro__lede mark {
   background: transparent;
-  color: var(--accent);
+  color: #E4695E;
   font-weight: 800;
 }
+/* #B8AEA2, not --ink-muted: the hero ground moved from near-black to the
+   warm brown #2D2723, where #8A8078 measures 3.81 against 4.5. Same
+   substitution already made on the .about-band--grey copy further down. */
 .about-intro__sub {
   font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
-  color: var(--ink-muted);
+  color: #B8AEA2;
   margin: var(--space-5) 0 0;
   max-width: 44rem;
 }
@@ -232,11 +234,14 @@
   height: 1px;
   background: var(--edge);
 }
+/* .72rem/.2em to match the homepage logoband label exactly, and #B8AEA2 for
+   the same reason .about-intro__sub changed: --ink-muted measures 3.81 on the
+   brown hero ground. */
 .about-proof__kick {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: #B8AEA2;
   font-weight: 700;
 }
 .about-proof__logos {
@@ -244,22 +249,33 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  max-width: 920px;
+  /* 700, matching the homepage logoshelf. Was 920, which spread five logos
+     across nearly the full measure and was the other half of why they read
+     bigger here than on the homepage: not just the images, the shelf. */
+  max-width: 700px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: center;
   justify-items: center;
-  gap: clamp(18px, 2vw, 32px) clamp(24px, 3vw, 48px);
+  gap: clamp(12px, 2vw, 24px);
 }
 .about-proof__cell {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 72px;
+  /* 72 -> 48: the row no longer needs to reserve height for 56px logos. */
+  min-height: 48px;
+  /* .72, matching the homepage logoshelf. The logos are a supporting
+     credential; at full opacity they competed with the h1 above them. */
+  opacity: 0.72;
 }
+/* 36px, matching the homepage. This rule was the real cause of "these ones
+   are bigger": the inline maxWidth on the <img> in AboutPage.jsx was being
+   capped by a 56px max-height here, so raising or lowering the JSX value
+   alone would never have matched the homepage. Both had to move. */
 .about-proof__cell img {
-  max-height: 56px;
+  max-height: 36px;
   width: auto;
   object-fit: contain;
 }
@@ -268,10 +284,11 @@
 @media (max-width: 640px) {
   .about-proof__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* #B8AEA2 for the brown ground, as with the kicker and sub above. */
 .about-proof__note {
   margin-top: var(--space-4);
   font-size: 0.9rem;
-  color: var(--ink-muted);
+  color: #B8AEA2;
 }
 .about-proof__note a {
   color: var(--edge);
@@ -700,18 +717,41 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
 }
+/* .about-talk is a plain <div> since 22 Jul 2026, not a <Link>. The card as a
+   whole no longer navigates anywhere, so under the hover-honesty rule it must
+   not react to the cursor either: the lift and the border flash moved onto
+   .about-talk__btn, which is the element that actually does something. */
 .about-talk {
   display: block;
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
   overflow: hidden;
-  text-decoration: none;
   color: inherit;
-  transition: border-color var(--transition), transform var(--transition);
+  transition: border-color var(--transition);
 }
-.about-talk:hover {
+.about-talk:has(.about-talk__btn:hover) {
   border-color: var(--accent);
-  transform: translateY(-2px);
+}
+/* The clickable layer. Resets the UA button styling and fills the thumb. */
+.about-talk__btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: block;
+}
+/* The iframe replaces the button in the same box when a clip is playing. */
+.about-talk__thumb iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 .about-talk__thumb {
   aspect-ratio: 16 / 9;
@@ -728,9 +768,11 @@
   display: block;
   transition: transform var(--transition);
 }
-.about-talk:hover .about-talk__thumb img {
+.about-talk__btn:hover img {
   transform: scale(1.03);
 }
+/* Flex-centred so the SVG glyph sits in the middle of the disc, matching
+   .sp-poster__play on /speaking. */
 .about-talk__play {
   position: absolute;
   top: 50%;
@@ -739,20 +781,21 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #EFE9DC;
+  pointer-events: none;
+  transition: transform var(--transition);
+  background: var(--accent);
   z-index: 1;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
-.about-talk__play::after {
-  content: "";
-  border-style: solid;
-  border-width: 8px 0 8px 13px;
-  border-color: transparent transparent transparent var(--surface);
-  margin-left: 3px;
-}
+/* The ::after that drew a CSS-triangle glyph is gone: the span now holds a
+   real <svg> play path, matching /speaking, and keeping both would have
+   stacked a triangle on top of a triangle. */
+.about-talk__play svg { margin-left: 2px; }
+.about-talk__btn:hover .about-talk__play { transform: translate(-50%, -50%) scale(1.08); }
 .about-talk__cap {
   padding: var(--space-5);
   display: block;
@@ -859,12 +902,17 @@
 
 /* ─── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .about-hero__grid { grid-template-columns: 1fr; }
-  /* Once the hero collapses to one column the portrait sits alone in a wide
-     row — centre it so it doesn't dangle to the left. The desktop min-height
-     is released here: at 20rem wide a 520px floor would stretch the crop into
-     a tall slab on a phone. */
-  .about-hero__portrait { max-width: 20rem; margin-inline: auto; min-height: 0; }
+  /* Narrow: there is no room to sit copy beside a photograph, so the scrim
+     goes almost fully opaque and the image becomes texture behind the words
+     rather than a subject next to them. The horizontal gradient is dropped
+     entirely; a left-to-right fade on a 375px screen only ever produces a
+     muddy band. Crop pulls right so she stays in frame at the top. */
+  .about-hero__media img { object-position: 72% 18%; }
+  .about-hero__media::after {
+    background:
+      linear-gradient(to top, #2D2723 8%, rgba(45, 39, 35, 0.9) 30%, rgba(45, 39, 35, 0.62) 62%, rgba(45, 39, 35, 0.5) 100%);
+  }
+  .about-hero__col { max-width: none; }
   .about-eng { grid-template-columns: 1fr; }
   .about-eng__left { position: static; }
   .about-eng__right { padding-top: 0; }

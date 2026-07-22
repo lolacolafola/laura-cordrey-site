@@ -57,20 +57,11 @@ export const speakingSections = [
       },
     ],
   },
-  {
-    key: 'livestream',
-    title: 'Livestream',
-    eyebrow: 'I host',
-    clips: [
-      {
-        youtube: 'Ga1VpVtXQsM',
-        venue: 'Ubisoft · Ghost Recon Breakpoint',
-        headline: 'Release-day community stream',
-        detail:
-          'I hosted. Live demos and a PvP match with the Delta Company crew.',
-      },
-    ],
-  },
+  // The `livestream` section (Ga1VpVtXQsM, "Release-day community stream")
+  // was removed on 22 Jul 2026. Laura: "the livestream video doesn't need to
+  // be shown, it's not my best." It was the third of three tiles on
+  // /speaking's on-stage strand, so the slot went to the World-premiere
+  // announce below, which had been sitting in the data unshown.
 ]
 
 // producedSections — the /produced page. Two strands: Range (work outside
@@ -135,13 +126,18 @@ export const producedSections = [
   },
 ]
 
-// Derived: first clip from Stage / Studio / Live — used by AboutPage as
-// the 3-up teaser gallery. Live (Inside Xbox) sits in the trio instead of
-// Livestream: Laura wants the on-air TV moment surfaced on About, not the
-// community stream. Everything is still linkable from /speaking.
-export const featuredSpeaking = speakingSections
-  .filter((s) => ['stage', 'studio', 'live'].includes(s.key))
-  .map((s) => ({ ...s.clips[0], format: s.title }))
+// Derived trio for the AboutPage teaser gallery.
+//
+// Order is explicit rather than a .filter() over speakingSections, because a
+// filter returns source order and the order here is a deliberate editorial
+// call: Laura asked on 22 Jul 2026 for Inside Xbox and the announce to swap,
+// so the live TV moment sits second and the announce closes the row.
+// Changing the order of speakingSections must not silently re-order this.
+const FEATURED_KEYS = ['stage', 'live', 'studio']
+export const featuredSpeaking = FEATURED_KEYS.map((k) => {
+  const s = speakingSections.find((x) => x.key === k)
+  return { ...s.clips[0], format: s.title }
+})
 
 // Voice over example — a video Laura made for another company.
 export const voiceOverExample = {
