@@ -93,10 +93,20 @@ const Icon = ({ name, size = 28 }) => {
 }
 
 export default function FanLedGrowthPage() {
+  // Targeted at the PROBLEM, not the category. A demand check on 22 Jul found
+  // "fan-led growth" has no commercial search volume and is homonym-poisoned:
+  // the SERP for it is ceiling fans, LED grow lights and the UK football
+  // fan-led review. Meanwhile "how to turn customers into fans" is a crowded,
+  // high-demand query set (Forbes twice, Tony Robbins, Fanocracy, Superfans).
+  //
+  // So the label is the ANSWER on this page, never the question. Fan-led
+  // growth and the Fan Engine stay everywhere as brand and as the thing that
+  // closes; they are just no longer asked to bring the traffic.
+  // See content/copy/keyword-demand-check-fan-led-growth.md.
   useDocumentMeta({
-    title: 'What is fan-led growth? · Laura Cordrey',
+    title: 'How to turn customers into fans · Laura Cordrey',
     description:
-      'Fan-led growth is growth you own, not rent. What it is, why fans compound, and who it is for.',
+      'Fans stay longer, spend more and bring others in. How to turn customers into fans, why superfans compound, and what they are worth to your business.',
     canonical: pageUrl('fan-led-growth'),
     jsonLd: fanLedGrowthJsonLd(),
   })
@@ -141,11 +151,14 @@ export default function FanLedGrowthPage() {
         <div className="flg-hero" style={{ ...INNER, padding: 'clamp(76px,9vw,120px) clamp(20px,5vw,64px) clamp(64px,7.5vw,100px)' }}>
           <div className="flg-hero__copy" style={{ maxWidth: '62ch' }}>
             <Eyebrow tone="deep">Fan-led growth</Eyebrow>
+            {/* The h1 carries the query people actually search; the old
+              * headline ("Fans are the growth you already own") was not cut,
+              * it opens the lede below. The label stays in the eyebrow. */}
             <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.04, letterSpacing: '-.03em', margin: 'clamp(16px,2vw,22px) 0 0', color: '#15110F' }}>
-              Fans are <mark>the growth you already&nbsp;own</mark>.
+              Turn your customers <mark>into fans</mark>.
             </h1>
             <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#4A423B', margin: 'clamp(24px,3vw,32px) 0 0' }}>
-              <strong style={{ color: '#15110F', fontWeight: 700 }}>You&rsquo;ve been renting your growth.</strong> You pay for every customer, and the day you stop, it stops. Fans work the other way: build them once, and they keep growing you long after the spend&nbsp;ends.
+              <strong style={{ color: '#15110F', fontWeight: 700 }}>Fans are the growth you already own.</strong> You&rsquo;ve been renting yours: you pay for every customer, and the day you stop, it stops. Fans work the other way. Build them once, and they keep growing you long after the spend&nbsp;ends.
             </p>
           </div>
 
@@ -173,6 +186,9 @@ export default function FanLedGrowthPage() {
         <div style={{ ...INNER, padding: 'clamp(48px,5.5vw,76px) clamp(20px,5vw,64px)' }}>
           <div data-rev>
             <Eyebrow tone="deep">The evidence</Eyebrow>
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#15110F', fontWeight: 600, margin: 'clamp(12px,1.6vw,18px) 0 0', maxWidth: '46ch' }}>
+              Not every customer becomes a superfan. The ones who do behave differently, and it shows up in the&nbsp;numbers.
+            </p>
           </div>
           <div className="flg-stats" data-rev style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'clamp(22px,3vw,44px)', marginTop: 'clamp(24px,3vw,34px)', maxWidth: 860 }}>
             {BENCHMARKS.map((b) => (

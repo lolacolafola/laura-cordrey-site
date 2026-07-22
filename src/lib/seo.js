@@ -274,13 +274,36 @@ export function methodologyJsonLd({ stages }) {
   }
 }
 
-// ─── Fan-led growth (the plain-language definition page) ────────────────
-// /fan-led-growth is the page that should own the "what is fan-led growth"
-// query, so it carries the DefinedTerm for the term itself — sibling to the
-// Fan Engine DefinedTerm on /methodology, which defines the *method* rather
-// than the *idea*. The FAQPage entries are not new copy: each answer is a
-// verbatim sentence already visible on the page, which is what FAQPage
-// requires (schema must reflect on-page content, not extend it).
+// ─── Fan-led growth ─────────────────────────────────────────────────────
+// Aimed at the PROBLEM, not the category. A demand check on 22 Jul 2026 found
+// "fan-led growth" has no commercial search volume and a SERP full of ceiling
+// fans, LED grow lights and the UK football fan-led review, while "how to turn
+// customers into fans" is crowded with Forbes, Tony Robbins, Fanocracy and
+// Superfans. So the FAQ leads with the question people ask, and the term is
+// the answer given back to them. It still carries the DefinedTerm — the label
+// is worth owning as an entity even where it is not worth chasing as a query —
+// with "superfan" as an alternate name, which is the term with the demand.
+//
+// The FAQPage answers introduce no new claims: every sentence is lifted from
+// the page, which is what FAQPage requires (schema must reflect on-page
+// content, not extend it). One deliberate exception, and it is the only one:
+// the three benchmark figures render on the page as display stats ("2 to 3x /
+// longer top fans stay") rather than as a sentence, so the superfan answer
+// states them in prose. The figures and their sources are visible on the page;
+// only the sentence form differs.
+//
+// These DO drift: an edit to the hero copy on 22 Jul silently broke three of
+// these answers. If you touch either side, re-run this in the console on
+// /fan-led-growth and expect only the superfan sentence above to come back:
+//
+//   const n = s => s.replace(/[’']/g,"'").replace(/\s+/g,' ').trim()
+//   const page = n(document.querySelector('.flg').innerText)
+//   ;[...document.querySelectorAll('script[type="application/ld+json"]')]
+//     .map(s => JSON.parse(s.textContent))
+//     .flatMap(o => o['@graph'] || [])
+//     .find(x => x['@type'] === 'FAQPage')
+//     .mainEntity.flatMap(q => n(q.acceptedAnswer.text).split(/(?<=\.)\s+/))
+//     .filter(s => s.length > 25 && !page.includes(s.replace(/^Sources: /,'')))
 export function fanLedGrowthJsonLd() {
   const canonical = pageUrl('fan-led-growth')
   return {
@@ -290,6 +313,7 @@ export function fanLedGrowthJsonLd() {
         '@type': 'DefinedTerm',
         '@id': `${canonical}#fan-led-growth`,
         name: 'Fan-Led Growth',
+        alternateName: ['Superfan growth', 'Turning customers into fans'],
         description:
           'Growth driven by fans rather than paid acquisition. When people love what you do, they stay, they spend more, and they bring others with them. No single team makes a fan: it takes brand, product and community pulling the same way.',
         inDefinedTermSet: 'Fan-Led Growth methodology',
@@ -298,9 +322,9 @@ export function fanLedGrowthJsonLd() {
       {
         '@type': 'WebPage',
         '@id': canonical,
-        name: 'Fan-led growth',
+        name: 'How to turn customers into fans',
         description:
-          'What fan-led growth is, why fans compound, and who it is for.',
+          'How to turn customers into fans, why superfans compound, and what they are worth to your business.',
         url: canonical,
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
         about: { '@id': `${canonical}#fan-led-growth` },
@@ -310,24 +334,34 @@ export function fanLedGrowthJsonLd() {
         '@type': 'FAQPage',
         mainEntity: [
           {
+            question: 'How do you turn customers into fans?',
+            answer:
+              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans.',
+          },
+          {
+            question: 'What is a superfan worth?',
+            answer:
+              'Not every customer becomes a superfan. The ones who do behave differently, and it shows up in the numbers. Top fans stay 2 to 3 times longer, spend 66 to 80% more, and refer around 4 times more often. Sources: Bain, Nielsen, HBR, Wharton.',
+          },
+          {
             question: 'What is fan-led growth?',
             answer:
-              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend, because people trust people, not marketing. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way.',
+              "People become fans when they feel they belong. Give them a reason to belong, a space to connect, a voice, and the feeling of being seen and special. Ad spend can't buy that. Earn it, and here is what your fans start doing for you.",
           },
           {
             question: 'Why do fans grow a business?',
             answer:
-              'Fans stay longer and spend more, they make the content that markets you at no media cost, they bring their friends in so growth leans less on ad spend, and they defend you in public through a rough week. Built once, the engine keeps working and starts to fuel itself.',
+              'Fans stay longer and spend more, so you keep and grow what you paid to win. Fans make the content that markets you, at no media cost. Fans bring their friends in, so growth leans less on ad spend. Fans stay through a rough week, and defend you in public. Built once, the engine keeps working and starts to fuel itself.',
           },
           {
             question: 'How is fan-led growth different from paid acquisition?',
             answer:
-              'With paid acquisition you rent your growth: you pay for every customer, and the day you stop, it stops. Fans work the other way. Build them once, and they keep growing you long after the spend ends.',
+              "Fans are the growth you already own. You've been renting yours: you pay for every customer, and the day you stop, it stops. Fans work the other way. Build them once, and they keep growing you long after the spend ends.",
           },
           {
             question: 'Who is fan-led growth for?',
             answer:
-              'Companies with a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too.',
+              'I work with companies that have a disruptive brand, a vocal userbase, and growth that runs on network effects. If product-led growth got you here, fan-led growth is the next logical step: the product sold itself, now your fans sell it too.',
           },
         ].map(({ question, answer }) => ({
           '@type': 'Question',
