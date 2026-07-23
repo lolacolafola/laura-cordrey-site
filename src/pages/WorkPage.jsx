@@ -85,7 +85,23 @@ export default function WorkPage() {
             * ("fan-led growth", "gaming", "mobility", "telco") because those
             * are what this page ranks on; drops the three proof numbers, which
             * are all restated on the cards directly below it. */}
-          <h1 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.12, letterSpacing: '-.025em', margin: 0, maxWidth: '26ch' }}>
+          {/* 30ch + text-wrap: balance, per Laura 23 Jul 2026, to pull "and
+            * telco" up onto the second line. It was 26ch, which wrapped to
+            * three lines with "and telco." stranded alone on the third.
+            *
+            * The width alone cannot do it. Greedy wrapping at any width that
+            * fits "across AAA gaming, mobility and telco." on line 2 (767px)
+            * also fits "across" on line 1 (776px) — a 9px window, far too
+            * fragile to ship, and it would flip on any font-loading or browser
+            * difference. `balance` asks the browser to even the two lines
+            * instead, which lands on exactly the wanted break and holds at
+            * 28ch, 30ch and 34ch rather than at one knife-edge value.
+            *
+            * Degrades safely: without balance support it wraps greedily to
+            * "…growth across / AAA gaming, mobility and telco." Still two
+            * lines, still "and telco" on the second, just a different split.
+            * Same property the /services h2 already uses. */}
+          <h1 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.12, letterSpacing: '-.025em', margin: 0, maxWidth: '30ch', textWrap: 'balance' }}>
             Thirteen years of fan-led growth across AAA gaming, mobility and&nbsp;telco.
           </h1>
 
@@ -103,11 +119,18 @@ export default function WorkPage() {
             * number to remember to update the day an eighth case study lands.
             *
             * Sits between the h1 and the filters so it is read before the page
-            * turns into a control surface. 54ch against the h1's 26ch measures
-            * 568px under a 701px headline at 1280, three lines to the h1's
-            * three, so the header reads as headline-then-support rather than
-            * as two competing blocks. Measured 9.95 on the #0E0B09 band. */}
-          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.78)', maxWidth: '54ch', margin: 'clamp(16px,2vw,22px) 0 0' }}>
+            * turns into a control surface. Measured 9.95 on the #0E0B09 band.
+            *
+            * 58ch, widened from 54ch on 23 Jul 2026 per Laura, to break after
+            * "care," and carry "it returned" up onto the second line. 54ch ran
+            * to three lines and left "it returned." alone on the last. At 58ch
+            * it is exactly two:
+            *   Different products, same job every time: find the people who already care,
+            *   build something worth their word of mouth, and prove what it returned.
+            * Unlike the h1 above, this one needed no `balance` — greedy
+            * wrapping lands on the wanted break by itself. 62ch overshoots and
+            * pulls "build" up, so this is a real ceiling, not a round number. */}
+          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.78)', maxWidth: '58ch', margin: 'clamp(16px,2vw,22px) 0 0' }}>
             Different products, same job every time: find the people who already
             care, build something worth their word of mouth, and prove what
             it&nbsp;returned.
