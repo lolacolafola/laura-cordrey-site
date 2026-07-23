@@ -704,48 +704,29 @@
   gap: var(--space-2) var(--space-3);
   margin-bottom: var(--space-6);
 }
-/* Mobile: "All" on its own row, the four sectors together on the next.
-   Laura's call, 23 Jul 2026 — the default wrap put four chips on row one and
-   stranded "Mobility" alone on row two, the same orphan the homepage logo
-   strip had.
+/* NO mobile override on the filter row, deliberately. Reverted 23 Jul 2026.
 
-   All five on one row is not available at this width. Measured at 375: the
-   container is 327px and the five chips plus gaps need 421px. Closing that
-   would mean cutting chip padding roughly in half, which makes them read as
-   labels rather than controls.
+   It briefly had one: a grid that put "All" on its own row with the four
+   sectors beneath, to kill the orphaned "Mobility" chip. It worked, but it was
+   the wrong call for two reasons.
 
-   So the split is by MEANING instead of by fit: "All" is the reset, the other
-   four are the sectors. That also happens to be the only two-row arrangement
-   with no orphan.
+   It was the only arrangement that did not fit at the site's normal 16px chip
+   padding, so it shrank them to 12px and made /work the one page where
+   .btn--pill is a different size. And "All" alone with ~275px of empty space
+   beside it read as a label rather than as a peer of the four below it, which
+   trades a trailing orphan for a leading one.
 
-   The four sectors need 357px at the default 16px padding and 12px gap, which
-   overflows 327. Padding 16→12 and gap 12→10 brings the row to 319px, 8px of
-   headroom rather than clinging to the edge. Vertical padding is untouched, so
-   the tap target keeps its full height.
+   The deciding argument is Laura's: more case studies are coming, so more
+   sectors are coming. Any hardcoded split — 1+4, 3+2, a fixed column count —
+   is tuned to today's five chips and breaks on the sixth. The natural flex
+   wrap above adapts to any number.
 
-   Grid, not flex, for the two rows. The obvious flex approach —
-   `flex: 0 0 100%` on the first chip — does NOT work here: adding
-   `max-width: max-content` to stop it stretching also clamps the flex base
-   size, so it stops forcing the line break and all four chips sit back on row
-   one. Without the max-width you get the break but a full-width "All" pill,
-   which reads as a banner rather than a chip.
+   The orphan is a five-chip artefact, not a layout fault. Measured at 375 with
+   the real chip widths: five chips wrap 4+1, six wrap 4+2, seven wrap 4+3.
+   It resolves itself the moment a sector is added.
 
-   Grid avoids the conflict. Four max-content columns, "All" spanning all four
-   on row one with justify-self: start so it keeps its natural width, and the
-   sectors filling row two. */
-@media (max-width: 560px) {
-  .work-filters {
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-    justify-content: start;
-    column-gap: 10px;
-  }
-  .work-filters .btn--pill { padding-left: 12px; padding-right: 12px; }
-  .work-filters > button:first-child {
-    grid-column: 1 / -1;
-    justify-self: start;
-  }
-}
+   If it ever needs solving before then, solve it by shortening a label, not by
+   overriding the wrap. */
 /* Contextual collapse: when the section-head is followed by filter chips
    (not the grid directly), shrink its bottom space so the chips read as
    part of the same head, not a separate stratum. Same pattern documented

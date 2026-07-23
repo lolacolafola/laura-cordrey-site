@@ -196,7 +196,17 @@ export default function Layout({ children }) {
           <div className="cinfoot__brand">
             <span className="cinfoot__name">Laura Cordrey</span>
             <span className="cinfoot__line">Fan-led growth for consumer brands.</span>
-            <span className="cinfoot__meta">Paris. Working globally</span>
+            {/* "Paris · Working globally", not "Paris. Working globally".
+              * Laura asked whether this wanted a full stop at the end; it wants
+              * the opposite. This renders UPPERCASE and letterspaced, so it is
+              * a label, not a sentence, and no uppercase label anywhere on the
+              * site takes a terminal stop. The full stop after "Paris" was the
+              * only one of its kind on the site, and the middot is already the
+              * separator used in exactly this position — "SELECTED WORK ·
+              * 2013–2026", "KEYNOTE · BROADCAST · HOST", and the footer's own
+              * copyright row directly below this line. The sentence-case line
+              * above it keeps its stop; that one really is a sentence. */}
+            <span className="cinfoot__meta">Paris · Working globally</span>
           </div>
           <nav className="cinfoot__nav">
             {footerLinks.map((n) => (
