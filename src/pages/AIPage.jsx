@@ -82,7 +82,14 @@ const aiNative = [
   {
     icon: <RocketIcon />,
     title: 'Building it for real',
-    body: 'Part-time founding role at an AI-driven startup for fan engagement. I saw this coming early.',
+    /* "I saw this coming early." cut 23 Jul 2026, per Laura. The sentence
+     * before it is a verifiable fact — a founding role at an AI-driven startup
+     * for fan engagement — and it makes the point on its own. "I saw this
+     * coming early" is self-congratulation about that fact rather than more
+     * evidence for it, and it is the kind of claim a reader can only take on
+     * trust. Same instinct as dropping "biggest" on the homepage: the fact
+     * carries more weight than the boast about the fact. */
+    body: 'Part-time founding role at an AI-driven startup for fan engagement.',
   },
 ]
 
@@ -275,15 +282,61 @@ export default function AIPage() {
       <section className="ai-band ai-band--manifesto">
         <div className="ai-container ai-manifesto">
           <span className="ai-eyebrow ai-eyebrow--red">Not a support function</span>
+          {/* Explicit break after "cost.", per Laura, and it has to be
+            * explicit. The box here refuses to widen — measured 496px against
+            * a 640px parent and a 579px max-width, and neither raising
+            * max-width to 40ch nor turning off the inherited text-wrap: balance
+            * moved it. So no width setting can produce the wanted break, and a
+            * <br> is the honest tool rather than a fight with the box.
+            *
+            * Hidden below 720px (see .ai-manifesto__brk): forcing this break on
+            * a phone would put "It is growth." alone under a two-line first
+            * sentence. There it wraps naturally. */}
           <h2 className="ai-h2 ai-manifesto__title">
-            None of this is a cost. It is <mark>growth.</mark>
+            None of this is a cost.<br className="ai-manifesto__brk" /> It is <mark>growth.</mark>
           </h2>
           <div className="ai-manifesto__body">
             <p>
               The AI companies that treat the crowd around their model as an engine, not a cost, will pull ahead in a way the others cannot buy back.
             </p>
             <p>
-              No one has built this for AI products at scale yet. I have built the closest thing there is, I am AI-native, and I saw it coming early. I would rather build the first real version with a team shipping models than write about it from the outside.
+            {/* Rewritten twice on 23 Jul 2026.
+                *
+                * The original opened on three claims that could not be stood
+                * behind: "No one has built this for AI products at scale yet"
+                * (about everyone else), "I have built the closest thing there
+                * is" (a superlative with nothing under it), and "I saw it
+                * coming early" (the same self-congratulation cut from the
+                * AI-native card the same hour).
+                *
+                * My first rewrite led with the real numbers but kept the
+                * industry claim, reworded as "No one has run it inside an AI
+                * company yet". Laura: "I cant claim this i dont know if its
+                * true." She was right and I should have caught it, having just
+                * flagged the same claim one sentence earlier.
+                *
+                * The second pass turns it positive, per Laura, and that also
+                * removes a duplication: the founding-partner section below
+                * already carries the honest version in full ("I have not yet
+                * run it inside an AI company, and I am not going to pretend
+                * otherwise"), so this paragraph was running the same
+                * credential-then-gap beat twice on one page. The disclosure
+                * belongs there, next to the terms it justifies; this paragraph
+                * states the opportunity instead.
+                *
+                * It stops short of asking. The finale h2 is already "Who wants
+                * to build it with me?" — asking here as well would spend the
+                * invitation twice.
+                *
+                * Third correction: the positive pass left "rather than from the
+                * outside" hanging. In the original that clause completed "than
+                * WRITE about it from the outside" — drop the writing half and
+                * "the outside" has nothing to contrast with, so it read as
+                * "build from the outside". Laura: "what does this mean?" It
+                * meant nothing. "Inside a team shipping models" carries the
+                * embedded idea on its own, so the clause is gone rather than
+                * repaired. */}
+              I have run this at the scale of a live game: a 15-million-player community, read in real time and held at 85% positive through launches and rough patches. The opportunity now is to build that for AI, inside a team shipping&nbsp;models.
             </p>
           </div>
         </div>
@@ -302,31 +355,40 @@ export default function AIPage() {
           </div>
           <ol className="ai-offers__list">
             <li>
-              <Link to="/services#sentiment-sos" className="ai-card ai-card--link">
+              <div className="ai-card">
               <span className="ai-card__num">01</span>
               <h3 className="ai-card__ttl">AI Sentiment SOS</h3>
               <p className="ai-card__body">
                 When your community turns on a release, a price change or a deprecation, I read what they are actually saying, find the signal, and hand you a build-ready plan across product, comms and community. The fastest way to stop the bleed, and the work I have done longest.
               </p>
-              </Link>
+              </div>
             </li>
             <li>
-              <a href="#founding" className="ai-card ai-card--link">
+              <div className="ai-card">
               <span className="ai-card__num">02</span>
               <h3 className="ai-card__ttl">The Fan-Led Growth Engine, for AI</h3>
               <p className="ai-card__body">
-                Once the fire is out, I build the thing that stops it recurring: the developer and power-user community, the advocacy and ambassador programs, the sentiment defence, all instrumented to adoption and retention. Offered as a founding-partner pilot, below.
+                Once the fire is out, I build the thing that stops it recurring: the developer and power-user community, the advocacy and ambassador programs, the sentiment defence, all instrumented to adoption and retention.
               </p>
-              </a>
+              </div>
             </li>
             <li>
-              <Link to="/services#fan-moments" className="ai-card ai-card--link">
+              <div className="ai-card">
               <span className="ai-card__num">03</span>
               <h3 className="ai-card__ttl">Fan Moments</h3>
               <p className="ai-card__body">
-                A model release or a developer-conference moment your community actually feels, tied to a number. Proven by a sold-out $32K fan drop at US Mobile.
+                {/* Expanded 23 Jul 2026, per Laura: "dont hesitate to talk about
+                  * creator programs here and ugc, very powerful now for AI." Right,
+                  * and it is where her proof is strongest: the creator programs are
+                  * the Ubisoft work (50M+ UGC views on Siege, Delta Company across
+                  * 14 languages), and UGC being what the models read is the argument
+                  * the top of this page already makes in "Recommended by the models".
+                  * This was the thinnest of the three cards and said the least about
+                  * what she actually does. Names no figures — those live on /work
+                  * and /services. */}
+                A model release or a developer-conference moment your community actually feels. Creator programs and ambassador cohorts around it, so the people with their own audiences turn up early and bring theirs. The UGC that comes out of it is what your next users read, and what the models read too.
               </p>
-              </Link>
+              </div>
             </li>
           </ol>
         </div>

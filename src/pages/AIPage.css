@@ -320,16 +320,23 @@
   height: 2px;
   background: linear-gradient(90deg, #C8362B, transparent 62%);
 }
-/* Lift only when the card is actually a link; informational cards stay
- * static so nothing looks clickable that isn't. */
-a.ai-card--link:hover {
-  transform: translateY(-4px);
-  border-color: rgba(212, 200, 150, 0.36);
-  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.45);
-}
-/* height:100% so a link-card stretches to fill its grid cell — equalises
-   the three "How we'd work together" cards despite uneven body copy. */
-a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizing: border-box; }
+/* The .ai-card--link rules were removed on 23 Jul 2026, per Laura: "they
+   shouldn't be clickable, the route to AI is below."
+
+   The three "How we'd work together" cards were links. Two of them
+   (#sentiment-sos, #fan-moments) sent an AI visitor OFF this page to the
+   general services page, away from the AI pitch, and the third jumped to
+   #founding — which is the real route, and is already named in that card's own
+   copy ("Offered as a founding-partner pilot, below"). So the cards now
+   describe, and the founding-partner section below is the single way through.
+   They lifted 4px on hover too, which was honest while they were links and is
+   not now.
+
+   height:100% has to stay, and now lives on the card itself rather than on the
+   link variant: it is what stretches each card to fill its grid cell so the
+   three equalise despite uneven body copy. Scoped to this list so no other
+   .ai-card is affected. */
+.ai-offers__list .ai-card { height: 100%; box-sizing: border-box; }
 
 .ai-card__num {
   display: block;
@@ -479,7 +486,12 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   font-weight: 700;
   color: #FBF3E4;
   margin: 0 auto clamp(28px, 3.4vw, 38px);
-  max-width: 18ch;
+  /* 26ch, was 18ch. Laura asked for "with me?" to sit on one line with the
+     rest on desktop; at 18ch the measure was 711px and the sentence needs a
+     little more, so it broke with "me?" alone. It is six short words and the
+     close is the one place the page shouts, so a wider measure suits it. Below
+     the clamp's own breakpoint the font shrinks and it still wraps naturally. */
+  max-width: 26ch;
 }
 .ai-finale__title mark {
   background: transparent;
@@ -573,3 +585,11 @@ a.ai-card--link { text-decoration: none; display: block; height: 100%; box-sizin
   max-width: 62ch;
 }
 .ai-founding__cta { margin-top: 10px; }
+
+/* The manifesto headline's forced break, desktop only. See the note in
+   AIPage.jsx: the box will not widen, so the break after "cost." has to be
+   explicit. On a phone the sentence wraps to two lines on its own and forcing
+   the break as well would strand "It is growth." underneath. */
+@media (max-width: 720px) {
+  .ai-manifesto__brk { display: none; }
+}
