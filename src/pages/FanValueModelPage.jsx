@@ -107,7 +107,7 @@ export default function FanValueModelPage() {
   useDocumentMeta({
     title: 'Fan Value Model™ · What your fans are worth · Laura Cordrey',
     description:
-      'A quick estimate of what fan-led growth is worth to your brand each year, built from published benchmarks. Conservative, and it shows its work.',
+      'A conservative estimate of what your customers are worth once they become fans, built from published benchmarks. It shows its work.',
     canonical: pageUrl('/fan-value'),
     ogType: 'website',
   })

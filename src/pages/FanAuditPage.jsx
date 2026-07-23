@@ -177,9 +177,9 @@ function loadHtml2Canvas() {
 
 export default function FanAuditPage() {
   useDocumentMeta({
-    title: 'The Fan Score™ · How fan-led is your growth? · Laura Cordrey',
+    title: 'The Fan Score™ · Are your customers fans? · Laura Cordrey',
     description:
-      'A short diagnostic that tells you how fan-led your growth is today, and the one move that would grow it. Two minutes.',
+      'Find out how many of your customers would stay, spend more and recommend you, and the one move that would grow the number. Two minutes.',
     canonical: pageUrl('/fan-score'),
     ogType: 'website',
   })
@@ -210,8 +210,19 @@ function IntroScreen({ onStart }) {
   return (
     <section className="fa-rel">
       <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span></span></div>
-      <h1 className="fa-h1">How fan-led is your growth?</h1>
-      <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-led growth keeps going.</p>
+      {/* Was "How fan-led is your growth?" over "Paid growth stops the moment
+        * you stop paying. Fan-led growth keeps going." Changed 23 Jul 2026.
+        * The old H1 asked the visitor to rate themselves on a category they
+        * had not been introduced to, and on a scale only the quiz can supply,
+        * so it asked the same question the tool answers and added nothing.
+        * Before the CTA the screen never said "customer" once.
+        *
+        * The lede now previews the four dimensions the quiz actually covers
+        * (Brand, Product, Community, Growth) so the H1 cannot promise
+        * narrower than the tool delivers. The paid-growth line is not lost,
+        * it belongs on the result screen where there is a number to act on. */}
+      <h1 className="fa-h1">Are your customers fans, or just customers?</h1>
+      <p className="fa-lede">Fans stay, spend more, and bring you new customers. This looks at what turns one into the other: your brand, your product, your community, and where your growth actually comes from.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
       <button className="fa-btn" onClick={onStart}>Get my Fan Score<span className="tm">™</span></button>
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>

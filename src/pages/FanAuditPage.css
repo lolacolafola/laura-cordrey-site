@@ -72,6 +72,10 @@
   margin: 14px 0 8px;
   padding-bottom: 7px;
   color: var(--fa-ink);
+  /* The longer H1 (23 Jul 2026) stranded "customers?" alone on line two.
+     Matches shared.css and the eight other pages that already balance
+     headings, and it keeps holding if the copy or the type scale moves. */
+  text-wrap: balance;
 }
 @media (max-width: 680px) { .fa-h1 { font-size: 30px; } }
 .fa-lede {
