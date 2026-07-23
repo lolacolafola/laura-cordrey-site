@@ -432,8 +432,11 @@
   padding-top: clamp(64px, 7.5vw, 108px);
   padding-bottom: clamp(64px, 7.5vw, 108px);
 }
+/* 780 rather than 640, for the body copy underneath — see .ai-manifesto__body.
+ * The title is capped at 20ch of its own, so widening the container does not
+ * touch it. */
 .ai-manifesto {
-  max-width: 640px;
+  max-width: 780px;
   margin: 0 auto;
   text-align: center;
 }
@@ -449,12 +452,37 @@
   color: #C8362B;
   font-weight: 700;
 }
-.ai-manifesto__body { text-align: left; }
+/* Laura wanted this to read as a block, not as a ragged column. The measure
+ * does that on its own: at 664px the paragraphs break 76/58 and 80/73/75, so
+ * every line but each paragraph's last is full and the right edge is
+ * near-flush without justifying anything.
+ *
+ * Justification was tried and rejected. At this measure Chrome hyphenated
+ * three lines (mod-el, posi-tive, opportu-nity) and stretched one line's word
+ * spaces to 15.8px against a natural 4.5px, which is a visible river.
+ *
+ * The old 640px container gave this box 512px and broke 56/61/16 and
+ * 64/53/55/55 — the 16-character third line is what read as awkward.
+ *
+ * The cap has to live here, not on the container. The container's padding is
+ * a clamp, so its inner width is widest around 780–900px of viewport, not at
+ * 1280: without this cap the body reached 710px and 83 characters there.
+ * Anything from 656 to 710 holds the same break, so 664 is not knife-edge —
+ * but below 652 the second paragraph gains a fourth line ending in a
+ * 21-character stub.
+ *
+ * text-wrap: pretty is the safety net if the copy or the type scale moves. */
+.ai-manifesto__body {
+  text-align: left;
+  max-width: 664px;
+  margin: 0 auto;
+}
 .ai-manifesto__body p {
   font-size: 1.14rem;
   line-height: 1.65;
   color: #4A423B;
   margin: 0 0 1.2em;
+  text-wrap: pretty;
 }
 .ai-manifesto__body p:last-child { margin-bottom: 0; }
 

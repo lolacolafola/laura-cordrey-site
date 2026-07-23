@@ -324,7 +324,11 @@ export default function AboutPage() {
               * The replacement is an observation about conditions rather than a
               * forecast about needs, so it is checkable, and it keeps the AI
               * bridge on the one page an AI buyer is most likely to read. */}
-              <strong>
+              {/* Starts its own line rather than running on from "system." —
+                * Laura, 23 Jul 2026. Inline it began two words before the line
+                * ended, so on a phone the bold claim opened with "AI products"
+                * dangling off the previous line. See .about-ailine. */}
+              <strong className="about-ailine">
                 AI products are shipping into the same conditions: a crowd, in
                 public, reacting in real&nbsp;time.
               </strong>
@@ -400,8 +404,12 @@ export default function AboutPage() {
             <p>
               Everything I build starts with story. I learned storytelling in
               marketing at <strong>BlaBlaCar</strong>, and world-building at{' '}
-              <strong>Ubisoft</strong>: what makes people fall for a world and
-              {/* The closing capability list was cut on 23 Jul 2026. It read
+              <strong>Ubisoft</strong>: what makes people fall for a world and{' '}
+              {/* The {' '} above is load-bearing. JSX drops the whitespace
+                * around an expression that sits on its own line, so the comment
+                * below was rendering this as "a world andwant to live in it".
+                *
+                * The closing capability list was cut on 23 Jul 2026. It read
                 * "So the work runs across brand, events and product, from
                 * naming and positioning through to script-to-screen
                 * production." Three of its four elements — brand, positioning,
@@ -488,7 +496,11 @@ export default function AboutPage() {
               cool head. I unveiled my own fan program live on the E3 stage,
               with 10 million watching, and I&rsquo;ve run live game
               partnerships seen by 500K at once.{' '}
-              <strong>Go big or go home.</strong>
+              {/* Runs on from the sentence above it, not a paragraph of its
+                * own — Laura, 23 Jul 2026. It is kept whole (see
+                * .about-eng__signoff) so it cannot break to leave "home."
+                * stranded, which is what it was doing before. */}
+              <strong className="about-eng__signoff">Go big or go home.</strong>
             </p>
             <div className="about-pulls">
               <div className="about-pull">

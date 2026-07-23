@@ -434,6 +434,13 @@
   color: var(--ink);
   font-weight: 800;
 }
+/* See the note in AboutPage.jsx. Inline, running on from the sentence before
+ * it, but unbreakable: it is four short words, and letting them split put
+ * "home." alone on a line. nowrap moves the whole phrase down together
+ * instead. */
+.about-eng__signoff {
+  white-space: nowrap;
+}
 
 /* Oxblood story-03 overrides — kicker cream, body cream, forced-cream mark */
 /* Espresso overrides. --ink-muted measures 4.30 on #241D19 and --accent 3.18,
@@ -458,6 +465,15 @@
    On espresso the mark is red again and does its job. The oxblood CLOSE has
    no mark, so nothing else needed it. */
 
+/* See the note in AboutPage.jsx. Block so the bold sentence starts a line of
+ * its own, balanced so it does not then strand its own tail: plain block gave
+ * 38/40/13 on a phone and left "in real time." alone, balance gives 29/29/33.
+ * A break is a line break, not a paragraph break, so there is no margin. */
+.about-ailine {
+  display: block;
+  text-wrap: balance;
+}
+
 /* ─── PULLS (stat row inside a story's right column) ──────── */
 .about-pulls {
   display: flex;
@@ -475,12 +491,17 @@
   line-height: 1;
   color: var(--accent);
 }
+/* balance, not the default wrap: at 16rem these captions kept dropping their
+ * last word onto a line of its own ("broadcast", "on the E3 stage"). Balanced
+ * they split 21/26 and 24/29 instead. Safe here because every caption is two
+ * lines or fewer, which is the range balance is specified for. */
 .about-pull span {
   display: block;
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: var(--ink-muted);
   max-width: 16rem;
+  text-wrap: balance;
 }
 .about-band--ox .about-pulls { border-top-color: rgba(251, 243, 228, 0.25); }
 .about-band--ox .about-pull b { color: #FBF3E4; }
