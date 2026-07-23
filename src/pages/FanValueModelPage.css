@@ -92,11 +92,25 @@
   -webkit-appearance: none;
   border: 0;
   border-bottom: 1.5px solid var(--fvm-red);
-  padding: 2px 18px 2px 4px;
+  /* 6px block padding, not 2px. At 2px this rendered 23.5px tall — half a pixel
+     under the 24x24 in WCAG 2.2 SC 2.5.8, and the only standalone (non-inline)
+     control on the site that missed it. 6px takes it to ~31px, comfortably
+     clear rather than clinging to the line, which matters because this is a
+     real control on the Fan Value calculator and not a text link. The
+     underline and the chevron are unaffected. */
+  padding: 6px 18px 6px 4px;
   cursor: pointer;
   font-size: 13px;
 }
-.fvm-cur__select:focus { outline: 0; }
+/* outline: 0 with no replacement removes the keyboard focus ring entirely. The
+   red underline is already the control's resting affordance, so focus gets a
+   thicker one plus a soft glow — visible without adding a box that would fight
+   the borderless design. */
+.fvm-cur__select:focus-visible {
+  outline: 0;
+  border-bottom-width: 3px;
+  box-shadow: 0 2px 0 -1px var(--fvm-red);
+}
 
 /* ─── Hero ────────────────────────────────────────────────── */
 .fvm-h1 {

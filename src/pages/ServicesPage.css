@@ -288,7 +288,7 @@
 .svc-eng__act .svc-eng__cta { margin-top: 0; }
 
 .svc-eng__body {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   max-width: 38rem;
@@ -300,7 +300,7 @@
 }
 
 .svc-youget {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.6;
   color: var(--ink-muted);
   max-width: 38rem;
@@ -527,7 +527,7 @@
   margin: 0;
 }
 .svc-finale__line {
-  font-size: var(--fs-body-l);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede 16.8, was --fs-body-l 20 */
   line-height: 1.55;
   color: rgba(251, 243, 228, 0.85);
   max-width: 38rem;
@@ -994,6 +994,19 @@
   .svc-row__pad { padding-right: clamp(26px, 3vw, 40px); }
   .svc-row__body { grid-column: 1; }
   .svc-row__face { gap: clamp(16px, 3vw, 24px); }
+  /* An OPEN row needs breathing room here that the desktop layout does not.
+     On desktop the title sits in column 1 and the case in column 2, side by
+     side, so `padding-bottom: 0` on the open face costs nothing: the two are
+     never vertically adjacent. Below 860px both collapse to one column and
+     `.svc-row__body` moves to column 1, which stacks the case DIRECTLY under
+     the title — face padding-bottom 0 meeting pad padding-top 0, for a literal
+     zero-pixel gap. "Sentiment SOS." ran straight into "Need it when:".
+
+     32px, which is --space-6: one step above the --space-5 gap between the
+     body's own paragraphs, so the title-to-case break reads as larger than the
+     breaks inside the case. Set on the open state only — a closed face keeps
+     its symmetric padding. */
+  .svc-row[data-open='true'] .svc-row__face { padding-bottom: var(--space-6); }
   .svc-row--bone .svc-phases,
   .svc-row--espresso .svc-phases { grid-template-columns: 1fr; }
   .svc-row__plus { width: 40px; height: 40px; }

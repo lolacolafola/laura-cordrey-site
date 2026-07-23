@@ -56,6 +56,36 @@
   --fs-display-l: clamp(2.5rem, 6vw, 5rem);      /* section heads */
   --fs-display-m: clamp(1.75rem, 3.5vw, 2.75rem);/* article titles */
 
+  /* SUPERSEDED, 23 Jul 2026 — do not use in new rules.
+   *
+   * --fs-body-l is a FIXED 20px with no clamp, so it is 20px on a 375px phone
+   * exactly as on a 1440px desktop. The "lighter rebuild" replaced it with the
+   * shared lede clamp below, which is 16.8px on mobile and only reaches 19.5px
+   * on a very wide screen.
+   *
+   * That migration was done on /about (ten rules) and missed /services (three:
+   * .svc-eng__body, .svc-youget, .svc-finale__line), which left the service
+   * cards' body copy running LARGER than the hero lede on their own page —
+   * 20px against 16.8px, inverting the page's hierarchy. Laura caught it by
+   * eye on mobile, 23 Jul 2026. Now migrated.
+   *
+   * The eight remaining references in shared.css were removed the same day.
+   * They styled .hero__lede-copy, .about-strip__copy, .opportunity__copy,
+   * .vision__copy, .section-head__lede, .work-row__line, .method__copy and
+   * .final-cta__line — all classes from the pre-rebuild design, verified absent
+   * from every .jsx, from src/data, from index.html and from every rendered
+   * `class=` attribute across all 19 prerendered routes. Sibling classes that
+   * ARE still live (.section-head__title, .hero__title, .about-strip__clients,
+   * .work-row) were deliberately left alone. NOTHING references this token now;
+   * it is kept only so this note has somewhere to live.
+   *
+   * THE RULE: body and lede copy uses the shared scale in src/lib/scale.js.
+   * In JSX import `T` and use T.lede / T.body. In CSS, where the import is not
+   * available, write the clamp literally with a comment naming the T value it
+   * mirrors, as /about and /services now do:
+   *     font-size: clamp(1.05rem, 1.3vw, 1.22rem); // T.lede
+   *     font-size: clamp(.95rem, 1.05vw, 1.04rem); // T.body
+   * Never re-derive a size per page — that is the drift this token caused. */
   --fs-body-l: 1.25rem;
   --fs-body: 1rem;
   --fs-small: 0.875rem;

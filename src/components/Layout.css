@@ -132,8 +132,12 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  /* 44px, not 42: this is the only standalone (non-inline) control on the site
+     that sat under the 44x44 platform guideline, and on mobile it is the ONLY
+     way into the nav. WCAG 2.2 SC 2.5.8 only asks 24x24 and 42 cleared that
+     comfortably, so this is thumb comfort rather than compliance. */
+  width: 44px;
+  height: 44px;
   background: transparent;
   border: 1px solid rgba(239, 233, 220, 0.28);
   border-radius: 3px;
@@ -257,7 +261,14 @@ html { scroll-behavior: smooth; }
 .cinfoot__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px 24px;
+  /* Row gap 22, not 18. The links below carry `padding: 5px; margin: -5px`, so
+     10px of every gap is eaten by the negative margin: an 18px row-gap left the
+     tap targets only 8px apart once they wrapped, which at 375px they do — 11
+     links over 4 rows. 22 gives a real 12px between rows. The column gap stays
+     24 (a real 14px), which is fine because the targets are wide, not tall.
+     Passes WCAG 2.2 either way on the spacing clause; this is thumb comfort in
+     the place someone goes once they have decided to act. */
+  gap: 22px 24px;
 }
 /* Padding + matching negative margin grows the tap target without moving
    anything: these rendered 19px tall (and "AI" only 15px wide) against the
