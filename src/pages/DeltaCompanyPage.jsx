@@ -1,4 +1,5 @@
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import { pageUrl } from '../lib/seo.js'
 import CaseStudyCinematic from '../components/CaseStudyCinematic.jsx'
 import { getCinematicStudy } from '../data/caseStudiesCinematic.js'
 
@@ -7,10 +8,10 @@ import { getCinematicStudy } from '../data/caseStudiesCinematic.js'
 // your real useDocumentMeta / jsonLd helpers).
 export default function DeltaCompanyPage() {
   useDocumentMeta({
-    title: 'Delta Company · A first-of-its-kind community program at Ubisoft · Laura Cordrey',
+    title: 'Delta Company · Ubisoft community program · Laura Cordrey',
     description:
       'I designed Delta Company at Ubisoft: 5 clusters, 14 languages, 130 invited members, 10M+ UGC views, unveiled at UbiE3 2019, replicated across franchises.',
-    canonical: '/work/ubisoft-delta-company',
+    canonical: pageUrl('work/ubisoft-delta-company'),
   })
   return <CaseStudyCinematic slug="ubisoft-delta-company" study={getCinematicStudy('ubisoft-delta-company')} />
 }
