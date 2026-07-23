@@ -1,17 +1,28 @@
 # Free preview of the site on GitHub Pages, so the built site can be checked
 # without spending Netlify build credits. Actions is free on public repos.
 #
-# Builds the website-rework branch with VITE_BASE=/laura-cordrey-site/ (the
-# router's basename follows BASE automatically — see src/main.jsx) and adds a
-# 404.html copy of index.html so client-side deep links resolve on Pages.
+# Builds with VITE_BASE=/laura-cordrey-site/ (the router's basename follows
+# BASE automatically — see src/main.jsx) and adds a 404.html copy of index.html
+# so client-side deep links resolve on Pages.
 #
 # Preview URL: https://lolacolafola.github.io/laura-cordrey-site/
 # Netlify (production) is unaffected — it builds from main at base '/'.
+#
+# TRACKS `main` SINCE 23 JUL 2026. It tracked `website-rework`, which was
+# fast-forwarded into main at the 19 Jul cutover and has had no pushes since.
+# The preview was therefore serving a pre-redesign build — the old homepage,
+# titled "Fan-led growth for fan-driven brands" — while main moved 20+ commits
+# ahead. A preview that silently shows something other than the current site is
+# worse than no preview, because it gets checked and believed.
+#
+# Netlify auto-build is off, so main is not deployed automatically. That makes
+# this preview the only always-current view of the built site, which is exactly
+# why it should follow main.
 name: Preview on GitHub Pages
 
 on:
   push:
-    branches: [website-rework]
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:

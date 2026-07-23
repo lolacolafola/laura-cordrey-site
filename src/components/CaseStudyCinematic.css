@@ -1296,5 +1296,16 @@
   .cscin__footer { grid-template-columns: 1fr; }
   .cscin__footer-side--prev,
   .cscin__footer-side--next { border: 0; border-top: 1px solid var(--hair); text-align: left; align-items: flex-start; }
-  .cscin__footer-home { order: -1; padding-bottom: 0; }
+  /* padding-bottom was 0, which put the ▦ glyph hard against the hairline.
+     Stacked, this cell is followed by .cscin__footer-side--prev, whose
+     border-top is drawn at exactly the home cell's bottom edge. The glyph is
+     1.4rem with line-height: 1, so its box has no leading under it and its ink
+     runs to the very bottom of the line box — which landed it ON the rule
+     rather than above it. Laura spotted it, 23 Jul 2026.
+
+     20px, not the base clamp(28px, 4vw, 44px): the point of the override is to
+     keep the stacked header tight, so this restores a visible gap without
+     giving back the full desktop padding. Reads as 28 above / 20 below, which
+     is near enough symmetric to look deliberate. */
+  .cscin__footer-home { order: -1; padding-bottom: 20px; }
 }

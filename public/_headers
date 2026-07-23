@@ -26,10 +26,19 @@
   # domain over HTTPS with an auto-renewing certificate.
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
-  # ── CSP, REPORT-ONLY on purpose ──────────────────────────────────────────
-  # Report-Only cannot break the site. It logs violations to the browser
-  # console without blocking anything, which is the right way to introduce a
-  # policy on a site that is about to ship.
+  # ── CSP, ENFORCING ───────────────────────────────────────────────────────
+  # Introduced Report-Only, then verified and switched to enforcing on
+  # 23 Jul 2026. The verification was not a code read: dist/ was served over a
+  # local server with this exact policy set as the ENFORCING header, and the
+  # site driven in a real browser —
+  #   - homepage: fonts loaded, 10 images, hero video, no violations
+  #   - /speaking: clicked play, a real https://www.youtube.com/embed iframe
+  #     mounted and ran, all 6 ytimg thumbnails loaded, no violations
+  #   - /work/ubisoft-delta-company (the heaviest page): 16 images, 4 videos,
+  #     no violations
+  #   - all 15 routes returned HTTP 200 with the header present
+  # Forms are same-origin (FORM_ENDPOINT = '/'), so connect-src 'self' and
+  # form-action 'self' cover the Netlify Forms POST.
   #
   # The origins below are the real ones this site uses:
   #   fonts.googleapis.com / fonts.gstatic.com  Manrope
@@ -45,10 +54,12 @@
   # Moving to a nonce-based policy would mean generating a nonce per response,
   # which Netlify's static hosting cannot do without an edge function.
   #
-  # TO ENFORCE LATER: open the site, click through /speaking and /about (the
-  # pages with YouTube embeds), check the console for CSP violations, then
-  # rename this header to Content-Security-Policy. Do not enforce it blind.
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests
+  # IF THIS EVER BREAKS SOMETHING: the failure mode is a blocked resource, and
+  # the browser console names the violated directive. Adding a third-party
+  # script, embed, font or analytics tag WILL need a matching origin added
+  # here. Re-verify the same way rather than loosening to 'unsafe-*': serve
+  # dist/ locally with this header enforcing and drive the real pages.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests
 
 # Hashed build assets are immutable — cache them hard.
 /assets/*
