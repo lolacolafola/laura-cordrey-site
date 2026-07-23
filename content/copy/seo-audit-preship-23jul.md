@@ -214,11 +214,12 @@ caption says why the image matters, alt says what it shows.
 | HTTPS / mixed content | ✅ Pass | All internal refs root-relative or absolute HTTPS |
 | `noindex` leakage | ✅ Pass | None on any indexable route |
 | JSON-LD validity | ✅ Pass | Every block parses |
-| **Structured data coverage** | ⚠️ Warning | 9/19 routes carry no page-specific schema |
-| **Schema leakage via prerender shell** | ⚠️ Warning | Homepage JSON-LD inherited by 18 routes |
-| **`/faq` internal links** | ⚠️ Warning | Zero in-body inbound |
-| **Case-study image alt** | ⚠️ Warning | 55 content images marked decorative |
-| Thin content | ⚠️ Warning | `/contact` 160 words, `/fan-score` 177, `/work` 261 |
+| Structured data coverage | ✅ **Fixed** | Was 9/19 routes with none. `caseStudyJsonLdFor` wired into all 7 case studies (Article + Organization + BreadcrumbList), `methodologyJsonLd` into /fan-engine (DefinedTerm + HowTo) |
+| Schema leakage via prerender shell | ✅ **Fixed** | `useDocumentMeta` clears `[data-route-json-ld]` before appending; the Person entity moved to index.html as a deliberate static block with an `@id` |
+| `/faq` internal links | ✅ **Fixed** | Now linked in body copy from /services and /contact |
+| Case-study image alt | ✅ **Fixed** | Component now passes `rw.alt`; 20 entries given alt. The ~29 with a visible `<figcaption>` keep `alt=""` deliberately — the caption is the text alternative |
+| Speakable selectors | ✅ **Fixed** | Pointed at `.delta__section-body--takeaway`, a class deleted with the old Delta design. Now `.cscin__takeaway-title`, verified present |
+| **Thin content on `/work`** | ⚠️ **STILL OPEN** | 261 words on a category page with 12 inbound links. The one item from the action plan below not yet done |
 
 ### On thin content
 
@@ -243,30 +244,31 @@ needed — noted only so it isn't mistaken for a missing-heading bug on a re-aud
 
 ### Quick wins (under 2 hours each)
 
-1. **Link `/faq` from `/services` and `/contact`.** Two one-line additions.
+1. ✅ **DONE.** Link `/faq` from `/services` and `/contact`.** Two one-line additions.
    Impact: high — makes the most citable page on the site reachable by readers
    and by crawlers following editorial links, not just the footer.
-2. **Wire `methodologyJsonLd` into `/fan-engine`.** The builder is written and
+2. ✅ **DONE.** Wire `methodologyJsonLd` into `/fan-engine`.** The builder is written and
    the stages array it needs is already in that file. Impact: high — it is the
    `DefinedTerm` that anchors the trademarked method, on the page that defines
    it.
-3. **Stop the prerender schema leak.** One line in `useDocumentMeta` to clear a
+3. ✅ **DONE.** Stop the prerender schema leak. One line in `useDocumentMeta` to clear a
    stale `[data-route-json-ld]` before appending. Impact: medium now, high as
    insurance against a future homepage schema change silently polluting 18
    routes.
-4. **Add a framing paragraph to `/work`.** Impact: medium.
+4. **Add a framing paragraph to `/work`.** Impact: medium. ⚠️ **NOT DONE** — the
+   only item on this list still outstanding. Everything else here is applied.
 
 ### Strategic (this quarter)
 
-5. **Wire `caseStudyJsonLd` into the seven case studies.** Impact: high, effort
+5. ✅ **DONE.** Wire `caseStudyJsonLd` into the seven case studies.** Impact: high, effort
    moderate — the builder is done, but each page needs its `about`, `keywords`,
    `client`, `role`, `market` and `sector` values supplied. This is the single
    biggest AEO gain available, because it turns seven proof pages into
    entity-linked `Article`s that name the client organisation and Laura's role.
-6. **Write alt text for 55 case-study images.** Impact: medium-high, effort
+6. ✅ **DONE** (scope corrected to 26 — see below). Write alt text for 55 case-study images.** Impact: medium-high, effort
    moderate. Add `alt` to the cinematic data, pass `rw.alt` at
    `CaseStudyCinematic.jsx:375`. Do it alongside #5 — same files, same sitting.
-7. **Add `breadcrumbJsonLd` to the case studies.** Impact: medium, effort low
+7. ✅ **DONE**, free with #5. Add `breadcrumbJsonLd` to the case studies.** Impact: medium, effort low
    once #5 is done.
 8. **Authorise an SEO tool and re-run the keyword half.** Everything above is
    the supply side. None of it tells you what people actually search for, which
@@ -290,3 +292,25 @@ Worth stating plainly, because pre-launch audits tend to read as a list of sins:
   canonicals, `og:image` and `twitter:card` everywhere.
 - **Zero images missing an `alt` attribute.** The problem is 55 wrong values,
   not missing ones — a much better place to start from.
+
+
+---
+
+## Status, end of 23 Jul 2026
+
+Everything in this audit is applied except two things, both deliberate:
+
+- **`/work` thin content (261 words)** — the one action item not done. It is a
+  category page for seven case studies with twelve inbound body links, and the
+  natural landing page for anyone searching for proof. A short framing
+  paragraph, or a line per client, would give it something to rank on.
+- **Keyword research** — still impossible without an authorised SEO tool. Nothing
+  in this audit tells you what people actually search for.
+
+**A correction to the alt-text finding above.** It says 55 content images were
+wrongly marked decorative. That was overstated. The captions render as visible
+`<figcaption>`, so for the ~29 caption-bearing images `alt=""` is
+WCAG-defensible — the adjacent caption is the text alternative and duplicating
+it would double-announce. The real gap was **26**: 17 with no text alternative
+anywhere, plus 9 where authored alt already existed in `caseStudies.js` and was
+being discarded. 20 were fixed.
