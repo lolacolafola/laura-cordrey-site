@@ -160,15 +160,37 @@ export default function FanLedGrowthPage() {
         * mode", because this hero was built to match it exactly. */}
       <section className="on-light" style={{ background: '#EFE9DC' }}>
         <div className="flg-hero" style={{ ...INNER, padding: 'clamp(76px,9vw,120px) clamp(20px,5vw,64px) clamp(64px,7.5vw,100px)' }}>
-          <div className="flg-hero__copy" style={{ maxWidth: '62ch' }}>
+          {/* 82ch, was 62ch, 23 Jul 2026. Laura asked the h1 to break
+            * after "customers": "Turn your customers / into fans."
+            *
+            * The h1 is T.h1 (84px) and needs ~840px for that first line;
+            * at 62ch the column was 621px so it wrapped to three. Dropping
+            * the font to ~66px would also work but would put this page's
+            * h1 out of step with every other page's — the per-page scale
+            * drift CLAUDE.md warns about. Widening the column is cheaper.
+            *
+            * The paragraphs inside keep a 62ch cap of their own: at 82ch a
+            * lede runs ~90 characters a line, well past comfortable. Only
+            * the h1 wants the extra width. */}
+          <div className="flg-hero__copy" style={{ maxWidth: '82ch' }}>
             <Eyebrow tone="deep">Fan-led growth</Eyebrow>
             {/* The h1 carries the query people actually search; the old
               * headline ("Fans are the growth you already own") was not cut,
               * it opens the lede below. The label stays in the eyebrow. */}
             <h1 style={{ fontWeight: HEAD_W, fontSize: T.h1, lineHeight: 1.04, letterSpacing: '-.03em', margin: 'clamp(16px,2vw,22px) 0 0', color: '#15110F' }}>
-              Turn your customers <mark>into fans</mark>.
+              {/* nbsp inside the mark, 23 Jul 2026. It was breaking as
+                * "Turn your / customers into / fans." — splitting the mark
+                * itself and stranding "fans." alone on the last line. Now
+                * "Turn your / customers / into fans.", so the marked phrase
+                * stays whole and the line ends on it.
+                *
+                * A true two-line version ("Turn your customers / into fans.")
+                * is not available here: at 84px that first line needs ~837px
+                * and the hero column is 621px. Getting it would mean widening
+                * the column, which is a layout change, not a copy one. */}
+              Turn your customers <mark>into&nbsp;fans</mark>.
             </h1>
-            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#4A423B', margin: 'clamp(24px,3vw,32px) 0 0' }}>
+            <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#4A423B', margin: 'clamp(24px,3vw,32px) 0 0', textWrap: 'balance', maxWidth: '62ch' }}>
               <strong style={{ color: '#15110F', fontWeight: 700 }}>Fans are the growth you already own.</strong> You&rsquo;ve been renting yours: you pay for every customer, and the day you stop, it stops. Fans work the other way. Build them once, and they keep growing you long after the spend&nbsp;ends.
             </p>
           </div>
@@ -183,7 +205,7 @@ export default function FanLedGrowthPage() {
           </div>
 
           <p data-rev className="flg-hero__close" style={{ fontSize: T.lede, lineHeight: 1.66, color: '#15110F', fontWeight: 600, margin: 'clamp(28px,3.4vw,38px) 0 0', maxWidth: '62ch' }}>
-            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/fan-engine" className="flg-inline flg-inline--ink">an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
+            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, your community and your growth pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/fan-engine" className="flg-inline flg-inline--ink">an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
           </p>
         </div>
       </section>
@@ -221,9 +243,19 @@ export default function FanLedGrowthPage() {
           <div data-rev>
             <Eyebrow tone="deep">Why fans</Eyebrow>
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', maxWidth: '22ch', color: '#15110F' }}>
-              You don&rsquo;t buy fans. You <mark>earn</mark> them.
+              {/* Non-breaking spaces either side of the mark so "You earn
+                * them." cannot split. It was breaking as "You don't buy fans.
+                * You earn / them." with "them." orphaned. */}
+              You don&rsquo;t buy fans. You&nbsp;<mark>earn</mark>&nbsp;them.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '58ch' }}>
+            {/* text-wrap: balance, 23 Jul 2026. Laura asked for "Earn it, and
+              * here is what your fans start doing for you." to read as its own
+              * sentence rather than being split with "and here is what your
+              * fans start doing for you." dumped onto a line of its own.
+              * Balance evens the lines so the closing sentence is not left
+              * hanging. Same fix as the two paragraphs in the hero and the
+              * "who I work with" beat, and as the /services hero lede. */}
+            <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', maxWidth: '58ch', textWrap: 'balance' }}>
               People become fans when they feel they belong: a reason to care, a space to connect, a voice, the feeling of being seen. Ad spend can&rsquo;t buy that. Earn it, and here is what your fans start doing for&nbsp;you.
             </p>
           </div>
@@ -303,7 +335,12 @@ export default function FanLedGrowthPage() {
             </p>
             <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
               <Link to="/fan-engine" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-                See how the Fan Engine<span className="tm">™</span> works</Link>
+                {/* Label in ONE span. This Link is inline-flex with
+                  * gap: 10, so unwrapped the text before the mark, the
+                  * .tm span and the text after it are three flex items,
+                  * and the gap opens 10.5px either side of a 7.3px mark.
+                  * Laura: "too far away". One wrapper = one flex item. */}
+                <span>See how the Fan Engine<span className="tm">™</span> works</span></Link>
             </div>
           </div>
         </div>
@@ -317,7 +354,7 @@ export default function FanLedGrowthPage() {
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 'clamp(14px,1.8vw,20px) 0 0', color: '#15110F' }}>
               However you got here, <mark>fans are the next step</mark>.
             </h2>
-            <p style={{ fontSize: T.lede, lineHeight: 1.62, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0' }}>
+            <p style={{ fontSize: T.lede, lineHeight: 1.62, color: '#4A423B', margin: 'clamp(18px,2.2vw,24px) 0 0', textWrap: 'balance' }}>
               I work with companies that have a disruptive brand, a vocal userbase and growth that runs on network effects. If product-led growth got you here, fan-led growth is what comes next: the product sold itself, now your fans sell it&nbsp;too.
             </p>
           </div>
@@ -382,7 +419,17 @@ export default function FanLedGrowthPage() {
             </h2>
           </div>
           <p data-rev style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(251,244,230,.86)', margin: 'clamp(18px,2.2vw,24px) auto 0', maxWidth: '46ch' }}>
-            If any of that sounded like your company, the next step is a number, not a&nbsp;meeting.
+              {/* Was "the next step is a number, not a meeting." Laura: odd,
+                * and we should not tell people a meeting isn't needed. Right,
+                * and it was worse than odd — it dismissed a meeting directly
+                * above a button reading "See how we'd work together", which
+                * leads to exactly that. The line argued against its own second
+                * CTA.
+                *
+                * The rewrite introduces both routes instead of ruling one out,
+                * and maps onto the two buttons in order: the number is
+                * /fan-value, "me" is /services. */}
+              If any of that sounded like your company, start with the number, or start with&nbsp;me.
           </p>
           {/* Primary is the ink button, not the red one: red on oxblood is
             * near-invisible, which the homepage close hit and solved the same
@@ -395,7 +442,7 @@ export default function FanLedGrowthPage() {
           </div>
           {/* "Or tell me about your brand" was cut on 22 Jul 2026. The close
             * offered four exits, and the fourth was a meeting one line under
-            * "the next step is a number, not a meeting". Contact is in the nav
+            * the old "the next step is a number, not a meeting" line. Contact is in the nav
             * as "Get in touch" on every screen, and the second button here
             * goes to /services, which opens with two ways to talk. */}
           <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: 'rgba(251,244,230,.82)', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>

@@ -324,7 +324,7 @@ export function fanLedGrowthJsonLd() {
         name: 'Fan-Led Growth',
         alternateName: ['Superfan growth', 'Turning customers into fans'],
         description:
-          'Growth driven by fans rather than paid acquisition. When people love what you do, they stay, they spend more, and they bring others with them. No single team makes a fan: it takes brand, product and community pulling the same way.',
+          'Growth driven by fans rather than paid acquisition. When people love what you do, they stay, they spend more, and they bring others with them. No single team makes a fan: it takes brand, product, community and growth pulling the same way.',
         inDefinedTermSet: 'Fan-Led Growth methodology',
         url: canonical,
       },
@@ -345,7 +345,7 @@ export function fanLedGrowthJsonLd() {
           {
             question: 'How do you turn customers into fans?',
             answer:
-              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, and your community pulling the same way. Get that right, and customers become fans.',
+              'When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, your community and your growth pulling the same way. Get that right, and customers become fans.',
           },
           {
             question: 'What is a superfan worth?',
