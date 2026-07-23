@@ -1,0 +1,55 @@
+# Netlify response headers.
+#
+# There were none before 23 Jul 2026. For a static marketing site with no login
+# and no user data the risk is low, but these cost nothing, and a prospective
+# client running a scan against the domain is a realistic thing to happen.
+#
+# Netlify reads this file from the publish directory. It has no effect on the
+# Vite dev server or on the GitHub Pages preview.
+
+/*
+  # Stop browsers guessing a MIME type that differs from the declared one.
+  X-Content-Type-Options: nosniff
+
+  # Don't leak the full URL to third parties. Same-origin requests keep the
+  # path; cross-origin gets the bare origin, and HTTPS→HTTP gets nothing.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # No one should be framing this site. frame-ancestors in the CSP below is the
+  # modern control; this is the legacy header for older browsers.
+  X-Frame-Options: SAMEORIGIN
+
+  # Turn off device APIs the site never uses, so an injected script cannot ask.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+
+  # HTTPS only, for two years, subdomains included. Safe: Netlify serves this
+  # domain over HTTPS with an auto-renewing certificate.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # ── CSP, REPORT-ONLY on purpose ──────────────────────────────────────────
+  # Report-Only cannot break the site. It logs violations to the browser
+  # console without blocking anything, which is the right way to introduce a
+  # policy on a site that is about to ship.
+  #
+  # The origins below are the real ones this site uses:
+  #   fonts.googleapis.com / fonts.gstatic.com  Manrope
+  #   www.youtube.com / www.youtube-nocookie.com  speaking + about clip embeds
+  #   i.ytimg.com                                YouTube thumbnails
+  #
+  # 'unsafe-inline' is required for BOTH style-src and script-src and cannot be
+  # removed without real work:
+  #   - style-src: React inline style props are used heavily across the pages,
+  #     and the hero glows, grounds and type scale are set that way.
+  #   - script-src: the JSON-LD blocks are inline <script> tags, and the static
+  #     Person block lives in index.html.
+  # Moving to a nonce-based policy would mean generating a nonce per response,
+  # which Netlify's static hosting cannot do without an edge function.
+  #
+  # TO ENFORCE LATER: open the site, click through /speaking and /about (the
+  # pages with YouTube embeds), check the console for CSP violations, then
+  # rename this header to Content-Security-Policy. Do not enforce it blind.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests
+
+# Hashed build assets are immutable — cache them hard.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
