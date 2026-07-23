@@ -704,6 +704,48 @@
   gap: var(--space-2) var(--space-3);
   margin-bottom: var(--space-6);
 }
+/* Mobile: "All" on its own row, the four sectors together on the next.
+   Laura's call, 23 Jul 2026 — the default wrap put four chips on row one and
+   stranded "Mobility" alone on row two, the same orphan the homepage logo
+   strip had.
+
+   All five on one row is not available at this width. Measured at 375: the
+   container is 327px and the five chips plus gaps need 421px. Closing that
+   would mean cutting chip padding roughly in half, which makes them read as
+   labels rather than controls.
+
+   So the split is by MEANING instead of by fit: "All" is the reset, the other
+   four are the sectors. That also happens to be the only two-row arrangement
+   with no orphan.
+
+   The four sectors need 357px at the default 16px padding and 12px gap, which
+   overflows 327. Padding 16→12 and gap 12→10 brings the row to 319px, 8px of
+   headroom rather than clinging to the edge. Vertical padding is untouched, so
+   the tap target keeps its full height.
+
+   Grid, not flex, for the two rows. The obvious flex approach —
+   `flex: 0 0 100%` on the first chip — does NOT work here: adding
+   `max-width: max-content` to stop it stretching also clamps the flex base
+   size, so it stops forcing the line break and all four chips sit back on row
+   one. Without the max-width you get the break but a full-width "All" pill,
+   which reads as a banner rather than a chip.
+
+   Grid avoids the conflict. Four max-content columns, "All" spanning all four
+   on row one with justify-self: start so it keeps its natural width, and the
+   sectors filling row two. */
+@media (max-width: 560px) {
+  .work-filters {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: start;
+    column-gap: 10px;
+  }
+  .work-filters .btn--pill { padding-left: 12px; padding-right: 12px; }
+  .work-filters > button:first-child {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
 /* Contextual collapse: when the section-head is followed by filter chips
    (not the grid directly), shrink its bottom space so the chips read as
    part of the same head, not a separate stratum. Same pattern documented
