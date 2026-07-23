@@ -134,6 +134,12 @@
    --ink-muted measures 3.81 there against 4.5. The documented substitution for
    this ground; see the red/ground table in CLAUDE.md. */
 .svc-hero__lede {
+  /* text-wrap: balance, 23 Jul 2026. Laura: bring "three" off its own line.
+     It was breaking as "...does all / three." with a single word stranded.
+     Balance evens the three lines instead and the last one runs full: "build
+     the whole system that does all three." Same fix as the two /fan-led-growth
+     paragraphs; max-width was not the lever, the container sets the measure. */
+  text-wrap: balance;
   font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede ~16.8 */
   line-height: 1.55;
   color: #B8AEA2;

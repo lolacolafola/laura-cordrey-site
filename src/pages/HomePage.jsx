@@ -579,8 +579,20 @@ export default function HomePage() {
           <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.08, letterSpacing: '-.028em', margin: '0 auto 14px', maxWidth: '20ch', color: '#EFE9DC' }}>
             A key speaker at the industry&rsquo;s biggest events.
           </h2>
+          {/* Non-breaking space in "E3 main", per Laura 23 Jul 2026, to carry
+            * "E3" onto the second line. It was breaking as "…including on the
+            * E3 / main stage.", which left E3 hanging at the end of a long line
+            * and orphaned "main stage." underneath. Now "…including on the /
+            * E3 main stage.", so the phrase stays whole and the short centred
+            * second line closes the sentence cleanly.
+            *
+            * Not text-wrap: balance here. Balance also moves E3 down, but it
+            * does it by evening the lines — "I have presented my own fan-led /
+            * projects, including on the E3 main stage." — which leaves the
+            * second line longer than the first and reads bottom-heavy under a
+            * centred heading. The nbsp keeps the intended shape. */}
           <p style={{ fontSize: T.lede, lineHeight: 1.6, color: '#EFE9DC', margin: '0 auto clamp(24px,3vw,32px)', maxWidth: '46ch' }}>
-            I have presented my own fan-led projects, including on the E3 main stage.
+            I have presented my own fan-led projects, including on the E3&nbsp;main stage.
           </p>
           <Link to="/speaking" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
             See my talks

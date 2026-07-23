@@ -209,7 +209,7 @@ export default function FanAuditPage() {
 function IntroScreen({ onStart }) {
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span></div>
+      <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span></span></div>
       <h1 className="fa-h1">How fan-led is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-led growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
@@ -387,7 +387,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
   const tText = tColor
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span></div>
+      <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span></span></div>
       <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
       <p className="fa-numlabel">
         of your growth is fan-led. The other {scored.rented}% is untapped fan potential.
@@ -629,7 +629,7 @@ function PreFlow({ screen, setScreen }) {
   if (screen === 'preIntro') {
     return (
       <section className="fa-rel">
-        <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span> · Pre-launch edition</div>
+        <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span> · Pre-launch edition</span></div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
         <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
         <p className="fa-introget">No numbers needed. A minute or two.</p>

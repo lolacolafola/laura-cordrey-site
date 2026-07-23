@@ -65,7 +65,7 @@ const OFFERS = [
     cta: {
       label: (
         <>
-          Let&rsquo;s talk about the Fan Engine<span className="tm">™</span>
+          <span>Let&rsquo;s talk about the Fan Engine<span className="tm">™</span></span>
         </>
       ),
       need: 'engine',
@@ -130,7 +130,14 @@ const OFFERS = [
       'your best customers get exactly what everyone else gets, and nothing you do makes them feel any different.',
     get:
       'something built for them, a VIP event, unique merch, a drop, or a brand collab. Measured, so you see what it drove.',
-    payoff: 'your top customers spend more and stay longer.',
+    /* "and talk about you" added 23 Jul 2026, per Laura. Without it this payoff
+     * named only two of the three behaviours the whole site is built on —
+     * stay, pay, bring more (homepage hero, /faq, /fan-led-growth) — and it
+     * left out the one a Fan Moment is most likely to produce. The proof on
+     * this very offer is people talking: a drop that sold out with 450+
+     * unprompted fan posts, and a Live Nation activation where over half said
+     * they would not have carpooled without it. */
+    payoff: 'your top customers spend more, stay longer, and talk about you.',
     proofFig: '$32K in under three hours',
     proofRest:
       'from a fan drop that sold out, US Mobile. And a Live Nation activation where over half of users said they wouldn’t have carpooled to shows without it, BlaBlaCar.',
@@ -488,9 +495,9 @@ export default function ServicesPage() {
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
             <Link to="/fan-score" className="btn btn--lg svc-finale__ghost">
-              Take the 2-min Fan Score<span className="tm">™</span></Link>
+              <span>Take the 2-min Fan Score<span className="tm">™</span></span></Link>
             <Link to="/fan-value" className="btn btn--lg svc-finale__ghost">
-              Size your Fan Value<span className="tm">™</span></Link>
+              <span>Size your Fan Value<span className="tm">™</span></span></Link>
           </div>
           <p className="svc-finale__note">
             Prefer to send a note?{' '}
