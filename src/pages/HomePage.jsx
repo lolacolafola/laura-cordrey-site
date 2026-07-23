@@ -476,8 +476,26 @@ export default function HomePage() {
           <div data-rev style={{ textAlign: 'center', marginBottom: 'clamp(32px,4vw,48px)' }}>
             <Eyebrow tone="deep">Selected work</Eyebrow>
             <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
+            {/* Was "My biggest wins, so far." Laura, 23 Jul 2026: "they are not
+              * necessarily my biggest, just some of my best." She is right, and
+              * it is an accuracy problem rather than a tone one.
+              *
+              * "Biggest" claims a ranking this band cannot support. A $129 drop
+              * at $32K is not the biggest thing on this site by revenue — /work
+              * carries a platform acquired by Animoca, 500K peak viewers and
+              * 50M+ on Siege. And the CASES array above says outright that a
+              * fourth card was moved to /work "to keep this band at three", so
+              * these are a SELECTION, not a top three.
+              *
+              * "Best" is subjective, so it is always defensible, and "some of"
+              * says selection out loud. "So far" is Laura's and stays; it adds
+              * the note that the list is still growing.
+              *
+              * Deliberately not "some of my best WORK": the eyebrow directly
+              * above already reads "Selected work", and repeating the noun one
+              * line down is the kind of echo we cleaned off /about today. */}
             <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 0, color: '#15110F' }}>
-              My biggest wins, so far.
+              Some of my best, so far.
             </h2>
           </div>
 
