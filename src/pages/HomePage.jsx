@@ -491,11 +491,32 @@ export default function HomePage() {
               * says selection out loud. "So far" is Laura's and stays; it adds
               * the note that the list is still growing.
               *
-              * Deliberately not "some of my best WORK": the eyebrow directly
-              * above already reads "Selected work", and repeating the noun one
-              * line down is the kind of echo we cleaned off /about today. */}
-            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 0, color: '#15110F' }}>
-              Some of my best, so far.
+              * It briefly read "Some of my best, so far." — "work" was dropped
+              * to avoid echoing the "Selected work" eyebrow above. Laura asked
+              * for it back for clarity and she was right; that objection was
+              * the /about echo rule applied where it does not fit.
+              *
+              * The /about echoes were distinctive PHRASES repeated in prominent
+              * positions ("people fall for" in a lede and an h2, "Go big or go
+              * home" as both kicker and sign-off). "Work" is a generic noun,
+              * and the site already repeats those between eyebrow and heading
+              * without any trouble: "Community building & sentiment" over "I
+              * catch a community before it turns", "Speaking" over "A key
+              * speaker at…".
+              *
+              * Clarity wins the trade. "Some of my best" leaves "best" dangling
+              * — best what? — and that bites hardest when the heading is read
+              * out of context: skimming past a small uppercase eyebrow, or a
+              * screen reader jumping heading to heading. */}
+            {/* textWrap balance + the nbsp both earn their place. Adding
+              * "work" pushed this to two lines on mobile and it broke as
+              * "Some of my best work, so / far." — splitting "so far" and
+              * orphaning "far." on its own line. The nbsp keeps "so far"
+              * whole; balance evens the two lines instead of filling the
+              * first and dumping the remainder. Same pair of properties the
+              * /work h1 uses. */}
+            <h2 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.06, letterSpacing: '-.028em', margin: 0, color: '#15110F', textWrap: 'balance' }}>
+              Some of my best work, so&nbsp;far.
             </h2>
           </div>
 
