@@ -125,7 +125,13 @@
  * reduction): the two ledes there were merged into one. */
 .meth-lede--onbone {
   color: #4A423B;
-  max-width: 58ch;
+  /* 80ch, was 58ch. Laura asked for the journey lede to sit as one sentence on
+     one line. At 58ch it wrapped after "a first purchase to"; 74ch was worse,
+     leaving "stages." alone on a second line. 80ch renders 937px against a
+     1024px container, so it holds one line with room to spare. This is the only
+     lede on a bone ground and it is a single short sentence, so the wider
+     measure costs nothing in readability. */
+  max-width: 80ch;
   margin-top: clamp(24px, 3.2vw, 36px);
   font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede, was 19.8 */
   line-height: 1.62;
@@ -544,34 +550,20 @@
 }
 .meth-close__back a:hover { color: #F2D79A; }
 
-/* Proof strip under "And I can prove it": the receipts, linked. */
-.meth-proofstrip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: clamp(28px, 4vw, 44px) 0 clamp(12px, 2vw, 20px);
-}
-@media (max-width: 720px) { .meth-proofstrip { grid-template-columns: 1fr; } }
-.meth-proof {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: #241D19;
-  border: 1px solid rgba(239, 233, 220, .12);
-  border-top: 2px solid rgba(200, 54, 43, .65);
-  border-radius: 4px;
-  padding: 20px 22px;
-}
-.meth-proof__n {
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: #EFE9DC;
-  line-height: 1;
-}
-.meth-proof__l { font-size: .85rem; line-height: 1.45; color: #B8AEA2; }
+/* .meth-proofstrip / .meth-proof / .meth-proof__n / .meth-proof__l were
+   removed on 23 Jul 2026 with the three-stat strip they styled. See the note
+   in MethodologyPage.jsx for why the strip went: it answered a claim about
+   measurement RIGOUR with three campaign OUTCOMES, which is the wrong kind of
+   proof for that band, and the numbers already appear four or five times
+   elsewhere on the site.
+
+   The links paragraph below survives them and now follows the lede directly. */
 .meth-proofstrip__more {
-  margin: clamp(2px, 1vw, 8px) 0 0;
+  /* Was clamp(2px, 1vw, 8px). That tiny top margin only worked because the
+     proof strip above supplied the real spacing via its own bottom margin.
+     With the strip gone this sat almost against the paragraph above it, so it
+     inherits roughly what the strip used to contribute. */
+  margin: clamp(22px, 3vw, 32px) 0 0;
   font-size: .95rem;
   display: flex;
   flex-wrap: wrap;
@@ -594,3 +586,108 @@
   transition: color .2s ease;
 }
 .meth-proofstrip__more a:hover { color: #EFE9DC; }
+
+/* --- 5 . THE ENGAGEMENT (gold card) ----------------------------------
+   Added 23 Jul 2026. The strong route from the method to the offer; see the
+   note above the band in MethodologyPage.jsx for why it exists and why it is
+   gold. Sits between the deep "measured" band and the oxblood close, so the
+   page reads deep · GOLD · oxblood through its last three screens and the card
+   is the brightest thing on it. */
+/* Espresso, not #15110F. This band sits between the deep Measured band
+   (#15110F) and the oxblood close; two identical darks touching would read as
+   one long band and the gold card would lose the frame it needs. The back half
+   runs bone · deep · espresso · oxblood, four distinct grounds. */
+.meth-band--engagement { background: #241D19; }
+.meth-engage {
+  background: var(--edge);
+  color: #15110F;
+  border-radius: 6px;
+  padding: clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vw, 32px);
+  /* Gold is a LIGHT ground. Per CLAUDE.md the accent variables must be set on
+     the element that owns the ground, not inherited from the dark band around
+     it, or a red mark here would resolve to the on-dark value. */
+  --accent-text: var(--accent-deep);
+  --accent-display: var(--accent-deep);
+}
+.meth-engage__kick {
+  display: block;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* #8E2520 on gold. The brand red measures under 4.5 on this ground for text
+     this size; --accent-deep is the site's answer for red on a light ground. */
+  color: var(--accent-deep);
+}
+.meth-engage__title {
+  margin: 14px 0 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  font-weight: 700;
+  color: #15110F;
+}
+.meth-engage__lede {
+  margin: 14px 0 0;
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem);
+  line-height: 1.6;
+  color: #3A322C;
+  max-width: 46ch;
+}
+.meth-engage__phases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+.meth-engage__phases li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(21, 17, 15, 0.22);
+  font-weight: 700;
+  font-size: 1.06rem;
+  color: #15110F;
+}
+.meth-engage__phases li span {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+.meth-engage__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 24px;
+}
+.meth-engage__meta {
+  font-size: 0.92rem;
+  font-weight: 600;
+  /* #4A423B on gold measures well clear of 4.5 for text this size. */
+  color: #4A423B;
+}
+.meth-engage__cta {
+  display: inline-flex;
+  align-items: center;
+  background: #15110F;
+  color: var(--edge);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 15px 28px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.meth-engage__cta:hover { background: #2D2723; color: #FBF3E4; }
+@media (max-width: 640px) {
+  .meth-engage__foot { align-items: flex-start; flex-direction: column; }
+  .meth-engage__cta { width: 100%; justify-content: center; }
+}
