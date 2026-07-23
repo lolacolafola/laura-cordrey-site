@@ -224,11 +224,11 @@ export default function FanValueModelPage() {
         {arrivedFromAudit ? (
           <div className="fvm-arrival" role="note">
             <Arrow />
-            <span>From your Fan Score · <b>{auditScore}%</b></span>
+            <span>From your Fan Score<span className="tm">™</span> · <b>{auditScore}%</b></span>
           </div>
         ) : (
           <div className="fvm-coldbar">
-            <span className="fvm-coldbar__txt">Fan Score: how fan-led is your growth?</span>
+            <span className="fvm-coldbar__txt">Fan Score<span className="tm">™</span>: how fan-led is your growth?</span>
             <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
               Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
             </Link>
@@ -242,7 +242,12 @@ export default function FanValueModelPage() {
           </span>
         </div>
 
-        <h1 className="fvm-h1">What is the fan gap<br />worth to you?</h1>
+        {/* "What is the fan gap worth to you?" went 23 Jul 2026. "The fan gap"
+            appeared exactly once on the whole site, here, in the largest type on
+            the page, and was never defined anywhere. This wording matches the
+            cross-link from the Fan Score, the page title, and the homepage
+            promise, so the same tool is now described the same way everywhere. */}
+        <h1 className="fvm-h1">What are your<br />fans worth?</h1>
         <p className="fvm-hook">
           The growth is already in your <mark>userbase</mark>. Here&rsquo;s what it&rsquo;s worth.
         </p>
@@ -631,7 +636,7 @@ export default function FanValueModelPage() {
             <div className="fvm-ready__row">
               <div className="fvm-ready__badge">
                 <div className="fvm-ready__num">{auditScore}%</div>
-                <div className="fvm-ready__lbl">Fan Score</div>
+                <div className="fvm-ready__lbl">Fan Score<span className="tm">™</span></div>
               </div>
               <p className="fvm-ready__verdict">
                 <b>{verdict.lead}</b> {verdict.body}

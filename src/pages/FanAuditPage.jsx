@@ -217,7 +217,7 @@ function IntroScreen({ onStart }) {
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
         Prefer to skip to the numbers?{' '}
         <Link to="/fan-value" style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>
-          Fan Value: what your fans are worth? <span aria-hidden="true">→</span>
+          Fan Value: what are your fans worth? <span aria-hidden="true">→</span>
         </Link>
       </p>
       <div className="fa-fold">
