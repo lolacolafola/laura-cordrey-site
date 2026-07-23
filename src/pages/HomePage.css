@@ -644,7 +644,6 @@
   flex-direction: column;
   align-items: center;
 }
-.cinv2 .hero-centred .hero-sig { justify-content: center; }
 
 .cinv2 .hero-split {
   display: grid;

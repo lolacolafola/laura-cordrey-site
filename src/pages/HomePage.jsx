@@ -322,12 +322,16 @@ export default function HomePage() {
               The customers you already paid for are worth far more than you&rsquo;re getting. I build the belonging and advocacy that turn them into fans, so they stay, spend more, and bring new customers with them.
             </p>
 
-            {/* No leading rule: the tick was reading as a stray mark once the
-              * block was centred, with nothing to align to on the left. */}
-            <div className="hero-sig" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px 12px', fontSize: '.88rem', margin: 'clamp(22px,2.8vw,30px) 0 0' }}>
-              <span style={{ fontWeight: 700, letterSpacing: '.01em', color: '#EFE9DC' }}>Laura Cordrey</span>
-              <span style={{ color: '#D4C896', fontWeight: 600 }}>Fan-led growth expert</span>
-            </div>
+            {/* The signature line — "Laura Cordrey · Fan-led growth expert" —
+              * was cut 23 Jul 2026 on feedback Laura received. It sat four
+              * lines under an eyebrow already reading "Fan-led growth for
+              * consumer brands", so the hero said "fan-led growth" twice in
+              * its two smallest pieces of type and the second one read as a
+              * restatement of the first. The name is in the nav and the
+              * footer; the expertise is the whole page.
+              *
+              * Its only CSS rule (.cinv2 .hero-centred .hero-sig) went with
+              * it — .hero-sig has no other user. */}
 
             <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
               <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#FCFAF3', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
