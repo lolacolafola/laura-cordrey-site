@@ -105,7 +105,7 @@ export default function FanValueModelPage() {
   const auditScore = arrivedFromAudit ? parsedScore : null
 
   useDocumentMeta({
-    title: 'The Fan Value Model · What your fans are worth · Laura Cordrey',
+    title: 'Fan Value Model™ · What your fans are worth · Laura Cordrey',
     description:
       'A quick estimate of what fan-led growth is worth to your brand each year, built from published benchmarks. Conservative, and it shows its work.',
     canonical: pageUrl('/fan-value'),

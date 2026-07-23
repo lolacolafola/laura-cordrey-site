@@ -126,7 +126,7 @@ export default function ContactPage() {
 
   const orgLabel = isSpeaking ? 'Event or organisation' : 'Company'
   const msgLabel = isConsulting
-    ? 'What is going on?'
+    ? "What's going on?"
     : isSpeaking
     ? 'Anything else about the event?'
     : 'Your message'
@@ -139,7 +139,7 @@ export default function ContactPage() {
     ? 'Your enquiry is in. I read every one myself and will follow up within one working day to set up a call.'
     : isSpeaking
     ? 'Your booking request is in. I reply to speaking enquiries within one working day, usually sooner.'
-    : 'Message received. I will get back to you within one working day.'
+    : "Message received. I'll get back to you within one working day."
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -311,7 +311,7 @@ export default function ContactPage() {
                         <label htmlFor="contact-timeline">Timeline</label>
                         <select id="contact-timeline" name="consulting_timeline" className="contact-select">
                           <option value="">Choose one</option>
-                          <option>Now, it is urgent</option>
+                          <option>Now, it&rsquo;s urgent</option>
                           <option>This quarter</option>
                           <option>Exploring, no fixed date</option>
                         </select>
@@ -372,7 +372,7 @@ export default function ContactPage() {
                       id="contact-msg"
                       name="message"
                       rows={5}
-                      placeholder="A few lines on what you are after."
+                      placeholder="A few lines on what you&rsquo;re after."
                       required
                     />
                   </div>
@@ -392,7 +392,7 @@ export default function ContactPage() {
                       {sending ? 'Sending…' : submitLabel}
                     </button>
                     <p className="contact-submit__note">
-                      Goes straight to my inbox. I read every one and reply within one working day.
+                      Goes straight to my inbox.
                     </p>
                   </div>
                 </div>

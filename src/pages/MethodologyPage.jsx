@@ -91,9 +91,9 @@ const scoreboard = [
 
 export default function MethodologyPage() {
   useDocumentMeta({
-    title: 'The Fan Engine · The method · Laura Cordrey',
+    title: 'The Fan Engine™ · The method · Laura Cordrey',
     description:
-      "You're sitting on more fandom than you can prove or bank. The Fan Engine turns customers into fans, and proves what they're worth.",
+      "You're sitting on more fandom than you can prove or bank. The Fan Engine™ turns customers into fans, and proves what they're worth.",
     canonical: pageUrl('fan-engine'),
   })
 
@@ -389,8 +389,9 @@ export default function MethodologyPage() {
             <span className="meth-close__hl">build first</span>.
           </h2>
           <p className="meth-close__lede">
-            The Fan Score takes two minutes and shows where your fan-led growth
-            is already worth more than you're counting.
+            The Fan Score<span className="tm">™</span> takes two minutes and
+            shows where your fan-led growth is already worth more than you're
+            counting.
           </p>
           <div className="meth-ctas">
             <Link to="/fan-score" className="btn btn--lg meth-close__cta">

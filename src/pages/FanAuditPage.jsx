@@ -177,7 +177,7 @@ function loadHtml2Canvas() {
 
 export default function FanAuditPage() {
   useDocumentMeta({
-    title: 'The Fan Score · How fan-led is your growth? · Laura Cordrey',
+    title: 'The Fan Score™ · How fan-led is your growth? · Laura Cordrey',
     description:
       'A short diagnostic that tells you how fan-led your growth is today, and the one move that would grow it. Two minutes.',
     canonical: pageUrl('/fan-score'),
@@ -213,7 +213,7 @@ function IntroScreen({ onStart }) {
       <h1 className="fa-h1">How fan-led is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-led growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
-      <button className="fa-btn" onClick={onStart}>Get my Fan Score</button>
+      <button className="fa-btn" onClick={onStart}>Get my Fan Score<span className="tm">™</span></button>
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
         Prefer to skip to the numbers?{' '}
         <Link to="/fan-value" style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>
@@ -223,7 +223,7 @@ function IntroScreen({ onStart }) {
       <div className="fa-fold">
         <span className="fa-foldkick"><Sparkle />The person behind it</span>
         <p className="fa-foldbio">
-          I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine, my framework for fan-led growth. This Fan Score is part of it.
+          I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine<span className="tm">™</span>, my framework for fan-led growth. This Fan Score is part of it.
         </p>
         <div className="fa-foldsign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
       </div>
@@ -387,7 +387,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
   const tText = tColor
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle />The Fan Score</div>
+      <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span></div>
       <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
       <p className="fa-numlabel">
         of your growth is fan-led. The other {scored.rented}% is untapped fan potential.
@@ -629,7 +629,7 @@ function PreFlow({ screen, setScreen }) {
   if (screen === 'preIntro') {
     return (
       <section className="fa-rel">
-        <div className="fa-fig"><Sparkle />The Fan Score · Pre-launch edition</div>
+        <div className="fa-fig"><Sparkle />The Fan Score<span className="tm">™</span> · Pre-launch edition</div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
         <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
         <p className="fa-introget">No numbers needed. A minute or two.</p>

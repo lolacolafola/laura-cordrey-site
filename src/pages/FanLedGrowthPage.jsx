@@ -303,7 +303,7 @@ export default function FanLedGrowthPage() {
             </p>
             <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
               <Link to="/fan-engine" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
-                See how the Fan Engine works</Link>
+                See how the Fan Engine<span className="tm">™</span> works</Link>
             </div>
           </div>
         </div>
@@ -399,7 +399,7 @@ export default function FanLedGrowthPage() {
             * as "Get in touch" on every screen, and the second button here
             * goes to /services, which opens with two ways to talk. */}
           <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: 'rgba(251,244,230,.82)', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>
-            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ox">Take the 2-minute Fan Score&nbsp;&rarr;</Link>
+            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ox">Take the 2-minute Fan Score<span className="tm">™</span>&nbsp;&rarr;</Link>
           </p>
         </div>
       </section>

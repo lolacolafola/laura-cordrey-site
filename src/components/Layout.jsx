@@ -39,9 +39,11 @@ const footerLinks = [
   { label: 'Home',      to: '/' },
   { label: 'Work',      to: '/work' },
   { label: 'Services',  to: '/services' },
-  { label: 'The Fan Engine', to: '/fan-engine' },
-  { label: 'Fan Score', to: '/fan-score' },
-  { label: 'Fan Value', to: '/fan-value' },
+  // CLAUDE.md: in JSX the mark is the styled <span className="tm">, not a bare
+  // ™ character, which would render at full size and sit heavy in a footer row.
+  { label: <>The Fan Engine<span className="tm">™</span></>, to: '/fan-engine' },
+  { label: <>Fan Score<span className="tm">™</span></>, to: '/fan-score' },
+  { label: <>Fan Value<span className="tm">™</span></>, to: '/fan-value' },
   { label: 'AI',        to: '/ai' },
   { label: 'Speaking',  to: '/speaking' },
   { label: 'About',     to: '/about' },
@@ -183,7 +185,7 @@ export default function Layout({ children }) {
           </div>
           <nav className="cinfoot__nav">
             {footerLinks.map((n) => (
-              <Link key={n.label} to={n.to} className="cinfoot__link">{n.label}</Link>
+              <Link key={n.to} to={n.to} className="cinfoot__link">{n.label}</Link>
             ))}
           </nav>
         </div>

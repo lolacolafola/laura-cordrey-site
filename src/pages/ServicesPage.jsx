@@ -88,11 +88,16 @@ const OFFERS = [
     teaser: 'When your community turns, move fast.',
     need: 'your community has turned on you in public, and it’s getting worse.',
     get:
-      'the real cause found in days, a fix shipped across product and community in one to two weeks, and sentiment tracked so you watch it climb back.',
+      'the real cause found in days, a fix shipped across product and community, and sentiment tracked so you watch it climb back. Five days when it is contained, longer when it runs deep or wide.',
     payoff: 'you keep the customers a blow-up would have cost you.',
     proofFig: '85% positive sentiment',
     proofRest: 'held across a 15M-player community. Ghost Recon, Ubisoft.',
-    meta: '1 to 2 weeks',
+    /* Five days to two weeks and up, per Laura 23 Jul 2026. This said "1 to 2
+     * weeks", which was wrong at both ends: it hid the five-day path and it
+     * capped something that can legitimately run longer. Do not put a fixed
+     * duration back here — the whole point is that it scales to the urgency
+     * and the size of the problem. The FAQ carries the same range. */
+    meta: 'From 5 days · Scoped to the urgency and the size',
     cta: { label: 'It’s urgent, let’s talk', need: 'sos' },
     note: 'In a crisis right now? We can start this week.',
   },
@@ -157,7 +162,7 @@ export default function ServicesPage() {
   useDocumentMeta({
     title: 'Work with me · Laura Cordrey · Fan-led growth',
     description:
-      'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine, or advisory. Free 2-minute Fan Score.',
+      'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine™, or advisory. Free 2-minute Fan Score™.',
     canonical: pageUrl('services'),
     ogType: 'website',
     jsonLd: serviceJsonLd(),
@@ -467,15 +472,15 @@ export default function ServicesPage() {
         <div className="container svc-finale__inner">
           <h2 className="svc-finale__title">What&rsquo;s your fanbase worth?</h2>
           <p className="svc-finale__line">
-            Take the 2-minute Fan Score, or tell me what&rsquo;s going on.
+            Take the 2-minute Fan Score<span className="tm">™</span>, or tell me what&rsquo;s going on.
           </p>
           <div className="svc-finale__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
             <Link to="/fan-score" className="btn btn--lg svc-finale__ghost">
-              Take the 2-min Fan Score</Link>
+              Take the 2-min Fan Score<span className="tm">™</span></Link>
             <Link to="/fan-value" className="btn btn--lg svc-finale__ghost">
-              Size your Fan Value</Link>
+              Size your Fan Value<span className="tm">™</span></Link>
           </div>
           <p className="svc-finale__note">
             Prefer to send a note?{' '}

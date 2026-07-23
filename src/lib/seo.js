@@ -22,7 +22,7 @@ export const AUTHOR = {
   name: 'Laura Cordrey',
   jobTitle: 'Fan-led growth for consumer brands. Brand, product, community, growth.',
   description:
-    'Builds fan-led growth for consumer brands: the Fan Engine that turns communities into measurable revenue.',
+    'Builds fan-led growth for consumer brands: the Fan Engine™ that turns communities into measurable revenue.',
   url: SITE_URL,
   sameAs: [
     'https://www.linkedin.com/in/lauracordrey/',
@@ -30,7 +30,7 @@ export const AUTHOR = {
   knowsAbout: [
     'Fan-Led Growth',
     'Product-Led Growth',
-    'the Fan Engine',
+    'Fan Engine™',
     'Community Strategy',
     'Brand Strategy',
     'Creator Programs',
@@ -251,7 +251,7 @@ export function methodologyJsonLd({ stages }) {
       {
         '@type': 'DefinedTerm',
         '@id': `${pageUrl('fan-engine')}#fan-engine`,
-        name: 'the Fan Engine',
+        name: 'the Fan Engine™',
         description:
           'A five-stage methodology for turning passive audiences into fans that build a business: Activation, Habit, Belonging, Identity, Advocacy. Built by Laura Cordrey across brand, product, community and growth work at Ubisoft, BlaBlaCar, US Mobile and Azarus / Animoca.',
         inDefinedTermSet: 'Fan-Led Growth methodology',
@@ -259,7 +259,7 @@ export function methodologyJsonLd({ stages }) {
       },
       {
         '@type': 'HowTo',
-        name: 'How to build a fan-led growth engine using the Fan Engine',
+        name: 'How to build a fan-led growth engine using the Fan Engine™',
         description:
           'Five-stage methodology by Laura Cordrey for turning passive audiences into fans that drive measurable growth.',
         author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
