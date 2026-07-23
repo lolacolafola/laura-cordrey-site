@@ -213,7 +213,7 @@ function IntroScreen({ onStart }) {
       <h1 className="fa-h1">How fan-led is your growth?</h1>
       <p className="fa-lede">Paid growth stops the moment you stop paying. Fan-led growth keeps going.</p>
       <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
-      <button className="fa-btn" onClick={onStart}>Get my Fan Score <span aria-hidden="true">→</span></button>
+      <button className="fa-btn" onClick={onStart}>Get my Fan Score</button>
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
         Prefer to skip to the numbers?{' '}
         <Link to="/fan-value" style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>
@@ -413,7 +413,7 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
           value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })}
         />
         <div className="fa-fldnote">{err}</div>
-        <button className="fa-btn" type="submit">Show my full result <span aria-hidden="true">→</span></button>
+        <button className="fa-btn" type="submit">Show my full result</button>
       </form>
       <p className="fa-trust">No spam. Your result, plus the occasional note on fan-led growth. Unsubscribe anytime.</p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
@@ -635,7 +635,7 @@ function PreFlow({ screen, setScreen }) {
         <p className="fa-introget">No numbers needed. A minute or two.</p>
         <hr className="fa-rule" />
         <div className="fa-actionrow">
-          <button className="fa-btn" onClick={startQuiz}>Check my readiness <span aria-hidden="true">→</span></button>
+          <button className="fa-btn" onClick={startQuiz}>Check my readiness</button>
           <button className="fa-back" onClick={() => setScreen('gate')}>← Back</button>
         </div>
       </section>
@@ -883,7 +883,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
               value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })}
             />
             <div className="fa-fldnote">{err}</div>
-            <button className="fa-btn" type="submit">Send it to me →</button>
+            <button className="fa-btn" type="submit">Send it to me</button>
           </form>
         ) : (
           <p className="fa-trust">Sent. Check your inbox in a minute.</p>

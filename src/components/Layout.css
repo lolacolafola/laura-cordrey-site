@@ -96,7 +96,9 @@
   white-space: nowrap; /* keep "Let’s talk" on one line */
   gap: 8px;
   background: #C8362B;
-  color: #EFE9DC;
+  /* Cream not bone: #EFE9DC here measured 4.32 at 13.12px against 4.5. This is
+     the nav CTA, so it was the one failure present on every page. */
+  color: #FCFAF3;
   font-weight: 700;
   font-size: 0.82rem;
   padding: 10px 18px;
@@ -241,11 +243,14 @@ html { scroll-behavior: smooth; }
   color: #EFE9DC;
 }
 .cinfoot__line { font-size: 0.92rem; color: #8A8078; }
+/* #5E564E measured 2.72 on the #0E0B09 footer ground against the 4.5 small-text
+   minimum — it failed on all twelve pages, because this footer is global.
+   #80786E is 4.51: the quietest value that actually passes. Fixed 23 Jul 2026. */
 .cinfoot__meta {
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #5E564E;
+  color: #80786E;
   font-weight: 600;
   margin-top: 4px;
 }
@@ -254,6 +259,10 @@ html { scroll-behavior: smooth; }
   flex-wrap: wrap;
   gap: 18px 24px;
 }
+/* Padding + matching negative margin grows the tap target without moving
+   anything: these rendered 19px tall (and "AI" only 15px wide) against the
+   24x24 minimum in WCAG 2.2 SC 2.5.8, on every page. Now 29x25 minimum, with
+   the visual layout unchanged because the margin cancels the padding. */
 .cinfoot__link {
   font-size: 0.78rem;
   letter-spacing: 0.14em;
@@ -262,6 +271,9 @@ html { scroll-behavior: smooth; }
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
+  display: inline-block;
+  padding: 5px;
+  margin: -5px;
 }
 .cinfoot__link:hover { color: #D4C896; }
 .cinfoot__copy {
@@ -269,20 +281,26 @@ html { scroll-behavior: smooth; }
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 64px) clamp(32px, 4vw, 48px);
   font-size: 0.78rem;
-  color: #5E564E;
+  color: #80786E;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px 10px;
 }
+/* Was #4A4239 at 1.99 — the worst contrast on the site. It is only a separator,
+   but it is still text, and it sat below half the required ratio. */
 .cinfoot__sep {
-  color: #4A4239;
+  color: #80786E;
 }
+/* Same 19px tap-target problem as .cinfoot__link, same padding/margin fix. */
 .cinfoot__contact {
   color: rgba(239, 233, 220, 0.6);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
+  display: inline-block;
+  padding: 5px;
+  margin: -5px;
 }
 .cinfoot__contact:hover {
   color: #D4C896;

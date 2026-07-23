@@ -783,18 +783,16 @@
 }
 /* .about-talk is a plain <div> since 22 Jul 2026, not a <Link>. The card as a
    whole no longer navigates anywhere, so under the hover-honesty rule it must
-   not react to the cursor either: the lift and the border flash moved onto
-   .about-talk__btn, which is the element that actually does something. */
+   not react to the cursor either. The red border flash is gone as of
+   23 Jul 2026: the frame is the card, and the card does nothing. The cursor
+   response lives on .about-talk__btn — the image scale and the play disc —
+   which is the element that actually plays the clip. */
 .about-talk {
   display: block;
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
   overflow: hidden;
   color: inherit;
-  transition: border-color var(--transition);
-}
-.about-talk:has(.about-talk__btn:hover) {
-  border-color: var(--accent);
 }
 /* The clickable layer. Resets the UA button styling and fills the thumb. */
 .about-talk__btn {
@@ -890,7 +888,10 @@
   color: var(--edge);
   text-decoration: none;
   border-bottom: 1px solid rgba(212, 200, 150, 0.32);
-  padding-bottom: 2px;
+  /* Was 23px tall, 1px under the 24px minimum target size. */
+  display: inline-block;
+  padding-bottom: 3px;
+  padding-top: 2px;
   transition: color var(--transition), border-color var(--transition);
 }
 .about-txtlink:hover {

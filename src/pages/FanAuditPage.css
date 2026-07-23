@@ -6,7 +6,7 @@
   /* Locally scoped tokens matching the handoff. Prefix fa- so nothing leaks
      into other pages. Colors and sizes are per the design's `:root` block. */
   --fa-bg: #0E0B09;
-  --fa-paper: #EFE9DC;
+  --fa-paper: #FCFAF3;
   --fa-ink: #15110F;
   --fa-muted: #6B6157;
   --fa-faint: #6E655C;
@@ -67,7 +67,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 44px;
   line-height: 1.1;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.04em;
   margin: 14px 0 8px;
   padding-bottom: 7px;

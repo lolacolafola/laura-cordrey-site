@@ -3,7 +3,14 @@
  * .cinv2 (homepage v2). Matches the v2 aesthetic: 700-weight headings,
  * lighter type scale. */
 
-.flg mark { background: transparent; color: #C8362B; font-weight: inherit; }
+/* No hardcoded colour. This rule used to pin `color: #C8362B`, which is exactly
+   the failure CLAUDE.md records against HomePage.css: a page-level mark rule
+   silently beating the ground system. It cost two AA failures on this page —
+   "fan-led growth" at 4.32 and "Fan Engine™" at 3.59, both 16.8px body marks
+   needing 4.5. Letting the variables resolve gives the brand red on grounds
+   that can take it and --accent-deep / --accent-light where they cannot.
+   Heading marks pick up --accent-display automatically via base.css. */
+.flg mark { background: transparent; font-weight: inherit; color: var(--accent-text); }
 /* On the oxblood close, the red mark measures 1.4:1 and effectively vanishes.
  * Ink is no better there (2.54), so the mark takes the band's own gold, which
  * is 5.21 and is already the eyebrow and rule colour on that ground. Cream is

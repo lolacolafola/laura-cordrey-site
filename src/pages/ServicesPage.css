@@ -143,11 +143,6 @@
 /* No colour here: the hero sets --accent-display itself (brown cannot take the
    brand red at any size) and base.css applies it to `h1 mark`. */
 .svc-hero__title mark { background: transparent; }
-.svc-hero__backlink {
-  font-size: 0.95rem;
-  color: #B8AEA2;
-  margin: clamp(14px, 1.8vw, 18px) 0 0;
-}
 .svc-hero__ctas {
   display: flex;
   flex-wrap: wrap;

@@ -257,7 +257,7 @@ export default function FanLedGrowthPage() {
                   On conservative benchmarks: revenue from fans who buy again, plus the ad spend you save when they bring others in. An example, not your numbers.
                 </p>
               </div>
-              <Link to="/fan-value" className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', flex: 'none' }}>
+              <Link to="/fan-value" className="flg-btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#FCFAF3', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', flex: 'none' }}>
                 See what your fans are worth</Link>
             </div>
           </div>

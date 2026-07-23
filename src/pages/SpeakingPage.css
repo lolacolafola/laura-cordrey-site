@@ -310,7 +310,10 @@
 
 .sp-caselink {
   display: inline-block;
-  margin-top: 14px;
+  /* Standalone link, not inline in a sentence, so it needs the 24px minimum
+     target size. It rendered 21px tall. */
+  padding: 5px 0;
+  margin-top: 9px;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;

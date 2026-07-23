@@ -34,11 +34,11 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--ink);
-  transition: color var(--transition);
 }
-.logo-banner__cell:hover .logo-banner__name {
-  color: var(--accent);
-}
+/* No :hover here. The cell is an <li> and the banner does not navigate, and
+   CLAUDE.md names logos explicitly among the things that stay static under the
+   cursor. The name used to turn --accent on hover, promising a click that never
+   existed. Removed 23 Jul 2026. */
 
 .logo-banner__sep {
   font-family: var(--font-display);

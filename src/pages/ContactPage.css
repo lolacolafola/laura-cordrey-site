@@ -2,7 +2,15 @@
  * tool pages (converted from the old near-black), with a soft warm halo top-right.
  * Centered 660px column so the form reads as editorial, not a spreadsheet. */
 
+/* This element owns the bone ground, so it declares the red pair here rather
+   than relying on a page-level .on-light (per CLAUDE.md: set the variables on
+   the innermost element that owns a ground). The brand red #C8362B measures
+   4.32 on bone — fine for display, a fail for the 12-15px text this page is
+   mostly made of. --accent-deep is 7.13 on bone and 8.26 on the cream cards
+   nested inside, so one declaration covers both grounds. 23 Jul 2026. */
 .contact-page {
+  --accent-display: var(--accent-deep);
+  --accent-text: var(--accent-deep);
   position: relative;
   min-height: 100vh;
   background: #EFE9DC;
@@ -40,7 +48,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #C8362B;
+  color: var(--accent-text);
   font-weight: 700;
   margin-bottom: 16px;
 }
@@ -48,11 +56,11 @@
   font-size: clamp(2rem, 5.5vw, 2.9rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0 0 14px;
   color: #15110F;
 }
-.contact-title__mark { color: #C8362B; }
+.contact-title__mark { color: var(--accent-display); }
 .contact-lede {
   font-size: clamp(1.02rem, 1.6vw, 1.2rem);
   line-height: 1.55;
@@ -67,7 +75,7 @@
   margin: -20px 0 clamp(32px, 5vw, 42px);
   font-size: 0.94rem;
   line-height: 1.5;
-  color: #8A6D2E;
+  color: #6E5520;
   font-weight: 600;
   max-width: 52ch;
 }
@@ -115,7 +123,7 @@
 }
 .contact-picker__icon {
   display: inline-flex;
-  color: #C8362B;
+  color: var(--accent-text);
 }
 .contact-picker__ttl {
   font-size: 1.06rem;
@@ -132,7 +140,9 @@
 .contact-picker__other {
   display: inline-block;
   margin: 14px 0 0;
-  padding: 0 0 2px;
+  /* 23px tall against the 24px WCAG 2.2 SC 2.5.8 minimum; 4px of top padding
+     clears it without shifting the dotted underline. */
+  padding: 4px 0 2px;
   background: none;
   border: none;
   border-bottom: 1px dotted rgba(21, 17, 15, 0.28);
@@ -143,9 +153,9 @@
   color: #5E564E;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.contact-picker__other:hover { color: #C8362B; border-bottom-color: #C8362B; }
+.contact-picker__other:hover { color: var(--accent-text); border-bottom-color: var(--accent-text); }
 .contact-picker__other.is-active {
-  color: #C8362B;
+  color: var(--accent-text);
   border-bottom-color: #C8362B;
   border-bottom-style: solid;
 }
@@ -173,8 +183,8 @@
   font-weight: 600;
   margin-bottom: 7px;
 }
-.contact-field__req { color: #C8362B; }
-.contact-field__hint { color: #8A8078; font-weight: 400; }
+.contact-field__req { color: var(--accent-text); }
+.contact-field__hint { color: #6B6157; font-weight: 400; }
 
 .contact-field input,
 .contact-field textarea,
@@ -203,7 +213,7 @@
   box-shadow: 0 0 0 3px rgba(200, 54, 43, 0.15);
 }
 .contact-field input::placeholder,
-.contact-field textarea::placeholder { color: #8A8078; }
+.contact-field textarea::placeholder { color: #6B6157; }
 
 /* Select — hides native chevron, drops a chevron via bg-image. */
 .contact-select {
@@ -234,13 +244,13 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #8A6D2E;
+  color: #6E5520;
   font-weight: 700;
   margin: 0;
 }
 
 .contact-error {
-  color: #C8362B;
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   margin: 0;
@@ -256,7 +266,8 @@
 }
 .contact-submit__note {
   font-size: 12px;
-  color: #8A8078;
+  /* #8A8078 measured 3.19 on the cream field ground. */
+  color: #6B6157;
   margin: 14px 0 0;
 }
 
@@ -290,7 +301,7 @@
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
-  color: #C8362B;
+  color: var(--accent-text);
   border-bottom: 1px solid rgba(200, 54, 43, 0.4);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -303,7 +314,7 @@
   color: #5E564E;
 }
 .contact-fallback a {
-  color: #C8362B;
+  color: var(--accent-text);
   text-decoration: none;
   border-bottom: 1px solid rgba(200, 54, 43, 0.3);
   transition: color 0.2s ease, border-color 0.2s ease;
@@ -318,6 +329,6 @@
   padding-top: 20px;
   border-top: 1px solid rgba(21, 17, 15, 0.12);
   font-size: 12px;
-  color: #8A8078;
+  color: #6B6157;
   line-height: 1.6;
 }

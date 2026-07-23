@@ -202,7 +202,7 @@
    benchmark's cards (ratio ~1.1, taller than wide): at the ~337px card width
    on a wide desktop this lands near 400px, a ratio of ~1.2. */
 .cinv2 .svcard { min-height: clamp(320px, 30vw, 408px); }
-/* The copy appears beneath the kicker. Nothing fades out, so there is no
+/* The copy opens beneath the kicker on hover. Nothing fades out, so there is no
  * overlap to time and nothing can flicker: the number, title and kicker are
  * permanent, and only the copy changes state.
  *
@@ -211,10 +211,26 @@
  * it opens: height, opacity and position animate together, 0.42s ease.
  *
  * grid-template-rows animates cleanly from 0fr to 1fr, which is what lets the
- * copy push in smoothly rather than snapping to its height. */
+ * copy push in smoothly rather than snapping to its height.
+ *
+ * HOVER-HONESTY NOTE. .svcard is a plain <div> that navigates nowhere, so this
+ * is a second deliberate exception to the rule, alongside .casec below.
+ * Removed 23 Jul 2026 during the consistency audit, restored the same day at
+ * Laura's request. As with .casec the cursor stays the default arrow, so the
+ * card never promises a click.
+ *
+ * What keeps it honest rather than merely permitted is the
+ * (hover: none) / prefers-reduced-motion block further down, which opens the
+ * copy from the start on touch devices and for reduced-motion users, so the
+ * description of the offer is never unreachable. DO NOT remove that block while
+ * this hover exists. */
 .cinv2 .svcard-body {
   display: flex;
   flex-direction: column;
+  /* Bottom-anchored, which is what aligns the three titles while the copy sits
+     collapsed. (It does NOT align them if the copy is ever made permanently
+     visible — the three blocks are different heights, and the shortest card's
+     title drops ~15px below the other two.) */
   margin-top: auto;
 }
 .cinv2 .svcard-kicker { margin-top: 12px; }
@@ -276,7 +292,9 @@
 
 /* Touch and reduced motion: the copy is open from the start, so nothing is
    hidden behind a hover the device cannot perform. The kicker stays, since
-   nothing needs to fade out to make room. */
+   nothing needs to fade out to make room.
+   This block is load-bearing, not a nicety — it is the reason the hover on a
+   non-interactive card is acceptable at all. See the note above .svcard-body. */
 @media (hover: none), (prefers-reduced-motion: reduce) {
   .cinv2 .svcard-copy {
     grid-template-rows: 1fr;
@@ -289,7 +307,8 @@
 
 /* ─── 5 · Case cards ────────────────────────────────────── */
 /* Image on top, cream text panel below (the original .statc pattern).
- * The card lifts on hover and it navigates, so the motion is honest.
+ * (These do NOT navigate — see the note below on the deliberate hover
+ * exception. An earlier version of this line claimed they did.)
  *
  * NO red top rule. One was added here to "complete the motif" and it was the
  * wrong call: this section already carries a red eyebrow, a red rule, three

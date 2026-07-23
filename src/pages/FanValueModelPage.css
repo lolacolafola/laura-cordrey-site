@@ -7,14 +7,19 @@
      the handoff exactly. Names mirror the handoff's --lc-* vars. */
   --fvm-page-bg: #0E0B09;
   --fvm-ink: #15110F;
-  --fvm-cream: #EFE9DC;
+  --fvm-cream: #FCFAF3;
   --fvm-card-bone: #FCFAF3;
   --fvm-red: #C8362B;
   --fvm-red-deep: #8E2520;
   --fvm-gold: #D4C896;
   --fvm-muted: #6B6157;
   --fvm-body: #4A423B;
-  --fvm-faint: #9A8E7C;
+  /* Was #9A8E7C, which measured 3.08 on the cream card and 2.66 on the bone
+     page. It carries the field hints, the currency label, the footnotes and the
+     citations — all 11.5-12px, so all needing 4.5, and this one variable was
+     eight of this page's failures. #786E60 is 4.79 on cream, 4.14 on bone: it
+     is only used on cream. Still clearly the quietest grey of the three. */
+  --fvm-faint: #786E60;
   --fvm-hair: rgba(21, 17, 15, 0.10);
   --fvm-hair-soft: rgba(21, 17, 15, 0.08);
   --fvm-ease: cubic-bezier(0.16, 0.84, 0.44, 1);
@@ -97,7 +102,7 @@
 .fvm-h1 {
   font-size: clamp(2.2rem, 4.6vw, 2.9rem);
   line-height: 1.03;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.03em;
   margin: 16px 0 10px;
   color: var(--fvm-ink);
@@ -850,7 +855,9 @@
   color: rgba(239, 233, 220, 0.62);
 }
 .fvm-comp__split b { color: #EFE9DC; font-weight: 800; }
-.fvm-comp__splitdot { color: rgba(239, 233, 220, 0.35); }
+/* .35 alpha over the dark chart ground measured 2.86. .62 clears 4.5 while
+   still reading as a separator rather than a character. */
+.fvm-comp__splitdot { color: rgba(239, 233, 220, 0.62); }
 
 /* Chart-in-dark overrides */
 .fvm-reveal .fvm-chart { margin-top: 48px; }

@@ -275,8 +275,25 @@ export default function HomePage() {
     >
       {/* ─── 1 · HERO ─── */}
       <section id="top" style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#0E0B09' }}>
-        <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '70vw', height: '70vw', maxWidth: 820, maxHeight: 820, background: 'radial-gradient(circle,rgba(200,54,43,.15) 0%,rgba(200,54,43,0) 62%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '55vw', height: '55vw', maxWidth: 640, maxHeight: 640, background: 'radial-gradient(circle,rgba(212,200,150,.07) 0%,rgba(212,200,150,0) 60%)', pointerEvents: 'none' }} />
+        {/* Two glows, both warm, both off-centre so the hero has a light
+          * source rather than a vignette. Raised from .15/.07: at those values
+          * they read as a rendering artefact rather than a deliberate glow.
+          * The ceiling is contrast, not taste — the cream headline and the red
+          * `stay, pay, bring more` sit on top of the red one, and every point
+          * of alpha lifts the ground under them.
+          *
+          * Measured on the composited ground, worst point under each word:
+          *   cream h1        13.85  (needs 3.0 at 84px)
+          *   mark "stay"      3.43
+          *   mark "pay"       3.24  ← worst
+          *   mark "bring more" 3.27
+          *   lede 16.8px     14.51  (needs 4.5)
+          * On the flat #0E0B09 the marks measured 3.75. The glow spends most
+          * of that headroom: .26 is near the ceiling, and .30+ puts "pay"
+          * under 3.0. If this needs to go brighter, the marks move to
+          * #E4695E first (the known-good red on dark), not the glow. */}
+        <div className="heroglow" style={{ position: 'absolute', top: '-20%', right: '-10%', width: '78vw', height: '78vw', maxWidth: 900, maxHeight: 900, background: 'radial-gradient(circle,rgba(200,54,43,.26) 0%,rgba(200,54,43,.08) 45%,rgba(200,54,43,0) 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-25%', left: '-12%', width: '62vw', height: '62vw', maxWidth: 720, maxHeight: 720, background: 'radial-gradient(circle,rgba(212,200,150,.13) 0%,rgba(212,200,150,.04) 45%,rgba(212,200,150,0) 68%)', pointerEvents: 'none' }} />
 
         {/* Type-led hero. Centred deliberately: left-aligned copy with an
           * empty right half read as "the image failed to load" rather than
@@ -313,7 +330,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ marginTop: 'clamp(26px,3.2vw,36px)' }}>
-              <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
+              <a href="#contact" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: '#C8362B', color: '#FCFAF3', fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease' }}>
                 Get in touch
               </a>
             </div>
@@ -446,16 +463,10 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* The way back to the argument, for anyone not yet sold on the
-            * premise. Quieter than the services link above it on purpose:
-            * this is the second read, not the first. It is also the only
-            * link to /fan-led-growth from the homepage, so the wording is
-            * the phrase people actually search for. */}
-          <div data-rev style={{ textAlign: 'center', marginTop: 'clamp(14px,1.6vw,18px)' }}>
-            <Link to="/fan-led-growth" className="tlink" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'rgba(239,233,220,.62)', fontWeight: 600, fontSize: '.88rem', textDecoration: 'none', borderBottom: '1px solid rgba(239,233,220,.22)', paddingBottom: 3 }}>
-              How customers become fans <span className="ar" aria-hidden>→</span>
-            </Link>
-          </div>
+          {/* No second link to /fan-led-growth under "See all services". This
+            * section gets one exit, and it is the services one. "Why fans" is
+            * the first nav item on every page, so the route stays one click
+            * away; /methodology carries the remaining body link. */}
         </div>
       </section>
 
@@ -599,7 +610,7 @@ export default function HomePage() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
-                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-score" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#FCFAF3', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Take the quiz
                 </Link>
               </div>
@@ -622,7 +633,7 @@ export default function HomePage() {
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>
-                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#EFE9DC', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
+                <Link to="/fan-value" className="btnp" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#C8362B', color: '#FCFAF3', fontWeight: 700, fontSize: '.96rem', padding: '13px 24px', borderRadius: 3, border: '1px solid #C8362B', textDecoration: 'none', transition: 'background .2s ease,color .2s ease,border-color .2s ease', marginTop: 'auto', alignSelf: 'flex-start' }}>
                   Run the numbers
                 </Link>
               </div>

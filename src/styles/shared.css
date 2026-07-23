@@ -613,10 +613,14 @@
   transition: transform 0.2s ease;
 }
 .btn:hover > span[aria-hidden="true"] { transform: translateX(3px); }
+/* Cream, not bone. --surface (#EFE9DC) on --accent (#C8362B) measures 4.32, and
+   the label is 17.28px/700 — under the 18.66px bold line, so it needs 4.5, not
+   3.0. Every red CTA on the site was failing AA by that margin. Cream #FCFAF3
+   on the same red is 5.00. Measured 23 Jul 2026. */
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--surface);
+  color: #FCFAF3;
 }
 .btn--primary:hover {
   /* Gold on hover (dark text) — the warmer, more colourful lift used on the

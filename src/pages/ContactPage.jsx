@@ -360,18 +360,6 @@ export default function ContactPage() {
                             placeholder="London, Paris, New York"
                           />
                         </div>
-                        <div className="contact-field">
-                          <label htmlFor="contact-event-budget">
-                            Speaker budget <span className="contact-field__hint">(optional)</span>
-                          </label>
-                          <select id="contact-event-budget" name="event_budget" className="contact-select">
-                            <option value="">Prefer to discuss</option>
-                            <option>Under £2k</option>
-                            <option>£2k–£5k</option>
-                            <option>£5k–£10k</option>
-                            <option>£10k+</option>
-                          </select>
-                        </div>
                       </div>
                     </div>
                   )}
@@ -396,8 +384,12 @@ export default function ContactPage() {
                   )}
 
                   <div className="contact-submit">
+                    {/* No arrow. Site convention is arrows on text links only
+                      * ("See all work →"), never inside a filled button —
+                      * /about, /services, /faq, /speaking and /ai all carry a
+                      * bare label. This was the only .btn--primary with one. */}
                     <button type="submit" className="btn btn--primary btn--lg contact-submit__btn" disabled={sending}>
-                      {sending ? 'Sending…' : submitLabel} <span aria-hidden="true">→</span>
+                      {sending ? 'Sending…' : submitLabel}
                     </button>
                     <p className="contact-submit__note">
                       Goes straight to my inbox. I read every one and reply within one working day.

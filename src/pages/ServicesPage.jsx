@@ -213,15 +213,11 @@ export default function ServicesPage() {
             Make the userbase you already paid for worth more. Protect it, grow
             from it, deepen it, or build the whole system that does all three.
           </p>
-          {/* One of this page's two inbound links to /fan-led-growth in the
-            * built HTML. Do not remove it without checking the other. */}
-          <p className="svc-hero__backlink">
-            New to this? Start with{' '}
-            <Link to="/fan-led-growth" className="svc-txtlink">
-              how customers become fans
-            </Link>
-            .
-          </p>
+          {/* No backlink to /fan-led-growth here on purpose. It used to sit
+            * between the lede and the CTA, offering an exit at the one moment
+            * this page is asking for a conversation. "Why fans" is the first
+            * nav item on every page, so the route is still one click away, and
+            * the homepage and /methodology both link it in body copy. */}
           <div className="svc-hero__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
