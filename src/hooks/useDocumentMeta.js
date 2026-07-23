@@ -11,6 +11,18 @@ export default function useDocumentMeta({
   ogType = 'article',
   jsonLd,
 } = {}) {
+  // Serialised once, outside the effect, so it can be a statically checkable
+  // dependency. It used to be inlined as JSON.stringify(jsonLd) in the deps
+  // array, which eslint cannot analyse — it warned both that the expression was
+  // too complex to check and that `jsonLd` itself was missing.
+  //
+  // The string, not the object, is deliberately the dependency: callers build
+  // their schema inline (jsonLd: authorJsonLd(), jsonLd: caseStudyJsonLdFor(…)),
+  // so a fresh object identity arrives on every render and depending on the
+  // object would re-run this effect forever. Comparing the serialised value
+  // re-runs it only when the schema actually changes.
+  const jsonLdKey = jsonLd ? JSON.stringify(jsonLd) : null
+
   useEffect(() => {
     const prevTitle = document.title
     if (title) document.title = title
@@ -101,5 +113,9 @@ export default function useDocumentMeta({
       })
       if (jsonLdEl) jsonLdEl.parentNode?.removeChild(jsonLdEl)
     }
-  }, [title, description, canonical, ogImage, ogType, JSON.stringify(jsonLd)])
+    // jsonLdKey is the serialised form of jsonLd and is what we intentionally
+    // compare on; see the note where it is defined. The rule cannot know the
+    // two are equivalent, so it is silenced on the deps line itself.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, description, canonical, ogImage, ogType, jsonLdKey])
 }

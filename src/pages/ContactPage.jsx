@@ -85,12 +85,21 @@ export default function ContactPage() {
 
   // If the URL adds ?intent=X after mount (e.g. same-page nav from a CTA),
   // keep local intent in sync so deep-links work end-to-end.
-  useEffect(() => {
-    if (initialIntent && initialIntent !== intent && !submitted) {
-      setIntent(initialIntent)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialIntent])
+  //
+  // Adjusted during render rather than in an effect, the same React pattern as
+  // the drawer in Layout.jsx. The guard is on the PREVIOUS ?intent value, not
+  // on the current state: keying off `intent` would fight the user, snapping
+  // the picker back every time they chose a different lane from the one the URL
+  // named. Keying off the previous URL value means this fires once per actual
+  // URL change and never again, so a manual pick sticks.
+  //
+  // The !submitted guard stays: a success screen should not be yanked back to
+  // the form because a CTA elsewhere changed the query string.
+  const [prevIntentParam, setPrevIntentParam] = useState(initialIntent)
+  if (initialIntent !== prevIntentParam) {
+    setPrevIntentParam(initialIntent)
+    if (initialIntent && !submitted) setIntent(initialIntent)
+  }
 
   // Arriving from a Services CTA (?need=…) pre-selects the offer. Drop the
   // visitor straight onto the form so mobile isn't stranded at the picker.

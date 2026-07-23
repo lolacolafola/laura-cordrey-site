@@ -69,7 +69,22 @@ export default function Layout({ children }) {
   }
 
   // Close drawer on route change.
-  useEffect(() => { setMenuOpen(false) }, [location.pathname])
+  //
+  // Adjusted during render rather than in an effect. This is React's documented
+  // pattern for "reset state when a value changes" (You Might Not Need an
+  // Effect), and it is better here, not just quieter: React re-runs the
+  // component immediately without committing the in-between state, so the
+  // drawer cannot paint open for a frame on the new route. The effect version
+  // closed it one commit late.
+  //
+  // Not redundant with the onClick handlers on the drawer links further down.
+  // Those cover a tap on a link; this covers browser back/forward and any
+  // programmatic navigation that happens while the drawer is open.
+  const [prevPath, setPrevPath] = useState(location.pathname)
+  if (location.pathname !== prevPath) {
+    setPrevPath(location.pathname)
+    setMenuOpen(false)
+  }
 
   // Close drawer on Escape.
   useEffect(() => {
