@@ -1,0 +1,140 @@
+<!doctype html>
+<!--
+  Source of truth for public/og-image.jpg (1200×630, the link preview card).
+
+  Why this file exists: the OG image used to be a flat JPG with no source, so
+  changing a single word meant rebuilding it by hand in a design tool. It is now
+  rendered from this template by scripts/build-og.mjs.
+
+  Colours are the site tokens, sampled back out of the original JPG to confirm:
+  ground #0E0B09, bone #EFE9DC, accent #C8362B, gold #E7D9AD.
+
+  Render it with:  npm run og
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html, body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        background: #0E0B09;
+        font-family: 'Manrope', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* The red bloom, top right. Same gesture as the homepage hero: one warm
+       * light source off the corner, never a flat panel of colour. */
+      .glow {
+        position: absolute;
+        top: -300px;
+        right: -230px;
+        width: 820px;
+        height: 700px;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(200, 54, 43, 0.38) 0%,
+          rgba(200, 54, 43, 0.15) 30%,
+          rgba(200, 54, 43, 0.04) 52%,
+          rgba(200, 54, 43, 0) 68%
+        );
+      }
+
+      .card {
+        position: relative;
+        height: 100%;
+        padding: 96px 78px 72px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+        color: #E7D9AD;
+      }
+      .eyebrow::before {
+        content: '';
+        width: 9px;
+        height: 9px;
+        background: #E7D9AD;
+        transform: rotate(45deg);
+      }
+
+      h1 {
+        margin-top: 42px;
+        font-size: 82px;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.028em;
+        color: #EFE9DC;
+      }
+      h1 mark {
+        background: none;
+        color: #C8362B;
+      }
+
+      /* Footer sits on the baseline of the card, above a hairline. */
+      .foot {
+        margin-top: auto;
+        padding-top: 30px;
+        border-top: 1px solid rgba(239, 233, 220, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .foot__name {
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: #EFE9DC;
+      }
+      /* The canonical mark, in full, with the ™ — never "the Engine". */
+      .foot__mark {
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: #E7D9AD;
+      }
+      .foot__mark sup {
+        font-size: 0.52em;
+        vertical-align: super;
+        line-height: 0;
+        margin-left: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <div class="card">
+      <div class="eyebrow">Fan-led growth for consumer brands</div>
+      <h1>Fans who stay, pay,<br />and <mark>bring more.</mark></h1>
+      <div class="foot">
+        <!-- "13 years in fan-led growth" used to sit under the name at 14px.
+           * At the size a link preview actually renders (roughly 360px wide in
+           * a message thread, so 0.3×) that line was about 4px tall and could
+           * not be read. Cut 23 Jul 2026 rather than shrunk further. -->
+        <div class="foot__name">Laura Cordrey</div>
+        <div class="foot__mark">The Fan Engine<sup>™</sup></div>
+      </div>
+    </div>
+  </body>
+</html>
