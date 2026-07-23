@@ -29,6 +29,30 @@
     <meta name="twitter:image" content="https://lauracordrey.com/og-image.jpg" />
     <link rel="canonical" href="https://lauracordrey.com/" />
 
+    <!-- Site-wide Person entity, deliberately static.
+         Every route used to carry this block, but by accident: the prerenderer
+         writes '/' to dist/index.html first, that file is the SPA fallback, and
+         useDocumentMeta appended rather than replaced, so the homepage's schema
+         leaked into all 18 other snapshots. That leak is now fixed in the hook
+         (it clears [data-route-json-ld] first).
+         Keeping the entity on every page is genuinely wanted though — it is
+         what ties the whole site to one person — so it lives here, in the
+         static shell, where it is intentional and cannot be clobbered.
+         It carries no data-route-json-ld marker, so the hook leaves it alone.
+         @id is set so per-page Person schema (homepage, /about) reconciles to
+         this same entity rather than reading as a second person. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://lauracordrey.com/#laura",
+        "name": "Laura Cordrey",
+        "url": "https://lauracordrey.com",
+        "jobTitle": "Fan-led growth for consumer brands. Brand, product, community, growth.",
+        "sameAs": ["https://www.linkedin.com/in/lauracordrey/"]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { FORM_ENDPOINT, encodeNetlifyForm } from '../lib/forms.js'
 import { pageUrl } from '../lib/seo.js'
@@ -405,7 +405,7 @@ export default function ContactPage() {
               <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
                 reach me on LinkedIn
               </a>
-              .
+              . Still deciding? <Link to="/faq">Read the FAQ</Link>.
             </p>
           </>
         )}

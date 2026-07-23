@@ -1,3 +1,5 @@
+import caseStudies from '../data/caseStudies.js'
+
 // SEO + AIO helpers.
 //
 // Centralises:
@@ -130,12 +132,19 @@ export function caseStudyJsonLd({ slug, title, description, image, datePublished
     keywords: [...(keywords || []), ...(principles || [])].join(', '),
     inLanguage: 'en',
     // Speakable: tells voice assistants (Google Assistant, Siri) which
-    // section to read aloud as the page's primary answer. The takeaway
-    // is always the most quotable, self-contained beat — every bespoke
-    // case study uses the .delta__section-body--takeaway class.
+    // section to read aloud as the page's primary answer. The takeaway is
+    // always the most quotable, self-contained beat.
+    //
+    // Selectors corrected 23 Jul 2026. These were
+    // '.delta__section-body--takeaway' and '.delta__section-title', classes
+    // from the original bespoke Delta Company page. That design is gone — a
+    // grep found those strings in this file and NOWHERE else in src/ — so the
+    // spec pointed at elements that do not exist. Every case study now renders
+    // through CaseStudyCinematic, whose takeaway block is .cscin__takeaway.
+    // Never spotted before because this builder had no call sites.
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.delta__section-body--takeaway', '.delta__section-title'],
+      cssSelector: ['.cscin__takeaway-title', '.cscin__takeaway'],
     },
   }
 
@@ -396,4 +405,43 @@ export function breadcrumbJsonLd(items) {
       item: item.url,
     })),
   }
+}
+
+// ─── Case-study schema, derived from the case-study data ────────────────
+// Added 23 Jul 2026. caseStudyJsonLd above had existed since the case studies
+// were built and was called from NOWHERE, so the seven /work/<slug> pages —
+// the site's actual proof — shipped no page-specific structured data at all.
+//
+// Rather than hand-copy client / role / sector / keywords into seven page
+// files (seven chances to mistype a fact), this derives every value from
+// src/data/caseStudies.js, which already holds them and is what /work renders
+// from. Nothing here is authored: it is the same facts, re-expressed as schema.
+//
+// caseStudyJsonLd emits the BreadcrumbList itself, so wiring this up also gives
+// every case study a Home → Case Studies → X trail. No separate call needed.
+export function caseStudyJsonLdFor(slug) {
+  const study = caseStudies.find((c) => c.id === slug)
+  if (!study) return undefined
+
+  // `company` is a display string and sometimes carries two names
+  // ("US Mobile · Claw Mobile"). The client entity is the first part — the
+  // actual organisation — so the Organization in `about` resolves to a real
+  // company rather than a campaign label.
+  const client = (study.company || '').split('·')[0].trim() || undefined
+
+  return caseStudyJsonLd({
+    slug,
+    title: study.headline,
+    // `hook` is the one-sentence plain-text summary. `tldr` carries <mark>
+    // markup for the page and would leak tags into schema.
+    description: study.hook,
+    image: study.media?.image,
+    // Schema wants ISO 8601. The data holds a year string, which is valid on
+    // its own — do not pad it to a fake month and day.
+    datePublished: study.year,
+    keywords: study.tags,
+    client,
+    role: study.role,
+    sector: (study.sectors || []).join(', ') || undefined,
+  })
 }

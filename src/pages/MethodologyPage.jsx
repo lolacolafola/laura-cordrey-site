@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
-import { pageUrl } from '../lib/seo.js'
+import { pageUrl, methodologyJsonLd } from '../lib/seo.js'
 import './MethodologyPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
@@ -95,6 +95,20 @@ export default function MethodologyPage() {
     description:
       "You're sitting on more fandom than you can prove or bank. The Fan Engine™ turns customers into fans, and proves what they're worth.",
     canonical: pageUrl('fan-engine'),
+    // DefinedTerm + HowTo over the five stages. methodologyJsonLd has existed
+    // in seo.js since the page was built and was never called from anywhere, so
+    // the page that defines the method was shipping no schema for it at all.
+    //
+    // The builder wants { name, text } per stage; the page's array is
+    // { num, name, body }, hence the map. Trailing full stops are stripped —
+    // "Activation." reads as a heading on the page, but a DefinedTerm step name
+    // should be the bare term.
+    jsonLd: methodologyJsonLd({
+      stages: stages.map((s) => ({
+        name: s.name.replace(/\.$/, ''),
+        text: s.body,
+      })),
+    }),
   })
 
   return (

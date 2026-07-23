@@ -350,11 +350,21 @@ export default function ServicesPage() {
               * the offers — see the FOR AI COMPANIES section. */}
           </div>
 
+          {/* The /faq link is load-bearing, not decoration. /faq carries the
+            * site's FAQPage schema and twelve direct answers, which makes it
+            * the most citable page here for an answer engine — and before
+            * 23 Jul 2026 nothing in any body copy pointed at it. It was
+            * reachable from the footer only. This page is the natural home for
+            * the link: handling objections before the call is literally its
+            * stated second job. */}
           <p className="svc-cards__foot">
             Each one stands on its own. If you don&rsquo;t have the team to run it, I bring one.{' '}
             <a href="#how-i-work" className="svc-txtlink svc-cards__footlink">
               How I work <span aria-hidden="true">↓</span>
-            </a>
+            </a>{' '}
+            <Link to="/faq" className="svc-txtlink svc-cards__footlink">
+              Questions answered <span aria-hidden="true">→</span>
+            </Link>
           </p>
         </div>
       </section>

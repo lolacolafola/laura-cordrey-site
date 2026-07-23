@@ -58,6 +58,27 @@ export default function useDocumentMeta({
       setLink('canonical', canonical),
     ].filter(Boolean)
 
+    // Clear any route JSON-LD already sitting in the served HTML before adding
+    // ours. This is not belt-and-braces — without it the prerenderer leaks the
+    // homepage's schema onto every other route.
+    //
+    // scripts/prerender.mjs walks the sitemap in order. '/' is first and writes
+    // its snapshot to dist/index.html, which is also the static server's SPA
+    // fallback. So every route prerendered after the homepage loads a shell
+    // that already carries the homepage's JSON-LD, and since this hook appends
+    // rather than replaces, the snapshot captured both. That is why all 19
+    // routes shipped an identical Person block, including the eleven that never
+    // call authorJsonLd.
+    //
+    // Today the leaked block is harmless (Laura's Person, fine site-wide). The
+    // risk is the next change: anything homepage-specific added to that schema
+    // would silently appear on all eighteen other routes. Removing by the
+    // data-route-json-ld marker set below fixes it at the source, and also
+    // guards client-side navigation against a stale block surviving a remount.
+    document
+      .querySelectorAll('script[data-route-json-ld]')
+      .forEach((el) => el.parentNode?.removeChild(el))
+
     let jsonLdEl = null
     if (jsonLd) {
       jsonLdEl = document.createElement('script')

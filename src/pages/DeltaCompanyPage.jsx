@@ -1,5 +1,5 @@
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
-import { pageUrl } from '../lib/seo.js'
+import { pageUrl, caseStudyJsonLdFor } from '../lib/seo.js'
 import CaseStudyCinematic from '../components/CaseStudyCinematic.jsx'
 import { getCinematicStudy } from '../data/caseStudiesCinematic.js'
 
@@ -12,6 +12,9 @@ export default function DeltaCompanyPage() {
     description:
       'I designed Delta Company at Ubisoft: 5 clusters, 14 languages, 130 invited members, 10M+ UGC views, unveiled at UbiE3 2019, replicated across franchises.',
     canonical: pageUrl('work/ubisoft-delta-company'),
+    // Article + Organization(client) + BreadcrumbList, derived from
+    // src/data/caseStudies.js. See caseStudyJsonLdFor.
+    jsonLd: caseStudyJsonLdFor('ubisoft-delta-company'),
   })
   return <CaseStudyCinematic slug="ubisoft-delta-company" study={getCinematicStudy('ubisoft-delta-company')} />
 }

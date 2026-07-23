@@ -372,7 +372,7 @@ function Block({ b }) {
                   <Reveal className="cscin__reward-tile" key={i}>
                     {isVid
                       ? <video src={rw.src} autoPlay muted loop playsInline preload="metadata" />
-                      : <img src={rw.src} alt="" loading="lazy" />}
+                      : <img src={rw.src} alt={rw.alt || ''} loading="lazy" />}
                   </Reveal>
                 )
               })}
