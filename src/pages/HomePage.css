@@ -348,16 +348,32 @@
   /* Same reason, for the scaling image inside overflow: hidden. */
   backface-visibility: hidden;
 }
-.cinv2 .casec:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(21,17,15,.12);
-}
-.cinv2 .casec:hover img { transform: scale(1.025); }
-
+/* NO :hover motion on these cards. Removed 23 Jul 2026.
+ *
+ * They were lifting 3px with a deepened shadow, and the image scaled to 1.025.
+ * The cards are <div>s: not links, containing no link, cursor: auto. So the
+ * motion promised a click that does not exist, which is the hover-honesty rule
+ * in CLAUDE.md — "if an element lifts, scales, glows or otherwise reacts on
+ * hover, clicking it must do something."
+ *
+ * The JSX already believed this was done. The comment above the cards in
+ * HomePage.jsx reads "Being non-links, they also drop the hover motion (hover
+ * honesty)" — true of the markup, never true of the CSS. The rules were written
+ * when the cards WERE links; they were converted to static divs (because the
+ * only destination was the /work index, so a per-card link promised a case
+ * study it could not deliver) and these two rules were left behind.
+ *
+ * The scroll reveal stays. [data-rev] is ambient motion, it promises nothing,
+ * and the design rules allow it anywhere. Only the cursor response goes.
+ *
+ * The transition and will-change on .casec above are now doing nothing for
+ * hover, but are left in place: the card still animates in via [data-rev], and
+ * the will-change/backface-visibility comment above explains a real
+ * anti-aliasing fix that still applies to that entrance. */
 @media (prefers-reduced-motion: reduce) {
+  /* The two :hover overrides that used to sit here went with the hover rules
+     themselves — there is no longer any cursor motion to switch off. */
   .cinv2 .casec, .cinv2 .casec img { transition: none; }
-  .cinv2 .casec:hover { transform: none; }
-  .cinv2 .casec:hover img { transform: none; }
 }
 
 /* ─── 6 · Speaking band ─────────────────────────────────── */
