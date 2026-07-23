@@ -310,19 +310,40 @@ export default function AboutPage() {
             <p>
               Steering a community&rsquo;s mood is a craft, and an
               early-warning system.{' '}
+            {/* Was "It's the very thing AI products will need most, and I've
+              * run it at the scale of a live game." Cut 23 Jul 2026.
+              *
+              * Two problems. "The very thing AI products will need MOST" is an
+              * unsupportable superlative about an entire industry's future —
+              * the same class of overclaim as "my biggest wins" on the
+              * homepage, and this one was in BOLD, so the most emphasised
+              * sentence in the section was the least defensible. And the second
+              * half restated the paragraph directly above it, which already
+              * says 15M players and 85% sentiment with the numbers attached.
+              *
+              * The replacement is an observation about conditions rather than a
+              * forecast about needs, so it is checkable, and it keeps the AI
+              * bridge on the one page an AI buyer is most likely to read. */}
               <strong>
-                It&rsquo;s the very thing AI products will need most, and
-                I&rsquo;ve run it at the scale of a live game.
+                AI products are shipping into the same conditions: a crowd, in
+                public, reacting in real&nbsp;time.
               </strong>
             </p>
+            {/* Both labels shortened, Laura 23 Jul 2026. They were "average
+              * positive sentiment, held through launches and rough patches" and
+              * "players in the live-service community I steered" — each of
+              * which repeated the paragraph directly above it, where "through
+              * launches, updates and rough patches" and "I held mine" already
+              * appear. A pull that restates the prose beside it stops reading
+              * as proof. */}
             <div className="about-pulls">
               <div className="about-pull">
                 <b>85%</b>
-                <span>average positive sentiment, held through launches and rough patches</span>
+                <span>average positive sentiment held</span>
               </div>
               <div className="about-pull">
                 <b>15M</b>
-                <span>players in the live-service community I steered</span>
+                <span>players in the live-service game</span>
               </div>
             </div>
           </div>
@@ -380,9 +401,21 @@ export default function AboutPage() {
               Everything I build starts with story. I learned storytelling in
               marketing at <strong>BlaBlaCar</strong>, and world-building at{' '}
               <strong>Ubisoft</strong>: what makes people fall for a world and
-              want to live in it, not just pass through a funnel. So the work
-              runs across brand, events and product, from naming and positioning
-              through to script-to-screen production.
+              {/* The closing capability list was cut on 23 Jul 2026. It read
+                * "So the work runs across brand, events and product, from
+                * naming and positioning through to script-to-screen
+                * production." Three of its four elements — brand, positioning,
+                * product — reappear verbatim in "How I work now" 96 lines
+                * below ("strategy, positioning, brand, product, and the plan to
+                * ship it"), so the page said it twice. It was also a
+                * capabilities list closing a paragraph that argues CRAFT, and
+                * the paragraph now ends on its sharpest line instead.
+                *
+                * What is genuinely lost: "script-to-screen production" and
+                * "events" appear nowhere else on the site. If either matters
+                * commercially, they belong in "How I work now" with the rest of
+                * the disciplines, not tacked onto the story argument. */}
+              want to live in it, not just pass through a&nbsp;funnel.
             </p>
             <div className="about-pulls">
               <div className="about-pull">
@@ -391,7 +424,7 @@ export default function AboutPage() {
               </div>
               <div className="about-pull">
                 <b>22</b>
-                <span>BlaBlaCar markets where I ran content and community</span>
+                <span>BlaBlaCar markets where I ran brand content and community</span>
               </div>
             </div>
           </div>
@@ -435,11 +468,17 @@ export default function AboutPage() {
               *
               * The heading was "Trusted with the big moment." — passive, with no
               * subject, next to two headings that are active and first person.
-              * The body already says "Hand me your biggest brand moment"; the
-              * heading now matches that voice. */}
+              *
+              * My replacement, "They hand me the biggest moment.", fixed the
+              * voice but introduced an unnamed "they". Laura's version, applied
+              * 23 Jul 2026, is better on both counts: it is a claim about what
+              * she has actually done rather than about what unnamed others do,
+              * and the pulls underneath support it directly — 10M watching the
+              * E3 unveil, 500K on a single live broadcast. Plural "moments"
+              * also matches the kicker above it. */}
             <span className="about-eng__kick">Launches &amp; live moments</span>
             <h2 className="about-eng__title">
-              They hand me <mark>the biggest moment</mark>.
+              I&rsquo;ve handled <mark>the biggest moments</mark>.
             </h2>
           </div>
           <div className="about-eng__right">
@@ -448,7 +487,7 @@ export default function AboutPage() {
               thing everyone will be watching, and I&rsquo;ll deliver it with a
               cool head. I unveiled my own fan program live on the E3 stage,
               with 10 million watching, and I&rsquo;ve run live game
-              partnerships seen by 500,000 at once.{' '}
+              partnerships seen by 500K at once.{' '}
               <strong>Go big or go home.</strong>
             </p>
             <div className="about-pulls">
@@ -479,7 +518,7 @@ export default function AboutPage() {
           <div className="about-magic">
             <p>
               I run my own practice end to end: strategy, positioning, brand,
-              product, and the code to ship it. When a build calls for a
+              product, and the plan to ship it. When a build calls for a
               specialist, I bring one in and direct the work. And I&rsquo;m
               building fan engagement, not just advising on it, in{' '}
               <mark>fractional leadership roles inside startups</mark>.
