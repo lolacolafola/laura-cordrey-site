@@ -3,6 +3,11 @@ import caseStudies from '../data/caseStudies.js'
 import WorkCard from '../components/WorkCard.jsx'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, workIndexJsonLd } from '../lib/seo.js'
+// The h1 below was carrying clamp(1.8rem,3.2vw,2.75rem) inline, which is
+// character-for-character the shared T.h2. CLAUDE.md: import the scale, never
+// re-declare it per page — that is exactly how it drifted once before. Same
+// rendered value, now sourced from one place.
+import { HEAD_W, T } from '../lib/scale.js'
 import '../styles/shared.css' // shared .work-card / .work-grid / .section-head styles
 
 // CONTACT_URL and the react-router Link import went with the hero CTA on
@@ -80,9 +85,33 @@ export default function WorkPage() {
             * ("fan-led growth", "gaming", "mobility", "telco") because those
             * are what this page ranks on; drops the three proof numbers, which
             * are all restated on the cards directly below it. */}
-          <h1 style={{ fontWeight: 700, fontSize: 'clamp(1.8rem,3.2vw,2.75rem)', lineHeight: 1.12, letterSpacing: '-.025em', margin: 0, maxWidth: '26ch' }}>
+          <h1 style={{ fontWeight: HEAD_W, fontSize: T.h2, lineHeight: 1.12, letterSpacing: '-.025em', margin: 0, maxWidth: '26ch' }}>
             Thirteen years of fan-led growth across AAA gaming, mobility and&nbsp;telco.
           </h1>
+
+          {/* Added 23 Jul 2026. The page was 261 words, nearly all of it inside
+            * the cards, with no sentence of its own saying what the work is —
+            * thin for the page twelve others link to as the proof.
+            *
+            * This does NOT reinstate the paragraph that was cut above. That one
+            * restated the cards' proof numbers, which is why it went. This says
+            * what the seven have in common, which the cards cannot say
+            * individually, and names no figures at all.
+            *
+            * It also deliberately carries no count. A first draft opened
+            * "Seven builds"; Laura cut it. Right, and it would have been a
+            * number to remember to update the day an eighth case study lands.
+            *
+            * Sits between the h1 and the filters so it is read before the page
+            * turns into a control surface. 54ch against the h1's 26ch measures
+            * 568px under a 701px headline at 1280, three lines to the h1's
+            * three, so the header reads as headline-then-support rather than
+            * as two competing blocks. Measured 9.95 on the #0E0B09 band. */}
+          <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.78)', maxWidth: '54ch', margin: 'clamp(16px,2vw,22px) 0 0' }}>
+            Different products, same job every time: find the people who already
+            care, build something worth their word of mouth, and prove what
+            it&nbsp;returned.
+          </p>
 
           {/* Filters sit inside the header band so they read as part of the
             * header stratum, not a separate section on the light ground. */}
