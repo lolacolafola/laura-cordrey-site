@@ -26,6 +26,35 @@ dist-ssr
 # Raw source videos — kept locally for reference, not deployed
 assets-source/
 
+# Raw BlaBlaCar source exports sitting in the repo root (~59MB). Ignored on
+# 23 Jul 2026, Laura's call.
+#
+# Every one of these is the ORIGINAL of an asset that is already optimised,
+# committed and live under public/case-studies/blablacar/. Verified by matching
+# pixel dimensions, not by filename:
+#   Quote_Coffee_02.jpg           1.0MB  →  blablacar-coffee-quote.jpg    75KB
+#   Group_Selfie_01_…Portrait.jpg 548KB  →  blablacar-group-selfie.jpg   107KB
+#   New_Year_Countdown_…1200x717  232KB  →  blablacar-countdown-post.jpg  37KB
+#   bla_bla_car_pattern.png        32KB  →  blablacar-quote-pattern.png   32KB
+#   Diver-vertical-V04.gif        9.9MB  →  blablacar-diver.mp4          448KB
+# The site loads ~2.8MB of optimised media for this case study; these are 58MB
+# of source for the same material, and nothing in src/ or public/ references
+# them.
+#
+# Ignored rather than committed because the repo history was cleaned once and
+# must not be rewritten again — 59MB added here would be permanent. Ignored
+# rather than left loose so they cannot be swept in by a stray `git add -A`.
+#
+# NOTE: git is therefore not backing these up. They are BlaBlaCar's own
+# marketing assets so they are recoverable, but if they matter, keep a copy
+# somewhere outside this repo.
+/*.mp4
+/*.gif
+/Quote_Coffee_02.jpg
+/Group_Selfie_01_FACEBOOK__Portrait.jpg
+/New_Year_Countdown_Together_Organic_FB-post_1200x717.jpg
+/bla_bla_car_pattern.png
+
 # Local prototype scratch — not deployed
 videogame.html
 videogame_files/
