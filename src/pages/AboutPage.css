@@ -291,10 +291,35 @@
   width: auto;
   object-fit: contain;
 }
-/* Same mobile arrangement as the other proof strips (svc-proof, homepage):
-   drop from 5 columns to 2 on phones so the logos don't cram. */
-@media (max-width: 640px) {
-  .about-proof__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Mobile logo stack — must match the homepage EXACTLY (Laura, 23 Jul 2026).
+   It did not. Two things were different, and the comment here claimed
+   otherwise ("same mobile arrangement as ... homepage"), which is how it went
+   unnoticed:
+
+     1. The breakpoint. This fired at 640px, the homepage at 760px, so between
+        641 and 760 the About strip was still trying to hold five across.
+     2. The arrangement. Two grid columns over five logos gives 2 + 2 + 1 —
+        a single orphaned logo on the last row. The homepage uses flex-wrap at
+        one third each, which gives 3 + 2 with the pair centred underneath, and
+        the homepage comment calls that out explicitly: "3 on top, 2 centred
+        underneath (no orphan)."
+
+   This is now a copy of the homepage rule (src/pages/HomePage.css, .logoshelf),
+   same breakpoint and same flex values. `display: flex` has to override the
+   grid set above, hence !important on the two properties the base rule also
+   sets — the same reason the homepage rule carries them. If the homepage strip
+   is ever retuned, retune this with it. */
+@media (max-width: 760px) {
+  .about-proof__logos {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(18px, 5vw, 28px) !important;
+  }
+  .about-proof__logos > .about-proof__cell {
+    flex: 0 0 calc(33.333% - clamp(18px, 5vw, 28px));
+    max-width: 30%;
+  }
 }
 /* #B8AEA2 for the brown ground, as with the kicker and sub above. */
 .about-proof__note {

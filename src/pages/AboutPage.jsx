@@ -133,10 +133,15 @@ export default function AboutPage() {
               growth you can measure: higher retention, higher lifetime value,
               and the reach you&rsquo;d otherwise pay for.
             </p>
+            {/* "I've built it" was ambiguous: the sentence before it names the
+              * brand, the Fan Engine™ and growth-you-can-measure, so "it" had
+              * three possible antecedents. Naming fan-led growth also repeats
+              * the target phrase once more for a reader still working out what
+              * this site is. */}
             <p className="about-intro__sub">
-              I&rsquo;ve built it from nothing and at millions of users, over
-              thirteen years in games, entertainment and live service, where
-              fans are loudest and feedback is instant.
+              I&rsquo;ve built fan-led growth from nothing and at millions of
+              users, over thirteen years in games, entertainment and live
+              service, where fans are loudest and feedback is instant.
             </p>
           </div>
 
@@ -187,60 +192,31 @@ export default function AboutPage() {
         * down into "How I work now" on this page, which is the section about
         * her practice. Nothing was deleted outright. */}
 
-      {/* ─── STORY 01 · STORYTELLING (bone) ───────────────────
-        * On bone since 22 Jul 2026, per Laura. With the hero now a full-bleed
-        * photograph on near-black and the community story on #2D2723, this
-        * band sitting on the default dark made three dark grounds in a row
-        * before the page offered any relief. Bone here puts the first
-        * light/dark snap at the second section, and the sequence reads
-        * black · bone · brown · oxblood · bone · dark · oxblood. */}
-      <section className="about-band about-band--bone">
-        <div className="container about-eng">
-          <div className="about-eng__left">
-            <span className="about-eng__kick">Storytelling &amp; world-building</span>
-            <h2 className="about-eng__title">
-              I build worlds people <mark>fall for</mark>.
-            </h2>
-          </div>
-          <div className="about-eng__right">
-            <p>
-              Everything I build starts with story. I learned storytelling in
-              marketing at <strong>BlaBlaCar</strong>, and world-building at{' '}
-              <strong>Ubisoft</strong>: what makes people fall for a world and
-              want to live in it, not just pass through a funnel. That&rsquo;s
-              why I bring people in across brand, events and product, from
-              naming and positioning to script-to-screen production and content
-              across twenty-two markets.
-            </p>
-            <div className="about-pulls">
-              <div className="about-pull">
-                <b>3</b>
-                <span>AAA worlds shaped: Assassin&rsquo;s Creed, Ghost Recon, Rainbow Six Siege</span>
-              </div>
-              <div className="about-pull">
-                <b>22</b>
-                <span>BlaBlaCar markets where I ran content and community</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* The 21:9 art plate that closed this section was cut on 22 Jul
-          * 2026, 507px of it. It sat BELOW the copy, so every pixel of it was
-          * added to the page height, and its caption ("The worlds behind the
-          * work · Ubisoft · BlaBlaCar · live service") restated the section
-          * heading and the two proof numbers directly above it.
-          *
-          * The tower plate in the next section is deliberately kept. That one
-          * sits BESIDE the copy in the 5fr/7fr split, so it costs nothing it
-          * does not already occupy, and its caption carries proof that appears
-          * nowhere else on the band (15M players, 85% positive). Additive
-          * decoration goes; structural art stays. */}
-      </section>
-
-      {/* ─── STORY 02 · COMMUNITY — image LEFT, editorial RIGHT ──
-        * Fix 4: true mirror. Watchtower plate anchors the LEFT (4:5),
-        * editorial (kicker, red-marked title, prose, side-by-side pulls)
-        * on the RIGHT. Breaks the three-in-a-row identical skeleton. */}
+      {/* ─── STORY 01 · COMMUNITY — image LEFT, editorial RIGHT ──
+        * True mirror. Watchtower plate anchors the LEFT (4:5), editorial
+        * (kicker, red-marked title, prose, side-by-side pulls) on the RIGHT.
+        * Breaks the three-in-a-row identical skeleton.
+        *
+        * MOVED TO FIRST on 23 Jul 2026, per Laura, swapping with Storytelling.
+        * Storytelling opened the page and was the weakest thing on it in the
+        * strongest position: the shortest section (544px), with the weakest
+        * proof ("3 AAA worlds", "22 markets" are credentials, not outcomes),
+        * making the most generic claim on the page — "everything I build starts
+        * with story" is a sentence any marketer could write.
+        *
+        * This section is the opposite on every count: the longest (1080px), the
+        * best-evidenced (85% positive across 15M players), and the one claim
+        * almost nobody else can make. It is also the one that answers the
+        * question the hero raises. The hero says "Fan-led growth wasn't a job
+        * ten years ago. I made it one." The reader's next thought is "prove
+        * it", and this is the proof. It carries the AI line too, which matters
+        * now that AI companies are an active segment.
+        *
+        * The swap moved WHOLE <section> blocks, not copy between fixed grounds.
+        * That matters: each band's ground class carries its own accent
+        * overrides (--accent-display on --grey, --accent-text on --bone), so
+        * the marks stayed correct automatically instead of needing re-measuring
+        * against a new ground. Verified after the swap regardless. */}
       <section className="about-band about-band--grey">
         <div className="container about-imgsplit">
           <figure className="about-artplate about-artplate--tower" aria-hidden="true">
@@ -353,6 +329,86 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ─── STORY 02 · STORYTELLING (bone) ───────────────────
+        * On bone since 22 Jul 2026, per Laura, and it keeps bone after the
+        * 23 Jul swap that moved it from first to second.
+        *
+        * The original reason for bone was to stop three dark grounds stacking
+        * before the page offered any relief. That still holds after the swap,
+        * just one section later: the sequence is now
+        *   black · brown · bone · espresso · bone · dark · oxblood
+        * so there is exactly one dark-to-dark adjacency, at the very top,
+        * between the hero and Community. That one is fine because the hero is a
+        * full-bleed PHOTOGRAPH rather than a flat panel, so it reads as
+        * photo-into-dark-editorial, which is a deliberate cinematic move, not
+        * as two flat darks stacked. */}
+      <section className="about-band about-band--bone">
+        <div className="container about-eng">
+          <div className="about-eng__left">
+            <span className="about-eng__kick">Storytelling &amp; world-building</span>
+            {/* Was "I build worlds people fall for." The hero lede two screens
+              * up already says "I build the brand people fall for", so the same
+              * phrase was introducing two different sections and the second one
+              * landed as an echo. "want to live in" is the distinction the body
+              * underneath already draws: "want to live in it, not just pass
+              * through a funnel". */}
+            <h2 className="about-eng__title">
+              I build worlds people <mark>want to live in</mark>.
+            </h2>
+          </div>
+          <div className="about-eng__right">
+            {/* The closing clause used to read "...script-to-screen production
+              * and content across twenty-two markets." Laura flagged the 22 on
+              * 23 Jul 2026 and she was right twice over:
+              *
+              *   1. The pull directly BELOW this paragraph already is the
+              *      number — "22 · BlaBlaCar markets where I ran content and
+              *      community". Saying it in prose two lines above made the
+              *      pull redundant, and a pull that repeats the sentence above
+              *      it stops reading as proof and starts reading as filler.
+              *   2. It is the wrong KIND of fact for this section. The
+              *      paragraph argues craft — what makes someone fall for a
+              *      world. Market count is reach and operations. Ending a
+              *      craft argument on a distribution stat is a non-sequitur,
+              *      and it is the last thing the reader takes from the beat.
+              *
+              * Now ends on script-to-screen production, which is concrete,
+              * is genuinely rare, and belongs to the argument being made.
+              * "That's why" also became "So" — "that's why" was promising a
+              * causal link the list underneath does not actually deliver. */}
+            <p>
+              Everything I build starts with story. I learned storytelling in
+              marketing at <strong>BlaBlaCar</strong>, and world-building at{' '}
+              <strong>Ubisoft</strong>: what makes people fall for a world and
+              want to live in it, not just pass through a funnel. So the work
+              runs across brand, events and product, from naming and positioning
+              through to script-to-screen production.
+            </p>
+            <div className="about-pulls">
+              <div className="about-pull">
+                <b>3</b>
+                <span>AAA worlds shaped: Assassin&rsquo;s Creed, Ghost Recon, Rainbow Six Siege</span>
+              </div>
+              <div className="about-pull">
+                <b>22</b>
+                <span>BlaBlaCar markets where I ran content and community</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* The 21:9 art plate that closed this section was cut on 22 Jul
+          * 2026, 507px of it. It sat BELOW the copy, so every pixel of it was
+          * added to the page height, and its caption ("The worlds behind the
+          * work · Ubisoft · BlaBlaCar · live service") restated the section
+          * heading and the two proof numbers directly above it.
+          *
+          * The tower plate in the next section is deliberately kept. That one
+          * sits BESIDE the copy in the 5fr/7fr split, so it costs nothing it
+          * does not already occupy, and its caption carries proof that appears
+          * nowhere else on the band (15M players, 85% positive). Additive
+          * decoration goes; structural art stays. */}
+      </section>
+
       {/* ─── STORY 03 · BIG MOMENTS (espresso) ────────────────
         * Off oxblood on 22 Jul 2026. This was the remaining big pop of red on
         * the page and it was costing the close: the site rule settled the same
@@ -370,9 +426,20 @@ export default function AboutPage() {
       <section className="about-band about-band--espresso">
         <div className="container about-eng">
           <div className="about-eng__left">
-            <span className="about-eng__kick">Go big or go home</span>
+            {/* Kicker was "Go big or go home", which is also the bolded last
+              * three words of the body below it. In a 490px section both were
+              * on screen at once. The body sign-off is the better placement, so
+              * the kicker changed. It now also matches its two siblings, which
+              * are descriptive ("Storytelling & world-building", "Community
+              * building & sentiment") rather than attitudinal.
+              *
+              * The heading was "Trusted with the big moment." — passive, with no
+              * subject, next to two headings that are active and first person.
+              * The body already says "Hand me your biggest brand moment"; the
+              * heading now matches that voice. */}
+            <span className="about-eng__kick">Launches &amp; live moments</span>
             <h2 className="about-eng__title">
-              Trusted with <mark>the big moment</mark>.
+              They hand me <mark>the biggest moment</mark>.
             </h2>
           </div>
           <div className="about-eng__right">
