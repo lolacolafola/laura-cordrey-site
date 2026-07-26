@@ -222,19 +222,16 @@ export default function FanValueModelPage() {
   return (
     <div className="fvm-page">
       <div className="fvm-card">
-        {/* From-audit path shows a chip; cold arrival shows a full-width bar in
-            the same slot prompting the visitor to take the quiz first. */}
-        {arrivedFromAudit ? (
+        {/* The from-audit chip stays at the top: it is orientation, telling a
+            visitor who arrived with a score where their number came from. The
+            cold-arrival cross-sell does not — it moved below the hero. It was
+            the strongest colour object on the page and it pointed at a
+            different tool, above this page's own headline. Same problem, and
+            same fix, as the Fan Score result's cross-sell. */}
+        {arrivedFromAudit && (
           <div className="fvm-arrival" role="note">
             <Arrow />
             <span>From your Fan Score<span className="tm">™</span> · <b>{auditScore}%</b></span>
-          </div>
-        ) : (
-          <div className="fvm-coldbar">
-            <span className="fvm-coldbar__txt">Fan Score<span className="tm">™</span>: how fan-led is your growth?</span>
-            <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
-              Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
-            </Link>
           </div>
         )}
 
@@ -259,6 +256,17 @@ export default function FanValueModelPage() {
           are worth: what you gain when they stay, spend more, and bring you new customers.
           The estimate is conservative, and every assumption behind it is yours to change.
         </p>
+
+        {/* Offered after the page has said what it is, and before the inputs
+            it is a prerequisite for. */}
+        {!arrivedFromAudit && (
+          <div className="fvm-coldbar">
+            <span className="fvm-coldbar__txt">Fan Score<span className="tm">™</span>: how fan-led is your growth?</span>
+            <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
+              Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
+            </Link>
+          </div>
+        )}
 
         <hr className="fvm-rule" />
 

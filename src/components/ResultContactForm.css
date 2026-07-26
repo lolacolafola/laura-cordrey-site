@@ -51,30 +51,43 @@
 }
 .rcf__fld--area { min-height: 108px; resize: vertical; line-height: 1.5; }
 
-/* The brand red at rest, filling gold with dark ink on hover — the same CTA
-   behaviour as .fa-btn and .fvm-btn, so Send reads as this page's primary
-   action rather than a third colour. Cream on #C8362B is 5.00, and the label
-   is 14px so it needs 4.5. The small red text below stays --rcf-red
-   (#8E2520): that is text on cream, where the brand red is the weaker choice. */
+/* Espresso, not red — the same treatment as the homepage's .btnink, and for
+   the same reason it was chosen there: it is the one fill that survives every
+   ground. This form sits under the Fan Score result, which is themed per tier
+   (red for Untapped, gold for Earned, oxblood for Compounding), and a red
+   button clashed with two of the three. Gold was never an option: gold fill on
+   cream is 2.30 where the label needs 4.5. Oxblood was worse than either —
+   #C8362B against the Compounding tier's #A12A1E is 1.40 apart, two reds close
+   enough to read as a mistake rather than a pair.
+
+   Espresso on cream is 17.97, identical in all three tiers, and it hands red
+   back to the page as its single gesture colour. Gold on hover is the site's
+   standard CTA response.
+
+   The small red text below stays --rcf-red (#8E2520): that is link styling,
+   which is red site-wide, and one quiet red gesture per section is the rule. */
 .rcf__send {
   justify-self: start;
   font-family: inherit;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #FCFAF3;
-  background: #C8362B;
-  border: 0;
+  color: #EFE9DC;
+  background: #15110F;
+  border: 1px solid rgba(239, 233, 220, 0.28);
   border-radius: 3px;
-  padding: 14px 30px;
+  padding: 13px 28px;
   cursor: pointer;
-  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1),
-              color 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
 }
-.rcf__send:hover { background: #D4C896; color: var(--rcf-ink); }
+.rcf__send:hover {
+  color: #D4C896;
+  border-color: #D4C896;
+  transform: translateY(-1px);
+}
 .rcf__send:focus-visible { outline: 2px solid var(--rcf-ink); outline-offset: 3px; }
 .rcf__send:disabled { opacity: 0.6; cursor: default; }
-.rcf__send:disabled:hover { background: #C8362B; color: #FCFAF3; }
+.rcf__send:disabled:hover { color: #EFE9DC; border-color: rgba(239, 233, 220, 0.28); transform: none; }
 
 .rcf__note,
 .rcf__trust,

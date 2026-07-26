@@ -976,7 +976,9 @@
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  margin: 0 0 18px;
+  /* Was `0 0 18px` when this sat in the top slot with nothing above it. It now
+     follows the lede, so it needs its own space above. */
+  margin: 26px 0 4px;
   border: 1px solid var(--fvm-hair);
   border-left: 4px solid var(--fvm-red);
   border-radius: 4px;
