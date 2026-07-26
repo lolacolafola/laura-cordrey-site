@@ -1286,3 +1286,11 @@
 .fa-card--compounding .fa-cbigw { color: #FBEDE6; }
 
 /* Reveal transition lives in src/components/QuizReveal.css */
+
+/* The result-page contact band bleeds to the sheet edges, so it needs this
+   page's own gutter. .fa-sheet is 60px, dropping to 26px at 680px — the same
+   numbers .fa-reveal uses above it. */
+.fa-sheet .rcf { --rcf-bleed: 60px; }
+@media (max-width: 680px) {
+  .fa-sheet .rcf { --rcf-bleed: 26px; }
+}

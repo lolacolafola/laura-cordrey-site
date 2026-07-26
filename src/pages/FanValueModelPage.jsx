@@ -235,27 +235,36 @@ export default function FanValueModelPage() {
           </div>
         )}
 
-        <div className="fvm-topbar">
-          <span className="fvm-eyebrow-brand">
-            <Sparkle />
-            <span>The Fan Value Model<span className="tm">™</span></span>
-          </span>
+        {/* Dark hero band. The page was cream from the masthead to the result,
+            with its red spent as five small marks — a kicker, a <mark>, a
+            section label, a toggle and the numerals — which reads as decoration
+            rather than emphasis and left the top with no colour mass at all.
+            One ground carries it instead, using the same bleed-to-the-edges
+            technique as .fvm-reveal below, so the page now opens and resolves
+            on the same note. */}
+        <div className="fvm-hero">
+          <div className="fvm-hero__glow" aria-hidden="true" />
+          <div className="fvm-hero__inner">
+            <span className="fvm-eyebrow-brand fvm-eyebrow-brand--band">
+              <Sparkle />
+              <span>The Fan Value Model<span className="tm">™</span></span>
+            </span>
+            {/* "What is the fan gap worth to you?" went 23 Jul 2026. "The fan gap"
+                appeared exactly once on the whole site, here, in the largest type on
+                the page, and was never defined anywhere. This wording matches the
+                cross-link from the Fan Score, the page title, and the homepage
+                promise, so the same tool is now described the same way everywhere. */}
+            <h1 className="fvm-h1">What are your<br />fans worth?</h1>
+            <p className="fvm-hook">
+              The growth is already in your <mark>userbase</mark>. Here&rsquo;s what it&rsquo;s worth.
+            </p>
+            <p className="fvm-lede">
+              Put in a few numbers you already have, and I&rsquo;ll show you what your fans
+              are worth: what you gain when they stay, spend more, and bring you new customers.
+              The estimate is conservative, and every assumption behind it is yours to change.
+            </p>
+          </div>
         </div>
-
-        {/* "What is the fan gap worth to you?" went 23 Jul 2026. "The fan gap"
-            appeared exactly once on the whole site, here, in the largest type on
-            the page, and was never defined anywhere. This wording matches the
-            cross-link from the Fan Score, the page title, and the homepage
-            promise, so the same tool is now described the same way everywhere. */}
-        <h1 className="fvm-h1">What are your<br />fans worth?</h1>
-        <p className="fvm-hook">
-          The growth is already in your <mark>userbase</mark>. Here&rsquo;s what it&rsquo;s worth.
-        </p>
-        <p className="fvm-lede">
-          Put in a few numbers you already have, and I&rsquo;ll show you what your fans
-          are worth: what you gain when they stay, spend more, and bring you new customers.
-          The estimate is conservative, and every assumption behind it is yours to change.
-        </p>
 
         {/* Offered after the page has said what it is, and before the inputs
             it is a prerequisite for. */}

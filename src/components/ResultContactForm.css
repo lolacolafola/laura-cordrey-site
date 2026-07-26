@@ -1,30 +1,54 @@
-/* Short contact form under a tool result. Both tool pages ground on cream
-   (#FCFAF3), so one set of values works on Fan Score and Fan Value alike.
-   Reds are --accent-deep #8E2520, which is 8.26 on cream: the brand red
-   #C8362B only clears 4.5 as display type, and none of this is display type. */
+/* Short contact form under a tool result.
+ *
+ * Oxblood #A12A1E, because that is already the site's "talk to me" ground:
+ * the homepage close (.contact-red) is this exact colour, with this exact
+ * palette on it — #F2D79A gold and #FBF4E6 cream, white fields, espresso
+ * Send. Matching it makes the tool forms read as the same moment rather than
+ * a second, unrelated form, and it gives the section the colour mass it was
+ * missing on a page that is otherwise cream throughout.
+ *
+ * Tier-proof, which was the point. The Fan Score result themes itself per tier
+ * through --fa-t-accent*, and none of those tokens reach in here: this is a
+ * section ground, not an accent. The Compounding tier's reveal band is also
+ * oxblood, so on that one outcome the page is topped and tailed in the same
+ * colour, which reads as a bookend. Dark #15110F would have collided with the
+ * band on two tiers out of three instead of one.
+ *
+ * Red cannot appear on this ground at all — #C8362B on oxblood is 1.40 — so
+ * links are gold here, not the site's usual red. Measured, all against
+ * #A12A1E: heading 6.70, body 5.34, gold links 5.22, white fields 7.33.
+ */
 .rcf {
+  --rcf-ground: #A12A1E;
+  --rcf-cream: #FBF4E6;
+  --rcf-gold: #F2D79A;
   --rcf-ink: #15110F;
-  --rcf-body: #4A423B;
-  --rcf-muted: #6B6157;
-  --rcf-red: #8E2520;
-  --rcf-hair: rgba(21, 17, 15, 0.16);
-  margin-top: 40px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(21, 17, 15, 0.1);
+
+  /* Bleeds to the sheet edges, the same technique as .fa-reveal and
+     .fvm-reveal so the close sits as a band rather than a boxed card.
+     The two host pages have different sheet padding, and different mobile
+     breakpoints for it (Fan Score 60/26 at 680px, Fan Value 60/24 at 640px),
+     so the bleed is a variable each page sets to its own gutter rather than a
+     number hardcoded here that would be wrong on one of them. */
+  --rcf-bleed: 60px;
+  margin: 48px calc(-1 * var(--rcf-bleed)) 0;
+  padding: 44px var(--rcf-bleed) 48px;
+  background: var(--rcf-ground);
+  color: var(--rcf-cream);
 }
 .rcf__head {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--rcf-ink);
-  margin: 0 0 6px;
+  letter-spacing: -0.024em;
+  line-height: 1.12;
+  color: var(--rcf-cream);
+  margin: 0 0 8px;
 }
 .rcf__lede {
   font-size: 15px;
   line-height: 1.55;
-  color: var(--rcf-body);
-  margin: 0 0 18px;
+  color: rgba(251, 244, 230, 0.92);
+  margin: 0 0 20px;
   max-width: 44ch;
 }
 .rcf__form {
@@ -32,62 +56,57 @@
   gap: 12px;
   max-width: 420px;
 }
+/* White fields, matching the homepage close. The fill is what defines them
+   against oxblood (7.33); a translucent border alone would not. */
 .rcf__fld {
   width: 100%;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--rcf-ink);
-  background: transparent;
-  border: 1.5px solid var(--rcf-hair);
-  border-radius: 4px;
-  padding: 13px 14px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  padding: 14px 16px;
 }
-.rcf__fld::placeholder { color: var(--rcf-muted); font-weight: 500; }
-.rcf__fld:focus { border-color: var(--rcf-red); }
+.rcf__fld::placeholder { color: #5E564E; }
+.rcf__fld:focus { border-color: var(--rcf-gold); }
 .rcf__fld:focus-visible {
-  outline: 2px solid var(--rcf-red);
+  outline: 2px solid var(--rcf-cream);
   outline-offset: 2px;
 }
-.rcf__fld--area { min-height: 108px; resize: vertical; line-height: 1.5; }
+.rcf__fld--area { min-height: 112px; resize: vertical; line-height: 1.5; }
 
-/* Espresso, not red — the same treatment as the homepage's .btnink, and for
-   the same reason it was chosen there: it is the one fill that survives every
-   ground. This form sits under the Fan Score result, which is themed per tier
-   (red for Untapped, gold for Earned, oxblood for Compounding), and a red
-   button clashed with two of the three. Gold was never an option: gold fill on
-   cream is 2.30 where the label needs 4.5. Oxblood was worse than either —
-   #C8362B against the Compounding tier's #A12A1E is 1.40 apart, two reds close
-   enough to read as a mistake rather than a pair.
-
-   Espresso on cream is 17.97, identical in all three tiers, and it hands red
-   back to the page as its single gesture colour. Gold on hover is the site's
-   standard CTA response.
-
-   The small red text below stays --rcf-red (#8E2520): that is link styling,
-   which is red site-wide, and one quiet red gesture per section is the rule. */
+/* Espresso fill, the .btnink treatment. The homepage leaves its border at
+   cream/.28, which measures only 1.67 on oxblood — the fill alone is 2.56, so
+   the button's edge is genuinely soft there. Gold at rest fixes that (5.22)
+   and hover inverts to a gold fill, which is the site's standard CTA response. */
 .rcf__send {
   justify-self: start;
   font-family: inherit;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #EFE9DC;
-  background: #15110F;
-  border: 1px solid rgba(239, 233, 220, 0.28);
-  border-radius: 3px;
+  color: var(--rcf-cream);
+  background: var(--rcf-ink);
+  border: 1px solid var(--rcf-gold);
+  border-radius: 2px;
   padding: 13px 28px;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease;
 }
 .rcf__send:hover {
-  color: #D4C896;
-  border-color: #D4C896;
+  background: var(--rcf-gold);
+  color: var(--rcf-ink);
   transform: translateY(-1px);
 }
-.rcf__send:focus-visible { outline: 2px solid var(--rcf-ink); outline-offset: 3px; }
-.rcf__send:disabled { opacity: 0.6; cursor: default; }
-.rcf__send:disabled:hover { color: #EFE9DC; border-color: rgba(239, 233, 220, 0.28); transform: none; }
+.rcf__send:focus-visible { outline: 2px solid var(--rcf-cream); outline-offset: 3px; }
+.rcf__send:disabled { opacity: 0.65; cursor: default; }
+.rcf__send:disabled:hover {
+  background: var(--rcf-ink);
+  color: var(--rcf-cream);
+  transform: none;
+}
 
 .rcf__note,
 .rcf__trust,
@@ -95,27 +114,35 @@
   font-size: 12.5px;
   line-height: 1.5;
   margin: 0;
+  max-width: 44ch;
 }
-.rcf__note { color: var(--rcf-body); font-weight: 700; }
-.rcf__trust { color: var(--rcf-body); }
-.rcf__alt { color: var(--rcf-muted); }
-.rcf__link { color: var(--rcf-red); font-weight: 700; }
+.rcf__note { color: var(--rcf-cream); font-weight: 700; }
+.rcf__trust { color: rgba(251, 244, 230, 0.92); }
+.rcf__alt { color: rgba(251, 244, 230, 0.92); }
+/* Gold, not the site's usual red: red on this ground is 1.40. */
+.rcf__link {
+  color: var(--rcf-gold);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(242, 215, 154, 0.45);
+  text-decoration: none;
+}
+.rcf__link:hover { color: var(--rcf-cream); border-bottom-color: var(--rcf-cream); }
 
 .rcf__done {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   max-width: 44ch;
 }
 .rcf__donehead {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--rcf-ink);
+  color: var(--rcf-cream);
 }
-.rcf__donebody { font-size: 15px; line-height: 1.55; color: var(--rcf-body); }
-.rcf__donenote { font-size: 12.5px; color: var(--rcf-muted); }
+.rcf__donebody { font-size: 15px; line-height: 1.55; color: rgba(251, 244, 230, 0.92); }
+.rcf__donenote { font-size: 12.5px; color: var(--rcf-gold); font-weight: 700; }
 
 @media (max-width: 560px) {
-  .rcf__head { font-size: 20px; }
+  .rcf__head { font-size: 22px; }
   .rcf__send { justify-self: stretch; text-align: center; }
 }

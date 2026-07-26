@@ -112,7 +112,49 @@
   box-shadow: 0 2px 0 -1px var(--fvm-red);
 }
 
-/* ─── Hero ────────────────────────────────────────────────── */
+/* ─── Hero band ───────────────────────────────────────────── */
+/* Bleeds to the card edges, the same technique and gutters as .fvm-reveal, so
+   the page opens on a ground instead of on cream.
+   Every colour on it is re-declared, because this band inverts the page: the
+   defaults here are all dark-on-light. The <mark> is the one that bites — the
+   hook is clamp(1.05rem, 1.5vw, 1.2rem) at weight 700, so it renders 16.8px at
+   the small end, under the 18.66px where bold counts as large text. That means
+   it needs 4.5, and the brand red is 3.59 on this ground. #E4695E is 5.79 and
+   is the site's standard red-on-dark. */
+.fvm-hero {
+  position: relative;
+  margin: 0 -60px 0;
+  padding: 46px 60px 44px;
+  background: var(--fvm-ink);
+  color: var(--fvm-cream);
+  overflow: hidden;
+}
+/* Flush with the top of the card when nothing precedes it, or the card's 56px
+   of padding shows as a cream strip above the band and reads as a gap. When a
+   visitor arrives from the Fan Score the chip sits above, and the band keeps
+   its normal offset. */
+.fvm-hero:first-child { margin-top: -56px; }
+.fvm-hero__glow {
+  position: absolute;
+  inset: -70px -90px auto auto;
+  width: 420px;
+  height: 320px;
+  background: radial-gradient(circle at 70% 26%, rgba(224, 87, 75, 0.26), transparent 62%);
+  pointer-events: none;
+}
+.fvm-hero__inner { position: relative; z-index: 1; }
+/* Eyebrow inside a band is gold, matching .fa-fig--band on the Fan Score.
+   The red it uses on cream is 3.59 here, and this is 12px. */
+.fvm-eyebrow-brand--band { color: var(--fvm-gold); }
+.fvm-hero .fvm-h1 { color: var(--fvm-cream); }
+.fvm-hero .fvm-hook { color: var(--fvm-cream); }
+.fvm-hero .fvm-hook mark { color: #E4695E; }
+.fvm-hero .fvm-lede { color: #C6BCAF; }
+@media (max-width: 640px) {
+  .fvm-hero { margin: 0 -24px 0; padding: 34px 24px 32px; }
+  .fvm-hero:first-child { margin-top: -36px; }
+}
+
 .fvm-h1 {
   font-size: clamp(2.2rem, 4.6vw, 2.9rem);
   line-height: 1.03;
@@ -1017,3 +1059,10 @@
   margin: 0 0 6px;
 }
 .fvm-cta { margin-top: 52px; }
+
+/* Same as the Fan Score, with this page's gutter: .fvm-card is 60px, dropping
+   to 24px at 640px, matching .fvm-reveal above it. */
+.fvm-card .rcf { --rcf-bleed: 60px; }
+@media (max-width: 640px) {
+  .fvm-card .rcf { --rcf-bleed: 24px; }
+}
