@@ -4,6 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, SITE_URL } from '../lib/seo.js'
 import QuizReveal from '../components/QuizReveal.jsx'
 import ResultContactForm from '../components/ResultContactForm.jsx'
+import useCardActions from '../hooks/useCardActions.js'
 import './FanAuditPage.css'
 
 
@@ -158,13 +159,6 @@ function listAnd(a) {
 }
 const byPriority = (keys) => PRIORITY.filter((k) => keys.indexOf(k) >= 0)
 
-// Bundled, not fetched: the enforcing CSP in public/_headers allows scripts from
-// 'self' only, so the previous cdnjs <script> injection was blocked in production.
-// Lazy so the initial page load still doesn't pay for it.
-function loadHtml2Canvas() {
-  return import('html2canvas').then((m) => m.default)
-}
-
 export default function FanAuditPage() {
   useDocumentMeta({
     title: 'The Fan Score™ · Are your customers fans? · Laura Cordrey',
@@ -315,13 +309,19 @@ function scoreLive(ans) {
   const tied = disciplines.filter((x) => Math.abs(x.avg - lowVal) < 0.001).map((x) => x.key)
   const startPillar = byPriority(tied)[0] || tied[0]
 
+  // The strongest discipline, for the share card. Same tie-break as the weakest
+  // so the two are chosen consistently. Presentation only — no scoring uses it.
+  const highVal = Math.max(...disciplines.map((x) => x.avg))
+  const topTied = disciplines.filter((x) => Math.abs(x.avg - highVal) < 0.001).map((x) => x.key)
+  const topPillar = byPriority(topTied)[0] || topTied[0]
+
   const whyLine = paidAns === 0
     ? "You told us: pause paid, and your growth would mostly stop. That's the gap your fans can close."
     : paidAns === 1
     ? 'You told us: without paid, your growth would drop a lot. Your fans can carry more of it.'
     : 'You told us: your growth would mostly hold without paid. Rare. Now widen the lead.'
 
-  return { core, owned, rented, tier, gate, disciplines, tied, startPillar, whyLine, lowVal }
+  return { core, owned, rented, tier, gate, disciplines, tied, startPillar, topPillar, whyLine, lowVal }
 }
 
 function LiveQuiz({ cur, ans, onSelect, onBack }) {
@@ -355,45 +355,20 @@ function LiveQuiz({ cur, ans, onSelect, onBack }) {
 
 function LiveResult({ scored, restart }) {
   const cardRef = useRef(null)
-  const [dlError, setDlError] = useState('')
+  const card = useCardActions(cardRef, 'fan-score.png')
   if (!scored) return null
 
-  const { owned, rented, tier, gate, disciplines, tied, startPillar, whyLine } = scored
+  const { owned, rented, tier, gate, disciplines, tied, startPillar, topPillar, whyLine } = scored
   const tierSlug = tier.toLowerCase() // 'untapped' | 'earned' | 'compounding'
 
-  const leakHtml = tied.length === 1
-    ? {
-        main: <><b>{tier === 'Compounding' ? 'Widen the lead' : 'Your biggest opportunity'}: {startPillar}.</b> {LEAK_COPY[startPillar]}</>,
-        card: <>{tier === 'Compounding' ? 'Widen the lead' : 'Biggest opportunity'}: <b>{startPillar}</b></>,
-      }
+  // Page copy only. The card no longer carries the opportunity — see the note
+  // beside fa-cleak below.
+  const leakMain = tied.length === 1
+    ? <><b>{tier === 'Compounding' ? 'Widen the lead' : 'Your biggest opportunity'}: {startPillar}.</b> {LEAK_COPY[startPillar]}</>
     : (() => {
         const pctMin = Math.round(((scored.lowVal - 1) / 2) * 100)
-        return {
-          main: <><b>{listAnd(tied)} are level-pegging at {pctMin}% fan-led.</b> They build on each other, so start with the earliest: {startPillar}. {LEAK_COPY[startPillar]}</>,
-          card: <>Start with: <b>{startPillar}</b></>,
-        }
+        return <><b>{listAnd(tied)} are level-pegging at {pctMin}% fan-led.</b> They build on each other, so start with the earliest: {startPillar}. {LEAK_COPY[startPillar]}</>
       })()
-
-  // Throws on failure so a caller can tell success from failure. The button
-  // below wraps it; the contact form needs the throw to report accurately.
-  const downloadCard = async () => {
-    const h2c = await loadHtml2Canvas()
-    if (!h2c) throw new Error('no h2c')
-    const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
-    const a = document.createElement('a')
-    a.download = 'fan-score.png'
-    a.href = canvas.toDataURL('image/png')
-    a.click()
-  }
-
-  const download = async () => {
-    setDlError('')
-    try {
-      await downloadCard()
-    } catch {
-      setDlError('Could not generate the image. Screenshot the card to share it.')
-    }
-  }
 
   const noteText = gate === 1
     ? "This is your read on your own business, so treat it as directional, not measured. You couldn't prove it either way yet, and that's the point: the full engagement baselines every line with real data. Benchmarks: top fans spend 66 to 80% more, stay 2 to 3 times longer, and refer around 4 times more (Bain, Nielsen, HBR, Wharton)."
@@ -443,7 +418,7 @@ function LiveResult({ scored, restart }) {
           </div>
         ))}
       </div>
-      <div className="fa-leakbox">{leakHtml.main}</div>
+      <div className="fa-leakbox">{leakMain}</div>
 
       <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">Your move</div>
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
@@ -478,20 +453,29 @@ function LiveResult({ scored, restart }) {
               </div>
             ))}
           </div>
-          <div className="fa-cleak">{leakHtml.card}</div>
+          {/* The card names the strongest discipline, not the weakest. This is
+              the artefact that gets posted to a network including the
+              visitor's employer and investors, and nobody broadcasts their
+              soft spot. The opportunity and the starting point are on the
+              page above, where they are read by the person who can act. */}
+          <div className="fa-cleak">Strongest: <b>{topPillar}</b></div>
           <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>The Fan Engine™</span></div>
         </div>
         <div className="fa-cta">
-          <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
+          <button className="fa-btn fa-btn--ghost" onClick={card.share} disabled={card.busy}>
+            {card.busy ? 'Preparing…' : 'Share my result'}</button>
+          <button className="fa-btn fa-btn--ghost" onClick={card.download}>Download card as image</button>
           <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
-        {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
+        {(card.error || card.note) && (
+          <div className="fa-fldnote" role="status">{card.error || card.note}</div>
+        )}
       </div>
 
       <ResultContactForm
         tool="fan-score"
         score={`${owned}% fan-led · ${tier}`}
-        onDownload={downloadCard}
+        onDownload={card.downloadCard}
       />
 
       <p className="fa-note">{noteText}</p>
@@ -609,7 +593,7 @@ function scorePre(ans) {
 
 function PreResult({ scored, restart }) {
   const cardRef = useRef(null)
-  const [dlError, setDlError] = useState('')
+  const card = useCardActions(cardRef, 'fan-engine-readiness.png')
   if (!scored) return null
   const { lvls, fuelLv, effective, atMin, binding, verdict } = scored
 
@@ -658,27 +642,6 @@ function PreResult({ scored, restart }) {
   const cLeak = effective === 3
     ? <b>Ready to build</b>
     : <>Fix first: <b>{binding === 'Fuel' ? 'Fuel · route to fans' : LABEL_OF[binding]}</b></>
-
-  // Throws on failure so a caller can tell success from failure. The button
-  // below wraps it; the contact form needs the throw to report accurately.
-  const downloadCard = async () => {
-    const h2c = await loadHtml2Canvas()
-    if (!h2c) throw new Error('no h2c')
-    const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
-    const a = document.createElement('a')
-    a.download = 'fan-engine-readiness.png'
-    a.href = canvas.toDataURL('image/png')
-    a.click()
-  }
-
-  const download = async () => {
-    setDlError('')
-    try {
-      await downloadCard()
-    } catch {
-      setDlError('Could not generate the image. Screenshot the card to share it.')
-    }
-  }
 
   const hereIdx = effective - 1
 
@@ -778,16 +741,20 @@ function PreResult({ scored, restart }) {
           <div className="fa-cfoot"><span>Check yours · {SITE_URL.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</span><span>The Fan Engine™</span></div>
         </div>
         <div className="fa-cta">
-          <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
+          <button className="fa-btn fa-btn--ghost" onClick={card.share} disabled={card.busy}>
+            {card.busy ? 'Preparing…' : 'Share my result'}</button>
+          <button className="fa-btn fa-btn--ghost" onClick={card.download}>Download card as image</button>
           <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
-        {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
+        {(card.error || card.note) && (
+          <div className="fa-fldnote" role="status">{card.error || card.note}</div>
+        )}
       </div>
 
       <ResultContactForm
         tool="fan-score"
         score={`pre-launch · ${verdict}`}
-        onDownload={downloadCard}
+        onDownload={card.downloadCard}
       />
 
       <p className="fa-note">
