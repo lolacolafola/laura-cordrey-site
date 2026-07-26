@@ -7,7 +7,6 @@ import QuizReveal from '../components/QuizReveal.jsx'
 import './FanAuditPage.css'
 
 const CONTACT_URL = '/contact?intent=consulting'
-const HTML2CANVAS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
 
 // Inline sparkle used on every screen's eyebrow. Line-icon, 24×24 viewBox,
 // stroke=currentColor so page CSS colors it (red on cream, gold on dark).
@@ -118,10 +117,10 @@ const R_HEAD = {
   Compounding: 'You own the engine. Widen the lead.',
 }
 const LEAK_COPY = {
-  Brand: "your brand isn't yet steering what you build, so there's room to give fans something to rally around.",
-  Product: "the product doesn't yet earn its own return visits, so there's room to turn usage into loyalty.",
-  Community: "people buy but don't yet feel part of anything, so there's room to turn customers into a community that brings others.",
-  Growth: "the goodwill is there but untapped, so there's room to turn it into reach you don't pay for.",
+  Brand: "Your brand isn't yet steering what you build, so there's room to give fans something to rally around.",
+  Product: "The product doesn't yet earn its own return visits, so there's room to turn usage into loyalty.",
+  Community: "People buy but don't yet feel part of anything, so there's room to turn customers into a community that brings others.",
+  Growth: "The goodwill is there but untapped, so there's room to turn it into reach you don't pay for.",
 }
 const MOVE_COPY = {
   Brand: 'let your brand set the roadmap, not the other way round. When what you stand for decides what you build, fans have something to attach to.',
@@ -161,18 +160,11 @@ function listAnd(a) {
 const byPriority = (keys) => PRIORITY.filter((k) => keys.indexOf(k) >= 0)
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
-// Load html2canvas from CDN on demand — no npm dep, and no cost until the
-// user actually clicks "download". Fallback gracefully if it can't load.
+// Bundled, not fetched: the enforcing CSP in public/_headers allows scripts from
+// 'self' only, so the previous cdnjs <script> injection was blocked in production.
+// Lazy so the initial page load still doesn't pay for it.
 function loadHtml2Canvas() {
-  if (window.html2canvas) return Promise.resolve(window.html2canvas)
-  return new Promise((resolve, reject) => {
-    const s = document.createElement('script')
-    s.src = HTML2CANVAS_URL
-    s.async = true
-    s.onload = () => resolve(window.html2canvas)
-    s.onerror = () => reject(new Error('html2canvas failed to load'))
-    document.head.appendChild(s)
-  })
+  return import('html2canvas').then((m) => m.default)
 }
 
 export default function FanAuditPage() {
@@ -317,7 +309,7 @@ function LiveFlow({ screen, setScreen }) {
       />
     )
   }
-  return <LiveResult scored={scored} lead={lead} restart={restart} />
+  return <LiveResult scored={scored} restart={restart} />
 }
 
 function scoreLive(ans) {
@@ -426,13 +418,13 @@ function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
         <div className="fa-fldnote">{err}</div>
         <button className="fa-btn" type="submit">Show my full result</button>
       </form>
-      <p className="fa-trust">No spam. Your result, plus the occasional note on fan-led growth. Unsubscribe anytime.</p>
+      <p className="fa-trust">No spam, and no newsletter.</p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
     </section>
   )
 }
 
-function LiveResult({ scored, lead, restart }) {
+function LiveResult({ scored, restart }) {
   const cardRef = useRef(null)
   const [dlError, setDlError] = useState('')
   if (!scored) return null
@@ -458,7 +450,7 @@ function LiveResult({ scored, lead, restart }) {
     try {
       const h2c = await loadHtml2Canvas()
       if (!h2c) throw new Error('no h2c')
-      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2 })
+      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
       const a = document.createElement('a')
       a.download = 'fan-score.png'
       a.href = canvas.toDataURL('image/png')
@@ -466,12 +458,6 @@ function LiveResult({ scored, lead, restart }) {
     } catch {
       setDlError('Could not generate the image. Screenshot the card to share it.')
     }
-  }
-
-  const emailCopy = () => {
-    const subj = 'My Fan Score'
-    const body = `My result: ${owned}% of my growth is fan-led (${tier}).\nBiggest opportunity: ${startPillar}.\n\nCheck yours: ${location.href}`
-    location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
 
   const noteText = gate === 1
@@ -560,10 +546,9 @@ function LiveResult({ scored, lead, restart }) {
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
-          <button className="fa-btn fa-btn--ghost" onClick={emailCopy}>Email me a copy</button>
           <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
-        {dlError && <div className="fa-fldnote">{dlError}</div>}
+        {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
       </div>
       <p className="fa-note">{noteText}</p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
@@ -753,7 +738,7 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
     try {
       const h2c = await loadHtml2Canvas()
       if (!h2c) throw new Error('no h2c')
-      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2 })
+      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
       const a = document.createElement('a')
       a.download = 'fan-engine-readiness.png'
       a.href = canvas.toDataURL('image/png')
@@ -761,14 +746,6 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
     } catch {
       setDlError('Could not generate the image. Screenshot the card to share it.')
     }
-  }
-
-  const emailCopy = () => {
-    const openLabels = Object.keys(lvls).filter((k) => lvls[k] < 3).map((k) => LABEL_OF[k]).join(', ') || 'none'
-    const fixFirst = effective === 3 ? 'nothing' : LABEL_OF[binding]
-    const subj = 'My Fan Score · pre-launch'
-    const body = `Verdict: ${verdict}.\nFix first: ${fixFirst}.\nStill open: ${openLabels}.\n\nCheck yours: ${location.href}`
-    location.href = 'mailto:' + (lead.email ? encodeURIComponent(lead.email) : '') + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body)
   }
 
   const hereIdx = effective - 1
@@ -872,17 +849,16 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         </div>
         <div className="fa-cta">
           <button className="fa-btn fa-btn--ghost" onClick={download}>Download card as image</button>
-          <button className="fa-btn fa-btn--ghost" onClick={emailCopy}>Email me a copy</button>
           <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
         </div>
-        {dlError && <div className="fa-fldnote">{dlError}</div>}
+        {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
       </div>
 
       <div className="fa-cardwrap">
         <hr className="fa-rule fa-rule--tight" />
         <div className="fa-fig"><Sparkle />Optional</div>
         <h2 className="fa-gateh">Want this as a PDF?</h2>
-        <p className="fa-lede">Leave your email and I'll send this over, plus the occasional note on building 0→1 for fans. No spam, unsubscribe anytime.</p>
+        <p className="fa-lede">Leave your email and I'll send this over.</p>
         {!sent ? (
           <form onSubmit={submitEmail} className="fa-gateform">
             <input

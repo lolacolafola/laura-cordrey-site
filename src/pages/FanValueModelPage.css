@@ -243,8 +243,11 @@
   transition: border-color 0.2s var(--fvm-ease);
 }
 .fvm-input:focus {
-  outline: 0;
   border-bottom-color: var(--fvm-red);
+}
+.fvm-input:focus-visible {
+  outline: 2px solid var(--fvm-red);
+  outline-offset: 3px;
 }
 .fvm-input--money { width: 150px; }
 .fvm-input--pct { width: 70px; }
