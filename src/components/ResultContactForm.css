@@ -51,6 +51,11 @@
 }
 .rcf__fld--area { min-height: 108px; resize: vertical; line-height: 1.5; }
 
+/* The brand red at rest, filling gold with dark ink on hover — the same CTA
+   behaviour as .fa-btn and .fvm-btn, so Send reads as this page's primary
+   action rather than a third colour. Cream on #C8362B is 5.00, and the label
+   is 14px so it needs 4.5. The small red text below stays --rcf-red
+   (#8E2520): that is text on cream, where the brand red is the weaker choice. */
 .rcf__send {
   justify-self: start;
   font-family: inherit;
@@ -58,16 +63,18 @@
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #FCFAF3;
-  background: var(--rcf-red);
+  background: #C8362B;
   border: 0;
   border-radius: 3px;
   padding: 14px 30px;
   cursor: pointer;
-  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1),
+              color 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
-.rcf__send:hover { background: #7A1F1B; }
+.rcf__send:hover { background: #D4C896; color: var(--rcf-ink); }
 .rcf__send:focus-visible { outline: 2px solid var(--rcf-ink); outline-offset: 3px; }
 .rcf__send:disabled { opacity: 0.6; cursor: default; }
+.rcf__send:disabled:hover { background: #C8362B; color: #FCFAF3; }
 
 .rcf__note,
 .rcf__trust,

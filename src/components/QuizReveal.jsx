@@ -4,14 +4,16 @@ import './QuizReveal.css'
 // Quiz-reveal transition, shared by both Fan Score editions (live + pre-launch).
 // Plays once between the last answer and the next screen. Shows no score or
 // verdict; that is the next page's job.
+// Holds were 1000/1000/1800, so 3.8s before anyone saw anything. Halved: the
+// reveal should sell the moment, not spend it.
 const REV_PHRASES = [
-  { text: 'Starting the fan engine…', pct: 22, hold: 1000 },
-  { text: 'Vroom, vroom…', pct: 60, hold: 1000 },
-  { text: 'Ready for blast off!', pct: 100, hold: 1800 },
+  { text: 'Starting the fan engine…', pct: 22, hold: 500 },
+  { text: 'Vroom, vroom…', pct: 60, hold: 500 },
+  { text: 'Ready for blast off!', pct: 100, hold: 900 },
 ]
 // Hard ceiling: no matter what happens with the tick chain, onDone MUST fire
 // within this window. Prevents users getting stranded on a stuck reveal.
-const FAILSAFE_MS = 5000
+const FAILSAFE_MS = 3000
 
 const Sparkle = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

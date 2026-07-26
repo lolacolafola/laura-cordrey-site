@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
 import ResultContactForm from '../components/ResultContactForm.jsx'
+import AnimatedNumber from '../components/AnimatedNumber.jsx'
 import './FanValueModelPage.css'
 
 const FANSCORE_URL = '/fan-score'
@@ -385,7 +386,8 @@ export default function FanValueModelPage() {
             <div className="fvm-bignum">
               <div className="fvm-bignum__halo" aria-hidden="true" />
               <div className="fvm-bignum__val">
-                {derived.fmtK(derived.total)}<span className="fvm-bignum__unit">/ yr</span>
+                <AnimatedNumber value={derived.total} format={derived.fmtK} />
+                <span className="fvm-bignum__unit">/ yr</span>
               </div>
             </div>
             <p className="fvm-reveal__sub">

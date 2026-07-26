@@ -112,7 +112,9 @@
   padding: 6px 10px;
   cursor: pointer;
   opacity: 0;
-  animation: qrSkipFadeIn 0.3s ease 1.4s forwards;
+  /* Was 1.4s, which landed after a 3.8s reveal but would now appear with the
+     reveal already effectively over. Held to the same proportion of the run. */
+  animation: qrSkipFadeIn 0.3s ease 0.5s forwards;
   transition: color 0.2s ease;
 }
 .qr-skip:hover,
