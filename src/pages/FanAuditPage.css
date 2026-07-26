@@ -1120,6 +1120,8 @@
   text-decoration: none;
 }
 .fa-ctatail a:hover { color: var(--fa-accent); }
+/* Pre-launch has no CTA row above this line, so it carries its own top space. */
+.fa-ctatail--lead { margin-top: 26px; }
 
 /* Share card themed per tier (dark for untapped/earned, oxblood for compounding) */
 .fa-card__glow {

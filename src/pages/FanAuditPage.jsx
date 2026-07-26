@@ -2,11 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl, SITE_URL } from '../lib/seo.js'
-import { postLead } from '../lib/forms.js'
 import QuizReveal from '../components/QuizReveal.jsx'
+import ResultContactForm from '../components/ResultContactForm.jsx'
 import './FanAuditPage.css'
 
-const CONTACT_URL = '/contact?intent=consulting'
 
 // Inline sparkle used on every screen's eyebrow. Line-icon, 24×24 viewBox,
 // stroke=currentColor so page CSS colors it (red on cream, gold on dark).
@@ -158,7 +157,6 @@ function listAnd(a) {
   return a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]
 }
 const byPriority = (keys) => PRIORITY.filter((k) => keys.indexOf(k) >= 0)
-const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
 // Bundled, not fetched: the enforcing CSP in public/_headers allows scripts from
 // 'self' only, so the previous cdnjs <script> injection was blocked in production.
@@ -185,7 +183,7 @@ export default function FanAuditPage() {
       <div className="fa-sheet">
         {screen === 'intro' && <IntroScreen onStart={() => setScreen('gate')} />}
         {screen === 'gate' && <GateScreen onLive={() => setScreen('liveQuiz')} onPre={() => setScreen('preIntro')} onBack={() => setScreen('intro')} />}
-        {(screen === 'liveQuiz' || screen === 'liveEmail' || screen === 'liveReveal' || screen === 'liveResult') && (
+        {(screen === 'liveQuiz' || screen === 'liveReveal' || screen === 'liveResult') && (
           <LiveFlow screen={screen} setScreen={setScreen} />
         )}
         {(screen === 'preIntro' || screen === 'preQuiz' || screen === 'preReveal' || screen === 'preResult') && (
@@ -252,13 +250,11 @@ function GateScreen({ onLive, onPre, onBack }) {
   )
 }
 
-// ─── Live edition — quiz, email gate, result ─────────────────────────────────
+// ─── Live edition — quiz, reveal, result ─────────────────────────────────────
 
 function LiveFlow({ screen, setScreen }) {
   const [ans, setAns] = useState(() => new Array(LQ.length).fill(null))
   const [cur, setCur] = useState(0)
-  const [lead, setLead] = useState({ name: '', email: '' })
-  const [err, setErr] = useState('')
 
   const restart = () => setScreen('intro')
 
@@ -277,37 +273,11 @@ function LiveFlow({ screen, setScreen }) {
 
   const scored = useMemo(() => scoreLive(ans), [ans])
 
-  const submitEmail = (e) => {
-    e.preventDefault()
-    if (!isEmail(lead.email.trim())) { setErr('Please enter a valid email.'); return }
-    setErr('')
-    postLead({
-      form: 'fan-score',
-      edition: 'live',
-      name: lead.name.trim(),
-      email: lead.email.trim(),
-      score: scored ? `${scored.owned}% fan-led · ${scored.tier}` : 'incomplete',
-      _subject: `[fan-score] ${lead.email.trim()} · ${scored ? scored.owned + '% · ' + scored.tier : ''}`,
-    })
-    setScreen('liveResult')
-  }
-
   if (screen === 'liveQuiz') {
     return <LiveQuiz cur={cur} ans={ans} onSelect={selectAnswer} onBack={back} />
   }
   if (screen === 'liveReveal') {
-    return <QuizReveal onDone={() => setScreen('liveEmail')} />
-  }
-  if (screen === 'liveEmail') {
-    return (
-      <LiveEmailGate
-        scored={scored}
-        lead={lead}
-        setLead={setLead}
-        err={err}
-        onSubmit={submitEmail}
-      />
-    )
+    return <QuizReveal onDone={() => setScreen('liveResult')} />
   }
   return <LiveResult scored={scored} restart={restart} />
 }
@@ -383,47 +353,6 @@ function LiveQuiz({ cur, ans, onSelect, onBack }) {
   )
 }
 
-function LiveEmailGate({ scored, lead, setLead, err, onSubmit }) {
-  if (!scored) return null
-  const tColor = scored.tier === 'Untapped' ? '#5E564E' : scored.tier === 'Earned' ? '#8A6D1E' : '#C8362B'
-  const tFill = scored.tier === 'Compounding' ? '#C8362B' : '#C9A24B'
-  const tText = tColor
-  return (
-    <section className="fa-rel">
-      <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span></span></div>
-      <div className="fa-bignum" style={{ color: tColor }}>{scored.owned}%</div>
-      <p className="fa-numlabel">
-        of your growth is fan-led. The other {scored.rented}% is untapped fan potential.
-      </p>
-      <div className="fa-splitbar">
-        <i style={{ width: scored.owned + '%', background: tFill }} />
-        <i style={{ width: scored.rented + '%', background: '#A79C89' }} />
-      </div>
-      <div className="fa-splitlegend">
-        <span style={{ color: tText }}>{scored.owned}% fan-led</span>
-        <span style={{ color: '#6B6157' }}>{scored.rented}% untapped</span>
-      </div>
-      <hr className="fa-rule" />
-      <h2 className="fa-gateh">Want the full picture?</h2>
-      <p className="fa-lede">Unlock your stage, your biggest opportunity, and where to grow next, and keep a copy. Enter your email to see it.</p>
-      <form onSubmit={onSubmit} className="fa-gateform">
-        <input
-          className="fa-fld" type="text" placeholder="First name (optional)" autoComplete="given-name"
-          value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })}
-        />
-        <input
-          className="fa-fld" type="email" placeholder="Work email" autoComplete="email" required
-          value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })}
-        />
-        <div className="fa-fldnote">{err}</div>
-        <button className="fa-btn" type="submit">Show my full result</button>
-      </form>
-      <p className="fa-trust">No spam, and no newsletter.</p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
-    </section>
-  )
-}
-
 function LiveResult({ scored, restart }) {
   const cardRef = useRef(null)
   const [dlError, setDlError] = useState('')
@@ -445,16 +374,22 @@ function LiveResult({ scored, restart }) {
         }
       })()
 
+  // Throws on failure so a caller can tell success from failure. The button
+  // below wraps it; the contact form needs the throw to report accurately.
+  const downloadCard = async () => {
+    const h2c = await loadHtml2Canvas()
+    if (!h2c) throw new Error('no h2c')
+    const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
+    const a = document.createElement('a')
+    a.download = 'fan-score.png'
+    a.href = canvas.toDataURL('image/png')
+    a.click()
+  }
+
   const download = async () => {
     setDlError('')
     try {
-      const h2c = await loadHtml2Canvas()
-      if (!h2c) throw new Error('no h2c')
-      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
-      const a = document.createElement('a')
-      a.download = 'fan-score.png'
-      a.href = canvas.toDataURL('image/png')
-      a.click()
+      await downloadCard()
     } catch {
       setDlError('Could not generate the image. Screenshot the card to share it.')
     }
@@ -513,15 +448,17 @@ function LiveResult({ scored, restart }) {
       <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">Your move</div>
       <p className="fa-movebox"><b>Start here:</b> {MOVE_COPY[startPillar]}</p>
 
+      {/* One primary per screen, and it is the money, not the call. A score is
+          not yet a buying moment; a number in pounds is. This is the deliberate
+          exception to the site rule that "Let's talk" is the only primary —
+          the conversation is carried by the form below instead. */}
       <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
       <div className="fa-cta">
         <Link className="fa-btn" to={`/fan-value?score=${owned}`}>
           See what your fans are worth</Link>
-        <Link className="fa-btn" to={CONTACT_URL}>
-          Let’s talk</Link>
       </div>
       <p className="fa-ctatail">
-        See the number, or skip ahead and build it with me. That’s the Fan Engine.
+        Your percentage is the diagnosis. The number is what it’s costing you.
       </p>
 
       <div className="fa-cardwrap">
@@ -550,6 +487,13 @@ function LiveResult({ scored, restart }) {
         </div>
         {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
       </div>
+
+      <ResultContactForm
+        tool="fan-score"
+        score={`${owned}% fan-led · ${tier}`}
+        onDownload={downloadCard}
+      />
+
       <p className="fa-note">{noteText}</p>
       <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
     </section>
@@ -584,9 +528,6 @@ function TierStrip({ tier }) {
 function PreFlow({ screen, setScreen }) {
   const [ans, setAns] = useState(() => new Array(C.length).fill(null))
   const [cur, setCur] = useState(0)
-  const [lead, setLead] = useState({ name: '', email: '' })
-  const [err, setErr] = useState('')
-  const [sent, setSent] = useState(false)
 
   const restart = () => setScreen('intro')
 
@@ -606,21 +547,6 @@ function PreFlow({ screen, setScreen }) {
   }
 
   const scored = useMemo(() => scorePre(ans), [ans])
-
-  const submitEmail = (e) => {
-    e.preventDefault()
-    if (!isEmail(lead.email.trim())) { setErr('Please enter a valid email.'); return }
-    setErr('')
-    postLead({
-      form: 'fan-score',
-      edition: 'pre-launch',
-      name: lead.name.trim(),
-      email: lead.email.trim(),
-      score: scored ? scored.verdict : 'incomplete',
-      _subject: `[fan-score · pre-launch] ${lead.email.trim()} · ${scored ? scored.verdict : ''}`,
-    })
-    setSent(true)
-  }
 
   if (screen === 'preIntro') {
     return (
@@ -664,7 +590,7 @@ function PreFlow({ screen, setScreen }) {
   if (screen === 'preReveal') {
     return <QuizReveal onDone={() => setScreen('preResult')} />
   }
-  return <PreResult scored={scored} lead={lead} setLead={setLead} err={err} sent={sent} submitEmail={submitEmail} restart={restart} />
+  return <PreResult scored={scored} restart={restart} />
 }
 
 function scorePre(ans) {
@@ -681,7 +607,7 @@ function scorePre(ans) {
   return { lvls, discMin, fuelLv, effective, atMin, binding, verdict }
 }
 
-function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
+function PreResult({ scored, restart }) {
   const cardRef = useRef(null)
   const [dlError, setDlError] = useState('')
   if (!scored) return null
@@ -733,16 +659,22 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
     ? <b>Ready to build</b>
     : <>Fix first: <b>{binding === 'Fuel' ? 'Fuel · route to fans' : LABEL_OF[binding]}</b></>
 
+  // Throws on failure so a caller can tell success from failure. The button
+  // below wraps it; the contact form needs the throw to report accurately.
+  const downloadCard = async () => {
+    const h2c = await loadHtml2Canvas()
+    if (!h2c) throw new Error('no h2c')
+    const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
+    const a = document.createElement('a')
+    a.download = 'fan-engine-readiness.png'
+    a.href = canvas.toDataURL('image/png')
+    a.click()
+  }
+
   const download = async () => {
     setDlError('')
     try {
-      const h2c = await loadHtml2Canvas()
-      if (!h2c) throw new Error('no h2c')
-      const canvas = await h2c(cardRef.current, { backgroundColor: null, scale: 2, logging: false })
-      const a = document.createElement('a')
-      a.download = 'fan-engine-readiness.png'
-      a.href = canvas.toDataURL('image/png')
-      a.click()
+      await downloadCard()
     } catch {
       setDlError('Could not generate the image. Screenshot the card to share it.')
     }
@@ -815,12 +747,10 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
       <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">The one move</div>
       <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
 
-      <div className="fa-sectlbl fa-sectlbl--next">Where to next</div>
-      <div className="fa-cta">
-        <Link className="fa-btn" to={CONTACT_URL}>Let’s talk</Link>
-        <button className="fa-back" onClick={restart}>Retake the Fan Score</button>
-      </div>
-      <p className="fa-ctatail">
+      {/* No Fan Value cross-sell here: pre-launch has no revenue to model. The
+          form below is this screen's primary, so no filled button competes
+          with it above. */}
+      <p className="fa-ctatail fa-ctatail--lead">
         This is the pre-launch reality check. The full engagement begins the day you go live.
       </p>
 
@@ -854,28 +784,11 @@ function PreResult({ scored, lead, setLead, err, sent, submitEmail, restart }) {
         {dlError && <div className="fa-fldnote" role="status">{dlError}</div>}
       </div>
 
-      <div className="fa-cardwrap">
-        <hr className="fa-rule fa-rule--tight" />
-        <div className="fa-fig"><Sparkle />Optional</div>
-        <h2 className="fa-gateh">Want this as a PDF?</h2>
-        <p className="fa-lede">Leave your email and I'll send this over.</p>
-        {!sent ? (
-          <form onSubmit={submitEmail} className="fa-gateform">
-            <input
-              className="fa-fld" type="text" placeholder="First name (optional)" autoComplete="given-name"
-              value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })}
-            />
-            <input
-              className="fa-fld" type="email" placeholder="Work email" autoComplete="email" required
-              value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })}
-            />
-            <div className="fa-fldnote">{err}</div>
-            <button className="fa-btn" type="submit">Send it to me</button>
-          </form>
-        ) : (
-          <p className="fa-trust">Sent. Check your inbox in a minute.</p>
-        )}
-      </div>
+      <ResultContactForm
+        tool="fan-score"
+        score={`pre-launch · ${verdict}`}
+        onDownload={downloadCard}
+      />
 
       <p className="fa-note">
         This is the directional, self-assessed edition of the Fan Score, not a growth score. It's only as honest as the evidence behind each answer, so treat it as a starting point, best confirmed in a call. Re-run it monthly. The full engagement begins the day you go live.

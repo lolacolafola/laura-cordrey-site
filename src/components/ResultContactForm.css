@@ -1,0 +1,101 @@
+/* Short contact form under a tool result. Both tool pages ground on cream
+   (#FCFAF3), so one set of values works on Fan Score and Fan Value alike.
+   Reds are --accent-deep #8E2520, which is 8.26 on cream: the brand red
+   #C8362B only clears 4.5 as display type, and none of this is display type. */
+.rcf {
+  --rcf-ink: #15110F;
+  --rcf-body: #4A423B;
+  --rcf-muted: #6B6157;
+  --rcf-red: #8E2520;
+  --rcf-hair: rgba(21, 17, 15, 0.16);
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(21, 17, 15, 0.1);
+}
+.rcf__head {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--rcf-ink);
+  margin: 0 0 6px;
+}
+.rcf__lede {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--rcf-body);
+  margin: 0 0 18px;
+  max-width: 44ch;
+}
+.rcf__form {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+}
+.rcf__fld {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rcf-ink);
+  background: transparent;
+  border: 1.5px solid var(--rcf-hair);
+  border-radius: 4px;
+  padding: 13px 14px;
+}
+.rcf__fld::placeholder { color: var(--rcf-muted); font-weight: 500; }
+.rcf__fld:focus { border-color: var(--rcf-red); }
+.rcf__fld:focus-visible {
+  outline: 2px solid var(--rcf-red);
+  outline-offset: 2px;
+}
+.rcf__fld--area { min-height: 108px; resize: vertical; line-height: 1.5; }
+
+.rcf__send {
+  justify-self: start;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FCFAF3;
+  background: var(--rcf-red);
+  border: 0;
+  border-radius: 3px;
+  padding: 14px 30px;
+  cursor: pointer;
+  transition: background 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.rcf__send:hover { background: #7A1F1B; }
+.rcf__send:focus-visible { outline: 2px solid var(--rcf-ink); outline-offset: 3px; }
+.rcf__send:disabled { opacity: 0.6; cursor: default; }
+
+.rcf__note,
+.rcf__trust,
+.rcf__alt {
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+.rcf__note { color: var(--rcf-body); font-weight: 700; }
+.rcf__trust { color: var(--rcf-body); }
+.rcf__alt { color: var(--rcf-muted); }
+.rcf__link { color: var(--rcf-red); font-weight: 700; }
+
+.rcf__done {
+  display: grid;
+  gap: 6px;
+  max-width: 44ch;
+}
+.rcf__donehead {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--rcf-ink);
+}
+.rcf__donebody { font-size: 15px; line-height: 1.55; color: var(--rcf-body); }
+.rcf__donenote { font-size: 12.5px; color: var(--rcf-muted); }
+
+@media (max-width: 560px) {
+  .rcf__head { font-size: 20px; }
+  .rcf__send { justify-self: stretch; text-align: center; }
+}

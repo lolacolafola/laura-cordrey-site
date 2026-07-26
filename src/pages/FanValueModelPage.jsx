@@ -2,9 +2,9 @@ import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
+import ResultContactForm from '../components/ResultContactForm.jsx'
 import './FanValueModelPage.css'
 
-const CONTACT_URL = '/contact?intent=consulting'
 const FANSCORE_URL = '/fan-score'
 
 const Sparkle = ({ size = 14 }) => (
@@ -121,7 +121,9 @@ export default function FanValueModelPage() {
   const [liftPts, setLiftPts] = useState(6)
   const [spendPct, setSpendPct] = useState(10)
   const [fanN, setFanN] = useState(14)
-  const [assumOpen, setAssumOpen] = useState(false)
+  // Open by default: the sliders are the proof this is a model and not a
+  // marketing quiz, so they are the thing to lead with, not a footnote to open.
+  const [assumOpen, setAssumOpen] = useState(true)
   const [arpu, setArpu] = useState('')
   const [cac, setCac] = useState('')
   const [emvOn, setEmvOn] = useState(false)
@@ -254,7 +256,7 @@ export default function FanValueModelPage() {
         <p className="fvm-lede">
           Put in a few numbers you already have, and I&rsquo;ll show you what your fans
           are worth: what you gain when they stay, spend more, and bring you new customers.
-          The estimate is conservative, and you can open the workings behind every figure.
+          The estimate is conservative, and every assumption behind it is yours to change.
         </p>
 
         <hr className="fvm-rule" />
@@ -374,7 +376,7 @@ export default function FanValueModelPage() {
           <div className="fvm-reveal__inner">
             <div className="fvm-eyebrow-band">
               <Sparkle />
-              <span>The gap, in money</span>
+              <span>The opportunity, in money</span>
             </div>
             <div className="fvm-reveal__context">
               For a <b>{derived.fmtK(derived.revN)}</b> brand, fan-led growth could be worth about
@@ -473,7 +475,7 @@ export default function FanValueModelPage() {
           <span className="fvm-pill">Stay + Spend + Bring{emvOn ? ' + EMV' : ''}</span>
         </div>
         <p className="fvm-breakdown">
-          Every lever is capped and conservative. Open the workings if you want the benchmark behind each one.
+          Every lever is capped and conservative, with the benchmark behind each one alongside it.
         </p>
 
         {/* Assumptions accordion */}
@@ -487,7 +489,7 @@ export default function FanValueModelPage() {
             <span className={`fvm-accord__chev${assumOpen ? ' is-open' : ''}`}>
               <Chevron />
             </span>
-            How I worked this out
+            Try your own assumptions
           </button>
           {assumOpen && (
             <div className="fvm-accord__body">
@@ -645,15 +647,20 @@ export default function FanValueModelPage() {
           </div>
         )}
 
-        {/* Final CTA */}
+        {/* Final CTA. The form is this screen's primary action, so no filled
+            button competes with it above — a number in pounds is the buying
+            moment, and the reply should start here rather than a page away. */}
         <div className="fvm-cta">
           <p className="fvm-cta__eyebrow">The Fan Engine<span className="tm">™</span></p>
           <p className="fvm-cta__q">
-            My flagship system is how you build the engine that captures this. Book a call to baseline it on your real numbers.
+            My flagship system is how you build the engine that captures this. Tell me your numbers and I&rsquo;ll baseline it on them.
           </p>
-          <Link to={CONTACT_URL} className="fvm-btn">
-            Let’s talk</Link>
         </div>
+
+        <ResultContactForm
+          tool="fan-value"
+          score={`${derived.fmtK(derived.total)} / yr`}
+        />
 
         {/* Footnotes */}
         <p className="fvm-foot">
