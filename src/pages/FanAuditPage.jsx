@@ -116,9 +116,9 @@ const TIER_COPY = {
 // became nonsense the moment the mark was applied to it, which is why these are
 // reworded away from the metaphor rather than capitalised into it. 28 Jul 2026.
 const R_HEAD = {
-  Untapped: "There's fan-led growth here you haven't built yet.",
-  Earned: 'Your fans are starting to carry it. Make it compound.',
-  Compounding: 'Your fans carry your growth. Widen the lead.',
+  Untapped: "There's a growth engine here you haven't built yet.",
+  Earned: 'Your growth engine is turning. Make it compound.',
+  Compounding: 'You own the growth engine. Widen the lead.',
 }
 const LEAK_COPY = {
   Brand: "Your brand isn't yet steering what you build, so there's room to give fans something to rally around.",
@@ -144,14 +144,14 @@ const REFRAME = {
   Product: 'You can get people in, but nothing yet makes them stay, or rewards them for being early.',
   Community: "You've got sign-ups, but no founding group who feel part of it.",
   Growth: "Demand isn't set up to recruit more demand, so every new fan is one you chase.",
-  Fuel: <>You&rsquo;re building the Fan Engine<span className="tm">&trade;</span> before securing what feeds it.</>,
+  Fuel: "You're building the growth engine before securing what feeds it.",
 }
 const GATE_WHY = {
   Brand: "Fans attach to a meaning, not a feature list. Without one, there's nothing to be loyal to.",
   Product: "If the loop doesn't hold, every fan you bring in leaks straight back out.",
   Community: 'A list is contacts; a founding cohort is people who show up and bring others. Only one compounds.',
   Growth: "If your waitlist can't grow itself, you're back to paying for every new name.",
-  Fuel: <>A fully built Fan Engine<span className="tm">&trade;</span> with no fuel is still empty. This is the one to solve first.</>,
+  Fuel: 'A fully built growth engine with no fuel is still empty. This is the one to solve first.',
 }
 const MOVE_PRE = {
   Brand: "give people something to belong to before launch: a point of view, a name, a world they'd want in on.",
@@ -561,7 +561,7 @@ function PreFlow({ screen, setScreen }) {
             instead of 4. Kept "to fuel it" rather than "and fuel it": without
             the "to", a reader can briefly attach fuel to the engine ("an engine
             fans will power and fuel") before the sentence resolves. */}
-        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you&rsquo;re ready to build for fans, and whether you have the fuel.</p>
+        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you&rsquo;re ready to build a growth engine fans will power, and to fuel it.</p>
         {/* Was "No numbers needed. A minute or two." Nothing in either edition
             asks for a figure, so it was true — but the lede directly above has
             already said a "% fan-led" number would be guessing, so the promise
@@ -633,7 +633,7 @@ function PreResult({ scored, restart }) {
   const cardTierSlug = tierSlug
 
   const reframeText = effective === 3
-    ? <>You&rsquo;ve got something to feed the Fan Engine<span className="tm">&trade;</span>, and one worth feeding. Now build, in the order these checks point to.</>
+    ? "You've got something to feed the growth engine, and one worth feeding. Now build, in the order these checks point to."
     : REFRAME[binding]
 
   const stages = [
@@ -645,7 +645,7 @@ function PreResult({ scored, restart }) {
   const fuelSub = fuelLv === 3 ? 'ready to fuel the build' : fuelLv === 2 ? 'not locked yet' : 'no route yet'
 
   const gateBox = (() => {
-    if (effective === 3) return <><b>Nothing&rsquo;s holding you back.</b> The Fan Engine<span className="tm">&trade;</span> is built and the fuel is lined up. Your job now is the build order, hardest-earned part first.</>
+    if (effective === 3) return <><b>Nothing&rsquo;s holding you back.</b> The growth engine's built and the fuel is lined up. Your job now is the build order, hardest-earned part first.</>
     if (atMin.length === 1) {
       return binding === 'Fuel'
         ? <><b>Fix this first: Fuel, your route to first fans.</b> {GATE_WHY.Fuel}</>

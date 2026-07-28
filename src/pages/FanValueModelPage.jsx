@@ -672,7 +672,7 @@ export default function FanValueModelPage() {
         <div className="fvm-cta">
           <p className="fvm-cta__eyebrow">The Fan Engine<span className="tm">™</span></p>
           <p className="fvm-cta__q">
-            My flagship system is how you build the engine that captures this. Tell me your numbers and I&rsquo;ll baseline it on them.
+            My flagship system is how you build the growth engine that captures this. Tell me your numbers and I&rsquo;ll baseline it on them.
           </p>
         </div>
 

@@ -297,7 +297,7 @@ export default function AIPage() {
           </h2>
           <div className="ai-manifesto__body">
             <p>
-              The AI companies that treat the crowd around their model as an engine, not a cost, will pull ahead in a way the others cannot buy back.
+              The AI companies that treat the crowd around their model as a growth engine, not a cost, will pull ahead in a way the others cannot buy back.
             </p>
             <p>
             {/* Rewritten twice on 23 Jul 2026.

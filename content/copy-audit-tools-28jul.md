@@ -3,9 +3,11 @@
 28 July 2026. A full read of every string in both tools, requested after two
 lines turned out not to say what they meant.
 
-**Nothing here is applied.** These are proposals for your approval — the voice
-is yours, and I am not rewriting it unilaterally. Tick the ones you want and
-I'll make the changes.
+**RESOLVED 28 Jul 2026 — see the note at the end. Everything in §1–§4 is now
+applied, but §1 landed on a better answer than any of the three options below.**
+
+Originally written as proposals for approval; kept as written so the reasoning
+is on the record.
 
 ---
 
@@ -180,3 +182,62 @@ Recording these so they don't get re-litigated:
 
 Say which and I'll make the changes, verify them in the browser across both
 editions, and add the case-insensitive drift check to `CLAUDE.md`.
+
+
+---
+
+# Resolution, 28 July 2026
+
+## §1 — the answer was none of A, B or C
+
+The three options all assumed a choice between *protecting the mark* and
+*keeping the metaphor*. Laura's answer removed the trade-off: **say "growth
+engine" wherever the generic metaphor is meant.**
+
+That works because it does three things at once. It is unmistakably not the
+trademark, so there is no dilution. It is *clearer* than the bare noun ever was
+— "a growth engine" tells you what kind of engine, where "the engine" left the
+reader to infer it. And it lets almost every original sentence survive intact.
+
+The rule now in force, by who the sentence is about:
+
+| The sentence is about… | Says | Example |
+|---|---|---|
+| Laura's system | **the Fan Engine™** | "I build the Fan Engine™ around it" (/faq) |
+| The visitor's own growth | **their growth engine** | "You own the growth engine. Widen the lead." |
+
+Three tier headlines that had been reworded off the metaphor entirely were
+restored to Laura's originals with only "growth" added — the metaphor was never
+the problem, the bare noun was.
+
+The pre-launch lede likewise went back to its original phrasing:
+
+> …5 quick questions on whether you're ready to build a growth engine fans will
+> power, and to fuel it.
+
+Measured at 3 rendered lines, as required.
+
+**One inconsistency this exposed.** The four pre-launch result strings had been
+given the mark on the reasoning that the edition is a Fan Engine™ readiness
+check. Once the lede said "a growth engine", the visitor was reading two names
+for one thing on consecutive screens. They now all say "growth engine". The
+Fan Engine™ is what Laura builds; the growth engine is what the visitor ends up
+with.
+
+## §2, §3, §4 — all applied
+
+- "The one move" → "Your move" in the pre-launch result, and out of the
+  `/fan-score` meta description (129 chars).
+- The uncontracted Fan Value line contracted.
+- The reveal patter removed, pacing kept.
+
+## Beyond the tools
+
+The case-insensitive check found nine more usages across `/faq`, `/services`,
+`/fan-led-growth`, `/fan-engine`, `/ai` and `/fan-value` — all now resolved
+under the same rule. The one that mattered most was on `/fan-led-growth`, where
+the link text read **"an engine you own"** and pointed at `/fan-engine`: the
+site telling a reader they owned the methodology. Now "the Fan Engine™".
+
+Verified: no bare "engine" remains in any page copy. The only matches left in
+the repo are code comments quoting the old strings.

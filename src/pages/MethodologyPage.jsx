@@ -507,9 +507,9 @@ export default function MethodologyPage() {
       <section className="meth-band meth-band--close">
         <div aria-hidden="true" className="meth-close__glow" />
         <div className="meth-container meth-close">
-          <span className="meth-eyebrow meth-eyebrow--brightgold">See where you stand</span>
+          <span className="meth-eyebrow meth-eyebrow--brightgold">See where your growth engine stands</span>
           <h2 className="meth-close__title">
-            A short diagnostic shows you which part of your growth to{' '}
+            A short diagnostic shows you which part of your growth engine to{' '}
             <span className="meth-close__hl">build first</span>.
           </h2>
           <p className="meth-close__lede">
