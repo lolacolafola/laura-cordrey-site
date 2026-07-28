@@ -537,13 +537,19 @@ function PreFlow({ screen, setScreen }) {
       <section className="fa-rel">
         <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span> · Pre-launch edition</span></div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
-        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
-        {/* Was "No numbers needed. A minute or two." True — nothing in either
-            edition asks for a figure — but the lede directly above has already
-            said a "% fan-led" number would be guessing, so the promise landed
-            twice. "Nothing to prepare" answers the objection the lede leaves
-            open: whether you need to go and dig anything out first. */}
-        <p className="fa-introget">Nothing to prepare. A minute or two.</p>
+        {/* Tightened 28 Jul 2026 from "…and whether you've got the fuel to feed
+            it." Same sense in 31 words instead of 36, which is 3 rendered lines
+            instead of 4. Kept "to fuel it" rather than "and fuel it": without
+            the "to", a reader can briefly attach fuel to the engine ("an engine
+            fans will power and fuel") before the sentence resolves. */}
+        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and to fuel it.</p>
+        {/* Was "No numbers needed. A minute or two." Nothing in either edition
+            asks for a figure, so it was true — but the lede directly above has
+            already said a "% fan-led" number would be guessing, so the promise
+            landed twice, in the last line before the button. The time cost is
+            the one objection the lede doesn't answer, so that is all this says.
+            Laura's call, 28 Jul 2026. */}
+        <p className="fa-introget">A minute or two.</p>
         <hr className="fa-rule" />
         <div className="fa-actionrow">
           <button className="fa-btn" onClick={startQuiz}>Check my readiness</button>
