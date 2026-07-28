@@ -10,7 +10,8 @@
     "prerender": "node scripts/prerender.mjs",
     "og": "node scripts/build-og.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "csp:check": "node scripts/csp-smoke.mjs"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
