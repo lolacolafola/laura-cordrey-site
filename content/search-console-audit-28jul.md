@@ -127,6 +127,40 @@ baseline rather than treating as a problem to solve now.
 
 ---
 
+## RESOLVED — same day, 28 July 2026
+
+Items 2 and 3 are fixed, deployed and verified against production.
+
+- **Trailing slash (§2):** `prerender.mjs` now writes `dist/<route>.html`
+  (commit `7759a35`). All **19 sitemap URLs return 200**, none redirect.
+  `/work` serves 200 despite having a `work/` directory beside it, which was
+  the one case that needed confirming. The redirect reversed direction as
+  hoped: `/about/` and `/work/` now 301 **to** the no-slash form, so old
+  slash links consolidate onto the canonical URL instead of competing with it.
+- **Scratch page (§3):** moved to `content/favicon-options/` (commit
+  `c6c7712`). `/favicon-options` and `/favicon-options/` both 301 to `/`.
+  The redirect was necessary rather than optional — see the note below on
+  soft 404s.
+- Regression-checked live: per-page titles, canonicals matching their own URL,
+  full page weight (21–27 KB, not shells), and both Netlify forms still
+  registered on every route.
+
+Still open: **§1**, looking up which 8 URLs GSC actually means, and §4 is a
+watch-item rather than a task.
+
+### Discovered while fixing: the site has no 404
+
+`https://lauracordrey.com/does-not-exist` returns **HTTP 200**. There is no
+`NotFound` route in the app and no `path="*"`, so Netlify's SPA fallback
+answers every unknown path with the shell. Every typo, dead link and stale
+inbound URL is a soft 404.
+
+Not fixed here, and not urgent, but it is why retiring the scratch page needed
+an explicit 301: deleting it alone would have converted an indexed URL into a
+soft 404, which Google treats worse than a redirect.
+
+---
+
 ## Suggested order
 
 1. Look up the actual 8 URLs in GSC. One click, and it decides whether §1 is
