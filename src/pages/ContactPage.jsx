@@ -173,7 +173,9 @@ export default function ContactPage() {
     delete payload.company_url
     payload.intent = intent
     payload.source_page = sourcePage
-    payload._subject = `[${intent}] ${name} · lauracordrey.com contact form`
+    // `subject` (no underscore) is Netlify's special field for the
+    // notification email subject; `_subject` is Formspree's and is ignored.
+    payload.subject = `[${intent}] ${name} · lauracordrey.com contact form`
 
     setSending(true)
     setError(null)

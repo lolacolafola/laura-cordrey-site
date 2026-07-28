@@ -52,7 +52,10 @@ export default function ResultContactForm({ tool, score, onDownload }) {
       source_page: tool,
       tool,
       score,
-      _subject: `[${tool}] ${name} · ${score}`,
+      // Netlify's special field is `subject` (no underscore) — it sets the
+      // notification email's subject line. `_subject` is a Formspree
+      // convention and Netlify treats it as an ordinary field.
+      subject: `[${tool}] ${name} · ${score}`,
     })
 
     setSent(true)
