@@ -11,7 +11,8 @@
     "og": "node scripts/build-og.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "csp:check": "node scripts/csp-smoke.mjs"
+    "csp:check": "node scripts/csp-smoke.mjs",
+    "copy:inventory": "node scripts/copy-inventory.mjs"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
