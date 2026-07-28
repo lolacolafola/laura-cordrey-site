@@ -45,6 +45,34 @@ must be written to a file in this repo, **not left only in the chat reply.**
   tends to block) followed by `git add <those exact files>` — never `git add -A`,
   which will also stage unrelated untracked files sitting in the working tree.
 
+## Adding anything third-party
+- `public/_headers` ships an **enforcing** Content-Security-Policy. Anything
+  served from a domain that is not `lauracordrey.com` — a chatbot, an embedded
+  calendar, an analytics tag, a font, a video embed, a pixel, a map, a social
+  widget — is **silently blocked** until its origin is added there. The failure
+  looks like "the thing just doesn't appear", never like an error.
+- So when you add one, run:
+  ```
+  npm run build && npm run csp:check
+  ```
+  It exits 1 and names the blocked origin, or exits 0.
+- **A page load is not a substitute.** That is exactly the check that failed
+  before: the Fan Score card download only fetched its library on *click*, so
+  opening the page proved nothing and the button was dead for three weeks.
+  `csp:check` drives both Fan Score editions to the result and clicks both
+  downloads for this reason.
+- **`npm run dev` and `npm run preview` do not apply `_headers` at all**, so a
+  violation cannot fire there — testing locally the obvious way will pass no
+  matter what is broken. GitHub Pages ignores `_headers` too. `csp:check` is the
+  only local thing that catches this.
+- The fix when it fails is one line in `public/_headers`, under the right
+  directive: `script-src` for scripts, `frame-src` for embeds, `connect-src` for
+  background fetches, `img-src` for images, `font-src` for fonts. A widget often
+  needs two — one to load its script, one to let it call home.
+- Prefer bundling a dependency (`npm i`, then a lazy `import()`) over fetching it
+  from a CDN at runtime. `script-src 'self'` means a CDN is blocked by default
+  rather than merely slow. This is how the html2canvas break was fixed.
+
 ## Naming rules
 - **It is never "the Engine". It is always the Fan Engine, and it always
   carries the ™.** No shortening, no "the Engine" on second reference, no
