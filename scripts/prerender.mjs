@@ -10,7 +10,7 @@
  * useDocumentMeta injects at runtime.
  *
  * How it fits in: runs after `vite build` (see package.json "build"). It only
- * ADDS files to dist/ (dist/<route>/index.html) and overwrites dist/index.html
+ * ADDS files to dist/ (dist/<route>.html) and overwrites dist/index.html
  * with the rendered home. The client entry (src/main.jsx) is unchanged — on load
  * React re-renders over the snapshot, so behaviour for humans is identical.
  *
@@ -137,9 +137,17 @@ async function main() {
           })
         return document.documentElement.outerHTML
       }))
-      const outDir = route === '/' ? DIST : join(DIST, route)
-      await mkdir(outDir, { recursive: true })
-      await writeFile(join(outDir, 'index.html'), html, 'utf8')
+      // Flat '<route>.html', NOT '<route>/index.html'. A directory index is
+      // served at '/about/', so Netlify 301s '/about' to it — which put all
+      // 18 non-home sitemap URLs behind a redirect while the canonical tag,
+      // og:url and every internal link still claimed the no-slash form.
+      // Google reported that as "Page with redirect". A flat file serves
+      // '/about' with a 200 and no hop, so the server finally agrees with
+      // what the site says about itself. See
+      // content/search-console-audit-28jul.md.
+      const outFile = route === '/' ? join(DIST, 'index.html') : join(DIST, `${route}.html`)
+      await mkdir(dirname(outFile), { recursive: true })
+      await writeFile(outFile, html, 'utf8')
       ok++
       console.log(`[prerender] ${route}`)
     } catch (err) {
