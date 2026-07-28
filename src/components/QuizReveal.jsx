@@ -63,7 +63,7 @@ export default function QuizReveal({ onDone }) {
         <div className="qr-fig"><Sparkle />The Fan Score</div>
         <div className="qr-stage" role="status" aria-live="polite">
           <div className="qr-phrase" key={step}>{cur.text}</div>
-          <div className="qr-sub">Reading what you told us</div>
+          <div className="qr-sub">Reading what you told me</div>
           <div className="qr-bar"><i style={{ width: cur.pct + '%' }} /></div>
         </div>
         {/* Escape hatch — user always has something to click. Visible after a

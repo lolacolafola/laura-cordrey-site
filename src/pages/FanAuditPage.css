@@ -228,7 +228,14 @@
   margin-bottom: 14px;
 }
 .fa-seg {
-  flex: 1;
+  /* Was flex: 1 — five equal columns regardless of word length, which
+     truncated the longest label to "COMMU…". It read worst exactly when it
+     mattered most, because Community is a step you sit on for two questions
+     and the active label is the one the visitor is checking. Sizing to
+     content lets long words take the room they need and short ones give it
+     back; the basis keeps the columns broadly even. */
+  flex: 1 1 auto;
+  min-width: 0;
   text-align: center;
   font-size: 10px;
   font-weight: 800;
@@ -241,6 +248,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* Whatever else gives, the step you are on stays readable. */
+.fa-seg--active { flex-shrink: 0; overflow: visible; }
 .fa-seg--done { color: var(--fa-ink); border-color: var(--fa-accent); }
 .fa-seg--active { color: var(--fa-accent); border-color: var(--fa-accent); }
 
@@ -254,7 +263,11 @@
 .fa-pbar i {
   display: block;
   height: 100%;
-  background: var(--fa-accent);
+  /* Gold, not red. The stepper's underline is already red and already shows
+     where you are, so a red bar directly beneath it was the same gesture
+     twice — and tokens.css is explicit that red is the single gesture colour,
+     spent once. Red now means "which discipline"; gold means "how far in". */
+  background: var(--fa-gold);
   transition: width 0.3s ease;
 }
 

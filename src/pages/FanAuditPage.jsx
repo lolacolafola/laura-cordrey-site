@@ -120,7 +120,13 @@ const LEAK_COPY = {
   Brand: "Your brand isn't yet steering what you build, so there's room to give fans something to rally around.",
   Product: "The product doesn't yet earn its own return visits, so there's room to turn usage into loyalty.",
   Community: "People buy but don't yet feel part of anything, so there's room to turn customers into a community that brings others.",
-  Growth: "The goodwill is there but untapped, so there's room to turn it into reach you don't pay for.",
+  // Was "The goodwill is there but untapped, so there's room to turn it into
+  // reach you don't pay for." Two abstractions where the other three are
+  // concrete: "goodwill" is never defined anywhere on the page, and "reach you
+  // don't pay for" makes the reader translate it back into word of mouth. This
+  // also hands off to MOVE_COPY.Growth ("make it easy and worth it for fans to
+  // bring others"), so naming the missing thing as ease sets that up.
+  Growth: "People would recommend you, but nothing makes it easy, so there's room to win customers through them instead of paying for every one.",
 }
 const MOVE_COPY = {
   Brand: 'let your brand set the roadmap, not the other way round. When what you stand for decides what you build, fans have something to attach to.',
@@ -325,10 +331,10 @@ function scoreLive(ans) {
   const topPillar = byPriority(topTied)[0] || topTied[0]
 
   const whyLine = paidAns === 0
-    ? "You told us: pause paid, and your growth would mostly stop. That's the gap your fans can close."
+    ? "You told me: pause paid, and your growth would mostly stop. That's the gap your fans can close."
     : paidAns === 1
-    ? 'You told us: without paid, your growth would drop a lot. Your fans can carry more of it.'
-    : 'You told us: your growth would mostly hold without paid. Rare. Now widen the lead.'
+    ? 'You told me: without paid, your growth would drop a lot. Your fans can carry more of it.'
+    : 'You told me: your growth would mostly hold without paid. Rare. Now widen the lead.'
 
   return { core, owned, rented, tier, gate, disciplines, tied, startPillar, topPillar, whyLine, lowVal }
 }
