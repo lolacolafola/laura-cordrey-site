@@ -199,8 +199,12 @@
   background: transparent;
   border: 1.5px solid var(--fa-hair);
   border-radius: 3px;
-  padding: 20px;
-  margin-bottom: 14px;
+  /* Loosened 28 Jul 2026. The gate is the shortest screen in the tool and
+     .fa-sheet holds a 520px floor, so its content sat tight at the top of a
+     tall panel with dead space under it. Spending a little of that space
+     inside the choices reads as composed rather than as a page that ran out. */
+  padding: 24px 24px;
+  margin-bottom: 18px;
   cursor: pointer;
   transition: border-color 0.12s, background 0.12s;
 }
@@ -213,7 +217,8 @@
   font-size: 13px;
   font-weight: 600;
   color: var(--fa-faint);
-  margin-top: 5px;
+  margin-top: 7px;
+  line-height: 1.45;
 }
 
 /* ─── Quiz ─────────────────────────────────────────────── */
@@ -275,7 +280,9 @@
   line-height: 1.18;
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin: 0 0 12px;
+  /* 12px -> 20px, 28 Jul 2026: the question sat almost on top of the first
+     option. Shared with the quiz screens, which get the same breathing. */
+  margin: 0 0 20px;
   max-width: 32ch;
   color: var(--fa-ink);
 }

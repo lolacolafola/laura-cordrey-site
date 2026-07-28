@@ -207,7 +207,16 @@ function IntroScreen({ onStart }) {
         * it belongs on the result screen where there is a number to act on. */}
       <h1 className="fa-h1">Are your customers fans, or just customers?</h1>
       <p className="fa-lede">Fans stay, spend more, and bring you new customers. This looks at what turns one into the other: your brand, your product, your community, and where your growth actually comes from.</p>
-      <p className="fa-introget">A few honest questions. Two minutes to your result and the one move to grow it.</p>
+      {/* Was "A few honest questions. Two minutes to your result and the one
+          move to grow it." Two problems. "A few" for 10 questions understates
+          the ask, and the pre-launch edition states its 5 plainly, so being
+          vague here was the odd one out. And "the one move" both mislabels the
+          result section (it reads "Your move") and undersells it: the result
+          gives a percentage, a four-discipline breakdown, the biggest
+          opportunity and a starting point. This line now names the result's
+          own three sections, in the order they appear. Laura's call,
+          28 Jul 2026. */}
+      <p className="fa-introget">10 honest questions. Two minutes to your score, what&rsquo;s driving it, and where to start.</p>
       <button className="fa-btn" onClick={onStart}>Get my Fan Score<span className="tm">™</span></button>
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
         Prefer to skip to the numbers?{' '}
