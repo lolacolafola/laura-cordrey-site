@@ -56,7 +56,7 @@ const OFFERS = [
       { label: 'Every quarter', copy: 'A re-score and a fresh read on what your fans are worth.' },
     ],
     payoff:
-      'more revenue from the customers you already have, from an engine that keeps working after I’ve gone.',
+      'more revenue from the customers you already have, from a Fan Engine™ that keeps working after I’ve gone.',
     proofFig: '60M+ fan views and ~$600K+ earned media',
     proofRest: 'across Ubisoft programs, at $0 media spend.',
     meta: '6 to 8 weeks to build, then ongoing · Priced per engagement',

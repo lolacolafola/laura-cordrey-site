@@ -324,7 +324,7 @@ export default function MethodologyPage() {
               <span className="meth-sechead__num">02</span>
               <span className="meth-eyebrow meth-eyebrow--ink">What it builds</span>
             </div>
-            <h2 className="meth-h2 meth-h2--onbone">What the engine builds for your customer.</h2>
+            <h2 className="meth-h2 meth-h2--onbone">What the Fan Engine<span className="tm">&trade;</span> builds for your customer.</h2>
             <p className="meth-lede meth-lede--onbone">
               {/* Second sentence rewritten 23 Jul 2026; Laura flagged it as odd
                 * and it was. It read "Real people don't climb them in a tidy
@@ -363,7 +363,7 @@ export default function MethodologyPage() {
               <polyline points="3 3 3 8 8 8" />
             </svg>
             <span className="meth-loop__note">
-              Advocacy feeds back to activation: the engine brings you new
+              Advocacy feeds back to activation: the Fan Engine<span className="tm">&trade;</span> brings you new
               customers, so it grows itself.
             </span>
           </div>
@@ -507,9 +507,9 @@ export default function MethodologyPage() {
       <section className="meth-band meth-band--close">
         <div aria-hidden="true" className="meth-close__glow" />
         <div className="meth-container meth-close">
-          <span className="meth-eyebrow meth-eyebrow--brightgold">See where your engine stands</span>
+          <span className="meth-eyebrow meth-eyebrow--brightgold">See where you stand</span>
           <h2 className="meth-close__title">
-            A short diagnostic shows you which part of your engine to{' '}
+            A short diagnostic shows you which part of your growth to{' '}
             <span className="meth-close__hl">build first</span>.
           </h2>
           <p className="meth-close__lede">

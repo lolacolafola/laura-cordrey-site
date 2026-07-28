@@ -561,7 +561,7 @@ function PreFlow({ screen, setScreen }) {
             instead of 4. Kept "to fuel it" rather than "and fuel it": without
             the "to", a reader can briefly attach fuel to the engine ("an engine
             fans will power and fuel") before the sentence resolves. */}
-        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and to fuel it.</p>
+        <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you&rsquo;re ready to build for fans, and whether you have the fuel.</p>
         {/* Was "No numbers needed. A minute or two." Nothing in either edition
             asks for a figure, so it was true — but the lede directly above has
             already said a "% fan-led" number would be guessing, so the promise

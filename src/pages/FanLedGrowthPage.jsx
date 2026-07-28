@@ -67,14 +67,14 @@ const whyFans = [
   { title: 'They recommend you', copy: 'Their friends arrive on a recommendation, so your cost per customer falls.', icon: 'users' },
   { title: 'They defend you', copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
   { title: 'AI recommends you too', copy: 'Ask an AI what to pick, and it answers from what your fans post.', icon: 'sparkle' },
-  { title: 'It compounds', copy: 'Built once, the engine keeps working and starts to fuel itself.', icon: 'loop' },
+  { title: 'It compounds', copy: 'Built once, the Fan Engine™ keeps working and starts to fuel itself.', icon: 'loop' },
 ]
 
 const situations = [
   { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop when the spend does.', icon: 'spark' },
   { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the growth fans bring on top.', icon: 'rocket' },
   { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.', icon: 'shield' },
-  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the engine in from the start.', icon: 'gear' },
+  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the Fan Engine™ in from the start.', icon: 'gear' },
 ]
 
 const Icon = ({ name, size = 28 }) => {
@@ -205,7 +205,7 @@ export default function FanLedGrowthPage() {
           </div>
 
           <p data-rev className="flg-hero__close" style={{ fontSize: T.lede, lineHeight: 1.66, color: '#15110F', fontWeight: 600, margin: 'clamp(28px,3.4vw,38px) 0 0', maxWidth: '62ch' }}>
-            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, your community and your growth pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/fan-engine" className="flg-inline flg-inline--ink">an engine you own</Link>, then show you what it&rsquo;s&nbsp;worth.
+            When people love what you do, they stay, they spend more, and they bring others with them. Nothing sells harder than a fan telling a friend. But no single team makes a fan: it takes your brand, your product, your community and your growth pulling the same way. Get that right, and customers become fans. That&rsquo;s <mark>fan-led growth</mark>, and I build it into <Link to="/fan-engine" className="flg-inline flg-inline--ink">the Fan Engine<span className="tm">&trade;</span></Link>, then show you what it&rsquo;s&nbsp;worth.
           </p>
         </div>
       </section>

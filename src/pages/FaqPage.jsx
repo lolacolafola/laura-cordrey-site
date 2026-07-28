@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: 'How is this different from hiring a community manager or agency?',
-    a: 'A community manager runs a space. A community agency runs campaigns in it. I build the engine around it: the brand story fans belong to, the product loops that bring them back, the community structure, the advocacy programs, and the measurement spine that ties each part to revenue. Every engagement includes baselines and quarterly re-measurement, so "the community is doing well" becomes a number, not a feeling.',
+    a: 'A community manager runs a space. A community agency runs campaigns in it. I build the Fan Engine™ around it: the brand story fans belong to, the product loops that bring them back, the community structure, the advocacy programs, and the measurement spine that ties each part to revenue. Every engagement includes baselines and quarterly re-measurement, so "the community is doing well" becomes a number, not a feeling.',
   },
   {
     q: 'Who do you work with?',
