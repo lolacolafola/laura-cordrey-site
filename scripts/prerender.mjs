@@ -86,6 +86,27 @@ async function launchBrowser() {
   }
 }
 
+/** Where a route's snapshot goes: '/about' -> dist/about.html, '/' -> dist/index.html. */
+function outFileFor(route) {
+  return route === '/' ? join(DIST, 'index.html') : join(DIST, `${route}.html`)
+}
+
+/**
+ * Copy the built (unrendered) SPA shell to every route file, plus 404.html.
+ * The escape hatch for when no browser is available — see the catch in main().
+ */
+async function writeShells(routes) {
+  const shell = await readFile(join(DIST, 'index.html'), 'utf8')
+  for (const route of routes) {
+    if (route === '/') continue // already the shell
+    const outFile = outFileFor(route)
+    await mkdir(dirname(outFile), { recursive: true })
+    await writeFile(outFile, shell, 'utf8')
+  }
+  await writeFile(join(DIST, '404.html'), shell, 'utf8')
+  console.warn(`[prerender] wrote ${routes.length} SPA shells + 404.html (unrendered).`)
+}
+
 async function main() {
   if (!existsSync(join(DIST, 'index.html'))) {
     console.warn('[prerender] dist/index.html not found — did `vite build` run? Skipping.')
@@ -99,10 +120,19 @@ async function main() {
     browser = await launchBrowser()
   } catch (err) {
     console.warn(
-      '[prerender] could not launch a browser — SKIPPING prerender. The site ' +
-        'falls back to the client-rendered SPA (no deploy impact).\n  ' +
+      '[prerender] could not launch a browser — falling back to SPA shells.\n  ' +
         (err?.message || err),
     )
+    // Write the unrendered SPA shell to every route's file anyway.
+    //
+    // This used to just return, because public/_redirects ended with
+    // `/*  /index.html  200` — the shell was served for anything missing, so a
+    // failed prerender degraded invisibly to a client-rendered SPA. Since
+    // 28 Jul 2026 that fallback returns a real 404 instead (so the site stops
+    // soft-404ing), and "no file" now means "gone" rather than "let the SPA
+    // handle it". Writing the shells keeps this script fail-soft: content is
+    // client-rendered as before, and no real page 404s.
+    await writeShells(routes)
     server.close()
     return // exit 0 on purpose: never break the build
   }
@@ -111,7 +141,15 @@ async function main() {
   // its text is present in the snapshot.
   const page = await browser.newPage({ viewport: { width: 1280, height: 4000 } })
   let ok = 0
-  for (const route of routes) {
+  // The sitemap routes, plus the 404. The last job visits a path that matches
+  // no route on purpose, so the app's catch-all renders NotFoundPage and we
+  // snapshot it to dist/404.html — the file public/_redirects serves, with a
+  // real 404 status, for anything unmatched.
+  const jobs = [
+    ...routes.map((route) => ({ route, out: outFileFor(route) })),
+    { route: '/__not-found__', out: join(DIST, '404.html'), label: '404' },
+  ]
+  for (const { route, out, label } of jobs) {
     const url = `http://localhost:${PORT}${BASE}${route === '/' ? '/' : route}`
     try {
       await page.goto(url, { waitUntil: 'load', timeout: 30000 })
@@ -145,18 +183,24 @@ async function main() {
       // '/about' with a 200 and no hop, so the server finally agrees with
       // what the site says about itself. See
       // content/search-console-audit-28jul.md.
-      const outFile = route === '/' ? join(DIST, 'index.html') : join(DIST, `${route}.html`)
-      await mkdir(dirname(outFile), { recursive: true })
-      await writeFile(outFile, html, 'utf8')
+      await mkdir(dirname(out), { recursive: true })
+      await writeFile(out, html, 'utf8')
       ok++
-      console.log(`[prerender] ${route}`)
+      console.log(`[prerender] ${label || route}`)
     } catch (err) {
-      console.warn(`[prerender] ${route} FAILED (kept as SPA shell): ${err?.message || err}`)
+      console.warn(`[prerender] ${label || route} FAILED: ${err?.message || err}`)
+      // A route with no file would now 404 rather than fall back to the SPA,
+      // so leave the unrendered shell in its place.
+      try {
+        await mkdir(dirname(out), { recursive: true })
+        await writeFile(out, await readFile(join(DIST, 'index.html'), 'utf8'), 'utf8')
+        console.warn(`[prerender]   ↳ wrote an SPA shell there instead`)
+      } catch { /* nothing more we can do; the build must not fail */ }
     }
   }
   await browser.close()
   server.close()
-  console.log(`[prerender] done — ${ok}/${routes.length} routes snapshotted.`)
+  console.log(`[prerender] done — ${ok}/${jobs.length} snapshotted (routes + 404).`)
 }
 
 main().catch((err) => {

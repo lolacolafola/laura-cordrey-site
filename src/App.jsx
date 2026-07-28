@@ -28,6 +28,7 @@ import FanAuditPage from './pages/FanAuditPage.jsx'
 import AIPage from './pages/AIPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 export default function App() {
   return (
@@ -78,6 +79,12 @@ export default function App() {
           <Route path="/ai" element={<AIPage />} />
           <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />
+          {/* Catch-all. Added 28 Jul 2026 — until then an unmatched path
+              rendered an empty Layout, and Netlify answered it with a 200, so
+              every dead link was a soft 404. The status code half of the fix
+              lives in public/_redirects. Must stay last: Routes picks the best
+              match, but keeping it here makes that obvious to a reader. */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </>

@@ -1,0 +1,109 @@
+/* The 404, on the dark ground. Matches /faq's quiet editorial treatment
+ * rather than inventing a layout: this page is a wayfinding stop, not a
+ * destination, and it should feel like the site rather than like an error
+ * screen from somewhere else. */
+.nf-page {
+  background: #15110F;
+  min-height: 100vh;
+  padding: clamp(72px, 12vh, 140px) 0 clamp(72px, 9vw, 120px);
+}
+.nf-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+}
+.nf-eyebrow {
+  display: block;
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  /* Gold, the on-dark eyebrow tone: 11.17 against this ground. Red would be
+     3.75, which fails the 4.5 small text needs. Same constraint Eyebrow.jsx
+     documents. */
+  color: #D4C896;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.nf-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: #EFE9DC;
+  margin: 0 0 20px;
+}
+/* No colour on the mark on purpose. `h1 mark` in base.css applies
+   --accent-display, which is the brand red #C8362B — 3.59 on this ground,
+   which passes the 3.0 that display type needs. Hardcoding a red here is
+   exactly the drift base.css exists to prevent. */
+.nf-title mark {
+  background: none;
+}
+.nf-lede {
+  margin: 0 0 clamp(36px, 5vw, 56px);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #B8AEA2;
+  max-width: 58ch;
+}
+
+.nf-ways {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(239, 233, 220, .12);
+}
+.nf-ways li {
+  border-bottom: 1px solid rgba(239, 233, 220, .12);
+}
+/* Every one of these is a real <Link>, so it is allowed to move under the
+   cursor — hover honesty. Nothing else on this page reacts. */
+.nf-way {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+  padding: 20px 4px;
+  text-decoration: none;
+  transition: padding-left .18s ease, background-color .18s ease;
+}
+.nf-way__label {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #EFE9DC;
+  letter-spacing: -.01em;
+}
+.nf-way__note {
+  font-size: .95rem;
+  color: #8A8078;
+}
+.nf-way:hover,
+.nf-way:focus-visible {
+  padding-left: 12px;
+  background: rgba(239, 233, 220, .04);
+}
+.nf-way:hover .nf-way__label,
+.nf-way:focus-visible .nf-way__label {
+  color: #D4C896;
+}
+
+@media (max-width: 560px) {
+  .nf-way {
+    display: block;
+    padding: 18px 4px;
+  }
+  .nf-way__note {
+    display: block;
+    margin-top: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-way {
+    transition: none;
+  }
+  .nf-way:hover,
+  .nf-way:focus-visible {
+    padding-left: 4px;
+  }
+}

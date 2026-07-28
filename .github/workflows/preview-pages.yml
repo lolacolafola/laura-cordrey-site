@@ -2,8 +2,9 @@
 # without spending Netlify build credits. Actions is free on public repos.
 #
 # Builds with VITE_BASE=/laura-cordrey-site/ (the router's basename follows
-# BASE automatically — see src/main.jsx) and adds a 404.html copy of index.html
-# so client-side deep links resolve on Pages.
+# BASE automatically — see src/main.jsx). Every route is prerendered to its own
+# .html file, which Pages serves directly; dist/404.html is the prerendered
+# NotFound page.
 #
 # Preview URL: https://lolacolafola.github.io/laura-cordrey-site/
 # Netlify (production) is unaffected — it builds from main at base '/'.
@@ -49,8 +50,10 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE: /laura-cordrey-site/
-      # 404.html = the prerendered home, so client-side deep links resolve on Pages.
-      - run: cp dist/index.html dist/404.html
+      # dist/404.html is now the prerendered NotFound page, written by
+      # scripts/prerender.mjs — it used to be a copy of the home page made
+      # here. Pages serves it for unmatched paths with a real 404, same as
+      # Netlify does via public/_redirects.
       - uses: actions/configure-pages@v6
         with:
           enablement: true

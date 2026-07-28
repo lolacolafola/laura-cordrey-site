@@ -21,5 +21,24 @@
 /favicon-options       /  301!
 /favicon-options/*     /  301!
 
-# SPA fallback: serve index.html for client-routed paths.
-/*  /index.html  200
+# /home-v2 is redirected inside React only (App.jsx). That was enough while the
+# rule below answered every unknown path with the SPA, which then handled the
+# redirect client-side. Now that unmatched paths get a real 404, a direct hit or
+# a crawler on an old shared /home-v2 link would never reach React. Needs to be
+# a server-side 301 like the other retired URLs.
+/home-v2  /  301!
+
+# Catch-all: a REAL 404, not the SPA shell.
+#
+# This was `/*  /index.html  200` until 28 Jul 2026, which meant every typo,
+# dead link and stale inbound URL returned 200 with the shell — a soft 404.
+# Google reads the status code, so the whole site looked like infinite valid
+# pages with no content.
+#
+# Safe because Netlify matches static files BEFORE redirect rules (this rule is
+# unforced — no `!`), and since the same day every real route is its own file:
+# dist/about.html, dist/work/azarus.html, and so on. Only genuinely unmatched
+# paths reach this line. scripts/prerender.mjs guarantees a file exists for
+# every sitemap route even when the browser fails to launch, so a bad prerender
+# can never turn real pages into 404s.
+/*  /404.html  404
