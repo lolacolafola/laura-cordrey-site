@@ -538,7 +538,12 @@ function PreFlow({ screen, setScreen }) {
         <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span> · Pre-launch edition</span></div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
         <p className="fa-lede">With no users yet, a "% fan-led" number would just be guessing. Instead, 5 quick questions on whether you're ready to build an engine fans will power, and whether you've got the fuel to feed it.</p>
-        <p className="fa-introget">No numbers needed. A minute or two.</p>
+        {/* Was "No numbers needed. A minute or two." True — nothing in either
+            edition asks for a figure — but the lede directly above has already
+            said a "% fan-led" number would be guessing, so the promise landed
+            twice. "Nothing to prepare" answers the objection the lede leaves
+            open: whether you need to go and dig anything out first. */}
+        <p className="fa-introget">Nothing to prepare. A minute or two.</p>
         <hr className="fa-rule" />
         <div className="fa-actionrow">
           <button className="fa-btn" onClick={startQuiz}>Check my readiness</button>

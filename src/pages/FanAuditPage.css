@@ -83,6 +83,12 @@
   color: var(--fa-muted);
   max-width: 48ch;
   margin: 0 0 8px;
+  /* `pretty`, not `balance`. The rest of the site uses balance, but that is for
+     headings: it evens out line lengths across a few lines. This is a four-line
+     paragraph, where the problem is specifically the last line — the pre-launch
+     lede was ending on a lone "it". `pretty` exists for exactly that, and leaves
+     the earlier lines alone. Unsupported browsers just wrap as before. */
+  text-wrap: pretty;
 }
 .fa-introget {
   font-size: 14px;
