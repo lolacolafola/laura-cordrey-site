@@ -276,7 +276,7 @@ export default function FanLedGrowthPage() {
             <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
             <div className="flg-est" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(20px,3vw,44px)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: '52ch' }}>
-                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Fan Value estimate</span>
+                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Fan Value<span className="tm">&trade;</span> estimate</span>
                 <p style={{ fontSize: 'clamp(1.1rem,1.5vw,1.4rem)', lineHeight: 1.32, fontWeight: HEAD_W, color: '#EFE9DC', margin: 0 }}>
                   {/* #E4695E, not #C8362B: the deep red measured 3.26 to 3.59
                     * against this card's gradient, which clears AA for large

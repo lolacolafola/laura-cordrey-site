@@ -1256,10 +1256,18 @@
   font-weight: 700;
   color: var(--fa-faint);
   margin-top: 4px;
+  /* Matches .fa-pill's 12px right padding. Both are right-aligned, but the
+     pill's text sits 12px inside its own background, so aligning the boxes
+     left the two READ edges 12px apart — the caption looked pushed out.
+     Aligning text to text is what the eye checks here, since both are words. */
+  padding-right: 12px;
 }
 @media (max-width: 520px) {
   .fa-gate-row { flex-wrap: wrap; }
   .fa-gate-row__lv { text-align: left; margin: 4px 0 0; }
+  /* Left-aligned below 520px, so the right-edge correction would only push
+     the caption off its own left edge. */
+  .fa-gate-row__lv em { padding-right: 0; }
 }
 
 /* Readiness cards — 2×2 grid, dot + name + pill */
