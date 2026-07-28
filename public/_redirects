@@ -13,5 +13,13 @@
 /case-studies/azarus                   /work/azarus                  301!
 /case-studies/claw-mobile              /work/claw-mobile              301!
 
+# Retired 28 Jul 2026: the June favicon comparison page. It lived in public/
+# and so shipped as a real, indexable route. Moved to content/favicon-options/.
+# Needs an explicit rule because the SPA fallback below would otherwise answer
+# it with a 200 — a soft 404, which is worse than a redirect for a URL Google
+# may already have indexed.
+/favicon-options       /  301!
+/favicon-options/*     /  301!
+
 # SPA fallback: serve index.html for client-routed paths.
 /*  /index.html  200
