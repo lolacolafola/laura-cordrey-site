@@ -148,16 +148,38 @@ Items 2 and 3 are fixed, deployed and verified against production.
 Still open: **§1**, looking up which 8 URLs GSC actually means, and §4 is a
 watch-item rather than a task.
 
-### Discovered while fixing: the site has no 404
+### Discovered while fixing: the site had no 404 — now fixed
 
-`https://lauracordrey.com/does-not-exist` returns **HTTP 200**. There is no
-`NotFound` route in the app and no `path="*"`, so Netlify's SPA fallback
-answers every unknown path with the shell. Every typo, dead link and stale
-inbound URL is a soft 404.
+`https://lauracordrey.com/does-not-exist` returned **HTTP 200**. There was no
+`NotFound` route and no `path="*"`, so Netlify's SPA fallback answered every
+unknown path with the shell. Every typo, dead link and stale inbound URL was a
+soft 404, which is why retiring the scratch page needed an explicit 301 rather
+than a plain delete.
 
-Not fixed here, and not urgent, but it is why retiring the scratch page needed
-an explicit 301: deleting it alone would have converted an indexed URL into a
-soft 404, which Google treats worse than a redirect.
+**Fixed and deployed the same day** (commit `9e9f126`): a designed
+`NotFoundPage` on the dark ground, prerendered to `dist/404.html`, served by
+`/*  /404.html  404`. Verified live:
+
+```
+19/19 sitemap URLs        → 200
+/does-not-exist           → 404   (the designed page, 9.3 KB, with nav)
+/work/nonsense            → 404
+/home-v2                  → 301 /
+/methodology              → 301 /fan-engine
+/case-studies/azarus      → 301 /work/azarus
+/favicon-options/         → 301 /
+```
+
+Two things that would have broken quietly, both handled in that commit:
+
+- `/home-v2` was redirected **inside React only**, which worked while the SPA
+  answered every path. Under a strict fallback a direct hit would have 404ed,
+  so it now has a server-side `301!` like the other retired URLs.
+- `prerender.mjs` is deliberately fail-soft, and that depended on the `200`
+  fallback catching missing files. It now writes the unrendered SPA shell to
+  every route file if the browser won't launch (and for any single route that
+  fails mid-run), so a bad prerender degrades to client-rendering rather than
+  turning real pages into 404s.
 
 ---
 
