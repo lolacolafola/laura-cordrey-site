@@ -6,10 +6,20 @@ import './QuizReveal.css'
 // verdict; that is the next page's job.
 // Holds were 1000/1000/1800, so 3.8s before anyone saw anything. Halved: the
 // reveal should sell the moment, not spend it.
-const REV_PHRASES = [
-  { text: 'Starting the fan engine…', pct: 22, hold: 500 },
-  { text: 'Vroom, vroom…', pct: 60, hold: 500 },
-  { text: 'Ready for blast off!', pct: 100, hold: 900 },
+//
+// The phrases were "Starting the fan engine… / Vroom, vroom… / Ready for blast
+// off!" — dropped 28 Jul 2026 at Laura's call. They mixed an engine with a
+// rocket, "vroom, vroom" was a register that appears nowhere else on the site,
+// and the whole thing played immediately after ten considered questions about
+// someone's business and immediately before a verdict on it. "Starting the fan
+// engine" was also a bare lowercase use of the Fan Engine™ mark.
+//
+// The pacing is kept exactly as it was — only the words are gone. One steady
+// line now holds the slot, so the reveal still reads as work being done.
+const REV_STEPS = [
+  { pct: 22, hold: 500 },
+  { pct: 60, hold: 500 },
+  { pct: 100, hold: 900 },
 ]
 // Hard ceiling: no matter what happens with the tick chain, onDone MUST fire
 // within this window. Prevents users getting stranded on a stuck reveal.
@@ -40,14 +50,14 @@ export default function QuizReveal({ onDone }) {
     let t
     const tick = () => {
       t = setTimeout(() => {
-        if (i < REV_PHRASES.length - 1) {
+        if (i < REV_STEPS.length - 1) {
           i += 1
           setStep(i)
           tick()
         } else {
           finish()
         }
-      }, REV_PHRASES[i].hold)
+      }, REV_STEPS[i].hold)
     }
     tick()
     // Failsafe: no matter what happens above, force-advance after FAILSAFE_MS.
@@ -55,15 +65,16 @@ export default function QuizReveal({ onDone }) {
     return () => { clearTimeout(t); clearTimeout(failsafe) }
   }, [])
 
-  const cur = REV_PHRASES[step]
+  const cur = REV_STEPS[step]
   return (
     <div className="qr-panel">
       <div className="qr-glow" aria-hidden="true" />
       <div className="qr-in">
         <div className="qr-fig"><Sparkle />The Fan Score</div>
         <div className="qr-stage" role="status" aria-live="polite">
-          <div className="qr-phrase" key={step}>{cur.text}</div>
-          <div className="qr-sub">Reading what you told me</div>
+          {/* No key={step}: the line no longer changes, so re-triggering the
+              slide-up on every step would just make it twitch. */}
+          <div className="qr-phrase">Reading what you told me</div>
           <div className="qr-bar"><i style={{ width: cur.pct + '%' }} /></div>
         </div>
         {/* Escape hatch — user always has something to click. Visible after a

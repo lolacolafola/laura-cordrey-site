@@ -111,10 +111,14 @@ const TIER_COPY = {
   Earned: "Growth you're earning.",
   Compounding: 'Growth that compounds.',
 }
+// These describe the VISITOR's own growth, so the mark deliberately does NOT
+// appear: Laura owns the Fan Engine™, a customer cannot. "You own the engine"
+// became nonsense the moment the mark was applied to it, which is why these are
+// reworded away from the metaphor rather than capitalised into it. 28 Jul 2026.
 const R_HEAD = {
-  Untapped: "There's a fan engine here you haven't built yet.",
-  Earned: 'Your engine is turning. Make it compound.',
-  Compounding: 'You own the engine. Widen the lead.',
+  Untapped: "There's fan-led growth here you haven't built yet.",
+  Earned: 'Your fans are starting to carry it. Make it compound.',
+  Compounding: 'Your fans carry your growth. Widen the lead.',
 }
 const LEAK_COPY = {
   Brand: "Your brand isn't yet steering what you build, so there's room to give fans something to rally around.",
@@ -140,14 +144,14 @@ const REFRAME = {
   Product: 'You can get people in, but nothing yet makes them stay, or rewards them for being early.',
   Community: "You've got sign-ups, but no founding group who feel part of it.",
   Growth: "Demand isn't set up to recruit more demand, so every new fan is one you chase.",
-  Fuel: "You're building the engine before securing what feeds it.",
+  Fuel: <>You&rsquo;re building the Fan Engine<span className="tm">&trade;</span> before securing what feeds it.</>,
 }
 const GATE_WHY = {
   Brand: "Fans attach to a meaning, not a feature list. Without one, there's nothing to be loyal to.",
   Product: "If the loop doesn't hold, every fan you bring in leaks straight back out.",
   Community: 'A list is contacts; a founding cohort is people who show up and bring others. Only one compounds.',
   Growth: "If your waitlist can't grow itself, you're back to paying for every new name.",
-  Fuel: 'A fully built engine with no fuel is still empty. This is the one to solve first.',
+  Fuel: <>A fully built Fan Engine<span className="tm">&trade;</span> with no fuel is still empty. This is the one to solve first.</>,
 }
 const MOVE_PRE = {
   Brand: "give people something to belong to before launch: a point of view, a name, a world they'd want in on.",
@@ -169,7 +173,7 @@ export default function FanAuditPage() {
   useDocumentMeta({
     title: 'The Fan Score™ · Are your customers fans? · Laura Cordrey',
     description:
-      'Find out how many of your customers would stay, spend more and recommend you, and the one move that would grow the number. Two minutes.',
+      'Find out how many of your customers would stay, spend more and recommend you, and where to start growing the number. Two minutes.',
     canonical: pageUrl('/fan-score'),
     ogType: 'website',
   })
@@ -629,19 +633,19 @@ function PreResult({ scored, restart }) {
   const cardTierSlug = tierSlug
 
   const reframeText = effective === 3
-    ? "You've got something to feed the engine, and an engine worth feeding. Now build, in the order these checks point to."
+    ? <>You&rsquo;ve got something to feed the Fan Engine<span className="tm">&trade;</span>, and one worth feeding. Now build, in the order these checks point to.</>
     : REFRAME[binding]
 
   const stages = [
     ['Not ready yet', 'a gap to close'],
     ['Nearly there', 'almost there'],
-    ['Ready to build', 'feed the engine'],
+    ['Ready to build', 'fuel is ready'],
   ]
 
-  const fuelSub = fuelLv === 3 ? 'ready to feed the engine' : fuelLv === 2 ? 'not locked yet' : 'no route yet'
+  const fuelSub = fuelLv === 3 ? 'ready to fuel the build' : fuelLv === 2 ? 'not locked yet' : 'no route yet'
 
   const gateBox = (() => {
-    if (effective === 3) return <><b>Nothing's holding you back.</b> The engine's built and the fuel is lined up. Your job now is the build order, hardest-earned part first.</>
+    if (effective === 3) return <><b>Nothing&rsquo;s holding you back.</b> The Fan Engine<span className="tm">&trade;</span> is built and the fuel is lined up. Your job now is the build order, hardest-earned part first.</>
     if (atMin.length === 1) {
       return binding === 'Fuel'
         ? <><b>Fix this first: Fuel, your route to first fans.</b> {GATE_WHY.Fuel}</>
@@ -733,7 +737,9 @@ function PreResult({ scored, restart }) {
       <div className="fa-leakbox">{gateBox}</div>
       {alsoParts.length > 0 && <div className="fa-alsoline">{alsoParts}</div>}
 
-      <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">The one move</div>
+      {/* "Your move", matching the live result exactly. Was "The one move" —
+          the same overclaim Laura cut from the live intro on 28 Jul. */}
+      <div className="fa-sectlbl fa-sectlbl--drive fa-sectlbl--spaced">Your move</div>
       <p className="fa-movebox"><b>Start here:</b> {moveText}</p>
 
       {/* No Fan Value cross-sell here: pre-launch has no revenue to model. The

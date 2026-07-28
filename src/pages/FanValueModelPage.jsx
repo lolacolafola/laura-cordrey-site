@@ -94,7 +94,7 @@ function Chart({ rev, uplift, fmtK }) {
 function readinessVerdict(score) {
   if (score >= 70) return { lead: 'Mostly.', body: 'You capture most of it already. The gain left is in making it compound.', tone: 'oxblood' }
   if (score >= 40) return { lead: 'In part.', body: 'You capture some of it already, but a good share is still on the table.', tone: 'gold' }
-  return { lead: 'Not yet.', body: 'You are not set up to capture it, so most of it stays on the table.', tone: 'red' }
+  return { lead: 'Not yet.', body: "You're not set up to capture it, so most of it stays on the table.", tone: 'red' }
 }
 
 export default function FanValueModelPage() {

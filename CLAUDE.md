@@ -83,8 +83,11 @@ must be written to a file in this repo, **not left only in the chat reply.**
     text) use the literal character: `Fan Engine™`
   - Same rule for **Fan Score** and the **Fan Value Model** — canonical names,
     never abbreviated or improvised.
-- Before shipping copy, grep for drift:
-  `grep -rn "the Engine" src/ | grep -v "Fan Engine"`
+- Before shipping copy, grep for drift. **Case-insensitive — the original
+  check was `grep -rn` and returned clean while nine lowercase "the engine" /
+  "a fan engine" usages sat in the Fan Score, including the first line of every
+  result:**
+  `grep -rni "the engine\|an engine\|your engine\|a fan engine" src/ | grep -v "Fan Engine"`
 
 ## Design rules
 - **Hover honesty.** Cursor response is a promise: if an element lifts, scales,
