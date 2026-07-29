@@ -298,6 +298,28 @@ function LiveFlow({ screen, setScreen }) {
   return <LiveResult scored={scored} restart={restart} />
 }
 
+// DELIBERATE, reviewed 28 Jul 2026 — do not "balance" this.
+//
+// The nine scored questions are split 2 Brand / 2 Product / 2 Community /
+// 3 GROWTH, so Growth is a third of the headline percentage and the other three
+// are 22% each. That is a choice, not an oversight: Growth is not a fourth
+// ingredient, it is where fan-led-ness actually shows up (does growth hold
+// without paid, do customers promote you unprompted, is there a referral
+// programme). Weighting the outcome above the inputs is the point.
+//
+// Checked against the alternative — mean of the four discipline means, so each
+// pillar counts equally. Maximum movement is 8 points and only one profile
+// changes tier: "weak everywhere, strong growth" goes Earned (33) -> Untapped
+// (25). That profile has just reported genuinely fan-driven growth, so the
+// CURRENT weighting gives the truer answer and the "balanced" one gives a
+// worse one.
+//
+// Note the per-discipline bars are unaffected either way: they use averages, so
+// the copy line "Each discipline on the same scale" stays accurate. Nothing
+// anywhere claims the headline is an average of the four.
+//
+// Changing this also re-bases every score, so result cards already shared stop
+// reproducing.
 function scoreLive(ans) {
   const filled = ans.every((v) => v !== null)
   if (!filled) return null

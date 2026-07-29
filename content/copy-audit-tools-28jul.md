@@ -298,5 +298,27 @@ percentage and the others are 22% each.
 The per-discipline bars are unaffected — they use averages, so each reads fairly.
 It is only the overall number that leans on Growth.
 
-This may well be deliberate: growth is the outcome the other three feed. Worth
-recording as a decision either way, so it does not get "fixed" by someone later.
+**Reviewed and kept, 28 Jul 2026.** Tested against the alternative — mean of
+the four discipline means, so each pillar counts equally:
+
+| profile | now | equal | tier now | tier equal |
+|---|---|---|---|---|
+| strong everywhere, weak growth | 67 | 75 | Compounding | Compounding |
+| **weak everywhere, strong growth** | **33** | **25** | **Earned** | **Untapped** |
+| strong growth, weak brand only | 78 | 75 | Compounding | Compounding |
+| middling across the board | 50 | 50 | Earned | Earned |
+| weak growth, middling rest | 33 | 38 | Earned | Earned |
+| strong brand only | 22 | 25 | Untapped | Untapped |
+
+Maximum movement is 8 points, and one profile in six changes tier. That profile
+has just reported that growth holds without paid, customers promote them
+unprompted, and a referral programme exists — so the **current** weighting gives
+the truer answer and the "balanced" one gives a worse one. Growth is not a
+fourth ingredient; it is where fan-led-ness shows up.
+
+Also: no copy claims equal weighting. "Each discipline on the same scale"
+describes the four bars, which use averages and genuinely are. And changing it
+re-bases every score, so cards already shared stop reproducing.
+
+Recorded as a decision in a comment above `scoreLive` so it does not get
+"balanced" later.
