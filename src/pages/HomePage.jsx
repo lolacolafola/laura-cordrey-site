@@ -100,7 +100,16 @@ const WAYS = [
   {
     no: '01',
     tone: 'gold',
+    // The homepage's one mark lives HERE, not on the about-band lede further
+    // up. INTA's rule is "first OR most prominent" use, and the gold flagship
+    // card is the most prominent mention on the page by a distance. Laura
+    // spotted it bare on 29 Jul; a strictly-first reading had given the mark
+    // to a body paragraph instead. See content/naming-tm-policy-29jul.md.
+    // The mark is a flag, not a character in the string, so it renders as the
+    // styled .tm superscript rather than a full-size ™ sitting heavy beside a
+    // display title. Same pattern as the /services flagship card.
     title: 'The Fan Engine',
+    tm: true,
     kicker: 'The method I built',
     copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
   },
@@ -399,7 +408,7 @@ export default function HomePage() {
               Thirteen years building brand, community and growth where fans are loudest, for global brands and startups across North America and EMEA: Ubisoft, Amazon Games and BlaBlaCar, then VP Marketing of a US startup acquired by Animoca. I&rsquo;ve&nbsp;worked the whole machine.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.65, color: '#15110F', fontWeight: 600, margin: 'clamp(18px,2vw,24px) 0 0', maxWidth: '46ch' }}>
-              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine<span className="tm">™</span></mark>. Your fans do the selling. I can prove the&nbsp;return.
+              Now I run my own consultancy for fan-led growth, bringing what worked in those rooms together with a method of my own: the <mark>Fan Engine</mark>. Your fans do the selling. I can prove the&nbsp;return.
             </p>
             <div style={{ marginTop: 'clamp(22px,2.6vw,30px)' }}>
               <Link to="/about" className="btnink" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '.98rem', padding: '14px 26px', borderRadius: 3, textDecoration: 'none' }}>
@@ -450,7 +459,7 @@ export default function HomePage() {
                   * against anything else. */}
                 <span className="svcard-no">{w.no}</span>
                 <div className="svcard-body">
-                  <span className="svcard-title">{w.title}</span>
+                  <span className="svcard-title">{w.title}{w.tm && <span className="tm">™</span>}</span>
                   <span className="svcard-kicker">{w.kicker}</span>
                   <span className="svcard-copy"><span>{w.copy}</span></span>
                 </div>
