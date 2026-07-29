@@ -91,6 +91,49 @@ function Chart({ rev, uplift, fmtK }) {
   )
 }
 
+/**
+ * Parses what people actually type into a money field: "4m", "4.5M", "800k",
+ * "4,000,000", "4000000". Returns null for anything not yet a number, so a
+ * half-typed "4." leaves the last good value alone instead of collapsing to 0.
+ *
+ * Replaces a `digits()` helper that stripped every non-digit, which meant "4M"
+ * became 4 — you had to type all seven zeros.
+ */
+function parseAmount(str) {
+  const m = ('' + str).trim().replace(/[, ]/g, '').match(/^(\d*\.?\d*)([kmb])?$/i)
+  if (!m || m[1] === '' || m[1] === '.') return null
+  const n = parseFloat(m[1])
+  if (!Number.isFinite(n)) return null
+  const mult = { k: 1e3, m: 1e6, b: 1e9 }[(m[2] || '').toLowerCase()] || 1
+  return Math.round(n * mult)
+}
+
+/**
+ * Money field. Holds a draft string while you are typing, so "4.5M" can be
+ * entered a character at a time — a purely value-driven input reformats on
+ * every keystroke and eats the decimal point before you reach the M. On blur
+ * the draft is dropped and the formatted number takes over.
+ */
+function AmountInput({ value, onChange, ...rest }) {
+  const [draft, setDraft] = useState(null)
+  const shown = draft !== null ? draft : value ? value.toLocaleString() : ''
+  return (
+    <input
+      {...rest}
+      value={shown}
+      inputMode="numeric"
+      onChange={(e) => {
+        const raw = e.target.value
+        setDraft(raw)
+        if (raw.trim() === '') return onChange(0)
+        const n = parseAmount(raw)
+        if (n !== null) onChange(n)
+      }}
+      onBlur={() => setDraft(null)}
+    />
+  )
+}
+
 // Verdict copy keyed to Fan Score buckets (audit tiers: Untapped / Earned /
 // Compounding). That was always the intent — the comment said so — but the
 // boundaries were restated here as 70/40 rather than the Fan Score's actual
@@ -330,10 +373,9 @@ export default function FanValueModelPage() {
             <label className="fvm-row__label">Annual revenue</label>
             <span className="fvm-row__val">
               <i className="fvm-row__pfx">{currency}</i>
-              <input
-                value={derived.revN ? derived.revN.toLocaleString() : ''}
-                onChange={(e) => setRev(+digits(e.target.value) || 0)}
-                inputMode="numeric"
+              <AmountInput
+                value={derived.revN}
+                onChange={setRev}
                 className="fvm-input fvm-input--money"
                 aria-label="Annual revenue"
               />
@@ -347,10 +389,9 @@ export default function FanValueModelPage() {
             </label>
             <span className="fvm-row__val">
               <i className="fvm-row__pfx">{currency}</i>
-              <input
-                value={derived.acqN ? derived.acqN.toLocaleString() : ''}
-                onChange={(e) => setAcq(+digits(e.target.value) || 0)}
-                inputMode="numeric"
+              <AmountInput
+                value={derived.acqN}
+                onChange={setAcq}
                 className="fvm-input fvm-input--money"
                 aria-label="Annual acquisition spend"
               />
@@ -627,11 +668,11 @@ export default function FanValueModelPage() {
                   <>
                     <div className="fvm-adv__row fvm-adv__row--top">
                       <label>Annual earned views</label>
-                      <input
-                        type="text" inputMode="numeric"
-                        value={views ? views.toLocaleString() : ''}
-                        onChange={(e) => setViews(+digits(e.target.value) || 0)}
+                      <AmountInput
+                        value={views}
+                        onChange={setViews}
                         className="fvm-input fvm-input--adv fvm-input--wide"
+                        aria-label="Annual earned views"
                       />
                     </div>
                     <div className="fvm-adv__row">

@@ -322,3 +322,67 @@ re-bases every score, so cards already shared stop reproducing.
 
 Recorded as a decision in a comment above `scoreLive` so it does not get
 "balanced" later.
+
+---
+
+# Fan Value calculator, 28 July 2026
+
+## Fixed: money fields accept "4M"
+
+`digits()` stripped every non-digit, so "4M" became **4**. You had to type all
+seven zeros. The fields now parse `4M`, `4m`, `4.5M`, `800k`, `2B`,
+`12,000,000` and plain digits, on Annual revenue, Annual acquisition spend and
+Annual earned views.
+
+The subtlety was decimals. These inputs reformat on every keystroke, so a purely
+value-driven field eats the "." before you reach the "M" and "4.5M" is
+untypeable. `AmountInput` holds a draft string while focused and hands back to
+the formatted number on blur. Verified typing character by character:
+`4` → `4.` → `4.5` → `4.5M`, then blur → `4,500,000`.
+
+Left alone: value-per-customer, CAC and CPM. Those hold strings rather than
+numbers and are small figures where shorthand is unlikely.
+
+## NOT fixed, needs a decision: the advocacy field does nothing
+
+**"Optional. The share you already get from advocacy today. Leave blank if
+none."** Measured on the live headline, changing only that field:
+
+| Entered | Headline |
+|---|---|
+| (blank) | $562K |
+| 10% | $562K |
+| 25% | $562K |
+| 50% | $562K |
+| 80% | $562K |
+| 90% | $530K |
+| 95% | $490K |
+
+**Nothing below 86% has any effect at all.**
+
+The arithmetic explains it. `bringLift = Math.min(fanN, 100 - bring0N)` — the
+field only ever acts as a ceiling, and with the "Fans bring more" slider at its
+default 14 it cannot bite until `100 - bring0N < 14`, i.e. above 86%.
+
+That may be intentional: the slider is a *lift*, and the value of a 14-point
+lift is arguably the same wherever you start from. But the field is presented as
+an input that shapes the answer, and for every realistic value it does not.
+Someone who fills it in and sees nothing move concludes the tool is broken —
+which is exactly what happened.
+
+Three options, and this is a **Fan Value math** decision so it is Laura's:
+
+- **A — Make it count.** If a quarter of acquisition already comes via advocacy,
+  the remaining paid portion is what a further lift saves against:
+  `saved = acqN × (1 - bring0/100) × (bringLift/100)`. The field becomes
+  meaningful and estimates get more conservative for anyone with existing
+  advocacy.
+- **B — Relabel it.** Keep the arithmetic and stop implying it drives the
+  number: describe it as a sanity check, e.g. "so the lift below can't take you
+  past 100%".
+- **C — Remove it.** One less field on a form where every field costs
+  completion, and it currently earns nothing for 99% of users.
+
+I would do **A**: the field already asks for the right number, and it makes the
+estimate more defensible rather than less, which suits a tool whose credibility
+is the point.
