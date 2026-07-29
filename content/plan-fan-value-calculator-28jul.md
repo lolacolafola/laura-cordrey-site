@@ -4,7 +4,7 @@
 sliders "didn't seem to change anything". Every claim below is measured against
 the live headline number, not read off the code.
 
-**Nothing in this plan is applied yet**, except the "4M" fix already shipped.
+**ALL FIVE ITEMS APPLIED 28 Jul 2026.** See "Outcome" at the end.
 
 ---
 
@@ -202,3 +202,42 @@ Implementation, if confirmed, is one line plus a guard:
 ```js
 const saved = bring0N >= 100 ? acqN : acqN * (bringLift / (100 - bring0N))
 ```
+
+
+---
+
+# Outcome, 28 July 2026 — all five done
+
+Laura's call: *"it needs to work. Either I don't share it or we fix it."* So the
+standard was correctness, not a smaller number.
+
+**1. The advocacy field counts.** `saved = acq × lift / (100 − bring0)`, derived
+above and matched against simulated ground truth. Measured on the live headline,
+changing only that field:
+
+| Entered | (blank) | 25% | 50% | 75% |
+|---|---|---|---|---|
+| Before | $562K | $562K | $562K | $562K |
+| After | $562K | **$599K** | **$674K** | **$898K** |
+
+Clamped to 0–95 rather than 0–100, because 100 would divide by zero.
+
+**2. Inputs are clamped**, on blur so typing "7" toward "70" is not fought.
+150 → 95, −20 → 0. No more confident answers to impossible questions.
+
+**3. The retention ceiling explains itself.** The slider at 70% repeat purchase
+still does not move the number — correctly, there is no headroom — but it now
+says so:
+
+> At 70% repeat purchase you're already at the practical ceiling this model uses
+> (65%), so there's no retention lift left to add.
+
+Gold, not red: the visitor has done nothing wrong.
+
+**4. Each slider shows the figure it drives** ("Stay: $750K"), so the effect is
+visible without scrolling to the headline. This is what hid the bugs.
+
+**5. `npm run calc:check`** asserts the invariant that was broken: *every
+control either changes the headline, or explains on screen why it cannot.*
+Seven starting states including the previously-dead ones. Proven in both
+directions — restoring the old advocacy formula produces 7 failures and exit 1.

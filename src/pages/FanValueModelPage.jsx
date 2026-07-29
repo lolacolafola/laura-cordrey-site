@@ -185,6 +185,13 @@ export default function FanValueModelPage() {
 
   const digits = (v) => ('' + v).replace(/[^0-9]/g, '')
 
+  // The percentage fields carried min/max attributes, but those are only browser
+  // hints — onChange wrote the raw value straight into the model, so 150% and
+  // -20% both produced confident numbers (150% higher than 100%). Clamped on
+  // BLUR rather than on keystroke, so typing "7" on the way to "70" is not
+  // fought.
+  const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n))
+
   const setBizTxn = () => { setBizType('txn'); setR0(30) }
   const setBizSub = () => { setBizType('sub'); setR0(80) }
 
@@ -210,7 +217,20 @@ export default function FanValueModelPage() {
 
     const stay = revN * (appliedLift / 100)
     const spend = revN * (r0N / 100) * (spendPct / 100)
-    const saved = acqN * (bringLift / 100)
+    // Saved acquisition spend. `acq` is the budget that buys the customers
+    // advocacy does NOT bring you, so it is spread over (100 - bring0)% of your
+    // intake, not all of it. Each further point of advocacy therefore displaces
+    // more expensive volume the more advocacy you already have.
+    //
+    // Derived per-customer and checked against a simulation — see
+    // content/plan-fan-value-calculator-28jul.md. The previous
+    // `acqN * (bringLift / 100)` is the special case where bring0 = 0, which is
+    // the default, so it was right for a blank field and understated for every
+    // filled-in one (at 50% existing advocacy, by half).
+    //
+    // Self-limiting: bringLift is already capped at 100 - bring0N above, so this
+    // can never exceed acqN. The >= 100 guard is for the divide-by-zero only.
+    const saved = bring0N >= 100 ? acqN : acqN * (bringLift / (100 - bring0N))
     const emv = emvOn ? ((+views || 0) / 1000) * (+cpm || 0) : 0
     const total = stay + spend + saved + emv
 
@@ -249,7 +269,10 @@ export default function FanValueModelPage() {
     return {
       fmt, fmtK,
       revN, acqN, r0N, bring0N, bizSub,
-      appliedLift, bringLift,
+      appliedLift, bringLift, ceiling,
+      // True when the retention slider can no longer move the number, so the UI
+      // can explain itself instead of sitting inert.
+      stayCapped: appliedLift < liftPts,
       stay, spend, saved, emv, total,
       newRevenue, adSaved, monthly,
       stayPct: pct(stay),
@@ -408,6 +431,7 @@ export default function FanValueModelPage() {
                 type="number"
                 value={r0}
                 onChange={(e) => setR0(e.target.value === '' ? 0 : +e.target.value)}
+                onBlur={(e) => setR0(clamp(+e.target.value || 0, 0, 95))}
                 min="0"
                 max="95"
                 className="fvm-input fvm-input--pct"
@@ -427,9 +451,10 @@ export default function FanValueModelPage() {
                 type="number"
                 value={bring0}
                 onChange={(e) => setBring0(e.target.value)}
+                onBlur={(e) => setBring0(e.target.value === '' ? '' : String(clamp(+e.target.value || 0, 0, 95)))}
                 placeholder="0"
                 min="0"
-                max="100"
+                max="95"
                 className="fvm-input fvm-input--pct"
                 aria-label="From referrals and word of mouth today"
               />
@@ -571,6 +596,22 @@ export default function FanValueModelPage() {
                 <input type="range" min="0" max="15" value={liftPts} onChange={(e) => setLiftPts(+e.target.value)} />
                 <b>+{liftPts} pts</b>
               </div>
+              {/* The number this slider drives, next to the slider. The headline
+                  sits above the fold from here, so without this you drag a
+                  control and its effect is off-screen — which is exactly why
+                  three real bugs went unnoticed. */}
+              <div className="fvm-slider__echo">Stay: <b>{derived.fmtK(derived.stay)}</b></div>
+              {/* And when the model is ignoring the slider, say so rather than
+                  letting it sit there inert. appliedLift is capped at
+                  ceiling - retention, so a business already at or above the
+                  ceiling has no retention headroom left to model. */}
+              {derived.stayCapped && (
+                <div className="fvm-slider__capped" role="status">
+                  At {derived.r0N}% {derived.bizSub ? 'retention' : 'repeat purchase'} you&rsquo;re already at the
+                  practical ceiling this model uses ({derived.ceiling}%), so there&rsquo;s
+                  {derived.appliedLift > 0 ? ' only ' + derived.appliedLift + ' pt of' : ' no'} retention lift left to add.
+                </div>
+              )}
               <div className="fvm-slider__note">
                 Loyalty and retention programs lift repeat purchasing 30 to 60% (industry benchmarks).
               </div>
@@ -580,6 +621,7 @@ export default function FanValueModelPage() {
                 <input type="range" min="0" max="40" value={spendPct} onChange={(e) => setSpendPct(+e.target.value)} />
                 <b>+{spendPct}%</b>
               </div>
+              <div className="fvm-slider__echo">Spend: <b>{derived.fmtK(derived.spend)}</b></div>
               <div className="fvm-slider__note">
                 Gallup: fully engaged customers spend around 23% more. Applied as a lower blended lift across all repeat customers, since only some become fans.
               </div>
@@ -588,6 +630,10 @@ export default function FanValueModelPage() {
                 <label>Fans bring more</label>
                 <input type="range" min="0" max="30" value={fanN} onChange={(e) => setFanN(+e.target.value)} />
                 <b>+{fanN}%</b>
+              </div>
+              <div className="fvm-slider__echo">
+                Ad budget saved: <b>{derived.fmtK(derived.saved)}</b>
+                {derived.bring0N > 0 && <span> · on top of the {derived.bring0N}% you already get</span>}
               </div>
               <div className="fvm-slider__note">
                 Wharton: referral and ambassador programs reach 20 to 35%; Nielsen: word of mouth around 14%. AI-driven referral is emerging and not yet counted.
