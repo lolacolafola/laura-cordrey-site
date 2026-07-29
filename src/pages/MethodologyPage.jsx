@@ -157,7 +157,7 @@ export default function MethodologyPage() {
             </h1>
             <p className="meth-hero__lede">
               You're sitting on more fandom than you can see, prove, or bank.
-              The Fan Engine<span className="tm">™</span> is the system I build to turn customers into fans,
+              The Fan Engine is the system I build to turn customers into fans,
               and to prove what they're worth.
             </p>
             {/* The disqualifier that sat here was cut on 23 Jul 2026, Laura's
@@ -207,7 +207,7 @@ export default function MethodologyPage() {
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
               </g>
               <text x="220" y="242" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="10.5" fontWeight="800" letterSpacing="2" fill="#D4C896">
-                FAN ENGINE<tspan fontSize="6" dy="-4" letterSpacing="0">™</tspan>
+                FAN ENGINE
               </text>
               <circle cx="220" cy="66" r="23" fill="#241D19" stroke="rgba(212,200,150,.32)" strokeWidth="1" />
               <g transform="translate(210.2,56.2) scale(.82)" fill="none" stroke="#C8362B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -279,7 +279,7 @@ export default function MethodologyPage() {
           </div>
 
           <div className="meth-schematic">
-            <span className="meth-eyebrow meth-eyebrow--gold meth-schematic__label">The Fan Engine<span className="tm">™</span></span>
+            <span className="meth-eyebrow meth-eyebrow--gold meth-schematic__label">The Fan Engine</span>
 
             <div className="meth-schematic__grid">
               {disciplines.map((d) => (
@@ -324,7 +324,7 @@ export default function MethodologyPage() {
               <span className="meth-sechead__num">02</span>
               <span className="meth-eyebrow meth-eyebrow--ink">What it builds</span>
             </div>
-            <h2 className="meth-h2 meth-h2--onbone">What the Fan Engine<span className="tm">&trade;</span> builds for your customer.</h2>
+            <h2 className="meth-h2 meth-h2--onbone">What the Fan Engine builds for your customer.</h2>
             <p className="meth-lede meth-lede--onbone">
               {/* Second sentence rewritten 23 Jul 2026; Laura flagged it as odd
                 * and it was. It read "Real people don't climb them in a tidy
@@ -363,7 +363,7 @@ export default function MethodologyPage() {
               <polyline points="3 3 3 8 8 8" />
             </svg>
             <span className="meth-loop__note">
-              Advocacy feeds back to activation: the Fan Engine<span className="tm">&trade;</span> brings you new
+              Advocacy feeds back to activation: the Fan Engine brings you new
               customers, so it grows itself.
             </span>
           </div>
@@ -476,7 +476,7 @@ export default function MethodologyPage() {
             <div className="meth-engage__head">
               <span className="meth-engage__kick">The engagement</span>
               <h2 className="meth-engage__title">
-                Build the Fan Engine<span className="tm">&trade;</span> with me.
+                Build the Fan Engine with me.
               </h2>
               <p className="meth-engage__lede">
                 The whole system, built into your business and measured end to
@@ -494,7 +494,7 @@ export default function MethodologyPage() {
                 6 to 8 weeks to build, then ongoing &middot; Priced per engagement
               </span>
               <Link to="/services#fan-engine" className="meth-engage__cta">
-                <span>See the Fan Engine<span className="tm">&trade;</span> engagement &rarr;</span>
+                <span>See the Fan Engine engagement &rarr;</span>
               </Link>
             </div>
           </div>
@@ -513,17 +513,17 @@ export default function MethodologyPage() {
             <span className="meth-close__hl">build first</span>.
           </h2>
           <p className="meth-close__lede">
-            The Fan Score<span className="tm">™</span> takes two minutes and
+            The Fan Score takes two minutes and
             shows where your fan-led growth is already worth more than you're
             counting.
           </p>
           <div className="meth-ctas">
-              {/* ™ added 23 Jul 2026: the identical button on /services
-                * carries it and this one did not. Label wrapped in one
-                * span because .btn is a flex container with a gap —
-                * unwrapped, the gap opens either side of the mark. */}
+              {/* The ™ came off 29 Jul 2026 with the rest of the Fan Score
+                * marks. Label stays wrapped in one span: .btn is a flex
+                * container with a gap, so an unwrapped multi-node label
+                * opens a gap between its parts. */}
             <Link to="/fan-score" className="btn btn--lg meth-close__cta">
-              <span>Take the 2-min Fan Score<span className="tm">™</span></span>
+              <span>Take the 2-min Fan Score</span>
             </Link>
             <Link to={CONTACT_URL} className="btn btn--ghost btn--lg meth-close__ghost">
               Let’s talk
@@ -537,7 +537,7 @@ export default function MethodologyPage() {
               * looks like: phases, duration, proof, price framing. First in the
               * row because it is the closest next step for a convinced reader. */}
           <p className="meth-close__back">
-              Or <Link to="/services#fan-engine">see the Fan Engine<span className="tm">™</span> engagement &rarr;</Link>
+              Or <Link to="/services#fan-engine">see the Fan Engine engagement &rarr;</Link>
               {' '}&middot;{' '}
               <Link to="/work">see the work first &rarr;</Link>
             {' '}&middot;{' '}

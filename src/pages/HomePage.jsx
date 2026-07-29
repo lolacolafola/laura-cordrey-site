@@ -100,7 +100,7 @@ const WAYS = [
   {
     no: '01',
     tone: 'gold',
-    title: 'The Fan Engine\u2122',
+    title: 'The Fan Engine',
     kicker: 'The method I built',
     copy: 'The full build. Brand, product, community and growth run as one system, plugged into your company and measured end to end. For teams ready to own their growth, not rent it.',
   },
@@ -436,7 +436,7 @@ export default function HomePage() {
             <Eyebrow>Three ways I help</Eyebrow>
             <hr style={{ width: 46, height: 3, background: '#C8362B', border: 'none', margin: '14px auto 20px' }} />
             <p style={{ fontSize: T.lede, lineHeight: 1.6, color: 'rgba(239,233,220,.74)', margin: 0 }}>
-              It runs on one method I built: the Fan Engine<span className="tm">™</span>. Take the whole thing, or fix one part.
+              It runs on one method I built: the Fan Engine. Take the whole thing, or fix one part.
             </p>
           </div>
 
@@ -661,7 +661,7 @@ export default function HomePage() {
                 <div className="tool-cap" style={{ marginTop: 14 }}>An example fan-led growth score</div>
               </div>
               <div className="tool-body">
-                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Score<span className="tm">™</span></h3>
+                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Score</h3>
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   A quick score of where you stand with fan-led growth, and where you are leaking it.
                 </p>
@@ -684,7 +684,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="tool-body">
-                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Value<span className="tm">™</span></h3>
+                <h3 style={{ fontWeight: HEAD_W, fontSize: T.h3, letterSpacing: '-.02em', margin: '0 0 8px', color: '#EFE9DC' }}>Fan Value</h3>
                 <p style={{ fontSize: T.body, lineHeight: 1.6, color: 'rgba(239,233,220,.72)', margin: '0 0 22px' }}>
                   What is your fanbase actually worth? On conservative benchmarks, a $5M brand lands near $560K a year.
                 </p>

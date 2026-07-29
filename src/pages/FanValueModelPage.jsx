@@ -158,7 +158,7 @@ export default function FanValueModelPage() {
   const auditScore = arrivedFromAudit ? parsedScore : null
 
   useDocumentMeta({
-    title: 'Fan Value Model™ · What your fans are worth · Laura Cordrey',
+    title: 'Fan Value Model · What your fans are worth · Laura Cordrey',
     description:
       'A conservative estimate of what your customers are worth once they become fans, built from published benchmarks. It shows its work.',
     canonical: pageUrl('/fan-value'),
@@ -306,7 +306,7 @@ export default function FanValueModelPage() {
         {arrivedFromAudit && (
           <div className="fvm-arrival" role="note">
             <Arrow />
-            <span>From your Fan Score<span className="tm">™</span> · <b>{auditScore}%</b></span>
+            <span>From your Fan Score · <b>{auditScore}%</b></span>
           </div>
         )}
 
@@ -322,7 +322,7 @@ export default function FanValueModelPage() {
           <div className="fvm-hero__inner">
             <span className="fvm-eyebrow-brand fvm-eyebrow-brand--band">
               <Sparkle />
-              <span>The Fan Value Model<span className="tm">™</span></span>
+              <span>The Fan Value Model</span>
             </span>
             {/* "What is the fan gap worth to you?" went 23 Jul 2026. "The fan gap"
                 appeared exactly once on the whole site, here, in the largest type on
@@ -345,7 +345,7 @@ export default function FanValueModelPage() {
             it is a prerequisite for. */}
         {!arrivedFromAudit && (
           <div className="fvm-coldbar">
-            <span className="fvm-coldbar__txt">Fan Score<span className="tm">™</span>: how fan-led is your growth?</span>
+            <span className="fvm-coldbar__txt">Fan Score: how fan-led is your growth?</span>
             <Link className="fvm-coldbar__link" to={FANSCORE_URL}>
               Take the quiz <span className="fvm-btn__arrow" aria-hidden="true">→</span>
             </Link>
@@ -753,7 +753,7 @@ export default function FanValueModelPage() {
             <div className="fvm-ready__row">
               <div className="fvm-ready__badge">
                 <div className="fvm-ready__num">{auditScore}%</div>
-                <div className="fvm-ready__lbl">Fan Score<span className="tm">™</span></div>
+                <div className="fvm-ready__lbl">Fan Score</div>
               </div>
               <p className="fvm-ready__verdict">
                 <b>{verdict.lead}</b> {verdict.body}
@@ -794,7 +794,7 @@ export default function FanValueModelPage() {
           </span>
         </p>
 
-        <div className="fvm-sig">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
+        <div className="fvm-sig">Laura Cordrey · The Fan Engine</div>
       </div>
     </div>
   )

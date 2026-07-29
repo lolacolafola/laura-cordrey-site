@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: 'How is this different from hiring a community manager or agency?',
-    a: 'A community manager runs a space. A community agency runs campaigns in it. I build the Fan Engine™ around it: the brand story fans belong to, the product loops that bring them back, the community structure, the advocacy programs, and the measurement spine that ties each part to revenue. Every engagement includes baselines and quarterly re-measurement, so "the community is doing well" becomes a number, not a feeling.',
+    a: 'A community manager runs a space. A community agency runs campaigns in it. I build the Fan Engine around it: the brand story fans belong to, the product loops that bring them back, the community structure, the advocacy programs, and the measurement spine that ties each part to revenue. Every engagement includes baselines and quarterly re-measurement, so "the community is doing well" becomes a number, not a feeling.',
   },
   {
     q: 'Who do you work with?',
@@ -42,15 +42,15 @@ const FAQS = [
   },
   {
     q: 'Who is this NOT for?',
-    a: 'If you want someone to run your paid media, I’m not your person. If your product has no users yet, start with the free pre-launch edition of the Fan Score™ rather than an engagement. And if you want a community as a cost centre with no revenue expectations, we’d frustrate each other.',
+    a: 'If you want someone to run your paid media, I’m not your person. If your product has no users yet, start with the free pre-launch edition of the Fan Score rather than an engagement. And if you want a community as a cost centre with no revenue expectations, we’d frustrate each other.',
   },
   {
     q: 'What does it cost?',
-    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine™, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while limited spots last.',
+    a: 'A 2-hour advisory session is $750. Bigger engagements (the Fan Engine, Sentiment SOS, Fan Moments) are fixed-fee, priced per scope after a call, so you know the number before we start. AI companies can ask about founding-partner terms while limited spots last.',
   },
   {
-    q: 'What happens in the first month of the Fan Engine™?',
-    a: 'Four weeks, four outputs. Week one: access and interviews. Week two: the audit, built on your data, so we know who your fans actually are. Week three: your Fan Value™ calculated on your real numbers. Week four: a six-month plan, first sprint scoped with owners and targets. You end the month knowing what your fandom is worth and exactly what we build first.',
+    q: 'What happens in the first month of the Fan Engine?',
+    a: 'Four weeks, four outputs. Week one: access and interviews. Week two: the audit, built on your data, so we know who your fans actually are. Week three: your Fan Value calculated on your real numbers. Week four: a six-month plan, first sprint scoped with owners and targets. You end the month knowing what your fandom is worth and exactly what we build first.',
   },
   {
     q: 'How do you find the fans in our userbase?',
@@ -69,7 +69,7 @@ const FAQS = [
     a: 'I build. The strategy comes with the programs, the copy direction, the funnels and the measurement, shipped. Where a build needs specialists, I bring them and direct the work. This site is the proof: I designed and built it myself, end to end.',
   },
   {
-    q: 'What is the Fan Score™?',
+    q: 'What is the Fan Score?',
     a: 'A free two-minute self-assessment that tells you how fan-led your growth is today and where the biggest untapped opportunity sits. It’s the fastest way to see whether this whole approach is relevant to you. There’s a pre-launch edition if you have no users yet.',
   },
   {
@@ -132,7 +132,7 @@ export default function FaqPage() {
           <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
             Ask me directly</Link>
           <p className="faq-close__alt">
-            Or start with the free <Link to="/fan-score">2-minute Fan Score<span className="tm">™</span></Link>.
+            Or start with the free <Link to="/fan-score">2-minute Fan Score</Link>.
           </p>
         </div>
       </div>

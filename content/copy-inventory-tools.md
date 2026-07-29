@@ -1,4 +1,4 @@
-# Every word in the Fan Score™, and when it appears
+# Every word in the Fan Score, and when it appears
 
 **Generated from `src/pages/FanAuditPage.jsx` — do not edit by hand.** Re-run `npm run copy:inventory` after any copy change and this file updates.
 

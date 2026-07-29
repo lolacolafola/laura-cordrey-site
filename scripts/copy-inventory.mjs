@@ -161,7 +161,7 @@ const MOVE_PRE = literal(src, 'MOVE_PRE')
 const out = []
 const p = (...l) => out.push(...l, '')
 
-p('# Every word in the Fan Score™, and when it appears')
+p('# Every word in the Fan Score, and when it appears')
 p('**Generated from `src/pages/FanAuditPage.jsx` — do not edit by hand.** ' +
   'Re-run `npm run copy:inventory` after any copy change and this file updates.')
 p('The result screen is assembled at runtime from interchangeable fragments, so ' +

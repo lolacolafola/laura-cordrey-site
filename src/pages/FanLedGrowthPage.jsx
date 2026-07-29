@@ -67,14 +67,14 @@ const whyFans = [
   { title: 'They recommend you', copy: 'Their friends arrive on a recommendation, so your cost per customer falls.', icon: 'users' },
   { title: 'They defend you', copy: 'Fans stay through a rough week, and defend you in public.', icon: 'shield' },
   { title: 'AI recommends you too', copy: 'Ask an AI what to pick, and it answers from what your fans post.', icon: 'sparkle' },
-  { title: 'It compounds', copy: 'Built once, the Fan Engine™ keeps working and starts to fuel itself.', icon: 'loop' },
+  { title: 'It compounds', copy: 'Built once, the Fan Engine keeps working and starts to fuel itself.', icon: 'loop' },
 ]
 
 const situations = [
   { title: 'You’re burning cash on growth', copy: 'Every new customer costs more than the last, and you need growth that doesn’t stop when the spend does.', icon: 'spark' },
   { title: 'You’ve hit product-market fit', copy: 'The product works. Now you’re ready for the growth fans bring on top.', icon: 'rocket' },
   { title: 'You’re getting hammered online', copy: 'Sentiment has turned, and you need someone who knows product and community to turn it back.', icon: 'shield' },
-  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the Fan Engine™ in from the start.', icon: 'gear' },
+  { title: 'You’re building from day one', copy: 'You already know fans are the moat, and you want the Fan Engine in from the start.', icon: 'gear' },
 ]
 
 const Icon = ({ name, size = 28 }) => {
@@ -276,7 +276,7 @@ export default function FanLedGrowthPage() {
             <div aria-hidden="true" style={{ position: 'absolute', top: '-40%', right: '-6%', width: '40vw', height: '40vw', maxWidth: 420, maxHeight: 420, background: 'radial-gradient(circle,rgba(200,54,43,.16) 0%,rgba(200,54,43,0) 64%)', pointerEvents: 'none' }} />
             <div className="flg-est" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(20px,3vw,44px)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: '52ch' }}>
-                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Fan Value<span className="tm">&trade;</span> estimate</span>
+                <span style={{ fontSize: '.72rem', letterSpacing: '.2em', textTransform: 'uppercase', color: '#D4C896', fontWeight: 700 }}>Fan Value estimate</span>
                 <p style={{ fontSize: 'clamp(1.1rem,1.5vw,1.4rem)', lineHeight: 1.32, fontWeight: HEAD_W, color: '#EFE9DC', margin: 0 }}>
                   {/* #E4695E, not #C8362B: the deep red measured 3.26 to 3.59
                     * against this card's gradient, which clears AA for large
@@ -331,7 +331,7 @@ export default function FanLedGrowthPage() {
               So it looks optional. It is not. It just never had an owner: brand, product, community and growth each hold a piece, and nobody holds the whole. So it stays a feeling nobody can put a number&nbsp;on.
             </p>
             <p style={{ fontSize: T.lede, lineHeight: 1.66, color: '#EFE9DC', fontWeight: 600, margin: 'clamp(18px,2vw,24px) 0 0' }}>
-              That is the part I build. The <mark>Fan Engine<span className="tm">&trade;</span></mark> runs all four as one system, and ties each part to a number you can take to a&nbsp;board.
+              That is the part I build. The <mark>Fan Engine</mark> runs all four as one system, and ties each part to a number you can take to a&nbsp;board.
             </p>
             <div style={{ marginTop: 'clamp(24px,2.8vw,32px)' }}>
               <Link to="/fan-engine" className="flg-btnsoft" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: '1rem', padding: '15px 28px', borderRadius: 3, textDecoration: 'none' }}>
@@ -340,7 +340,7 @@ export default function FanLedGrowthPage() {
                   * .tm span and the text after it are three flex items,
                   * and the gap opens 10.5px either side of a 7.3px mark.
                   * Laura: "too far away". One wrapper = one flex item. */}
-                <span>See how the Fan Engine<span className="tm">™</span> works</span></Link>
+                <span>See how the Fan Engine works</span></Link>
             </div>
           </div>
         </div>
@@ -446,7 +446,7 @@ export default function FanLedGrowthPage() {
             * as "Get in touch" on every screen, and the second button here
             * goes to /services, which opens with two ways to talk. */}
           <p data-rev style={{ fontSize: '.92rem', fontWeight: 600, color: 'rgba(251,244,230,.82)', margin: 'clamp(18px,2.2vw,26px) 0 0' }}>
-            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ox">Take the 2-minute Fan Score<span className="tm">™</span>&nbsp;&rarr;</Link>
+            Not ready for either? <Link to="/fan-score" className="flg-inline flg-inline--ox">Take the 2-minute Fan Score&nbsp;&rarr;</Link>
           </p>
         </div>
       </section>

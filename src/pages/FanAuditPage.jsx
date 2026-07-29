@@ -174,7 +174,7 @@ const byPriority = (keys) => PRIORITY.filter((k) => keys.indexOf(k) >= 0)
 
 export default function FanAuditPage() {
   useDocumentMeta({
-    title: 'The Fan Score™ · Are your customers fans? · Laura Cordrey',
+    title: 'The Fan Score · Are your customers fans? · Laura Cordrey',
     description:
       'Find out how many of your customers would stay, spend more and recommend you, and where to start growing the number. Two minutes.',
     canonical: pageUrl('/fan-score'),
@@ -206,7 +206,7 @@ export default function FanAuditPage() {
 function IntroScreen({ onStart }) {
   return (
     <section className="fa-rel">
-      <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span></span></div>
+      <div className="fa-fig"><Sparkle /><span>The Fan Score</span></div>
       {/* Was "How fan-led is your growth?" over "Paid growth stops the moment
         * you stop paying. Fan-led growth keeps going." Changed 23 Jul 2026.
         * The old H1 asked the visitor to rate themselves on a category they
@@ -230,11 +230,11 @@ function IntroScreen({ onStart }) {
           own three sections, in the order they appear. Laura's call,
           28 Jul 2026. */}
       <p className="fa-introget">10 honest questions. Two minutes to your score, what&rsquo;s driving it, and where to start.</p>
-      <button className="fa-btn" onClick={onStart}>Get my Fan Score<span className="tm">™</span></button>
+      <button className="fa-btn" onClick={onStart}>Get my Fan Score</button>
       <p className="fa-introskip" style={{ margin: '14px 0 0', fontSize: '.95rem', opacity: 0.75 }}>
         Prefer to skip to the numbers?{' '}
         <Link to="/fan-value" style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: 3 }}>
-          Fan Value<span className="tm">&trade;</span>: what are your fans worth? <span aria-hidden="true">→</span>
+          Fan Value: what are your fans worth? <span aria-hidden="true">→</span>
         </Link>
       </p>
       <div className="fa-fold">
@@ -242,7 +242,7 @@ function IntroScreen({ onStart }) {
         <p className="fa-foldbio">
           I spent thirteen years turning audiences into fans at Ubisoft, Amazon Games and BlaBlaCar, then as VP Marketing of a US startup acquired by Animoca. I built what I learned into the Fan Engine<span className="tm">™</span>, my framework for fan-led growth. This Fan Score is part of it.
         </p>
-        <div className="fa-foldsign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
+        <div className="fa-foldsign">Laura Cordrey · The Fan Engine</div>
       </div>
     </section>
   )
@@ -523,7 +523,7 @@ function LiveResult({ scored, restart }) {
       />
 
       <p className="fa-note">{noteText}</p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
+      <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
     </section>
   )
 }
@@ -579,7 +579,7 @@ function PreFlow({ screen, setScreen }) {
   if (screen === 'preIntro') {
     return (
       <section className="fa-rel">
-        <div className="fa-fig"><Sparkle /><span>The Fan Score<span className="tm">™</span> · Pre-launch edition</span></div>
+        <div className="fa-fig"><Sparkle /><span>The Fan Score · Pre-launch edition</span></div>
         <h1 className="fa-h1">You're pre-launch, so let's not fake a growth score.</h1>
         {/* Tightened 28 Jul 2026 from "…and whether you've got the fuel to feed
             it." Same sense in 31 words instead of 36, which is 3 rendered lines
@@ -817,7 +817,7 @@ function PreResult({ scored, restart }) {
       <p className="fa-note">
         This is the directional, self-assessed edition of the Fan Score, not a growth score. It's only as honest as the evidence behind each answer, so treat it as a starting point, best confirmed in a call. Re-run it monthly. The full engagement begins the day you go live.
       </p>
-      <div className="fa-sign">Laura Cordrey · The Fan Engine<span className="tm">™</span></div>
+      <div className="fa-sign">Laura Cordrey · The Fan Engine</div>
     </section>
   )
 }

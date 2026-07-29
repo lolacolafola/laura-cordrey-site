@@ -74,20 +74,54 @@ must be written to a file in this repo, **not left only in the chat reply.**
   rather than merely slow. This is how the html2canvas break was fixed.
 
 ## Naming rules
-- **It is never "the Engine". It is always the Fan Engine, and it always
-  carries the ™.** No shortening, no "the Engine" on second reference, no
-  bare "Fan Engine" without the mark. This is a trademark, and a trademark
-  that is used loosely stops being one.
+- **It is never "the Engine". It is always the Fan Engine.** No shortening, no
+  "the Engine" on second reference. That part of the rule is absolute and did
+  not change on 29 Jul.
+- **One hero mark. ™ on the Fan Engine only, once per page.** Revised 29 Jul
+  2026, replacing "it always carries the ™". Repeating a mark in every
+  paragraph is what tips a site from confident into anxious, and the symbol
+  stops being read at all.
+  - **Fan Score and Fan Value Model carry no ™ anywhere.** They are tool
+    names. Let them be tools. (They remain canonical names — never
+    abbreviated or improvised — the *names* are fixed, the symbol is gone.)
+  - **The Fan Engine takes the ™ on the first prominent use in a page's own
+    content, and is plain everywhere after.** Hero or first body mention.
   - In JSX, use the styled mark: `Fan Engine<span className="tm">™</span>`
   - In plain strings (meta descriptions, `<option>` labels, JSON-LD, alt
     text) use the literal character: `Fan Engine™`
-  - Same rule for **Fan Score** and the **Fan Value Model** — canonical names,
-    never abbreviated or improvised.
-- Before shipping copy, grep for drift. **Case-insensitive — the original
-  check was `grep -rn` and returned clean while nine lowercase "the engine" /
-  "a fan engine" usages sat in the Fan Score, including the first line of every
-  result:**
-  `grep -rni "the engine\|an engine\|your engine\|a fan engine" src/ | grep -v "Fan Engine"`
+- Three carve-outs, decided 29 Jul, so they don't get "tidied" later:
+  - **No mark in the chrome.** Nav and footer render on all 19 pages; a mark
+    there consumes the one-per-page allowance before the hero can use it.
+    `Layout.jsx` labels are plain strings.
+  - **Meta, JSON-LD and `llms.txt` keep it on the Fan Engine.** One instance
+    per page, never seen by a reader, and it is the canonical-name signal
+    search and answer engines read. It cannot make the site look anxious.
+  - **Surfaces that travel keep their own mark**, because they arrive with no
+    other context: the downloadable Fan Score card footer (`fa-cfoot`) and the
+    OG image (`scripts/og-image.html`). A page's on-screen signature is not
+    one of these — those went plain.
+- **Never write that the Fan Engine is trademarked, registered or protected.**
+  The mark is not registered; ™ is the unregistered-mark notation. The claim
+  to make is AUTHORSHIP — Laura built the method — which is true and is the
+  whole point. See the comment above the offer cards in `HomePage.jsx`.
+- Third-party marks are outside all of this. `The Overlay Games™ Company` in
+  the Azarus case study is a client's name and is left exactly as written.
+- Before shipping copy, run both checks. They catch different drift:
+  ```
+  npm run tm:check
+  grep -rni "the engine\|an engine\|your engine\|a fan engine" src/ | grep -v "Fan Engine"
+  ```
+  - `tm:check` enforces the symbol rule: zero marks on Fan Score and Fan Value,
+    and a per-file ceiling on Fan Engine marks. It counts marks **attached to
+    the name across the whole file**, not line by line, because /about wraps
+    "the Fan / Engine™" over two lines and a line-based count missed that
+    page's only mark entirely. When a count changes on purpose, raise the
+    baseline in `scripts/tm-check.mjs` in the same commit and say why — that
+    edit is the record.
+  - The grep catches the *name* drifting, which `tm:check` cannot see. Keep it
+    **case-insensitive** — the original was `grep -rn` and returned clean while
+    nine lowercase "the engine" / "a fan engine" usages sat in the Fan Score,
+    including the first line of every result.
 
 ## Design rules
 - **Hover honesty.** Cursor response is a promise: if an element lifts, scales,

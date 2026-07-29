@@ -56,16 +56,18 @@ const OFFERS = [
       { label: 'Every quarter', copy: 'A re-score and a fresh read on what your fans are worth.' },
     ],
     payoff:
-      'more revenue from the customers you already have, from a Fan Engine™ that keeps working after I’ve gone.',
+      'more revenue from the customers you already have, from a Fan Engine that keeps working after I’ve gone.',
     proofFig: '60M+ fan views and ~$600K+ earned media',
     proofRest: 'across Ubisoft programs, at $0 media spend.',
     meta: '6 to 8 weeks to build, then ongoing · Priced per engagement',
-    /* NAMING RULE: it is never "the Engine". It is always the Fan Engine, and
-     * it always carries the ™. See CLAUDE.md. */
+    /* NAMING RULE: it is never "the Engine". It is always the Fan Engine.
+     * The ™ goes on the first prominent use per page only — here that is the
+     * flagship card title, via the tm flag on this offer, so the CTA and the
+     * link below are plain. See CLAUDE.md. */
     cta: {
       label: (
         <>
-          <span>Let&rsquo;s talk about the Fan Engine<span className="tm">™</span></span>
+          <span>Let&rsquo;s talk about the Fan Engine</span>
         </>
       ),
       need: 'engine',
@@ -74,7 +76,7 @@ const OFFERS = [
       to: '/fan-engine',
       label: (
         <>
-          How the Fan Engine<span className="tm">™</span> works
+          How the Fan Engine works
         </>
       ),
     },
@@ -169,7 +171,7 @@ export default function ServicesPage() {
   useDocumentMeta({
     title: 'Work with me · Laura Cordrey · Fan-led growth',
     description:
-      'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine™, or advisory. Free 2-minute Fan Score™.',
+      'Make the userbase you already paid for worth more: Sentiment SOS, Fan Programs, Fan Moments, the Fan Engine™, or advisory. Free 2-minute Fan Score.',
     canonical: pageUrl('services'),
     ogType: 'website',
     jsonLd: serviceJsonLd(),
@@ -489,15 +491,15 @@ export default function ServicesPage() {
         <div className="container svc-finale__inner">
           <h2 className="svc-finale__title">What&rsquo;s your fanbase worth?</h2>
           <p className="svc-finale__line">
-            Take the 2-minute Fan Score<span className="tm">™</span>, or tell me what&rsquo;s going on.
+            Take the 2-minute Fan Score, or tell me what&rsquo;s going on.
           </p>
           <div className="svc-finale__ctas">
             <Link to={CONTACT_URL} className="btn btn--primary btn--lg">
               Let&rsquo;s talk</Link>
             <Link to="/fan-score" className="btn btn--lg svc-finale__ghost">
-              <span>Take the 2-min Fan Score<span className="tm">™</span></span></Link>
+              <span>Take the 2-min Fan Score</span></Link>
             <Link to="/fan-value" className="btn btn--lg svc-finale__ghost">
-              <span>Size your Fan Value<span className="tm">™</span></span></Link>
+              <span>Size your Fan Value</span></Link>
           </div>
           <p className="svc-finale__note">
             Prefer to send a note?{' '}

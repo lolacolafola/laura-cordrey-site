@@ -367,7 +367,7 @@ export function fanLedGrowthJsonLd() {
             // the schema listed five of the six on the page.
             question: 'Why do fans grow a business?',
             answer:
-              'They stay and spend more: you keep what you paid to win, instead of buying the same customer twice. They spread the word: fans make the content that markets you, at no media cost. They recommend you: their friends arrive on a recommendation, so your cost per customer falls. They defend you: fans stay through a rough week, and defend you in public. AI recommends you too: ask an AI what to pick, and it answers from what your fans post. It compounds: built once, the engine keeps working and starts to fuel itself.',
+              'They stay and spend more: you keep what you paid to win, instead of buying the same customer twice. They spread the word: fans make the content that markets you, at no media cost. They recommend you: their friends arrive on a recommendation, so your cost per customer falls. They defend you: fans stay through a rough week, and defend you in public. AI recommends you too: ask an AI what to pick, and it answers from what your fans post. It compounds: built once, the Fan Engine keeps working and starts to fuel itself.',
           },
           {
             question: 'How is fan-led growth different from paid acquisition?',

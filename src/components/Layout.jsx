@@ -39,11 +39,12 @@ const footerLinks = [
   { label: 'Home',      to: '/' },
   { label: 'Work',      to: '/work' },
   { label: 'Services',  to: '/services' },
-  // CLAUDE.md: in JSX the mark is the styled <span className="tm">, not a bare
-  // ™ character, which would render at full size and sit heavy in a footer row.
-  { label: <>The Fan Engine<span className="tm">™</span></>, to: '/fan-engine' },
-  { label: <>Fan Score<span className="tm">™</span></>, to: '/fan-score' },
-  { label: <>Fan Value<span className="tm">™</span></>, to: '/fan-value' },
+  // CLAUDE.md: no ™ in the chrome. The nav and footer render on all 19 pages,
+  // so a mark here would eat the one-per-page allowance before the hero ever
+  // gets to use it. These are wayfinding labels, not prose.
+  { label: 'The Fan Engine', to: '/fan-engine' },
+  { label: 'Fan Score', to: '/fan-score' },
+  { label: 'Fan Value', to: '/fan-value' },
   { label: 'AI',        to: '/ai' },
   { label: 'Speaking',  to: '/speaking' },
   { label: 'About',     to: '/about' },
