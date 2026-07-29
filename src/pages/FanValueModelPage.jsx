@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
+import { tierFromOwned } from '../lib/fanTiers.js'
 import ResultContactForm from '../components/ResultContactForm.jsx'
 import AnimatedNumber from '../components/AnimatedNumber.jsx'
 import './FanValueModelPage.css'
@@ -90,11 +91,19 @@ function Chart({ rev, uplift, fmtK }) {
   )
 }
 
-// Verdict copy keyed to Fan Score buckets (audit tiers: Untapped / Earned / Compounding).
+// Verdict copy keyed to Fan Score buckets (audit tiers: Untapped / Earned /
+// Compounding). That was always the intent — the comment said so — but the
+// boundaries were restated here as 70/40 rather than the Fan Score's actual
+// 67/33, so the two tools contradicted each other on three of the nineteen
+// reachable scores. They now share one definition; see src/lib/fanTiers.js for
+// the derivation and what it looked like when they disagreed.
+const VERDICT = {
+  Compounding: { lead: 'Mostly.', body: 'You capture most of it already. The gain left is in making it compound.', tone: 'oxblood' },
+  Earned: { lead: 'In part.', body: 'You capture some of it already, but a good share is still on the table.', tone: 'gold' },
+  Untapped: { lead: 'Not yet.', body: "You're not set up to capture it, so most of it stays on the table.", tone: 'red' },
+}
 function readinessVerdict(score) {
-  if (score >= 70) return { lead: 'Mostly.', body: 'You capture most of it already. The gain left is in making it compound.', tone: 'oxblood' }
-  if (score >= 40) return { lead: 'In part.', body: 'You capture some of it already, but a good share is still on the table.', tone: 'gold' }
-  return { lead: 'Not yet.', body: "You're not set up to capture it, so most of it stays on the table.", tone: 'red' }
+  return VERDICT[tierFromOwned(score)]
 }
 
 export default function FanValueModelPage() {

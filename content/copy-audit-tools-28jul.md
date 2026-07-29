@@ -270,13 +270,24 @@ The first two are the damaging ones. Someone is told they are earning
 fan-led growth, clicks the button you put in front of them, and is immediately
 told they are not set up to capture it.
 
-**Not fixed** — the Fan Value math is hand-calibrated and off-limits, and
-aligning them means deciding which tool is authoritative. Two ways if wanted:
+**FIXED same day.** On reading it properly this was not a calibration choice
+at all: the function's own comment already said *"Verdict copy keyed to Fan
+Score buckets (audit tiers: Untapped / Earned / Compounding)"*. Alignment was
+always the intent — the boundaries were simply restated as 70/40 instead of the
+Fan Score's actual 67/33. So this was a bug against its own stated design, not
+the hand-calibrated Fan Value math, which is untouched.
 
-- Move Fan Value's bands to 33 and 67, so they sit exactly on the tier
-  boundaries. Smallest change; makes Fan Value defer to the Fan Score.
-- Pass the tier name across instead of the number, and key the verdict off
-  that. More robust — they can never drift apart again — but a bigger change.
+The two now share one definition, in `src/lib/fanTiers.js`, with the boundaries
+derived from `scoreLive`'s thresholds rather than chosen:
+
+```
+lowest Earned      = core 15 → round(((15 - 9) / 18) * 100) = 33
+lowest Compounding = core 21 → round(((21 - 9) / 18) * 100) = 67
+```
+
+Verified across all 19 reachable scores: **0 disagreements.** Also checked the
+page still renders for a cold arrival with no score at all, and with no console
+errors.
 
 ## 2. Growth carries more weight than the other three disciplines
 
