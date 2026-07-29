@@ -241,3 +241,51 @@ site telling a reader they owned the methodology. Now "the Fan Engine™".
 
 Verified: no bare "engine" remains in any page copy. The only matches left in
 the repo are code comments quoting the old strings.
+
+---
+
+# Addendum, 28 July 2026 — two things found reviewing the quiz itself
+
+Not copy. Both are about how the two tools agree with each other, found while
+answering "are you comfortable with the quiz?".
+
+## 1. The Fan Score and Fan Value contradict each other on three scores
+
+The live result's CTA links to `/fan-value?score={owned}`, so a visitor carries
+their percentage straight across. But the two tools band that number
+differently. Fan Score tiers come from the raw total (`core`): Untapped ≤14,
+Earned 15–20, Compounding 21+. Fan Value's `readinessVerdict` bands the
+percentage: "Mostly" ≥70, "In part" ≥40, "Not yet" below.
+
+Those boundaries do not line up. Three of the nineteen possible scores produce
+a contradiction in the same session:
+
+| core | owned % | Fan Score says | Fan Value then says |
+|---|---|---|---|
+| 15 | 33 | **Earned** — "Growth you're earning." | **"Not yet.** You're not set up to capture it, so most of it stays on the table." |
+| 16 | 39 | **Earned** | **"Not yet."** |
+| 21 | 67 | **Compounding** — "Growth that compounds." | **"In part."** |
+
+The first two are the damaging ones. Someone is told they are earning
+fan-led growth, clicks the button you put in front of them, and is immediately
+told they are not set up to capture it.
+
+**Not fixed** — the Fan Value math is hand-calibrated and off-limits, and
+aligning them means deciding which tool is authoritative. Two ways if wanted:
+
+- Move Fan Value's bands to 33 and 67, so they sit exactly on the tier
+  boundaries. Smallest change; makes Fan Value defer to the Fan Score.
+- Pass the tier name across instead of the number, and key the verdict off
+  that. More robust — they can never drift apart again — but a bigger change.
+
+## 2. Growth carries more weight than the other three disciplines
+
+Nine scored questions, unevenly split: Brand 2 (Q1–2), Product 2 (Q3–4),
+Community 2 (Q5–6), **Growth 3 (Q7–9)**. So Growth is a third of the headline
+percentage and the others are 22% each.
+
+The per-discipline bars are unaffected — they use averages, so each reads fairly.
+It is only the overall number that leans on Growth.
+
+This may well be deliberate: growth is the outcome the other three feed. Worth
+recording as a decision either way, so it does not get "fixed" by someone later.
