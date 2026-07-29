@@ -19,7 +19,7 @@ const Sparkle = ({ size = 13 }) => (
 // ─── Live edition — 10 questions across Brand/Product/Community/Growth + gate ──
 const LQ = [
   { d: 'Brand',     q: 'How much does your brand and positioning shape what you build?', a: [
-    'Little. The roadmap is set by requests, competitors, and internal calls.',
+    'Little. The roadmap is set by requests, competitors, and internal opinion.',
     'Some. Brand guides our messaging, but product decisions are made separately.',
     'A lot. Our positioning sets the product priorities, and their order.',
   ]},
@@ -135,7 +135,10 @@ const LEAK_COPY = {
 const MOVE_COPY = {
   Brand: 'let your brand set the roadmap, not the other way round. When what you stand for decides what you build, fans have something to attach to.',
   Product: 'put one real reason to return inside the product itself, so it earns repeat use instead of buying it back with reminders.',
-  Community: 'make listening to your community a standing habit, so you catch sentiment before it turns, not after.',
+  // Community averages Q5 (is there a community at all?) and Q6 (do you
+  // gather what they tell you?). This move used to answer only Q6, so someone
+  // weak on Q5 was told to listen harder to people they do not yet have.
+  Community: 'build a group you can actually listen to, then make listening a standing habit, so you catch sentiment before it turns, not after.',
   Growth: 'make it easy and worth it for fans to bring others, so word of mouth becomes a channel you can count on.',
 }
 

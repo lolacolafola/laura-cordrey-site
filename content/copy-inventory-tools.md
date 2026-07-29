@@ -100,7 +100,7 @@ These appear the same for everyone.
 **Q1 · Brand**  
 How much does your brand and positioning shape what you build?
 
-1. Little. The roadmap is set by requests, competitors, and internal calls.  
+1. Little. The roadmap is set by requests, competitors, and internal opinion.  
 2. Some. Brand guides our messaging, but product decisions are made separately.  
 3. A lot. Our positioning sets the product priorities, and their order.
 
@@ -251,7 +251,7 @@ Always prefixed **"Start here:"**.
 |---|---|
 | Brand | let your brand set the roadmap, not the other way round. When what you stand for decides what you build, fans have something to attach to. |
 | Product | put one real reason to return inside the product itself, so it earns repeat use instead of buying it back with reminders. |
-| Community | make listening to your community a standing habit, so you catch sentiment before it turns, not after. |
+| Community | build a group you can actually listen to, then make listening a standing habit, so you catch sentiment before it turns, not after. |
 | Growth | make it easy and worth it for fans to bring others, so word of mouth becomes a channel you can count on. |
 
 ---
