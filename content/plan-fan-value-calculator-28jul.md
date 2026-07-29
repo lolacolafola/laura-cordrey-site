@@ -82,10 +82,9 @@ explain itself where the control is, in one line.
   reads as *answered*, not broken.
 - **The advocacy field:** three ways, and this one is **Fan Value math, so it is
   Laura's call**:
-  - **A — make it count** *(recommended)*: a further lift saves against the
-    paid portion that remains, `saved = acqN × (1 − bring0/100) × (bringLift/100)`.
-    The field becomes meaningful, and estimates get more conservative for anyone
-    with existing advocacy — which suits a credibility tool.
+  - **A — make it count** *(chosen 28 Jul)*. **⚠️ The formula I first proposed
+    here was wrong.** See "Deriving the advocacy formula" below before
+    implementing.
   - **B — relabel it** as a sanity check and stop implying it drives the number.
   - **C — remove it.** One less field on a form where every field costs
     completion.
@@ -137,3 +136,69 @@ is on the do-not-touch list, so it waits for you.
 - The benchmark defaults (6pts retention, 10% AOV, 14% bring) — calibrated.
 - The LTV/CAC arithmetic and the 24-month projection.
 - The Fan Score tier boundaries, aligned separately today.
+
+
+---
+
+# Deriving the advocacy formula (28 July 2026)
+
+Laura chose option A, then asked whether I was confident in the maths. I was
+not, so I derived it from first principles rather than reasoning by analogy —
+and the formula I had recommended was wrong in both size and **direction**.
+
+## The model
+
+`N` new customers a year. `bring0`% arrive free through advocacy. The rest are
+bought, and `acq` is the entire budget that buys them. So:
+
+```
+cost per bought customer = acq / (N × (100 − bring0)/100)
+```
+
+If fans then bring `lift` more percentage points of your customers, that many
+points shift from bought to free. The money no longer spent is:
+
+```
+saved = acq × lift / (100 − bring0)
+```
+
+## Checked against ground truth
+
+Simulated per-customer, then compared with each candidate formula:
+
+| bring0 | lift | truth | current code | what I recommended | derived |
+|---|---|---|---|---|---|
+| 0% | 14pt | $112,000 | $112,000 ✓ | $112,000 ✓ | $112,000 ✓ |
+| 25% | 14pt | $149,333 | $112,000 ✗ | $84,000 ✗ | $149,333 ✓ |
+| 50% | 14pt | $224,000 | $112,000 ✗ | $56,000 ✗ | $224,000 ✓ |
+| 75% | 14pt | $448,000 | $112,000 ✗ | $28,000 ✗ | $448,000 ✓ |
+| 80% | 20pt | $800,000 | $160,000 ✗ | $32,000 ✗ | $800,000 ✓ |
+
+Three things fall out of this:
+
+1. **The current formula is right in exactly one case — `bring0 = 0`**, which is
+   the default (the field is blank). So the tool is correct for most visitors
+   and understates for everyone who fills the field in. That is a much better
+   starting position than it first appeared.
+2. **My recommendation was wrong the other way.** I reasoned that existing
+   advocacy should shrink the remaining opportunity. In fact your acquisition
+   budget is buying a *smaller slice* of customers, so each extra point of
+   advocacy displaces more expensive volume. The saving goes **up**, not down.
+3. **The derived formula self-limits.** `bringLift` is already capped at
+   `100 − bring0`, so `saved` can never exceed `acq`. At 80% existing advocacy
+   with the full 20-point lift available, the saving is the whole budget —
+   correct, because fans would then be bringing everyone.
+
+## ⚠️ This changes what was agreed
+
+Option A was approved on my description that it would make estimates **more
+conservative**. The correct maths makes them **larger** for anyone who fills the
+field in — at 50% existing advocacy, double. For a tool whose credibility is the
+point, a bigger number is not automatically a better one, so this needs
+confirming rather than assuming.
+
+Implementation, if confirmed, is one line plus a guard:
+
+```js
+const saved = bring0N >= 100 ? acqN : acqN * (bringLift / (100 - bring0N))
+```
