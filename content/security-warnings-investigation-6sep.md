@@ -1,11 +1,15 @@
 # "People keep getting security warnings" — investigation, 6 Sep 2026
 
-Laura reported that people keep getting security warnings about the site. This
-is what I could and could not establish from outside. **The cause is not on the
-website.** The leading candidate is email, not the site — see below.
+Laura reported that people keep getting security warnings about the site.
 
-I could not confirm it definitively because I do not know what the warning
-actually says or where people see it. That is the one thing I need from you.
+> **⚠️ SUPERSEDED CONCLUSION — read "Update: it is ISP filtering" at the bottom
+> first.** Laura clarified that the warning appears *when on a particular
+> internet provider*. That rules out the email theory below. The email finding
+> is still a real and separate gap worth fixing, but it is **not** the cause of
+> this symptom. The section is kept because the DMARC gap is genuine.
+
+**The cause is not on the website** — that part holds, and is now confirmed
+from several more angles.
 
 ---
 
@@ -126,3 +130,101 @@ see the commit note. Neither is related to the security warnings.
   preload list. That is fine and not a problem. But note `includeSubDomains` is
   active: if you ever add a subdomain, it must serve valid HTTPS from day one or
   it will fail hard with no click-through.
+
+
+---
+
+# Update: it is ISP filtering, not email
+
+Laura clarified: the warning appears **when on a particular internet provider**.
+That single detail rules out the email theory and points somewhere specific.
+
+## What that rules out — everything measurable is clean
+
+| Check | Result |
+|---|---|
+| DNSSEC validation | **Passes.** `ad` flag returned by 8.8.8.8, 1.1.1.1, 9.9.9.9. Not a broken DNSSEC chain — that was the best structural candidate and it is definitively out |
+| Domain age | Registered **15 Feb 2026** via OVH — about 7 months old. Past the usual 30–90 day "newly registered domain" window, but still young |
+| Threat/malware blocklists | **Clean on every one tested.** Cloudflare Security (1.1.1.2), Cloudflare Family, Quad9, OpenDNS, OpenDNS FamilyShield, AdGuard, CleanBrowsing Security, ControlD all return the true IP `75.2.60.5`. The domain is not flagged as malicious anywhere significant |
+| TLS / headers / redirects | Clean, as measured above |
+
+So this is not a real security problem. Something on that one provider's network
+is objecting, and it is not because your site is on a threat list.
+
+## Why it appears as a scary *security* warning rather than a block page
+
+This is the part worth understanding, because it explains the wording.
+
+The site sends:
+
+```
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+```
+
+That tells every browser: *for the next two years, only ever reach this domain
+over HTTPS, and never let the user click through a certificate problem.*
+
+When an ISP filter intercepts a request, it normally answers with its own block
+page. But it cannot present a valid certificate for `lauracordrey.com` — nobody
+can except you. So instead of the ISP's polite "this site is blocked on your
+broadband filter" page, HSTS turns that interception into a **hard browser
+certificate error with no "proceed anyway" link**:
+
+> Your connection is not private / NET::ERR_CERT_AUTHORITY_INVALID
+
+Which reads to a normal person as *"this website is a security risk"* — exactly
+what people are reporting. The interception is ordinary filtering; HSTS is what
+makes it look alarming and unbypassable.
+
+**Do not remove HSTS to fix this.** It is correct security, and removing it
+would not help quickly anyway — browsers cache the instruction for the full two
+years, so anyone who has already visited would be unaffected by the change for a
+long time. The fix is to stop the interception, not to weaken the site.
+
+## The most likely cause: the domain is uncategorised on that ISP's filter
+
+UK consumer ISPs run their own filters with their own category databases,
+entirely separate from the public blocklists I tested: BT Web Protect, Sky
+Broadband Shield, TalkTalk HomeSafe, Virgin Media Web Safe, Vodafone Content
+Control. Several of these **block uncategorised sites by default** on their
+stricter settings.
+
+A 7-month-old personal consulting site with modest traffic is very likely simply
+**not in their category database yet**. It is not flagged as bad; it is unknown,
+and unknown gets blocked.
+
+### Second possibility: shared-IP reputation
+
+Your apex `lauracordrey.com` resolves to `75.2.60.5`, which reverse-resolves to
+`acd89244c803f7181.awsglobalaccelerator.com` — Netlify's **shared** anycast
+address, used by a very large number of unrelated sites. Filters that judge by
+IP rather than domain can flag it because of a neighbouring site. You cannot do
+much about that one, and it is less likely than the categorisation gap.
+
+## What to actually do
+
+**1. Get these three facts from someone who sees it.** They decide everything:
+
+- **Which provider** are they on?
+- **What exactly does it say** — the error code matters. `NET::ERR_CERT_*` means
+  interception (the HSTS story above). A provider-branded "this site is blocked"
+  page means plain category filtering.
+- **Is there a "proceed anyway" link?** Absent = HSTS interception confirmed.
+
+**2. Submit the domain for categorisation.** This is the standard, free fix for
+an uncategorised-domain block, and it is worth doing regardless of the above.
+Each vendor has a public "submit a site for review / dispute a category" form.
+Ask to be categorised as *business* or *professional services*. Worth doing at
+minimum for the ISP in question, plus Symantec/Broadcom, Forcepoint, Palo Alto
+and Zscaler, whose databases many other filters license.
+
+**3. Do not change anything on the site.** There is nothing wrong with it. I
+made no changes for this issue.
+
+## Honest limits of this
+
+I cannot reproduce the warning from here — I am not on that provider's network,
+which is the whole point of the symptom. Everything above is inference from what
+is measurable externally plus the one detail you gave. The three facts in step 1
+would turn this from a strong hypothesis into a confirmed diagnosis, and the
+error code alone would probably settle it.
