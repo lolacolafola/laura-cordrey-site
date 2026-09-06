@@ -169,3 +169,86 @@ filters license their databases:
 - Cisco Talos
 
 Takes a few days to propagate. Nothing to install, nothing to change on the site.
+
+---
+
+# What the fix actually is, in plain terms
+
+Added after Laura asked for a fuller explanation.
+
+## How web filtering actually works
+
+Almost nothing decides for itself whether a website is safe. Corporate
+firewalls, school networks, ISP parental filters and mobile carrier filters all
+work the same way: they look the domain up in a **category database** and apply
+a rule to whatever category comes back. Allow "business". Block "gambling".
+
+Almost nobody builds that database themselves. They license one from a handful
+of vendors — the six in the table above. That is why those six matter so much
+more than their names suggest: classify your site with them, and thousands of
+downstream networks inherit the answer.
+
+## Why an unknown site gets blocked
+
+Those databases are built by crawling and automated classification, and they
+prioritise sites with traffic. A small, young, low-traffic site can simply never
+have been looked at. It sits in the database as **"Uncategorised"** or
+**"Unrated"**.
+
+Here is the part that matters: **unrated is not treated as neutral.** A school,
+a bank or a hospital configures its filter to block anything unknown, because an
+unclassified site could be anything at all. That is the safe default for them.
+
+So being unrated is often functionally identical to being on a blocklist. Your
+site is not accused of anything. It is just unknown, and unknown loses.
+
+## What "submitting for review" actually does
+
+You are not appealing a ban or disputing an accusation. You are filling a gap.
+You tell the vendor: here is my site, it is a consultancy, please classify it as
+business. Someone or something reviews it, assigns the category, and it
+propagates to everyone licensing that database.
+
+Free, no account needed on most of them, and about twenty seconds each.
+
+## Do the lookup FIRST — it is the diagnosis, not paperwork
+
+⚠️ **This matters. Do not just submit blindly.**
+
+Each of those pages shows the site's **current** category before you submit
+anything. That lookup is the actual test:
+
+- Comes back **"Uncategorised" / "Unrated" / "Newly observed"** → hypothesis
+  confirmed. Submit it. This is very likely your whole problem.
+- Comes back **"Business" or similar, on all six** → **my diagnosis is wrong.**
+  Do not submit anything. Tell me what they said and we look somewhere else.
+
+That is why this is worth your fifteen minutes even though I could not confirm
+the cause: the first step *is* the confirmation.
+
+## What to put in the form
+
+- **Category:** Business, or Professional Services. Whichever the vendor offers.
+- **Note, if there is a free-text box:** one line is plenty. Something like
+  *"Independent marketing consultancy website. Business site, no user-generated
+  content."*
+- **Domain:** `lauracordrey.com` is enough. You do not need to submit the www
+  version separately.
+
+## How long, and how you will know
+
+Reviews typically land within a few days, and propagate downstream to the
+networks licensing the database over a week or two. You will know it worked by
+going back to the same lookup page and seeing the new category.
+
+There is nothing to install, nothing to deploy, and no change to the site.
+
+## The honest caveat
+
+This is still a hypothesis. It is the one that fits every measurement I could
+take — clean TLS, clean threat lists, clean DNSSEC, a 7-month-old domain, and a
+symptom that appears on some networks and not others. But I have not confirmed
+it, and I could not, from off that network.
+
+The lookup step is what turns it from hypothesis into fact, in about a minute.
+Start there.
