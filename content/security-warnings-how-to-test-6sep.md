@@ -10,6 +10,66 @@ it, because neither of us is on that network. That is the entire difficulty.
 
 ---
 
+# If you cannot ask the person who reported it
+
+You do not need a diagnosis to act. **Skip straight to the fix.** It is free,
+takes about fifteen minutes, is completely harmless if my diagnosis is wrong,
+and is worth doing on its own merits regardless.
+
+## Why it is worth doing even if I am wrong about the cause
+
+An uncategorised domain does not just get blocked by consumer broadband
+filters. **Corporate networks block uncategorised sites too** — often more
+aggressively, because they default to "block anything unknown". Your buyers are
+people sitting on exactly those corporate networks.
+
+So if lauracordrey.com is genuinely uncategorised, the reported warnings may be
+the *visible* part of a larger problem: prospects quietly failing to open your
+site from their office and never mentioning it. Getting categorised fixes both,
+and there is no downside.
+
+## The fix — do this without diagnosing anything first
+
+Each vendor has a free public form: look up the domain, see its current
+category, and request a review if it is wrong or missing. Ask to be categorised
+as **business** or **professional services**.
+
+| Vendor | Where |
+|---|---|
+| Symantec / Broadcom WebPulse | `sitereview.bluecoat.com` |
+| Forcepoint | `csi.forcepoint.com` |
+| Palo Alto Networks | `urlfiltering.paloaltonetworks.com` |
+| Zscaler | `sitereview.zscaler.com` |
+| Cisco Talos | `talosintelligence.com/reputation_center` |
+| Fortinet | `fortiguard.com/webfilter` |
+
+These six matter disproportionately because a great many other filters, including
+ISP ones, license their databases.
+
+**These pages will show you the current category as well.** If it comes back
+"Uncategorised", "Not rated" or "Newly observed domain", that is your diagnosis
+confirmed, from your own laptop, no reporter needed.
+
+⚠️ I could not do these lookups for you. All six are behind bot protection, and
+Symantec's asks for a human verification step — I do not complete those. They
+take about twenty seconds each in your own browser.
+
+## Two tests you can run alone, in under a minute
+
+1. **Your own phone, on mobile data with wifi off.** This is the best one. It is
+   a different network with its own filter, and UK mobile carriers block
+   uncategorised and unrated sites by default until the account is age-verified.
+   If lauracordrey.com misbehaves there but is fine on your home wifi, you have
+   reproduced the whole problem yourself and can stop looking.
+2. **Any other network you are on anyway** — a café, a client's office, a
+   coworking space. Open the site. It costs nothing to check while you are there.
+
+If you ever do reproduce it on a network you are actually sitting on, run
+`bash scripts/net-diagnose.sh` at that moment and it will tell you exactly what
+is happening.
+
+---
+
 ## Test A — for whoever reported it (2 minutes, no technical skill)
 
 Paste this to them as-is:
