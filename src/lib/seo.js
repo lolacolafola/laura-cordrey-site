@@ -47,15 +47,27 @@ export const AUTHOR = {
 export function assetUrl(relPath) {
   if (!relPath) return undefined
   if (/^https?:\/\//i.test(relPath)) return relPath
-  const base = (import.meta.env?.BASE_URL || '/').replace(/\/$/, '')
   const clean = String(relPath).replace(/^\//, '')
-  return `${SITE_URL}${base}/${clean}`
+  return `${SITE_URL}/${clean}`
 }
 
+// NOTE: deliberately does NOT include BASE_URL.
+//
+// These two build the ABSOLUTE PRODUCTION URL of a page or asset, and are used
+// only for canonical tags, og:image and JSON-LD @id/url — never for hrefs or
+// navigation, which follow the router basename separately (src/main.jsx).
+//
+// They used to concatenate BASE_URL. On Netlify BASE is '/', so production was
+// correct and this changes nothing there. But the GitHub Pages preview builds
+// with VITE_BASE=/laura-cordrey-site/, which produced canonicals like
+// https://lauracordrey.com/laura-cordrey-site/about — a URL that 404s on the
+// real site. A canonical pointing at a 404 is ignored by search engines, which
+// left the preview eligible to be indexed as a standalone duplicate of the
+// site. A canonical must name where the content really lives, which is the
+// production origin, base path or not.
 export function pageUrl(routePath) {
-  const base = (import.meta.env?.BASE_URL || '/').replace(/\/$/, '')
   const clean = String(routePath || '/').replace(/^\//, '')
-  return `${SITE_URL}${base}/${clean}`
+  return `${SITE_URL}/${clean}`
 }
 
 // ─── Person schema (re-usable across pages) ─────────────────────────────

@@ -50,6 +50,18 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE: /laura-cordrey-site/
+      # Keep the preview out of search. public/robots.txt ships "Allow: /" so
+      # the real site on lauracordrey.com is fully crawlable — but that file is
+      # copied verbatim into every build, which left this github.io copy open
+      # to indexing too. A crawlable duplicate of the site is a real problem
+      # here: Netlify auto-build is off, so this preview is often AHEAD of what
+      # is actually live, and the canonical tags cannot rescue it. Overwriting
+      # the built copy only — public/robots.txt, and therefore Netlify, is
+      # untouched.
+      - name: Block search indexing of the preview
+        run: |
+          printf '# Preview build — not the live site.\n# The real site is https://lauracordrey.com\nUser-agent: *\nDisallow: /\n' > dist/robots.txt
+          cat dist/robots.txt
       # dist/404.html is now the prerendered NotFound page, written by
       # scripts/prerender.mjs — it used to be a copy of the home page made
       # here. Pages serves it for unmatched paths with a real 404, same as
