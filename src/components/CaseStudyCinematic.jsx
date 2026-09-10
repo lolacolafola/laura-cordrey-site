@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getStudyNeighbours } from '../data/caseStudiesCinematic.js'
+import YouTubeEmbed from './YouTubeEmbed.jsx'
 import './CaseStudyCinematic.css'
 
 /* ───────────────────────────────────────────────────────────
@@ -307,8 +308,12 @@ function Block({ b }) {
       return (
         <Reveal as="figure" className="cscin__video">
           <div className="cscin__video-frame" style={b.aspect ? { aspectRatio: b.aspect } : undefined}>
+            {/* Click-to-load, not a direct iframe: a plain embed let YouTube
+              * set cookies the moment the video scrolled into view, with no
+              * consent and no action from the reader. See YouTubeEmbed.jsx.
+              * Self-hosted <video> is unaffected — it contacts nobody. */}
             {b.embed
-              ? <iframe src={b.embed} title={b.title || ''} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />
+              ? <YouTubeEmbed embed={b.embed} title={b.title || b.caption || ''} />
               : <video src={b.src} poster={b.poster} controls muted playsInline preload="metadata" />}
           </div>
           {(b.caption || b.link) && (
@@ -410,7 +415,7 @@ function Block({ b }) {
             {(b.videos || []).map((v, i) => (
               <figure key={i} className="cscin__vg-item">
                 <div className="cscin__vg-frame">
-                  <iframe src={v.embed} title={v.cap || ''} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />
+                  <YouTubeEmbed embed={v.embed} title={v.cap || ''} />
                 </div>
                 {v.cap && <figcaption>{v.cap}</figcaption>}
               </figure>

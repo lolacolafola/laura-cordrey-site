@@ -604,9 +604,16 @@ export default function FanValueModelPage() {
                 Conservative defaults from published research. Drag if you know your own numbers.
               </p>
 
+              {/* aria-label on each slider, added 10 Sep 2026. The <label>
+                  beside it is a GRID SIBLING with no `for`, and the input has no
+                  `id`, so nothing associated the two: a screen reader announced
+                  "slider, 6" with no idea which of the three it was. The visible
+                  label stays as the sighted affordance; the aria-label repeats
+                  it verbatim so the two can never say different things. Any new
+                  slider in this block needs the same. */}
               <div className="fvm-slider">
                 <label>Fans stay (retention lift)</label>
-                <input type="range" min="0" max="15" value={liftPts} onChange={(e) => setLiftPts(+e.target.value)} />
+                <input aria-label="Fans stay (retention lift)" type="range" min="0" max="15" value={liftPts} onChange={(e) => setLiftPts(+e.target.value)} />
                 <b>+{liftPts} pts</b>
               </div>
               {/* The number this slider drives, next to the slider. The headline
@@ -631,7 +638,7 @@ export default function FanValueModelPage() {
 
               <div className="fvm-slider">
                 <label>Fans spend more (AOV)</label>
-                <input type="range" min="0" max="40" value={spendPct} onChange={(e) => setSpendPct(+e.target.value)} />
+                <input aria-label="Fans spend more (AOV)" type="range" min="0" max="40" value={spendPct} onChange={(e) => setSpendPct(+e.target.value)} />
                 <b>+{spendPct}%</b>
               </div>
               <div className="fvm-slider__echo">Spend: <b>{derived.fmtK(derived.spend)}</b></div>
@@ -641,7 +648,7 @@ export default function FanValueModelPage() {
 
               <div className="fvm-slider">
                 <label>Fans bring more</label>
-                <input type="range" min="0" max="30" value={fanN} onChange={(e) => setFanN(+e.target.value)} />
+                <input aria-label="Fans bring more" type="range" min="0" max="30" value={fanN} onChange={(e) => setFanN(+e.target.value)} />
                 <b>+{fanN}%</b>
               </div>
               <div className="fvm-slider__echo">
