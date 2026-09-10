@@ -76,9 +76,24 @@ see it" and "Cookies" sections.
 If the original sentence is the one Laura wants to be able to make, the fix is a
 click-to-load facade in `CaseStudyCinematic.jsx` — not a change to the wording.
 
-**Not in scope, and worth not forgetting:** no cookie consent banner was added.
-There is no analytics on the site, so consent is not yet required. It becomes
-required the moment analytics is switched on.
+**Cookies — I got this wrong first time and corrected it on 10 Sep.** The
+original note here said no banner was needed because there is no analytics.
+Analytics is not the only thing that sets cookies. The four case study embeds
+were plain iframes: `loading="lazy"` only delayed them until the video neared
+the viewport, so it was the reader **scrolling** that let YouTube set its
+cookies, with no consent and no action from them. That is a consent gap.
+
+Fixed by making them click-to-load (`src/components/YouTubeEmbed.jsx`), the same
+pattern `/speaking` and `/about` already used. Nothing now reaches Google on a
+passive page view, so there is nothing to obtain consent for. **The component is
+what keeps a banner off the site** — it is not a performance tweak, and it must
+not be "simplified" back to a plain iframe.
+
+Verified on `/work/claw-mobile`: full-page scroll, 4 posters, 0 iframes, **0
+requests to youtube.com**. A click swaps that one poster for an autoplaying
+iframe and leaves the others alone.
+
+A banner still becomes required the moment analytics is switched on.
 
 **Also flagged, separate obligation:** a French sole trader is generally expected
 to publish *mentions légales* (name, address, contact, SIREN, and the host's
@@ -303,6 +318,43 @@ current when they wrote theirs.
 reachable. Unlinking `/legal` from the footer is therefore enough to ship this
 batch today with `/privacy` complete, and let `/legal` follow when the address
 is settled. No other change needed.
+
+---
+
+## Task 6 · Audit against a general compliance checklist
+
+Laura sent a social-media checklist of website compliance items. Most of it the
+site already passed; two items were worth the time and one would have been
+actively wrong to follow.
+
+**Already true, verified rather than assumed:**
+
+| Item | Finding |
+|---|---|
+| Alt text on images | 100 `<img>` in page content, **every one** has an alt attribute; 52 correctly marked decorative (`alt=""`). Nothing missing. |
+| Clear button labels | **0** buttons with neither text nor an `aria-label`. |
+| Check tracking | No analytics anywhere, and `connect-src 'self'` in the enforcing CSP means nothing could phone home unnoticed. |
+| Colour contrast | Already a measured discipline in CLAUDE.md, with ratios recorded per ground. |
+| Only collect necessary data | The contact form's extra fields are contextual — event date and format only appear for a speaking enquiry. |
+| Real business details / privacy policy | `/legal` and `/privacy`, this batch. |
+
+**Found a real bug:** the three `/fan-value` sliders had **no accessible name**.
+Their `<label>` is a grid sibling with no `for`, and the inputs have no `id`, so
+nothing associated the two — a screen reader announced *"slider, 6"* with no
+indication of which of the three it was, on the tool page the pitch leans on.
+`aria-label` added, repeating the visible label verbatim.
+
+**Third-party embeds:** the real hit. See the cookies note under Task 1.
+
+**Where the checklist is wrong for this site — "form consent".** The lawful
+basis for the contact and tool forms is **legitimate interest**: you wrote to
+Laura about her services, and replying is the thing you asked for. A consent
+tickbox would *misdescribe* that basis, and consent is not required for it.
+Adding one would make the site less accurate, not more compliant.
+
+**Not applicable:** refund policy (nothing is sold online, there is no
+checkout), T&Cs page (no accounts, no transactions), "remove fake reviews" (the
+case studies are named, real clients).
 
 ---
 
