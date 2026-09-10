@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import useDocumentMeta from '../hooks/useDocumentMeta.js'
 import { pageUrl } from '../lib/seo.js'
+import { SIREN, RETENTION, EXPORT_TOOL } from '../data/legalIdentity.js'
 import './PrivacyPage.css'
 
 /* /privacy — added 19 Aug 2026.
@@ -36,40 +37,15 @@ import './PrivacyPage.css'
 /* Shown as "Last updated". Set this to the date the page actually goes live. */
 const UPDATED = '10 September 2026'
 
-/* ── THE THREE FACTS ONLY LAURA KNOWS ─────────────────────────────────────
- * Hoisted out of the copy on 10 Sep 2026 so that finishing this page is three
- * edits in one place rather than a hunt through the prose, and so that a
- * half-filled page is obvious at a glance instead of shipping a visible
- * "[TO CONFIRM]" to a reader.
+/* The identity facts moved to src/data/legalIdentity.js on 10 Sep 2026, when
+ * /legal was added. SIREN appears on both pages, and filling the same number
+ * into two files is how they end up disagreeing. See that file for what each
+ * value is and why none of them may be guessed.
  *
- * RESOLVED since the August draft: jurisdiction. Laura is resident in France —
- * stated in the 10 Sep review handover, and corroborated in the repo by the
- * footer's own "Paris · Working globally". That settles the supervisory
- * authority as the CNIL, so that placeholder is gone from the copy below.
- *
- * STILL OPEN. Each is a fact about how Laura operates that cannot be derived
- * from the codebase, so none of them may be guessed:
- *
- *   SIREN — her micro-entreprise registration number. A micro-entreprise has
- *     no separate legal personality, so there is no company to name: the
- *     controller is Laura as a natural person, and the SIREN is what
- *     identifies her in that capacity. GDPR Art. 13 wants the controller's
- *     identity and contact details; an email that reaches her satisfies the
- *     contact half, so no home address is needed here.
- *
- *   RETENTION — how long form submissions are kept.
- *
- *   EXPORT — whether submissions leave Netlify for an email tool or CRM. This
- *     one is invisible to the CSP check, because such an export happens inside
- *     Netlify rather than in the browser, so public/_headers cannot rule it
- *     out the way it rules out every browser-side third party.
- *
- * `null` renders an in-page banner and blocks the page from reading as
- * finished. Fill all three, then delete this block's TODO note. */
-const SIREN = null       // e.g. '123 456 789'
-const RETENTION = 'two years from our last contact' // Laura, 10 Sep 2026
-const EXPORT_TOOL = false // Laura, 10 Sep 2026: nothing leaves Netlify
-
+ * RESOLVED since the August draft: jurisdiction. Laura is resident in France,
+ * stated in the 10 Sep review handover and corroborated by the site footer's
+ * own "Paris · Working globally". That settles the supervisory authority as the
+ * CNIL, so that placeholder is gone from the copy below. */
 const READY = SIREN !== null && RETENTION !== null && EXPORT_TOOL !== null
 
 export default function PrivacyPage() {

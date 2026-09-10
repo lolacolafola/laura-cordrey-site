@@ -84,3 +84,20 @@
   margin-top: clamp(38px, 4.5vw, 54px);
 }
 .pv-box p:last-child { margin-bottom: 0; }
+
+/* Dev-only completeness banner, rendered by both /privacy and /legal while a
+   fact they assert is still null. Loud on purpose and never shipped: it is
+   gated on import.meta.env.DEV in the pages. See scripts/privacy-check.mjs,
+   which is the guard that actually blocks a deploy. */
+.pv-todo {
+  margin: 0 0 clamp(24px, 3vw, 36px);
+  padding: 14px 16px;
+  border-radius: 3px;
+  background: #FBE4E1;
+  border-left: 3px solid #8E2520;
+  /* --accent-deep on this tint measures well past 4.5 at this size. */
+  color: #8E2520 !important;
+  font-size: 0.9rem !important;
+  font-weight: 700;
+  line-height: 1.5;
+}

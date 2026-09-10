@@ -1,54 +1,77 @@
 #!/usr/bin/env node
-/* privacy:check — added 10 Sep 2026.
+/* privacy:check — added 10 Sep 2026, extended the same day to cover /legal.
  *
- * /privacy is the one page on this site that is a legal statement rather than
- * marketing, and three of its facts cannot be derived from the codebase: the
- * SIREN, the retention period, and whether submissions are exported to a CRM
- * or email tool. The August draft carried them as literal "[TO CONFIRM: …]"
- * strings sitting in the rendered copy, which is a placeholder one careless
- * deploy away from being read by a stranger as Laura's actual privacy notice.
+ * /privacy and /legal are the two pages on this site that are legal statements
+ * rather than marketing, and several of their facts cannot be derived from the
+ * codebase: the SIREN, the establishment address, a phone number, VAT status,
+ * the retention period, and whether submissions are exported to a CRM.
  *
- * They are now named constants at the top of PrivacyPage.jsx. This script
- * fails the build while any of them is still null AND the page is reachable,
- * because "reachable" is the thing that makes an unfinished notice dangerous.
+ * The August privacy draft carried those as literal "[TO CONFIRM: …]" strings
+ * sitting in the rendered copy — a placeholder one careless deploy away from
+ * being read by a stranger as Laura's actual privacy notice. They now live as
+ * named constants in src/data/legalIdentity.js, shared by both pages so the
+ * SIREN cannot differ between them.
  *
- * Why a script and not just the dev banner: the banner is gated on
- * import.meta.env.DEV, so it is invisible in exactly the build that would ship.
- * This runs against the source, so it cannot be skipped by not looking.
+ * This fails the build while any fact a REACHABLE page asserts is still null.
+ * "Reachable" is what makes an unfinished legal page dangerous, so a page that
+ * is routed but not linked, or not routed at all, does not trip it.
+ *
+ * Why a script and not just the dev banners: those are gated on
+ * import.meta.env.DEV, so they are invisible in exactly the build that would
+ * ship. This reads the source, so it cannot be skipped by not looking.
  */
 import { readFileSync } from 'node:fs'
 
-const page = readFileSync(new URL('../src/pages/PrivacyPage.jsx', import.meta.url), 'utf8')
-const layout = readFileSync(new URL('../src/components/Layout.jsx', import.meta.url), 'utf8')
-const app = readFileSync(new URL('../src/App.jsx', import.meta.url), 'utf8')
+const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8')
+const identity = read('../src/data/legalIdentity.js')
+const layout = read('../src/components/Layout.jsx')
+const app = read('../src/App.jsx')
 
-const missing = ['SIREN', 'RETENTION', 'EXPORT_TOOL'].filter((k) =>
-  new RegExp(`^const ${k} = null`, 'm').test(page),
-)
+const isNull = (k) => new RegExp(`^export const ${k} = null`, 'm').test(identity)
 
-const routed = /path="\/privacy"/.test(app)
-const linked = /to: '\/privacy'/.test(layout) || /to="\/privacy"/.test(layout)
-const reachable = routed && linked
+/* Which constants each page actually puts in front of a reader. A value that no
+   reachable page asserts is not this script's problem. */
+const PAGES = [
+  { route: '/privacy', needs: ['SIREN', 'RETENTION', 'EXPORT_TOOL'] },
+  { route: '/legal', needs: ['SIREN', 'ADDRESS', 'PHONE', 'VAT'] },
+]
 
-if (missing.length === 0) {
-  console.log('privacy:check — all three facts filled in. OK')
-  process.exit(0)
+const reachable = (route) =>
+  new RegExp(`path="${route}"`).test(app) && new RegExp(`to: '${route}'`).test(layout)
+
+const problems = []
+const skipped = []
+
+for (const page of PAGES) {
+  const missing = page.needs.filter(isNull)
+  if (missing.length === 0) continue
+  if (reachable(page.route)) problems.push({ ...page, missing })
+  else skipped.push({ ...page, missing })
 }
 
-if (!reachable) {
+for (const s of skipped) {
   console.log(
-    `privacy:check — ${missing.join(', ')} still unset, but /privacy is not yet ` +
-    `${routed ? 'linked from the footer' : 'routed'}, so nothing unfinished is reachable. OK`,
+    `privacy:check — ${s.route} is missing ${s.missing.join(', ')}, but is not ` +
+    `reachable (not routed, or not linked from the footer), so nothing ` +
+    `unfinished can be read. OK`,
   )
+}
+
+if (problems.length === 0) {
+  console.log('privacy:check — every reachable legal page has the facts it asserts. OK')
   process.exit(0)
 }
 
+console.error('\nprivacy:check FAILED\n')
+for (const p of problems) {
+  console.error(
+    `  ${p.route} is routed and linked from the footer, so a visitor can read\n` +
+    `  it, but these are still null in src/data/legalIdentity.js:\n\n` +
+    p.missing.map((m) => `    - ${m}`).join('\n') + '\n',
+  )
+}
 console.error(
-  '\nprivacy:check FAILED\n\n' +
-  `  /privacy is routed and linked from the footer, so a visitor can read it,\n` +
-  `  but ${missing.length} of its three required facts ${missing.length === 1 ? 'is' : 'are'} still null:\n\n` +
-  missing.map((m) => `    - ${m}`).join('\n') +
-  '\n\n  Fill them in at the top of src/pages/PrivacyPage.jsx, or unlink the page.\n' +
-  '  Do not ship a privacy notice with blanks in it.\n',
+  '  Fill them in, or unlink the page.\n' +
+  '  Do not ship a legal page with blanks in it.\n',
 )
 process.exit(1)

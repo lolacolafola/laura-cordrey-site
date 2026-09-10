@@ -89,6 +89,10 @@ const footerLinks = [
   // Added 19 Aug 2026. Utility route, footer-only: a reader looks for a
   // privacy notice in the footer, and it should not spend a header slot.
   { label: 'Privacy',   to: '/privacy' },
+  // Added 10 Sep 2026. Footer-only for the same reason as Privacy: a reader
+  // looks for a legal notice at the bottom of a page, and neither should spend
+  // a header slot.
+  { label: 'Legal',     to: '/legal' },
 ]
 
 export default function Layout({ children }) {

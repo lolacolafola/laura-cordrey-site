@@ -29,6 +29,7 @@ import AIPage from './pages/AIPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
+import LegalPage from './pages/LegalPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 
 export default function App() {
@@ -83,6 +84,10 @@ export default function App() {
             * looked for in the footer, not the nav. Added 19 Aug 2026; the
             * site collects personal data through two forms and had none. */}
           <Route path="/privacy" element={<PrivacyPage />} />
+          {/* Mentions légales. Same footer-only treatment as /privacy,
+            * and a separate obligation from it: LCEN identifies the
+            * publisher, the GDPR notice covers the visitor's data. */}
+          <Route path="/legal" element={<LegalPage />} />
         <Route path="/contact" element={<ContactPage />} />
           {/* Catch-all. Added 28 Jul 2026 — until then an unmatched path
               rendered an empty Layout, and Netlify answered it with a 200, so
