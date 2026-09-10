@@ -116,6 +116,15 @@ export default function ResultContactForm({ tool, score, onDownload }) {
         <p className="rcf__alt">
           Something specific in mind? Use the <Link to={CONTACT_URL} className="rcf__link">full contact form</Link>.
         </p>
+        {/* Added 10 Sep 2026. This form collects a name, an email and a message
+          * on /fan-score and /fan-value, exactly as the contact form does, but
+          * the privacy link added on 19 Aug only ever went on ContactPage — so
+          * two of the site's three collection points had no notice where the
+          * decision to submit is actually made. Same one clause, same reasoning:
+          * legitimate interest in replying, not consent, so no tickbox. */}
+        <p className="rcf__alt">
+          <Link to="/privacy" className="rcf__link">What I do with your details</Link>
+        </p>
       </form>
     </div>
   )
