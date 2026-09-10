@@ -15,7 +15,8 @@
     "copy:inventory": "node scripts/copy-inventory.mjs",
     "calc:check": "node scripts/calc-smoke.mjs",
     "tm:check": "node scripts/tm-check.mjs",
-    "privacy:check": "node scripts/privacy-check.mjs"
+    "privacy:check": "node scripts/privacy-check.mjs",
+    "embeds:check": "node scripts/embeds-check.mjs"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",

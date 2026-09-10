@@ -89,6 +89,14 @@ passive page view, so there is nothing to obtain consent for. **The component is
 what keeps a banner off the site** — it is not a performance tweak, and it must
 not be "simplified" back to a plain iframe.
 
+That rule is now **enforced, not just documented**. `npm run embeds:check` reads
+the prerendered output and fails if any video iframe appears before a click, so
+it tests what a browser is actually handed rather than how the JSX is written.
+Verified by deliberately reverting one embed: the guard named the file and the
+three offending iframes, and went green again on restore. Laura asked the right
+question — "is this hardcoded so nothing happens that goes against that?" — and
+until this script existed, the answer was no.
+
 Verified on `/work/claw-mobile`: full-page scroll, 4 posters, 0 iframes, **0
 requests to youtube.com**. A click swaps that one poster for an autoplaying
 iframe and leaves the others alone.
@@ -367,6 +375,7 @@ case studies are named, real clients).
 | `npm run tm:check` | pass |
 | `npm run calc:check` | pass |
 | `npm run csp:check` | no violations, both Fan Score downloads clicked |
+| `npm run embeds:check` | 22 pages, no video iframe loads before a click |
 | name-drift grep (case-insensitive) | only pre-existing comments and uppercase display labels |
 | `npm run privacy:check` | `/privacy` **passes**; `/legal` fails on address, phone, VAT |
 
