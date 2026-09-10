@@ -6,29 +6,65 @@ const CONTACT_URL = '/contact'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lauracordrey/'
 const HELLO_EMAIL = 'hello@lauracordrey.com'
 
-// Site-wide simplified nav: five items and one CTA. "Why fans" leads, then
-// Work, Services, Speaking, About. The Fan Engine, AI and Fan Score are dropped
-// from the header and stay reachable from the footer and in-page links; Home
-// is the logo. This replaced a seven-item nav at the homepage cutover.
+// Header nav. Five slots and one CTA; two of the five are grouped panels
+// rather than single links.
 //
-// The first slot was labelled "Fan-Led Growth" until 22 Jul 2026. It points at
-// the one page with a real job of being found by a stranger, and "fan-led
-// growth" is a term that stranger does not know yet. "Why fans" poses the
-// question the page answers. The search-facing wording lives in the body links
-// that now point at the page, where a full phrase reads naturally.
+// GROUPED 10 Sep 2026. Until then the header carried four items and the footer
+// eleven, and a reviewer flagged the mismatch as confusing. The real cost was
+// not the inconsistency: five substantive pages (the method, both tools, AI and
+// Speaking) were reachable only from the footer, so the header advertised less
+// of the business than the site actually had. The same reviewer said he came
+// away not understanding what Laura does, and /fan-engine — the page that
+// answers exactly that — was one of the pages he never found.
 //
-// Speaking left this list on 22 Jul 2026. It is a second product for a second
-// buyer, and it was the only nav item pointing away from the consulting sale.
-// Event bookers arrive by referral or a direct link, not by browsing a
-// consultancy's header. The page keeps four inbound body links (one from the
-// homepage, three from /about) plus the footer, so it is not buried, and the
-// header now reads as one journey rather than a list: problem, proof, offer,
-// person.
+// Grouping rather than listing keeps the row the same visual weight it had
+// before. Eleven top-level items would not fit above the 1024px breakpoint and
+// would read as a sitemap.
+//
+// ORDER IS THE JOURNEY, not the page count: problem (Why fans), method (The Fan
+// Engine), proof (Work), offer (Services), person (About).
+//
+// A group's trigger is a <button>, not a link. CLAUDE.md's hover-honesty rule
+// says a cursor response must promise something, and opening a panel is
+// something. Because a button cannot also navigate, every group repeats its
+// landing page as the first item in its own panel — "The method" is
+// /fan-engine, "Advisory" is /services, "About Laura" is /about — so no
+// destination is lost by making the parent a control.
+//
+// Labels stay plain strings. CLAUDE.md keeps marks out of the chrome: the nav
+// renders on every page, so a ™ here would spend the one-per-page allowance
+// before the hero could use it. "The Fan Engine" is written in full — the
+// naming rule forbids shortening it, and the previous "Method" label was a
+// workaround for it being a bare nav item, which it no longer is.
 const navLinks = [
-  { key: 'flg',      label: 'Why fans', path: '/fan-led-growth', isHash: false },
-  { key: 'work',     label: 'Work',     path: '/work',           isHash: false },
-  { key: 'services', label: 'Services', path: '/services',       isHash: false },
-  { key: 'about',    label: 'About',    path: '/about',          isHash: false },
+  { key: 'flg',  label: 'Why fans', path: '/fan-led-growth' },
+  {
+    key: 'engine',
+    label: 'The Fan Engine',
+    items: [
+      { label: 'The method', to: '/fan-engine', sub: 'The five stages' },
+      { label: 'Fan Score',  to: '/fan-score',  sub: 'Score your fandom' },
+      { label: 'Fan Value',  to: '/fan-value',  sub: 'What fans are worth' },
+    ],
+  },
+  { key: 'work', label: 'Work', path: '/work' },
+  {
+    key: 'services',
+    label: 'Services',
+    items: [
+      { label: 'Advisory', to: '/services', sub: 'How I work with you' },
+      { label: 'Speaking', to: '/speaking', sub: 'Keynotes and hosting' },
+      { label: 'AI',       to: '/ai',       sub: 'For AI companies' },
+    ],
+  },
+  {
+    key: 'about',
+    label: 'About',
+    items: [
+      { label: 'About Laura', to: '/about', sub: 'Background and track record' },
+      { label: 'FAQ',         to: '/faq',   sub: 'Common questions' },
+    ],
+  },
 ]
 
 // Same journey as the header, plus the IP pages, AI and Speaking that the
@@ -50,10 +86,15 @@ const footerLinks = [
   { label: 'About',     to: '/about' },
   { label: 'FAQ',       to: '/faq' },
   { label: 'Contact',   to: '/contact' },
+  // Added 19 Aug 2026. Utility route, footer-only: a reader looks for a
+  // privacy notice in the footer, and it should not spend a header slot.
+  { label: 'Privacy',   to: '/privacy' },
 ]
 
 export default function Layout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  // Which header group panel is open, by key, or null. One at a time.
+  const [openGroup, setOpenGroup] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
@@ -85,6 +126,7 @@ export default function Layout({ children }) {
   if (location.pathname !== prevPath) {
     setPrevPath(location.pathname)
     setMenuOpen(false)
+    setOpenGroup(null)
   }
 
   // Close drawer on Escape.
@@ -94,6 +136,38 @@ export default function Layout({ children }) {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
+
+  // Escape closes an open group panel and returns focus to its trigger, which
+  // is what a keyboard user expects and the only way out of the panel that does
+  // not involve tabbing through every item in it.
+  useEffect(() => {
+    if (!openGroup) return
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      const trigger = document.querySelector(`[data-navgroup="${openGroup}"] .cinnav__grouptrig`)
+      setOpenGroup(null)
+      if (trigger) trigger.focus()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [openGroup])
+
+  // A click anywhere outside the open group closes it. Separate from the
+  // drawer's outside-click handler: that one only runs while the drawer is
+  // open, and these two are never open at the same time.
+  useEffect(() => {
+    if (!openGroup) return
+    const onDown = (e) => { if (!e.target.closest('.cinnav__group')) setOpenGroup(null) }
+    document.addEventListener('click', onDown)
+    return () => document.removeEventListener('click', onDown)
+  }, [openGroup])
+
+  // Moving focus out of a group panel with Tab closes it. Without this the
+  // panel stays visibly open while focus is three items further along the page.
+  const onGroupBlur = (key) => (e) => {
+    if (e.currentTarget.contains(e.relatedTarget)) return
+    setOpenGroup((cur) => (cur === key ? null : cur))
+  }
 
   // Close drawer on a click/tap outside the header (nav + open sheet), so you
   // don't have to hit the X. The opening click is on the toggle (inside
@@ -123,13 +197,58 @@ export default function Layout({ children }) {
 
   const solid = scrolled || menuOpen || !isHome
 
+  // A group counts as active when any page inside it is the current route, so
+  // the header still tells you where you are now that the destination sits one
+  // level down.
+  const groupIsActive = (l) => l.items.some((i) => location.pathname === i.to)
+
   const renderNavLink = (l) => {
-    // The /ai entry is a hash link back to the homepage. NavLink's isActive
-    // would mark it active on every homepage view, which isn't what we want —
-    // use a plain anchor so it never shows the active underline.
-    if (l.isHash) {
+    if (l.items) {
+      const open = openGroup === l.key
       return (
-        <a key={l.key} href={l.path} className="cinnav__link">{l.label}</a>
+        <div
+          key={l.key}
+          className="cinnav__group"
+          data-navgroup={l.key}
+          onMouseEnter={() => setOpenGroup(l.key)}
+          onMouseLeave={() => setOpenGroup((cur) => (cur === l.key ? null : cur))}
+          onBlur={onGroupBlur(l.key)}
+        >
+          <button
+            type="button"
+            className={`cinnav__link cinnav__grouptrig${groupIsActive(l) ? ' is-active' : ''}`}
+            aria-expanded={open}
+            aria-haspopup="true"
+            /* Opens; never closes. A toggle here fights the hover: on a mouse,
+             * mouseenter has already opened the panel by the time the click
+             * lands, so a toggle read the panel as open and shut it again —
+             * the click looked like it did nothing. Closing is handled by
+             * mouseleave, Escape, a click outside, tabbing out, or choosing an
+             * item, all of which are unambiguous. */
+            onClick={() => setOpenGroup(l.key)}
+            onFocus={() => setOpenGroup(l.key)}
+          >
+            {l.label}
+            <svg className="cinnav__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          {/* Rendered always, hidden with [hidden]/CSS rather than unmounted:
+            * the panel animates open, and a node that does not exist cannot
+            * transition. It stays out of the tab order while closed because
+            * `hidden` removes it from the accessibility tree entirely. */}
+          <div className="cinnav__panel" hidden={!open}>
+            {l.items.map((i) => (
+              <NavLink
+                key={i.to}
+                to={i.to}
+                className={({ isActive }) => `cinnav__panellink${isActive ? ' is-active' : ''}`}
+                onClick={() => setOpenGroup(null)}
+              >
+                <span className="cinnav__panellabel">{i.label}</span>
+                <span className="cinnav__panelsub">{i.sub}</span>
+              </NavLink>
+            ))}
+          </div>
+        </div>
       )
     }
     return (
@@ -176,9 +295,21 @@ export default function Layout({ children }) {
 
         {menuOpen && (
           <div className="cinnav__menu">
+            {/* The drawer flattens the groups instead of nesting accordions
+              * inside it. It is already a full-height sheet with room to
+              * scroll, so hiding items behind a second tap would add a step
+              * and save nothing. The group name becomes a section heading —
+              * not a link, because its landing page is the first item under
+              * it, and two controls to the same place is how you get a
+              * mis-tap. */}
             {nav.map((l) => (
-              l.isHash ? (
-                <a key={l.key} href={l.path} className="cinnav__mlink" onClick={() => setMenuOpen(false)}>{l.label}</a>
+              l.items ? (
+                <div key={l.key} className="cinnav__mgroup">
+                  <span className="cinnav__mgrouplabel">{l.label}</span>
+                  {l.items.map((i) => (
+                    <Link key={i.to} to={i.to} className="cinnav__mlink cinnav__mlink--sub" onClick={() => setMenuOpen(false)}>{i.label}</Link>
+                  ))}
+                </div>
               ) : (
                 <Link key={l.key} to={l.path} className="cinnav__mlink" onClick={() => setMenuOpen(false)}>{l.label}</Link>
               )

@@ -28,6 +28,7 @@ import FanAuditPage from './pages/FanAuditPage.jsx'
 import AIPage from './pages/AIPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
+import PrivacyPage from './pages/PrivacyPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 
 export default function App() {
@@ -78,6 +79,10 @@ export default function App() {
           <Route path="/fan-led-growth-value-model" element={<Navigate to="/fan-value" replace />} />
           <Route path="/ai" element={<AIPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          {/* Utility route, footer-only by design — a privacy notice is
+            * looked for in the footer, not the nav. Added 19 Aug 2026; the
+            * site collects personal data through two forms and had none. */}
+          <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/contact" element={<ContactPage />} />
           {/* Catch-all. Added 28 Jul 2026 — until then an unmatched path
               rendered an empty Layout, and Netlify answered it with a 200, so

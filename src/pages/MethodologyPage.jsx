@@ -126,7 +126,12 @@ export default function MethodologyPage() {
   useDocumentMeta({
     title: 'The Fan Engine™ · The method · Laura Cordrey',
     description:
-      "You're sitting on more fandom than you can prove or bank. The Fan Engine™ turns customers into fans, and proves what they're worth.",
+      // Attribution added 10 Sep 2026. There is an unrelated FanEngine Holdings
+      // Ltd operating in sports/entertainment IP, so the method's name alone no
+      // longer identifies it in a SERP or an AI answer. Naming Laura beside it
+      // is the disambiguator, and it is the plain-string surface where CLAUDE.md
+      // already keeps the canonical name. 149 chars, inside the 160 ceiling.
+      "You're sitting on more fandom than you can prove or bank. The Fan Engine\u2122, by Laura Cordrey, turns customers into fans and proves what they're worth.",
     canonical: pageUrl('fan-engine'),
     // DefinedTerm + HowTo over the five stages. methodologyJsonLd has existed
     // in seo.js since the page was built and was never called from anywhere, so
@@ -155,6 +160,17 @@ export default function MethodologyPage() {
             <h1 className="meth-h1">
               The <mark>Fan Engine<span className="tm">™</span></mark>.
             </h1>
+            {/* Byline added 10 Sep 2026, for the same reason as the meta
+              * description above: an unrelated FanEngine Holdings Ltd exists,
+              * so the name alone no longer says whose method this is. This is
+              * the method's own page and its canonical introduction, which
+              * makes it the one place the attribution belongs on screen.
+              *
+              * A separate line rather than words inside the h1: the headline is
+              * the name, and "The Fan Engine, by Laura Cordrey." as a single
+              * heading reads as a book cover. It is also not a second ™ — the
+              * mark above is this page's one allowance. */}
+            <p className="meth-hero__by">A method by Laura Cordrey</p>
             <p className="meth-hero__lede">
               You're sitting on more fandom than you can see, prove, or bank.
               The Fan Engine is the system I build to turn customers into fans,

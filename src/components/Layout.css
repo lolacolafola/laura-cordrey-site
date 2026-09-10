@@ -151,6 +151,15 @@
   display: none;
   flex-direction: column;
   padding: 6px clamp(20px, 5vw, 64px) 20px;
+  /* The drawer grew past a short phone's viewport when the header groups were
+     added on 10 Sep 2026: eleven destinations plus three headings measures
+     ~700px, and body scroll is locked while it is open, so on a 667px-tall
+     handset the "Get in touch" CTA at the bottom was cut off with no way to
+     reach it. dvh, not vh, so the mobile browser's collapsing address bar is
+     accounted for rather than ignored. */
+  max-height: calc(100dvh - 64px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: rgba(14, 11, 9, 0.97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -204,6 +213,129 @@
   border-color: #D4C896;
   color: #D4C896;
 }
+
+/* ─── Header group dropdowns (added 10 Sep 2026) ──────────
+ * Two of the five header slots open a panel instead of navigating. See the
+ * long note above `navLinks` in Layout.jsx for why the header is grouped.
+ * ───────────────────────────────────────────────────────── */
+.cinnav__group {
+  position: relative;
+  display: inline-flex;
+}
+
+/* The trigger has to look identical to a .cinnav__link, so it takes that class
+   too and this block only strips the button chrome the browser adds. */
+.cinnav__grouptrig {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cinnav__caret {
+  flex: none;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+.cinnav__grouptrig[aria-expanded="true"] .cinnav__caret { transform: rotate(180deg); }
+
+.cinnav__panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  min-width: 232px;
+  /* A transparent top border is the hover bridge between the trigger and the
+     card. Without it the pointer crosses a dead gap on its way down and
+     mouseleave shuts the panel before it can be used. background-clip keeps the
+     visible card inside the padding box, so the bridge stays invisible. */
+  border-top: 14px solid transparent;
+  background-clip: padding-box;
+  background: #15110F;
+  border-left: 1px solid rgba(239, 233, 220, 0.14);
+  border-right: 1px solid rgba(239, 233, 220, 0.14);
+  border-bottom: 1px solid rgba(239, 233, 220, 0.14);
+  border-radius: 4px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  padding: 6px;
+  transform: translate(-50%, -6px);
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.cinnav__grouptrig[aria-expanded="true"] + .cinnav__panel {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.cinnav__panellink {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 11px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.16s ease;
+}
+.cinnav__panellink:hover { background: rgba(239, 233, 220, 0.07); }
+.cinnav__panellink.is-active { background: rgba(212, 200, 150, 0.1); }
+
+.cinnav__panellabel {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #EFE9DC;
+}
+.cinnav__panellink:hover .cinnav__panellabel,
+.cinnav__panellink.is-active .cinnav__panellabel { color: #D4C896; }
+/* #B8AEA2 on #15110F measures 8.59. This is 12px text, so it needs 4.5. */
+.cinnav__panelsub {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  font-weight: 500;
+  color: #B8AEA2;
+}
+
+/* Ambient-only motion, per CLAUDE.md. The panel still opens and closes; it
+   just stops sliding and fading. */
+@media (prefers-reduced-motion: reduce) {
+  .cinnav__panel,
+  .cinnav__caret,
+  .cinnav__panellink { transition: none; }
+  .cinnav__panel { transform: translate(-50%, 0); }
+}
+
+/* ─── Drawer groups ──────────────────────────────────────── */
+.cinnav__mgroup {
+  display: flex;
+  flex-direction: column;
+}
+.cinnav__mgrouplabel {
+  padding: 16px 0 6px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* A heading, not a control: no hover response, because it does not navigate. */
+  color: #B8AEA2;
+}
+.cinnav__mlink--sub {
+  padding: 11px 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+.cinnav__mgroup .cinnav__mlink--sub:last-child { border-bottom: 1px solid rgba(239, 233, 220, 0.1); }
 
 /* 1024px, not 820px: the full link row (6 links + CTA) needs ~1000px.
    Below that, the tablet/mid range uses the hamburger menu. */

@@ -403,7 +403,16 @@ export default function ContactPage() {
                       {sending ? 'Sending…' : submitLabel}
                     </button>
                     <p className="contact-submit__note">
-                      Goes straight to my inbox.
+                      Goes straight to my inbox.{' '}
+                      {/* Added 19 Aug 2026 with /privacy. The notice is only
+                        * useful where the decision to submit is actually made,
+                        * and a footer link is not that place. Deliberately one
+                        * clause, not a consent checkbox: the lawful basis here
+                        * is legitimate interest in replying to an enquiry, not
+                        * consent, so a tickbox would misdescribe it. */}
+                      <Link to="/privacy" className="contact-submit__privacy">
+                        What I do with your details
+                      </Link>
                     </p>
                   </div>
                 </div>

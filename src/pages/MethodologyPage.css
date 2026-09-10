@@ -172,6 +172,20 @@
   gap: clamp(36px, 5vw, 72px);
   align-items: center;
 }
+/* Attribution byline, added 10 Sep 2026. Sits between the name and the lede.
+   Deliberately quiet: it is a credit line, not a claim, and the gold eyebrow
+   directly above it is already carrying the hero's one accent.
+   #B8AEA2 on the hero's #15110F measures 8.59, well past the 4.5 this size
+   needs. */
+.meth-hero__by {
+  margin: 14px 0 0;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #B8AEA2;
+}
+
 .meth-hero__lede {
   font-size: clamp(1.05rem, 1.3vw, 1.22rem); /* T.lede, was 19.8 */
   line-height: 1.55;
