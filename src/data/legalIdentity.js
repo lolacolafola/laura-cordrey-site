@@ -34,13 +34,30 @@
  * body. ⚠️ Worth Laura eyeballing the grouped form below once, since it is the
  * one digit-for-digit fact on two legal pages. */
 export const SIREN = '934 824 525'
-export const ADDRESS = null
+/* From the RNE entry Laura sent on 10 Sep 2026 (Pappers, RNE updated
+ * 10/09/2026). Set in sentence case rather than the registry's ALL CAPS, which
+ * is a storage convention, not how an address is written.
+ *
+ * This is her registered establishment address and it is ALREADY PUBLIC: the
+ * RNE is a public register and Pappers republishes it under "Adresse complète".
+ * Putting it here adds no exposure that does not already exist, which was the
+ * whole basis for the recommendation to include it. If Laura ever wants it off
+ * this page, the move that actually helps is changing what is REGISTERED — a
+ * domiciliation address updates the register, so Pappers and this page are
+ * fixed together. Removing it from here alone changes nothing. */
+export const ADDRESS = '50 rue Rodier, 75009 Paris, France'
 /* `null` = not yet decided and blocks the build. `false` = a considered
  * decision not to publish one, and the page simply omits it. LCEN does list a
  * telephone number for professional publishers, so `false` is a small, knowing
  * gap rather than an oversight, which is exactly the distinction worth keeping
  * in the type. */
-export const PHONE = null
+/* `false`, not a number: Laura has not published one, and Pappers holds her
+ * phone behind a login, so there is nothing to put here. LCEN does list a
+ * telephone number for professional publishers, so this is a small, knowing gap
+ * rather than an oversight — which is exactly why the constant distinguishes
+ * `false` (decided against) from `null` (not yet considered). Give me a number
+ * any time and it renders beside the email. */
+export const PHONE = false
 export const VAT = null
 
 export const RETENTION = 'two years from our last contact'
