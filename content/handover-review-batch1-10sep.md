@@ -259,13 +259,28 @@ Pappers and the site are fixed together. Worth checking separately whether an
 individual entrepreneur can have a personal address withheld from public
 diffusion at the RNE — flagged, not verified, and not legal advice.
 
-**Still outstanding for `/legal`,** all in `src/data/legalIdentity.js`:
-`ADDRESS`, `PHONE` (`false` is a valid, deliberate "not published"), and `VAT`
-(`false` renders the standard *TVA non applicable, art. 293 B* line).
+**All facts now supplied. Both legal pages are complete and `privacy:check`
+passes.** From Laura's RNE entry, 10 Sep 2026:
 
-**`SIREN` is filled in** — 934 824 525, from Laura's own Pappers URL — so
-**`/privacy` is complete and passes its guard.** Worth one eyeball on the
-grouped digits, since it is the one digit-for-digit fact on two legal pages.
+| Constant | Value | Note |
+|---|---|---|
+| `SIREN` | 934 824 525 | Worth one eyeball on the grouped digits — the one digit-for-digit fact on two pages |
+| `ADDRESS` | 50 rue Rodier, 75009 Paris | Already public via the RNE; see below |
+| `PHONE` | `false` | No number published. LCEN lists one, so this is a small knowing gap, not an oversight |
+| `VAT` | `false` | Renders **nothing**; see below |
+
+**On VAT, my first draft was over-compliant and Laura was right to push back**
+("I'd really prefer not to share this"). LCEN requires the VAT *number*, and
+only from a publisher who is assujetti. Under the franchise en base there is no
+number, so the requirement does not apply. *"TVA non applicable, article 293 B
+du CGI"* is a mandatory mention on **invoices**, not on mentions légales — and
+on a public page it tells any informed reader that turnover is under roughly
+€37,500, which is a permanent positioning leak for no legal benefit. The section
+now renders only when there is a real number.
+
+⚠️ **Revisit when she registers for VAT.** Laura expects to cross the threshold
+this year. From that moment the number is required: set `VAT` to
+`'FR81934824525'` and the section renders itself.
 
 Host address was read off Netlify's own Terms of Use, section 14, rather than
 copied from another site's notice: four different Netlify addresses are in
