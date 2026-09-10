@@ -232,6 +232,65 @@ introducing a new one. `calc:check` still passes.
 
 ---
 
+## Task 5 · Mentions légales — ADDED, blocked on the address
+
+Not in the original review. Found while writing the privacy notice: France's
+LCEN requires a professional website to identify its publisher (name, address,
+contact, SIREN, publication director, and the host's details). That is a
+**separate obligation** from the GDPR privacy notice, and the site had neither.
+
+`/legal` now exists, routed, footer-linked, in the sitemap and prerendered.
+
+**Is it worth doing?** Laura asked whether other consultants actually bother. In
+France "Mentions légales" in the footer is close to a universal convention on
+business sites, in a way it is not in the UK or US. Enforcement against a
+one-person consultancy is essentially theoretical. The stronger argument is the
+audience: consumer brands with procurement and legal functions, who notice.
+
+**The address question, and the honest answer.** Laura's registration data is
+already public — that is what pappers.fr is, a republisher of the public RNE
+registry. Withholding the address from her own site therefore buys close to
+nothing in privacy terms, while leaving the page non-compliant. That combination
+is the worst of the available positions.
+
+If the exposure genuinely matters, the fix is to change **what is registered**,
+not what is on the site: a domiciliation address updates the registry entry, so
+Pappers and the site are fixed together. Worth checking separately whether an
+individual entrepreneur can have a personal address withheld from public
+diffusion at the RNE — flagged, not verified, and not legal advice.
+
+**Still outstanding for `/legal`,** all in `src/data/legalIdentity.js`:
+`ADDRESS`, `PHONE` (`false` is a valid, deliberate "not published"), and `VAT`
+(`false` renders the standard *TVA non applicable, art. 293 B* line).
+
+**`SIREN` is filled in** — 934 824 525, from Laura's own Pappers URL — so
+**`/privacy` is complete and passes its guard.** Worth one eyeball on the
+grouped digits, since it is the one digit-for-digit fact on two legal pages.
+
+Host address was read off Netlify's own Terms of Use, section 14, rather than
+copied from another site's notice: four different Netlify addresses are in
+circulation because the company has moved and people copied whichever was
+current when they wrote theirs.
+
+### Two traps caught while building it
+
+- `useDocumentMeta` has **no `noindex` option**. Passing one would have been
+  silently dropped, leaving a comment claiming a behaviour the site does not
+  have.
+- `scripts/prerender.mjs` takes its routes from `dist/sitemap.xml`, and
+  `_redirects` ends in a strict `/* → /404.html 404`. **A route missing from the
+  sitemap gets no file and 404s.** `/legal` is in the sitemap for that reason,
+  not for SEO.
+
+### Shipping /privacy without /legal
+
+`privacy:check` keys off what each page actually asserts *and* whether it is
+reachable. Unlinking `/legal` from the footer is therefore enough to ship this
+batch today with `/privacy` complete, and let `/legal` follow when the address
+is settled. No other change needed.
+
+---
+
 ## Checks run
 
 | Check | Result |
@@ -242,7 +301,7 @@ introducing a new one. `calc:check` still passes.
 | `npm run calc:check` | pass |
 | `npm run csp:check` | no violations, both Fan Score downloads clicked |
 | name-drift grep (case-insensitive) | only pre-existing comments and uppercase display labels |
-| `npm run privacy:check` | **fails, correctly** — SIREN outstanding |
+| `npm run privacy:check` | `/privacy` **passes**; `/legal` fails on address, phone, VAT |
 
 No third-party origin was added, so `public/_headers` is untouched.
 
@@ -250,14 +309,17 @@ No third-party origin was added, so `public/_headers` is untouched.
 
 ## To ship
 
-1. Fill in `SIREN` at the top of `src/pages/PrivacyPage.jsx`. It is the last
-   thing standing between this batch and a deploy.
-2. **Park the Services WIP first.** `src/pages/ServicesPage.{jsx,css}` and
-   `src/pages/HomePage.jsx` still carry the uncommitted Aug redesign, and a
-   build made with them in the tree would ship it. Stash or revert them, then
-   build, or the deploy carries work nobody reviewed.
-3. `npm run build && npm run privacy:check && npm run csp:check`
-4. `netlify deploy --dir=dist` — one batch, not task by task.
+1. Either supply `ADDRESS`, `PHONE` and `VAT` in `src/data/legalIdentity.js`,
+   or unlink `/legal` from the footer and ship `/privacy` now. `/privacy` is
+   complete either way.
+2. `npm run build && npm run privacy:check && npm run csp:check`
+3. `netlify deploy --dir=dist` — one batch, not task by task.
+
+The Services WIP is no longer a trap: it was parked on `services-redesign-wip`
+on 10 Sep and `main` is clean, so a build no longer sweeps it into a deploy.
+Rebase that branch onto main before picking it up — main has since gained the
+grouped nav, which touches Layout, and /services is now "Advisory" inside the
+Services group.
 
 Nothing else is waiting on a decision. Retention, the CRM question, the Task 4
 approach and the homepage call were all answered on 10 Sep.
