@@ -58,7 +58,29 @@ export const ADDRESS = '50 rue Rodier, 75009 Paris, France'
  * `false` (decided against) from `null` (not yet considered). Give me a number
  * any time and it renders beside the email. */
 export const PHONE = false
-export const VAT = null
+/* `false` = not liable, under the franchise en base, and NOTHING IS RENDERED.
+ *
+ * Two reasons, and the second is Laura's, on 10 Sep 2026: "I'd really prefer
+ * not to share this."
+ *
+ * 1. LCEN requires the intracommunity VAT NUMBER, and only from a publisher who
+ *    is assujetti. Under the franchise en base there is no number, so the
+ *    requirement does not apply and there is nothing to omit. The line "TVA non
+ *    applicable, article 293 B du CGI" is a mandatory mention on INVOICES, not
+ *    on a website's mentions légales. Putting it here was over-compliance on my
+ *    part in the first draft.
+ * 2. It is a revenue signal. "TVA non applicable, art. 293 B" tells any reader
+ *    who knows the rule that turnover is under roughly €37,500. On a site
+ *    pitching premium advisory work to consumer brands, that is a positioning
+ *    leak, published permanently, for no legal benefit whatsoever.
+ *
+ * ⚠️ REVISIT WHEN SHE REGISTERS. Laura expects to cross the threshold if this
+ * year brings more clients. From the moment she is assujettie the number IS
+ * required here, and the fix is one line: set this to 'FR81934824525' (the
+ * derived number Pappers already shows) and the section renders itself.
+ *
+ * Not legal advice. Worth a lawyer's or accountant's nod if it matters. */
+export const VAT = false
 
 export const RETENTION = 'two years from our last contact'
 export const EXPORT_TOOL = false

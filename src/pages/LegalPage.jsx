@@ -101,20 +101,20 @@ export default function LegalPage() {
           Director of publication: <strong>Laura Cordrey</strong>.
         </p>
 
-        {/* The whole section disappears while VAT is unanswered, rather than
-          * leaving a heading with nothing under it. `false` is a real answer
-          * here (under the franchise en base, so not liable) and prints the
-          * standard line; `null` only means Laura has not said yet. */}
-        {VAT !== null && (
+        {/* Renders ONLY when there is a VAT number to publish, which is the
+          * only thing LCEN asks for and only from a publisher who is assujetti.
+          * `false` means under the franchise en base: no number exists, the
+          * requirement does not apply, and nothing appears. `null` means
+          * unanswered and blocks the build. See legalIdentity.js for why the
+          * "TVA non applicable, art. 293 B" line is deliberately NOT here: it
+          * belongs on invoices, and on a page like this it only broadcasts a
+          * turnover figure. */}
+        {VAT ? (
           <>
             <h2 className="pv-h2">VAT</h2>
-            <p>
-              {VAT === false
-                ? 'TVA non applicable, article 293 B du Code général des impôts.'
-                : <>Intracommunity VAT number: {VAT}.</>}
-            </p>
+            <p>Intracommunity VAT number: {VAT}.</p>
           </>
-        )}
+        ) : null}
 
         <h2 className="pv-h2">Hosting</h2>
         {/* Address read off Netlify's own Terms of Use rather than copied from
