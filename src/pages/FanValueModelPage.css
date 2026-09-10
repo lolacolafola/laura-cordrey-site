@@ -476,6 +476,24 @@
 /* Shown only when the model is ignoring the slider. Gold rather than red: this
    is an explanation, not an error — the visitor has done nothing wrong, their
    retention is simply already at the ceiling. */
+/* The advocacy field's "this cannot do anything yet" note. Added 10 Sep 2026;
+   see `bringInert` in FanValueModelPage.jsx. Same colours as
+   .fvm-slider__capped below, which does the identical job for the retention
+   slider, but it lives inside the label column rather than the full row width,
+   so it takes its own width rather than that rule's 52ch. */
+.fvm-row__inert {
+  display: block;
+  margin: 7px 0 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #8A6D1E;
+  background: #FBF3DE;
+  border-left: 2px solid #C9A24B;
+  border-radius: 2px;
+  padding: 7px 10px;
+}
+
 .fvm-slider__capped {
   font-size: 11.5px;
   line-height: 1.5;

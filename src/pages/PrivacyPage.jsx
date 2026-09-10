@@ -67,8 +67,8 @@ const UPDATED = '10 September 2026'
  * `null` renders an in-page banner and blocks the page from reading as
  * finished. Fill all three, then delete this block's TODO note. */
 const SIREN = null       // e.g. '123 456 789'
-const RETENTION = null   // e.g. 'two years from our last contact'
-const EXPORT_TOOL = null // a tool name, or false for "nothing leaves Netlify"
+const RETENTION = 'two years from our last contact' // Laura, 10 Sep 2026
+const EXPORT_TOOL = false // Laura, 10 Sep 2026: nothing leaves Netlify
 
 const READY = SIREN !== null && RETENTION !== null && EXPORT_TOOL !== null
 

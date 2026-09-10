@@ -273,6 +273,13 @@ export default function FanValueModelPage() {
       // True when the retention slider can no longer move the number, so the UI
       // can explain itself instead of sitting inert.
       stayCapped: appliedLift < liftPts,
+      // Same idea, for the advocacy field. `saved` is a share of acquisition
+      // spend, so with no spend entered there is nothing for advocacy to save
+      // and the field genuinely cannot move any number. The arithmetic is
+      // right — you cannot save a budget you do not have — but a control that
+      // silently does nothing is what this page's 29 Jul pass set out to
+      // remove, and it is what a reviewer hit in Sep 2026 and read as a bug.
+      bringInert: acqN <= 0,
       stay, spend, saved, emv, total,
       newRevenue, adSaved, monthly,
       stayPct: pct(stay),
@@ -445,6 +452,12 @@ export default function FanValueModelPage() {
             <label className="fvm-row__label">
               Growth from referrals &amp; word of mouth
               <span className="fvm-row__sub">Optional. The share you already get from advocacy today. Leave blank if none.</span>
+              {derived.bringInert && (
+                <span className="fvm-row__inert" role="status">
+                  Add an acquisition spend above for this to change anything:
+                  advocacy works by saving you a share of that budget.
+                </span>
+              )}
             </label>
             <span className="fvm-row__val">
               <input

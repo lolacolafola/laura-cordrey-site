@@ -4,8 +4,8 @@ Actioned from the external review of lauracordrey.com (v1, Sep 2026) and the
 accompanying handover. Supersedes nothing; it is the first batch off that review.
 
 **Status: built, checked, committed locally. NOT pushed and NOT deployed.**
-Three facts are still missing (see Task 1) and `npm run privacy:check` fails
-until they are filled in, by design.
+One fact is still missing, the SIREN (see Task 1), and `npm run privacy:check`
+fails until it is filled in, by design.
 
 ---
 
@@ -42,20 +42,20 @@ the contact form's submit button, and is in the sitemap and prerender.
 site footer already says "Paris", so the supervisory authority is the CNIL. That
 placeholder is gone.
 
-**Still missing.** The August draft carried these as literal `[TO CONFIRM: …]`
-strings *in the rendered copy* — one careless deploy from a stranger reading them
-as Laura's actual privacy notice. They are now named constants at the top of
+The August draft carried these as literal `[TO CONFIRM: …]` strings *in the
+rendered copy* — one careless deploy from a stranger reading them as Laura's
+actual privacy notice. They are now named constants at the top of
 `src/pages/PrivacyPage.jsx`:
 
-| Constant | What it needs |
+| Constant | Status |
 |---|---|
-| `SIREN` | The micro-entreprise registration number |
-| `RETENTION` | How long form submissions are kept |
-| `EXPORT_TOOL` | The name of any email tool or CRM submissions are copied into, or `false` for none |
+| `RETENTION` | **Answered 10 Sep:** two years from our last contact |
+| `EXPORT_TOOL` | **Answered 10 Sep:** `false`. Nothing leaves Netlify, so the notice names only Netlify, Google Fonts and YouTube |
+| `SIREN` | **Still outstanding.** The micro-entreprise registration number |
 
 None can be derived from the codebase, so none were guessed. `EXPORT_TOOL` in
-particular is invisible to `csp:check`, because such an export happens inside
-Netlify rather than in the browser.
+particular was invisible to `csp:check`, because such an export happens inside
+Netlify rather than in the browser, so it could only be answered by Laura.
 
 Two guards were added so this cannot ship half-finished:
 
@@ -147,14 +147,15 @@ SERP or an AI answer.
 - **JSON-LD:** the `HowTo` node already carries `author: Laura Cordrey`, and the
   `DefinedTerm` description already says "Built by Laura Cordrey". Left as is.
 
-**Deliberately not changed: the homepage.** The handover asked for the method's
-first mention there. The homepage's most prominent mention is the gold flagship
+**Not changed: the homepage. Confirmed by Laura, 10 Sep.** The handover asked
+for the method's first mention there. The homepage's most prominent mention is the gold flagship
 offer card, whose kicker is already "The method I built", and `HomePage.jsx`
 carries a long comment recording that **three separate drafts added a sentence
 saying what the kicker already said, and all three were reverted at Laura's
 instruction**. Adding "by Laura Cordrey" beside it would be the fourth. The page
-already asserts authorship three ways in prose. Flagging rather than repeating a
-change she has twice rejected — say the word and it is one line.
+already asserts authorship three ways in prose, and the disambiguation job is
+done by /fan-engine's byline and meta description, which is what search and
+answer engines actually read for the canonical name.
 
 ™ usage unchanged. `npm run tm:check` passes.
 
@@ -206,10 +207,28 @@ the 29 Jul commit set out to stop. There is already a pattern for this in the
 same file: `stayCapped`, described in its own comment as being there "so the UI
 can explain itself instead of sitting inert".
 
-**Recommended: neither (a) nor (b).** Mirror `stayCapped` with a note that
-appears only when acquisition spend is blank, saying the field needs a budget to
-act on. It touches no arithmetic, so the Defensibility Spec, footnotes and
-objection-handling script all stay valid. Not implemented — awaiting the call.
+**Done, and it was neither (a) nor (b).** Laura's call, 10 Sep: mirror
+`stayCapped`. A new `bringInert` flag (true when acquisition spend is zero or
+blank) shows a short note under the advocacy field: *"Add an acquisition spend
+above for this to change anything: advocacy works by saving you a share of that
+budget."*
+
+It touches no arithmetic, so the Defensibility Spec, the footnotes and the
+objection-handling script all stay valid as written.
+
+Verified at 1280px and 375px, with the headline checked at each step to confirm
+the maths did not move:
+
+| State | Headline | Note |
+|---|---|---|
+| Defaults | $562K/yr | hidden |
+| Referrals 40% | $637K/yr | hidden |
+| Acquisition spend cleared | $450K/yr | **shown** |
+| Acquisition spend restored | $637K/yr | hidden |
+
+On mobile the note takes the same 188px column as the existing sub-label on that
+row, so it inherits the page's current narrow-label behaviour rather than
+introducing a new one. `calc:check` still passes.
 
 ---
 
@@ -223,7 +242,7 @@ objection-handling script all stay valid. Not implemented — awaiting the call.
 | `npm run calc:check` | pass |
 | `npm run csp:check` | no violations, both Fan Score downloads clicked |
 | name-drift grep (case-insensitive) | only pre-existing comments and uppercase display labels |
-| `npm run privacy:check` | **fails, correctly** — three facts outstanding |
+| `npm run privacy:check` | **fails, correctly** — SIREN outstanding |
 
 No third-party origin was added, so `public/_headers` is untouched.
 
@@ -231,12 +250,17 @@ No third-party origin was added, so `public/_headers` is untouched.
 
 ## To ship
 
-1. Fill in `SIREN`, `RETENTION`, `EXPORT_TOOL` in `src/pages/PrivacyPage.jsx`.
-2. `npm run build && npm run privacy:check && npm run csp:check`
-3. `netlify deploy --dir=dist` — one batch, not task by task.
+1. Fill in `SIREN` at the top of `src/pages/PrivacyPage.jsx`. It is the last
+   thing standing between this batch and a deploy.
+2. **Park the Services WIP first.** `src/pages/ServicesPage.{jsx,css}` and
+   `src/pages/HomePage.jsx` still carry the uncommitted Aug redesign, and a
+   build made with them in the tree would ship it. Stash or revert them, then
+   build, or the deploy carries work nobody reviewed.
+3. `npm run build && npm run privacy:check && npm run csp:check`
+4. `netlify deploy --dir=dist` — one batch, not task by task.
 
-Still needing a decision from Laura: the three privacy facts, the Task 4
-recommendation above, and whether to add the homepage attribution line.
+Nothing else is waiting on a decision. Retention, the CRM question, the Task 4
+approach and the homepage call were all answered on 10 Sep.
 
 Held for the ICP call, untouched here: ICP statement, hero line and problem-first
 order, Speaking page purpose, pricing placement.
